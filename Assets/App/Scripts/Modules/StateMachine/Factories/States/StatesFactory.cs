@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using App.Scripts.Modules.StateMachine.States.General;
 using UnityEngine;
 using Zenject;
@@ -14,17 +15,17 @@ namespace App.Scripts.Modules.StateMachine.Factories.States
             this.diContainer = diContainer;
         }
 
-        public State GetState(string id)
+        public State GetState(Type type)
         {
             var states = diContainer.ResolveAll<State>();
-            var state = states.FirstOrDefault(x => x.Id.Equals(id));
+            var state = states.FirstOrDefault(x => x.GetType() == type);
             if (state != null)
             {
                 state.Initialize(diContainer.Resolve<StateMachine>());
             }
             else
             {
-                Debug.LogWarning($"Can't find {id} state");
+                Debug.LogWarning($"Can't find {type} state");
             }
 
             return state;

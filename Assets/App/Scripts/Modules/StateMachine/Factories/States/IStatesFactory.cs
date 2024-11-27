@@ -1,9 +1,10 @@
-﻿using App.Scripts.Modules.StateMachine.States.General;
+﻿using System;
+using App.Scripts.Modules.StateMachine.States.General;
 
 namespace App.Scripts.Modules.StateMachine.Factories.States
 {
     public interface IStatesFactory
     {
-        State GetState(string id);
+        State GetState(Type type);
     }
 }

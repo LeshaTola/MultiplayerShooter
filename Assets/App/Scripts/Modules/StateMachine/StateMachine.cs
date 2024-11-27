@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Modules.StateMachine.Factories.States;
 using App.Scripts.Modules.StateMachine.States.General;
 using Cysharp.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace App.Scripts.Modules.StateMachine
     public class StateMachine
     {
         private State currentState;
-        private Dictionary<string, State> states = new();
+        private Dictionary<Type, State> states = new();
         private IStatesFactory statesFactory;
 
         public StateMachine(IStatesFactory statesFactory)
@@ -20,30 +21,30 @@ namespace App.Scripts.Modules.StateMachine
 
         public void AddState(State state)
         {
-            states.Add(state.Id, state);
+            states.Add(state.GetType(), state);
         }
 
         public async UniTask ChangeState(State state)
         {
-            await ChangeState(state.Id);
+            await ChangeState(state.GetType());
         }
 
-        public async UniTask ChangeState(string id)
+        public async UniTask ChangeState(Type type)
         {
-            if (currentState != null && currentState.Id.Equals(id))
+            if (currentState != null && currentState.GetType() == type)
             {
                 return;
             }
 
-            if (!states.ContainsKey(id))
+            if (!states.ContainsKey(type))
             {
-                var state = statesFactory.GetState(id);
+                var state = statesFactory.GetState(type);
                 if (state == null)
                 {
                     return;
                 }
 
-                states.Add(id, state);
+                states.Add(type, state);
             }
 
             if (currentState != null)
@@ -51,21 +52,13 @@ namespace App.Scripts.Modules.StateMachine
                 await currentState.Exit();
             }
 
-            currentState = states[id];
+            currentState = states[type];
             await currentState.Enter();
         }
 
         public void Update()
         {
             currentState?.Update();
-        }
-
-        public void AddStep(string stateId, IStateStep stateStep)
-        {
-            if (states.ContainsKey(stateId))
-            {
-                states[stateId]?.AddStep(stateStep);
-            }
         }
     }
 }
