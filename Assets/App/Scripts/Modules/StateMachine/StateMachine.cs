@@ -24,9 +24,10 @@ namespace App.Scripts.Modules.StateMachine
             states.Add(state.GetType(), state);
         }
 
-        public async UniTask ChangeState(State state)
+        public async UniTask ChangeState<T>()
         {
-            await ChangeState(state.GetType());
+            var type = typeof(T);
+            await ChangeState(type);
         }
 
         public async UniTask ChangeState(Type type)

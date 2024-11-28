@@ -1,13 +1,13 @@
-﻿using System;
+﻿using App.Scripts.Modules.PopupAndViews.Views;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.MainMenu.Screens
+namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
 {
-    public class CreateRoomView : MonoBehaviour
+    public class CreateRoomView : AnimatedView
     {
         [SerializeField] private TMP_InputField _inputField;
         [SerializeField] private Button _createButton;
@@ -16,24 +16,18 @@ namespace App.Scripts.Scenes.MainMenu.Screens
         private void OnEnable()
         {
             _createButton.onClick.AddListener(CreateRoom);
-            _closeButton.onClick.AddListener(Hide);
+            _closeButton.onClick.AddListener(HideYourself);
+        }
+
+        private async void HideYourself()
+        {
+            await Hide();
         }
 
         private void OnDisable()
         {
             _createButton.onClick.RemoveAllListeners();
             _closeButton.onClick.RemoveAllListeners();
-        }
-
-
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
         }
 
         private void CreateRoom()
@@ -44,7 +38,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens
                 IsVisible = true,
                 IsOpen = true
             };
-            
+
             PhotonNetwork.CreateRoom(_inputField.text, options);
         }
     }

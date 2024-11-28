@@ -1,28 +1,28 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using Photon.Pun;
+using App.Scripts.Modules.PopupAndViews.Views;
 using Photon.Realtime;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.MainMenu.Screens
+namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
 {
-    public class RoomsView : MonoBehaviour
+    public class RoomsView : AnimatedView
     {
+        public event Action CloseAction;
+
         [SerializeField] private RectTransform _container;
         [SerializeField] private RoomView _prefab;
         [SerializeField] private Button _closeButton;
-        
+
         [Header("Create Room")]
         [SerializeField] private Button _createRoomButton;
         [SerializeField] private CreateRoomView _createRoomView;
-    
+
         public void Initialize()
         {
-            _closeButton.onClick.AddListener(Hide);
-            _createRoomButton.onClick.AddListener(_createRoomView.Show);
+            _closeButton.onClick.AddListener(() => CloseAction?.Invoke());
+            _createRoomButton.onClick.AddListener(ShowCreateRoom);
         }
 
         public void Cleanup()
@@ -31,18 +31,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens
             _createRoomButton.onClick.RemoveAllListeners();
         }
 
-        public void Show()
-        {
-          gameObject.SetActive(true);  
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);  
-        }
-        
-
-        public void UpdateRoomListUI(List<RoomInfo> rooms)
+        public void UpdateRoomListUI(List<RoomInfo> rooms, Action<RoomInfo> action)
         {
             foreach (Transform child in _container.transform)
             {
@@ -52,13 +41,13 @@ namespace App.Scripts.Scenes.MainMenu.Screens
             foreach (var room in rooms)
             {
                 var roomItem = Instantiate(_prefab, _container.transform);
-                roomItem.Setup(room.Name,room.PlayerCount,room.MaxPlayers,() => JoinRoom(room.Name));
+                roomItem.Setup(room.Name, room.PlayerCount, room.MaxPlayers, () => action?.Invoke(room));
             }
         }
 
-        private void JoinRoom(string roomName)
+        private async void ShowCreateRoom()
         {
-            PhotonNetwork.JoinRoom(roomName);
+            await _createRoomView.Show();
         }
     }
 }

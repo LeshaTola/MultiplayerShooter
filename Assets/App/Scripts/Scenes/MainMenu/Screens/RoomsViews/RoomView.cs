@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.MainMenu.Screens
+namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
 {
     public class RoomView : MonoBehaviour
     {

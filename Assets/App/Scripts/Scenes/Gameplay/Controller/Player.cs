@@ -14,31 +14,18 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		[Header("Movement")]
 		[SerializeField] private float _speed = 2.0f;
 		[SerializeField] private float _jumpHeight = 1.0f;
+		[SerializeField] private float _jumpFallSpeed = 1.0f;
 
 		[SerializeField] private Transform _checkGroundPivot;
 		[SerializeField] private LayerMask _checkGroundMask;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private CharacterController _controller;
-		[SerializeField] private PhotonView _photonView;
-		[SerializeField] private Controller _inputController;
 
 		[field: SerializeField] public Weapon CurrentWeapon { get; private set; }
 
 		private float _velocity;
 		private bool _isGrounded;
 		private Vector3 _moveDirection;
-
-		public  void Start()
-		{
-			if (_photonView.IsMine)
-			{
-				return;
-			}
-			
-			_virtualCamera.enabled = false;
-			_inputController.enabled = false;
-			enabled = false;
-		}
 
 		private void FixedUpdate()
 		{
@@ -63,7 +50,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 			if (_isGrounded)
 			{
-				_velocity = Mathf.Sqrt(_jumpHeight * -2 * GRAVITY);
+				_velocity = Mathf.Sqrt(_jumpHeight * _jumpFallSpeed * -2 * GRAVITY);
 			}
 		}
 
@@ -89,7 +76,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		private void DoGravity()
 		{
-			_velocity += GRAVITY * Time.fixedDeltaTime;
+			_velocity += GRAVITY * _jumpFallSpeed * Time.fixedDeltaTime;
 			_controller.Move(Vector3.up * _velocity * Time.fixedDeltaTime);
 		}
 	}

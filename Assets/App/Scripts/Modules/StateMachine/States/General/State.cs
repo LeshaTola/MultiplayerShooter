@@ -11,16 +11,19 @@ namespace App.Scripts.Modules.StateMachine.States.General
             StateMachine = stateMachine;
         }
 
-        public virtual async UniTask Enter()
+        public virtual UniTask Enter()
         {
+            return UniTask.CompletedTask;
         }
 
-        public virtual async UniTask Exit()
+        public virtual UniTask Exit()
         {
+            return UniTask.CompletedTask;
         }
 
-        public virtual async UniTask Update()
+        public virtual UniTask Update()
         {
+            return UniTask.CompletedTask;
         }
     }
 }

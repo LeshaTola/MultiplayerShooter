@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using App.Scripts.Scenes.MainMenu.Screens;
+using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -10,14 +11,12 @@ namespace App.Scripts.Scenes.MainMenu
 {
     public class ConnectionProvider : MonoBehaviourPunCallbacks
     {
-        [SerializeField] private RoomsView _roomsView;
-        public RoomsViewProvider ViewProvider { get; private set; }
-
-        public static ConnectionProvider Instance { get; private set; }
-        
         private void Start()
         {
-            Instance = this;
+            if (PhotonNetwork.IsConnected)
+            {
+                return;
+            }
             PhotonNetwork.ConnectUsingSettings();
         }
 
@@ -31,14 +30,11 @@ namespace App.Scripts.Scenes.MainMenu
         public override void OnJoinedLobby()
         {
             Debug.Log("Connected To Lobby");
-
-            ViewProvider = new RoomsViewProvider(_roomsView);
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
             Debug.Log("Update rooms in provider");
-            ViewProvider.UpdateRoomList(roomList);
         }
 
         public override void OnJoinedRoom()
