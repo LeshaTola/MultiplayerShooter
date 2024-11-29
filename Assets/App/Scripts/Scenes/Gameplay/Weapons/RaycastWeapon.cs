@@ -11,6 +11,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [SerializeField] private ParticleSystem _muzzleFlash;
         [SerializeField] private ParticleSystem _impactEffect;
         [SerializeField] private LineRenderer _tracerEffect;
+        [SerializeField] private Camera _camera;
 
         public override event Action<int, int> OnAmmoChanged;
 
@@ -19,6 +20,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private void Start()
         {
             _trialStartColor = _tracerEffect.startColor;
+            _camera = Camera.main;
         }
 
         public override void Attack()
@@ -38,7 +40,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 = PhotonNetwork.Instantiate(_muzzleFlash.name, _shootPoint.position, _shootPoint.rotation);*/
 
             RaycastHit hit;
-            if (Physics.Raycast(_shootPoint.position, _shootPoint.forward, out hit))
+            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out hit))
             {
                 var impact
                     = PhotonNetwork.Instantiate(_impactEffect.name, hit.point, Quaternion.LookRotation(hit.normal));

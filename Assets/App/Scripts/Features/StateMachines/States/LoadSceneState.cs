@@ -3,6 +3,7 @@ using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.States.General;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Photon.Pun;
 using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Features.StateMachines.States
@@ -34,7 +35,7 @@ namespace App.Scripts.Features.StateMachines.States
                     await _sceneTransition.PlayOnAsync();
                 }
                 
-                SceneManager.LoadScene(_sceneName);
+                PhotonNetwork.LoadLevel(_sceneName);
                 CleanupAnimations();
             }
 

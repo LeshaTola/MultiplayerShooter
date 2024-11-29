@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using App.Scripts.Features.Commands;
+using App.Scripts.Features.Input;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
 using App.Scripts.Features.StateMachines.States;
@@ -54,6 +55,7 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<MoveToStateCommand>().AsTransient();
             
             Container.Bind<PresentersProvider>().AsSingle();
+            Container.Bind<GameInputProvider>().AsSingle();
             
         }
 

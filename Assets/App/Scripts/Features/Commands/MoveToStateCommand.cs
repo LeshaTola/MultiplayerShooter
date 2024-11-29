@@ -21,7 +21,7 @@ namespace App.Scripts.Features.Commands
             _state = typeof(T);
         }
 
-        public void Execute()
+        public async void Execute()
         {
             if (_state == null)
             {
@@ -29,7 +29,7 @@ namespace App.Scripts.Features.Commands
                 return;
             }
             
-            _stateMachine.ChangeState(_state);
+            await _stateMachine.ChangeState(_state);
         }
     }
 }

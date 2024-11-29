@@ -1,33 +1,53 @@
 using System;
+using System.Collections.Generic;
+using App.Scripts.Features.Input;
+using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Stats;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
+using Player = App.Scripts.Scenes.Gameplay.Controller.Player;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Scenes.Gameplay
 {
     public class RoomController : MonoBehaviourPunCallbacks
     {
-        [SerializeField] private Controller.Player _player;
+        [SerializeField] private List<Transform> _spawnPoints;
+
+        [SerializeField] private Player _playerPrefab;
         [SerializeField] private HealthBarUI _healthBarUI;
+        
+        private Player _player;
+        private Health _health;
+        private GameInputProvider _gameInputProvider;
 
-        private void Start()
+        [Inject]
+        private void Construct(GameInputProvider gameInputProvider)
         {
-            var player
-                = PhotonNetwork.Instantiate(_player.gameObject.name, Vector3.zero, Quaternion.identity);
+            _gameInputProvider = gameInputProvider;
+            Initialize();
 
-            var health = player.GetComponent<Health>();
-            _healthBarUI.Init(health);
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        private void Initialize()
         {
-            base.OnPlayerLeftRoom(otherPlayer);
+            _player = PhotonNetwork.Instantiate(
+                _playerPrefab.gameObject.name,
+                _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
+                Quaternion.identity).GetComponent<Player>();
+            _health = _player.GetComponent<Health>();
+            _player.GetComponent<Controller.Controller>().Initialize(_gameInputProvider);
+            _player.GetComponent<WeaponProvider>().Initialize(_gameInputProvider);
+            _healthBarUI.Init(_health);
+            _health.OnDied += RespawnPlayer;
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        private void RespawnPlayer()
         {
+            _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
+            _health.NetworkTakeHeal(_health.MaxValue);
         }
 
         public override void OnLeftRoom()

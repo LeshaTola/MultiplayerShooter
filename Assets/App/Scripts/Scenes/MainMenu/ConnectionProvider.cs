@@ -1,22 +1,33 @@
 using System.Collections.Generic;
-using App.Scripts.Scenes.MainMenu.Screens;
+using App.Scripts.Modules.StateMachine;
 using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
 using Photon.Pun;
 using Photon.Realtime;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.Scenes.MainMenu
 {
     public class ConnectionProvider : MonoBehaviourPunCallbacks
     {
+        private RoomsViewPresenter _roomsViewPresenter;
+        private StateMachine _stateMachine;
+
+
+        [Inject]
+        private void Construct(RoomsViewPresenter roomsViewPresenter, StateMachine stateMachine)
+        {
+            _roomsViewPresenter = roomsViewPresenter;
+            _stateMachine = stateMachine;
+        }
+
         private void Start()
         {
             if (PhotonNetwork.IsConnected)
             {
                 return;
             }
+
             PhotonNetwork.ConnectUsingSettings();
         }
 
@@ -35,11 +46,13 @@ namespace App.Scripts.Scenes.MainMenu
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
             Debug.Log("Update rooms in provider");
+            _roomsViewPresenter.UpdateRoomList(roomList);
         }
 
         public override void OnJoinedRoom()
         {
             PhotonNetwork.LoadLevel("Gameplay");
+            //await _stateMachine.ChangeState<LoadSceneState>();
         }
     }
 }

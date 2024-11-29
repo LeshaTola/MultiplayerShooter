@@ -16,13 +16,15 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		[SerializeField] private float _jumpHeight = 1.0f;
 		[SerializeField] private float _jumpFallSpeed = 1.0f;
 
+		[Space]
+		[SerializeField] private CharacterController _controller;
 		[SerializeField] private Transform _checkGroundPivot;
 		[SerializeField] private LayerMask _checkGroundMask;
+
+		[Header("Other")]
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
-		[SerializeField] private CharacterController _controller;
-
-		[field: SerializeField] public Weapon CurrentWeapon { get; private set; }
-
+		[SerializeField] private WeaponProvider _weaponProvider;
+		
 		private float _velocity;
 		private bool _isGrounded;
 		private Vector3 _moveDirection;
@@ -42,7 +44,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		public void Attack()
 		{
 
-			CurrentWeapon.Attack();
+			_weaponProvider.CurrentWeapon.Attack();
 		}
 
 		public void Jump()
@@ -61,6 +63,12 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 				= _virtualCamera.transform.forward * _moveDirection.z 
 				  + _virtualCamera.transform.right * _moveDirection.x;
 			_moveDirection.y = 0f;
+		}
+
+		public void Teleport(Vector3 position)
+		{
+			var offset = position - transform.position ;
+			_controller.Move(offset);
 		}
 
 		private void MoveInternal()

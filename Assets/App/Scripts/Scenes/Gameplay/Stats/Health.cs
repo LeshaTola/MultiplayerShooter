@@ -43,10 +43,6 @@ namespace App.Scripts.Scenes.Gameplay.Stats
 			{
 				Value = 0;
 				OnDied?.Invoke();
-				if (photonView.IsMine)
-				{
-					PhotonNetwork.LeaveRoom();
-				}
 			}
 			OnValueChanged?.Invoke(Value, MaxValue);
 		}

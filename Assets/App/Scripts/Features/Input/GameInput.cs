@@ -62,6 +62,78 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ESC"",
+                    ""type"": ""Button"",
+                    ""id"": ""edec8198-60a7-4ae6-b5cb-50a960055008"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""R"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3152c32-3d79-4490-a6c5-06d0e84bd68f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""E"",
+                    ""type"": ""Button"",
+                    ""id"": ""a04e9f86-2312-4894-98e2-03aca79b2000"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key1"",
+                    ""type"": ""Button"",
+                    ""id"": ""b948975b-309b-4367-945d-72ece992b8d1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key2"",
+                    ""type"": ""Button"",
+                    ""id"": ""0bec6972-8fcf-4e64-9a79-c0a19eba8c04"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key3"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2e1dac0-315b-4259-98e3-2927e3882d7f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key4"",
+                    ""type"": ""Button"",
+                    ""id"": ""93b54152-43de-4658-ac79-e7444fcbf51c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Key5"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8edaad2-3196-4659-8660-467daa0a6ffa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +224,94 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""MouseLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30207cec-069b-48e9-b1df-13954690a6d4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""478211a8-f710-46e1-b3bf-935de05178b9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da65dba2-95ac-48f9-b69d-3f99719d1719"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f798bf67-3062-4a81-839f-d0e62d7134a3"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ddef02d-c788-4358-bd63-18763e26a0a4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c1d5581-7b92-4196-a08f-0edf79d2a1f2"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41848d18-b222-4f7a-8322-cdf4e28a049a"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fb62a75-3da7-4bf3-9d40-a0c13fb08e3c"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Key5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +324,14 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Attack = m_Character.FindAction("Attack", throwIfNotFound: true);
         m_Character_MouseLook = m_Character.FindAction("MouseLook", throwIfNotFound: true);
+        m_Character_ESC = m_Character.FindAction("ESC", throwIfNotFound: true);
+        m_Character_R = m_Character.FindAction("R", throwIfNotFound: true);
+        m_Character_E = m_Character.FindAction("E", throwIfNotFound: true);
+        m_Character_Key1 = m_Character.FindAction("Key1", throwIfNotFound: true);
+        m_Character_Key2 = m_Character.FindAction("Key2", throwIfNotFound: true);
+        m_Character_Key3 = m_Character.FindAction("Key3", throwIfNotFound: true);
+        m_Character_Key4 = m_Character.FindAction("Key4", throwIfNotFound: true);
+        m_Character_Key5 = m_Character.FindAction("Key5", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -234,6 +402,14 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Attack;
     private readonly InputAction m_Character_MouseLook;
+    private readonly InputAction m_Character_ESC;
+    private readonly InputAction m_Character_R;
+    private readonly InputAction m_Character_E;
+    private readonly InputAction m_Character_Key1;
+    private readonly InputAction m_Character_Key2;
+    private readonly InputAction m_Character_Key3;
+    private readonly InputAction m_Character_Key4;
+    private readonly InputAction m_Character_Key5;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
@@ -242,6 +418,14 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Attack => m_Wrapper.m_Character_Attack;
         public InputAction @MouseLook => m_Wrapper.m_Character_MouseLook;
+        public InputAction @ESC => m_Wrapper.m_Character_ESC;
+        public InputAction @R => m_Wrapper.m_Character_R;
+        public InputAction @E => m_Wrapper.m_Character_E;
+        public InputAction @Key1 => m_Wrapper.m_Character_Key1;
+        public InputAction @Key2 => m_Wrapper.m_Character_Key2;
+        public InputAction @Key3 => m_Wrapper.m_Character_Key3;
+        public InputAction @Key4 => m_Wrapper.m_Character_Key4;
+        public InputAction @Key5 => m_Wrapper.m_Character_Key5;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +447,30 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @MouseLook.started += instance.OnMouseLook;
             @MouseLook.performed += instance.OnMouseLook;
             @MouseLook.canceled += instance.OnMouseLook;
+            @ESC.started += instance.OnESC;
+            @ESC.performed += instance.OnESC;
+            @ESC.canceled += instance.OnESC;
+            @R.started += instance.OnR;
+            @R.performed += instance.OnR;
+            @R.canceled += instance.OnR;
+            @E.started += instance.OnE;
+            @E.performed += instance.OnE;
+            @E.canceled += instance.OnE;
+            @Key1.started += instance.OnKey1;
+            @Key1.performed += instance.OnKey1;
+            @Key1.canceled += instance.OnKey1;
+            @Key2.started += instance.OnKey2;
+            @Key2.performed += instance.OnKey2;
+            @Key2.canceled += instance.OnKey2;
+            @Key3.started += instance.OnKey3;
+            @Key3.performed += instance.OnKey3;
+            @Key3.canceled += instance.OnKey3;
+            @Key4.started += instance.OnKey4;
+            @Key4.performed += instance.OnKey4;
+            @Key4.canceled += instance.OnKey4;
+            @Key5.started += instance.OnKey5;
+            @Key5.performed += instance.OnKey5;
+            @Key5.canceled += instance.OnKey5;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -279,6 +487,30 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @MouseLook.started -= instance.OnMouseLook;
             @MouseLook.performed -= instance.OnMouseLook;
             @MouseLook.canceled -= instance.OnMouseLook;
+            @ESC.started -= instance.OnESC;
+            @ESC.performed -= instance.OnESC;
+            @ESC.canceled -= instance.OnESC;
+            @R.started -= instance.OnR;
+            @R.performed -= instance.OnR;
+            @R.canceled -= instance.OnR;
+            @E.started -= instance.OnE;
+            @E.performed -= instance.OnE;
+            @E.canceled -= instance.OnE;
+            @Key1.started -= instance.OnKey1;
+            @Key1.performed -= instance.OnKey1;
+            @Key1.canceled -= instance.OnKey1;
+            @Key2.started -= instance.OnKey2;
+            @Key2.performed -= instance.OnKey2;
+            @Key2.canceled -= instance.OnKey2;
+            @Key3.started -= instance.OnKey3;
+            @Key3.performed -= instance.OnKey3;
+            @Key3.canceled -= instance.OnKey3;
+            @Key4.started -= instance.OnKey4;
+            @Key4.performed -= instance.OnKey4;
+            @Key4.canceled -= instance.OnKey4;
+            @Key5.started -= instance.OnKey5;
+            @Key5.performed -= instance.OnKey5;
+            @Key5.canceled -= instance.OnKey5;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -302,5 +534,13 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
+        void OnR(InputAction.CallbackContext context);
+        void OnE(InputAction.CallbackContext context);
+        void OnKey1(InputAction.CallbackContext context);
+        void OnKey2(InputAction.CallbackContext context);
+        void OnKey3(InputAction.CallbackContext context);
+        void OnKey4(InputAction.CallbackContext context);
+        void OnKey5(InputAction.CallbackContext context);
     }
 }
