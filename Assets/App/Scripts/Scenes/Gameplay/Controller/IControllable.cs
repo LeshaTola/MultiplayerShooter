@@ -8,7 +8,10 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		public void Jump();
 
-		public void Attack();
+		public void StartAttack();
+		public void CancelAttack();
+
+		public void Reload();
 
 	}
 }

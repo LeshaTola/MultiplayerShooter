@@ -172,7 +172,7 @@ PrefabInstance:
       addedObject: {fileID: 9074124150475967410}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b87b95460eac2d40b200a355f6444a5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5880157156165319455}
+      addedObject: {fileID: 8110540984061423504}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b87b95460eac2d40b200a355f6444a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8123250644232625794}
@@ -212,7 +212,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7616858270347262278, guid: 6b87b95460eac2d40b200a355f6444a5, type: 3}
---- !u!114 &5880157156165319455
+--- !u!114 &8110540984061423504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,17 +221,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8714189243324003871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef2236b71504830add44968327f8199, type: 3}
+  m_Script: {fileID: 11500000, guid: 87b89c807044404c8436fa5ccc38f2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootPoint: {fileID: 2891680068617210708}
-  _maxAmmoCount: 16
-  _reloadCooldown: 1
-  _attackCooldown: 0.1
   _muzzleFlash: {fileID: 1317193628172381456, guid: e4dfde9ca134adf439e6975d3b3674fc, type: 3}
   _impactEffect: {fileID: 1317193628172381456, guid: e4dfde9ca134adf439e6975d3b3674fc, type: 3}
   _tracerEffect: {fileID: 8123250644232625794}
-  _camera: {fileID: 0}
+  <ShootPoint>k__BackingField: {fileID: 2891680068617210708}
+  _trailFadeTime: 0.15
 --- !u!120 &8123250644232625794
 LineRenderer:
   serializedVersion: 2

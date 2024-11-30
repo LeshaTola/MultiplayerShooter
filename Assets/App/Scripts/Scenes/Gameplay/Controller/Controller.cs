@@ -18,14 +18,22 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 			_gameInputProvider = gameInputProvider;
 			_controllable = _controllableObject.GetComponent<IControllable>();
 
-			_gameInputProvider.OnLeftMouse += AttackPerformed;
+			_gameInputProvider.OnLeftMouseStarted += AttackStarted;
+			_gameInputProvider.OnLeftMouseCanceled += AttackCanceled;
 			_gameInputProvider.OnSpace += JumpPerformed;
+			_gameInputProvider.OnR += ReloadPerformed;
 		}
 
 		private void OnDisable()
 		{
-			_gameInputProvider.OnLeftMouse -= AttackPerformed;
+			if (_gameInputProvider == null)
+			{
+				return;
+			}
+			_gameInputProvider.OnLeftMouseStarted -= AttackStarted;
+			_gameInputProvider.OnLeftMouseCanceled -= AttackCanceled;
 			_gameInputProvider.OnSpace -= JumpPerformed;
+			_gameInputProvider.OnR -= ReloadPerformed;
 		}
 
 		private void JumpPerformed()
@@ -33,16 +41,26 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 			_controllable.Jump();
 		}
 
-		private void AttackPerformed()
+		private void AttackStarted()
 		{
-			_controllable.Attack();
+			_controllable.StartAttack();
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
+		}
+
+		private void AttackCanceled()
+		{
+			_controllable.CancelAttack();
 		}
 
 		private void Update()
 		{
 			_controllable.Move(_gameInputProvider.GetMovementNormalized());
+		}
+
+		private void ReloadPerformed()
+		{
+			_controllable.Reload();
 		}
 	}
 }

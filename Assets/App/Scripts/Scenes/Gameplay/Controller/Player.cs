@@ -41,10 +41,19 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 			DoGravity();
 		}
 
-		public void Attack()
+		public void StartAttack()
 		{
+			_weaponProvider.CurrentWeapon.StartAttack();
+		}
+		
+		public void CancelAttack()
+		{
+			_weaponProvider.CurrentWeapon.CancelAttack();
+		}
 
-			_weaponProvider.CurrentWeapon.Attack();
+		public void Reload()
+		{
+			_weaponProvider.CurrentWeapon.Reload();
 		}
 
 		public void Jump()
