@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
-using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
+using System;
 
 namespace App.Scripts.Scenes.Gameplay.Controller
 {
@@ -22,25 +19,39 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         
         public Weapon CurrentWeapon { get; private set; }
 
-        public void Initialize(/*Inventory inventory,*/ GameInputProvider gameInputProvider)
+        public void Initialize( GameInputProvider gameInputProvider)
         {
             _gameInputProvider = gameInputProvider;
-            //_inventory = inventory;
+            
             int i = 0;
             foreach (var weapon in _inventory.Weapons)
             {
                 var weaponObject
-                    = PhotonNetwork.Instantiate(weapon.Prefab.name, Vector3.zero, Quaternion.identity)
+                    = PhotonNetwork.Instantiate(weapon.Prefab.name, _weaponHolder.position, _weaponHolder.rotation)
                         .GetComponent<Weapon>();
-                _weapons.Add(weaponObject);
-                weaponObject.Initialize(weapon);
-                photonView.RPC(nameof(SetupWeapon),RpcTarget.All, i);
+                photonView.RPC(nameof(SetupWeapon),
+                    RpcTarget.AllBuffered, 
+                    weaponObject.GetComponent<PhotonView>().ViewID, i);
                 i++;
             }
             
-            _gameInputProvider.OnNumber += NetworkSetWeaponByIndex;
+            _gameInputProvider.OnNumber += RPCSetWeaponByIndex;
 
-            NetworkSetWeaponByIndex(0);
+            RPCSetWeaponByIndex(0);
+        }
+
+        [PunRPC]
+        public void SetupWeapon(int weaponViewID, int index)
+        {
+            var weaponObject = PhotonView.Find(weaponViewID).gameObject;
+            var weapon = weaponObject.GetComponent<Weapon>();
+
+            _weapons.Add(weapon);
+            weapon.Initialize(_inventory.Weapons[index]);
+
+            var weaponTransform = weapon.transform;
+            weaponTransform.SetParent(_weaponHolder);
+            weapon.gameObject.SetActive(false);
         }
 
         public void Cleanup()
@@ -48,20 +59,9 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             _gameInputProvider.OnNumber -= SetWeaponByIndex;
         }
 
-        [PunRPC]
-        public void SetupWeapon(int  index)
+        private void RPCSetWeaponByIndex(int index)
         {
-            var weaponObject = _weapons[index];
-            var weaponTransform = weaponObject.transform;
-            weaponTransform.SetParent(_weaponHolder);
-            weaponTransform.localPosition = Vector3.zero;
-            weaponTransform.localRotation = Quaternion.identity;
-            weaponObject.gameObject.SetActive(false);
-        }
-
-        private void NetworkSetWeaponByIndex(int index)
-        {
-            photonView.RPC(nameof(SetWeaponByIndex),RpcTarget.All, index);
+            photonView.RPC(nameof(SetWeaponByIndex),RpcTarget.AllBuffered, index);
         }
         
         [PunRPC]
