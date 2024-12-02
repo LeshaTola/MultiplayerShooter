@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ namespace App.Scripts.Scenes.Gameplay
 
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private HealthBarUI _healthBarUI;
+        [SerializeField] private WeaponView _weaponView;
         
         private Player _player;
         private Health _health;
@@ -28,7 +30,6 @@ namespace App.Scripts.Scenes.Gameplay
         {
             _gameInputProvider = gameInputProvider;
             Initialize();
-
         }
 
         private void Initialize()
@@ -39,7 +40,11 @@ namespace App.Scripts.Scenes.Gameplay
                 Quaternion.identity).GetComponent<Player>();
             _health = _player.GetComponent<Health>();
             _player.GetComponent<Controller.Controller>().Initialize(_gameInputProvider);
-            _player.GetComponent<WeaponProvider>().Initialize(_gameInputProvider);
+            
+            var weaponProvider = _player.GetComponent<WeaponProvider>();
+            _weaponView.Initialize(weaponProvider);
+            weaponProvider.Initialize(_gameInputProvider);
+            
             _healthBarUI.Init(_health);
             _health.OnDied += RespawnPlayer;
         }

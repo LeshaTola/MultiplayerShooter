@@ -25,16 +25,23 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [SerializeField] private float _trailFadeTime = 0.1f;
 
         private Color _trialStartColor;
-        private int _currentAmmoCount;
         private bool _isReady = true;
 
         public WeaponConfig Config { get; private set; }
+        public int CurrentAmmoCount { get; private set; }
 
         public void Initialize(WeaponConfig weaponConfig)
         {
             Config = Instantiate(weaponConfig);
             _trialStartColor = _tracerEffect.startColor;
             Config.ShootStrategy.Init(Camera.main, this);
+            CurrentAmmoCount = Config.MaxAmmoCount;
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            _isReady = true;
         }
 
         private void Update()
@@ -52,7 +59,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void PerformAttack()
         {
-            if (!_isReady || _currentAmmoCount <= 0)
+            if (!_isReady || CurrentAmmoCount <= 0)
             {
                 return;
             }
@@ -61,8 +68,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             Config.ShootingMode.PerformAttack();
 
             AttackAnimation();
-            _currentAmmoCount--;
-            OnAmmoChanged?.Invoke(_currentAmmoCount, Config.MaxAmmoCount);
+            CurrentAmmoCount--;
+            OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
             StartAttackCooldown();
         }
 
@@ -80,9 +87,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
             ReloadAnimation();
             StartReloadCooldown();
-
-            _currentAmmoCount = Config.MaxAmmoCount;
-            OnAmmoChanged?.Invoke(_currentAmmoCount, Config.MaxAmmoCount);
         }
 
         private void AttackAnimation()
@@ -123,6 +127,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _isReady = false;
             yield return new WaitForSeconds(Config.ReloadCooldown);
             _isReady = true;
+            CurrentAmmoCount = Config.MaxAmmoCount;
+            OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
         }
 
         public void NetworkFadeOutLine()

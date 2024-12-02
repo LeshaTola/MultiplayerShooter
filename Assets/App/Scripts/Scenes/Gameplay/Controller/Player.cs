@@ -12,6 +12,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		private const float GRAVITY = -9.81f;
 
 		[Header("Movement")]
+		[SerializeField] private float _mouseSensitivity = 20f;
 		[SerializeField] private float _speed = 2.0f;
 		[SerializeField] private float _jumpHeight = 1.0f;
 		[SerializeField] private float _jumpFallSpeed = 1.0f;
@@ -28,6 +29,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		private float _velocity;
 		private bool _isGrounded;
 		private Vector3 _moveDirection;
+		private float _verticalRotation = 0f;
 
 		private void FixedUpdate()
 		{
@@ -72,6 +74,19 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 				= _virtualCamera.transform.forward * _moveDirection.z 
 				  + _virtualCamera.transform.right * _moveDirection.x;
 			_moveDirection.y = 0f;
+		}
+
+		public void MoveCamera(Vector2 offset)
+		{
+			_mouseSensitivity = 20;
+			float mouseX = offset.x * _mouseSensitivity * Time.deltaTime;
+			float mouseY = offset.y * _mouseSensitivity * Time.deltaTime;
+
+			_verticalRotation -= mouseY;
+			_verticalRotation = Mathf.Clamp(_verticalRotation, -80, 80);
+			_virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+
+			transform.Rotate(Vector3.up * mouseX);
 		}
 
 		public void Teleport(Vector3 position)

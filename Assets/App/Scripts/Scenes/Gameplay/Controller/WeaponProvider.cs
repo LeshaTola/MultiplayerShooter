@@ -10,8 +10,9 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 {
     public class WeaponProvider : MonoBehaviourPun
     {
-        [SerializeField] private Inventory _inventory;
+        public event Action<Weapon> OnWeaponChanged;
         
+        [SerializeField] private Inventory _inventory;
         [SerializeField] private Transform _weaponHolder;
         
         private List<Weapon> _weapons = new();
@@ -40,6 +41,19 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             RPCSetWeaponByIndex(0);
         }
 
+        public void Cleanup()
+        {
+            _gameInputProvider.OnNumber -= RPCSetWeaponByIndex;
+        }
+
+        private void RPCSetWeaponByIndex(int index)
+        {
+            index--;
+            index = Math.Clamp(index, 0, _weapons.Count - 1);
+            OnWeaponChanged?.Invoke(_weapons[index]);
+            photonView.RPC(nameof(SetWeaponByIndex),RpcTarget.AllBuffered, index);
+        }
+
         [PunRPC]
         public void SetupWeapon(int weaponViewID, int index)
         {
@@ -54,21 +68,10 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             weapon.gameObject.SetActive(false);
         }
 
-        public void Cleanup()
-        {
-            _gameInputProvider.OnNumber -= SetWeaponByIndex;
-        }
-
-        private void RPCSetWeaponByIndex(int index)
-        {
-            photonView.RPC(nameof(SetWeaponByIndex),RpcTarget.AllBuffered, index);
-        }
-        
         [PunRPC]
         public void SetWeaponByIndex(int index)
         {
-            index--;
-            index = Math.Clamp(index, 0, _weapons.Count - 1);
+            
             if (CurrentWeapon == _weapons[index])
             {
                 return;

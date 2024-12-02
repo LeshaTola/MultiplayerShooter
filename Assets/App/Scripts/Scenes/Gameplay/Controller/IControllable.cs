@@ -6,6 +6,8 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 	{
 		public void Move(Vector2 direction);
 
+		public void MoveCamera(Vector2 offset);
+
 		public void Jump();
 
 		public void StartAttack();

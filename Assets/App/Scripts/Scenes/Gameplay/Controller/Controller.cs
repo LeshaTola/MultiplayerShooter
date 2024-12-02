@@ -56,6 +56,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		private void Update()
 		{
 			_controllable.Move(_gameInputProvider.GetMovementNormalized());
+			_controllable.MoveCamera(_gameInputProvider.GetMouseLook());
 		}
 
 		private void ReloadPerformed()
