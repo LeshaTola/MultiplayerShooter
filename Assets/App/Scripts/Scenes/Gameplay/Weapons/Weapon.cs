@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using App.Scripts.Features.Inventory.Weapons;
+using App.Scripts.Scenes.Gameplay.Controller;
 using DG.Tweening;
 using Photon.Pun;
 using UnityEngine;
@@ -29,9 +30,12 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public WeaponConfig Config { get; private set; }
         public int CurrentAmmoCount { get; private set; }
+        public Player Owner { get; private set; }
 
-        public void Initialize(WeaponConfig weaponConfig)
+
+        public void Initialize(WeaponConfig weaponConfig, Player owner)
         {
+            Owner = owner;
             Config = Instantiate(weaponConfig);
             _trialStartColor = _tracerEffect.startColor;
             Config.ShootStrategy.Init(Camera.main, this);
@@ -59,8 +63,14 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void PerformAttack()
         {
-            if (!_isReady || CurrentAmmoCount <= 0)
+            if (!_isReady )
             {
+                return;
+            }
+
+            if (CurrentAmmoCount <= 0)
+            {
+                Reload();
                 return;
             }
 

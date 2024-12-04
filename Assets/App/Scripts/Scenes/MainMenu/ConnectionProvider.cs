@@ -28,6 +28,8 @@ namespace App.Scripts.Scenes.MainMenu
                 return;
             }
 
+            PhotonNetwork.NickName = $"Player {Random.Range(0, 1000)}";     
+
             PhotonNetwork.ConnectUsingSettings();
         }
 

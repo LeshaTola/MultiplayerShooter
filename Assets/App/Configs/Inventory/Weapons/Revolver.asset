@@ -23,7 +23,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: <Damage>k__BackingField
       Entry: 4
-      Data: 10
+      Data: 99
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 0|App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.RaycastShootStrategy,

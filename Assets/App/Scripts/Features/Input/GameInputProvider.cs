@@ -10,6 +10,8 @@ namespace App.Scripts.Features.Input
         public event Action OnEsc;
         public event Action OnR;
         public event Action OnE;
+        public event Action OnTabPerformed;
+        public event Action OnTabCanceled;
         
         public event Action OnLeftMouseStarted;
         public event Action OnLeftMouseCanceled;
@@ -25,6 +27,8 @@ namespace App.Scripts.Features.Input
             _input.Character.ESC.performed += (data) => OnEsc?.Invoke();
             _input.Character.R.performed += (data) => OnR?.Invoke();
             _input.Character.E.performed += (data) => OnE?.Invoke();
+            _input.Character.Tab.performed += (data) => OnTabPerformed?.Invoke();
+            _input.Character.Tab.canceled += (data) => OnTabCanceled?.Invoke();
 
             _input.Character.Key1.performed += (data) => OnNumber?.Invoke(1);
             _input.Character.Key2.performed += (data) => OnNumber?.Invoke(2);

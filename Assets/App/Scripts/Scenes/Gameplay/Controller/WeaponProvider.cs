@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         
         public Weapon CurrentWeapon { get; private set; }
 
-        public void Initialize( GameInputProvider gameInputProvider)
+        public void Initialize(GameInputProvider gameInputProvider, Player owner)
         {
             _gameInputProvider = gameInputProvider;
             
@@ -32,7 +32,9 @@ namespace App.Scripts.Scenes.Gameplay.Controller
                         .GetComponent<Weapon>();
                 photonView.RPC(nameof(SetupWeapon),
                     RpcTarget.AllBuffered, 
-                    weaponObject.GetComponent<PhotonView>().ViewID, i);
+                    weaponObject.GetComponent<PhotonView>().ViewID, 
+                    owner.GetComponent<PhotonView>().ViewID,
+                    i);
                 i++;
             }
             
@@ -51,17 +53,18 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             index--;
             index = Math.Clamp(index, 0, _weapons.Count - 1);
             OnWeaponChanged?.Invoke(_weapons[index]);
-            photonView.RPC(nameof(SetWeaponByIndex),RpcTarget.AllBuffered, index);
+            photonView.RPC(nameof(SetWeaponByIndex), RpcTarget.AllBuffered, index);
         }
 
         [PunRPC]
-        public void SetupWeapon(int weaponViewID, int index)
+        public void SetupWeapon(int weaponViewID,int ownerId, int index)
         {
             var weaponObject = PhotonView.Find(weaponViewID).gameObject;
+            var player = PhotonView.Find(ownerId).GetComponent<Player>();
             var weapon = weaponObject.GetComponent<Weapon>();
 
             _weapons.Add(weapon);
-            weapon.Initialize(_inventory.Weapons[index]);
+            weapon.Initialize(_inventory.Weapons[index], player);
 
             var weaponTransform = weapon.transform;
             weaponTransform.SetParent(_weaponHolder);

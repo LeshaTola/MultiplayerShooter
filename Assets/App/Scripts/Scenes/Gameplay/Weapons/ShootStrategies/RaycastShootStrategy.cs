@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
@@ -23,7 +24,14 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
                 
                 if(hit.transform.gameObject.TryGetComponent(out Health health))
                 {
+                    if (health.Value <= _weapon.Config.Damage)
+                    {
+                        LeaderBoardProvider.Instance.AddKill();    
+                    }
+                    
                     health.NetworkTakeDamage(_weapon.Config.Damage);
+                    health.RPCSetLasHitPlayer(_weapon.Owner.photonView.ViewID);
+                    
                 }
             }
             else

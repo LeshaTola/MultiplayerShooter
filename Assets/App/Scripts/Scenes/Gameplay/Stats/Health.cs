@@ -1,4 +1,5 @@
 using System;
+using App.Scripts.Scenes.Gameplay.Controller;
 using Photon.Pun;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Stats
 
 		public float Value { get; private set; }
 		public float MaxValue { get; private set; }
+		public int LastHitPlayerId { get; private set; }
 
 		private void Start()
 		{
@@ -29,6 +31,17 @@ namespace App.Scripts.Scenes.Gameplay.Stats
 		{
 			photonView.RPC(nameof(Heal), RpcTarget.All, healValue);
 		}
+
+		public void RPCSetLasHitPlayer(int playerId)
+		{
+			photonView.RPC(nameof(SetLasHitPlayer), RpcTarget.All, playerId);
+		}
+		
+		[PunRPC]
+		public void SetLasHitPlayer(int playerId)
+		{
+			LastHitPlayerId = playerId;
+		} 
 
 		[PunRPC]
 		public void TakeDamage(float damage)

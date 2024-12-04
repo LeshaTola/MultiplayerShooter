@@ -9,7 +9,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
     {
         [SerializeField] private PhotonView _photonView;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-        [SerializeField] private Controller _inputController;
         [SerializeField] private Player _player;
         [SerializeField] private HealthBarUI _healthBarUI;
 
@@ -22,7 +21,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             }
 			
             _virtualCamera.enabled = false;
-            _inputController.enabled = false;
             _player.enabled = false;
         }
     }

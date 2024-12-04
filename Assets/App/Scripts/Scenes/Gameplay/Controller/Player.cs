@@ -7,7 +7,7 @@ using UnityEngine;
 namespace App.Scripts.Scenes.Gameplay.Controller
 {
 	[RequireComponent(typeof(CharacterController))]
-	public class Player : MonoBehaviour, IControllable
+	public class Player : MonoBehaviourPun, IControllable
 	{
 		private const float GRAVITY = -9.81f;
 
@@ -31,6 +31,19 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		private Vector3 _moveDirection;
 		private float _verticalRotation = 0f;
 
+		public string NickName { get; private set; }
+
+		public void Initialize(string name)
+		{
+			photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
+		}
+		
+		[PunRPC]
+		public void InitializePlayer(string playerName)
+		{
+			NickName = playerName;
+		}
+		
 		private void FixedUpdate()
 		{
 			_isGrounded = IsOnTheGround();
@@ -78,21 +91,34 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		public void MoveCamera(Vector2 offset)
 		{
-			_mouseSensitivity = 20;
 			float mouseX = offset.x * _mouseSensitivity * Time.deltaTime;
 			float mouseY = offset.y * _mouseSensitivity * Time.deltaTime;
 
 			_verticalRotation -= mouseY;
 			_verticalRotation = Mathf.Clamp(_verticalRotation, -80, 80);
-			_virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+			
+			//_virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+			RPCSetVertical(_verticalRotation);
 
 			transform.Rotate(Vector3.up * mouseX);
 		}
 
+		private void RPCSetVertical(float verticalRotation)
+		{
+			photonView.RPC(nameof(SetVertical),RpcTarget.All,verticalRotation);
+		}
+		
+		[PunRPC]
+		public void SetVertical(float verticalRotation)
+		{
+			_virtualCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+		}
+
 		public void Teleport(Vector3 position)
 		{
-			var offset = position - transform.position ;
-			_controller.Move(offset);
+			_controller.enabled = false;
+			transform.position = position;
+			_controller.enabled = true;
 		}
 
 		private void MoveInternal()

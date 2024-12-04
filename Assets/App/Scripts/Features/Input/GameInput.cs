@@ -134,6 +134,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""17dbf0fc-0ced-4258-9aaa-1a3ecd4828c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -312,6 +321,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Key5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""496c7438-a2ba-4610-ba27-c26eae0a35e6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -332,6 +352,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Character_Key3 = m_Character.FindAction("Key3", throwIfNotFound: true);
         m_Character_Key4 = m_Character.FindAction("Key4", throwIfNotFound: true);
         m_Character_Key5 = m_Character.FindAction("Key5", throwIfNotFound: true);
+        m_Character_Tab = m_Character.FindAction("Tab", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -410,6 +431,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Key3;
     private readonly InputAction m_Character_Key4;
     private readonly InputAction m_Character_Key5;
+    private readonly InputAction m_Character_Tab;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
@@ -426,6 +448,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Key3 => m_Wrapper.m_Character_Key3;
         public InputAction @Key4 => m_Wrapper.m_Character_Key4;
         public InputAction @Key5 => m_Wrapper.m_Character_Key5;
+        public InputAction @Tab => m_Wrapper.m_Character_Tab;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -471,6 +494,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Key5.started += instance.OnKey5;
             @Key5.performed += instance.OnKey5;
             @Key5.canceled += instance.OnKey5;
+            @Tab.started += instance.OnTab;
+            @Tab.performed += instance.OnTab;
+            @Tab.canceled += instance.OnTab;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -511,6 +537,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Key5.started -= instance.OnKey5;
             @Key5.performed -= instance.OnKey5;
             @Key5.canceled -= instance.OnKey5;
+            @Tab.started -= instance.OnTab;
+            @Tab.performed -= instance.OnTab;
+            @Tab.canceled -= instance.OnTab;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -542,5 +571,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnKey3(InputAction.CallbackContext context);
         void OnKey4(InputAction.CallbackContext context);
         void OnKey5(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
     }
 }

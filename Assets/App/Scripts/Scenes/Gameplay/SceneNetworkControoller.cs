@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.KillHud;
 using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
@@ -20,6 +22,8 @@ namespace App.Scripts.Scenes.Gameplay
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private HealthBarUI _healthBarUI;
         [SerializeField] private WeaponView _weaponView;
+        [SerializeField] private KillChatView _killChatView;
+        [SerializeField] private Controller.Controller _playerController;
         
         private Player _player;
         private Health _health;
@@ -38,15 +42,33 @@ namespace App.Scripts.Scenes.Gameplay
                 _playerPrefab.gameObject.name,
                 _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
                 Quaternion.identity).GetComponent<Player>();
-            _health = _player.GetComponent<Health>();
-            _player.GetComponent<Controller.Controller>().Initialize(_gameInputProvider);
+            _player.Initialize(PhotonNetwork.NickName);
             
             var weaponProvider = _player.GetComponent<WeaponProvider>();
             _weaponView.Initialize(weaponProvider);
-            weaponProvider.Initialize(_gameInputProvider);
+            weaponProvider.Initialize(_gameInputProvider, _player);
             
+            _health = _player.GetComponent<Health>();
             _healthBarUI.Init(_health);
-            _health.OnDied += RespawnPlayer;
+            _health.OnDied += OnPlayerDeath;
+            
+            _playerController.Initialize(_gameInputProvider, _player);
+        }
+
+        private void OnPlayerDeath()
+        {
+            LeaderBoardProvider.Instance.AddDeath();
+            
+            UpdateKillChat();
+            RespawnPlayer();
+        }
+
+        private void UpdateKillChat()
+        {
+            var lastHitPlayer = PhotonView.Find(_health.LastHitPlayerId).GetComponent<Player>();
+            _killChatView.RPCSpawnKillElement(
+                lastHitPlayer.NickName,
+                _player.NickName);
         }
 
         private void RespawnPlayer()
