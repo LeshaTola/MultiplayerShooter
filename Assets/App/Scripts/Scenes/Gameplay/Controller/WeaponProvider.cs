@@ -11,6 +11,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
     public class WeaponProvider : MonoBehaviourPun
     {
         public event Action<Weapon> OnWeaponChanged;
+        public event Action OnPlayerHit;
         
         [SerializeField] private Inventory _inventory;
         [SerializeField] private Transform _weaponHolder;
@@ -30,6 +31,8 @@ namespace App.Scripts.Scenes.Gameplay.Controller
                 var weaponObject
                     = PhotonNetwork.Instantiate(weapon.Prefab.name, _weaponHolder.position, _weaponHolder.rotation)
                         .GetComponent<Weapon>();
+                
+                weaponObject.OnPlayerHit += () => OnPlayerHit?.Invoke();
                 photonView.RPC(nameof(SetupWeapon),
                     RpcTarget.AllBuffered, 
                     weaponObject.GetComponent<PhotonView>().ViewID, 

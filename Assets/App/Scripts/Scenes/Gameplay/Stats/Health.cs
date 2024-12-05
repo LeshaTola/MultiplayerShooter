@@ -8,6 +8,8 @@ namespace App.Scripts.Scenes.Gameplay.Stats
 	public class Health : MonoBehaviourPun, IDamageable
 	{
 		public event Action<float, float> OnValueChanged;
+		public event Action<float> OnDamage;
+		public event Action<float> OnHealing;
 		public event Action OnDied;
 
 		[SerializeField] private float _maxHealth;
@@ -52,6 +54,7 @@ namespace App.Scripts.Scenes.Gameplay.Stats
 			}
 
 			Value -= damage;
+			OnDamage?.Invoke(damage);
 			if (Value <= 0)
 			{
 				Value = 0;
@@ -69,6 +72,7 @@ namespace App.Scripts.Scenes.Gameplay.Stats
 			}
 
 			Value += healValue;
+			OnHealing?.Invoke(healValue);
 			if (Value > _maxHealth)
 			{
 				Value = _maxHealth;

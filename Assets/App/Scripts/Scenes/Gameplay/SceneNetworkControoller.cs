@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.Hitmark;
 using App.Scripts.Scenes.Gameplay.KillHud;
 using App.Scripts.Scenes.Gameplay.Stats;
 using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
@@ -24,6 +25,8 @@ namespace App.Scripts.Scenes.Gameplay
         [SerializeField] private WeaponView _weaponView;
         [SerializeField] private KillChatView _killChatView;
         [SerializeField] private Controller.Controller _playerController;
+        [SerializeField] private PostProcessingProvider _postProcessingProvider;
+        [SerializeField] private HitService _hitService;
         
         private Player _player;
         private Health _health;
@@ -47,14 +50,22 @@ namespace App.Scripts.Scenes.Gameplay
             var weaponProvider = _player.GetComponent<WeaponProvider>();
             _weaponView.Initialize(weaponProvider);
             weaponProvider.Initialize(_gameInputProvider, _player);
+            weaponProvider.OnPlayerHit += () => _hitService.Hit();
             
             _health = _player.GetComponent<Health>();
             _healthBarUI.Init(_health);
             _health.OnDied += OnPlayerDeath;
+            _health.OnHealing += OnHealing;
+            _health.OnDamage += (value) =>_postProcessingProvider.ApplyDamageEffect();
             
             _playerController.Initialize(_gameInputProvider, _player);
         }
 
+        private void OnHealing(float obj)
+        {
+            _postProcessingProvider.ApplyHealEffect();
+        }
+        
         private void OnPlayerDeath()
         {
             LeaderBoardProvider.Instance.AddDeath();

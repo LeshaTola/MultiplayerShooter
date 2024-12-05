@@ -11,6 +11,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     public class Weapon : MonoBehaviourPun
     {
         public event Action<int, int> OnAmmoChanged;
+        public event Action OnPlayerHit;
 
         [Header("Visual")]
         [SerializeField] protected ParticleSystem _muzzleFlash;
@@ -40,6 +41,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _trialStartColor = _tracerEffect.startColor;
             Config.ShootStrategy.Init(Camera.main, this);
             CurrentAmmoCount = Config.MaxAmmoCount;
+
+            Config.ShootStrategy.OnPlayerHit += () => OnPlayerHit?.Invoke();
         }
 
         private void OnDisable()

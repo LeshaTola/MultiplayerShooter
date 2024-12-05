@@ -1,4 +1,5 @@
-﻿using App.Scripts.Scenes.Gameplay.Stats;
+﻿using System;
+using App.Scripts.Scenes.Gameplay.Stats;
 using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
 {
     public class RaycastShootStrategy : IShootStrategy
     {
+        public event Action OnPlayerHit;
+        
         private Camera _camera;
         private Weapon _weapon;
         
@@ -29,9 +32,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
                         LeaderBoardProvider.Instance.AddKill();    
                     }
                     
+                    OnPlayerHit?.Invoke();
                     health.NetworkTakeDamage(_weapon.Config.Damage);
                     health.RPCSetLasHitPlayer(_weapon.Owner.photonView.ViewID);
-                    
                 }
             }
             else
