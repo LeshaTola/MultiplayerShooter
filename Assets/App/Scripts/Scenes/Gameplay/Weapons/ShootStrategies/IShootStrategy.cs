@@ -7,7 +7,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
 {
     public interface IShootStrategy
     {
-        public event Action OnPlayerHit;
+        public event Action<Vector3> OnPlayerHit;
 
         public void Init(Camera camera, Weapon weapon);
         public void Shoot();

@@ -11,7 +11,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     public class Weapon : MonoBehaviourPun
     {
         public event Action<int, int> OnAmmoChanged;
-        public event Action OnPlayerHit;
+        public event Action<Vector3> OnPlayerHit;
 
         [Header("Visual")]
         [SerializeField] protected ParticleSystem _muzzleFlash;
@@ -42,7 +42,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             Config.ShootStrategy.Init(Camera.main, this);
             CurrentAmmoCount = Config.MaxAmmoCount;
 
-            Config.ShootStrategy.OnPlayerHit += () => OnPlayerHit?.Invoke();
+            Config.ShootStrategy.OnPlayerHit += (value) => OnPlayerHit?.Invoke(value);
         }
 
         private void OnDisable()

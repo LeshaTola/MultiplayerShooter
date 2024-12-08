@@ -7,7 +7,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
 {
     public class RaycastShootStrategy : IShootStrategy
     {
-        public event Action OnPlayerHit;
+        public event Action<Vector3> OnPlayerHit;
         
         private Camera _camera;
         private Weapon _weapon;
@@ -32,7 +32,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
                         LeaderBoardProvider.Instance.AddKill();    
                     }
                     
-                    OnPlayerHit?.Invoke();
+                    OnPlayerHit?.Invoke(hit.point);
                     health.NetworkTakeDamage(_weapon.Config.Damage);
                     health.RPCSetLasHitPlayer(_weapon.Owner.photonView.ViewID);
                 }
