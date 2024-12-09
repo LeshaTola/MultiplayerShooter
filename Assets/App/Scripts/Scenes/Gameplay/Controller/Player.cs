@@ -1,4 +1,5 @@
 using System;
+using App.Scripts.Scenes.Gameplay.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using Photon.Pun;
@@ -25,6 +26,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		[Header("Other")]
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private WeaponProvider _weaponProvider;
+		[SerializeField] private NickNameUI _nickNameUI;
 		
 		private float _velocity;
 		private bool _isGrounded;
@@ -42,6 +44,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		public void InitializePlayer(string playerName)
 		{
 			NickName = playerName;
+			_nickNameUI.Setup(NickName);
 		}
 		
 		private void FixedUpdate()

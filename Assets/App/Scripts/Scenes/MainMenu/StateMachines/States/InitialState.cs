@@ -16,6 +16,7 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         private readonly IInitializeService _initializeService;
         private readonly ICameraSwitcher _cameraSwitcher;
         private readonly string _cameraId;
+        private readonly ConnectionProvider _connectionProvider;
         private readonly List<ISavable> _savable;
         private readonly ISceneTransition _sceneTransition;
 
@@ -24,11 +25,13 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
             ISceneTransition sceneTransition,
             ICameraSwitcher cameraSwitcher,
             List<ISavable> savable, 
-            string cameraId)
+            string cameraId,
+            ConnectionProvider connectionProvider)
         {
             _initializeService = initializeService;
             _cameraSwitcher = cameraSwitcher;
             _cameraId = cameraId;
+            _connectionProvider = connectionProvider;
             _savable = savable;
             _sceneTransition = sceneTransition;
         }
@@ -44,12 +47,19 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
                 savable.LoadState();
             }
             
-            await StateMachine.ChangeState<MainState>();
+            _connectionProvider.OnConnected += LoadNextState;
         }
 
         public override async UniTask Exit()
         {
+            _connectionProvider.OnConnected -= LoadNextState;
+            
             await _sceneTransition.PlayOffAsync();
+        }
+
+        private async void LoadNextState()
+        {
+            await StateMachine.ChangeState<MainState>();
         }
     }
 
@@ -66,6 +76,7 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         {
             _mainScreenPresenter.Initialize();
             await _mainScreenPresenter.Show();
+            _mainScreenPresenter.Setup();
         }
 
         public override async UniTask Exit()

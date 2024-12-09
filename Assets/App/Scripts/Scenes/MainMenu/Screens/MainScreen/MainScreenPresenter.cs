@@ -2,6 +2,8 @@
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
+using Photon.Pun;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
 {
@@ -21,7 +23,13 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         public override void Initialize()
         {
             _screen.PlayButtonAction += OnPlayButtonAction;
+            _screen.OnPlayerNameChanged += OnPlayerNameChanged;
             _screen.Initialize();
+        }
+
+        public void Setup()
+        {
+            _screen.Setup(PhotonNetwork.NickName);
         }
 
         public override void Cleanup()
@@ -44,6 +52,12 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         private async void OnPlayButtonAction()
         {
             await _stateMachine.ChangeState<RoomState>();
+        }
+
+        private void OnPlayerNameChanged(string name)
+        {
+            PlayerPrefs.SetString(ConnectionProvider.NAME_DATA, name);
+            PhotonNetwork.NickName = name;
         }
     }
 }

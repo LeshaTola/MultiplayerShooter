@@ -10,6 +10,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     public class MainInstaller : MonoInstaller
     {
         [SerializeField] private CamerasDatabase _camerasDatabase;
+        [SerializeField] private ConnectionProvider _connectionProvider;
 
         public override void InstallBindings()
         {
@@ -18,6 +19,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<ICleanupService>().To<CleanupService>().AsSingle();
 
             Container.Bind<ICameraSwitcher>().To<CameraSwitcher>().AsSingle().WithArguments(_camerasDatabase);
+            Container.Bind<ConnectionProvider>().FromInstance(_connectionProvider).AsSingle();
         }
     }
 }
