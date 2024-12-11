@@ -963,10 +963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74237968396c2474cafbc6f9621124b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivity: 20
-  _speed: 10
-  _jumpHeight: 2
-  _jumpFallSpeed: 5
+  _playerInputConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
   _controller: {fileID: 7171066335943419589}
   _checkGroundPivot: {fileID: 1760302324315034158}
   _checkGroundMask:

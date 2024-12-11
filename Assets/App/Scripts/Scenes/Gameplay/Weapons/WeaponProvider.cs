@@ -21,6 +21,11 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         
         public Weapon CurrentWeapon { get; private set; }
 
+        public void OnDestroy()
+        {
+            Cleanup();
+        }
+
         public void Initialize(GameInputProvider gameInputProvider, Player owner)
         {
             _gameInputProvider = gameInputProvider;

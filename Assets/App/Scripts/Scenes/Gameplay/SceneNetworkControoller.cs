@@ -1,15 +1,22 @@
 using System;
 using System.Collections.Generic;
 using App.Scripts.Features.Input;
+using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.Controller.Providers;
+using App.Scripts.Scenes.Gameplay.Esc;
+using App.Scripts.Scenes.Gameplay.Esc.Menu;
+using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.Gameplay.Hitmark;
 using App.Scripts.Scenes.Gameplay.HitVisualProvider;
 using App.Scripts.Scenes.Gameplay.KillHud;
 using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.Timer;
 using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using Zenject;
 using Player = App.Scripts.Scenes.Gameplay.Controller.Player;
@@ -24,14 +31,25 @@ namespace App.Scripts.Scenes.Gameplay
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private HealthBarUI _healthBarUI;
         [SerializeField] private WeaponView _weaponView;
-        [SerializeField] private KillChatView _killChatView;
         [SerializeField] private Controller.Controller _playerController;
         [SerializeField] private PostProcessingProvider _postProcessingProvider;
         [SerializeField] private HitService _hitService;
-
+        [SerializeField] private TimerProvider _timerProvider;
+        
+        [Header("Views")]
+        [SerializeField] private EscMenuView _escMenuView;
+        [SerializeField] private KillChatView _killChatView;
+        [SerializeField] private SettingsView _settingsView;
+        
+        [Header("ForServices")]
+        [SerializeField] private AudioMixer _audioMixer;
+        [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
+        
         private Player _player;
         private Health _health;
         private GameInputProvider _gameInputProvider;
+        private MouseSensivityProvider _mouseSensivityProvider;
+        private IAudioService _audioService;
 
         [Inject]
         private void Construct(GameInputProvider gameInputProvider)
@@ -42,11 +60,32 @@ namespace App.Scripts.Scenes.Gameplay
 
         private void Initialize()
         {
+            _mouseSensivityProvider = new MouseSensivityProvider(_mouseSensivityConfig);
+            _audioService = new AudioService( _audioMixer );
+            var escPrezenter = new EscScreenPresenter(
+                _escMenuView,
+                _settingsView,
+                _audioService,
+                _mouseSensivityProvider,
+                _playerController);
+            
             InitPlayer();
             InitWeapons();
             InitHealth();
+            escPrezenter.Initialize();
+            
+            if (PhotonNetwork.IsMasterClient)
+            {
+                _timerProvider.Initialize();
+            }
+            _timerProvider.OnTimerExpired += OnTimerExpired;
+                
+            _playerController.Initialize(_gameInputProvider, _player,_mouseSensivityProvider, escPrezenter);
+        }
 
-            _playerController.Initialize(_gameInputProvider, _player);
+        private void OnTimerExpired()
+        {
+            LeaveRoom();
         }
 
         private void InitHealth()

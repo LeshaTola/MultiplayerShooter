@@ -12,12 +12,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 	{
 		private const float GRAVITY = -9.81f;
 
-		[Header("Movement")]
-		[SerializeField] private float _mouseSensitivity = 20f;
-		[SerializeField] private float _speed = 2.0f;
-		[SerializeField] private float _jumpHeight = 1.0f;
-		[SerializeField] private float _jumpFallSpeed = 1.0f;
-
+		[SerializeField] private PlayerInputConfig _playerInputConfig;
 		[Space]
 		[SerializeField] private CharacterController _controller;
 		[SerializeField] private Transform _checkGroundPivot;
@@ -34,6 +29,8 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 		private float _verticalRotation = 0f;
 
 		public string NickName { get; private set; }
+
+		public PlayerInputConfig PlayerInputConfig => _playerInputConfig;
 
 		public void Initialize(string name)
 		{
@@ -79,7 +76,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 			if (_isGrounded)
 			{
-				_velocity = Mathf.Sqrt(_jumpHeight * _jumpFallSpeed * -2 * GRAVITY);
+				_velocity = Mathf.Sqrt(PlayerInputConfig.JumpHeight * PlayerInputConfig.JumpFallSpeed * -2 * GRAVITY);
 			}
 		}
 
@@ -94,15 +91,13 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		public void MoveCamera(Vector2 offset)
 		{
-			float mouseX = offset.x * _mouseSensitivity * Time.deltaTime;
-			float mouseY = offset.y * _mouseSensitivity * Time.deltaTime;
+			float mouseX = offset.x * Time.deltaTime;
+			float mouseY = offset.y * Time.deltaTime;
 
 			_verticalRotation -= mouseY;
 			_verticalRotation = Mathf.Clamp(_verticalRotation, -80, 80);
 			
-			//_virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
 			RPCSetVertical(_verticalRotation);
-
 			transform.Rotate(Vector3.up * mouseX);
 		}
 
@@ -126,7 +121,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		private void MoveInternal()
 		{
-			_controller.Move(_moveDirection * Time.fixedDeltaTime * _speed);
+			_controller.Move(_moveDirection * (Time.fixedDeltaTime * PlayerInputConfig.Speed));
 		}
 
 		private bool IsOnTheGround()
@@ -137,8 +132,8 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		private void DoGravity()
 		{
-			_velocity += GRAVITY * _jumpFallSpeed * Time.fixedDeltaTime;
-			_controller.Move(Vector3.up * _velocity * Time.fixedDeltaTime);
+			_velocity += GRAVITY * PlayerInputConfig.JumpFallSpeed * Time.fixedDeltaTime;
+			_controller.Move(Vector3.up * (_velocity * Time.fixedDeltaTime));
 		}
 	}
 }

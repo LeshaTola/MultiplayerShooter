@@ -23,5 +23,17 @@ namespace App.Scripts.Modules.MinMaxValue
         {
             return Mathf.Clamp(value, Min, Max);
         }
+
+        public float Lerp(float amount)
+        {
+            amount = Mathf.Clamp01(amount);
+            return Mathf.Lerp(Min, Max, amount);
+        }
+        
+        public float InverseLerp(float value)
+        {
+            value = Mathf.Clamp(value, Min, Max);
+            return (value - Min) / (Max - Min);
+        }
     }
 }
