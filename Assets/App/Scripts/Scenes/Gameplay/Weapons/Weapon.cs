@@ -31,10 +31,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public WeaponConfig Config { get; private set; }
         public int CurrentAmmoCount { get; private set; }
-        public Player Owner { get; private set; }
+        public Player.Player Owner { get; private set; }
 
 
-        public void Initialize(WeaponConfig weaponConfig, Player owner)
+        public void Initialize(WeaponConfig weaponConfig, Player.Player owner)
         {
             Owner = owner;
             Config = Instantiate(weaponConfig);

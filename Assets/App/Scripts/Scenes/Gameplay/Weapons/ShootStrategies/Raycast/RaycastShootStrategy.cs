@@ -1,9 +1,9 @@
 ﻿using System;
-using App.Scripts.Scenes.Gameplay.Stats;
-using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
+using App.Scripts.Scenes.Gameplay.LeaderBoard;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies
+namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast
 {
     public class RaycastShootStrategy : IShootStrategy
     {

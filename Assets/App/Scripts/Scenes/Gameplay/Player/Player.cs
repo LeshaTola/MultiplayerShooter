@@ -1,11 +1,12 @@
-using System;
-using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.Player.Configs;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Controller
+namespace App.Scripts.Scenes.Gameplay.Player
 {
 	[RequireComponent(typeof(CharacterController))]
 	public class Player : MonoBehaviourPun, IControllable

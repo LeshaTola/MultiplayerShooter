@@ -1,4 +1,4 @@
-namespace App.Scripts.Scenes.Gameplay.Stats
+namespace App.Scripts.Scenes.Gameplay.Player.Stats
 {
 	public interface IHealth
 	{

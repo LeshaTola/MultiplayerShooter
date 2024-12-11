@@ -1,9 +1,9 @@
-﻿using App.Scripts.Scenes.Gameplay.Stats;
+﻿using App.Scripts.Scenes.Gameplay.Player.Stats;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Controller
+namespace App.Scripts.Scenes.Gameplay.Player
 {
     public class LocalPlayerController : MonoBehaviour
     {

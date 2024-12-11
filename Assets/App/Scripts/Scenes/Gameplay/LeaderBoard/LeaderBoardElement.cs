@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.UI.LeaderBoard
+namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
     public class LeaderBoardElement : MonoBehaviour
     {

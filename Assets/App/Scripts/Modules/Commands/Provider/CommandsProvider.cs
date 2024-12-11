@@ -1,4 +1,4 @@
-using App.Scripts.Scenes.Gameplay.Features.Commands.General;
+using App.Scripts.Modules.Commands.General;
 using Zenject;
 
 namespace App.Scripts.Modules.Commands.Provider

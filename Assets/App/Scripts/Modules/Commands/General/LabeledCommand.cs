@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Scenes.Gameplay.Features.Commands.General
+﻿namespace App.Scripts.Modules.Commands.General
 {
     public abstract class LabeledCommand : ILabeledCommand
     {

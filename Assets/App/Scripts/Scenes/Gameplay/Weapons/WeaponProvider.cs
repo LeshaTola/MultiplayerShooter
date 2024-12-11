@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
-using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
-using System;
 
-namespace App.Scripts.Scenes.Gameplay.Controller
+namespace App.Scripts.Scenes.Gameplay.Weapons
 {
     public class WeaponProvider : MonoBehaviourPun
     {
@@ -26,7 +25,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             Cleanup();
         }
 
-        public void Initialize(GameInputProvider gameInputProvider, Player owner)
+        public void Initialize(GameInputProvider gameInputProvider, Player.Player owner)
         {
             _gameInputProvider = gameInputProvider;
             
@@ -68,7 +67,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         public void SetupWeapon(int weaponViewID,int ownerId, int index)
         {
             var weaponObject = PhotonView.Find(weaponViewID).gameObject;
-            var player = PhotonView.Find(ownerId).GetComponent<Player>();
+            var player = PhotonView.Find(ownerId).GetComponent<Player.Player>();
             var weapon = weaponObject.GetComponent<Weapon>();
 
             _weapons.Add(weapon);

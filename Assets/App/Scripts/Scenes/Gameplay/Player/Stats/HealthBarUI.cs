@@ -1,8 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.Gameplay.Stats
+namespace App.Scripts.Scenes.Gameplay.Player.Stats
 {
 	public class HealthBarUI : MonoBehaviour
 	{

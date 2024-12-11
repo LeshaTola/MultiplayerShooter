@@ -1,7 +1,6 @@
-﻿using App.Scripts.Scenes.Gameplay.Controller;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Weapons
+namespace App.Scripts.Scenes.Gameplay.Weapons.Animations
 {
     public class Sway : MonoBehaviour
     {

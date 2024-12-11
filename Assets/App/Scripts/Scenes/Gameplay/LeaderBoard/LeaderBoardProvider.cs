@@ -4,7 +4,7 @@ using System.Linq;
 using Photon.Pun;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.UI.LeaderBoard
+namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
     public class LeaderBoardProvider : MonoBehaviour
     {

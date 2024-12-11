@@ -7,19 +7,18 @@ using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
-using App.Scripts.Scenes.Gameplay.Hitmark;
 using App.Scripts.Scenes.Gameplay.HitVisualProvider;
-using App.Scripts.Scenes.Gameplay.KillHud;
-using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.KillChat;
+using App.Scripts.Scenes.Gameplay.LeaderBoard;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Timer;
-using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using Zenject;
-using Player = App.Scripts.Scenes.Gameplay.Controller.Player;
+using Player = App.Scripts.Scenes.Gameplay.Player.Player;
 using Random = UnityEngine.Random;
 
 namespace App.Scripts.Scenes.Gameplay
@@ -28,7 +27,7 @@ namespace App.Scripts.Scenes.Gameplay
     {
         [SerializeField] private List<Transform> _spawnPoints;
 
-        [SerializeField] private Player _playerPrefab;
+        [SerializeField] private Player.Player _playerPrefab;
         [SerializeField] private HealthBarUI _healthBarUI;
         [SerializeField] private WeaponView _weaponView;
         [SerializeField] private Controller.Controller _playerController;
@@ -45,7 +44,7 @@ namespace App.Scripts.Scenes.Gameplay
         [SerializeField] private AudioMixer _audioMixer;
         [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
         
-        private Player _player;
+        private Player.Player _player;
         private Health _health;
         private GameInputProvider _gameInputProvider;
         private MouseSensivityProvider _mouseSensivityProvider;
@@ -111,7 +110,7 @@ namespace App.Scripts.Scenes.Gameplay
             _player = PhotonNetwork.Instantiate(
                 _playerPrefab.gameObject.name,
                 _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
-                Quaternion.identity).GetComponent<Player>();
+                Quaternion.identity).GetComponent<Player.Player>();
             _player.Initialize(PhotonNetwork.NickName);
         }
 
@@ -130,7 +129,7 @@ namespace App.Scripts.Scenes.Gameplay
 
         private void UpdateKillChat()
         {
-            var lastHitPlayer = PhotonView.Find(_health.LastHitPlayerId).GetComponent<Player>();
+            var lastHitPlayer = PhotonView.Find(_health.LastHitPlayerId).GetComponent<Player.Player>();
             _killChatView.RPCSpawnKillElement(
                 lastHitPlayer.NickName,
                 _player.NickName);

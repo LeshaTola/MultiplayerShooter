@@ -1,12 +1,10 @@
 ﻿using App.Scripts.Modules.ObjectPool.MonoObjectPools;
 using App.Scripts.Modules.ObjectPool.Pools;
-using App.Scripts.Scenes.Gameplay.HitVisualProvider;
 using DG.Tweening;
-using ExitGames.Client.Photon;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.Gameplay.Hitmark
+namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
 {
     public class HitService: MonoBehaviour
     {

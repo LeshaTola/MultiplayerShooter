@@ -1,7 +1,7 @@
 ﻿using System;
+using App.Scripts.Modules.Commands.General;
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Modules.StateMachine.States.General;
-using App.Scripts.Scenes.Gameplay.Features.Commands.General;
 using UnityEngine;
 
 namespace App.Scripts.Features.Commands

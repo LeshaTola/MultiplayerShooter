@@ -1,8 +1,7 @@
-﻿using App.Scripts.Scenes.MainMenu.Screens.MainScreen;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.KillHud
+namespace App.Scripts.Scenes.Gameplay.KillChat
 {
     public class KillChatView: MonoBehaviourPun
     {

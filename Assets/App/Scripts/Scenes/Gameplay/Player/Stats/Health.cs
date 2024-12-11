@@ -1,9 +1,8 @@
 using System;
-using App.Scripts.Scenes.Gameplay.Controller;
 using Photon.Pun;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Stats
+namespace App.Scripts.Scenes.Gameplay.Player.Stats
 {
 	public class Health : MonoBehaviourPun, IDamageable
 	{

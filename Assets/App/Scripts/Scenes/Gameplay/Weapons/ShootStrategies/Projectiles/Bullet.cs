@@ -1,7 +1,7 @@
-using App.Scripts.Scenes.Gameplay.Stats;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Weapons
+namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Projectiles
 {
 	public class Bullet : MonoBehaviour
 	{

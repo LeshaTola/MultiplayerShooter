@@ -2,14 +2,13 @@ using App.Scripts.Features.Input;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
-using App.Scripts.Scenes.Gameplay.UI.LeaderBoard;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Controller
 {
     public class Controller : MonoBehaviour
     {
-        [SerializeField] private LeaderBoard _leaderBoard;
+        [SerializeField] private LeaderBoard.LeaderBoard _leaderBoard;
 
         private IControllable _controllable;
         private GameInputProvider _gameInputProvider;

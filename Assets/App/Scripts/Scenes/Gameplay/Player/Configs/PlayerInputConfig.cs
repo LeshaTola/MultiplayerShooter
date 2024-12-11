@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Controller
+namespace App.Scripts.Scenes.Gameplay.Player.Configs
 {
     [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/Player")]
     public class PlayerInputConfig:ScriptableObject

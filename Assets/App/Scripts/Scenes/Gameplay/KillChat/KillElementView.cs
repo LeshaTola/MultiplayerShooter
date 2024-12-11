@@ -4,7 +4,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.KillHud
+namespace App.Scripts.Scenes.Gameplay.KillChat
 {
     public class KillElementView : MonoBehaviour
     {
