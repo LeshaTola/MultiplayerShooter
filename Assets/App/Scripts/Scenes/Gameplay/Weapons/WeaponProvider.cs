@@ -14,13 +14,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         
         [SerializeField] private Inventory _inventory;
         [SerializeField] private Transform _weaponHolder;
-        
-        private List<Weapon> _weapons = new();
+
+        public List<Weapon> Weapons { get; } = new();
         private GameInputProvider _gameInputProvider;
         
         public Weapon CurrentWeapon { get; private set; }
 
-        public void OnDestroy()
+        public void OnDisable()
         {
             Cleanup();
         }
@@ -52,14 +52,19 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public void Cleanup()
         {
+            if (_gameInputProvider == null)
+            {
+                return;
+            }
+            
             _gameInputProvider.OnNumber -= RPCSetWeaponByIndex;
         }
 
         private void RPCSetWeaponByIndex(int index)
         {
             index--;
-            index = Math.Clamp(index, 0, _weapons.Count - 1);
-            OnWeaponChanged?.Invoke(_weapons[index]);
+            index = Math.Clamp(index, 0, Weapons.Count - 1);
+            OnWeaponChanged?.Invoke(Weapons[index]);
             photonView.RPC(nameof(SetWeaponByIndex), RpcTarget.AllBuffered, index);
         }
 
@@ -70,7 +75,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             var player = PhotonView.Find(ownerId).GetComponent<Player.Player>();
             var weapon = weaponObject.GetComponent<Weapon>();
 
-            _weapons.Add(weapon);
+            Weapons.Add(weapon);
             weapon.Initialize(_inventory.Weapons[index], player);
 
             var weaponTransform = weapon.transform;
@@ -82,7 +87,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public void SetWeaponByIndex(int index)
         {
             
-            if (CurrentWeapon == _weapons[index])
+            if (CurrentWeapon == Weapons[index])
             {
                 return;
             }
@@ -92,7 +97,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 CurrentWeapon.gameObject.SetActive(false);
             }
 
-            CurrentWeapon = _weapons[index];
+            CurrentWeapon = Weapons[index];
             CurrentWeapon.gameObject.SetActive(true);
         }
     }

@@ -1,4 +1,6 @@
-﻿using App.Scripts.Scenes.Gameplay.Player.Stats;
+﻿using App.Scripts.Modules;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
@@ -11,11 +13,16 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private Player _player;
         [SerializeField] private HealthBarUI _healthBarUI;
+        [SerializeField] private WeaponProvider _weaponProvider;
 
-        public  void Start()
+        public void Start()
         {
             if (_photonView.IsMine)
             {
+                foreach (var weapon in _weaponProvider.Weapons)
+                {
+                    ChangeLayerRecursively.SetLayerRecursively(weapon.transform, "Weapon");
+                }
                 _healthBarUI.gameObject.SetActive(false);
                 return;
             }

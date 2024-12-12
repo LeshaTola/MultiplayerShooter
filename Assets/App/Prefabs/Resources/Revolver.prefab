@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pistol_drum_001
       objectReference: {fileID: 0}
+    - target: {fileID: 3841797544688825945, guid: a83fe96ad887a7446bedc24c7c64a9bb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4475203844159401187, guid: a83fe96ad887a7446bedc24c7c64a9bb, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -156,6 +160,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6b87b95460eac2d40b200a355f6444a5, type: 3}
       propertyPath: m_Name
       value: Revolver
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b87b95460eac2d40b200a355f6444a5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

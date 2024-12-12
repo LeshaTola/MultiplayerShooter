@@ -425,7 +425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8067882858614385861}
   - component: {fileID: 4634689450708123487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1004,6 +1004,7 @@ MonoBehaviour:
   _virtualCamera: {fileID: 7447736516197791254}
   _player: {fileID: 1923097396185842887}
   _healthBarUI: {fileID: 4301051563916588564}
+  _weaponProvider: {fileID: 5977931046957955413}
 --- !u!1 &8945760049463443414
 GameObject:
   m_ObjectHideFlags: 0

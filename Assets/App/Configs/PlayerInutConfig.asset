@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790d008f851a4f5bb80402034488b391, type: 3}
   m_Name: PlayerInutConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 5
+  <Speed>k__BackingField: 10
   <JumpHeight>k__BackingField: 2
   <JumpFallSpeed>k__BackingField: 4

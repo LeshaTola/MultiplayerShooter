@@ -10,6 +10,8 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
         [SerializeField] private Color _defaultColor = Color.white;
         [SerializeField] private Color _headShotColor = Color.red;
 
+        [field: SerializeField] public Transform ContentTransform { get; private set; }
+        
         public void Setup(string damage, bool isHeadshot = false)
         {
             _damageText.text = damage;

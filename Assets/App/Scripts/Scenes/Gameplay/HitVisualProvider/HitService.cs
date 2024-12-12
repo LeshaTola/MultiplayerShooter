@@ -46,12 +46,13 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
         {
             var damageView = _pool.Get();
             damageView.Setup($"{(int)damage}");
-            var sequence = DOTween.Sequence();
 
-            var viewTransform = damageView.transform;
+            damageView.transform.position = hitPoint;
+            var viewTransform = damageView.ContentTransform;
             viewTransform.localScale = Vector3.zero;
-            viewTransform.position = hitPoint;
+            viewTransform.localPosition = new Vector3(0,0,viewTransform.localPosition.z);
             
+            var sequence = DOTween.Sequence();
             sequence.Append(viewTransform.DOScale(1, _scaleUp));
             sequence.Append(viewTransform.DOLocalMoveY(_upValue, _upTime));
             sequence.Append(viewTransform.DOScale(0, _scaleDown));
