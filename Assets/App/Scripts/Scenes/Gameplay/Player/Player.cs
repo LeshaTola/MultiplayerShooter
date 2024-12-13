@@ -1,3 +1,4 @@
+using App.Scripts.Features.Input;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Player.Configs;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
@@ -5,6 +6,7 @@ using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
@@ -12,8 +14,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
 	public class Player : MonoBehaviourPun, IControllable
 	{
 		private const float GRAVITY = -9.81f;
-
-		[SerializeField] private PlayerInputConfig _playerInputConfig;
+		
+		[SerializeField] private PlayerConfig _playerConfig;
 		[Space]
 		[SerializeField] private CharacterController _controller;
 		[SerializeField] private Transform _checkGroundPivot;
@@ -21,21 +23,30 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
 		[Header("Other")]
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
-		[SerializeField] private WeaponProvider _weaponProvider;
 		[SerializeField] private NickNameUI _nickNameUI;
+
+		[field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
+		[field: SerializeField] public Health Health { get; private set; }
 		
 		private float _velocity;
 		private bool _isGrounded;
 		private Vector3 _moveDirection;
 		private float _verticalRotation = 0f;
+		
+		private GameInputProvider _gameInputProvider;
 
 		public string NickName { get; private set; }
 
-		public PlayerInputConfig PlayerInputConfig => _playerInputConfig;
+		public PlayerConfig PlayerConfig => _playerConfig;
 
-		public void Initialize(string name)
+		public void Initialize(string name, GameInputProvider gameInputProvider)
 		{
+			_gameInputProvider = gameInputProvider;
+			
 			photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
+			
+			WeaponProvider.Initialize(_gameInputProvider,this);
+			Health.Initialize(_playerConfig.MaxHealth);
 		}
 		
 		[PunRPC]
@@ -43,6 +54,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 		{
 			NickName = playerName;
 			_nickNameUI.Setup(NickName);
+			
 		}
 		
 		private void FixedUpdate()
@@ -59,17 +71,17 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
 		public void StartAttack()
 		{
-			_weaponProvider.CurrentWeapon.StartAttack();
+			WeaponProvider.CurrentWeapon.StartAttack();
 		}
 		
 		public void CancelAttack()
 		{
-			_weaponProvider.CurrentWeapon.CancelAttack();
+			WeaponProvider.CurrentWeapon.CancelAttack();
 		}
 
 		public void Reload()
 		{
-			_weaponProvider.CurrentWeapon.Reload();
+			WeaponProvider.CurrentWeapon.Reload();
 		}
 
 		public void Jump()
@@ -77,7 +89,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
 			if (_isGrounded)
 			{
-				_velocity = Mathf.Sqrt(PlayerInputConfig.JumpHeight * PlayerInputConfig.JumpFallSpeed * -2 * GRAVITY);
+				_velocity = Mathf.Sqrt(PlayerConfig.JumpHeight * PlayerConfig.JumpFallSpeed * -2 * GRAVITY);
 			}
 		}
 
@@ -122,7 +134,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
 		private void MoveInternal()
 		{
-			_controller.Move(_moveDirection * (Time.fixedDeltaTime * PlayerInputConfig.Speed));
+			_controller.Move(_moveDirection * (Time.fixedDeltaTime * PlayerConfig.Speed));
 		}
 
 		private bool IsOnTheGround()
@@ -133,7 +145,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
 		private void DoGravity()
 		{
-			_velocity += GRAVITY * PlayerInputConfig.JumpFallSpeed * Time.fixedDeltaTime;
+			_velocity += GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
 			_controller.Move(Vector3.up * (_velocity * Time.fixedDeltaTime));
 		}
 	}

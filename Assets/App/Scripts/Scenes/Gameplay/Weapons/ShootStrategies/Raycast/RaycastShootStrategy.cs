@@ -29,11 +29,12 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast
                 {
                     if (health.Value <= _weapon.Config.Damage)
                     {
-                        LeaderBoardProvider.Instance.AddKill();    
+                        //TODO: Fix that    
+                        //LeaderBoardProvider.Instance.AddKill();
                     }
                     
                     OnPlayerHit?.Invoke(hit.point);
-                    health.NetworkTakeDamage(_weapon.Config.Damage);
+                    health.RPCTakeDamage(_weapon.Config.Damage);
                     health.RPCSetLasHitPlayer(_weapon.Owner.photonView.ViewID);
                 }
             }

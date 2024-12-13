@@ -63,7 +63,6 @@ namespace App.Scripts.Scenes.MainMenu
         public override void OnJoinedRoom()
         {
             PhotonNetwork.LoadLevel("Gameplay");
-            //await _stateMachine.ChangeState<LoadSceneState>();
         }
     }
 }

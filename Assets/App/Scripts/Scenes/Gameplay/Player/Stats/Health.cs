@@ -11,24 +11,22 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 		public event Action<float> OnHealing;
 		public event Action OnDied;
 
-		[SerializeField] private float _maxHealth;
-
 		public float Value { get; private set; }
 		public float MaxValue { get; private set; }
 		public int LastHitPlayerId { get; private set; }
 
-		private void Start()
+		public void Initialize(int _maxHealth)
 		{
 			MaxValue = _maxHealth;
-			NetworkTakeHeal(_maxHealth);
+			RPCTakeHeal(_maxHealth);
 		}
 		
-		public void NetworkTakeDamage(float damage)
+		public void RPCTakeDamage(float damage)
 		{
 			photonView.RPC(nameof(TakeDamage), RpcTarget.All, damage);
 		}
 		
-		public void NetworkTakeHeal(float healValue)
+		public void RPCTakeHeal(float healValue)
 		{
 			photonView.RPC(nameof(Heal), RpcTarget.All, healValue);
 		}
@@ -72,9 +70,9 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 
 			Value += healValue;
 			OnHealing?.Invoke(healValue);
-			if (Value > _maxHealth)
+			if (Value > MaxValue)
 			{
-				Value = _maxHealth;
+				Value = MaxValue;
 			}
 			OnValueChanged?.Invoke(Value, MaxValue);
 		}

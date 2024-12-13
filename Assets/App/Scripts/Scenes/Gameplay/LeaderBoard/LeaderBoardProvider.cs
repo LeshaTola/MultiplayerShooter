@@ -6,18 +6,10 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
-    public class LeaderBoardProvider : MonoBehaviour
+    public class LeaderBoardProvider 
     {
         private int _kills = 0;
         private int _death = 0;
-
-        public static LeaderBoardProvider Instance { get; private set; }
-
-        private void Start()
-        {
-            UpdateTable();
-            Instance = this;
-        }
 
         public void AddKill()
         {

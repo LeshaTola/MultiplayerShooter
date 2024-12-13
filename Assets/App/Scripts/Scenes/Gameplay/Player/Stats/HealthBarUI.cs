@@ -8,7 +8,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 		[SerializeField] private Slider _slider;
 		[SerializeField] private Health _health;
 
-		public void Init(Health player)
+		public void Initialize(Health player)
 		{
 			_health = player;
 			_health.OnValueChanged += OnHealthChanged;

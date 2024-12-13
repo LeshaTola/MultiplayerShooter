@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
-    public class LeaderBoard : MonoBehaviour
+    public class LeaderBoardView : MonoBehaviour
     {
         [SerializeField] private LeaderBoardProvider _leaderBoardProvider;
         [SerializeField] private List<LeaderBoardElement> _elements;

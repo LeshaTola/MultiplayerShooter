@@ -1,32 +1,39 @@
 using App.Scripts.Features.Input;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
+using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Controller
 {
-    public class Controller : MonoBehaviour
+    public class PlayerController : IInitializable, ICleanupable
     {
-        [SerializeField] private LeaderBoard.LeaderBoard _leaderBoard;
-
-        private IControllable _controllable;
-        private GameInputProvider _gameInputProvider;
-        private MouseSensivityProvider _mouseSensivityProvider;
-        private EscScreenPresenter _escScreenPresenter;
+        private readonly LeaderBoardView _leaderBoardView;
+        private readonly IControllable _controllable;
+        private readonly GameInputProvider _gameInputProvider;
+        private readonly MouseSensivityProvider _mouseSensivityProvider;
+        private readonly EscScreenPresenter _escScreenPresenter;
 
         public bool IsBusy { get; set; } = false;
 
-        public void Initialize(GameInputProvider gameInputProvider,
+        public PlayerController(GameInputProvider gameInputProvider,
             IControllable controllable,
             MouseSensivityProvider mouseSensivityProvider, 
-            EscScreenPresenter escScreenPresenter)
+            EscScreenPresenter escScreenPresenter,
+            LeaderBoardView leaderBoardView)
         {
             _gameInputProvider = gameInputProvider;
             _controllable = controllable;
             _mouseSensivityProvider = mouseSensivityProvider;
             _escScreenPresenter = escScreenPresenter;
-
+            _leaderBoardView = leaderBoardView;
+        }
+        
+        public void Initialize()
+        {
             _gameInputProvider.OnLeftMouseStarted += AttackStarted;
             _gameInputProvider.OnLeftMouseCanceled += AttackCanceled;
             _gameInputProvider.OnSpace += JumpPerformed;
@@ -36,7 +43,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             _gameInputProvider.OnEsc += OnEscPreformed;
         }
 
-        private void OnDisable()
+        public void Cleanup()
         {
             if (_gameInputProvider == null)
             {
@@ -125,7 +132,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
                 return;
             }
             
-            _leaderBoard.Show();
+            _leaderBoardView.Show();
         }
 
         private void OnTabCanceled()
@@ -135,7 +142,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
                 return;
             }
             
-            _leaderBoard.Hide();
+            _leaderBoardView.Hide();
         }
     }
 }
