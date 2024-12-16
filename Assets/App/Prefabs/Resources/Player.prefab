@@ -950,7 +950,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f748f8fdc5479448afec930e1a48b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
 --- !u!114 &1923097396185842887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,15 +962,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74237968396c2474cafbc6f9621124b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInputConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
+  _playerConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
   _controller: {fileID: 7171066335943419589}
   _checkGroundPivot: {fileID: 1760302324315034158}
   _checkGroundMask:
     serializedVersion: 2
     m_Bits: 64
   _virtualCamera: {fileID: 7447736516197791254}
-  _weaponProvider: {fileID: 5977931046957955413}
   _nickNameUI: {fileID: 7534447508111904430}
+  <WeaponProvider>k__BackingField: {fileID: 5977931046957955413}
+  <Health>k__BackingField: {fileID: 4972400745006171294}
 --- !u!114 &5110892625877943717
 MonoBehaviour:
   m_ObjectHideFlags: 0

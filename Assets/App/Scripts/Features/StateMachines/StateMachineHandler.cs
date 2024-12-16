@@ -2,14 +2,17 @@
 using App.Scripts.Features.StateMachines.States;
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Modules.StateMachine.Factories.States;
+using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
 namespace App.Scripts.Scenes.MainMenu.StateMachines
 {
-    public class StateMachineHandler : MonoBehaviour
+    public class StateMachineHandler : SerializedMonoBehaviour
     {
+        [SerializeField] private State _nextState; 
         private StateMachine stateMachine;
         private IStatesFactory statesFactory;
 
@@ -24,7 +27,7 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines
         {
             var startState = (GlobalInitialState) 
                 statesFactory.GetState(typeof(GlobalInitialState));
-            startState.NextState = typeof(InitialState);
+            startState.NextState = _nextState.GetType();
             await stateMachine.ChangeState(startState.GetType());
         }
 

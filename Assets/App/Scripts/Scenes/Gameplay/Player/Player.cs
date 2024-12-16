@@ -54,7 +54,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
 		{
 			NickName = playerName;
 			_nickNameUI.Setup(NickName);
-			
 		}
 		
 		private void FixedUpdate()

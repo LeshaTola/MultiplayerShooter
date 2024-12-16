@@ -174,14 +174,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 01010d000000760069006500770041006e0069006d006100740069006f006e002f00000000014c0000004100700070002e0053006300720069007000740073002e004d006f00640075006c00650073002e0050006f0070007500700041006e006400560069006500770073002e0041006e0069006d006100740069006f006e0073002e005300630061006c00650041006e0069006d006100740069006f006e002c00200041007300730065006d0062006c0079002d00430053006800610072007000000000001f0111000000730068006f00770041006e0069006d006100740069006f006e00540069006d0065009a99993e1d0108000000730068006f00770045006100730065001b000000000000001f0111000000680069006400650041006e0069006d006100740069006f006e00540069006d0065009a99993e1d0108000000680069006400650045006100730065001a0000000000000005
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: viewAnimation
+      Entry: 7
+      Data: 0|App.Scripts.Modules.PopupAndViews.Animations.ScaleAnimation, Assembly-CSharp
+    - Name: showAnimationTime
+      Entry: 4
+      Data: 0.3
+    - Name: showEase
+      Entry: 3
+      Data: 27
+    - Name: hideAnimationTime
+      Entry: 4
+      Data: 0.3
+    - Name: hideEase
+      Entry: 3
+      Data: 26
+    - Name: 
+      Entry: 8
+      Data: 
   _inputField: {fileID: 1753378325}
   _createButton: {fileID: 1106357256}
   _closeButton: {fileID: 1735315623}
@@ -311,15 +329,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 0101180000003c00430061006d0065007200610073003e006b005f005f004200610063006b0069006e0067004600690065006c0064002f000000000180000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00440069006300740069006f006e00610072007900600032005b005b00530079007300740065006d002e0053007400720069006e0067002c0020006d00730063006f0072006c00690062005d002c005b00430069006e0065006d0061006300680069006e0065002e00430069006e0065006d0061006300680069006e0065005600690072007400750061006c00430061006d006500720061002c002000430069006e0065006d0061006300680069006e0065005d005d002c0020006d00730063006f0072006c00690062000000000001010800000063006f006d00700061007200650072002f010000000159000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00470065006e00650072006900630045007100750061006c0069007400790043006f006d0070006100720065007200600031005b005b00530079007300740065006d002e0053007400720069006e0067002c0020006d00730063006f0072006c00690062005d005d002c0020006d00730063006f0072006c00690062000100000005060100000000000000042e27010200000024006b0001040000004d00610069006e000b01020000002400760000000000050705
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 1684072035}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: <Cameras>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Cinemachine.CinemachineVirtualCamera,
+        Cinemachine]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Main
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &71534764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1230,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ff93ec641d48d381790ce39b958c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _nextState
+      Entry: 7
+      Data: 0|App.Scripts.Scenes.MainMenu.StateMachines.States.InitialState, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!4 &642694292
 Transform:
   m_ObjectHideFlags: 0
@@ -1689,7 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camerasDatabase: {fileID: 60214116}
-  _connectionProvider: {fileID: 1584261742}
+  _roomsProvider: {fileID: 1791732053}
 --- !u!1 &736809343
 GameObject:
   m_ObjectHideFlags: 3
@@ -3562,14 +3627,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 01010d000000760069006500770041006e0069006d006100740069006f006e002f00000000014c0000004100700070002e0053006300720069007000740073002e004d006f00640075006c00650073002e0050006f0070007500700041006e006400560069006500770073002e0041006e0069006d006100740069006f006e0073002e005300630061006c00650041006e0069006d006100740069006f006e002c00200041007300730065006d0062006c0079002d00430053006800610072007000000000001f0111000000730068006f00770041006e0069006d006100740069006f006e00540069006d0065009a99993e1d0108000000730068006f00770045006100730065001b000000000000001f0111000000680069006400650041006e0069006d006100740069006f006e00540069006d0065009a99993e1d0108000000680069006400650045006100730065001a0000000000000005
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: viewAnimation
+      Entry: 7
+      Data: 0|App.Scripts.Modules.PopupAndViews.Animations.ScaleAnimation, Assembly-CSharp
+    - Name: showAnimationTime
+      Entry: 4
+      Data: 0.3
+    - Name: showEase
+      Entry: 3
+      Data: 27
+    - Name: hideAnimationTime
+      Entry: 4
+      Data: 0.3
+    - Name: hideEase
+      Entry: 3
+      Data: 26
+    - Name: 
+      Entry: 8
+      Data: 
   _container: {fileID: 769958177}
   _prefab: {fileID: 6599950987668209674, guid: 578445576852a5342a7afac43a59a6f9, type: 3}
   _closeButton: {fileID: 930048113}
@@ -3677,50 +3760,6 @@ RectTransform:
   m_AnchoredPosition: {x: 40, y: -40}
   m_SizeDelta: {x: 404, y: 100}
   m_Pivot: {x: 0, y: 1}
---- !u!1 &1584261741
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1584261743}
-  - component: {fileID: 1584261742}
-  m_Layer: 0
-  m_Name: ConnectionProvider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1584261742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584261741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b6766761111b945bfe9cf30201ab39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1584261743
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584261741}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1587086488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4810,6 +4849,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789311794}
   m_CullTransparentMesh: 1
+--- !u!1 &1791732052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791732054}
+  - component: {fileID: 1791732053}
+  m_Layer: 0
+  m_Name: Providers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1791732053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791732052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aea1495936047458f2a833029b635d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1791732054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791732052}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813912361
 GameObject:
   m_ObjectHideFlags: 0
@@ -6186,4 +6269,4 @@ SceneRoots:
   - {fileID: 1914851051}
   - {fileID: 401713138}
   - {fileID: 1401840683}
-  - {fileID: 1584261743}
+  - {fileID: 1791732054}

@@ -11,6 +11,13 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         private int _kills = 0;
         private int _death = 0;
 
+        public static LeaderBoardProvider Instance {get; private set;}
+        
+        public LeaderBoardProvider()
+        {
+            Instance = this;
+        }
+
         public void AddKill()
         {
             _kills++;

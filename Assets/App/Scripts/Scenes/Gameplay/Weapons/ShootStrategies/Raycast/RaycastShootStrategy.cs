@@ -29,8 +29,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast
                 {
                     if (health.Value <= _weapon.Config.Damage)
                     {
-                        //TODO: Fix that    
-                        //LeaderBoardProvider.Instance.AddKill();
+                            
+                        LeaderBoardProvider.Instance.AddKill();
                     }
                     
                     OnPlayerHit?.Invoke(hit.point);

@@ -17,6 +17,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<State>().To<DeadState>().AsSingle();
             Container.Bind<State>().To<GameplayState>().AsSingle();
         }
+        
         private void BindStateMachine()
         {
             Container.Bind<Modules.StateMachine.StateMachine>().AsSingle();

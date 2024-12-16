@@ -22,14 +22,14 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         public EscScreenPresenter(EscMenuView escMenuView,
             SettingsView settingsView,
             IAudioService audioService, 
-            MouseSensivityProvider mouseSensitivityProvider,
-            PlayerController playerPlayerController)
+            MouseSensivityProvider mouseSensitivityProvider/*,
+            PlayerController playerPlayerController*/)
         {
             _escMenuView = escMenuView;
             _settingsView = settingsView;
             _mouseSensivityProvider = mouseSensitivityProvider;
             _audioService = audioService;
-            _playerPlayerController = playerPlayerController;
+            /*_playerPlayerController = playerPlayerController;*/
         }
 
         public void Initialize()
@@ -77,7 +77,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         private void Continue()
         {
             Hide();
-            _playerPlayerController.IsBusy = false;
+            // _playerPlayerController.IsBusy = false;
         }
 
         private void LeaveRoom()

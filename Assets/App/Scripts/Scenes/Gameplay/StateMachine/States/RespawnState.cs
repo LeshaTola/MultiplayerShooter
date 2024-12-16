@@ -7,7 +7,12 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
     public class RespawnState : State
     {
         private PlayerProvider _playerProvider;
-        
+
+        public RespawnState(PlayerProvider playerProvider)
+        {
+            _playerProvider = playerProvider;
+        }
+
         public override async UniTask Enter()
         {
             _playerProvider.RespawnPlayer();

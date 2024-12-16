@@ -8,11 +8,16 @@ namespace App.Scripts.Features.StateMachines.States
 {
     public class GlobalInitialState : State
     {
-
-        private ConnectionProvider _connectionProvider;
+        private readonly ConnectionProvider _connectionProvider;
+        
         private  bool _isValid = true;
         
         public Type NextState { get; set; }
+
+        public GlobalInitialState(ConnectionProvider connectionProvider)
+        {
+            _connectionProvider = connectionProvider;
+        }
 
         public override async UniTask Enter()
         {
@@ -24,6 +29,7 @@ namespace App.Scripts.Features.StateMachines.States
             
             Application.targetFrameRate = 60;
             _connectionProvider.OnConnected += OnConectedToServer;
+            _connectionProvider.Connect();
             
             _isValid = false;
         }

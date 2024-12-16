@@ -14,7 +14,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public void Initialize(WeaponProvider weaponProvider)
         {
             _weaponProvider = weaponProvider;
-            weaponProvider.OnWeaponChanged += OnWeaponChanged;
+            OnWeaponChanged(_weaponProvider.CurrentWeapon);
+            _weaponProvider.OnWeaponChanged += OnWeaponChanged;
+        }
+
+        public void Cleanup()
+        {
+            _weaponProvider.OnWeaponChanged -= OnWeaponChanged;
         }
 
         private void OnWeaponChanged(Weapon weapon)
@@ -28,7 +34,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             Setup(_currentWeapon.CurrentAmmoCount, _currentWeapon.Config.MaxAmmoCount);
         }
 
-        public void Setup(int current, int max)
+        private void Setup(int current, int max)
         {
             _ammoText.text = $"{current}/{max}";
         }

@@ -2,6 +2,7 @@
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using Photon.Pun;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Timer
 {
@@ -10,15 +11,10 @@ namespace App.Scripts.Scenes.Gameplay.Timer
         public event Action<double> OnTimerTick;
         public event Action OnTimerExpired;
 
-        private readonly GameConfig _gameConfig;
+        [SerializeField] private GameConfig _gameConfig;
         
         private double _startTime;
         private bool _timerRunning;
-
-        public TimerProvider(GameConfig gameConfig)
-        {
-            _gameConfig = gameConfig;
-        }
 
         public void Initialize()
         {

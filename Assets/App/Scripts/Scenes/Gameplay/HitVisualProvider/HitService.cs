@@ -1,5 +1,4 @@
-﻿using App.Scripts.Modules.ObjectPool.MonoObjectPools;
-using App.Scripts.Modules.ObjectPool.Pools;
+﻿using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
@@ -9,19 +8,19 @@ using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
 {
-    public class HitService: IInitializable, ICleanupable
+    public class HitService : IInitializable, ICleanupable
     {
         private readonly Image _hitMarkImage;
         private readonly HitConfig _config;
         private readonly PlayerProvider _playerProvider;
         private readonly IPool<DamageView> _pool;
 
-        public HitService(Image hitMarkImage, HitConfig config, Transform container, PlayerProvider playerProvider)
+        public HitService(Image hitMarkImage, HitConfig config, PlayerProvider playerProvider, IPool<DamageView> pool)
         {
             _hitMarkImage = hitMarkImage;
             _config = config;
             _playerProvider = playerProvider;
-            _pool = new MonoBehObjectPool<DamageView>(_config.ViewPrefab, 10, container); //TODO: Move to installer
+            _pool = pool;
         }
 
         public void Initialize()

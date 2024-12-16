@@ -13,7 +13,16 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private LeaderBoardProvider _leaderBoardProvider;
         private PlayerProvider _playerProvider;
         private KillChatView _killChatView;
-        
+
+        public DeadState(LeaderBoardProvider leaderBoardProvider,
+            PlayerProvider playerProvider,
+            KillChatView killChatView)
+        {
+            _leaderBoardProvider = leaderBoardProvider;
+            _playerProvider = playerProvider;
+            _killChatView = killChatView;
+        }
+
         public override async UniTask Enter()
         {
             _leaderBoardProvider.AddDeath();

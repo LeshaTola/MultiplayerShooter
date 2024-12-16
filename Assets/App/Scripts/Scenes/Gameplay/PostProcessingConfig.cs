@@ -8,11 +8,11 @@ namespace App.Scripts.Scenes.Gameplay
     {
         [field: Header("Vignette")] 
         [field: SerializeField]
-        public float FadeInTime { get; } = 0.2f;
+        public float FadeInTime { get; private set; } = 0.2f;
 
-        [field: SerializeField] public float FadeOutTime { get; } = 0.5f;
-        [field: SerializeField] public float FadeValue { get; } = 0.5f;
-        [field: SerializeField] public ColorParameter DamageColor { get; }
-        [field: SerializeField] public ColorParameter HealColor { get; }
+        [field: SerializeField] public float FadeOutTime { get;  private set;} = 0.5f;
+        [field: SerializeField] public float FadeValue { get;  private set;} = 0.5f;
+        [field: SerializeField] public ColorParameter DamageColor { get;  private set;}
+        [field: SerializeField] public ColorParameter HealColor { get;  private set;}
     }
 }

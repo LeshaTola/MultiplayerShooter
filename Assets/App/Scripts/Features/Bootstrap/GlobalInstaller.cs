@@ -17,6 +17,7 @@ using App.Scripts.Modules.Sounds;
 using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.States.General;
+using App.Scripts.Scenes.MainMenu;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -30,6 +31,8 @@ namespace App.Scripts.Features.Bootstrap
         [SerializeField] private string _language;
 
         [SerializeField] private SerializableInterface<ISceneTransition> _sceneTransition;
+        
+        [SerializeField] private ConnectionProvider _connectionProvider;
         
         [Header("Audio")]
         [SerializeField] private SoundProvider _soundProvider;
@@ -50,6 +53,7 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<IScreenService>().To<ScreenService>().AsSingle();
             
             Container.Bind<ISceneTransition>().FromInstance(_sceneTransition.Value);
+            Container.Bind<ConnectionProvider>().FromInstance(_connectionProvider);
 
             Container.Bind<ICommandsProvider>().To<CommandsProvider>().AsSingle();
             Container.Bind<MoveToStateCommand>().AsTransient();

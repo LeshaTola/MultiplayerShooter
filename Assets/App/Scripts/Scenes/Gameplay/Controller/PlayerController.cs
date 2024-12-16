@@ -1,6 +1,7 @@
 using App.Scripts.Features.Input;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
@@ -9,24 +10,23 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Controller
 {
-    public class PlayerController : IInitializable, ICleanupable
+    public class PlayerController : IInitializable, ICleanupable, IUpdatable
     {
         private readonly LeaderBoardView _leaderBoardView;
-        private readonly IControllable _controllable;
         private readonly GameInputProvider _gameInputProvider;
         private readonly MouseSensivityProvider _mouseSensivityProvider;
         private readonly EscScreenPresenter _escScreenPresenter;
+        
+        private IControllable _controllable;
 
         public bool IsBusy { get; set; } = false;
 
         public PlayerController(GameInputProvider gameInputProvider,
-            IControllable controllable,
             MouseSensivityProvider mouseSensivityProvider, 
             EscScreenPresenter escScreenPresenter,
             LeaderBoardView leaderBoardView)
         {
             _gameInputProvider = gameInputProvider;
-            _controllable = controllable;
             _mouseSensivityProvider = mouseSensivityProvider;
             _escScreenPresenter = escScreenPresenter;
             _leaderBoardView = leaderBoardView;
@@ -41,6 +41,11 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             _gameInputProvider.OnTabPerformed += OnTabPerformed;
             _gameInputProvider.OnTabCanceled += OnTabCanceled;
             _gameInputProvider.OnEsc += OnEscPreformed;
+        }
+
+        public void Setup(IControllable controllable)
+        {
+            _controllable = controllable;
         }
 
         public void Cleanup()
@@ -86,7 +91,7 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             _controllable.CancelAttack();
         }
 
-        private void Update()
+        public void Update()
         {
             if (IsBusy)
             {
@@ -123,7 +128,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
-
 
         private void OnTabPerformed()
         {

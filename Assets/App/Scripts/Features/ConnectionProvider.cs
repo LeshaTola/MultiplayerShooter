@@ -15,19 +15,9 @@ namespace App.Scripts.Scenes.MainMenu
     {
         public const string NAME_DATA = "playerName";
 
-        private RoomsViewPresenter _roomsViewPresenter;
-        private StateMachine _stateMachine;
-
-        public event Action OnConnected; 
-
-        [Inject]
-        private void Construct(RoomsViewPresenter roomsViewPresenter, StateMachine stateMachine)
-        {
-            _roomsViewPresenter = roomsViewPresenter;
-            _stateMachine = stateMachine;
-        }
-
-        private void Start()
+        public event Action OnConnected;
+        
+        public void Connect()
         {
             if (PhotonNetwork.IsConnected)
             {
@@ -52,12 +42,6 @@ namespace App.Scripts.Scenes.MainMenu
         {
             Debug.Log("Connected To Lobby");
             OnConnected?.Invoke();
-        }
-
-        public override void OnRoomListUpdate(List<RoomInfo> roomList)
-        {
-            Debug.Log("Update rooms in provider");
-            _roomsViewPresenter.UpdateRoomList(roomList);
         }
 
         public override void OnJoinedRoom()
