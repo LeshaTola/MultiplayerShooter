@@ -46,7 +46,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
 			photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
 			
 			WeaponProvider.Initialize(_gameInputProvider,this);
-			Health.Initialize(_playerConfig.MaxHealth);
 		}
 		
 		[PunRPC]
@@ -54,6 +53,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 		{
 			NickName = playerName;
 			_nickNameUI.Setup(NickName);
+			Health.Initialize(_playerConfig.MaxHealth);
 		}
 		
 		private void FixedUpdate()
@@ -111,6 +111,17 @@ namespace App.Scripts.Scenes.Gameplay.Player
 			
 			RPCSetVertical(_verticalRotation);
 			transform.Rotate(Vector3.up * mouseX);
+		}
+
+		public void RPCSetActive(bool active)
+		{
+			photonView.RPC(nameof(SetActivePlayer), RpcTarget.AllBuffered, active);
+		}
+		
+		[PunRPC]
+		public void SetActivePlayer(bool active)
+		{
+			gameObject.SetActive(active);
 		}
 
 		private void RPCSetVertical(float verticalRotation)

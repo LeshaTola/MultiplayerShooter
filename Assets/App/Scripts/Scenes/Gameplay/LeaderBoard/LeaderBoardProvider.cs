@@ -16,6 +16,7 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         public LeaderBoardProvider()
         {
             Instance = this;
+            UpdateTable();
         }
 
         public void AddKill()

@@ -82,8 +82,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             }
             
             _controllable.StartAttack();
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void AttackCanceled()

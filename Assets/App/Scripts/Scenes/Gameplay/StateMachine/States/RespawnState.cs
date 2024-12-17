@@ -1,6 +1,7 @@
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 {
@@ -15,8 +16,10 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 
         public override async UniTask Enter()
         {
+            Debug.Log("Respawn");
+            
             _playerProvider.RespawnPlayer();
-            StateMachine.ChangeState<GameplayState>();
+            await StateMachine.ChangeState<GameplayState>();
         }
     }
 }

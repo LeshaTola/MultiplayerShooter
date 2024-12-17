@@ -44,8 +44,14 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _player = Create();
         }
 
+        public void HidePlayer()
+        {
+            _player.RPCSetActive(false);
+        }
+
         public void RespawnPlayer()
         {
+            _player.RPCSetActive(true);
             _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
         }

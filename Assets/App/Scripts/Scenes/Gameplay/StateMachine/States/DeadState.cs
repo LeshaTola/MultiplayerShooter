@@ -5,6 +5,7 @@ using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 {
@@ -25,13 +26,15 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 
         public override async UniTask Enter()
         {
+            Debug.Log("Dead");
+
             _leaderBoardProvider.AddDeath();
-
+            
             UpdateKillChat();
-            RespawnPlayer();
-
+            
+            _playerProvider.HidePlayer();
             await UniTask.Delay(TimeSpan.FromSeconds(3));
-            StateMachine.ChangeState<RespawnState>();
+            RespawnPlayer();
         }
 
         private void UpdateKillChat()
@@ -41,9 +44,9 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _killChatView.RPCSpawnKillElement(lastHitPlayer.NickName, _playerProvider.Player.NickName);
         }
 
-        private void RespawnPlayer()
+        private async void RespawnPlayer()
         {
-            StateMachine.ChangeState<RespawnState>();
+            await StateMachine.ChangeState<RespawnState>();
         }
     }
 }

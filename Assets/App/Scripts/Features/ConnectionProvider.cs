@@ -15,7 +15,7 @@ namespace App.Scripts.Scenes.MainMenu
     {
         public const string NAME_DATA = "playerName";
 
-        public event Action OnConnected;
+        public event Action OnConnectionFinished;
         
         public void Connect()
         {
@@ -41,7 +41,7 @@ namespace App.Scripts.Scenes.MainMenu
         public override void OnJoinedLobby()
         {
             Debug.Log("Connected To Lobby");
-            OnConnected?.Invoke();
+            OnConnectionFinished?.Invoke();
         }
 
         public override void OnJoinedRoom()

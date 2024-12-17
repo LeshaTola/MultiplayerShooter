@@ -8,6 +8,7 @@ using App.Scripts.Scenes.Gameplay.Timer;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 {
@@ -37,6 +38,11 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 
         public override async UniTask Enter()
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
+            Debug.Log("Initial");
+            
             _initializeService.Initialize();
             _timerProvider.Initialize();
             
@@ -50,9 +56,9 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             await StateMachine.ChangeState<RespawnState>();
         }
 
-        private void OnTimerExpired()
+        private async void OnTimerExpired()
         {
-            PhotonNetwork.LeaveRoom();
+            await StateMachine.ChangeState<EndGame>();
             _timerProvider.OnTimerExpired -= OnTimerExpired;
         }
     }

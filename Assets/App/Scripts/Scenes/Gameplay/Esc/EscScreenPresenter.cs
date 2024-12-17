@@ -6,6 +6,7 @@ using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
+using App.Scripts.Scenes.Gameplay.StateMachine.States;
 using Photon.Pun;
 using UnityEngine;
 
@@ -16,18 +17,20 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         private EscMenuView _escMenuView;
         private SettingsView _settingsView;
         private MouseSensivityProvider _mouseSensivityProvider;
+        private readonly Modules.StateMachine.StateMachine _stateMachine;
         private IAudioService _audioService;
         private PlayerController _playerPlayerController;
 
         public EscScreenPresenter(EscMenuView escMenuView,
             SettingsView settingsView,
             IAudioService audioService, 
-            MouseSensivityProvider mouseSensitivityProvider/*,
+            MouseSensivityProvider mouseSensitivityProvider, Modules.StateMachine.StateMachine stateMachine/*,
             PlayerController playerPlayerController*/)
         {
             _escMenuView = escMenuView;
             _settingsView = settingsView;
             _mouseSensivityProvider = mouseSensitivityProvider;
+            _stateMachine = stateMachine;
             _audioService = audioService;
             /*_playerPlayerController = playerPlayerController;*/
         }
@@ -80,9 +83,9 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             // _playerPlayerController.IsBusy = false;
         }
 
-        private void LeaveRoom()
+        private async void LeaveRoom()
         {
-            PhotonNetwork.LeaveRoom();
+            await _stateMachine.ChangeState<EndGame>();
         }
     }
 }

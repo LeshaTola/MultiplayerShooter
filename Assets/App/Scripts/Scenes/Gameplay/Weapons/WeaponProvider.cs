@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         
         public Weapon CurrentWeapon { get; private set; }
 
-        public void OnDisable()
+        public void OnDestroy()
         {
             Cleanup();
         }

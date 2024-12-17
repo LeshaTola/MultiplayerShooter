@@ -28,7 +28,7 @@ namespace App.Scripts.Features.StateMachines.States
             }
             
             Application.targetFrameRate = 60;
-            _connectionProvider.OnConnected += OnConectedToServer;
+            _connectionProvider.OnConnectionFinished += OnConectedToServer;
             _connectionProvider.Connect();
             
             _isValid = false;
@@ -36,7 +36,7 @@ namespace App.Scripts.Features.StateMachines.States
 
         public override UniTask Exit()
         {
-            _connectionProvider.OnConnected -= OnConectedToServer;
+            _connectionProvider.OnConnectionFinished -= OnConectedToServer;
             return UniTask.CompletedTask;
         }
 

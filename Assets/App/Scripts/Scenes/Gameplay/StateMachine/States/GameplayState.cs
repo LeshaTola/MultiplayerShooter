@@ -2,6 +2,7 @@ using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 {
@@ -19,23 +20,25 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _updateService = updateService;
         }
 
-        public override async UniTask Enter()
+        public override  UniTask Enter()
         {
+            Debug.Log("Gameplay");
             _playerProvider.Player.Health.OnDied += OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage += ApplyDamageEffect;
+            return UniTask.CompletedTask;
         }
-
 
         public override UniTask Update()
         {
             _updateService.Update();
-            return base.Update();
+            return UniTask.CompletedTask;
         }
 
-        public override async UniTask Exit()
+        public override  UniTask Exit()
         {
             _playerProvider.Player.Health.OnDied -= OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage -= ApplyDamageEffect;
+            return UniTask.CompletedTask;
         }
 
         private async void OnPlayerDeath()

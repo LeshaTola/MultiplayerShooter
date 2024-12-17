@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
     public class LeaderBoardView : MonoBehaviour
     {
-        [SerializeField] private LeaderBoardProvider _leaderBoardProvider;
+        [Inject]
+        private LeaderBoardProvider _leaderBoardProvider;
         [SerializeField] private List<LeaderBoardElement> _elements;
 
+        
         public void Show()
         {
             gameObject.SetActive(true);
