@@ -4,6 +4,7 @@ using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons
 {
@@ -12,7 +13,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public event Action<Weapon> OnWeaponChanged;
         public event Action<Vector3 , float> OnPlayerHit;
         
-        [SerializeField] private Inventory _inventory;
+        [FormerlySerializedAs("_inventory")] [SerializeField] private GameInventory _gameInventory;
         [SerializeField] private Transform _weaponHolder;
 
         public List<Weapon> Weapons { get; } = new();
@@ -30,7 +31,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _gameInputProvider = gameInputProvider;
             
             int i = 0;
-            foreach (var weapon in _inventory.Weapons)
+            foreach (var weapon in _gameInventory.Weapons)
             {
                 var weaponObject
                     = PhotonNetwork.Instantiate(weapon.Prefab.name, _weaponHolder.position, _weaponHolder.rotation)
@@ -76,7 +77,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             var weapon = weaponObject.GetComponent<Weapon>();
 
             Weapons.Add(weapon);
-            weapon.Initialize(_inventory.Weapons[index], player);
+            weapon.Initialize(_gameInventory.Weapons[index], player);
 
             var weaponTransform = weapon.transform;
             weaponTransform.SetParent(_weaponHolder);

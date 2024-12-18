@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace App.Scripts.Features.Inventory
 {
-    [CreateAssetMenu(menuName = "Configs/Inventory/Inventory", fileName = "Inventory")]
-    public class Inventory: ScriptableObject
+    [CreateAssetMenu(menuName = "Configs/Inventory/GlobalInventory", fileName = "GlobalInventory")]
+    public class GlobalInventory: ScriptableObject
     {
         [field: SerializeField] public List<WeaponConfig> Weapons { get; private set; }
         //[field: SerializeField] public List<WeaponData> Weapons { get; private set; }

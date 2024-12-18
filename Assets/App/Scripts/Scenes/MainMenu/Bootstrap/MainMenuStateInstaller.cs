@@ -28,6 +28,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             BindInitialState();
             Container.Bind<State>().To<MainState>().AsSingle();
             Container.Bind<State>().To<RoomState>().AsSingle();
+            Container.Bind<State>().To<InventoryState>().AsSingle();
             Container.Bind<State>().To<LoadSceneState>().AsSingle().WithArguments("Gameplay");
         }
 

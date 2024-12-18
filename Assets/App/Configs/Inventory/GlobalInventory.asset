@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e58c78cec4207bf73c195126464f1, type: 3}
-  m_Name: _Inventory
+  m_Script: {fileID: 11500000, guid: 2d977df924974c739ddfa2ab77ddfba0, type: 3}
+  m_Name: GlobalInventory
   m_EditorClassIdentifier: 
-  <WeaponsCount>k__BackingField: 5
   <Weapons>k__BackingField:
-  - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
   - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
+  - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}

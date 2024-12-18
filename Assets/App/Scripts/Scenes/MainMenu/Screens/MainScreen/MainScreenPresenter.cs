@@ -23,6 +23,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         public override void Initialize()
         {
             _screen.PlayButtonAction += OnPlayButtonAction;
+            _screen.InventoryButtonAction += OnInventoryButtonAction;
             _screen.OnPlayerNameChanged += OnPlayerNameChanged;
             _screen.Initialize();
         }
@@ -52,6 +53,11 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         private async void OnPlayButtonAction()
         {
             await _stateMachine.ChangeState<RoomState>();
+        }
+
+        private async void OnInventoryButtonAction()
+        {
+            await _stateMachine.ChangeState<InventoryState>();
         }
 
         private void OnPlayerNameChanged(string name)
