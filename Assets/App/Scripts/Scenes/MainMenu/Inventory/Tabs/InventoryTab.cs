@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories.MonoFactories;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs

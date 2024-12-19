@@ -18,7 +18,7 @@ namespace App.Scripts.Modules.Factories.MonoFactories
             this.parent = parent;
         }
 
-        public T GetItem()
+        public virtual T GetItem()
         {
             return Object.Instantiate(template, parent);
         }

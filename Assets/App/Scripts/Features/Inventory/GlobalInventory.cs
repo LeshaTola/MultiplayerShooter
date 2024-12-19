@@ -8,6 +8,6 @@ namespace App.Scripts.Features.Inventory
     public class GlobalInventory: ScriptableObject
     {
         [field: SerializeField] public List<WeaponConfig> Weapons { get; private set; }
-        //[field: SerializeField] public List<WeaponData> Weapons { get; private set; }
+        [field: SerializeField] public List<EquipmentConfig> Equipment { get; private set; }
     }
 }

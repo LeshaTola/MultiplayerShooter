@@ -25,6 +25,14 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
             _tabs[0].Show();
         }
 
+        public void Cleanup()
+        {
+            foreach (var toggle in _toggles)
+            {
+                toggle.OnValueChanged.RemoveAllListeners();
+            }
+        }
+
         private void ChangeTab(bool value, int index)
         {
             if (!value)

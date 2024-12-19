@@ -9,6 +9,7 @@ namespace App.Scripts.Features.Inventory
     {
         [field: SerializeField] public int WeaponsCount { get; private set; }
         [field: SerializeField] public List<WeaponConfig> Weapons { get; private set; }
-        //[field: SerializeField] public List<WeaponData> Weapons { get; private set; }
+        [field: SerializeField] public int EquipmentCount { get; private set; }
+        [field: SerializeField] public List<EquipmentConfig> Equipment { get; private set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Features.Inventory.Weapons;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,13 +17,24 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private Image _image;
 
-        private RectTransform _overlayParent;
+        private Transform _overlayParent;
 
-        public Transform CurrentParent { get; set; }
+        private InventorySlot _curentSlot;
+
+        public InventorySlot CurentSlot
+        {
+            get => _curentSlot;
+            set
+            {
+                _curentSlot = value;
+                _curentSlot.Item = this;
+            }
+        }
+
         public string ConfigId { get; private set; }
         public ItemType Type { get; private set; }
         
-        public void Initialize(RectTransform overlayParent, Sprite sprite, string id, ItemType type = ItemType.Equipment)
+        public void Initialize(Transform overlayParent, Sprite sprite, string id, ItemType type = ItemType.Weapon)
         {
             _overlayParent = overlayParent;
             _image.sprite = sprite;
@@ -33,7 +45,6 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         
         public void OnBeginDrag(PointerEventData eventData)
         {
-            CurrentParent = transform.parent;
             transform.SetParent(_overlayParent);
             _image.raycastTarget = false;
         }
@@ -51,7 +62,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         
         public void MoveToParent()
         {
-            transform.SetParent(CurrentParent);
+            transform.SetParent(CurentSlot.transform, false);
             _rectTransform.anchoredPosition = Vector2.zero;
         }
     }

@@ -1,46 +1,34 @@
 ﻿using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
 {
     public class InventoryTabPresenter : GameScreenPresenter
     {
-        private readonly InventoryTab _view;
-        private readonly IFactory<Item> _itemFactory;
-        private readonly IFactory<InventorySlot> _slotFactory;
-        private readonly InventoryProvider _inventoryProvider;
-        private readonly RectTransform _overlayTransform;
+        protected readonly InventoryTab View;
+        protected readonly IFactory<Item> ItemFactory;
+        protected readonly IFactory<InventorySlot> SlotFactory;
+        protected readonly InventoryProvider InventoryProvider;
+        protected readonly RectTransform OverlayTransform;
 
         public InventoryTabPresenter(InventoryTab view,
-            IFactory<Item> itemFactory, 
+            IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,
-            InventoryProvider inventoryProvider,RectTransform overlayTransform)
+            InventoryProvider inventoryProvider, RectTransform overlayTransform)
         {
-            _view = view;
-            _itemFactory = itemFactory;
-            _slotFactory = slotFactory;
-            _inventoryProvider = inventoryProvider;
-            _overlayTransform = overlayTransform;
-        }
-
-        public override void Initialize()
-        {
-            foreach (var weapon in _inventoryProvider.GlobalInventory.Weapons)
-            {
-                var slot = _slotFactory.GetItem();
-                var item = _itemFactory.GetItem();
-                item.Initialize(_overlayTransform, weapon.Sprite, weapon.Id);
-                item.CurrentParent = slot.transform;
-                item.MoveToParent();
-                _view.AddSlot(slot);
-            }
+            View = view;
+            ItemFactory = itemFactory;
+            SlotFactory = slotFactory;
+            InventoryProvider = inventoryProvider;
+            OverlayTransform = overlayTransform;
         }
 
         public override void Cleanup()
         {
-            _view.Cleanup();
+            View.Cleanup();
         }
     }
 }

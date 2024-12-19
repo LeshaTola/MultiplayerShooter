@@ -520,6 +520,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71534764}
   m_CullTransparentMesh: 1
+--- !u!114 &86505613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1053754267677820439, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+  m_PrefabInstance: {fileID: 1740459131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e25d425044b405dab712334bd22f652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &103955475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1309,8 +1320,10 @@ MonoBehaviour:
   _mainScreen: {fileID: 695795993}
   _roomsView: {fileID: 1543539614}
   _inventoryScreeen: {fileID: 23562917}
+  _gameInventoryView: {fileID: 715308943}
   _tabSwitcher: {fileID: 2083616411}
-  _inventoryTab: {fileID: 936642358}
+  _weaponTab: {fileID: 936642358}
+  _equipmentTab: {fileID: 86505613}
   _overlayContainer: {fileID: 829775204}
   _slotTemplate: {fileID: 8690453169792388080, guid: 7d9076f165f3f7d49bfedc8a07a3f2ba, type: 3}
   _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
@@ -1780,6 +1793,17 @@ MonoBehaviour:
   _roomsProvider: {fileID: 1791732053}
   _gameInventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
+--- !u!114 &715308943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7930042497584690925, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+  m_PrefabInstance: {fileID: 1740459131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22e6fb168b64f1a9b9d31696fc65e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &736809343
 GameObject:
   m_ObjectHideFlags: 3
@@ -4635,7 +4659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1597222851675791028, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
       propertyPath: _tabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1597222851675791028, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
       propertyPath: _tabs.Array.data[0]
@@ -4660,6 +4684,10 @@ PrefabInstance:
     - target: {fileID: 1995752768327004816, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392826270436003930, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+      propertyPath: <Index>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3661370241272240483, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
       propertyPath: m_SizeDelta.x

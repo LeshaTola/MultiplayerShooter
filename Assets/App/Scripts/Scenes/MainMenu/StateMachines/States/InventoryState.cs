@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Modules.StateMachine.States.General;
+using App.Scripts.Scenes.MainMenu.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
 using Cysharp.Threading.Tasks;
 
