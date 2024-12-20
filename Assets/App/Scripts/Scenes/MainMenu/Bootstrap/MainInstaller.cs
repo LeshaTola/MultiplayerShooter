@@ -13,8 +13,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     {
         [SerializeField] private CamerasDatabase _camerasDatabase;
         [SerializeField] private RoomsProvider _roomsProvider;
-        [SerializeField] private GameInventory _gameInventory;
-        [SerializeField] private GlobalInventory _globalInventory;
+
 
         public override void InstallBindings()
         {
@@ -22,7 +21,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<IInitializeService>().To<InitializeService>().AsSingle();
             Container.Bind<ICleanupService>().To<CleanupService>().AsSingle();
             
-            Container.Bind<InventoryProvider>().AsSingle().WithArguments(_gameInventory,_globalInventory);
             Container.Bind<RoomsProvider>().FromInstance(_roomsProvider);
 
             Container.Bind<ICameraSwitcher>().To<CameraSwitcher>().AsSingle().WithArguments(_camerasDatabase);

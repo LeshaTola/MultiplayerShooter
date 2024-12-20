@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9056738ac744c59c330cefdb686bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
+  _gameInventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _weaponHolder: {fileID: 8067882858614385861}
 --- !u!114 &4972400745006171294
 MonoBehaviour:

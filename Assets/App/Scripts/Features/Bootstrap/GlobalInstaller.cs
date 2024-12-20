@@ -1,10 +1,12 @@
 ﻿using System.Windows.Input;
 using App.Scripts.Features.Commands;
 using App.Scripts.Features.Input;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
 using App.Scripts.Features.StateMachines.States;
 using App.Scripts.Modules.Commands.Provider;
+using App.Scripts.Modules.Factories.MonoFactories;
 using App.Scripts.Modules.FileProvider;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Localization.Configs;
@@ -18,6 +20,8 @@ using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu;
+using App.Scripts.Scenes.MainMenu.Inventory;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -33,6 +37,13 @@ namespace App.Scripts.Features.Bootstrap
         [SerializeField] private SerializableInterface<ISceneTransition> _sceneTransition;
         
         [SerializeField] private ConnectionProvider _connectionProvider;
+        
+        [Header("Inventory")]
+        [SerializeField] private GameInventory _gameInventory;
+        [SerializeField] private GlobalInventory _globalInventory;
+        [SerializeField] private InventorySlot _slotTemplate;
+        [SerializeField] private Item _itemTemplate;
+        
         
         [Header("Audio")]
         [SerializeField] private SoundProvider _soundProvider;
@@ -61,6 +72,26 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<PresentersProvider>().AsSingle();
             Container.Bind<GameInputProvider>().AsSingle();
             
+            Container.Bind<InventoryProvider>().AsSingle().WithArguments(_gameInventory, _globalInventory);
+            BindSlotFactory();
+            BindItemFactory();
+        }
+        
+        private void BindItemFactory()
+        {
+            Container.Bind<Modules.Factories.IFactory<Item>>()
+                .To<MonoFactory<Item>>()
+                .AsSingle()
+                .WithArguments(_itemTemplate);
+        }
+
+        private void BindSlotFactory()
+        {
+            Container
+                .Bind<Modules.Factories.IFactory<InventorySlot>>()
+                .To<MonoFactory<InventorySlot>>()
+                .AsSingle()
+                .WithArguments(_slotTemplate);
         }
 
         private void BindLocalizationSystem()

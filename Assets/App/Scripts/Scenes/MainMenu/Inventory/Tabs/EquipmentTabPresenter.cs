@@ -18,7 +18,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
             foreach (var weapon in InventoryProvider.GlobalInventory.Equipment)
             {
                 var slot = SlotFactory.GetItem();
-                slot.Initialize(new NoneInventorySlotStrategy(), -1);
+                slot.Initialize(new NoneInventorySlotStrategy(), -1, ItemType.Equipment);
                 var item = ItemFactory.GetItem();
                 item.Initialize(OverlayTransform, weapon.Sprite, weapon.Id, ItemType.Equipment);
                 item.CurentSlot = slot;

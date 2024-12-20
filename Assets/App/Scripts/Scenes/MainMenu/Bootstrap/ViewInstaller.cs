@@ -26,9 +26,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private InventoryTab _weaponTab;
         [SerializeField] private InventoryTab _equipmentTab;
         [SerializeField] private RectTransform _overlayContainer;
-        [SerializeField] private InventorySlot _slotTemplate;
-        [SerializeField] private Item _itemTemplate;
-        
 
         public override void InstallBindings()
         {
@@ -37,10 +34,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
             Container.Bind<RoomsViewPresenter>().AsSingle();
             Container.BindInstance(_roomsView).AsSingle();
-
-
-            BindSlotFactory();
-            BindItemFactory();
+            
             Container.Bind<InventoryScreenPresenter>().AsSingle();
             Container.Bind<GameInventoryViewPresenter>().AsSingle().WithArguments(_overlayContainer);
             Container.Bind<InventoryTabPresenter>().To<WeaponTabPresenter>().AsSingle().WithArguments(_overlayContainer,_weaponTab);
@@ -48,23 +42,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.BindInstance(_inventoryScreeen).AsSingle();
             Container.BindInstance(_gameInventoryView).AsSingle();
             Container.BindInstance(_tabSwitcher).AsSingle();
-        }
-
-        private void BindItemFactory()
-        {
-            Container.Bind<Modules.Factories.IFactory<Item>>()
-                .To<MonoFactory<Item>>()
-                .AsSingle()
-                .WithArguments(_itemTemplate);
-        }
-
-        private void BindSlotFactory()
-        {
-            Container
-                .Bind<Modules.Factories.IFactory<InventorySlot>>()
-                .To<MonoFactory<InventorySlot>>()
-                .AsSingle()
-                .WithArguments(_slotTemplate);
         }
     }
 }

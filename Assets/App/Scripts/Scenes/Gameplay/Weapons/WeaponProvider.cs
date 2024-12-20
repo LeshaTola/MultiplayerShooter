@@ -33,6 +33,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             int i = 0;
             foreach (var weapon in _gameInventory.Weapons)
             {
+                if (!weapon)
+                {
+                    photonView.RPC(nameof(SetupWeapon), RpcTarget.AllBuffered, -1, -1, i);
+                    i++;
+                    continue;
+                }
+                
                 var weaponObject
                     = PhotonNetwork.Instantiate(weapon.Prefab.name, _weaponHolder.position, _weaponHolder.rotation)
                         .GetComponent<Weapon>();
@@ -47,8 +54,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
             
             _gameInputProvider.OnNumber += RPCSetWeaponByIndex;
-
-            RPCSetWeaponByIndex(0);
+            var index = Weapons.FindIndex(x=>x);
+            RPCSetWeaponByIndex(index + 1);
         }
 
         public void Cleanup()
@@ -65,13 +72,24 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         {
             index--;
             index = Math.Clamp(index, 0, Weapons.Count - 1);
-            OnWeaponChanged?.Invoke(Weapons[index]);
+            var weapon = Weapons[index];
+            if (!weapon)
+            {
+                return;
+            }
+            OnWeaponChanged?.Invoke(weapon);
             photonView.RPC(nameof(SetWeaponByIndex), RpcTarget.AllBuffered, index);
         }
 
         [PunRPC]
         public void SetupWeapon(int weaponViewID,int ownerId, int index)
         {
+            if (weaponViewID == -1)
+            {
+                Weapons.Add(null);
+                return;
+            }
+            
             var weaponObject = PhotonView.Find(weaponViewID).gameObject;
             var player = PhotonView.Find(ownerId).GetComponent<Player.Player>();
             var weapon = weaponObject.GetComponent<Weapon>();

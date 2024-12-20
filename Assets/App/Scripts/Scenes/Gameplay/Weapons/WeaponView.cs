@@ -25,6 +25,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void OnWeaponChanged(Weapon weapon)
         {
+            if (!weapon)
+            {
+                return;
+            }
+            
             if (_currentWeapon != null)
             {
                 _currentWeapon.OnAmmoChanged -= Setup;

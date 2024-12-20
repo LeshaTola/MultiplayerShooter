@@ -21,6 +21,10 @@ namespace App.Scripts.Scenes.Gameplay.Player
             {
                 foreach (var weapon in _weaponProvider.Weapons)
                 {
+                    if (!weapon)
+                    {
+                        continue;
+                    }
                     ChangeLayerRecursively.SetLayerRecursively(weapon.transform, "Weapon");
                 }
                 _healthBarUI.gameObject.SetActive(false);

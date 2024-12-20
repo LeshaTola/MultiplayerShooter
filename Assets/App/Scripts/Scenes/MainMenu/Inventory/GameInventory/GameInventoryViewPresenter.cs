@@ -2,12 +2,14 @@
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
 {
-    public class GameInventoryViewPresenter : GameScreenPresenter
+    public class GameInventoryViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly GameInventoryView _view;
         private readonly InventoryProvider _inventoryProvider;
@@ -46,7 +48,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
                 var slot = _inventorySlotFactory.GetItem();
                 slot.Initialize(
                     new CorrectTypeInventorySlotStrategy(ItemType.Equipment, _inventoryProvider, _itemFactory, _view),
-                    i);
+                    i, ItemType.Equipment);
                 _view.AddEquipmentSlot(slot);
 
                 SpawnItem(_inventoryProvider.GameInventory.Equipment[i], slot);
@@ -60,8 +62,10 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
                 return;
             }
 
+            var type = itemConfig is WeaponConfig ? ItemType.Weapon : ItemType.Equipment;
+
             var item = _itemFactory.GetItem();
-            item.Initialize(_overlayTransform, itemConfig.Sprite, itemConfig.Id);
+            item.Initialize(_overlayTransform, itemConfig.Sprite, itemConfig.Id, type);
             item.CurentSlot = slot;
             item.MoveToParent();
         }

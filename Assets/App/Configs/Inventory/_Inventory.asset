@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponsCount>k__BackingField: 5
   <Weapons>k__BackingField:
+  - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
+  - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
-  - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   <EquipmentCount>k__BackingField: 2
   <Equipment>k__BackingField:
-  - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
+  - {fileID: 0}
   - {fileID: 0}

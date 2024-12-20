@@ -1325,8 +1325,6 @@ MonoBehaviour:
   _weaponTab: {fileID: 936642358}
   _equipmentTab: {fileID: 86505613}
   _overlayContainer: {fileID: 829775204}
-  _slotTemplate: {fileID: 8690453169792388080, guid: 7d9076f165f3f7d49bfedc8a07a3f2ba, type: 3}
-  _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
 --- !u!4 &653652905
 Transform:
   m_ObjectHideFlags: 0
@@ -1791,8 +1789,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camerasDatabase: {fileID: 60214116}
   _roomsProvider: {fileID: 1791732053}
-  _gameInventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
-  _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
 --- !u!114 &715308943 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7930042497584690925, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}

@@ -1,10 +1,12 @@
-﻿using App.Scripts.Scenes.Gameplay.Esc;
+﻿using App.Scripts.Features.Inventory;
+using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.Gameplay.KillChat;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
+using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +22,10 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private EscMenuView _escMenuView;
         [SerializeField] private SettingsView _settingsView;
         
+        [Header("Inventory")]
+        [SerializeField] private GameInventoryView _view;
+        [SerializeField] private RectTransform _overlayContainer;
+
         public override void InstallBindings()
         {
             Container.Bind<HealthBarUI>().FromInstance(_healthBarUI).AsSingle();
@@ -32,6 +38,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<EscScreenPresenter>().AsSingle();
             
             Container.Bind<KillChatView>().FromInstance(_killChatView).AsSingle();
+            
+            Container.Bind<GameInventoryView>().FromInstance(_view).AsSingle();
+            Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>().AsSingle().WithArguments(_overlayContainer);
         }
     }
 }

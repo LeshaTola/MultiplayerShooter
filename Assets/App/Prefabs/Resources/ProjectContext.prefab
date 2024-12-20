@@ -96,6 +96,10 @@ MonoBehaviour:
     rawReference:
       rid: -2
   _connectionProvider: {fileID: 738047473016714087}
+  _gameInventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
+  _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
+  _slotTemplate: {fileID: 8690453169792388080, guid: 7d9076f165f3f7d49bfedc8a07a3f2ba, type: 3}
+  _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
   _soundProvider: {fileID: 646344925996821794}
   _audioMixer: {fileID: 24100000, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
   references:

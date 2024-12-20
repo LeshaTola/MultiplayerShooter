@@ -29,12 +29,12 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
 
         public void Drop(InventorySlot inventorySlot, Item item)
         {
-            if (SwapItem(inventorySlot, item)) return;
-
             if (item.Type != _correctType)
             {
                 return;
             }
+            
+            if (SwapItem(inventorySlot, item)) return;
 
             if (inventorySlot.Item != null)
             {
@@ -43,7 +43,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
 
             var config = _inventoryProvider.GetConfigById(item.ConfigId);
             var newItem = _itemFactory.GetItem();
-            newItem.Initialize(item.transform.parent, config.Sprite, config.Id);
+            newItem.Initialize(item.transform.parent, config.Sprite, config.Id, item.Type);
             newItem.CurentSlot = inventorySlot;
             newItem.MoveToParent();
 
@@ -73,60 +73,40 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
 
             if (weaponIndex != -1)
             {
-                Swap(inventorySlot, item, weaponIndex, _gameInventoryView.WeaponsSlots);
+                SwapPerformed(inventorySlot, item, _gameInventoryView.WeaponsSlots[weaponIndex].Item, ItemType.Weapon);
                 return true;
             }
 
             if (equipmentIndex != -1)
             {
-                Swap(inventorySlot, item, weaponIndex, _gameInventoryView.EquipmentSlots, ItemType.Equipment);
+                SwapPerformed(inventorySlot, item, _gameInventoryView.EquipmentSlots[equipmentIndex].Item, ItemType.Equipment);
                 return true;
             }
 
             return false;
         }
 
-        private void Swap(InventorySlot inventorySlot, Item item, int slotIndex, List<InventorySlot> slots,
-            ItemType type = ItemType.Weapon)
+        private void SwapPerformed(InventorySlot inventorySlot, Item item, Item inventoryItem, ItemType type)
         {
-            var config = _inventoryProvider.GetConfigById(item.ConfigId);
-            var swapItem = slots[slotIndex].Item;
             if (item.CurentSlot.SlotIndex == -1)
             {
-                if (inventorySlot.Item != null)
-                {
-                    aaaa(inventorySlot, inventorySlot.Item,ItemType.Weapon,config);
-                    return;
-                }
-                
-                if (type == ItemType.Weapon)
-                {
-                    _inventoryProvider.GameInventory.Weapons[inventorySlot.SlotIndex] = config as WeaponConfig;
-                    _inventoryProvider.GameInventory.Weapons[swapItem.CurentSlot.SlotIndex] = null;
-                }
-                else
-                {
-                    _inventoryProvider.GameInventory.Equipment[inventorySlot.SlotIndex] = config as EquipmentConfig;
-                    _inventoryProvider.GameInventory.Equipment[swapItem.CurentSlot.SlotIndex] = null;
-                }
-
-                swapItem.CurentSlot = inventorySlot;
-                swapItem.MoveToParent();
+                Swap(inventorySlot, inventoryItem, ItemType.Weapon);
                 return;
             }
             
-            aaaa(inventorySlot, item, type, config);
+            Swap(inventorySlot, item, type);
         }
 
-        private void aaaa(InventorySlot inventorySlot, Item item, ItemType type, ItemConfig config)
+        private void Swap(InventorySlot inventorySlot, Item item, ItemType type)
         {
-            Item swapItem;
-            swapItem = inventorySlot.Item;
+            var config = _inventoryProvider.GetConfigById(item.ConfigId);
+            var swapItem = inventorySlot.Item;
             ItemConfig swapItemConfig = null;
             if (swapItem != null)
             {
                 swapItemConfig = _inventoryProvider.GetConfigById(swapItem.ConfigId);
             }
+            
             if (type == ItemType.Weapon)
             {
                 _inventoryProvider.GameInventory.Weapons[item.CurentSlot.SlotIndex] = swapItemConfig as WeaponConfig;
