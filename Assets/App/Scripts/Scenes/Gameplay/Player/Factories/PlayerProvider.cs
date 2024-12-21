@@ -65,6 +65,8 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             
             await UniTask.Delay(TimeSpan.FromSeconds(5));
             _player.Health.RPCSetImmortal(false);
+            
+            _player.Health.SetImmortal(true);
         }
 
         private Player Create()

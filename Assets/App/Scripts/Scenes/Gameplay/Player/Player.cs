@@ -1,4 +1,3 @@
-using App.Scripts.Features.Input;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Player.Configs;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
@@ -18,7 +17,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         [Space]
         [SerializeField] private CharacterController _controller;
-        [SerializeField] private Collider _collider;
 
         [Space]
         [SerializeField] private Transform _checkGroundPivot;
@@ -38,6 +36,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private float _verticalRotation = 0f;
 
         private float _mouseXOffst;
+        private Vector3 _externalForces;
 
         public string NickName { get; private set; }
 
@@ -64,7 +63,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 _velocity = -2f;
             }
 
-            MoveInternal();
+            MoveInternal(_moveDirection);
+            ApplyExternalForces();
             DoGravity();
 
             _virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
@@ -120,7 +120,14 @@ namespace App.Scripts.Scenes.Gameplay.Player
             float mouseY = offset.y * Time.deltaTime;
 
             _verticalRotation -= mouseY;
-            _verticalRotation = Mathf.Clamp(_verticalRotation, -80, 80);
+            _verticalRotation = Mathf.Clamp(_verticalRotation, -90, 90);
+        }
+
+        public void AddForce(Vector3 force)
+        {
+            _velocity = 0;
+            force.y = force.y * PlayerConfig.JumpFallSpeed * 2;
+            _externalForces += force;
         }
 
         public void RPCSetActive(bool active)
@@ -155,9 +162,9 @@ namespace App.Scripts.Scenes.Gameplay.Player
             _controller.enabled = true;
         }
 
-        private void MoveInternal()
+        private void MoveInternal(Vector3 direction)
         {
-            _controller.Move(_moveDirection * (Time.fixedDeltaTime * PlayerConfig.Speed));
+            _controller.Move(direction * (Time.fixedDeltaTime * PlayerConfig.Speed));
         }
 
         private bool IsOnTheGround()
@@ -168,8 +175,22 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void DoGravity()
         {
-            _velocity += GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
+            _velocity += CalculateGravity();
             _controller.Move(Vector3.up * (_velocity * Time.fixedDeltaTime));
+        }
+
+        private float CalculateGravity()
+        {
+            return  GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
+        }
+
+        private void ApplyExternalForces()
+        {
+            if (_externalForces.magnitude > 0.01f)
+            {
+                _controller.Move(_externalForces * Time.fixedDeltaTime);
+                _externalForces = Vector3.Lerp(_externalForces, Vector3.zero, Time.fixedDeltaTime * PlayerConfig.JumpFallSpeed);
+            }
         }
     }
 }

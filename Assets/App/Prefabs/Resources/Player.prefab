@@ -916,7 +916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
   _controller: {fileID: 7171066335943419589}
-  _collider: {fileID: 0}
   _checkGroundPivot: {fileID: 1760302324315034158}
   _checkGroundMask:
     serializedVersion: 2
