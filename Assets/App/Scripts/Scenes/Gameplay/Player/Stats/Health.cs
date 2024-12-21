@@ -14,11 +14,23 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 		public float Value { get; private set; }
 		public float MaxValue { get; private set; }
 		public int LastHitPlayerId { get; private set; }
-
+		public bool IsImortal { get; private set; }
+		
 		public void Initialize(int _maxHealth)
 		{
 			MaxValue = _maxHealth;
 			RPCTakeHeal(_maxHealth);
+		}
+		
+		public void RPCSetImmortal(bool isImortal)
+		{
+			photonView.RPC(nameof(SetImmortal), RpcTarget.All, isImortal);
+		}
+
+		[PunRPC]
+		public void SetImmortal(bool isImortal)
+		{
+			IsImortal = isImortal;
 		}
 		
 		public void RPCTakeDamage(float damage)

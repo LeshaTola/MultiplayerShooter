@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Input;
-using App.Scripts.Scenes.Gameplay.HitVisualProvider;
-using App.Scripts.Scenes.Gameplay.Player.Stats;
-using App.Scripts.Scenes.Gameplay.Timer;
-using App.Scripts.Scenes.Gameplay.Weapons;
+using App.Scripts.Features.Inventory;
+using Cinemachine;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
-using Photon.Pun.Demo.PunBasics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Scenes.Gameplay.Player.Factories
 {
     public class PlayerProvider
     {
         private readonly GameInputProvider _gameInputProvider;
+        private readonly InventoryProvider _inventoryProvider;
         private readonly List<Transform> _spawnPoints;
         private readonly Player _playerPrefab;
 
         private Player _player;
+
+        public CinemachineVirtualCamera VirtualCamera { get; private set; }
 
         public Player Player
         {
@@ -26,22 +29,26 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 {
                     _player = Create();
                 }
+
                 return _player;
             }
         }
 
         public PlayerProvider(GameInputProvider gameInputProvider,
             List<Transform> spawnPoints,
-            Player playerPrefab)
+            Player playerPrefab,
+            InventoryProvider inventoryProvider)
         {
             _gameInputProvider = gameInputProvider;
             _spawnPoints = spawnPoints;
             _playerPrefab = playerPrefab;
+            _inventoryProvider = inventoryProvider;
         }
 
         public void CreatePlayer()
         {
             _player = Create();
+            VirtualCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
         }
 
         public void HidePlayer()
@@ -49,22 +56,27 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _player.RPCSetActive(false);
         }
 
-        public void RespawnPlayer()
+        public async void RespawnPlayer()
         {
             _player.RPCSetActive(true);
+            _player.Health.RPCSetImmortal(true);
             _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(5));
+            _player.Health.RPCSetImmortal(false);
         }
-        
+
         private Player Create()
         {
             var player = PhotonNetwork.Instantiate(
                 _playerPrefab.gameObject.name,
                 _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
                 Quaternion.identity).GetComponent<Player>();
-            
-            player.Initialize(PhotonNetwork.NickName, _gameInputProvider);
-            
+
+            player.Initialize(PhotonNetwork.NickName);
+            player.WeaponProvider.Initialize(_gameInputProvider, _inventoryProvider, player);
+
             return player;
         }
     }

@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons
 {
     public class WeaponProvider : MonoBehaviourPun
     {
         public event Action<Weapon> OnWeaponChanged;
-        public event Action<Vector3 , float> OnPlayerHit;
+        public event Action<Vector3, float> OnPlayerHit;
         
-        [FormerlySerializedAs("_inventory")] [SerializeField] private GameInventory _gameInventory;
         [SerializeField] private Transform _weaponHolder;
+        [SerializeField] private GlobalInventory _globalInventory;
 
         public List<Weapon> Weapons { get; } = new();
         private GameInputProvider _gameInputProvider;
-        
+        private InventoryProvider _inventoryProvider;
+
         public Weapon CurrentWeapon { get; private set; }
 
         public void OnDestroy()
@@ -26,16 +29,18 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             Cleanup();
         }
 
-        public void Initialize(GameInputProvider gameInputProvider, Player.Player owner)
+        public void Initialize(GameInputProvider gameInputProvider,
+            InventoryProvider inventoryProvider, Player.Player owner)
         {
             _gameInputProvider = gameInputProvider;
+            _inventoryProvider = inventoryProvider;
             
             int i = 0;
-            foreach (var weapon in _gameInventory.Weapons)
+            foreach (var weapon in _inventoryProvider.GameInventory.Weapons)
             {
                 if (!weapon)
                 {
-                    photonView.RPC(nameof(SetupWeapon), RpcTarget.AllBuffered, -1, -1, i);
+                    photonView.RPC(nameof(SetupWeapon), RpcTarget.AllBuffered, -1, -1, "");
                     i++;
                     continue;
                 }
@@ -49,7 +54,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                     RpcTarget.AllBuffered, 
                     weaponObject.GetComponent<PhotonView>().ViewID, 
                     owner.GetComponent<PhotonView>().ViewID,
-                    i);
+                    _inventoryProvider.GameInventory.Weapons[i].Id);
                 i++;
             }
             
@@ -82,7 +87,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         }
 
         [PunRPC]
-        public void SetupWeapon(int weaponViewID,int ownerId, int index)
+        public void SetupWeapon(int weaponViewID,int ownerId, string id)
         {
             if (weaponViewID == -1)
             {
@@ -95,7 +100,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             var weapon = weaponObject.GetComponent<Weapon>();
 
             Weapons.Add(weapon);
-            weapon.Initialize(_gameInventory.Weapons[index], player);
+            var weaponConfig = _globalInventory.Weapons.FirstOrDefault(x => x.Id.Equals(id));
+            weapon.Initialize(weaponConfig, player);
 
             var weaponTransform = weapon.transform;
             weaponTransform.SetParent(_weaponHolder);
@@ -105,7 +111,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [PunRPC]
         public void SetWeaponByIndex(int index)
         {
-            
             if (CurrentWeapon == Weapons[index])
             {
                 return;
@@ -114,6 +119,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             if (CurrentWeapon != null)
             {
                 CurrentWeapon.gameObject.SetActive(false);
+                CurrentWeapon.CancelAttack();
             }
 
             CurrentWeapon = Weapons[index];

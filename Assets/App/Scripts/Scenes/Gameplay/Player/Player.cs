@@ -6,157 +6,170 @@ using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
-	[RequireComponent(typeof(CharacterController))]
-	public class Player : MonoBehaviourPun, IControllable
-	{
-		private const float GRAVITY = -9.81f;
-		
-		[SerializeField] private PlayerConfig _playerConfig;
-		[Space]
-		[SerializeField] private CharacterController _controller;
-		[SerializeField] private Transform _checkGroundPivot;
-		[SerializeField] private LayerMask _checkGroundMask;
+    [RequireComponent(typeof(CharacterController))]
+    public class Player : MonoBehaviourPun, IControllable
+    {
+        private const float GRAVITY = -9.81f;
 
-		[Header("Other")]
-		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
-		[SerializeField] private NickNameUI _nickNameUI;
+        [SerializeField] private PlayerConfig _playerConfig;
 
-		[field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
-		[field: SerializeField] public Health Health { get; private set; }
-		
-		private float _velocity;
-		private bool _isGrounded;
-		private Vector3 _moveDirection;
-		private float _verticalRotation = 0f;
-		
-		private GameInputProvider _gameInputProvider;
+        [Space]
+        [SerializeField] private CharacterController _controller;
+        [SerializeField] private Collider _collider;
 
-		public string NickName { get; private set; }
+        [Space]
+        [SerializeField] private Transform _checkGroundPivot;
+        [SerializeField] private LayerMask _checkGroundMask;
 
-		public PlayerConfig PlayerConfig => _playerConfig;
+        [Header("Other")]
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
-		public void Initialize(string name, GameInputProvider gameInputProvider)
-		{
-			_gameInputProvider = gameInputProvider;
-			
-			photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
-			
-			WeaponProvider.Initialize(_gameInputProvider,this);
-		}
-		
-		[PunRPC]
-		public void InitializePlayer(string playerName)
-		{
-			NickName = playerName;
-			_nickNameUI.Setup(NickName);
-			Health.Initialize(_playerConfig.MaxHealth);
-		}
-		
-		private void FixedUpdate()
-		{
-			_isGrounded = IsOnTheGround();
-			if (_isGrounded && _velocity < 0)
-			{
-				_velocity = -2f;
-			}
+        [SerializeField] private NickNameUI _nickNameUI;
 
-			MoveInternal();
-			DoGravity();
-		}
+        [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
+        [field: SerializeField] public Health Health { get; private set; }
 
-		public void StartAttack()
-		{
-			WeaponProvider.CurrentWeapon.StartAttack();
-		}
-		
-		public void CancelAttack()
-		{
-			WeaponProvider.CurrentWeapon.CancelAttack();
-		}
+        private float _velocity;
+        private bool _isGrounded;
+        private Vector3 _moveDirection;
+        private float _verticalRotation = 0f;
 
-		public void Reload()
-		{
-			WeaponProvider.CurrentWeapon.Reload();
-		}
+        private float _mouseXOffst;
 
-		public void Jump()
-		{
+        public string NickName { get; private set; }
 
-			if (_isGrounded)
-			{
-				_velocity = Mathf.Sqrt(PlayerConfig.JumpHeight * PlayerConfig.JumpFallSpeed * -2 * GRAVITY);
-			}
-		}
+        public PlayerConfig PlayerConfig => _playerConfig;
 
-		public void Move(Vector2 direction)
-		{
-			_moveDirection =  new(direction.x,0,direction.y);
-			_moveDirection 
-				= _virtualCamera.transform.forward * _moveDirection.z 
-				  + _virtualCamera.transform.right * _moveDirection.x;
-			_moveDirection.y = 0f;
-		}
+        public void Initialize(string name)
+        {
+            photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
+        }
 
-		public void MoveCamera(Vector2 offset)
-		{
-			float mouseX = offset.x * Time.deltaTime;
-			float mouseY = offset.y * Time.deltaTime;
+        [PunRPC]
+        public void InitializePlayer(string playerName)
+        {
+            NickName = playerName;
+            _nickNameUI.Setup(NickName);
+            Health.Initialize(_playerConfig.MaxHealth);
+        }
 
-			_verticalRotation -= mouseY;
-			_verticalRotation = Mathf.Clamp(_verticalRotation, -80, 80);
-			
-			RPCSetVertical(_verticalRotation);
-			transform.Rotate(Vector3.up * mouseX);
-		}
+        private void FixedUpdate()
+        {
+            _isGrounded = IsOnTheGround();
+            if (_isGrounded && _velocity < 0)
+            {
+                _velocity = -2f;
+            }
 
-		public void RPCSetActive(bool active)
-		{
-			photonView.RPC(nameof(SetActivePlayer), RpcTarget.AllBuffered, active);
-		}
-		
-		[PunRPC]
-		public void SetActivePlayer(bool active)
-		{
-			gameObject.SetActive(active);
-		}
+            MoveInternal();
+            DoGravity();
 
-		private void RPCSetVertical(float verticalRotation)
-		{
-			photonView.RPC(nameof(SetVertical),RpcTarget.All,verticalRotation);
-		}
-		
-		[PunRPC]
-		public void SetVertical(float verticalRotation)
-		{
-			_virtualCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
-		}
+            _virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+            transform.Rotate(Vector3.up * _mouseXOffst);
+            RPCSetVertical(_verticalRotation);
+        }
 
-		public void Teleport(Vector3 position)
-		{
-			_controller.enabled = false;
-			transform.position = position;
-			_controller.enabled = true;
-		}
+        public void StartAttack()
+        {
+            WeaponProvider.CurrentWeapon.StartAttack();
+        }
 
-		private void MoveInternal()
-		{
-			_controller.Move(_moveDirection * (Time.fixedDeltaTime * PlayerConfig.Speed));
-		}
+        public void CancelAttack()
+        {
+            WeaponProvider.CurrentWeapon.CancelAttack();
+        }
 
-		private bool IsOnTheGround()
-		{
-			float checkGroundRadius = 0.4f;
-			return Physics.CheckSphere(_checkGroundPivot.position, checkGroundRadius, _checkGroundMask);
-		}
+        public void StartAttackAlternative()
+        {
+            // WeaponProvider.CurrentWeapon.StartAttackAlternative();
+        }
 
-		private void DoGravity()
-		{
-			_velocity += GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
-			_controller.Move(Vector3.up * (_velocity * Time.fixedDeltaTime));
-		}
-	}
+        public void CancelAttackAlternative()
+        {
+            // WeaponProvider.CurrentWeapon.CancelAttackAlternative();
+        }
+
+        public void Reload()
+        {
+            WeaponProvider.CurrentWeapon.Reload();
+        }
+
+        public void Jump()
+        {
+            if (_isGrounded)
+            {
+                _velocity = Mathf.Sqrt(PlayerConfig.JumpHeight * PlayerConfig.JumpFallSpeed * -2 * GRAVITY);
+            }
+        }
+
+        public void Move(Vector2 direction)
+        {
+            _moveDirection = new Vector3(direction.x, 0, direction.y);
+            _moveDirection
+                = transform.forward * _moveDirection.z
+                  + transform.right * _moveDirection.x;
+            _moveDirection.y = 0f;
+        }
+
+        public void MoveCamera(Vector2 offset)
+        {
+            _mouseXOffst = offset.x * Time.deltaTime;
+            float mouseY = offset.y * Time.deltaTime;
+
+            _verticalRotation -= mouseY;
+            _verticalRotation = Mathf.Clamp(_verticalRotation, -80, 80);
+        }
+
+        public void RPCSetActive(bool active)
+        {
+            photonView.RPC(nameof(SetActivePlayer), RpcTarget.All, active);
+        }
+
+        [PunRPC]
+        public void SetActivePlayer(bool active)
+        {
+            gameObject.SetActive(active);
+        }
+
+        private void RPCSetVertical(float verticalRotation)
+        {
+            photonView.RPC(nameof(SetVertical), RpcTarget.All, verticalRotation);
+        }
+
+        [PunRPC]
+        public void SetVertical(float verticalRotation)
+        {
+            if (!photonView.IsMine)
+            {
+                _virtualCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+            }
+        }
+
+        public void Teleport(Vector3 position)
+        {
+            _controller.enabled = false;
+            transform.position = position;
+            _controller.enabled = true;
+        }
+
+        private void MoveInternal()
+        {
+            _controller.Move(_moveDirection * (Time.fixedDeltaTime * PlayerConfig.Speed));
+        }
+
+        private bool IsOnTheGround()
+        {
+            float checkGroundRadius = 0.4f;
+            return Physics.CheckSphere(_checkGroundPivot.position, checkGroundRadius, _checkGroundMask);
+        }
+
+        private void DoGravity()
+        {
+            _velocity += GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
+            _controller.Move(Vector3.up * (_velocity * Time.fixedDeltaTime));
+        }
+    }
 }

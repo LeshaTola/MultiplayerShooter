@@ -49,7 +49,16 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""790e8f05-2515-4f48-b26f-95d6a821909e"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AttackAlternative"",
+                    ""type"": ""Button"",
+                    ""id"": ""930c32c8-67f0-413a-9713-af225059672c"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -225,6 +234,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""48b3250b-3f83-4ac8-9293-87dca8fbcc79"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackAlternative"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""889e0b85-0286-49fb-b052-a000bb838c62"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -343,6 +363,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Attack = m_Character.FindAction("Attack", throwIfNotFound: true);
+        m_Character_AttackAlternative = m_Character.FindAction("AttackAlternative", throwIfNotFound: true);
         m_Character_MouseLook = m_Character.FindAction("MouseLook", throwIfNotFound: true);
         m_Character_ESC = m_Character.FindAction("ESC", throwIfNotFound: true);
         m_Character_R = m_Character.FindAction("R", throwIfNotFound: true);
@@ -422,6 +443,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Move;
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Attack;
+    private readonly InputAction m_Character_AttackAlternative;
     private readonly InputAction m_Character_MouseLook;
     private readonly InputAction m_Character_ESC;
     private readonly InputAction m_Character_R;
@@ -439,6 +461,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Character_Move;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Attack => m_Wrapper.m_Character_Attack;
+        public InputAction @AttackAlternative => m_Wrapper.m_Character_AttackAlternative;
         public InputAction @MouseLook => m_Wrapper.m_Character_MouseLook;
         public InputAction @ESC => m_Wrapper.m_Character_ESC;
         public InputAction @R => m_Wrapper.m_Character_R;
@@ -467,6 +490,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @AttackAlternative.started += instance.OnAttackAlternative;
+            @AttackAlternative.performed += instance.OnAttackAlternative;
+            @AttackAlternative.canceled += instance.OnAttackAlternative;
             @MouseLook.started += instance.OnMouseLook;
             @MouseLook.performed += instance.OnMouseLook;
             @MouseLook.canceled += instance.OnMouseLook;
@@ -510,6 +536,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @AttackAlternative.started -= instance.OnAttackAlternative;
+            @AttackAlternative.performed -= instance.OnAttackAlternative;
+            @AttackAlternative.canceled -= instance.OnAttackAlternative;
             @MouseLook.started -= instance.OnMouseLook;
             @MouseLook.performed -= instance.OnMouseLook;
             @MouseLook.canceled -= instance.OnMouseLook;
@@ -562,6 +591,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnAttackAlternative(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
         void OnR(InputAction.CallbackContext context);

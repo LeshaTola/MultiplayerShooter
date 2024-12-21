@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using App.Scripts.Features.Input;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -14,25 +15,31 @@ namespace App.Scripts.Scenes.Gameplay.Esc
 {
     public class EscScreenPresenter: IInitializable, ICleanupable
     {
-        private EscMenuView _escMenuView;
-        private SettingsView _settingsView;
-        private MouseSensivityProvider _mouseSensivityProvider;
+        private readonly EscMenuView _escMenuView;
+        private readonly SettingsView _settingsView;
+        private readonly MouseSensivityProvider _mouseSensivityProvider;
         private readonly Modules.StateMachine.StateMachine _stateMachine;
-        private IAudioService _audioService;
-        private PlayerController _playerPlayerController;
+        private readonly IAudioService _audioService;
+        private readonly PlayerController _playerPlayerController;
+        private readonly GameInputProvider _gameInputProvider;
 
+        private bool _isActive;
+        
         public EscScreenPresenter(EscMenuView escMenuView,
             SettingsView settingsView,
             IAudioService audioService, 
-            MouseSensivityProvider mouseSensitivityProvider, Modules.StateMachine.StateMachine stateMachine/*,
-            PlayerController playerPlayerController*/)
+            MouseSensivityProvider mouseSensitivityProvider, 
+            Modules.StateMachine.StateMachine stateMachine,
+            PlayerController playerPlayerController,
+            GameInputProvider gameInputProvider)
         {
             _escMenuView = escMenuView;
             _settingsView = settingsView;
             _mouseSensivityProvider = mouseSensitivityProvider;
             _stateMachine = stateMachine;
             _audioService = audioService;
-            /*_playerPlayerController = playerPlayerController;*/
+            _playerPlayerController = playerPlayerController;
+            _gameInputProvider = gameInputProvider;
         }
 
         public void Initialize()
@@ -44,6 +51,8 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             _escMenuView.OnContinueButtonClicked += Continue;
             _escMenuView.OnSettingsButtonClicked += OpenSettings;
             _escMenuView.OnExitButtonClicked += LeaveRoom;
+            _gameInputProvider.OnEsc += OnEscPreformed;
+
         }
 
         public void Cleanup()
@@ -52,6 +61,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             _escMenuView.OnContinueButtonClicked -= Continue;
             _escMenuView.OnSettingsButtonClicked -= OpenSettings;
             _escMenuView.OnExitButtonClicked -= LeaveRoom;
+            _gameInputProvider.OnEsc -= OnEscPreformed;
         }
 
         public void Show()
@@ -80,12 +90,32 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         private void Continue()
         {
             Hide();
-            // _playerPlayerController.IsBusy = false;
+            _playerPlayerController.IsBusy = false;
+            _isActive = false;
         }
 
         private async void LeaveRoom()
         {
             await _stateMachine.ChangeState<EndGame>();
+        }
+        
+        private void OnEscPreformed()
+        {
+            if (!_isActive)
+            {
+                Show();
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                _playerPlayerController.IsBusy = true;
+            }
+            else
+            {
+                Hide();
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                _playerPlayerController.IsBusy = false;
+            }
+            _isActive = !_isActive;
         }
     }
 }

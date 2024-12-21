@@ -27,9 +27,14 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast
                 
                 if(hit.transform.gameObject.TryGetComponent(out Health health))
                 {
+                    if (health.IsImortal)
+                    {
+                        _weapon.NetworkFadeOutLine();
+                        return;
+                    }
+                    
                     if (health.Value <= _weapon.Config.Damage)
                     {
-                            
                         LeaderBoardProvider.Instance.AddKill();
                     }
                     

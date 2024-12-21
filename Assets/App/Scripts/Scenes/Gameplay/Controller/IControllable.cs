@@ -12,6 +12,9 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
 		public void StartAttack();
 		public void CancelAttack();
+		
+		public void StartAttackAlternative();
+		public void CancelAttackAlternative();
 
 		public void Reload();
 

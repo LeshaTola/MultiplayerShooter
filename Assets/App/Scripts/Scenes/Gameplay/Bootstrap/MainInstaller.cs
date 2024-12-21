@@ -30,6 +30,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private Transform _container;
         
         [Header("Player")]
+        [SerializeField] private Camera _playerCamera;
         [SerializeField] private Player.Player _playerPrefab;
         [SerializeField] private List<Transform> _spawnPoints;
 
@@ -47,6 +48,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<ICleanupService>().To<CleanupService>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<TimerProvider>().FromInstance(_timerProvider).AsSingle();
+            Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
             Container.Bind<GameInputProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
             Container.Bind<MouseSensivityProvider>().AsSingle().WithArguments(_mouseSensivityConfig);

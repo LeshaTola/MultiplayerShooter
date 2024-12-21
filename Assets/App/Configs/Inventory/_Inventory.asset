@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 0}
   <EquipmentCount>k__BackingField: 2
   <Equipment>k__BackingField:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
   - {fileID: 0}

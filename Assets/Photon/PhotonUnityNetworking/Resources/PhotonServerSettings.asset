@@ -52,6 +52,7 @@ MonoBehaviour:
   - Setup
   - StartTimer
   - SetActivePlayer
+  - SetImmortal
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

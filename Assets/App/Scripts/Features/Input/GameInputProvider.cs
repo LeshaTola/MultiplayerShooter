@@ -15,6 +15,8 @@ namespace App.Scripts.Features.Input
         
         public event Action OnLeftMouseStarted;
         public event Action OnLeftMouseCanceled;
+        public event Action OnRightMouseStarted;
+        public event Action OnRightMouseCanceled;
         public event Action OnSpace;
 
         private readonly GameInput _input;
@@ -39,6 +41,9 @@ namespace App.Scripts.Features.Input
             _input.Character.Jump.performed += (data) => OnSpace?.Invoke();
             _input.Character.Attack.started += (data) => OnLeftMouseStarted?.Invoke();
             _input.Character.Attack.canceled += (data) => OnLeftMouseCanceled?.Invoke();
+            
+            _input.Character.AttackAlternative.started += (data) => OnRightMouseStarted?.Invoke();
+            _input.Character.AttackAlternative.canceled += (data) => OnRightMouseCanceled?.Invoke();
         }
         
         public Vector2 GetMovementNormalized()

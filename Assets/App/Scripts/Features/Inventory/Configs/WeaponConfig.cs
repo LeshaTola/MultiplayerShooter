@@ -15,7 +15,27 @@ namespace App.Scripts.Features.Inventory.Weapons
         [field: SerializeField] public float ReloadCooldown { get; private set; }
         [field: SerializeField] public float AttackCooldown { get; private set; }
         [field: SerializeField] public float Damage { get; } = 10;
-        [field: SerializeField] public IShootStrategy ShootStrategy { get; private set; }
-        [field: SerializeField] public IShootingModeStrategy ShootingMode { get; private set; }
+        
+        [field: HorizontalGroup(GroupID = "Attack")]
+        [field: SerializeField]
+        public IShootStrategy ShootStrategy { get; private set; }
+
+        [field: HorizontalGroup(GroupID = "Attack")]
+        [field: SerializeField] 
+        public IShootingModeStrategy ShootingMode { get; private set; }
+        
+        [field: HorizontalGroup(GroupID = "Alternative Attack")]
+        [field: SerializeField]
+        public IShootStrategy ShootStrategyAlternative { get; private set; }
+
+        [field: HorizontalGroup(GroupID = "Alternative Attack")]
+        [field: SerializeField] 
+        public IShootingModeStrategy ShootingModeAlternative { get; private set; }
+
+
+        public void Initialize(IShootStrategy attackStrategy, IShootStrategy attackAlternativeStrategy)
+        {
+            
+        }
     }
 }

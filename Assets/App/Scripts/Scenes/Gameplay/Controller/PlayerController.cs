@@ -15,7 +15,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         private readonly LeaderBoardView _leaderBoardView;
         private readonly GameInputProvider _gameInputProvider;
         private readonly MouseSensivityProvider _mouseSensivityProvider;
-        private readonly EscScreenPresenter _escScreenPresenter;
         
         private IControllable _controllable;
 
@@ -23,12 +22,10 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
         public PlayerController(GameInputProvider gameInputProvider,
             MouseSensivityProvider mouseSensivityProvider, 
-            EscScreenPresenter escScreenPresenter,
             LeaderBoardView leaderBoardView)
         {
             _gameInputProvider = gameInputProvider;
             _mouseSensivityProvider = mouseSensivityProvider;
-            _escScreenPresenter = escScreenPresenter;
             _leaderBoardView = leaderBoardView;
         }
         
@@ -36,11 +33,14 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         {
             _gameInputProvider.OnLeftMouseStarted += AttackStarted;
             _gameInputProvider.OnLeftMouseCanceled += AttackCanceled;
+            
+            _gameInputProvider.OnRightMouseStarted += AttackAlternativeStarted;
+            _gameInputProvider.OnRightMouseCanceled += AttackAlternativeCanceled;
+            
             _gameInputProvider.OnSpace += JumpPerformed;
             _gameInputProvider.OnR += ReloadPerformed;
             _gameInputProvider.OnTabPerformed += OnTabPerformed;
             _gameInputProvider.OnTabCanceled += OnTabCanceled;
-            _gameInputProvider.OnEsc += OnEscPreformed;
         }
 
         public void Setup(IControllable controllable)
@@ -57,11 +57,14 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
             _gameInputProvider.OnLeftMouseStarted -= AttackStarted;
             _gameInputProvider.OnLeftMouseCanceled -= AttackCanceled;
+            
+            _gameInputProvider.OnRightMouseStarted -= AttackAlternativeStarted;
+            _gameInputProvider.OnRightMouseCanceled -= AttackAlternativeCanceled;
+            
             _gameInputProvider.OnSpace -= JumpPerformed;
             _gameInputProvider.OnR -= ReloadPerformed;
             _gameInputProvider.OnTabPerformed -= OnTabPerformed;
             _gameInputProvider.OnTabCanceled -= OnTabCanceled;
-            _gameInputProvider.OnEsc -= OnEscPreformed;
         }
 
         private void JumpPerformed()
@@ -93,12 +96,15 @@ namespace App.Scripts.Scenes.Gameplay.Controller
         {
             if (IsBusy)
             {
+                _controllable.Move(Vector2.zero);
+                _controllable.MoveCamera(Vector2.zero);
                 return;
             }
          
             _controllable.Move(_gameInputProvider.GetMovementNormalized());
             _controllable.MoveCamera(_gameInputProvider.GetMouseLook() * _mouseSensivityProvider.Sensivity);
         }
+
 
         private void ReloadPerformed()
         {
@@ -108,23 +114,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             }
             
             _controllable.Reload();
-        }
-
-        private void OnEscPreformed()
-        {
-            IsBusy = !IsBusy;
-            if (IsBusy)
-            {
-                _escScreenPresenter.Show();
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-            }
-            else
-            {
-                _escScreenPresenter.Hide();
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
         }
 
         private void OnTabPerformed()
@@ -145,6 +134,19 @@ namespace App.Scripts.Scenes.Gameplay.Controller
             }
             
             _leaderBoardView.Hide();
+        }
+        private void AttackAlternativeStarted()
+        {
+            if (IsBusy)
+            {
+                return;
+            }
+            _controllable.StartAttackAlternative();
+        }
+
+        private void AttackAlternativeCanceled()
+        {
+            _controllable.CancelAttackAlternative();
         }
     }
 }
