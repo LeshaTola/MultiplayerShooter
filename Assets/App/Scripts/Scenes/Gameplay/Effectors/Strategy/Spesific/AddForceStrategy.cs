@@ -16,7 +16,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
             {
                 Debug.Log("Add Force");
                 player.AddForce(forceData.ForceVector);
-                UniTask.Delay(TimeSpan.FromSeconds(forceData.Delay));
+                await UniTask.Delay(TimeSpan.FromSeconds(forceData.Delay));
             }
         }
     }

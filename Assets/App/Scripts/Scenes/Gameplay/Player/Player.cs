@@ -174,7 +174,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
             if (_moveVelocity.magnitude > PlayerConfig.Speed)
             {
                 var dampingForce = direction * PlayerConfig.Speed;
-                _moveVelocity = Vector3.Lerp(_moveVelocity, Vector3.zero, Time.deltaTime * PlayerConfig.JumpFallSpeed);
+                _moveVelocity = Vector3.Lerp(_moveVelocity, Vector3.zero, Time.deltaTime);
                 _moveVelocity -= dampingForce * Time.deltaTime;
             }
             else
