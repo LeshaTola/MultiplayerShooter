@@ -22,7 +22,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller.Providers
             set
             {
                 Sensivity = _config.MinMaxSensivity.Lerp(value);
-                PlayerPrefs.SetFloat(SETTINGS_SAVES, Sensivity);
             }
         }
 

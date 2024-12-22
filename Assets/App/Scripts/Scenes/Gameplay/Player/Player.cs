@@ -1,3 +1,4 @@
+using System;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Player.Configs;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
@@ -32,12 +33,14 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [field: SerializeField] public Health Health { get; private set; }
 
         private float _velocity;
-        private bool _isGrounded;
         private Vector3 _moveDirection;
-        private float _verticalRotation = 0f;
+        private Vector3 _moveVelocityIdk;
+        private Vector3 _moveVelocity;
+        private Vector3 _currentMoveVelocity;
+        private bool _isGrounded;
 
-        private float _mouseXOffst;
-        private Vector3 _externalForces;
+        private float _verticalRotation;
+        private float _targetHorizontalOffset;
 
         public string NickName { get; private set; }
 
@@ -56,20 +59,19 @@ namespace App.Scripts.Scenes.Gameplay.Player
             Health.Initialize(_playerConfig.MaxHealth);
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             _isGrounded = IsOnTheGround();
             if (_isGrounded && _velocity < 0)
             {
                 _velocity = -2f;
             }
-
+            
             MoveInternal(_moveDirection);
-            ApplyExternalForces();
             DoGravity();
-
+            
             VirtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
-            transform.Rotate(Vector3.up * _mouseXOffst);
+            transform.Rotate(Vector3.up * _targetHorizontalOffset );
             RPCSetVertical(_verticalRotation);
         }
 
@@ -100,7 +102,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Jump()
         {
-            
             if (_isGrounded)
             {
                 JumpInternal(PlayerConfig.JumpHeight);
@@ -118,8 +119,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void MoveCamera(Vector2 offset)
         {
-            _mouseXOffst = offset.x * Time.deltaTime;
-            float mouseY = offset.y * Time.deltaTime;
+            _targetHorizontalOffset = offset.x;
+            float mouseY = offset.y;
 
             _verticalRotation -= mouseY;
             _verticalRotation = Mathf.Clamp(_verticalRotation, -90, 90);
@@ -127,9 +128,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void AddForce(Vector3 force)
         {
-            JumpInternal(force.y);
-            force.y = 0;
-            _externalForces += force;
+            if (force.y > 0)
+            {
+                JumpInternal(force.y);
+                force.y = 0;
+            }
+                
+            _moveVelocity += force;
         }
 
         public void RPCSetActive(bool active)
@@ -166,7 +171,23 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void MoveInternal(Vector3 direction)
         {
-            _controller.Move(direction * (Time.fixedDeltaTime * PlayerConfig.Speed));
+            if (_moveVelocity.magnitude > PlayerConfig.Speed)
+            {
+                var dampingForce = direction * PlayerConfig.Speed;
+                _moveVelocity = Vector3.Lerp(_moveVelocity, Vector3.zero, Time.deltaTime * PlayerConfig.JumpFallSpeed);
+                _moveVelocity -= dampingForce * Time.deltaTime;
+            }
+            else
+            {
+                _moveVelocity = Vector3.zero;
+            }
+            
+            _currentMoveVelocity 
+                = Vector3.SmoothDamp(_currentMoveVelocity, 
+                    _moveVelocity + direction * PlayerConfig.Speed,
+                    ref _moveVelocityIdk, 0.1f);
+
+            _controller.Move(Time.deltaTime * _currentMoveVelocity);
         }
 
         private void JumpInternal(float height)
@@ -183,25 +204,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private void DoGravity()
         {
             _velocity += CalculateGravity();
-            _controller.Move(Vector3.up * (_velocity * Time.fixedDeltaTime));
+            _controller.Move(Vector3.up * (_velocity * Time.deltaTime));
         }
 
         private float CalculateGravity()
         {
-            return GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
-        }
-
-        private void ApplyExternalForces()
-        {
-            if (!(_externalForces.magnitude > 0.1f))
-            {
-                _externalForces = Vector3.zero;
-                return;
-            }
-
-            _controller.Move(_externalForces * Time.fixedDeltaTime);
-            _externalForces = Vector3.Lerp(_externalForces, Vector3.zero,
-                Time.fixedDeltaTime * PlayerConfig.JumpFallSpeed);
+            return GRAVITY * PlayerConfig.JumpFallSpeed * Time.deltaTime;
         }
     }
 }

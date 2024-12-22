@@ -27,7 +27,7 @@ namespace App.Scripts.Features.StateMachines.States
                 return;
             }
             
-            Application.targetFrameRate = 60;
+            // Application.targetFrameRate = 30;
             _connectionProvider.OnConnectionFinished += OnConectedToServer;
             _connectionProvider.Connect();
             

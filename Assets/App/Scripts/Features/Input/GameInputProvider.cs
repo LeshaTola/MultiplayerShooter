@@ -55,7 +55,8 @@ namespace App.Scripts.Features.Input
 
         public Vector2 GetMouseLook()
         {
-            var mouseLook = _input.Character.MouseLook.ReadValue<Vector2>();
+            var mouseLook = new Vector2(UnityEngine.Input.GetAxis("Mouse X"), UnityEngine.Input.GetAxis("Mouse Y"));
+            // var mouseLook = _input.Character.MouseLook.ReadValue<Vector2>();
             return mouseLook;
         }
     }

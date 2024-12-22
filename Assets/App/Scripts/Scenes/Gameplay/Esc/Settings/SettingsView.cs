@@ -31,6 +31,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
             _mouseSensitivitySlider.onValueChanged.AddListener(value =>
             {
                 _mouseSensitivityProvider.SensivityNormalized = value;
+                PlayerPrefs.SetFloat(MouseSensivityProvider.SETTINGS_SAVES, _mouseSensitivityProvider.Sensivity);
             });
             
             _masterVolumeSlider.value = _audioService.MasterVolume;
