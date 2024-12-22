@@ -9,12 +9,17 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast
     {
         public event Action<Vector3> OnPlayerHit;
         
-        private Camera _camera;
-        private Weapon _weapon;
+        private readonly Camera _camera;
         
-        public void Init(Camera camera, Weapon weapon)
+        private Weapon _weapon;
+
+        public RaycastShootStrategy(Camera camera)
         {
             _camera = camera;
+        }
+
+        public void Initialize(Weapon weapon)
+        {
             _weapon = weapon;
         }
 
@@ -49,6 +54,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast
             }
 
             _weapon.NetworkFadeOutLine();
+        }
+
+        public void Import(IShootStrategy original)
+        {
+            
         }
     }
 }

@@ -1,41 +1,32 @@
-﻿using System;
-using App.Scripts.Scenes.Gameplay.Weapons;
+﻿using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.ShootingModeStrategies;
-using App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons
 {
     [CreateAssetMenu(menuName = "Configs/Inventory/Weapon", fileName = "WeaponConfig")]
-    public class WeaponConfig :ItemConfig
+    public class WeaponConfig : ItemConfig
     {
         [field: SerializeField] public Weapon Prefab { get; private set; }
         [field: SerializeField] public int MaxAmmoCount { get; private set; }
         [field: SerializeField] public float ReloadCooldown { get; private set; }
         [field: SerializeField] public float AttackCooldown { get; private set; }
         [field: SerializeField] public float Damage { get; } = 10;
-        
-        [field: HorizontalGroup(GroupID = "Attack")]
-        [field: SerializeField]
-        public IShootStrategy ShootStrategy { get; private set; }
 
         [field: HorizontalGroup(GroupID = "Attack")]
-        [field: SerializeField] 
+        [field: SerializeField]
         public IShootingModeStrategy ShootingMode { get; private set; }
-        
-        [field: HorizontalGroup(GroupID = "Alternative Attack")]
-        [field: SerializeField]
-        public IShootStrategy ShootStrategyAlternative { get; private set; }
 
         [field: HorizontalGroup(GroupID = "Alternative Attack")]
-        [field: SerializeField] 
+        [field: SerializeField]
         public IShootingModeStrategy ShootingModeAlternative { get; private set; }
 
-
-        public void Initialize(IShootStrategy attackStrategy, IShootStrategy attackAlternativeStrategy)
+        public void Initialize(IShootingModeStrategy shootingModeStrategy,
+            IShootingModeStrategy shootingModeAlternativeStrategy)
         {
-            
+            ShootingMode = shootingModeStrategy;
+            ShootingModeAlternative = shootingModeAlternativeStrategy;
         }
     }
 }

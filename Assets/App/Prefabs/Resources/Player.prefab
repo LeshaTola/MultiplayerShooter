@@ -889,7 +889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponHolder: {fileID: 8067882858614385861}
-  _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
 --- !u!114 &4972400745006171294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +919,7 @@ MonoBehaviour:
   _checkGroundMask:
     serializedVersion: 2
     m_Bits: 64
-  _virtualCamera: {fileID: 7447736516197791254}
+  <VirtualCamera>k__BackingField: {fileID: 7447736516197791254}
   _nickNameUI: {fileID: 7534447508111904430}
   <WeaponProvider>k__BackingField: {fileID: 5977931046957955413}
   <Health>k__BackingField: {fileID: 4972400745006171294}

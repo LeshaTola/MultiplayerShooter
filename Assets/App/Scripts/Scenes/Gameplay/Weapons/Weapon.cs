@@ -2,6 +2,7 @@
 using System.Collections;
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using DG.Tweening;
 using Photon.Pun;
 using UnityEngine;
@@ -12,6 +13,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     {
         public event Action<int, int> OnAmmoChanged;
         public event Action<Vector3> OnPlayerHit;
+
+        [field: Header("Animation")]
+        [field: SerializeField]
+        public WeaponAnimator Animator { get; private set; }
 
         [Header("Visual")]
         [SerializeField] protected ParticleSystem _muzzleFlash;
@@ -28,21 +33,31 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private Color _trialStartColor;
         private bool _isReady = true;
+        private bool _isLocal;
 
         public WeaponConfig Config { get; private set; }
         public int CurrentAmmoCount { get; private set; }
         public Player.Player Owner { get; private set; }
 
-
-        public void Initialize(WeaponConfig weaponConfig, Player.Player owner)
+        private void Start() //TODO: Is a problem
         {
-            Owner = owner;
-            Config = Instantiate(weaponConfig);
             _trialStartColor = _tracerEffect.startColor;
-            Config.ShootStrategy.Init(Camera.main, this);
+        }
+
+        public void Initialize(WeaponConfig weaponConfig)
+        {
+            Config = weaponConfig;
+            _isLocal = true;
+            
+            Animator.Initialize(this);
+            
+            Config.ShootingMode.Initialize(this);
+            Config.ShootingModeAlternative.Initialize(this);
+            
             CurrentAmmoCount = Config.MaxAmmoCount;
 
-            Config.ShootStrategy.OnPlayerHit += (value) => OnPlayerHit?.Invoke(value);
+            Config.ShootingMode.ShootStrategy.OnPlayerHit += (value) => OnPlayerHit?.Invoke(value);
+            Config.ShootingModeAlternative.ShootStrategy.OnPlayerHit += (value) => OnPlayerHit?.Invoke(value);
         }
 
         private void OnDisable()
@@ -53,85 +68,84 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void Update()
         {
-            if (Config.ShootingMode.IsShooting)
-            {
-                PerformAttack();
-            }
+            PerformAttack();
         }
 
-        public void StartAttack()
+        public void StartAttack(bool isAlternative)
         {
-            Config.ShootingMode.StartAttack();
+            if (!isAlternative)
+            {
+                Config.ShootingMode.StartAttack();
+                return;
+            }
+            Config.ShootingModeAlternative.StartAttack();
+        }
+
+        public void CancelAttack(bool isAlternative)
+        {
+            if (!isAlternative)
+            {
+                Config.ShootingMode.CancelAttack();
+                return;
+            }
+            Config.ShootingModeAlternative.CancelAttack();
         }
 
         private void PerformAttack()
         {
-            if (!_isReady )
+            if (!_isLocal || !_isReady)
             {
                 return;
             }
-
+            
             if (CurrentAmmoCount <= 0)
             {
                 Reload();
                 return;
             }
+            
+            if (Config.ShootingMode.IsShooting)
+            {
+                Config.ShootingMode.PerformAttack();
+                return;
+            }
 
-            Config.ShootStrategy.Shoot();
-            Config.ShootingMode.PerformAttack();
-
-            AttackAnimation();
-            CurrentAmmoCount--;
-            OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
-            StartAttackCooldown();
-        }
-
-        public void CancelAttack()
-        {
-            Config.ShootingMode.CancelAttack();
+            if (Config.ShootingModeAlternative.IsShooting)
+            {
+                Config.ShootingModeAlternative.PerformAttack();
+            }
         }
 
         public void Reload()
         {
-            if (!_isReady)
+            if (!_isReady || CurrentAmmoCount == Config.MaxAmmoCount)
             {
                 return;
             }
 
-            ReloadAnimation();
+            Animator.ReloadAnimation();
             StartReloadCooldown();
         }
 
-        private void AttackAnimation()
+        public void SetOwner(Player.Player player)
         {
-            Sequence sequence = DOTween.Sequence();
-
-            sequence.Append(transform.DOLocalRotate(new Vector3(-15, 0, 0),
-                Config.AttackCooldown / 2));
-            sequence.Append(transform.DOLocalRotate(new Vector3(0, 0, 0),
-                Config.AttackCooldown / 2));
+            Owner = player;
         }
 
-        private void ReloadAnimation()
+        public void StartAttackCooldown(float cooldown)
         {
-            transform.DOLocalRotate(new Vector3(360, 0, 0),
-                Config.ReloadCooldown, RotateMode.FastBeyond360);
+            StartCoroutine(AttackCooldown(cooldown));
         }
 
-        private void StartAttackCooldown()
-        {
-            StartCoroutine(AttackCooldown());
-        }
-
-        private void StartReloadCooldown()
+        public void StartReloadCooldown()
         {
             StartCoroutine(ReloadCooldown());
         }
 
-        private IEnumerator AttackCooldown()
+        private IEnumerator AttackCooldown(float cooldown)
         {
             _isReady = false;
-            yield return new WaitForSeconds(Config.AttackCooldown);
+            yield return new WaitForSeconds(cooldown);
             _isReady = true;
         }
 
@@ -189,6 +203,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public void SpawnMuzzleFlash()
         {
             PhotonNetwork.Instantiate(_muzzleFlash.name, ShootPoint.position, ShootPoint.rotation);
+        }
+
+        public void ChangeAmmoCount(int ammo)
+        {
+            CurrentAmmoCount += ammo;
+            CurrentAmmoCount = Mathf.Clamp(CurrentAmmoCount, 0, Config.MaxAmmoCount);
+            OnAmmoChanged?.Invoke(CurrentAmmoCount,Config.MaxAmmoCount);
         }
     }
 }

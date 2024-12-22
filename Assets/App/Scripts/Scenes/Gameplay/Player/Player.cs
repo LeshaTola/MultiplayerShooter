@@ -20,10 +20,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         [Space]
         [SerializeField] private Transform _checkGroundPivot;
+
         [SerializeField] private LayerMask _checkGroundMask;
 
-        [Header("Other")]
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        [field: Header("Other")] [field: SerializeField]
+        public CinemachineVirtualCamera VirtualCamera { get; private set; }
 
         [SerializeField] private NickNameUI _nickNameUI;
 
@@ -67,29 +68,29 @@ namespace App.Scripts.Scenes.Gameplay.Player
             ApplyExternalForces();
             DoGravity();
 
-            _virtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+            VirtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
             transform.Rotate(Vector3.up * _mouseXOffst);
             RPCSetVertical(_verticalRotation);
         }
 
         public void StartAttack()
         {
-            WeaponProvider.CurrentWeapon.StartAttack();
+            WeaponProvider.CurrentWeapon.StartAttack(false);
         }
 
         public void CancelAttack()
         {
-            WeaponProvider.CurrentWeapon.CancelAttack();
+            WeaponProvider.CurrentWeapon.CancelAttack(false);
         }
 
         public void StartAttackAlternative()
         {
-            // WeaponProvider.CurrentWeapon.StartAttackAlternative();
+            WeaponProvider.CurrentWeapon.StartAttack(true);
         }
 
         public void CancelAttackAlternative()
         {
-            // WeaponProvider.CurrentWeapon.CancelAttackAlternative();
+            WeaponProvider.CurrentWeapon.CancelAttack(true);
         }
 
         public void Reload()
@@ -99,9 +100,10 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Jump()
         {
+            
             if (_isGrounded)
             {
-                _velocity = Mathf.Sqrt(PlayerConfig.JumpHeight * PlayerConfig.JumpFallSpeed * -2 * GRAVITY);
+                JumpInternal(PlayerConfig.JumpHeight);
             }
         }
 
@@ -125,8 +127,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void AddForce(Vector3 force)
         {
-            _velocity = 0;
-            force.y = force.y * PlayerConfig.JumpFallSpeed * 2;
+            JumpInternal(force.y);
+            force.y = 0;
             _externalForces += force;
         }
 
@@ -151,7 +153,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         {
             if (!photonView.IsMine)
             {
-                _virtualCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+                VirtualCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
             }
         }
 
@@ -165,6 +167,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private void MoveInternal(Vector3 direction)
         {
             _controller.Move(direction * (Time.fixedDeltaTime * PlayerConfig.Speed));
+        }
+
+        private void JumpInternal(float height)
+        {
+            _velocity = Mathf.Sqrt( height * PlayerConfig.JumpFallSpeed * -2 * GRAVITY);
         }
 
         private bool IsOnTheGround()
@@ -181,16 +188,20 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private float CalculateGravity()
         {
-            return  GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
+            return GRAVITY * PlayerConfig.JumpFallSpeed * Time.fixedDeltaTime;
         }
 
         private void ApplyExternalForces()
         {
-            if (_externalForces.magnitude > 0.01f)
+            if (!(_externalForces.magnitude > 0.1f))
             {
-                _controller.Move(_externalForces * Time.fixedDeltaTime);
-                _externalForces = Vector3.Lerp(_externalForces, Vector3.zero, Time.fixedDeltaTime * PlayerConfig.JumpFallSpeed);
+                _externalForces = Vector3.zero;
+                return;
             }
+
+            _controller.Move(_externalForces * Time.fixedDeltaTime);
+            _externalForces = Vector3.Lerp(_externalForces, Vector3.zero,
+                Time.fixedDeltaTime * PlayerConfig.JumpFallSpeed);
         }
     }
 }

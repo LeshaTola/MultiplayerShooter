@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Scenes.Gameplay.Cameras;
+using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
@@ -14,6 +16,8 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
     {
         private readonly GameInputProvider _gameInputProvider;
         private readonly InventoryProvider _inventoryProvider;
+        private readonly ShootingModeFactory _shootingModeFactory;
+        private readonly CameraProvider _cameraProvider;
         private readonly List<Transform> _spawnPoints;
         private readonly Player _playerPrefab;
 
@@ -37,18 +41,16 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         public PlayerProvider(GameInputProvider gameInputProvider,
             List<Transform> spawnPoints,
             Player playerPrefab,
-            InventoryProvider inventoryProvider)
+            InventoryProvider inventoryProvider,
+            ShootingModeFactory shootingModeFactory,
+            CameraProvider cameraProvider)
         {
             _gameInputProvider = gameInputProvider;
             _spawnPoints = spawnPoints;
             _playerPrefab = playerPrefab;
             _inventoryProvider = inventoryProvider;
-        }
-
-        public void CreatePlayer()
-        {
-            _player = Create();
-            VirtualCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+            _shootingModeFactory = shootingModeFactory;
+            _cameraProvider = cameraProvider;
         }
 
         public void HidePlayer()
@@ -75,10 +77,11 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 _playerPrefab.gameObject.name,
                 _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
                 Quaternion.identity).GetComponent<Player>();
-
             player.Initialize(PhotonNetwork.NickName);
-            player.WeaponProvider.Initialize(_gameInputProvider, _inventoryProvider, player);
-
+            
+            _cameraProvider.RegisterCamera(player.VirtualCamera);
+            
+            player.WeaponProvider.Initialize(_gameInputProvider, _inventoryProvider,_shootingModeFactory, player);
             return player;
         }
     }
