@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8296227305121725816
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.233734
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000010590915
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.9040728
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      propertyPath: m_Name
+      value: movepad
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6743544127421612227}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2897503509065260944}
+  m_SourcePrefab: {fileID: 100100000, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+--- !u!1 &9215340202084532265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a935eae0def52b4283f3b4b661c6421, type: 3}
+  m_PrefabInstance: {fileID: 8296227305121725816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6743544127421612227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9215340202084532265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b6d098f66b43a2b14607a80ee06cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _strategy
+      Entry: 7
+      Data: 0|App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy,
+        Assembly-CSharp
+    - Name: _forceData
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 2|App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
+        Assembly-CSharp
+    - Name: ForceVector
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Delay
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!65 &2897503509065260944
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9215340202084532265}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4735003, y: 1, z: 1.5461992}
+  m_Center: {x: -0.15942389, y: 0.04503453, z: 0.009669304}
