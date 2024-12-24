@@ -6,6 +6,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 	public class HealthBarUI : MonoBehaviour
 	{
 		[SerializeField] private Slider _slider;
+		[SerializeField] private Text _text;
 		[SerializeField] private Health _health;
 
 		public void Initialize(Health player)
@@ -38,6 +39,10 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 		{
 			_slider.maxValue = maxHealth;
 			_slider.value = health;
+			if (_text != null)
+			{
+				_text.text = $"{health}";
+			}
 		}
 	}
 }

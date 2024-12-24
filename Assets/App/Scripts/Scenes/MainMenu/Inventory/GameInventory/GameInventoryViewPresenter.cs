@@ -37,7 +37,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
             {
                 var slot = _inventorySlotFactory.GetItem();
                 slot.Initialize(
-                    new CorrectTypeInventorySlotStrategy(ItemType.Weapon, _inventoryProvider, _itemFactory, _view), i);
+                    new CorrectTypeInventorySlotStrategy(ItemType.Weapon, _inventoryProvider, _itemFactory, _view), i, $"{i+1}");
                 _view.AddWeaponSlot(slot);
 
                 SpawnItem(_inventoryProvider.GameInventory.Weapons[i], slot);
@@ -46,9 +46,10 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
             for (int i = 0; i < _inventoryProvider.GameInventory.EquipmentCount; i++)
             {
                 var slot = _inventorySlotFactory.GetItem();
+                var key = i == 0 ? "Q" : "E";//TODO: REMOVE HARDCODE
                 slot.Initialize(
                     new CorrectTypeInventorySlotStrategy(ItemType.Equipment, _inventoryProvider, _itemFactory, _view),
-                    i, ItemType.Equipment);
+                    i,key, ItemType.Equipment);
                 _view.AddEquipmentSlot(slot);
 
                 SpawnItem(_inventoryProvider.GameInventory.Equipment[i], slot);

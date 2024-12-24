@@ -103,7 +103,6 @@ namespace App.Scripts.Scenes.Gameplay.Controller
          
             _controllable.Move(_gameInputProvider.GetMovementNormalized());
             _controllable.MoveCamera(_gameInputProvider.GetMouseLook() * _mouseSensivityProvider.Sensivity);
-            Debug.Log(_mouseSensivityProvider.Sensivity);
         }
 
 

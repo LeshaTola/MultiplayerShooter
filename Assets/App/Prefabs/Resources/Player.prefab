@@ -720,6 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 9075802189030821070}
+  _text: {fileID: 0}
   _health: {fileID: 4972400745006171294}
 --- !u!114 &141355200725430795
 MonoBehaviour:

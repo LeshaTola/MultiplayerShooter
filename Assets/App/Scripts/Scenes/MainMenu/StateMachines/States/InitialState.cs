@@ -6,6 +6,8 @@ using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.States.General;
 using Cysharp.Threading.Tasks;
+using Photon.Pun;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 {
@@ -22,8 +24,7 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
             ISceneTransition sceneTransition,
             ICameraSwitcher cameraSwitcher,
             List<ISavable> savable,
-            string cameraId,
-            ConnectionProvider connectionProvider)
+            string cameraId)
         {
             _initializeService = initializeService;
             _cameraSwitcher = cameraSwitcher;
@@ -35,6 +36,13 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         public override async UniTask Enter()
         {
             await base.Enter();
+
+            if (PhotonNetwork.InRoom)
+            {
+                Debug.Log("In room");
+                PhotonNetwork.LeaveRoom();
+            }
+            
             _initializeService.Initialize();
             _cameraSwitcher.SwitchCamera(_cameraId);
 

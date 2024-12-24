@@ -13,6 +13,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     {
         public event Action<int, int> OnAmmoChanged;
         public event Action<Vector3> OnPlayerHit;
+        public event Action<float> OnReloadStarted;
+        public event Action OnReloadFinised;
 
         [field: Header("Animation")]
         [field: SerializeField]
@@ -33,6 +35,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private Color _trialStartColor;
         private bool _isReady = true;
+        private bool _isReloading;
         private bool _isLocal;
 
         public WeaponConfig Config { get; private set; }
@@ -63,6 +66,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private void OnDisable()
         {
             StopAllCoroutines();
+            if (_isReloading)
+            {
+                OnReloadFinised?.Invoke();
+                _isReloading = false;
+            }
             _isReady = true;
         }
 
@@ -151,11 +159,15 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private IEnumerator ReloadCooldown()
         {
+            OnReloadStarted?.Invoke(Config.ReloadCooldown);
             _isReady = false;
+            _isReloading = true;
             yield return new WaitForSeconds(Config.ReloadCooldown);
+            _isReady = false;
             _isReady = true;
             CurrentAmmoCount = Config.MaxAmmoCount;
             OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
+            OnReloadFinised?.Invoke();
         }
 
         public void NetworkFadeOutLine()

@@ -17,7 +17,9 @@ namespace App.Scripts.Scenes.Gameplay.KillChat
         public void SpawnKillElement(string killer, string victim)
         {
             var element = Instantiate(_template, _container);
-            element.Setup(killer, victim);
+            var killerType = PhotonNetwork.NickName == killer ? KillType.We : KillType.Them;
+            var victimType = PhotonNetwork.NickName == victim ? KillType.We : KillType.Them;
+            element.Setup(killer, victim, killerType, victimType);
             
         }
     }

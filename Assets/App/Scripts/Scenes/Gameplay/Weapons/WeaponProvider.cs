@@ -86,11 +86,18 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             index--;
             index = Math.Clamp(index, 0, Weapons.Count - 1);
             var weapon = Weapons[index];
-            if (!weapon)
+            if (!weapon || weapon == CurrentWeapon)
             {
                 return;
             }
+            
             OnWeaponChanged?.Invoke(weapon);
+            if (CurrentWeapon != null)
+            {
+                CurrentWeapon.CancelAttack(true);
+                CurrentWeapon.CancelAttack(false);
+            }
+            
             photonView.RPC(nameof(SetWeaponByIndex), RpcTarget.AllBuffered, index);
         }
 
@@ -118,16 +125,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [PunRPC]
         public void SetWeaponByIndex(int index)
         {
-            if (CurrentWeapon == Weapons[index])
-            {
-                return;
-            }
-            
             if (CurrentWeapon != null)
             {
                 CurrentWeapon.gameObject.SetActive(false);
-                CurrentWeapon.CancelAttack(true);
-                CurrentWeapon.CancelAttack(false);
             }
 
             CurrentWeapon = Weapons[index];
