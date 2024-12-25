@@ -57,7 +57,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 var newConfig = GetNewConfig(weapon);
                 weaponObject.Initialize(newConfig);
                 
-                weaponObject.OnPlayerHit += (value) => OnPlayerHit?.Invoke(value, weaponObject.Config.Damage);
+                weaponObject.OnPlayerHit += (value, damage) => OnPlayerHit?.Invoke(value, damage);
                 photonView.RPC(nameof(SetupWeapon),
                     RpcTarget.AllBuffered, 
                     weaponObject.GetComponent<PhotonView>().ViewID, 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7591596ec0794fe293de16c30a86e4d4, type: 3}
-  m_Name: AK
+  m_Name: SPAS
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,30 +23,30 @@ MonoBehaviour:
     SerializationNodes:
     - Name: <Damage>k__BackingField
       Entry: 3
-      Data: 25
+      Data: 10
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 0|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
+      Data: 0|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Raycast.RaycastShootStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: <Decrement>k__BackingField
       Entry: 4
-      Data: 1
+      Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.2
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: <Value>k__BackingField
       Entry: 4
       Data: 0
@@ -56,6 +56,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _buckshotCount
+      Entry: 3
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
@@ -64,18 +67,18 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
+      Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 4|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Zoom.ZoomStrategy,
+      Data: 4|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
       Data: 5|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 2
     - Name: <Decrement>k__BackingField
       Entry: 4
       Data: 0
@@ -84,7 +87,7 @@ MonoBehaviour:
       Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: <Value>k__BackingField
       Entry: 4
       Data: 0
@@ -94,24 +97,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: _zoomFOV
-      Entry: 4
-      Data: 32
-    - Name: _animationDuration
-      Entry: 4
-      Data: 0.3
-    - Name: _zoomSensivity
-      Entry: 4
-      Data: 0.6
+    - Name: _buckshotCount
+      Entry: 3
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  <Id>k__BackingField: AK
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 7377013011b4c3348809ff574abe799e, type: 3}
-  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 27991953fe0860946bd4b176c198004b, type: 3}
-  <MaxAmmoCount>k__BackingField: 30
+  <Id>k__BackingField: SPAS
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 936345f7fc3934efa8119a8700d904c7, type: 3}
+  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 16463dabfa215ea40800e740c412bc28, type: 3}
+  <MaxAmmoCount>k__BackingField: 8
   <ReloadCooldown>k__BackingField: 1
-  <AttackCooldown>k__BackingField: 0.12
+  <AttackCooldown>k__BackingField: 0.4

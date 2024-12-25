@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: <Damage>k__BackingField
-      Entry: 4
+      Entry: 3
       Data: 34
     - Name: <ShootingMode>k__BackingField
       Entry: 7

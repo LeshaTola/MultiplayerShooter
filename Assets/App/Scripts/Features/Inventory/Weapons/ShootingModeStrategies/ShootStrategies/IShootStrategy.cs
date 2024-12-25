@@ -7,7 +7,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
 {
     public interface IShootStrategy
     {
-        public event Action<Vector3> OnPlayerHit;
+        public event Action<Vector3, float> OnPlayerHit;
         public Recoil Recoil { get; }
 
         public void Initialize(Weapon weapon);
@@ -18,7 +18,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
 
     public abstract class ShootStrategy: IShootStrategy
     {
-        public abstract event Action<Vector3> OnPlayerHit;
+        public virtual event Action<Vector3, float> OnPlayerHit;
 
         [SerializeField] public Recoil Recoil { get; private set; } = new();
         

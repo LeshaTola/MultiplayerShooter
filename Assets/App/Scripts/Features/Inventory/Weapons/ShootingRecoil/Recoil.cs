@@ -23,12 +23,19 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingRecoil
             Value = MinValue;
         }
 
-        public Quaternion GetRecoilRotation()
+        public Quaternion GetRecoilRotation(Transform cameraTransform)
         {
-            float horizontalOffset = Random.Range(-Radius, Radius); 
-            float verticalOffset = Random.Range(-Radius, Radius);
+            var recoil = GetRecoil();
+            var localRecoil = cameraTransform.InverseTransformDirection(recoil);
+            Debug.Log($"{recoil} {localRecoil}");
+            var recoilRotation = Quaternion.Euler(localRecoil);
+            return recoilRotation;
+        }
 
-            return Quaternion.Euler(verticalOffset * Value, horizontalOffset * Value, 0f);
+        private Vector3 GetRecoil()
+        {
+            var offset = Random.insideUnitCircle * Radius * Value;
+            return new Vector3(offset.x, offset.y, 0f); 
         }
 
         public void Add()

@@ -12,7 +12,7 @@ namespace App.Scripts.Features.Inventory.Weapons
         [field: SerializeField] public int MaxAmmoCount { get; private set; }
         [field: SerializeField] public float ReloadCooldown { get; private set; }
         [field: SerializeField] public float AttackCooldown { get; private set; }
-        [field: SerializeField] public float Damage { get; } = 10;
+        [field: SerializeField] public int Damage { get; } = 10;
 
         [field: HorizontalGroup(GroupID = "Attack")]
         [field: SerializeField]

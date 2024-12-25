@@ -22,8 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: <Damage>k__BackingField
-      Entry: 4
-      Data: 70
+      Entry: 3
+      Data: 105
     - Name: <ShootingMode>k__BackingField
       Entry: 7
       Data: 0|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,

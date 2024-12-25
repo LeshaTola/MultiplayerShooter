@@ -9,7 +9,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
 {
     public class RaycastShootStrategy : ShootStrategy
     {
-        public override event Action<Vector3> OnPlayerHit;
+        public override event Action<Vector3, float> OnPlayerHit;
         
         private readonly Camera _camera;
 
@@ -22,8 +22,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
         {
             base.Shoot();
 
-            var recoilRotation = Recoil.GetRecoilRotation();
+            var recoilRotation = Recoil.GetRecoilRotation(_camera.transform);
             var direction = recoilRotation * _camera.transform.forward;
+            
             if (Physics.Raycast(_camera.transform.position, direction , out var hit))
             {
                 Weapon.SpawnImpact(hit.point);
@@ -36,15 +37,15 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
                         Weapon.NetworkFadeOutLine();
                         return;
                     }
+                    health.RPCSetLasHitPlayer(Weapon.Owner.photonView.ViewID);
                     
                     if (health.Value <= Weapon.Config.Damage)
                     {
                         LeaderBoardProvider.Instance.AddKill();
                     }
                     
-                    OnPlayerHit?.Invoke(hit.point);
+                    OnPlayerHit?.Invoke(hit.point,Weapon.Config.Damage);
                     health.RPCTakeDamage(Weapon.Config.Damage);
-                    health.RPCSetLasHitPlayer(Weapon.Owner.photonView.ViewID);
                 }
             }
             else

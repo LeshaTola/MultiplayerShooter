@@ -12,7 +12,6 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
     public class ZoomStrategy : ShootStrategy
     {
         private readonly MouseSensivityProvider _sensitivityProvider;
-        public override event Action<Vector3> OnPlayerHit;
 
         [SerializeField] private float _zoomFOV = 32f;
         [SerializeField] private float _animationDuration = 0.3f;
