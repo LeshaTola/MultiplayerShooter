@@ -1,5 +1,5 @@
-﻿using App.Scripts.Scenes.Gameplay.Weapons;
-using App.Scripts.Scenes.Gameplay.Weapons.ShootingModeStrategies;
+﻿using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

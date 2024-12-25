@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
@@ -20,12 +22,26 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _updateService = updateService;
         }
 
-        public override  UniTask Enter()
+        public  override async UniTask Enter()
         {
             Debug.Log("Gameplay");
             _playerProvider.Player.Health.OnDied += OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage += ApplyDamageEffect;
-            return UniTask.CompletedTask;
+            
+            await SetImmortal();
+        }
+
+        private async UniTask SetImmortal()
+        {
+            _playerProvider.Player.Health.RPCSetImmortal(true);
+            _postProcessingProvider.ApplyImmortalEffect();
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(_playerProvider.Player.PlayerConfig.ImmortalTime));
+            
+            _playerProvider.Player.Health.RPCSetImmortal(false);
+            _postProcessingProvider.RemoveImmortalEffect();
+            
+            _playerProvider.Player.Health.SetImmortal(true);
         }
 
         public override UniTask Update()

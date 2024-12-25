@@ -26,12 +26,36 @@ MonoBehaviour:
       Data: 34
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 0|App.Scripts.Scenes.Gameplay.Weapons.ShootingModeStrategies.SingleShotStrategy,
+      Data: 0|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast.RaycastShootStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Raycast.RaycastShootStrategy,
         Assembly-CSharp
+    - Name: Recoil
+      Entry: 7
+      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+    - Name: <Radius>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Decrement>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Increment>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <MinValue>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Value>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <IsShooting>k__BackingField
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -40,21 +64,45 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 2|App.Scripts.Scenes.Gameplay.Weapons.ShootingModeStrategies.BurstShootingStrategy,
+      Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.BurstShootingStrategy,
         Assembly-CSharp
+    - Name: <ShootStrategy>k__BackingField
+      Entry: 7
+      Data: 4|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Raycast.RaycastShootStrategy,
+        Assembly-CSharp
+    - Name: Recoil
+      Entry: 7
+      Data: 5|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+    - Name: <Radius>k__BackingField
+      Entry: 4
+      Data: 4
+    - Name: <Decrement>k__BackingField
+      Entry: 4
+      Data: 2
+    - Name: <Increment>k__BackingField
+      Entry: 4
+      Data: 0.1
+    - Name: <MinValue>k__BackingField
+      Entry: 4
+      Data: 0.4
+    - Name: <Value>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <IsShooting>k__BackingField
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: _burstCount
       Entry: 3
       Data: 8
     - Name: _burstCooldown
       Entry: 4
       Data: 0.1
-    - Name: <ShootStrategy>k__BackingField
-      Entry: 7
-      Data: 3|App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Raycast.RaycastShootStrategy,
-        Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 

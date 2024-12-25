@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 	public class HealthBarUI : MonoBehaviour
 	{
 		[SerializeField] private Slider _slider;
-		[SerializeField] private Text _text;
+		[SerializeField] private TextMeshProUGUI _text;
 		[SerializeField] private Health _health;
 
 		public void Initialize(Health player)

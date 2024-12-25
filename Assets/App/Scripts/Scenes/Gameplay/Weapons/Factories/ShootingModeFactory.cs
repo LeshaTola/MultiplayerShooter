@@ -1,6 +1,6 @@
 ﻿using System;
-using App.Scripts.Scenes.Gameplay.Weapons.ShootingModeStrategies;
-using App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies;
+using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies;
+using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies;
 using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
@@ -28,9 +28,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
             Type type = original.GetType();
             
             var strategy = GetShootingMode(type);
-            strategy.Import(original);
-            
             strategy.ShootStrategy  = GetShootStrategy(original.ShootStrategy);
+            
+            strategy.Import(original);
             return strategy;
         }
 

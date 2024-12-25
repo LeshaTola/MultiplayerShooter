@@ -23,8 +23,6 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
 
         private Player _player;
 
-        public CinemachineVirtualCamera VirtualCamera { get; private set; }
-
         public Player Player
         {
             get
@@ -61,15 +59,9 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         public async void RespawnPlayer()
         {
             _player.RPCSetActive(true);
-            _player.Health.RPCSetImmortal(true);
             _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
-            
-            await UniTask.Delay(TimeSpan.FromSeconds(5));
-            _player.Health.RPCSetImmortal(false);
-            
-            _player.Health.SetImmortal(true);
-        }
+            }
 
         private Player Create()
         {

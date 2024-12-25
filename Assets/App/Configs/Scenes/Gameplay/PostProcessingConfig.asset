@@ -21,3 +21,9 @@ MonoBehaviour:
   <HealColor>k__BackingField:
     overrideState: 0
     value: {r: 0, g: 1, b: 0.052682877, a: 1}
+  <ImmortalColor>k__BackingField:
+    overrideState: 0
+    value: {r: 0, g: 0.77254903, b: 1, a: 1}
+  <ZoomColor>k__BackingField:
+    overrideState: 0
+    value: {r: 0, g: 0, b: 0, a: 1}

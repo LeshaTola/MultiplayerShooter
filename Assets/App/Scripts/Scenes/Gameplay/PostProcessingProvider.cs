@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine.Rendering.PostProcessing;
 
 namespace App.Scripts.Scenes.Gameplay
@@ -18,6 +19,17 @@ namespace App.Scripts.Scenes.Gameplay
             }
         }
 
+        public void ApplyImmortalEffect()
+        {
+            _vignette.color = _postProcessingConfig.ImmortalColor;
+            FadeIn(_postProcessingConfig.FadeInTime, _postProcessingConfig.FadeValue);
+        }
+
+        public void RemoveImmortalEffect()
+        {
+            FadeOut(_postProcessingConfig.FadeOutTime);
+        }
+        
         public void ApplyDamageEffect()
         {
             _vignette.color = _postProcessingConfig.DamageColor;
@@ -30,19 +42,29 @@ namespace App.Scripts.Scenes.Gameplay
             FadeIn();
         }
 
-        private void FadeIn()
+        private void FadeIn(float time, float fadeValue, Action completeAction = null)
         {
             DOTween.To(() => _vignette.intensity.value,
-                    x => _vignette.intensity.value = x, _postProcessingConfig.FadeValue,
-                    _postProcessingConfig.FadeInTime)
-                .OnComplete(FadeOut);
+                    x => _vignette.intensity.value = x, fadeValue,
+                    time)
+                .OnComplete(()=>completeAction?.Invoke());
+        }
+        
+        private void FadeOut(float time)
+        {
+            DOTween.To(() => _vignette.intensity.value,
+                x => _vignette.intensity.value = x,
+                0f, time);
+        }
+        
+        private void FadeIn()
+        {
+            FadeIn(_postProcessingConfig.FadeInTime, _postProcessingConfig.FadeValue, FadeOut);
         }
 
         private void FadeOut()
         {
-            DOTween.To(() => _vignette.intensity.value,
-                x => _vignette.intensity.value = x,
-                0f, _postProcessingConfig.FadeOutTime);
+            FadeOut(_postProcessingConfig.FadeOutTime);
         }
     }
 }

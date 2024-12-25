@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 7579975601396896454}
-  _text: {fileID: 0}
+  _text: {fileID: 8698187541499327824}
   _health: {fileID: 0}
 --- !u!1 &3037099663259313780
 GameObject:

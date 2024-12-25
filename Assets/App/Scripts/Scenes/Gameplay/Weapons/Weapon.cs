@@ -77,6 +77,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private void Update()
         {
             PerformAttack();
+            Config.ShootingMode.ShootStrategy.Recoil.Update();
+            Config.ShootingModeAlternative.ShootStrategy.Recoil.Update();
         }
 
         public void StartAttack(bool isAlternative)

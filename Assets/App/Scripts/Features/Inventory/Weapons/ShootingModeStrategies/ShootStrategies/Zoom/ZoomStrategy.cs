@@ -1,16 +1,18 @@
 ﻿using System;
+using App.Scripts.Features.Inventory.Weapons.ShootingRecoil;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Zoom
+namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Zoom
 {
-    public class ZoomStrategy : IShootStrategy
+    public class ZoomStrategy : ShootStrategy
     {
         private readonly MouseSensivityProvider _sensitivityProvider;
-        public event Action<Vector3> OnPlayerHit;
+        public override event Action<Vector3> OnPlayerHit;
 
         [SerializeField] private float _zoomFOV = 32f;
         [SerializeField] private float _animationDuration = 0.3f;
@@ -20,7 +22,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Zoom
         private float _defaultSensitivity;
         private bool _isZooming;
 
-        private Weapon _weapon;
         private readonly CinemachineVirtualCamera _camera;
 
         private Tween _currentTween;
@@ -32,12 +33,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Zoom
             _defaultFOV = _camera.m_Lens.FieldOfView;
         }
 
-        public void Initialize(Weapon weapon)
-        {
-            _weapon = weapon;
-        }
-
-        public void Shoot()
+        public override void Shoot()
         {
             _currentTween?.Kill();
 
@@ -60,8 +56,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.ShootStrategies.Zoom
             _isZooming = !_isZooming;
         }
 
-        public void Import(IShootStrategy original)
+        public override void Import(IShootStrategy original)
         {
+            base.Import(original);
+            
             ZoomStrategy concreteStrategy = (ZoomStrategy) original;
             _zoomFOV = concreteStrategy._zoomFOV;
             _animationDuration = concreteStrategy._animationDuration;

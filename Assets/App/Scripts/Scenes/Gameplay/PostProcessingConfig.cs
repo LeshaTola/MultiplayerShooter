@@ -14,5 +14,7 @@ namespace App.Scripts.Scenes.Gameplay
         [field: SerializeField] public float FadeValue { get;  private set;} = 0.5f;
         [field: SerializeField] public ColorParameter DamageColor { get;  private set;}
         [field: SerializeField] public ColorParameter HealColor { get;  private set;}
+        [field: SerializeField] public ColorParameter ImmortalColor { get;  private set;}
+        [field: SerializeField] public ColorParameter ZoomColor { get;  private set;}
     }
 }
