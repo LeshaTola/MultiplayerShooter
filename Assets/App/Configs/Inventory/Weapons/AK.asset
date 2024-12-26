@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 6876597229753577812, guid: ba0f577d7eb327343bb8e9ea3145800b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -30,20 +31,20 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Raycast.RaycastShootStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles.ProjectilesShootingStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 1
+      Data: 0
     - Name: <Decrement>k__BackingField
       Entry: 4
-      Data: 1
+      Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.2
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -56,6 +57,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _projectile
+      Entry: 10
+      Data: 0
+    - Name: _projectileSpeed
+      Entry: 4
+      Data: 100
     - Name: 
       Entry: 8
       Data: 

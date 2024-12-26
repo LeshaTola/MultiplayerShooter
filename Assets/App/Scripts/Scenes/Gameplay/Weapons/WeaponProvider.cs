@@ -81,6 +81,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _gameInputProvider.OnNumber -= RPCSetWeaponByIndex;
         }
 
+        public void InvokePlayerHit(Vector3 position, float damage)
+        {
+            
+        }
+
         private void RPCSetWeaponByIndex(int index)
         {
             index--;

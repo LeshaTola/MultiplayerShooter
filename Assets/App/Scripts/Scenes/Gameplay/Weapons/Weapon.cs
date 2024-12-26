@@ -130,6 +130,12 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
         }
 
+        public void ReloadImmidiate()
+        {
+            CurrentAmmoCount = Config.MaxAmmoCount;
+            OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
+        }
+
         public void Reload()
         {
             if (!_isReady || CurrentAmmoCount == Config.MaxAmmoCount)
@@ -171,8 +177,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             yield return new WaitForSeconds(Config.ReloadCooldown);
             _isReady = false;
             _isReady = true;
-            CurrentAmmoCount = Config.MaxAmmoCount;
-            OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
+            ReloadImmidiate();
             OnReloadFinised?.Invoke();
         }
 

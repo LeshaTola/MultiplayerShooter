@@ -10,11 +10,10 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
     {
         public List<ForceData> _forceData;
         
-        public async UniTask Effect(Player.Player player)
+        public async UniTask Apply(Player.Player player)
         {
             foreach (var forceData in _forceData)
             {
-                Debug.Log("Add Force");
                 player.AddForce(forceData.ForceVector);
                 await UniTask.Delay(TimeSpan.FromSeconds(forceData.Delay));
             }

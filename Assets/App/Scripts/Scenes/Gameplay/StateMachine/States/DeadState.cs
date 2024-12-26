@@ -33,7 +33,6 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             UpdateKillChat();
             
             _playerProvider.HidePlayer();
-            await UniTask.Delay(TimeSpan.FromSeconds(3));
             RespawnPlayer();
         }
 

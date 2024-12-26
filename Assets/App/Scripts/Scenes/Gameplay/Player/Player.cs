@@ -174,8 +174,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
             if (_moveVelocity.magnitude > PlayerConfig.Speed)
             {
                 var dampingForce = direction * PlayerConfig.Speed;
+                var nextVelocity = _moveVelocity + dampingForce * Time.deltaTime;
+                if (nextVelocity.magnitude < _moveVelocity.magnitude)
+                {
+                    _moveVelocity = nextVelocity;
+                }
+                
                 _moveVelocity = Vector3.Lerp(_moveVelocity, Vector3.zero, Time.deltaTime);
-                _moveVelocity -= dampingForce * Time.deltaTime;
             }
             else
             {
@@ -186,7 +191,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 = Vector3.SmoothDamp(_currentMoveVelocity, 
                     _moveVelocity + direction * PlayerConfig.Speed,
                     ref _moveVelocityIdk, 0.1f);
-
+            
             _controller.Move(Time.deltaTime * _currentMoveVelocity);
         }
 

@@ -13,7 +13,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
         {
             if (other.TryGetComponent(out Player.Player player))
             {
-                _strategy.Effect(player);
+                _strategy.Apply(player);
             }
         }
     }

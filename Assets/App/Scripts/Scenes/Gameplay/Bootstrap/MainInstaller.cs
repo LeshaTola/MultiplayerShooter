@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
+using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles.Factory;
 using App.Scripts.Modules.ObjectPool.MonoObjectPools;
 using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
@@ -23,6 +24,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
     public class MainInstaller:MonoInstaller
     {
         [SerializeField] private TimerProvider _timerProvider;
+        [SerializeField] private GameConfig _gameConfig;
         
         [Header("HitMark")]
         [SerializeField] private HitConfig _hitConfig;
@@ -51,8 +53,10 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             
             Container.BindInterfacesAndSelfTo<TimerProvider>().FromInstance(_timerProvider).AsSingle();
             Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
+            Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle();
             Container.Bind<GameInputProvider>().AsSingle();
             Container.Bind<ShootingModeFactory>().AsSingle();
+            Container.Bind<ProjectilesFactory>().AsSingle();
             Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
             Container.Bind<MouseSensivityProvider>().AsSingle().WithArguments(_mouseSensivityConfig);

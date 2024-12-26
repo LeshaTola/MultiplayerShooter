@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Scenes.Gameplay.Cameras;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 if (_player == null)
                 {
                     _player = Create();
+                    HidePlayer();
                 }
 
                 return _player;
@@ -56,12 +58,24 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _player.RPCSetActive(false);
         }
 
-        public async void RespawnPlayer()
+        public void RespawnPlayer()
         {
             _player.RPCSetActive(true);
             _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
+            
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
+            _player.Health.RPCSetLasHitPlayer(_player.photonView.ViewID);
+
+            foreach (var weapon in _player.WeaponProvider.Weapons)
+            {
+                if (!weapon)
+                {
+                    return;
+                }
+                
+                weapon.ReloadImmidiate();
             }
+        }
 
         private Player Create()
         {

@@ -5,6 +5,6 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy
 {
     public interface IEffectorStrategy
     {
-        public UniTask Effect(Player.Player player);
+        public UniTask Apply(Player.Player player);
     }
 }
