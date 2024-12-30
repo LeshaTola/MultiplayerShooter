@@ -1,11 +1,20 @@
-﻿using App.Scripts.Modules.Factories.MonoFactories;
+﻿using System;
+using System.Collections.Generic;
+using App.Scripts.Modules.Factories.MonoFactories;
+using App.Scripts.Modules.StateMachine.States.General;
+using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.MainMenu.Inventory;
 using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
+using App.Scripts.Scenes.MainMenu.Screens;
 using App.Scripts.Scenes.MainMenu.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
+using App.Scripts.Scenes.MainMenu.Screens.TopViews;
+using App.Scripts.Scenes.MainMenu.StateMachines.States;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -21,6 +30,17 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [Header("Inventory")]
         [SerializeField] private InventoryScreeen _inventoryScreeen;
         [SerializeField] private GameInventoryView _gameInventoryView;
+        
+        [Header("TopScreen")]
+        [SerializeField] private TopView _topView;
+        [SerializeField] private SettingsView _settingsView;
+        [SerializeField, SerializeReference, OdinSerialize] private List<Type> _states = new()
+        {
+            typeof(RoomState),
+            typeof(InventoryState),
+            typeof(InventoryState),
+            typeof(MainScreen),
+        };
         
         [SerializeField] private TabSwitcher _tabSwitcher;
         [SerializeField] private InventoryTab _weaponTab;
@@ -42,6 +62,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.BindInstance(_inventoryScreeen).AsSingle();
             Container.BindInstance(_gameInventoryView).AsSingle();
             Container.BindInstance(_tabSwitcher).AsSingle();
+            
+            Container.Bind<TopView>().FromInstance(_topView).AsSingle();
+            Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
+            Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle().WithArguments(_states);
         }
     }
 }

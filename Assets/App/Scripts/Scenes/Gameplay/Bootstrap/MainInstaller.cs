@@ -42,8 +42,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
         [SerializeField] private PostProcessVolume _postProcessVolume;
 
-        [Header("Settings")]
-        [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
         
         public override void InstallBindings()
         {
@@ -59,7 +57,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<ProjectilesFactory>().AsSingle();
             Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
-            Container.Bind<MouseSensivityProvider>().AsSingle().WithArguments(_mouseSensivityConfig);
             Container.Bind<PlayerProvider>().AsSingle().WithArguments(_spawnPoints,_playerPrefab);
             Container.Bind<PostProcessingProvider>().AsSingle().WithArguments(_postProcessingConfig,_postProcessVolume);
 

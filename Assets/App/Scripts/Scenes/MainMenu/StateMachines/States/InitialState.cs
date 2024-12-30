@@ -59,26 +59,4 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
             await _sceneTransition.PlayOffAsync();
         }
     }
-
-    /*public class InventoryState : State
-    {
-        public override async UniTask Enter()
-        {
-        }
-
-        public override async UniTask Exit()
-        {
-        }
-    }
-
-    public class ShopState : State
-    {
-        public override async UniTask Enter()
-        {
-        }
-
-        public override async UniTask Exit()
-        {
-        }
-    }*/
 }

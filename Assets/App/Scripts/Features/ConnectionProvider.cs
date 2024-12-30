@@ -48,5 +48,10 @@ namespace App.Scripts.Scenes.MainMenu
         {
             PhotonNetwork.LoadLevel("Gameplay");
         }
+
+        public void QuickGame()
+        {
+            PhotonNetwork.JoinRandomOrCreateRoom();
+        }
     }
 }

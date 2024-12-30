@@ -11,19 +11,19 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
     {
         private readonly MainScreen _screen;
         private readonly StateMachine _stateMachine;
+        private readonly ConnectionProvider _connectionProvider;
 
-        public MainScreenPresenter(
-            MainScreen screen,
-            StateMachine stateMachine)
+        public MainScreenPresenter(MainScreen screen,
+            StateMachine stateMachine, ConnectionProvider connectionProvider)
         {
             _screen = screen;
             _stateMachine = stateMachine;
+            _connectionProvider = connectionProvider;
         }
 
         public override void Initialize()
         {
             _screen.PlayButtonAction += OnPlayButtonAction;
-            _screen.InventoryButtonAction += OnInventoryButtonAction;
             _screen.OnPlayerNameChanged += OnPlayerNameChanged;
             _screen.Initialize();
         }
@@ -50,9 +50,10 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
             await _screen.Hide();
         }
 
-        private async void OnPlayButtonAction()
+        private void OnPlayButtonAction()
         {
-            await _stateMachine.ChangeState<RoomState>();
+            _connectionProvider.QuickGame();
+            //await _stateMachine.ChangeState<RoomState>();
         }
 
         private async void OnInventoryButtonAction()

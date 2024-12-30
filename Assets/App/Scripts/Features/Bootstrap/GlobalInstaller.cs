@@ -19,6 +19,7 @@ using App.Scripts.Modules.Sounds;
 using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.States.General;
+using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.MainMenu;
 using App.Scripts.Scenes.MainMenu.Inventory;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
@@ -45,6 +46,9 @@ namespace App.Scripts.Features.Bootstrap
         [SerializeField] private Item _itemTemplate;
         
         
+        [Header("Settings")]
+        [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
+        
         [Header("Audio")]
         [SerializeField] private SoundProvider _soundProvider;
         [SerializeField] private AudioMixer _audioMixer;
@@ -58,7 +62,8 @@ namespace App.Scripts.Features.Bootstrap
             BindParser();
             BindLocalizationDataProvider();
             BindLocalizationSystem();
-            
+
+            Container.Bind<MouseSensivityProvider>().AsSingle().WithArguments(_mouseSensivityConfig);
             Container.Bind<ISoundProvider>().FromInstance(_soundProvider).AsSingle();
             Container.Bind<IAudioService>().To<AudioService>().AsSingle().WithArguments(_audioMixer);
             Container.Bind<IScreenService>().To<ScreenService>().AsSingle();
