@@ -21,7 +21,7 @@ namespace App.Scripts.Scenes.Gameplay
 
         public void ApplyImmortalEffect()
         {
-            _vignette.color = _postProcessingConfig.ImmortalColor;
+            _vignette.color.value = _postProcessingConfig.ImmortalColor;
             FadeIn(_postProcessingConfig.FadeInTime, _postProcessingConfig.FadeValue);
         }
 
@@ -32,13 +32,13 @@ namespace App.Scripts.Scenes.Gameplay
         
         public void ApplyDamageEffect()
         {
-            _vignette.color = _postProcessingConfig.DamageColor;
+            _vignette.color.value = _postProcessingConfig.DamageColor;
             FadeIn();
         }
 
         public void ApplyHealEffect()
         {
-            _vignette.color = _postProcessingConfig.HealColor;
+            _vignette.color.value = _postProcessingConfig.HealColor;
             FadeIn();
         }
 

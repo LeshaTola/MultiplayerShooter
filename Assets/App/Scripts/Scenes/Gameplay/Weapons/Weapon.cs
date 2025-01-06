@@ -19,6 +19,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [field: Header("Animation")]
         [field: SerializeField]
         public WeaponAnimator Animator { get; private set; }
+        
+        [field: Header("Audio")]
+        [field: SerializeField]
+        public AudioSource Audio { get; private set; }
 
         [Header("Visual")]
         [SerializeField] protected ParticleSystem _muzzleFlash;

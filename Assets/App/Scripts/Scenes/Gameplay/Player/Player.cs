@@ -28,7 +28,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
         public CinemachineVirtualCamera VirtualCamera { get; private set; }
 
         [SerializeField] private NickNameUI _nickNameUI;
-
+        
+        [field: SerializeField] public PlayerAudioProvider PlayerAudioProvider { get; private set; }
         [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
         [field: SerializeField] public Health Health { get; private set; }
 
@@ -61,7 +62,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void Update()
         {
-            _isGrounded = IsOnTheGround();
+            var isGroundedNow = IsLanded();
+            _isGrounded = isGroundedNow;
             if (_isGrounded && _velocity < 0)
             {
                 _velocity = -2f;
@@ -69,10 +71,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
             
             MoveInternal(_moveDirection);
             DoGravity();
-            
-            VirtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
-            transform.Rotate(Vector3.up * _targetHorizontalOffset );
-            RPCSetVertical(_verticalRotation);
+            MoveCamera();
         }
 
         public void StartAttack()
@@ -105,6 +104,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
             if (_isGrounded)
             {
                 JumpInternal(PlayerConfig.JumpHeight);
+                PlayerAudioProvider.PlayJumpingSound();
             }
         }
 
@@ -193,6 +193,36 @@ namespace App.Scripts.Scenes.Gameplay.Player
                     ref _moveVelocityIdk, 0.1f);
             
             _controller.Move(Time.deltaTime * _currentMoveVelocity);
+            
+            PlayWalkingSound();
+        }
+
+        private void MoveCamera()
+        {
+            VirtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+            transform.Rotate(Vector3.up * _targetHorizontalOffset );
+            RPCSetVertical(_verticalRotation);
+        }
+        
+
+        private bool IsLanded()
+        {
+            var isGroundedNow = IsOnTheGround();
+            if (isGroundedNow && !_isGrounded && _velocity < GRAVITY)
+            {
+                PlayerAudioProvider.PlayLandingSound();
+            }
+
+            return isGroundedNow;
+        }
+
+        private void PlayWalkingSound()
+        {
+            if (!_isGrounded || _currentMoveVelocity.magnitude < 0.2f)
+            {
+                return;
+            }
+            PlayerAudioProvider.PlayWalkingSound();
         }
 
         private void JumpInternal(float height)

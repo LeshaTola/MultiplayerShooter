@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Player.Configs
 {
-    [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/Player")]
+    [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Configs/Player/Player")]
     public class PlayerConfig : ScriptableObject
     {
         [field: Header("Health")]
