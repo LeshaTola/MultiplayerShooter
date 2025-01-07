@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
+using App.Scripts.Features.Settings;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -17,6 +18,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
     {
         private readonly EscMenuView _escMenuView;
         private readonly SettingsView _settingsView;
+        private readonly SettingsProvider _settingsProvider;
         private readonly MouseSensivityProvider _mouseSensivityProvider;
         private readonly Modules.StateMachine.StateMachine _stateMachine;
         private readonly IAudioService _audioService;
@@ -27,17 +29,15 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         
         public EscScreenPresenter(EscMenuView escMenuView,
             SettingsView settingsView,
-            IAudioService audioService, 
-            MouseSensivityProvider mouseSensitivityProvider, 
+            SettingsProvider settingsProvider,
             Modules.StateMachine.StateMachine stateMachine,
             PlayerController playerPlayerController,
             GameInputProvider gameInputProvider)
         {
             _escMenuView = escMenuView;
             _settingsView = settingsView;
-            _mouseSensivityProvider = mouseSensitivityProvider;
+            _settingsProvider = settingsProvider;
             _stateMachine = stateMachine;
-            _audioService = audioService;
             _playerPlayerController = playerPlayerController;
             _gameInputProvider = gameInputProvider;
         }
@@ -45,7 +45,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         public void Initialize()
         {
             _escMenuView.Initialize();
-            _settingsView.Initialize(_audioService , _mouseSensivityProvider);
+            _settingsView.Initialize(_settingsProvider);
 
             _settingsView.OnCloseButtonClicked += OpenMenu;
             _escMenuView.OnContinueButtonClicked += Continue;

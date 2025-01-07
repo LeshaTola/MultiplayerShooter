@@ -1,5 +1,4 @@
-﻿using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies;
-using App.Scripts.Scenes.Gameplay.Weapons;
+﻿using App.Scripts.Scenes.Gameplay.Weapons;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
@@ -10,6 +9,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         {
             ShootStrategy.Shoot();
             Weapon.Animator.AttackAnimation();
+            Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
             Weapon.ChangeAmmoCount(-1);
             
             Weapon.StartAttackCooldown(Weapon.Config.AttackCooldown);

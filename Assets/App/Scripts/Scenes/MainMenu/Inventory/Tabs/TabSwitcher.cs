@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using __Project.Scripts.Helpers;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.CustomToggles;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs

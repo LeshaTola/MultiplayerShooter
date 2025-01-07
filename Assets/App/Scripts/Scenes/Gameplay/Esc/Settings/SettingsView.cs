@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.Features.Settings;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using UnityEngine;
@@ -17,39 +18,38 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
         [SerializeField] private Slider _musicVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
 
-        private IAudioService _audioService;
-        private MouseSensivityProvider _mouseSensitivityProvider;
+        private SettingsProvider _settingsProvider;
 
-        public void Initialize(IAudioService audioService, MouseSensivityProvider mouseSensitivityProvider)
+        public void Initialize(SettingsProvider settingsProvider)
         {
-            _audioService = audioService;
-            _mouseSensitivityProvider = mouseSensitivityProvider;
+            _settingsProvider = settingsProvider;
+            var audioService = settingsProvider.AudioService;
+            var mouseSensitivityProvider = settingsProvider.SensivityProvider;
             
             _closeButton.onClick.AddListener(() => OnCloseButtonClicked?.Invoke());
             
-            _mouseSensitivitySlider.value = _mouseSensitivityProvider.SensivityNormalized;
+            _mouseSensitivitySlider.value = mouseSensitivityProvider.SensivityNormalized;
             _mouseSensitivitySlider.onValueChanged.AddListener(value =>
             {
-                _mouseSensitivityProvider.SensivityNormalized = value;
-                PlayerPrefs.SetFloat(MouseSensivityProvider.SETTINGS_SAVES, _mouseSensitivityProvider.Sensivity);
+                mouseSensitivityProvider.SensivityNormalized = value;
             });
             
-            _masterVolumeSlider.value = _audioService.MasterVolume;
+            _masterVolumeSlider.value = audioService.MasterVolume;
             _masterVolumeSlider.onValueChanged.AddListener(value =>
             {
-                _audioService.MasterVolume = value;
+                audioService.MasterVolume = value;
             });
 
-            _musicVolumeSlider.value = _audioService.MusicVolume;
+            _musicVolumeSlider.value = audioService.MusicVolume;
             _musicVolumeSlider.onValueChanged.AddListener(value =>
             {
-                _audioService.MusicVolume= value;
+                audioService.MusicVolume= value;
             });
 
-            _sfxVolumeSlider.value = _audioService.EffectsVolume;
+            _sfxVolumeSlider.value = audioService.EffectsVolume;
             _sfxVolumeSlider.onValueChanged.AddListener(value =>
             {
-                _audioService.EffectsVolume= value;
+                audioService.EffectsVolume= value;
             });
         }
 
@@ -61,6 +61,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
         public void Hide()
         {
             gameObject.SetActive(false);
+            _settingsProvider.SaveState();
         }
     }
 }

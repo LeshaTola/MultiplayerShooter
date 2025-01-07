@@ -49,7 +49,14 @@ namespace App.Scripts.Modules.Sounds.Services
         private float ConvertVolume(float value)
         {
             value = Mathf.Clamp01(value);
-            return Mathf.Lerp(-80f, 0f, value);
+            if (value.Equals(0))
+            {
+                return -80;
+            }
+            else
+            {
+                return Mathf.Lerp(-40f, 0f, value);
+            }
         }
     }
 }

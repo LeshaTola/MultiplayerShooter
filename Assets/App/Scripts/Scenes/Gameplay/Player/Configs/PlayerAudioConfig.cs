@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Player
+namespace App.Scripts.Scenes.Gameplay.Player.Configs
 {
     [CreateAssetMenu(fileName = "PlayerAudioConfig", menuName = "Configs/Player/Audio")]
     public class PlayerAudioConfig : SerializedScriptableObject

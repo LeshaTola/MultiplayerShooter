@@ -54,6 +54,8 @@ MonoBehaviour:
   - SetActivePlayer
   - SetImmortal
   - PlaySound
+  - PlayWeaponSound
+  - PlayReloadSound
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

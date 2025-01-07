@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*using System;
+using System.Collections.Generic;
+using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.WeaponEffects;
 using App.Scripts.Features.Inventory.Weapons.ShootingRecoil;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
@@ -27,26 +29,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
             
             if (Physics.Raycast(_camera.transform.position, direction , out var hit))
             {
-                Weapon.SpawnImpact(hit.point);
-                Weapon.NetworkSetLine(hit.point);
-                
-                if(hit.transform.gameObject.TryGetComponent(out Health health))
+                WeaponEffect.Effect(new List<(Vector3, GameObject)>()
                 {
-                    if (health.IsImortal)
-                    {
-                        Weapon.NetworkFadeOutLine();
-                        return;
-                    }
-                    health.RPCSetLasHitPlayer(Weapon.Owner.photonView.ViewID);
-                    
-                    if (health.Value <= Weapon.Config.Damage)
-                    {
-                        LeaderBoardProvider.Instance.AddKill();
-                    }
-                    
-                    OnPlayerHit?.Invoke(hit.point,Weapon.Config.Damage);
-                    health.RPCTakeDamage(Weapon.Config.Damage);
-                }
+                    (hit.point, hit.collider.gameObject)
+                });
             }
             else
             {
@@ -56,4 +42,4 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
             Weapon.NetworkFadeOutLine();
         }
     }
-}
+}*/

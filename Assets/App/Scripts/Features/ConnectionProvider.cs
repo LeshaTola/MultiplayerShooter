@@ -1,15 +1,9 @@
 using System;
-using System.Collections.Generic;
-using App.Scripts.Modules.StateMachine;
-using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
-using Cysharp.Threading.Tasks;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
-namespace App.Scripts.Scenes.MainMenu
+namespace App.Scripts.Features
 {
     public class ConnectionProvider : MonoBehaviourPunCallbacks
     {

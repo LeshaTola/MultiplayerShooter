@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Weapons.Animations;
@@ -19,10 +20,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [field: Header("Animation")]
         [field: SerializeField]
         public WeaponAnimator Animator { get; private set; }
-        
-        [field: Header("Audio")]
-        [field: SerializeField]
-        public AudioSource Audio { get; private set; }
 
         [Header("Visual")]
         [SerializeField] protected ParticleSystem _muzzleFlash;
@@ -147,13 +144,19 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 return;
             }
 
+            Owner.PlayerAudioProvider.RPCPlayReloadWeaponSound();
             Animator.ReloadAnimation();
             StartReloadCooldown();
         }
 
-        public void SetOwner(Player.Player player)
+        public void SetupPlayer(Player.Player player)
         {
             Owner = player;
+        }
+
+        public void SetupLocalConfig(WeaponConfig config)
+        {
+            Config = config;
         }
 
         public void StartAttackCooldown(float cooldown)

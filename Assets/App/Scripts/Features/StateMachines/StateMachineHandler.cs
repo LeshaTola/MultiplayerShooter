@@ -1,14 +1,12 @@
-﻿using System;
-using App.Scripts.Features.StateMachines.States;
+﻿using App.Scripts.Features.StateMachines.States;
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Modules.StateMachine.Factories.States;
 using App.Scripts.Modules.StateMachine.States.General;
-using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Scenes.MainMenu.StateMachines
+namespace App.Scripts.Features.StateMachines
 {
     public class StateMachineHandler : SerializedMonoBehaviour
     {

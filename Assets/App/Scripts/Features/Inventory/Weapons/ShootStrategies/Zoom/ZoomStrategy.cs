@@ -1,13 +1,10 @@
-﻿using System;
-using App.Scripts.Features.Inventory.Weapons.ShootingRecoil;
-using App.Scripts.Scenes.Gameplay.Cameras;
+﻿using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
-using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 
-namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Zoom
+namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom
 {
     public class ZoomStrategy : ShootStrategy
     {
@@ -17,10 +14,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
         [SerializeField] private float _animationDuration = 0.3f;
         [SerializeField] private float _zoomSensivity = 0.6f;
 
-        private float _defaultFOV;
-        private float _defaultSensitivity;
         private bool _isZooming;
+        private float _defaultSensitivity;
 
+        private readonly float _defaultFOV;
         private readonly CinemachineVirtualCamera _camera;
 
         private Tween _currentTween;
@@ -31,6 +28,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
             _camera = cameraProvider.GetPlayerCamera();
             _defaultFOV = _camera.m_Lens.FieldOfView;
         }
+
 
         public override void Shoot()
         {

@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace App.Scripts.Features.Inventory.Weapons
+namespace App.Scripts.Features.Inventory.Configs
 {
     public class ItemConfig: SerializedScriptableObject
     {

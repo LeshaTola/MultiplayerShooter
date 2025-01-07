@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
 using UnityEngine;
 using Object = UnityEngine.Object;

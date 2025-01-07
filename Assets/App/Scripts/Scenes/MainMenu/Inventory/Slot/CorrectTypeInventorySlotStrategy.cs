@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.Gameplay.Weapons;

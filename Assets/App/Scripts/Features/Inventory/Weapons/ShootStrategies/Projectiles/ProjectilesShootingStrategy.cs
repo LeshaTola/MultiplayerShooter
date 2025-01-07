@@ -1,10 +1,13 @@
-﻿using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles.Factory;
+﻿using System;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
 using UnityEngine;
 
-namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles
+namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
 {
     public class ProjectilesShootingStrategy: ShootStrategy
     {
+        public override event Action<Vector3, float> OnPlayerHit;
+        
         [SerializeField] private Projectile _projectile;
         [SerializeField] private float _projectileSpeed;
         
@@ -16,6 +19,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
             _camera = camera;
             _factory = factory;
         }
+
 
         public override void Shoot()
         {

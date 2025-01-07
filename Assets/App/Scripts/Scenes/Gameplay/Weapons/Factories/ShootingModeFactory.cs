@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies;
-using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies;
+using App.Scripts.Features.Inventory.Weapons.WeaponEffects;
 using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
@@ -42,6 +44,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
         private IShootStrategy GetShootStrategy(IShootStrategy original)
         {
             var strategy = GetShootStrategy(original.GetType());
+
+            var effects = new List<IWeaponEffect>();
+            foreach (var weaponEffect in original.WeaponEffects)
+            {
+                effects.Add(GetWeaponEffect(weaponEffect));
+            }
+            strategy.WeaponEffects = effects;
             strategy.Import(original);
             return strategy;
         }
@@ -49,6 +58,19 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
         private IShootStrategy GetShootStrategy(Type type)
         {
             return (IShootStrategy)_container.Instantiate(type);
+        }
+
+        private IWeaponEffect GetWeaponEffect(IWeaponEffect original)
+        {
+            var strategy = GetWeaponEffect(original.GetType());
+            strategy.Import(original);
+            return strategy;
+        }
+        
+
+        private IWeaponEffect GetWeaponEffect(Type type)
+        {
+            return (IWeaponEffect)_container.Instantiate(type);
         }
     }
 }

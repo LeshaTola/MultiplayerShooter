@@ -4,6 +4,7 @@ using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
+using App.Scripts.Features.Settings;
 using App.Scripts.Features.StateMachines.States;
 using App.Scripts.Modules.Commands.Provider;
 using App.Scripts.Modules.Factories.MonoFactories;
@@ -65,7 +66,15 @@ namespace App.Scripts.Features.Bootstrap
 
             Container.Bind<MouseSensivityProvider>().AsSingle().WithArguments(_mouseSensivityConfig);
             Container.Bind<ISoundProvider>().FromInstance(_soundProvider).AsSingle();
+            
             Container.Bind<IAudioService>().To<AudioService>().AsSingle().WithArguments(_audioMixer);
+            Container.BindInterfacesAndSelfTo<SettingsProvider>().AsSingle();
+            Container
+                .Bind<IDataProvider<SettingsData>>()
+                .To<DataProvider<SettingsData>>()
+                .AsSingle()
+                .WithArguments("settingsSaves");
+            
             Container.Bind<IScreenService>().To<ScreenService>().AsSingle();
             
             Container.Bind<ISceneTransition>().FromInstance(_sceneTransition.Value);

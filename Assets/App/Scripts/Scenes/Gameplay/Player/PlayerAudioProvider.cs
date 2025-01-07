@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Scenes.Gameplay.Player.Configs;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,6 +13,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private PlayerAudioConfig _audioConfig;
+        [SerializeField] private WeaponProvider _weaponProvider;
 
         [Header("Walking")]
         [SerializeField] private float _stepInterval = 0.5f;
@@ -52,6 +55,28 @@ namespace App.Scripts.Scenes.Gameplay.Player
         public void PlayDamageSound()
         {
             RPCPlaySound(_damageCategory, Random.Range(0,_audioConfig.AudioClips[_damageCategory].Count));
+        }
+        
+        public void RPCPlayReloadWeaponSound()
+        {
+            photonView.RPC(nameof(PlayReloadSound), RpcTarget.All);
+        }
+        
+        public void RPCPlayWeaponSound()
+        {
+            photonView.RPC(nameof(PlayWeaponSound), RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void PlayWeaponSound()
+        {
+            _audioSource.PlayOneShot(_weaponProvider.CurrentWeapon.Config.ShotSound);
+        }
+        
+        [PunRPC]
+        public void PlayReloadSound()
+        {
+            _audioSource.PlayOneShot(_weaponProvider.CurrentWeapon.Config.ReloadSound);
         }
         
         public void RPCPlaySound(string category, int soundIndex)

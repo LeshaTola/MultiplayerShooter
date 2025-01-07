@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using App.Scripts.Scenes.Gameplay.Effectors.Strategy;
 using App.Scripts.Scenes.Gameplay.Player;
-using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Cysharp.Threading.Tasks;
-using Photon.Pun;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
-namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles
+namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
 {
 	public class Projectile : SerializedMonoBehaviour
 	{

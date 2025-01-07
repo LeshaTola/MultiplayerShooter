@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
-using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles.Factory;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
 using App.Scripts.Modules.ObjectPool.MonoObjectPools;
 using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;

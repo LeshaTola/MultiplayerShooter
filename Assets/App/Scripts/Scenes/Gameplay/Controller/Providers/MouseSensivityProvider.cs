@@ -1,17 +1,16 @@
-﻿using UnityEngine;
+﻿using Photon.Pun.Demo.PunBasics;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Controller.Providers
 {
     public class MouseSensivityProvider
     {
-        public const string SETTINGS_SAVES = "SettingsSaves";
 
         private readonly MouseSensivityConfig _config;
 
         public MouseSensivityProvider(MouseSensivityConfig config)
         {
             _config = config;
-            Sensivity = PlayerPrefs.GetFloat(SETTINGS_SAVES, _config.MouseSensivity);
         }
 
         public float Sensivity { get; private set; }
@@ -24,6 +23,5 @@ namespace App.Scripts.Scenes.Gameplay.Controller.Providers
                 Sensivity = _config.MinMaxSensivity.Lerp(value);
             }
         }
-
     }
 }

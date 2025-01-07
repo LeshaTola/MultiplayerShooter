@@ -9,6 +9,8 @@ using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using Cysharp.Threading.Tasks;
+using UnityEditor;
+using SettingsProvider = App.Scripts.Features.Settings.SettingsProvider;
 
 namespace App.Scripts.Scenes.MainMenu.Screens.TopViews
 {
@@ -16,6 +18,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens.TopViews
     {
         private readonly TopView _view;
         private readonly SettingsView _settingsView;
+        private readonly SettingsProvider _settingsProvider;
         private readonly IAudioService _audioService;
         private readonly StateMachine _stateMachine;
         private readonly MouseSensivityProvider _mouseSensitivityProvider;
@@ -23,23 +26,21 @@ namespace App.Scripts.Scenes.MainMenu.Screens.TopViews
         
         public TopViewPrezentor(TopView view,
             SettingsView settingsView,
-            IAudioService audioService,
+            SettingsProvider settingsProvider,
             StateMachine stateMachine,
-            List<Type> states,
-            MouseSensivityProvider mouseSensitivityProvider)
+            List<Type> states)
         {
             _view = view;
             _settingsView = settingsView;
-            _audioService = audioService;
+            _settingsProvider = settingsProvider;
             _stateMachine = stateMachine;
             _states = states;
-            _mouseSensitivityProvider = mouseSensitivityProvider;
         }
 
         public override void Initialize()
         {
             _view.Initialize();
-            _settingsView.Initialize(_audioService, _mouseSensitivityProvider);
+            _settingsView.Initialize(_settingsProvider);
 
             _view.OnSettingsClicked += SettingsClicked;
             _view.OnToggleClicked += OnToggleClicked;

@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;

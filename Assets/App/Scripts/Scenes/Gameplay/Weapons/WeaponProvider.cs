@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Photon.Pun;
@@ -18,6 +19,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public event Action<Vector3, float> OnPlayerHit;
         
         [SerializeField] private Transform _weaponHolder;
+        [SerializeField] private GlobalInventory _globalInventory;
         
         public List<Weapon> Weapons { get; } = new();
         private GameInputProvider _gameInputProvider;
@@ -81,11 +83,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _gameInputProvider.OnNumber -= RPCSetWeaponByIndex;
         }
 
-        public void InvokePlayerHit(Vector3 position, float damage)
-        {
-            
-        }
-
         private void RPCSetWeaponByIndex(int index)
         {
             index--;
@@ -120,7 +117,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             var weapon = weaponObject.GetComponent<Weapon>();
             Weapons.Add(weapon);
             
-            weapon.SetOwner(player);
+            weapon.SetupPlayer(player);
+            if(!photonView.IsMine)
+                weapon.SetupLocalConfig(_globalInventory.Weapons.FirstOrDefault(x => x.Id == id));
 
             var weaponTransform = weapon.transform;
             weaponTransform.SetParent(_weaponHolder);

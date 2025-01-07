@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Weapons.ShootingRecoil;
+using App.Scripts.Features.Inventory.Weapons.WeaponEffects;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using UnityEngine;
 
-namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies
+namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
 {
     public interface IShootStrategy
     {
         public event Action<Vector3, float> OnPlayerHit;
-        public Recoil Recoil { get; }
+        
+        public Recoil Recoil { get; }        
+        public List<IWeaponEffect> WeaponEffects { get;  set; }
 
         public void Initialize(Weapon weapon);
         public void Shoot();
@@ -21,11 +25,16 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
         public virtual event Action<Vector3, float> OnPlayerHit;
 
         [SerializeField] public Recoil Recoil { get; private set; } = new();
+        [SerializeField] public List<IWeaponEffect> WeaponEffects { get;  set;}
         
         protected Weapon Weapon;
-        
+
         public virtual void Initialize(Weapon weapon)
         {
+            foreach (var weaponEffect in WeaponEffects)
+            {
+                weaponEffect.Initialize(weapon);
+            }
             Weapon = weapon;
         }
 
@@ -37,6 +46,12 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStr
         public virtual void Import(IShootStrategy original)
         {
             Recoil.Import(original.Recoil);
+
+            for (int i = 0; i < WeaponEffects.Count; i++)
+            {
+                WeaponEffects[i].OnPlayerHit += (point, damage)=>OnPlayerHit?.Invoke(point, damage);
+                WeaponEffects[i].Import(original.WeaponEffects[i]);
+            }
         }
     }
 }

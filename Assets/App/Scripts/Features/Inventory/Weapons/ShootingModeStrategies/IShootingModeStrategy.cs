@@ -1,4 +1,4 @@
-﻿using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies;
+﻿using App.Scripts.Features.Inventory.Weapons.ShootStrategies;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using UnityEngine;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace __Project.Scripts.Helpers
+namespace App.Scripts.Modules.CustomToggles
 {
     public class ToggleGroupCustom : MonoBehaviour
     {

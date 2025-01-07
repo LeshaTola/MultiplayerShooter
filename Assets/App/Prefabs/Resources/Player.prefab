@@ -892,6 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponHolder: {fileID: 8067882858614385861}
+  _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
 --- !u!114 &4972400745006171294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,6 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3089810387732913572}
   _audioConfig: {fileID: 11400000, guid: 2f0cba755f270424e89b3540ef3d860c, type: 2}
+  _weaponProvider: {fileID: 5977931046957955413}
   _stepInterval: 0.5
   _walkingCategory: Walking
   _jumpingCategory: Walking
@@ -1020,7 +1022,7 @@ AudioSource:
   m_GameObject: {fileID: 8772563939488847323}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1826573739972335324, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

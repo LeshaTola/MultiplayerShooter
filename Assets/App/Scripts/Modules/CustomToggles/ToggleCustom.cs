@@ -3,10 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace __Project.Scripts.Helpers
+namespace App.Scripts.Modules.CustomToggles
 {
     public class ToggleCustom : MonoBehaviour, IPointerClickHandler
     {

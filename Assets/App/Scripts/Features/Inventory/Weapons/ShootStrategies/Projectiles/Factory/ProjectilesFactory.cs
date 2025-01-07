@@ -1,10 +1,8 @@
-﻿using App.Scripts.Scenes.Gameplay.Weapons;
-using Photon.Pun;
-using Unity.VisualScripting;
+﻿using Photon.Pun;
 using UnityEngine;
 using Zenject;
 
-namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Projectiles.Factory
+namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory
 {
     public class ProjectilesFactory
     {
