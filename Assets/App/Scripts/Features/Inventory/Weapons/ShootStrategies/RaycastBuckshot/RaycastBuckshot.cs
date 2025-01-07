@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
@@ -38,6 +39,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
             {
                 weaponEffect.Effect(data);
             }
+            
+            Weapon.NetworkSetLine(data.Last().Item1);
+            Weapon.NetworkFadeOutLine();
         }
 
         public override void Import(IShootStrategy original)

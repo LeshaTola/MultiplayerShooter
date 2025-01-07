@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -59,18 +59,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _lifeTime: 10
-  _effects:
-  - Effect:
-      rid: 1122883449081298944
-    Delay: 0
   _rb: {fileID: 8804729679047011781}
-  references:
-    version: 2
-    RefIds:
-    - rid: 1122883449081298944
-      type: {class: ChangeHealth, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
-      data:
-        _changeValue: -25
 --- !u!54 &8804729679047011781
 Rigidbody:
   m_ObjectHideFlags: 0

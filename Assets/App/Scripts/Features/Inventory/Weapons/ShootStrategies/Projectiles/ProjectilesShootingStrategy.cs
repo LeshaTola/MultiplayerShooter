@@ -1,13 +1,12 @@
 ﻿using System;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
+using Photon.Pun;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
 {
     public class ProjectilesShootingStrategy: ShootStrategy
     {
-        public override event Action<Vector3, float> OnPlayerHit;
-        
         [SerializeField] private Projectile _projectile;
         [SerializeField] private float _projectileSpeed;
         
@@ -39,7 +38,17 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             projectile.transform.forward = direction.normalized;
             projectile.gameObject.SetActive(true);
             
-            projectile.Setup(Weapon);
+            projectile.Setup((point, hitObject) =>
+            {
+                foreach (var weaponEffect in WeaponEffects)
+                {
+                    weaponEffect.Effect(new ()
+                    {
+                        (point, hitObject)
+                    });
+                }
+                Debug.Log("Play Effect");
+            });
             projectile.Shoot(direction, _projectileSpeed);
         }
 

@@ -45,12 +45,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
         {
             var strategy = GetShootStrategy(original.GetType());
 
-            var effects = new List<IWeaponEffect>();
-            foreach (var weaponEffect in original.WeaponEffects)
-            {
-                effects.Add(GetWeaponEffect(weaponEffect));
-            }
-            strategy.WeaponEffects = effects;
+            strategy.WeaponEffects = GetWeaponEffects(original.WeaponEffects);
             strategy.Import(original);
             return strategy;
         }
@@ -67,10 +62,19 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
             return strategy;
         }
         
-
         private IWeaponEffect GetWeaponEffect(Type type)
         {
             return (IWeaponEffect)_container.Instantiate(type);
+        }
+
+        private List<IWeaponEffect> GetWeaponEffects(List<IWeaponEffect> effects)
+        {
+            var newEffects = new List<IWeaponEffect>();
+            foreach (var weaponEffect in effects)
+            {
+                newEffects.Add(GetWeaponEffect(weaponEffect));
+            }
+            return newEffects;
         }
     }
 }

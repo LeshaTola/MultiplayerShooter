@@ -20,10 +20,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 var point = hitValue.Item1;
                 var hitObject = hitValue.Item2;
-                
                 Weapon.SpawnImpact(point);
-                Weapon.NetworkSetLine(point);
-                Weapon.NetworkFadeOutLine();
 
                 if (!hitObject.TryGetComponent(out Health health) || health.IsImortal)
                 {

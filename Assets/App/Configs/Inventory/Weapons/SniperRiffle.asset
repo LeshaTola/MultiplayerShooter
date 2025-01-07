@@ -27,7 +27,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
@@ -55,14 +55,14 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.WeaponEffects.IWeaponEffect,
+      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 4|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.WeaponEffects.StandartWeaponEffect,
+      Data: 4|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
         Assembly-CSharp
     - Name: _damage
       Entry: 3
@@ -91,7 +91,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ShootStrategies.Zoom.ZoomStrategy,
+      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
@@ -119,7 +119,7 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.WeaponEffects.IWeaponEffect,
+      Data: 8|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
