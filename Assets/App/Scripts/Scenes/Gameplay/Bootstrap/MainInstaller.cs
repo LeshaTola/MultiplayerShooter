@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Explosions;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
 using App.Scripts.Modules.ObjectPool.MonoObjectPools;
+using App.Scripts.Modules.ObjectPool.NetworkPool;
 using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -14,8 +16,10 @@ using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Timer;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -41,6 +45,13 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("PostProcessing")]
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
         [SerializeField] private PostProcessVolume _postProcessVolume;
+        
+        [FoldoutGroup("Pools")]
+        [FoldoutGroup("Pools/Explosions")]
+        [SerializeField] private Explosion _explosionTemplate;
+        
+        [FoldoutGroup("Pools/Explosions")]
+        [SerializeField] private Transform _explosionContainer;
 
         
         public override void InstallBindings()
@@ -63,6 +74,12 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
+
+            Container.
+                Bind<IPool<Explosion>>().
+                To<NetworkPool<Explosion>>().
+                AsSingle().
+                WithArguments(_explosionTemplate, 10, _explosionContainer);
         }
 
         private void BindDamageTextPool()

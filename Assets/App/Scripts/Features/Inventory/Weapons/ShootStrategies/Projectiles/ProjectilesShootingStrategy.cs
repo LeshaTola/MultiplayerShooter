@@ -47,7 +47,6 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
                         (point, hitObject)
                     });
                 }
-                Debug.Log("Play Effect");
             });
             projectile.Shoot(direction, _projectileSpeed);
         }
