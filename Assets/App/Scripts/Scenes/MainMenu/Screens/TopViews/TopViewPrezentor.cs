@@ -8,6 +8,7 @@ using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
+using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
 using UnityEditor;
 using SettingsProvider = App.Scripts.Features.Settings.SettingsProvider;
@@ -43,6 +44,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens.TopViews
             _settingsView.Initialize(_settingsProvider);
 
             _view.OnSettingsClicked += SettingsClicked;
+            _view.OnCloseClicked += OnCloseClicked;
             _view.OnToggleClicked += OnToggleClicked;
             _settingsView.OnCloseButtonClicked += OnCloseSettingsButtonClicked;
         }
@@ -76,9 +78,15 @@ namespace App.Scripts.Scenes.MainMenu.Screens.TopViews
             _settingsView.Show();
         }
 
-        private void OnToggleClicked(int index)
+        private async void OnCloseClicked()
         {
-            _stateMachine.ChangeState(_states[index]);
+            _view.SetLastToggle();
+            await _stateMachine.ChangeState<MainState>();
+        }
+
+        private async void OnToggleClicked(int index)
+        {
+            await _stateMachine.ChangeState(_states[index]);
         }
     }
 }

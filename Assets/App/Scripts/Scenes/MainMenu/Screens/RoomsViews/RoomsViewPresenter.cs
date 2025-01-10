@@ -6,6 +6,7 @@ using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
 {
@@ -24,13 +25,11 @@ namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
 
         public override void Initialize()
         {
-            _view.CloseAction += OnCloseAction;
             _view.Initialize();
         }
 
         public override void Cleanup()
         {
-            _view.CloseAction -= OnCloseAction;
             _view.Initialize();
         }
 
@@ -58,17 +57,24 @@ namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
                 }
             }
 
-            _view.UpdateRoomListUI(_cachedRoomList.Values.ToList(), (info)=>JoinRoom(info.Name));
+            _view.UpdateRoomListUI(_cachedRoomList.Values.ToList(), (info, password)=>JoinRoom(info, password));
         }
 
-        private void JoinRoom(string roomName)
+        private void JoinRoom(RoomInfo room, string myPassword)
         {
-            PhotonNetwork.JoinRoom(roomName);
-        }
-
-        private async void OnCloseAction()
-        {
-            await _stateMachine.ChangeState<MainState>();
+            if (room.CustomProperties.TryGetValue("Password", out object password) && password != null)
+            {
+                if (password.ToString() == myPassword)
+                {
+                    PhotonNetwork.JoinRoom(room.Name);
+                }
+                else
+                {
+                    Debug.LogError("Incorrect password.");
+                }
+                return;
+            }
+            PhotonNetwork.JoinRoom(room.Name);
         }
     }
 }
