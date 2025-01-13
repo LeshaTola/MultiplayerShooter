@@ -6375,8 +6375,6 @@ MonoBehaviour:
   - {fileID: 61499364}
   _postProcessingConfig: {fileID: 11400000, guid: 1d3cbdc77b1aa394697fd6dd723df91a, type: 2}
   _postProcessVolume: {fileID: 2013434820}
-  _explosionTemplate: {fileID: 4550930450135223814, guid: b660e438a23dc3441859937d626b8623, type: 3}
-  _explosionContainer: {fileID: 1167095707}
 --- !u!1 &1500808222
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,14 +46,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
         [SerializeField] private PostProcessVolume _postProcessVolume;
         
-        [FoldoutGroup("Pools")]
-        [FoldoutGroup("Pools/Explosions")]
-        [SerializeField] private Explosion _explosionTemplate;
-        
-        [FoldoutGroup("Pools/Explosions")]
-        [SerializeField] private Transform _explosionContainer;
-
-        
         public override void InstallBindings()
         {
             Container.Bind<IUpdateService>().To<UpdateService>().AsSingle();
@@ -75,11 +67,11 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
 
-            Container.
+            /*Container.
                 Bind<IPool<Explosion>>().
                 To<NetworkPool<Explosion>>().
                 AsSingle().
-                WithArguments(_explosionTemplate, 10, _explosionContainer);
+                WithArguments(_explosionTemplate, 10, _explosionContainer);*/
         }
 
         private void BindDamageTextPool()

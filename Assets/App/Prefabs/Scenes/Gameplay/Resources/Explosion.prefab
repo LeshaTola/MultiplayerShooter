@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18395497752a4cd383ba515362db7a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 9161401407063339347}
   _particleSystem: {fileID: 7648828572937810119}
   _audioSource: {fileID: 7560055271750008694}
 --- !u!114 &6476391289176915931

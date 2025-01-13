@@ -16,6 +16,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 4550930450135223814, guid: b660e438a23dc3441859937d626b8623, type: 3}
     - {fileID: 1645694598745779037, guid: 4bb4a5c45bb56484c93f8ad0ef9a453b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -71,6 +72,9 @@ MonoBehaviour:
     - Name: _radius
       Entry: 4
       Data: 2
+    - Name: _template
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -82,7 +86,7 @@ MonoBehaviour:
       Data: 
     - Name: _projectile
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: _projectileSpeed
       Entry: 4
       Data: 100

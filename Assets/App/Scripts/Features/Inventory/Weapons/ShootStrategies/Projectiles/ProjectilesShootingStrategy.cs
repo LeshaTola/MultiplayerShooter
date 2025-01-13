@@ -40,6 +40,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             
             projectile.Setup((point, hitObject) =>
             {
+                if (!hitObject)
+                {
+                    return;
+                }
                 foreach (var weaponEffect in WeaponEffects)
                 {
                     weaponEffect.Effect(new ()

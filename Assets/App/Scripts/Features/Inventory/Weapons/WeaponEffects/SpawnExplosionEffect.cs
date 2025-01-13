@@ -5,6 +5,7 @@ using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Explosi
 using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
+using Photon.Pun;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
@@ -15,13 +16,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         
         [SerializeField] private int _damage = 10;
         [SerializeField] private float _radius = 1f;
-
-        private readonly IPool<Explosion> _pool;
-
-        public SpawnExplosionEffect(IPool<Explosion> pool)
-        {
-            _pool = pool;
-        }
+        [SerializeField] private Explosion _template;
 
         public override void Effect(List<(Vector3, GameObject)> hitValues)
         {
@@ -29,8 +24,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 var point = hitValue.Item1;
                 
-                var explosion = _pool.Get();
-                explosion.transform.position = point;
+                var explosion = PhotonNetwork.Instantiate(_template.name, point, Quaternion.identity).GetComponent<Explosion>();
                 explosion.Setup(_radius, (player, distance) =>
                 {
                     player.RPCSetLasHitPlayer(Weapon.Owner.photonView.ViewID);
@@ -42,7 +36,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     OnPlayerHit?.Invoke(player.transform.position, _damage);
                 });
 
-                explosion.Explode();
+                explosion.RPCExplode();
             }
         }
 
@@ -51,6 +45,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             var concrete = (SpawnExplosionEffect) original;
             _damage = concrete._damage;
             _radius = concrete._radius;
+            _template = concrete._template;
         }
     }
 }
