@@ -3220,6 +3220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainScreen: {fileID: 2048058414}
+  _userStatsView: {fileID: 965765236}
   _roomsView: {fileID: 1543539614}
   _inventoryScreeen: {fileID: 23562917}
   _gameInventoryView: {fileID: 715308943}
