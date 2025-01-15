@@ -59,7 +59,6 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private async void OnTimerExpired()
         {
             await StateMachine.ChangeState<EndGame>();
-            _timerProvider.OnTimerExpired -= OnTimerExpired;
         }
     }
 }

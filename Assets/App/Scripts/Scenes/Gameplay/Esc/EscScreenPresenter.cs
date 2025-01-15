@@ -96,13 +96,17 @@ namespace App.Scripts.Scenes.Gameplay.Esc
 
         private async void LeaveRoom()
         {
-            await _stateMachine.ChangeState<EndGame>();
+            await _stateMachine.ChangeState<LeaveMatch>();
         }
         
         private void OnEscPreformed()
         {
             if (!_isActive)
             {
+                if (_playerPlayerController.IsBusy)
+                {
+                    return;
+                }
                 Show();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Confined;

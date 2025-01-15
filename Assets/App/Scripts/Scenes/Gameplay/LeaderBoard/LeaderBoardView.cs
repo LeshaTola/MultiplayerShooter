@@ -10,7 +10,6 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         [Inject]
         private LeaderBoardProvider _leaderBoardProvider;
         [SerializeField] private List<LeaderBoardElement> _elements;
-
         
         public void Show()
         {

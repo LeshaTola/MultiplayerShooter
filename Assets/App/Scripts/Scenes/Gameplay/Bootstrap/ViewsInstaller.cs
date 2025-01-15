@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Features.Inventory;
+using App.Scripts.Scenes.Gameplay.EndGame;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
@@ -30,6 +31,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("Inventory")]
         [SerializeField] private GameInventoryView _view;
         [SerializeField] private RectTransform _overlayContainer;
+        
+        [Header("EndGame")]
+        [SerializeField] private EndGameView _endGameView;
 
         public override void InstallBindings()
         {
@@ -43,6 +47,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<EscMenuView>().FromInstance(_escMenuView).AsSingle();
             Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
             Container.BindInterfacesAndSelfTo<EscScreenPresenter>().AsSingle();
+            
+            Container.Bind<EndGameView>().FromInstance(_endGameView).AsSingle();
+            Container.BindInterfacesAndSelfTo<EndGameViewPresenter>().AsSingle();
             
             Container.Bind<KillChatView>().FromInstance(_killChatView).AsSingle();
             

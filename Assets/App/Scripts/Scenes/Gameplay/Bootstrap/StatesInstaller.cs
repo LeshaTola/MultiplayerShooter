@@ -16,7 +16,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<State>().To<RespawnState>().AsSingle();
             Container.Bind<State>().To<DeadState>().AsSingle();
             Container.Bind<State>().To<GameplayState>().AsSingle();
-            Container.Bind<State>().To<EndGame>().AsSingle();
+            Container.Bind<State>().To<LeaveMatch>().AsSingle();
+            Container.Bind<State>().To<StateMachine.States.EndGame>().AsSingle();
         }
         
         private void BindStateMachine()
