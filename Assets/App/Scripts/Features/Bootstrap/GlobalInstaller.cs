@@ -2,6 +2,8 @@
 using App.Scripts.Features.Commands;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
 using App.Scripts.Features.Settings;
@@ -39,6 +41,9 @@ namespace App.Scripts.Features.Bootstrap
         [SerializeField] private SerializableInterface<ISceneTransition> _sceneTransition;
         
         [SerializeField] private ConnectionProvider _connectionProvider;
+        
+        [Header("UserStats")]
+        [SerializeField] private RanksDatabase _ranksDatabase;
         
         [Header("Inventory")]
         [SerializeField] private GameInventory _gameInventory;
@@ -89,6 +94,8 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<InventoryProvider>().AsSingle().WithArguments(_gameInventory, _globalInventory);
             BindSlotFactory();
             BindItemFactory();
+            
+            Container.Bind<UserStatsProvider>().AsSingle().WithArguments(_ranksDatabase);
         }
         
         private void BindItemFactory()

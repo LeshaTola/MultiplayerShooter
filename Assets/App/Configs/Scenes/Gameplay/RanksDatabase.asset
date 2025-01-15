@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49201894943e413ba05f7780bcdd5c83, type: 3}
+  m_Name: RanksDatabase
+  m_EditorClassIdentifier: 
+  <Ranks>k__BackingField:
+  - Name: "\u0411\u0440\u043E\u043D\u0437\u0430 1"
+    Sprite: {fileID: 21300000, guid: 2dd25af3fb799354581a1f88b48d7a33, type: 3}
+    ExpForRank: 10
+  - Name: "\u0411\u0440\u043E\u043D\u0437\u0430 2"
+    Sprite: {fileID: 21300000, guid: 71278c7e61367ac4394b958d7f0f19fa, type: 3}
+    ExpForRank: 51
+  - Name: "\u0411\u0440\u043E\u043D\u0437\u0430 3"
+    Sprite: {fileID: 21300000, guid: f39c8b75a0fa83643870a1cae2269a59, type: 3}
+    ExpForRank: 101
+  - Name: "\u0411\u0440\u043E\u043D\u0437\u0430 4"
+    Sprite: {fileID: 21300000, guid: e0fb0069a53c7784086257ef6eb7ebec, type: 3}
+    ExpForRank: 272
+  - Name: "\u0411\u0440\u043E\u043D\u0437\u0430 5"
+    Sprite: {fileID: 21300000, guid: a4ff817783d6790469f51d06587411fb, type: 3}
+    ExpForRank: 491
+  - Name: "\u0416\u0435\u043B\u0435\u0437\u043E 1"
+    Sprite: {fileID: 21300000, guid: e4107c1b9b4f426479bb194fa07fe5b2, type: 3}
+    ExpForRank: 416
+  - Name: "\u0416\u0435\u043B\u0435\u0437\u043E 2"
+    Sprite: {fileID: 21300000, guid: 0d6b6d99ceb08cf4a9fd99a46d624a7a, type: 3}
+    ExpForRank: 788
+  - Name: "\u0416\u0435\u043B\u0435\u0437\u043E 3"
+    Sprite: {fileID: 21300000, guid: e4b745936a3753f4bac4092210ebca10, type: 3}
+    ExpForRank: 908
+  - Name: "\u0416\u0435\u043B\u0435\u0437\u043E 4"
+    Sprite: {fileID: 21300000, guid: 7d8e53c5c690d8d44bb4e7b73d3d99af, type: 3}
+    ExpForRank: 1415
+  - Name: "\u0416\u0435\u043B\u0435\u0437\u043E 5"
+    Sprite: {fileID: 21300000, guid: 7d8e53c5c690d8d44bb4e7b73d3d99af, type: 3}
+    ExpForRank: 1355
+  - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 1"
+    Sprite: {fileID: 21300000, guid: c5b24d09271b4a746b128ffb7fb2df04, type: 3}
+    ExpForRank: 1915
+  - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 2"
+    Sprite: {fileID: 21300000, guid: d710bc82cb6a3f2418da68902a3e466c, type: 3}
+    ExpForRank: 1882
+  - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 3"
+    Sprite: {fileID: 21300000, guid: 1b173276b2a56ab478493c30ebf6e248, type: 3}
+    ExpForRank: 2221
+  - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 4"
+    Sprite: {fileID: 21300000, guid: 28f379b0496e16141b69fd69dc3a9744, type: 3}
+    ExpForRank: 3519
+  - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 5"
+    Sprite: {fileID: 21300000, guid: daaceeddaaa3e6848973beb780785567, type: 3}
+    ExpForRank: 2571
+  - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 1"
+    Sprite: {fileID: 21300000, guid: eaf4d5ee7fc42924984e197d4f4ece6a, type: 3}
+    ExpForRank: 2695
+  - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 2"
+    Sprite: {fileID: 21300000, guid: 56a51121283679b438939761dd9ee294, type: 3}
+    ExpForRank: 2924
+  - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 3"
+    Sprite: {fileID: 21300000, guid: eea6b62357828be4d9b89723953b819d, type: 3}
+    ExpForRank: 4992
+  - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 4"
+    Sprite: {fileID: 21300000, guid: 7256e51cd68ed4f4b8fd101304aad530, type: 3}
+    ExpForRank: 6544
+  - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 5"
+    Sprite: {fileID: 21300000, guid: ba527425e142b4d4fb4d44ba28491336, type: 3}
+    ExpForRank: 5744
+  - Name: "\u041F\u043B\u0430\u0442\u0438\u043D\u0430 1"
+    Sprite: {fileID: 21300000, guid: d353f11dd648f0640beadf608ef50f01, type: 3}
+    ExpForRank: 7286
+  - Name: "\u041F\u043B\u0430\u0442\u0438\u043D\u0430 2"
+    Sprite: {fileID: 21300000, guid: 84a2ba99c7982744590dbd0bb940e597, type: 3}
+    ExpForRank: 8070
+  - Name: "\u041F\u043B\u0430\u0442\u0438\u043D\u0430 3"
+    Sprite: {fileID: 21300000, guid: f7597fd778888844db0106912e8a77e3, type: 3}
+    ExpForRank: 8931
+  - Name: "\u041F\u043B\u0430\u0442\u0438\u043D\u0430 4"
+    Sprite: {fileID: 21300000, guid: 4a8abe9f87302ab408de10bd6b5bcbd8, type: 3}
+    ExpForRank: 11175
+  - Name: "\u041F\u043B\u0430\u0442\u0438\u043D\u0430 5"
+    Sprite: {fileID: 21300000, guid: 8ef3d8afcc2b92e488a11bc157264371, type: 3}
+    ExpForRank: 9283
+  - Name: "\u0414\u0430\u0439\u043C\u043E\u043D\u0434 1"
+    Sprite: {fileID: 21300000, guid: ad60a4a4645cf69438037dd54f466806, type: 3}
+    ExpForRank: 7612
+  - Name: "\u0414\u0430\u0439\u043C\u043E\u043D\u0434 2"
+    Sprite: {fileID: 21300000, guid: 98afce7b687676a48942348e9b1fa0bb, type: 3}
+    ExpForRank: 8828
+  - Name: "\u0414\u0430\u0439\u043C\u043E\u043D\u0434 3"
+    Sprite: {fileID: 21300000, guid: 3f64ce0800e43dc40bd417f014d8b4a5, type: 3}
+    ExpForRank: 9449
+  - Name: "\u0414\u0430\u0439\u043C\u043E\u043D\u0434 4"
+    Sprite: {fileID: 21300000, guid: bb7797312c48d3945a0fc61e92059707, type: 3}
+    ExpForRank: 13977
+  - Name: "\u0414\u0430\u0439\u043C\u043E\u043D\u0434 5"
+    Sprite: {fileID: 21300000, guid: 4118f0cf72fa476439264419ac020558, type: 3}
+    ExpForRank: 15825
+  - Name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430"
+    Sprite: {fileID: 21300000, guid: 2c37951fdcef32c4ea953c2335cdb240, type: 3}
+    ExpForRank: 16096

@@ -1,7 +1,9 @@
 ﻿using App.Scripts.Features;
+using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
+using App.Scripts.Scenes.MainMenu.UserProfile;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using UnityEngine;
@@ -13,13 +15,20 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         private readonly MainScreen _screen;
         private readonly StateMachine _stateMachine;
         private readonly ConnectionProvider _connectionProvider;
+        private readonly UserStatsProvider _userStatsProvider;
+        private readonly UserStatsView _userStatsView;
 
         public MainScreenPresenter(MainScreen screen,
-            StateMachine stateMachine, ConnectionProvider connectionProvider)
+            StateMachine stateMachine, 
+            ConnectionProvider connectionProvider,
+            UserStatsProvider userStatsProvider,
+            UserStatsView userStatsView)
         {
             _screen = screen;
             _stateMachine = stateMachine;
             _connectionProvider = connectionProvider;
+            _userStatsProvider = userStatsProvider;
+            _userStatsView = userStatsView;
         }
 
         public override void Initialize()
@@ -31,7 +40,11 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
 
         public void Setup()
         {
-            _screen.Setup(PhotonNetwork.NickName);
+            _userStatsView.Setup(PhotonNetwork.NickName);
+            
+            var rank = _userStatsProvider.CurrentRank;
+            var normalizedExp =_userStatsProvider.Experience/ rank.ExpForRank;
+            _userStatsView.SetupRank(rank.Name, rank.Sprite, normalizedExp);
         }
 
         public override void Cleanup()
@@ -43,11 +56,13 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
 
         public override async UniTask Show()
         {
+            _userStatsView.Show();
             await _screen.Show();
         }
 
         public override async UniTask Hide()
         {
+            _userStatsView.Show();
             await _screen.Hide();
         }
 

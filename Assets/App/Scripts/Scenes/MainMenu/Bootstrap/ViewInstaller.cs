@@ -13,6 +13,7 @@ using App.Scripts.Scenes.MainMenu.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
+using App.Scripts.Scenes.MainMenu.UserProfile;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     {
         [Header("Main")]
         [SerializeField] private MainScreen _mainScreen;
+        [SerializeField] private UserStatsView _userStatsView;
         [Header("Rooms")]
         [SerializeField] private RoomsView _roomsView;
         [Header("Inventory")]
@@ -51,6 +53,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         {
             Container.Bind<MainScreenPresenter>().AsSingle();
             Container.BindInstance(_mainScreen).AsSingle();
+            Container.BindInstance(_userStatsView).AsSingle();
 
             Container.Bind<RoomsViewPresenter>().AsSingle();
             Container.BindInstance(_roomsView).AsSingle();

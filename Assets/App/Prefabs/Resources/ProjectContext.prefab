@@ -96,6 +96,7 @@ MonoBehaviour:
     rawReference:
       rid: -2
   _connectionProvider: {fileID: 738047473016714087}
+  _ranksDatabase: {fileID: 11400000, guid: a6a7b0daa0c7c7447af3dd31a3423486, type: 2}
   _gameInventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
   _slotTemplate: {fileID: -5099056684500095587, guid: 401627d9b034c2f4182840200af28056, type: 3}
