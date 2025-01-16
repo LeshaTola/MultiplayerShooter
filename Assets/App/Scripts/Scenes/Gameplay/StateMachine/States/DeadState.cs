@@ -40,7 +40,8 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             var lastHitPlayer = PhotonView.Find(_playerProvider.Player.Health.LastHitPlayerId)
                 .GetComponent<Player.Player>();
-            _killChatView.RPCSpawnKillElement(lastHitPlayer.NickName, _playerProvider.Player.NickName);
+            string weaponId = _playerProvider.Player.Health.LastHitWeaponId;
+            _killChatView.RPCSpawnKillElement(weaponId,lastHitPlayer.NickName, _playerProvider.Player.NickName);
         }
 
         private async void RespawnPlayer()

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Features.PlayerStats.Rank.Configs;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +11,10 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
     {
         [Inject]
         private LeaderBoardProvider _leaderBoardProvider;
+        
         [SerializeField] private List<LeaderBoardElement> _elements;
+        [SerializeField] private TextMeshProUGUI _playersCountText;
+        [SerializeField] private RanksDatabase _ranksDatabase;
         
         public void Show()
         {
@@ -32,12 +37,14 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             int i = 0;
             foreach (var tuple in _leaderBoardProvider.GetTable())
             {
-                _elements[i].Setup(tuple.Item1,tuple.Item2,tuple.Item3,tuple.Item4);
-                _elements[i].SetupColor(tuple.Item5);
+                var rank = _ranksDatabase.Ranks[tuple.Item1];
+                _elements[i].Setup(rank.Sprite,tuple.Item2,tuple.Item3,tuple.Item4, tuple.Item5);
+                _elements[i].SetupColor(tuple.Item6);
                 _elements[i].Show();
                 i++;
             }
-            
+
+            _playersCountText.text = i.ToString();
         }
     }
 }

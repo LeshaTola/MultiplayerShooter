@@ -4,6 +4,7 @@ using App.Scripts.Modules.StateMachine;
 using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
+using App.Scripts.Scenes.MainMenu.UserProfile;
 using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
@@ -14,19 +15,19 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
         private readonly TabSwitcher _tabSwitcher;
         private readonly GameInventoryViewPresenter _gameInventoryViewPresenter;
         private readonly List<InventoryTabPresenter> _inventoryTabPresenters;
-        private readonly StateMachine _stateMachine;
+        private readonly UserStatsView _userStatsView;
 
         public InventoryScreenPresenter(InventoryScreeen inventoryScreeen,
             TabSwitcher tabSwitcher,
             GameInventoryViewPresenter gameInventoryViewPresenter,
             List<InventoryTabPresenter> inventoryTabPresenters,
-            StateMachine stateMachine)
+            UserStatsView userStatsView)
         {
             _inventoryScreeen = inventoryScreeen;
             _tabSwitcher = tabSwitcher;
             _gameInventoryViewPresenter = gameInventoryViewPresenter;
             _inventoryTabPresenters = inventoryTabPresenters;
-            _stateMachine = stateMachine;
+            _userStatsView = userStatsView;
         }
 
         public override void Initialize()
@@ -38,7 +39,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
             }
             _gameInventoryViewPresenter.Initialize();
             _inventoryScreeen.Initialize();
-            _inventoryScreeen.CloseAction += OnCloseAction;
+            _userStatsView.Initialize();
         }
 
         public override void Cleanup()
@@ -51,21 +52,18 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
             _tabSwitcher.Cleanup();
             _gameInventoryViewPresenter.Cleanup();
             _inventoryScreeen.Cleanup();
-            _inventoryScreeen.CloseAction -= OnCloseAction;
-        }
-
-        private void OnCloseAction()
-        {
-            _stateMachine?.ChangeState<MainState>();
+            _userStatsView.Cleanup();
         }
 
         public override async UniTask Show()
         {
+            _userStatsView.Show();
             await _inventoryScreeen.Show();
         }
 
         public override async UniTask Hide()
         {
+            _userStatsView.Hide();
             await _inventoryScreeen.Hide();
         }
     }

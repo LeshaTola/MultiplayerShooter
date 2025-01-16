@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Features.PlayerStats;
 using Photon.Pun;
 using UnityEngine;
 
@@ -8,13 +9,16 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
     public class LeaderBoardProvider 
     {
+        private UserStatsProvider _userStatsProvider;
+        
         private int _kills = 0;
         private int _death = 0;
 
         public static LeaderBoardProvider Instance {get; private set;}
         
-        public LeaderBoardProvider()
+        public LeaderBoardProvider(UserStatsProvider userStatsProvider)
         {
+            _userStatsProvider = userStatsProvider;
             Instance = this;
             UpdateTable();
         }
@@ -31,9 +35,9 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             UpdateTable();
         }
 
-        public List<(string, int, int, int, bool)> GetTable()
+        public List<(int, string, int, int, int, bool)> GetTable()
         {
-            List<(string, int, int, int, bool)> result = new();
+            List<(int, string, int, int, int, bool)> result = new();
 
             var sortedPlayers = PhotonNetwork.PlayerList
                 .OrderByDescending(player =>
@@ -48,7 +52,8 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 
             foreach (var player in sortedPlayers)
             {
-                result.Add(new ValueTuple<string, int, int, int, bool>(player.NickName,
+                result.Add(new ValueTuple<int, string, int, int, int, bool>((int) player.CustomProperties["Rank"],
+                    player.NickName,
                     (int) player.CustomProperties["Kills"],
                     (int) player.CustomProperties["Death"],
                     (int) player.CustomProperties["Ping"],
@@ -62,6 +67,7 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         {
             var pingProp = new ExitGames.Client.Photon.Hashtable
             {
+                ["Rank"] = _userStatsProvider.CurrentRankId,
                 ["Ping"] = PhotonNetwork.GetPing(),
                 ["Kills"] = _kills,
                 ["Death"] = _death

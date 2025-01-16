@@ -18,15 +18,21 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Exp
 
         public void Setup(float radius, Action<Health, float> onTriggerAction)
         {
-            _radius = radius;
             _onTriggerAction = onTriggerAction;
-            var shape = _particleSystem.shape;
-            shape.radius = radius;
+            photonView.RPC(nameof(NetworSetup), RpcTarget.All, radius);
 
             var main = _particleSystem.main;
             main.startSize = new ParticleSystem.MinMaxCurve(radius, radius * 2);
         }
 
+        [PunRPC]
+        public void NetworSetup(float radius)
+        {
+            _radius = radius;
+            var shape = _particleSystem.shape;
+            shape.radius = radius;
+        }
+        
         public async void RPCExplode()
         {
             var targets = Physics.OverlapSphere(transform.position, _radius);

@@ -36,6 +36,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
             _screen.PlayButtonAction += OnPlayButtonAction;
             _screen.OnPlayerNameChanged += OnPlayerNameChanged;
             _screen.Initialize();
+            _userStatsView.Initialize();
         }
 
         public void Setup()
@@ -52,6 +53,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
             _screen.PlayButtonAction -= OnPlayButtonAction;
             
             _screen.Cleanup();
+            _userStatsView.Cleanup();
         }
 
         public override async UniTask Show()
@@ -62,7 +64,7 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
 
         public override async UniTask Hide()
         {
-            _userStatsView.Show();
+            _userStatsView.Hide();
             await _screen.Hide();
         }
 

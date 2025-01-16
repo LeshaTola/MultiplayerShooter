@@ -50,9 +50,9 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         {
             foreach (var damageable in _damageables)
             {
-                damageable.Key.RPCSetLasHitPlayer(Weapon.Owner.photonView.ViewID);
+                damageable.Key.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
 
-                if (damageable.Key.Value <= damageable.Value.Item1)
+                if (damageable.Key.Value != 0 && damageable.Key.Value <= damageable.Value.Item1)
                 {
                     LeaderBoardProvider.Instance.AddKill();
                 }

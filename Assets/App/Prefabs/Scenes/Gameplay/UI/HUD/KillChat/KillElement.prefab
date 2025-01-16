@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -14.247986, y: 0}
-  m_SizeDelta: {x: 308.3439, y: 60}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1042923911626159020
 CanvasRenderer:
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 4
 --- !u!114 &869730021241611998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5972885be84d33a4b73c0794e632d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponImage: {fileID: 2708619307565605451}
   _killerText: {fileID: 7422518645950224996}
   _victimText: {fileID: 5081798067054606775}
   _defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -535,7 +536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b9bf8ec5d54fe249ac9e20979ccd42c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8942fa983f3063e438b5837257d7ceb4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

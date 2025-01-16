@@ -4,6 +4,7 @@ using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
@@ -64,7 +65,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
             
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
-            _player.Health.RPCSetLasHitPlayer(_player.photonView.ViewID);
+            _player.Health.RPCSetLasHit(_player.photonView.ViewID, null);
 
             foreach (var weapon in _player.WeaponProvider.Weapons)
             {

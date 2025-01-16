@@ -322,6 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 8726302844266625263, guid: 35e50ea685bc0994385530aa36fd2406, type: 3}
   _container: {fileID: 1482861031395522902}
+  _inventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
+  _nullSprite: {fileID: 21300000, guid: 8942fa983f3063e438b5837257d7ceb4, type: 3}
 --- !u!114 &3411330569322404898
 MonoBehaviour:
   m_ObjectHideFlags: 0

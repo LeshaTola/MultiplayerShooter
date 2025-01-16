@@ -14,6 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 		public float Value { get; private set; }
 		public float MaxValue { get; private set; }
 		public int LastHitPlayerId { get; private set; }
+		public string LastHitWeaponId { get; private set; }
 		public bool IsImortal { get; private set; }
 		
 		public void Initialize(int _maxHealth)
@@ -43,15 +44,16 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 			photonView.RPC(nameof(Heal), RpcTarget.All, healValue);
 		}
 
-		public void RPCSetLasHitPlayer(int playerId)
+		public void RPCSetLasHit(int playerId, string weaponId)
 		{
-			photonView.RPC(nameof(SetLasHitPlayer), RpcTarget.All, playerId);
+			photonView.RPC(nameof(SetLasHit), RpcTarget.All, playerId, weaponId);
 		}
 		
 		[PunRPC]
-		public void SetLasHitPlayer(int playerId)
+		public void SetLasHit(int playerId, string weaponId)
 		{
 			LastHitPlayerId = playerId;
+			LastHitWeaponId = weaponId;
 		} 
 
 		[PunRPC]

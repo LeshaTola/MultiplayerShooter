@@ -2,6 +2,7 @@
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Explosions;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
+using App.Scripts.Modules.Factories.MonoFactories;
 using App.Scripts.Modules.ObjectPool.MonoObjectPools;
 using App.Scripts.Modules.ObjectPool.NetworkPool;
 using App.Scripts.Modules.ObjectPool.Pools;
@@ -16,6 +17,8 @@ using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Timer;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
+using App.Scripts.Scenes.MainMenu.Inventory;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -46,6 +49,10 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
         [SerializeField] private PostProcessVolume _postProcessVolume;
         
+        [Header("Inventory")]
+        [SerializeField] private InventorySlot _slotTemplate;
+        [SerializeField] private Item _itemTemplate;
+        
         public override void InstallBindings()
         {
             Container.Bind<IUpdateService>().To<UpdateService>().AsSingle();
@@ -67,11 +74,31 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
 
+            BindSlotFactory();
+            BindItemFactory();
             /*Container.
                 Bind<IPool<Explosion>>().
                 To<NetworkPool<Explosion>>().
                 AsSingle().
                 WithArguments(_explosionTemplate, 10, _explosionContainer);*/
+        }
+        
+        
+        private void BindItemFactory()
+        {
+            Container.Bind<Modules.Factories.IFactory<Item>>()
+                .To<MonoFactory<Item>>()
+                .AsSingle()
+                .WithArguments(_itemTemplate);
+        }
+
+        private void BindSlotFactory()
+        {
+            Container
+                .Bind<Modules.Factories.IFactory<InventorySlot>>()
+                .To<MonoFactory<InventorySlot>>()
+                .AsSingle()
+                .WithArguments(_slotTemplate);
         }
 
         private void BindDamageTextPool()

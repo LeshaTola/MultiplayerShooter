@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5921569, g: 0.2784314, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.18431373, b: 0.62352943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 80
-  m_PreferredHeight: 80
+  m_PreferredWidth: 130
+  m_PreferredHeight: 130
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
@@ -112,3 +112,4 @@ MonoBehaviour:
   _weaponColor: {r: 0.5921569, g: 0.2784314, b: 1, a: 1}
   _equipmentColor: {r: 0.078431375, g: 0.68235296, b: 0.36078432, a: 1}
   _image: {fileID: 1988094034372472542}
+  _keyText: {fileID: 0}

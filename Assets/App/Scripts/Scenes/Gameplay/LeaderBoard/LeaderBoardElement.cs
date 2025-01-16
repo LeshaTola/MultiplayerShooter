@@ -1,10 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
     public class LeaderBoardElement : MonoBehaviour
     {
+        [SerializeField] private Image _rankImage;
         [SerializeField] private TextMeshProUGUI _nickNameText;
         [SerializeField] private TextMeshProUGUI _killsText;
         [SerializeField] private TextMeshProUGUI _deathText;
@@ -13,8 +15,9 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         [SerializeField] private Color _defaultColor = Color.white;
         [SerializeField] private Color _selectedColor = Color.yellow;
         
-        public void Setup(string nickName, int kills, int death, int ping)
+        public void Setup(Sprite rankSprite, string nickName, int kills, int death, int ping)
         {
+            _rankImage.sprite = rankSprite;
             _nickNameText.text = nickName;
             _killsText.text = kills.ToString();
             _deathText.text = death.ToString();
@@ -40,12 +43,20 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         
         public void Show()
         {
-            gameObject.SetActive(true);
+            _rankImage.gameObject.SetActive(true);
+            _nickNameText.gameObject.SetActive(true);
+            _killsText.gameObject.SetActive(true);
+            _deathText.gameObject.SetActive(true);
+            _pingText.gameObject.SetActive(true);
         }
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            _rankImage.gameObject.SetActive(false);
+            _nickNameText.gameObject.SetActive(false);
+            _killsText.gameObject.SetActive(false);
+            _deathText.gameObject.SetActive(false);
+            _pingText.gameObject.SetActive(false);
         }
     }
 }

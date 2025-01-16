@@ -48,9 +48,6 @@ namespace App.Scripts.Features.Bootstrap
         [Header("Inventory")]
         [SerializeField] private GameInventory _gameInventory;
         [SerializeField] private GlobalInventory _globalInventory;
-        [SerializeField] private InventorySlot _slotTemplate;
-        [SerializeField] private Item _itemTemplate;
-        
         
         [Header("Settings")]
         [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
@@ -92,27 +89,8 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<GameInputProvider>().AsSingle();
             
             Container.Bind<InventoryProvider>().AsSingle().WithArguments(_gameInventory, _globalInventory);
-            BindSlotFactory();
-            BindItemFactory();
             
             Container.Bind<UserStatsProvider>().AsSingle().WithArguments(_ranksDatabase);
-        }
-        
-        private void BindItemFactory()
-        {
-            Container.Bind<Modules.Factories.IFactory<Item>>()
-                .To<MonoFactory<Item>>()
-                .AsSingle()
-                .WithArguments(_itemTemplate);
-        }
-
-        private void BindSlotFactory()
-        {
-            Container
-                .Bind<Modules.Factories.IFactory<InventorySlot>>()
-                .To<MonoFactory<InventorySlot>>()
-                .AsSingle()
-                .WithArguments(_slotTemplate);
         }
 
         private void BindLocalizationSystem()

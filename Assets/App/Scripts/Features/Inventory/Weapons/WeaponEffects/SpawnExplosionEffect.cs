@@ -27,9 +27,9 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                 var explosion = PhotonNetwork.Instantiate(_template.name, point, Quaternion.identity).GetComponent<Explosion>();
                 explosion.Setup(_radius, (player, distance) =>
                 {
-                    player.RPCSetLasHitPlayer(Weapon.Owner.photonView.ViewID);
+                    player.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
                     player.RPCTakeDamage(_damage);
-                    if (player.Value <= _damage)
+                    if (player.Value!= 0 && player.Value <= _damage)
                     {
                         LeaderBoardProvider.Instance.AddKill();
                     }

@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.Gameplay.KillChat
 {
@@ -14,9 +15,10 @@ namespace App.Scripts.Scenes.Gameplay.KillChat
     
     public class KillElementView : MonoBehaviour
     {
+        [SerializeField] private Image _weaponImage;
         [SerializeField] private TextMeshProUGUI _killerText;
         [SerializeField] private TextMeshProUGUI _victimText;
-        
+
         [Header("Color")]
         [SerializeField] private Color _defaultColor = Color.white;
         [SerializeField] private Color _meColor = Color.white;
@@ -26,8 +28,9 @@ namespace App.Scripts.Scenes.Gameplay.KillChat
         [SerializeField] private float _timeBeforeFade;
         [SerializeField] private float _fadeTime;
 
-        public async void Setup(string killer, string victim, KillType killerType = KillType.Them, KillType victimType = KillType.Them)
+        public async void Setup(Sprite weaponSprite ,string killer, string victim, KillType killerType = KillType.Them, KillType victimType = KillType.Them)
         {
+            _weaponImage.sprite = weaponSprite;
             _killerText.text = killer;
             _victimText.text = victim;
 

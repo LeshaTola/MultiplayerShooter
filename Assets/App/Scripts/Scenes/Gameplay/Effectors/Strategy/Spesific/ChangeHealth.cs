@@ -17,7 +17,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
             }
 
             var damage = -_changeValue;
-            player.Health.RPCSetLasHitPlayer(player.photonView.ViewID);
+            player.Health.RPCSetLasHit(player.photonView.ViewID, null);
             player.Health.RPCTakeDamage(damage);
             return UniTask.CompletedTask;
         }
