@@ -20,9 +20,6 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Exp
         {
             _onTriggerAction = onTriggerAction;
             photonView.RPC(nameof(NetworSetup), RpcTarget.All, radius);
-
-            var main = _particleSystem.main;
-            main.startSize = new ParticleSystem.MinMaxCurve(radius, radius * 2);
         }
 
         [PunRPC]
@@ -31,6 +28,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Exp
             _radius = radius;
             var shape = _particleSystem.shape;
             shape.radius = radius;
+            
+            var main = _particleSystem.main;
+            main.startSize = new ParticleSystem.MinMaxCurve(radius, radius * 2);
         }
         
         public async void RPCExplode()

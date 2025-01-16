@@ -18,6 +18,8 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         public override UniTask Enter()
         {
             Debug.Log("LeaveMatch");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             _cleanupService.Cleanup();
             PhotonNetwork.LeaveRoom();
             return UniTask.CompletedTask;

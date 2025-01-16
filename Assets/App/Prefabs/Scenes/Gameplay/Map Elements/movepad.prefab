@@ -89,20 +89,27 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: _strategy
+    - Name: _strategies
       Entry: 7
-      Data: 0|App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy,
-        Assembly-CSharp
-    - Name: _forceData
-      Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
+      Data: 0|System.Collections.Generic.List`1[[App.Scripts.Scenes.Gameplay.Effectors.Strategy.IEffectorStrategy,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
+      Data: 1|App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy,
+        Assembly-CSharp
+    - Name: _forceData
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
         Assembly-CSharp
     - Name: ForceVector
       Entry: 7
@@ -130,6 +137,12 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
       Data: 
     - Name: 
       Entry: 8

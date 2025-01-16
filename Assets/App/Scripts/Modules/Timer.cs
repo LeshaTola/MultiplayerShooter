@@ -11,7 +11,7 @@ namespace App.Scripts.Modules
         
         public int RemainingTime { get; private set; }
 
-        public async UniTask StartTimer(int durationSeconds, Action<int> onTick)
+        public async UniTask StartTimer(int durationSeconds, Action<int> onTick = null)
         {
             if (_isTimerRunning) return;
 

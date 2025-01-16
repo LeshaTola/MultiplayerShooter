@@ -98,7 +98,7 @@ MonoBehaviour:
       Data: 7|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 5
+      Data: 3
     - Name: <Decrement>k__BackingField
       Entry: 4
       Data: 2

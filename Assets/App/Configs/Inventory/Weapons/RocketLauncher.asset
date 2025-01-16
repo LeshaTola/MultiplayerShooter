@@ -71,7 +71,7 @@ MonoBehaviour:
       Data: 80
     - Name: _radius
       Entry: 4
-      Data: 2
+      Data: 4
     - Name: _template
       Entry: 10
       Data: 0

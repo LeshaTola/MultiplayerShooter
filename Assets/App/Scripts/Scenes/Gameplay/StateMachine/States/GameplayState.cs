@@ -27,6 +27,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("Gameplay");
             _playerProvider.Player.Health.OnDied += OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage += ApplyDamageEffect;
+            _playerProvider.Player.Health.OnHealing += ApplyHealingEffect;
             
             await SetImmortal();
         }
@@ -54,6 +55,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             _playerProvider.Player.Health.OnDied -= OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage -= ApplyDamageEffect;
+            _playerProvider.Player.Health.OnHealing -= ApplyHealingEffect;
             return UniTask.CompletedTask;
         }
 
@@ -65,6 +67,11 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private void ApplyDamageEffect(float damage)
         {
             _postProcessingProvider.ApplyDamageEffect();
+        }
+
+        private void ApplyHealingEffect(float obj)
+        {
+            _postProcessingProvider.ApplyHealEffect();
         }
     }
 }
