@@ -57,14 +57,23 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
 
         public override async UniTask Show()
         {
-            _userStatsView.Show();
-            await _inventoryScreeen.Show();
+            var tasks = new List<UniTask>
+            {
+                _userStatsView.Show(),
+                _inventoryScreeen.Show()
+            };
+            await UniTask.WhenAll(tasks);
         }
 
         public override async UniTask Hide()
         {
-            _userStatsView.Hide();
-            await _inventoryScreeen.Hide();
+            var tasks = new List<UniTask>
+            {
+                _userStatsView.Hide(),
+                _inventoryScreeen.Hide()
+            };
+            await UniTask.WhenAll(tasks);
+            
         }
     }
 }

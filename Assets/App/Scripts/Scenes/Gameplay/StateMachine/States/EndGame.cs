@@ -27,11 +27,11 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         public override async UniTask Enter()
         {
             Debug.Log("End");
-            _endGameViewPresenter.Show();
+            await _endGameViewPresenter.Show();
             await _timer.StartTimer(_gameConfig.EndGameTime, _endGameViewPresenter.UpdateTimer);
-            _endGameViewPresenter.Hide();
+            await _endGameViewPresenter.Hide();
             _timerProvider.Initialize();
-            StateMachine.ChangeState<RespawnState>();
+            await StateMachine.ChangeState<RespawnState>();
         }
     }
 }

@@ -107,8 +107,8 @@ namespace App.Scripts.Features.Bootstrap
         private void BindLocalizationDataProvider()
         {
             Container
-                .Bind<IDataProvider<LocalizationData>>()
-                .To<DataProvider<LocalizationData>>()
+                .Bind<IDataProvider<LocalizationSavesData>>()
+                .To<DataProvider<LocalizationSavesData>>()
                 .AsSingle()
                 .WithArguments(LocalizationDataKey.KEY);
         }

@@ -11,7 +11,6 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
     public class MainScreen : GameScreen
     {
         public event Action PlayButtonAction;
-        public event Action<string> OnPlayerNameChanged; 
         
         [SerializeField] private Button _playButton;
 

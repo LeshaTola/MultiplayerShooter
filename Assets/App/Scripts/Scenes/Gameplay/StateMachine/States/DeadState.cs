@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _killChatView = killChatView;
         }
 
-        public override async UniTask Enter()
+        public override UniTask Enter()
         {
             Debug.Log("Dead");
 
@@ -34,6 +34,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             
             _playerProvider.HidePlayer();
             RespawnPlayer();
+            return UniTask.CompletedTask;
         }
 
         private void UpdateKillChat()

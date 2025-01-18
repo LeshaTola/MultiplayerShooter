@@ -5,7 +5,6 @@ using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
-using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;

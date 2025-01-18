@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features;
+﻿using System.Collections.Generic;
+using App.Scripts.Features;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine;
@@ -34,9 +35,10 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         public override void Initialize()
         {
             _screen.PlayButtonAction += OnPlayButtonAction;
-            _screen.OnPlayerNameChanged += OnPlayerNameChanged;
             _screen.Initialize();
+            
             _userStatsView.Initialize();
+            _userStatsView.OnPlayerNameChanged += OnPlayerNameChanged;
         }
 
         public void Setup()
@@ -51,32 +53,35 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         public override void Cleanup()
         {
             _screen.PlayButtonAction -= OnPlayButtonAction;
-            
             _screen.Cleanup();
+            
             _userStatsView.Cleanup();
+            _userStatsView.OnPlayerNameChanged -= OnPlayerNameChanged;
         }
 
         public override async UniTask Show()
         {
-            _userStatsView.Show();
-            await _screen.Show();
+            var tasks = new List<UniTask>
+            {
+                _userStatsView.Show(),
+                _screen.Show()
+            };
+            await UniTask.WhenAll(tasks);
         }
 
         public override async UniTask Hide()
         {
-            _userStatsView.Hide();
-            await _screen.Hide();
+            var tasks = new List<UniTask>
+            {
+                _userStatsView.Hide(),
+                _screen.Hide()
+            };
+            await UniTask.WhenAll(tasks);
         }
 
         private void OnPlayButtonAction()
         {
             _connectionProvider.QuickGame();
-            //await _stateMachine.ChangeState<RoomState>();
-        }
-
-        private async void OnInventoryButtonAction()
-        {
-            await _stateMachine.ChangeState<InventoryState>();
         }
 
         private void OnPlayerNameChanged(string name)

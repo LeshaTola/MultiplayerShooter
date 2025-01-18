@@ -1,4 +1,5 @@
-﻿using App.Scripts.Modules.Saves;
+﻿using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 
@@ -7,17 +8,19 @@ namespace App.Scripts.Features.Settings
     public class SettingsProvider : ISavable
     {
         private readonly IDataProvider<SettingsData> _dataProvider;
-        
+
         public MouseSensivityProvider SensivityProvider { get; }
         public IAudioService AudioService { get; }
+        public ILocalizationSystem LocalizationSystem { get; }
         
         public SettingsProvider(MouseSensivityProvider mouseSensivityProvider,
             IAudioService audioService,
-            IDataProvider<SettingsData> dataProvider)
+            IDataProvider<SettingsData> dataProvider, ILocalizationSystem localizationSystem)
         {
             SensivityProvider = mouseSensivityProvider;
             AudioService = audioService;
             _dataProvider = dataProvider;
+            LocalizationSystem = localizationSystem;
         }
 
         public void SaveState()

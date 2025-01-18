@@ -16,7 +16,7 @@ namespace App.Scripts.Modules.Localization
         private string language;
         private IParser parser;
         private IFileProvider fileProvider;
-        private IDataProvider<LocalizationData> dataProvider;
+        private IDataProvider<LocalizationSavesData> dataProvider;
 
         private Dictionary<string, string> languageDictionary = new();
 
@@ -25,7 +25,7 @@ namespace App.Scripts.Modules.Localization
             string language,
             IParser parser,
             IFileProvider fileProvider,
-            IDataProvider<LocalizationData> dataProvider
+            IDataProvider<LocalizationSavesData> dataProvider
         )
         {
             this.localizationDictionary = localizationDictionary;
@@ -51,21 +51,21 @@ namespace App.Scripts.Modules.Localization
 
             language = languageKey;
             var localizationFile = fileProvider.GetTextAsset(
-                localizationDictionary.Languages[language]
+                localizationDictionary.Languages[language].Path
             );
             languageDictionary = parser.Parse(localizationFile.text);
             OnLanguageChanged?.Invoke();
             SaveLocalization(languageKey);
         }
 
-        public IEnumerable<string> GetLanguages()
+        public Dictionary<string,LocalizationData> GetLanguages()
         {
             if (localizationDictionary == null)
             {
                 return null;
             }
 
-            return new List<string>(localizationDictionary.Languages.Keys);
+            return localizationDictionary.Languages;
         }
 
         private void LoadLocalization()
@@ -79,7 +79,7 @@ namespace App.Scripts.Modules.Localization
 
         private void SaveLocalization(string languageKey)
         {
-            dataProvider.SaveData(new LocalizationData() {LanguageKey = languageKey,});
+            dataProvider.SaveData(new LocalizationSavesData() {LanguageKey = languageKey,});
         }
 
         public string Translate(string key)

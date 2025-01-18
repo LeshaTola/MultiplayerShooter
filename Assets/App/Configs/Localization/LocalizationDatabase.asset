@@ -15,7 +15,9 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: c5e359ce7f23ec04da9fb489e64759ee, type: 3}
+    - {fileID: 21300000, guid: e518a288534d38547946e767e8cf10ee, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -23,8 +25,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: languages
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
-        mscorlib]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[App.Scripts.Modules.Localization.Configs.LocalizationData,
+        Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
@@ -42,8 +44,20 @@ MonoBehaviour:
       Entry: 1
       Data: ru
     - Name: $v
+      Entry: 7
+      Data: 2|App.Scripts.Modules.Localization.Configs.LocalizationData, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    - Name: Path
       Entry: 1
       Data: ru
+    - Name: Sprite
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -54,8 +68,20 @@ MonoBehaviour:
       Entry: 1
       Data: en
     - Name: $v
+      Entry: 7
+      Data: 3|App.Scripts.Modules.Localization.Configs.LocalizationData, Assembly-CSharp
+    - Name: Name
+      Entry: 1
+      Data: English
+    - Name: Path
       Entry: 1
       Data: en
+    - Name: Sprite
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

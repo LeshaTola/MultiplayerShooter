@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Modules.Localization.Configs;
 
 namespace App.Scripts.Modules.Localization
 {
@@ -10,7 +11,7 @@ namespace App.Scripts.Modules.Localization
         string Language { get; }
 
         void ChangeLanguage(string languageKey);
-        IEnumerable<string> GetLanguages();
+        Dictionary<string, LocalizationData> GetLanguages();
         string Translate(string key);
     }
 }

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Settings;
+using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,27 +17,64 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
         
         [SerializeField] private  Button _closeButton;
         [Space]
+        [SerializeField] private Button _localizationButton;
+        [SerializeField] private TextMeshProUGUI _localizationText;
+        [SerializeField] private Image _localizationImage;
+        [Space]
         [SerializeField] private Slider _mouseSensitivitySlider;
+        [Space]
         [SerializeField] private Slider _masterVolumeSlider;
         [SerializeField] private Slider _musicVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
 
         private SettingsProvider _settingsProvider;
+        private List<string> _languages;
+        private int _languageIndex;
 
         public void Initialize(SettingsProvider settingsProvider)
         {
             _settingsProvider = settingsProvider;
             var audioService = settingsProvider.AudioService;
             var mouseSensitivityProvider = settingsProvider.SensivityProvider;
+            var localizationSystem = settingsProvider.LocalizationSystem;
             
             _closeButton.onClick.AddListener(() => OnCloseButtonClicked?.Invoke());
             
+            _localizationButton.onClick.AddListener(SwapLanguage);
+            _languages = localizationSystem.GetLanguages().Select(x=>x.Key).ToList();
+            _languageIndex = _languages.FindIndex(x=>x.Equals(localizationSystem.Language));
+            SetLanguage(localizationSystem.Language);
+
+            InitializeMouseSensivity(mouseSensitivityProvider);
+            InitializeAudioSettings(audioService);
+        }
+
+        private void SetLanguage( string curLanguage)
+        {
+            var  localizationSystem = _settingsProvider.LocalizationSystem;
+            _localizationImage.sprite = localizationSystem.GetLanguages()[curLanguage].Sprite;
+            _localizationText.text = localizationSystem.GetLanguages()[curLanguage].Name;
+        }
+
+        private void SwapLanguage()
+        {
+            _languageIndex = (_languageIndex + 1) % _languages.Count;
+            var language = _languages[_languageIndex];
+            SetLanguage(language);
+            _settingsProvider.LocalizationSystem.ChangeLanguage(language);
+        }
+
+        private void InitializeMouseSensivity(MouseSensivityProvider mouseSensitivityProvider)
+        {
             _mouseSensitivitySlider.value = mouseSensitivityProvider.SensivityNormalized;
             _mouseSensitivitySlider.onValueChanged.AddListener(value =>
             {
                 mouseSensitivityProvider.SensivityNormalized = value;
             });
-            
+        }
+
+        private void InitializeAudioSettings(IAudioService audioService)
+        {
             _masterVolumeSlider.value = audioService.MasterVolume;
             _masterVolumeSlider.onValueChanged.AddListener(value =>
             {
