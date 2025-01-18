@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7559911861077894975}
   - component: {fileID: 248524341594549949}
   - component: {fileID: 6019874947475933071}
+  - component: {fileID: 3817747321242223827}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3817747321242223827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123360548280782954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08150d14509842c2aebc934532864ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6502003418842130189}
+  button: {fileID: 6019874947475933071}
 --- !u!1 &2921114258486739034
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +147,7 @@ GameObject:
   - component: {fileID: 8773825428605218037}
   - component: {fileID: 4480044023952681794}
   - component: {fileID: 6917082410825829571}
+  - component: {fileID: 6502003418842130189}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -255,3 +271,16 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6502003418842130189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2921114258486739034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6917082410825829571}

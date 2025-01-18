@@ -34,7 +34,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -43,7 +43,19 @@ MonoBehaviour:
       Data: ru
     - Name: $v
       Entry: 1
-      Data: ru.txt
+      Data: ru
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: en
+    - Name: $v
+      Entry: 1
+      Data: en
     - Name: 
       Entry: 8
       Data: 

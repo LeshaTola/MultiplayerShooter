@@ -27,10 +27,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Exp
         {
             _radius = radius;
             var shape = _particleSystem.shape;
-            shape.radius = radius;
+            shape.radius = radius/1.5f;
             
             var main = _particleSystem.main;
-            main.startSize = new ParticleSystem.MinMaxCurve(radius, radius * 2);
+            main.startSize = new ParticleSystem.MinMaxCurve(radius/2, radius);
         }
         
         public async void RPCExplode()

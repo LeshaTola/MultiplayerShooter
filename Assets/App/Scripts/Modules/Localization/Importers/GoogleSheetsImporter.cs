@@ -35,7 +35,7 @@ namespace App.Scripts.Modules.Localization.Importers
             await request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             { 
-                File.WriteAllText(fullPath, request.downloadHandler.text);
+                await File.WriteAllTextAsync(fullPath, request.downloadHandler.text);
                 AssetDatabase.Refresh();
                 Debug.Log($"Файл сохранён по пути: {Application.dataPath + savePath}");
             }

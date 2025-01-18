@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _localizationDatabase: {fileID: 11400000, guid: b35b1d8781c98784799fcbbe9a08635f, type: 2}
-  _language: ru
+  _language: en
   _sceneTransition:
     mode: 0
     unityReference: {fileID: 2581158251069753768}
@@ -99,8 +99,6 @@ MonoBehaviour:
   _ranksDatabase: {fileID: 11400000, guid: a6a7b0daa0c7c7447af3dd31a3423486, type: 2}
   _gameInventory: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
-  _slotTemplate: {fileID: -5099056684500095587, guid: 401627d9b034c2f4182840200af28056, type: 3}
-  _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
   _mouseSensivityConfig: {fileID: 11400000, guid: d15f01e04af9f0843bb83956c7580639, type: 2}
   _soundProvider: {fileID: 646344925996821794}
   _audioMixer: {fileID: 24100000, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
