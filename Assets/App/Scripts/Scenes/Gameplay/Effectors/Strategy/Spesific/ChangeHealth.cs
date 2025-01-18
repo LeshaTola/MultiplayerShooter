@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
 {
-    public class ChangeHealth : IEffectorStrategy
+    public class ChangeHealth : EffectorStrategy
     {
         [SerializeField] private float _changeValue;
         
-        public UniTask Apply(Player.Player player)
+        public override UniTask Apply(Player.Player player)
         {
             if (_changeValue > 0)
             {

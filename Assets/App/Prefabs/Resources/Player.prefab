@@ -980,9 +980,9 @@ MonoBehaviour:
   _weaponProvider: {fileID: 5977931046957955413}
   _stepInterval: 0.5
   _walkingCategory: Walking
-  _jumpingCategory: Walking
-  _landingCategory: Walking
-  _damageCategory: Walking
+  _jumpingCategory: Jump
+  _landingCategory: Fall
+  _damageCategory: Damage
 --- !u!114 &4677047985132999472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,8 +1041,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1826573739972335324, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.6
+  m_Pitch: 1.1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1050,9 +1050,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1068,6 +1068,15 @@ AudioSource:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.50959754
+      value: 0.11352265
+      inSlope: -0.06137744
+      outSlope: -0.06137744
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5041837
     - serializedVersion: 3
       time: 1
       value: 0

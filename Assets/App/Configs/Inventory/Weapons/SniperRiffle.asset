@@ -148,8 +148,8 @@ MonoBehaviour:
   <Id>k__BackingField: SniperRiffle
   <Sprite>k__BackingField: {fileID: 21300000, guid: b64b905de79601d48a8262197ade20c7, type: 3}
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 9a2108ad811636949b66c021a4a0c1a8, type: 3}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: d8018506ab4bd914d9b17655ea9c106a, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: c7c4fc11f434dcb4184e15a6650282e0, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 2b69b0777b710b54bb5876a88b1c44d6, type: 3}
   <MaxAmmoCount>k__BackingField: 10
   <ReloadCooldown>k__BackingField: 2
   <AttackCooldown>k__BackingField: 1

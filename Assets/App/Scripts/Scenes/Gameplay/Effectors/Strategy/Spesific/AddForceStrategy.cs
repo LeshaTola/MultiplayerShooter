@@ -6,11 +6,11 @@ using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
 {
-    public class AddForceStrategy : IEffectorStrategy
+    public class AddForceStrategy : EffectorStrategy
     {
         public List<ForceData> _forceData;
         
-        public async UniTask Apply(Player.Player player)
+        public override async UniTask Apply(Player.Player player)
         {
             foreach (var forceData in _forceData)
             {

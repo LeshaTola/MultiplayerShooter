@@ -159,8 +159,8 @@ MonoBehaviour:
   <Id>k__BackingField: RocketLauncher
   <Sprite>k__BackingField: {fileID: 21300000, guid: 956864ed393fbb047902e030c0a8e285, type: 3}
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ed2e485c92857df4db7c05b9305983c7, type: 3}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: d8018506ab4bd914d9b17655ea9c106a, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: c79740913fa415d4890639fad0bc808c, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0ab1db19e0c7be647a7714f734700269, type: 3}
   <MaxAmmoCount>k__BackingField: 1
   <ReloadCooldown>k__BackingField: 2
   <AttackCooldown>k__BackingField: 0

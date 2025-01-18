@@ -28,6 +28,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             {
                 _rb.AddForce(dir * speed, ForceMode.Impulse);
                 await UniTask.Delay(TimeSpan.FromSeconds(_lifeTime), cancellationToken: _cancellationTokenSource.Token);
+                
+                _onColisionAction?.Invoke(transform.position, gameObject);
                 _cancellationTokenSource?.Dispose();
                 PhotonNetwork.Destroy(gameObject);
             }

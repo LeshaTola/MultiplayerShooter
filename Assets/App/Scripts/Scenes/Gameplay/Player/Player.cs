@@ -59,6 +59,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
             NickName = playerName;
             _nickNameUI.Setup(NickName);
             Health.Initialize(_playerConfig.MaxHealth);
+            Health.OnDamage += OnDamage;
+        }
+
+        private void OnDamage(float obj)
+        {
+            PlayerAudioProvider.PlayDamageSound();
         }
 
         private void Update()
