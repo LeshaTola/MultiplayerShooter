@@ -8,6 +8,7 @@ namespace App.Scripts.Features.Inventory
     [CreateAssetMenu(menuName = "Configs/Inventory/GlobalInventory", fileName = "GlobalInventory")]
     public class GlobalInventory: ScriptableObject
     {
+        [field: SerializeField] public List<SkinConfig> SkinConfigs { get; private set; }
         [field: SerializeField] public List<WeaponConfig> Weapons { get; private set; }
         [field: SerializeField] public List<EquipmentConfig> Equipment { get; private set; }
     }

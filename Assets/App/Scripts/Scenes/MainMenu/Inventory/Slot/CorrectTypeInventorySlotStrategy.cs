@@ -58,6 +58,9 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
                     _inventoryProvider.GameInventory.Equipment[inventorySlot.SlotIndex]
                         = equipmentConfig;
                     break;
+                case SkinConfig skinConfig:
+                    _inventoryProvider.GameInventory.Skin = skinConfig;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

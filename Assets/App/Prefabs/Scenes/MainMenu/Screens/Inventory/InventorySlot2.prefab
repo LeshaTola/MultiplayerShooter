@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3019608, g: 0.18431373, b: 0.62352943, a: 1}
+  m_Color: {r: 0.7058824, g: 0.4392157, b: 0.27450982, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -247,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponColor: {r: 0.3019608, g: 0.18431373, b: 0.62352943, a: 1}
   _equipmentColor: {r: 0.20784314, g: 0.5803922, b: 0.20784314, a: 1}
+  _skinColor: {r: 0.7058824, g: 0.4392157, b: 0.27450982, a: 1}
   _image: {fileID: 7164614031678635067}
   _keyText: {fileID: 3113939888482680161}
 --- !u!114 &1003996670353047564

@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 5110892625877943717}
   - component: {fileID: 6642920475438124354}
   - component: {fileID: 2618612351175116522}
+  - component: {fileID: 4677047985132999472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -928,6 +929,7 @@ MonoBehaviour:
   <PlayerAudioProvider>k__BackingField: {fileID: 2618612351175116522}
   <WeaponProvider>k__BackingField: {fileID: 5977931046957955413}
   <Health>k__BackingField: {fileID: 4972400745006171294}
+  <PlayerVisual>k__BackingField: {fileID: 4677047985132999472}
 --- !u!114 &5110892625877943717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,6 +983,20 @@ MonoBehaviour:
   _jumpingCategory: Walking
   _landingCategory: Walking
   _damageCategory: Walking
+--- !u!114 &4677047985132999472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058743405672477868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b659df00e204aa286762a9de22491e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 8083839552742645954}
+  _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
 --- !u!1 &8772563939488847323
 GameObject:
   m_ObjectHideFlags: 0

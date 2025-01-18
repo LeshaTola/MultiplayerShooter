@@ -3233,12 +3233,14 @@ MonoBehaviour:
   _roomsView: {fileID: 1543539614}
   _inventoryScreeen: {fileID: 950457556}
   _gameInventoryView: {fileID: 666204000}
-  _topView: {fileID: 1018091531}
-  _settingsView: {fileID: 1621064469}
   _tabSwitcher: {fileID: 1926981050}
+  _overlayContainer: {fileID: 2073070970}
   _weaponTab: {fileID: 1144632487}
   _equipmentTab: {fileID: 1371495067}
-  _overlayContainer: {fileID: 2073070970}
+  _skinTab: {fileID: 1207197541}
+  _skinSlot: {fileID: 1929346471}
+  _topView: {fileID: 1018091531}
+  _settingsView: {fileID: 1621064469}
 --- !u!4 &653652905
 Transform:
   m_ObjectHideFlags: 0
@@ -5871,6 +5873,17 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1053843666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4684080969900059045, guid: cef00bae916fed34fa7c89bad17e805b, type: 3}
+  m_PrefabInstance: {fileID: 1024552569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1055764712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7001,6 +7014,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163673428}
   m_CullTransparentMesh: 1
+--- !u!114 &1207197541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4505525938289456482, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+  m_PrefabInstance: {fileID: 1440329499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e25d425044b405dab712334bd22f652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1216527023
 GameObject:
   m_ObjectHideFlags: 0
@@ -11324,6 +11348,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed15d1c8730492d448e28c193a2db80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1929346471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8084414276956629369, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+  m_PrefabInstance: {fileID: 1440329499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cdea5e3a874b8eaba441970d8b77b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954891544
 GameObject:
   m_ObjectHideFlags: 0
@@ -11681,6 +11716,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tmProLocalizers:
+  - {fileID: 1053843666}
   - {fileID: 1024552575}
   - {fileID: 1024552574}
   - {fileID: 1024552573}

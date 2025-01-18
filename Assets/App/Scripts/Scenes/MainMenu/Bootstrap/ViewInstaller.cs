@@ -33,6 +33,15 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private InventoryScreeen _inventoryScreeen;
         [SerializeField] private GameInventoryView _gameInventoryView;
         
+        [SerializeField] private TabSwitcher _tabSwitcher;
+        [SerializeField] private RectTransform _overlayContainer;
+        [Space]
+        [SerializeField] private InventoryTab _weaponTab;
+        [SerializeField] private InventoryTab _equipmentTab;
+        [Space]
+        [SerializeField] private InventoryTab _skinTab;
+        [SerializeField] private InventorySlot _skinSlot;
+        
         [Header("TopScreen")]
         [SerializeField] private TopView _topView;
         [SerializeField] private SettingsView _settingsView;
@@ -43,11 +52,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             typeof(InventoryState),
             typeof(MainScreen),
         };
-        
-        [SerializeField] private TabSwitcher _tabSwitcher;
-        [SerializeField] private InventoryTab _weaponTab;
-        [SerializeField] private InventoryTab _equipmentTab;
-        [SerializeField] private RectTransform _overlayContainer;
 
         public override void InstallBindings()
         {
@@ -62,6 +66,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<GameInventoryViewPresenter>().AsSingle().WithArguments(_overlayContainer);
             Container.Bind<InventoryTabPresenter>().To<WeaponTabPresenter>().AsSingle().WithArguments(_overlayContainer,_weaponTab);
             Container.Bind<InventoryTabPresenter>().To<EquipmentTabPresenter>().AsSingle().WithArguments(_overlayContainer, _equipmentTab);
+            Container.Bind<InventoryTabPresenter>().To<SkinsTabPresenter>().AsSingle().WithArguments(_overlayContainer, _skinTab, _skinSlot);
             Container.BindInstance(_inventoryScreeen).AsSingle();
             Container.BindInstance(_gameInventoryView).AsSingle();
             Container.BindInstance(_tabSwitcher).AsSingle();

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
     {
         [SerializeField] private Color _weaponColor = Color.white;
         [SerializeField] private Color _equipmentColor = Color.white;
+        [SerializeField] private Color _skinColor = Color.white;
         [SerializeField] private Image _image;
         [SerializeField] private TextMeshProUGUI _keyText;
         
@@ -21,8 +23,26 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
         {
             _inventorySlotStrategy = inventorySlotStrategy;
             SlotIndex = slotIndex;
-            _image.color = itemType == ItemType.Weapon ? _weaponColor : _equipmentColor;
+            SetColor(itemType);
             _keyText.text = keyText;
+        }
+
+        public void SetColor(ItemType itemType)
+        {
+            switch (itemType)
+            {
+                case ItemType.Weapon:
+                    _image.color =  _weaponColor;
+                    break;
+                case ItemType.Equipment:
+                    _image.color =  _equipmentColor;
+                    break;
+                case ItemType.Skin:
+                    _image.color =  _skinColor;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
+            }
         }
 
         public void OnDrop(PointerEventData eventData)

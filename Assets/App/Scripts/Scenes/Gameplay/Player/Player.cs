@@ -32,6 +32,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [field: SerializeField] public PlayerAudioProvider PlayerAudioProvider { get; private set; }
         [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
         [field: SerializeField] public Health Health { get; private set; }
+        [field: SerializeField] public PlayerVisual PlayerVisual { get; private set; }
 
         private float _velocity;
         private Vector3 _moveDirection;
@@ -203,7 +204,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
             transform.Rotate(Vector3.up * _targetHorizontalOffset );
             RPCSetVertical(_verticalRotation);
         }
-        
 
         private bool IsLanded()
         {

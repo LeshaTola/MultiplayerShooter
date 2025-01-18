@@ -10,6 +10,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
     {
         Weapon,
         Equipment,
+        Skin,
     }
     
     public class Item : MonoBehaviour, IBeginDragHandler , IEndDragHandler , IDragHandler

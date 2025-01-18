@@ -28,6 +28,9 @@ namespace App.Scripts.Features.Inventory
                     = GlobalInventory.Equipment.FirstOrDefault(x => x.Id.Equals(id));
             
             if (config == null)
+                config = GlobalInventory.SkinConfigs.FirstOrDefault(x => x.Id.Equals(id));
+            
+            if (config == null)
             {
                 throw new ArgumentOutOfRangeException();
             }

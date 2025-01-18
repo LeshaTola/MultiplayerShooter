@@ -85,6 +85,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
                 Quaternion.identity).GetComponent<Player>();
             player.Initialize(PhotonNetwork.NickName);
+            player.PlayerVisual.RPCSetSkin(_inventoryProvider.GameInventory.Skin);
             
             _cameraProvider.RegisterCamera(player.VirtualCamera);
             
