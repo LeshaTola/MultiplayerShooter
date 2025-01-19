@@ -19,7 +19,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             Debug.Log("LeaveMatch");
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             _cleanupService.Cleanup();
             PhotonNetwork.LeaveRoom();
             return UniTask.CompletedTask;

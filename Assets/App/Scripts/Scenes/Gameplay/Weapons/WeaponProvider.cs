@@ -4,12 +4,10 @@ using System.Linq;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
-using App.Scripts.Features.Inventory.Weapons;
+using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons
 {
@@ -25,6 +23,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private GameInputProvider _gameInputProvider;
         private InventoryProvider _inventoryProvider;
         private ShootingModeFactory _shootingModeFactory;
+        private PlayerController _playerController;
 
         public Weapon CurrentWeapon { get; private set; }
 
@@ -34,6 +33,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         }
 
         public void Initialize(GameInputProvider gameInputProvider,
+            PlayerController playerController,
             InventoryProvider inventoryProvider, 
             ShootingModeFactory shootingModeFactory,
             Player.Player owner)
@@ -41,6 +41,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _gameInputProvider = gameInputProvider;
             _inventoryProvider = inventoryProvider;
             _shootingModeFactory = shootingModeFactory;
+            _playerController = playerController;
             
             int i = 0;
             foreach (var weapon in _inventoryProvider.GameInventory.Weapons)
@@ -85,6 +86,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void RPCSetWeaponByIndex(int index)
         {
+            if (_playerController.IsBusy)
+            {
+                return;
+            }
+            
             index--;
             index = Math.Clamp(index, 0, Weapons.Count - 1);
             var weapon = Weapons[index];

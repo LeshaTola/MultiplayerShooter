@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Scenes.Gameplay.Cameras;
+using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
@@ -17,6 +18,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
     public class PlayerProvider
     {
         private readonly GameInputProvider _gameInputProvider;
+        private readonly PlayerController _playerController;
         private readonly InventoryProvider _inventoryProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
         private readonly CameraProvider _cameraProvider;
@@ -40,6 +42,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         }
 
         public PlayerProvider(GameInputProvider gameInputProvider,
+            PlayerController playerController,
             List<Transform> spawnPoints,
             Player playerPrefab,
             InventoryProvider inventoryProvider,
@@ -47,6 +50,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             CameraProvider cameraProvider)
         {
             _gameInputProvider = gameInputProvider;
+            _playerController = playerController;
             _spawnPoints = spawnPoints;
             _playerPrefab = playerPrefab;
             _inventoryProvider = inventoryProvider;
@@ -89,7 +93,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             
             _cameraProvider.RegisterCamera(player.VirtualCamera);
             
-            player.WeaponProvider.Initialize(_gameInputProvider, _inventoryProvider,_shootingModeFactory, player);
+            player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,_shootingModeFactory, player);
             return player;
         }
     }

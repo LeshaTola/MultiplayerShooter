@@ -8,6 +8,7 @@ namespace App.Scripts.Features.Input
         public event Action<int> OnNumber;
 
         public event Action OnEsc;
+        public event Action OnEnter;
         public event Action OnR;
         public event Action OnE;
         public event Action OnTabPerformed;
@@ -27,6 +28,7 @@ namespace App.Scripts.Features.Input
             _input.Character.Enable();
 
             _input.Character.ESC.performed += (data) => OnEsc?.Invoke();
+            _input.Character.Enter.performed += (data) => OnEnter?.Invoke();
             _input.Character.R.performed += (data) => OnR?.Invoke();
             _input.Character.E.performed += (data) => OnE?.Invoke();
             _input.Character.Tab.performed += (data) => OnTabPerformed?.Invoke();

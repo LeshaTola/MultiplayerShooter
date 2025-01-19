@@ -43,7 +43,7 @@ namespace App.Scripts.Scenes.Gameplay.EndGame
         public override UniTask Show()
         {
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             
             _mainView.Show();
             _leaderBoardView.Show();

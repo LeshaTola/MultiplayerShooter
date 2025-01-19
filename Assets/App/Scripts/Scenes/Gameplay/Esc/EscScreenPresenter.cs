@@ -22,7 +22,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         private readonly MouseSensivityProvider _mouseSensivityProvider;
         private readonly Modules.StateMachine.StateMachine _stateMachine;
         private readonly IAudioService _audioService;
-        private readonly PlayerController _playerPlayerController;
+        private readonly PlayerController _playerController;
         private readonly GameInputProvider _gameInputProvider;
 
         private bool _isActive;
@@ -31,14 +31,14 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             SettingsView settingsView,
             SettingsProvider settingsProvider,
             Modules.StateMachine.StateMachine stateMachine,
-            PlayerController playerPlayerController,
+            PlayerController playerController,
             GameInputProvider gameInputProvider)
         {
             _escMenuView = escMenuView;
             _settingsView = settingsView;
             _settingsProvider = settingsProvider;
             _stateMachine = stateMachine;
-            _playerPlayerController = playerPlayerController;
+            _playerController = playerController;
             _gameInputProvider = gameInputProvider;
         }
 
@@ -90,7 +90,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         private void Continue()
         {
             Hide();
-            _playerPlayerController.IsBusy = false;
+            _playerController.IsBusy = false;
             _isActive = false;
         }
 
@@ -103,21 +103,21 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         {
             if (!_isActive)
             {
-                if (_playerPlayerController.IsBusy)
+                if (_playerController.IsBusy)
                 {
                     return;
                 }
                 Show();
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                _playerPlayerController.IsBusy = true;
+                Cursor.lockState = CursorLockMode.None;
+                _playerController.IsBusy = true;
             }
             else
             {
                 Hide();
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                _playerPlayerController.IsBusy = false;
+                _playerController.IsBusy = false;
             }
             _isActive = !_isActive;
         }

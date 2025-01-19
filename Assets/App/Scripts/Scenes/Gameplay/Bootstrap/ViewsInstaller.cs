@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Features.Inventory;
+using App.Scripts.Scenes.Gameplay.Chat;
 using App.Scripts.Scenes.Gameplay.EndGame;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
@@ -20,6 +21,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private WeaponView _weaponView;
         [SerializeField] private LeaderBoardView _leaderBoardView;
         [SerializeField] private KillChatView _killChatView;
+        [SerializeField] private ChatView _chatView;
 
         [Header("Respawn")]
         [SerializeField] private RespawnView _respawnView;
@@ -52,6 +54,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<EndGameViewPresenter>().AsSingle();
             
             Container.Bind<KillChatView>().FromInstance(_killChatView).AsSingle();
+            
+            Container.Bind<ChatView>().FromInstance(_chatView).AsSingle();
+            Container.BindInterfacesAndSelfTo<ChatViewPresenter>().AsSingle();
             
             Container.Bind<GameInventoryView>().FromInstance(_view).AsSingle();
             Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>().AsSingle().WithArguments(_overlayContainer);

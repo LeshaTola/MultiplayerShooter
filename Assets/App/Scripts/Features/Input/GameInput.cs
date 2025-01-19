@@ -82,6 +82,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""09ed6c49-e7c3-4e47-8df7-7c839769a3c2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""R"",
                     ""type"": ""Button"",
                     ""id"": ""c3152c32-3d79-4490-a6c5-06d0e84bd68f"",
@@ -352,6 +361,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Tab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ee298a3-53ad-409f-adde-9417bbf39eec"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -366,6 +386,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Character_AttackAlternative = m_Character.FindAction("AttackAlternative", throwIfNotFound: true);
         m_Character_MouseLook = m_Character.FindAction("MouseLook", throwIfNotFound: true);
         m_Character_ESC = m_Character.FindAction("ESC", throwIfNotFound: true);
+        m_Character_Enter = m_Character.FindAction("Enter", throwIfNotFound: true);
         m_Character_R = m_Character.FindAction("R", throwIfNotFound: true);
         m_Character_E = m_Character.FindAction("E", throwIfNotFound: true);
         m_Character_Key1 = m_Character.FindAction("Key1", throwIfNotFound: true);
@@ -446,6 +467,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_AttackAlternative;
     private readonly InputAction m_Character_MouseLook;
     private readonly InputAction m_Character_ESC;
+    private readonly InputAction m_Character_Enter;
     private readonly InputAction m_Character_R;
     private readonly InputAction m_Character_E;
     private readonly InputAction m_Character_Key1;
@@ -464,6 +486,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @AttackAlternative => m_Wrapper.m_Character_AttackAlternative;
         public InputAction @MouseLook => m_Wrapper.m_Character_MouseLook;
         public InputAction @ESC => m_Wrapper.m_Character_ESC;
+        public InputAction @Enter => m_Wrapper.m_Character_Enter;
         public InputAction @R => m_Wrapper.m_Character_R;
         public InputAction @E => m_Wrapper.m_Character_E;
         public InputAction @Key1 => m_Wrapper.m_Character_Key1;
@@ -499,6 +522,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @ESC.started += instance.OnESC;
             @ESC.performed += instance.OnESC;
             @ESC.canceled += instance.OnESC;
+            @Enter.started += instance.OnEnter;
+            @Enter.performed += instance.OnEnter;
+            @Enter.canceled += instance.OnEnter;
             @R.started += instance.OnR;
             @R.performed += instance.OnR;
             @R.canceled += instance.OnR;
@@ -545,6 +571,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @ESC.started -= instance.OnESC;
             @ESC.performed -= instance.OnESC;
             @ESC.canceled -= instance.OnESC;
+            @Enter.started -= instance.OnEnter;
+            @Enter.performed -= instance.OnEnter;
+            @Enter.canceled -= instance.OnEnter;
             @R.started -= instance.OnR;
             @R.performed -= instance.OnR;
             @R.canceled -= instance.OnR;
@@ -594,6 +623,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnAttackAlternative(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
         void OnR(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);
         void OnKey1(InputAction.CallbackContext context);
