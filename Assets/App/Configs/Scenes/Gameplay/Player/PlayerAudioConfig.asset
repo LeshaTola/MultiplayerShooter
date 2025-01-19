@@ -16,10 +16,11 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 8300000, guid: 5a03292cd4820254f9acd6318828737e, type: 3}
-    - {fileID: 8300000, guid: a766b6f646751834aabc943f9e995ca6, type: 3}
-    - {fileID: 8300000, guid: 804b10a22d01d4343bf8019fce932693, type: 3}
+    - {fileID: 8300000, guid: 2563771a94b2e28429a6f80697a47211, type: 3}
     - {fileID: 8300000, guid: 28791e8734dbeb54aa221d99f7c802f6, type: 3}
+    - {fileID: 8300000, guid: b9138f69c590f9348b6098053f6c89c4, type: 3}
+    - {fileID: 8300000, guid: 3d29000ea2cb54b41a14ae95b6dce914, type: 3}
+    - {fileID: 8300000, guid: 43843ac5e1dbec04caed16eda8429dfd, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -38,7 +39,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -51,16 +52,10 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
       Data: 1
     - Name: 
       Entry: 10
-      Data: 2
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -85,7 +80,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 10
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 13
       Data: 
@@ -110,7 +105,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 10
-      Data: 0
+      Data: 2
     - Name: 
       Entry: 13
       Data: 
@@ -135,7 +130,32 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 10
-      Data: 0
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Death
+    - Name: $v
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[UnityEngine.AudioClip, UnityEngine.AudioModule]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 13
       Data: 

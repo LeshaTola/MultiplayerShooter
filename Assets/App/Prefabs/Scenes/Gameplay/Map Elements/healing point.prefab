@@ -125,7 +125,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 43843ac5e1dbec04caed16eda8429dfd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b60724b9558021d4cb8749beac094005, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1.1
@@ -290,10 +290,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 5390771942338903928}
-  _strategies: []
+  _strategies:
+  - rid: 705511980065882130
+  - rid: 705511980065882131
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 705511980065882130
+      type: {class: ChangeHealth, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
+      data:
+        _changeValue: 50
+    - rid: 705511980065882131
+      type: {class: Disable, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
+      data:
+        _effectSpawnPoint: {fileID: 8117575130408590816}
 --- !u!114 &296282980526393513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,4 +539,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effector: {fileID: 2203486027807478541}
-  _respawnTime: 5
+  _respawnTime: 15
