@@ -230,11 +230,22 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             PhotonNetwork.Instantiate(_impactEffect.name, position, Quaternion.identity);
         }
 
-        public void SpawnMuzzleFlash()
+        public void RPCPlayMuzzleFlash()
         {
-            PhotonNetwork.Instantiate(_muzzleFlash.name, ShootPoint.position, ShootPoint.rotation);
+            if (_muzzleFlash == null)
+            {
+                return;
+            }
+
+            photonView.RPC(nameof(PlayMuzzleFlash), RpcTarget.All);
         }
 
+        [PunRPC]
+        private void PlayMuzzleFlash()
+        {
+            _muzzleFlash.Play();
+        }
+        
         public void ChangeAmmoCount(int ammo)
         {
             CurrentAmmoCount += ammo;

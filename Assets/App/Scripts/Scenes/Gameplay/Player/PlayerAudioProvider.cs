@@ -22,8 +22,10 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [Header("Jumping")]
         [SerializeField, ValueDropdown(nameof(GetCategories))] private string _jumpingCategory;
         [SerializeField, ValueDropdown(nameof(GetCategories))] private string _landingCategory;
+        
         [Header("Damage")]
         [SerializeField, ValueDropdown(nameof(GetCategories))] private string _damageCategory;
+        [SerializeField, ValueDropdown(nameof(GetCategories))] private string _healingCategory;
 
         private float _stepTimer;
         
@@ -54,7 +56,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
         
         public void PlayDamageSound()
         {
-            RPCPlaySound(_damageCategory, Random.Range(0,_audioConfig.AudioClips[_damageCategory].Count));
+            PlaySound(_damageCategory, Random.Range(0,_audioConfig.AudioClips[_damageCategory].Count));
+        }
+        
+        public void PlayHealingSound()
+        {
+            PlaySound(_healingCategory, Random.Range(0,_audioConfig.AudioClips[_healingCategory].Count));
         }
         
         public void RPCPlayReloadWeaponSound()

@@ -1,6 +1,4 @@
 ﻿using System;
-using App.Scripts.Modules.ObjectPool.PooledObjects;
-using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;

@@ -11,19 +11,16 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
         [SerializeField] private float _projectileSpeed;
         
         private readonly Camera _camera;
-        private readonly ProjectilesFactory _factory;
 
-        public ProjectilesShootingStrategy(Camera camera, ProjectilesFactory factory)
+        public ProjectilesShootingStrategy(Camera camera)
         {
             _camera = camera;
-            _factory = factory;
         }
 
 
         public override void Shoot()
         {
             base.Shoot();
-            
             var ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
             
             var targetPoint = Physics.Raycast(ray, out var hit) ? hit.point : ray.GetPoint(75);
@@ -33,7 +30,6 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             var direction = directionWithoutSpread + spread;
             direction.Normalize();
             
-            // var projectile = _factory.CreateProjectile(projectile: _projectile);
             var projectile = PhotonNetwork.Instantiate(_projectile.name, Weapon.ShootPoint.position, Quaternion.identity).GetComponent<Projectile>();
             projectile.transform.position = Weapon.ShootPoint.position;
             projectile.transform.forward = direction.normalized;

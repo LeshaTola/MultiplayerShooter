@@ -983,6 +983,7 @@ MonoBehaviour:
   _jumpingCategory: Jump
   _landingCategory: Fall
   _damageCategory: Damage
+  _healingCategory: 
 --- !u!114 &4677047985132999472
 MonoBehaviour:
   m_ObjectHideFlags: 0
