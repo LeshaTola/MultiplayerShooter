@@ -894,4 +894,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Slider>k__BackingField: {fileID: 8245231818717320342}
-  _valueText: {fileID: 7054983354318799575}
+  <ValueText>k__BackingField: {fileID: 7054983354318799575}

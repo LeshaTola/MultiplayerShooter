@@ -1052,7 +1052,7 @@ MonoBehaviour:
   _localizationButton: {fileID: 5860137047216085628}
   _localizationText: {fileID: 2155503712876312930}
   _localizationImage: {fileID: 810515338917904114}
-  _mouseSensitivitySlider: {fileID: 8559218315652356447}
+  _mouseSensitivitySlider: {fileID: 7204440901763823212}
   _masterVolumeSlider: {fileID: 5142974488269222070}
   _musicVolumeSlider: {fileID: 6461094183046184744}
   _sfxVolumeSlider: {fileID: 7597562852606909820}
@@ -1382,6 +1382,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7448902959795043237, guid: ffbbf7bf2e14cc6448e4241cd7c2e424, type: 3}
+      propertyPath: _isAutoHandle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1392,15 +1396,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5598817489277239493, guid: ffbbf7bf2e14cc6448e4241cd7c2e424, type: 3}
   m_PrefabInstance: {fileID: 334534190770752969}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8559218315652356447 stripped
+--- !u!114 &7204440901763823212 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8245231818717320342, guid: ffbbf7bf2e14cc6448e4241cd7c2e424, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7448902959795043237, guid: ffbbf7bf2e14cc6448e4241cd7c2e424, type: 3}
   m_PrefabInstance: {fileID: 334534190770752969}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: e53d6689b62b4ee191fe6c9e7c07b98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1946405572491495914

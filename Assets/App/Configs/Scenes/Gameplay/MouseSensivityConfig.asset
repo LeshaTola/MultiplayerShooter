@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MouseSensivityConfig
   m_EditorClassIdentifier: 
   <MinMaxSensivity>k__BackingField:
-    Min: 1
-    Max: 5
-  <MouseSensivity>k__BackingField: 2
+    Min: 0.25
+    Max: 2
+  <MouseSensivity>k__BackingField: 1

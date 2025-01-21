@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Settings;
+using App.Scripts.Modules.CustomToggles;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
@@ -21,7 +22,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
         [SerializeField] private TextMeshProUGUI _localizationText;
         [SerializeField] private Image _localizationImage;
         [Space]
-        [SerializeField] private Slider _mouseSensitivitySlider;
+        [SerializeField] private SliderCover _mouseSensitivitySlider;
         [Space]
         [SerializeField] private Slider _masterVolumeSlider;
         [SerializeField] private Slider _musicVolumeSlider;
@@ -49,6 +50,17 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
             InitializeAudioSettings(audioService);
         }
 
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+            _settingsProvider.SaveState();
+        }
+
         private void SetLanguage( string curLanguage)
         {
             var  localizationSystem = _settingsProvider.LocalizationSystem;
@@ -66,11 +78,8 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
 
         private void InitializeMouseSensivity(MouseSensivityProvider mouseSensitivityProvider)
         {
-            _mouseSensitivitySlider.value = mouseSensitivityProvider.SensivityNormalized;
-            _mouseSensitivitySlider.onValueChanged.AddListener(value =>
-            {
-                mouseSensitivityProvider.SensivityNormalized = value;
-            });
+            _mouseSensitivitySlider.Slider.onValueChanged.AddListener(OnSensivitySliderChanged);
+            _mouseSensitivitySlider.Slider.value = mouseSensitivityProvider.SensivityNormalized;
         }
 
         private void InitializeAudioSettings(IAudioService audioService)
@@ -93,16 +102,11 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
                 audioService.EffectsVolume= value;
             });
         }
-
-        public void Show()
+        
+        private void OnSensivitySliderChanged(float value)
         {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-            _settingsProvider.SaveState();
+            _settingsProvider.SensivityProvider.SensivityNormalized = value;
+            _mouseSensitivitySlider.ValueText.text = _settingsProvider.SensivityProvider.Sensivity.ToString("0.00");
         }
     }
 }
