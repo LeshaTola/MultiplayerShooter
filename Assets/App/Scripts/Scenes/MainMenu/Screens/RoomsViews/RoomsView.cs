@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using App.Scripts.Modules.PopupAndViews.Views;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,6 +14,8 @@ namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
         [SerializeField] private RectTransform _container;
         [SerializeField] private RoomView _prefab;
 
+        [SerializeField] private Button _quickGameButton;
+        
         [Header("Create Room")]
         [SerializeField] private Button _createRoomButton;
         [SerializeField] private CreateRoomView _createRoomView;
@@ -21,11 +24,18 @@ namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
         public void Initialize()
         {
             _createRoomButton.onClick.AddListener(ShowCreateRoom);
+            _quickGameButton.onClick.AddListener(CreateQuickGame);
+        }
+
+        private void CreateQuickGame()
+        {
+            PhotonNetwork.JoinRandomOrCreateRoom(roomName: "Room");
         }
 
         public void Cleanup()
         {
             _createRoomButton.onClick.RemoveAllListeners();
+            _quickGameButton.onClick.RemoveAllListeners();
         }
 
         public void UpdateRoomListUI(List<RoomInfo> rooms, Action<RoomInfo, string> action)

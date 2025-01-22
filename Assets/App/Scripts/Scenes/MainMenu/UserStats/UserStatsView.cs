@@ -32,6 +32,11 @@ namespace App.Scripts.Scenes.MainMenu.UserProfile
             _playerInputField.text = playerName;
         }
 
+        public void SetupMoney(int money)
+        {
+            _moneyText.text = money.ToString();
+        }
+        
         public void SetupRank(string rankName, Sprite rankSprite, float normalizedExp)
         {
             _rankName.text = rankName;

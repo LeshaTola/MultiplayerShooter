@@ -9,8 +9,9 @@ namespace App.Scripts.Scenes.MainMenu.Roulette.Screen
 {
     public class RouletteScreen : GameScreen
     {
-        public Action OnSpinButtonPressed;
-        
+        public Action SpinButtonPressed;
+
+        [SerializeField] private Image _screenBlocker;
         [SerializeField] private Button _spinButton;
         [SerializeField] private TextMeshProUGUI _ticketsText;
 
@@ -20,7 +21,7 @@ namespace App.Scripts.Scenes.MainMenu.Roulette.Screen
 
         public override void Initialize()
         {
-            _spinButton.onClick.AddListener(()=>OnSpinButtonPressed?.Invoke());
+            _spinButton.onClick.AddListener(()=>SpinButtonPressed?.Invoke());
         }
 
         public override void Cleanup()
@@ -40,6 +41,11 @@ namespace App.Scripts.Scenes.MainMenu.Roulette.Screen
                 var sectorView = Instantiate(_sectorViewPrefab, _sectorViewContainer);
                 sectorView.Setup(sector);
             }
+        }
+
+        public void SetBlockSreen(bool isBlocked)
+        {
+            _screenBlocker.gameObject.SetActive(isBlocked);
         }
     }
 }

@@ -10,13 +10,19 @@ namespace App.Scripts.Scenes.MainMenu.Roulette
     {
         [SerializeField] private RectTransform _sectorParent;
         [SerializeField] private Image _sectorPrefab;
+        
 
-        public UniTask Spin(int spins, float finalAngle, float spinDuration)
+        public UniTask Spin(int spins, float finalAngle, float spinDuration, AnimationCurve spinCurve)
         {
             float targetRotation = 360f * spins + finalAngle;
             return _sectorParent
-                .DORotate(new Vector3(0, 0, -targetRotation), spinDuration, RotateMode.FastBeyond360)
-                .SetEase(Ease.OutCubic).ToUniTask();
+                .DORotate(new Vector3(0, 0, targetRotation), spinDuration, RotateMode.FastBeyond360)
+                .SetEase(spinCurve).ToUniTask();
+        }
+
+        public void SpinToDefault()
+        {
+            _sectorParent.DORotate(new Vector3(0, 0, 0), 0.3f, RotateMode.FastBeyond360);
         }
 
         public void CreateSector(SectorConfig config, float currentFill)

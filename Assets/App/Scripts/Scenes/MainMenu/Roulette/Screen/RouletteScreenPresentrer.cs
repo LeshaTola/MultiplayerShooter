@@ -1,10 +1,13 @@
 ﻿using App.Scripts.Features.Screens;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Roulette.Configs;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Roulette.Screen
 {
-    public class RouletteScreenPresentrer : GameScreenPresenter
+    public class RouletteScreenPresentrer : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly RouletteConfig _rouletteConfig;
         private readonly RouletteScreen _rouletteScreen;
@@ -21,13 +24,24 @@ namespace App.Scripts.Scenes.MainMenu.Roulette.Screen
 
         public override void Initialize()
         {
+            _rouletteScreen.SpinButtonPressed += OnSpinButtonPressed;
             _rouletteScreen.Setup(_rouletteConfig);
             _rouletteScreen.Initialize();
             _roulette.GenerateRoulette();
         }
 
+        private async void OnSpinButtonPressed()
+        {
+            _rouletteScreen.SetBlockSreen(true);
+             var angle = await _roulette.SpinRoulette();
+             var result = _roulette.GetConfigByAngle(angle);
+             Debug.Log($"Angle: {angle} Sector: {result.Name}");
+            _rouletteScreen.SetBlockSreen(false);
+        }
+
         public override void Cleanup()
         {
+            _rouletteScreen.SpinButtonPressed -= OnSpinButtonPressed;
             _rouletteScreen.Cleanup();
         }
 

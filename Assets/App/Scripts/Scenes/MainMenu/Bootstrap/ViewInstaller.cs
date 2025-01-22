@@ -8,6 +8,9 @@ using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
+using App.Scripts.Scenes.MainMenu.Roulette;
+using App.Scripts.Scenes.MainMenu.Roulette.Configs;
+using App.Scripts.Scenes.MainMenu.Roulette.Screen;
 using App.Scripts.Scenes.MainMenu.Screens;
 using App.Scripts.Scenes.MainMenu.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
@@ -42,6 +45,11 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private InventoryTab _skinTab;
         [SerializeField] private InventorySlot _skinSlot;
         
+        [Header("Roulette")]
+        [SerializeField] private RouletteConfig _rouletteConfig;
+        [SerializeField] private RouletteScreen _rouletteScreen;
+        [SerializeField] private RouletteView _rouletteView;
+        
         [Header("TopScreen")]
         [SerializeField] private TopView _topView;
         [SerializeField] private SettingsView _settingsView;
@@ -70,6 +78,11 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.BindInstance(_inventoryScreeen).AsSingle();
             Container.BindInstance(_gameInventoryView).AsSingle();
             Container.BindInstance(_tabSwitcher).AsSingle();
+            
+            Container.BindInstance(_rouletteScreen).AsSingle();
+            Container.BindInstance(_rouletteView).AsSingle();
+            Container.Bind<Roulette.Roulette>().AsSingle().WithArguments(_rouletteConfig);
+            Container.BindInterfacesAndSelfTo<RouletteScreenPresentrer>().AsSingle().WithArguments(_rouletteConfig);
             
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();
             Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();

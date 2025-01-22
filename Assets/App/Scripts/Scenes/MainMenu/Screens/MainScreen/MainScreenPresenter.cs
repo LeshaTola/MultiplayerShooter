@@ -3,6 +3,7 @@ using App.Scripts.Features;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine;
+using App.Scripts.Scenes.MainMenu.Roulette.Screen;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using App.Scripts.Scenes.MainMenu.UserProfile;
 using Cysharp.Threading.Tasks;
@@ -16,24 +17,31 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         private readonly MainScreen _screen;
         private readonly StateMachine _stateMachine;
         private readonly ConnectionProvider _connectionProvider;
-        private readonly UserStatsProvider _userStatsProvider;
+        private readonly UserRankProvider _userRankProvider;
+        private readonly CoinsProvider _coinsProvider;
+        private readonly TicketsProvider _ticketsProvider;
         private readonly UserStatsView _userStatsView;
 
         public MainScreenPresenter(MainScreen screen,
             StateMachine stateMachine, 
             ConnectionProvider connectionProvider,
-            UserStatsProvider userStatsProvider,
+            UserRankProvider userRankProvider,
+            CoinsProvider coinsProvider,
+            TicketsProvider ticketsProvider,
             UserStatsView userStatsView)
         {
             _screen = screen;
             _stateMachine = stateMachine;
             _connectionProvider = connectionProvider;
-            _userStatsProvider = userStatsProvider;
+            _userRankProvider = userRankProvider;
+            _coinsProvider = coinsProvider;
+            _ticketsProvider = ticketsProvider;
             _userStatsView = userStatsView;
         }
 
         public override void Initialize()
         {
+            _screen.RouletteButtonAction += OnRouletteButtonAction;
             _screen.PlayButtonAction += OnPlayButtonAction;
             _screen.Initialize();
             
@@ -44,14 +52,16 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         public void Setup()
         {
             _userStatsView.Setup(PhotonNetwork.NickName);
-            
-            var rank = _userStatsProvider.CurrentRank;
-            var normalizedExp =_userStatsProvider.Experience/ rank.ExpForRank;
+            var rank = _userRankProvider.CurrentRank;
+            var normalizedExp =_userRankProvider.Experience/ rank.ExpForRank;
             _userStatsView.SetupRank(rank.Name, rank.Sprite, normalizedExp);
+            _userStatsView.SetupMoney(_coinsProvider.Coins);
+            _screen.SetTicketsCount(_ticketsProvider.Tickets);
         }
 
         public override void Cleanup()
         {
+            _screen.RouletteButtonAction -= OnRouletteButtonAction;
             _screen.PlayButtonAction -= OnPlayButtonAction;
             _screen.Cleanup();
             
@@ -83,7 +93,12 @@ namespace App.Scripts.Scenes.MainMenu.Screens.MainScreen
         {
             _connectionProvider.QuickGame();
         }
-
+        
+        private async void OnRouletteButtonAction()
+        {
+            await _stateMachine.ChangeState<RouletteState>();
+        }
+        
         private void OnPlayerNameChanged(string name)
         {
             PlayerPrefs.SetString(ConnectionProvider.NAME_DATA, name);

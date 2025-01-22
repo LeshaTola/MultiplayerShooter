@@ -3,7 +3,7 @@ using App.Scripts.Features.PlayerStats.Rank.Configs;
 
 namespace App.Scripts.Features.PlayerStats
 {
-    public class UserStatsProvider
+    public class UserRankProvider
     {
         public event Action OnExperienceChanded;
         
@@ -12,28 +12,26 @@ namespace App.Scripts.Features.PlayerStats
         public int Experience { get; private set; }
         public int CurrentRankId { get; private set; }
         public RankData CurrentRank =>_ranksDatabase.Ranks[CurrentRankId];
-
-        public int ExperienceToAdd { get; set; }
-
-        public UserStatsProvider(RanksDatabase ranksDatabase)
+        
+        public UserRankProvider(RanksDatabase ranksDatabase)
         {
             _ranksDatabase = ranksDatabase;
         }
-
-        public int AddExperience()
+        
+        public int AddExperience(int experience)
         {
             int levelUps = 0;
-            if (ExperienceToAdd < 0)
+            if (experience < 0)
             {
                 return 0;
             }
 
-            while (ExperienceToAdd > CurrentRank.ExpForRank)
+            while (experience > CurrentRank.ExpForRank)
             {
                 levelUps++;
-                ExperienceToAdd -= CurrentRank.ExpForRank;
+                experience -= CurrentRank.ExpForRank;
             }
-            Experience += ExperienceToAdd;
+            Experience += experience;
             
             OnExperienceChanded?.Invoke();
             return levelUps;

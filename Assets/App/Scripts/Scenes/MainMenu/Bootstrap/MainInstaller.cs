@@ -1,4 +1,6 @@
 ﻿using App.Scripts.Features.Inventory;
+using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.Factories.MonoFactories;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
@@ -20,6 +22,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private InventorySlot _slotTemplate;
         [SerializeField] private Item _itemTemplate;
 
+        [Header("UserStats")]
+        [SerializeField] private RanksDatabase _ranksDatabase;
+
         public override void InstallBindings()
         {
             Container.Bind<IUpdateService>().To<UpdateService>().AsSingle();
@@ -30,6 +35,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
             Container.Bind<ICameraSwitcher>().To<CameraSwitcher>().AsSingle().WithArguments(_camerasDatabase);
             
+            Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
+            Container.Bind<CoinsProvider>().AsSingle();
+            Container.Bind<TicketsProvider>().AsSingle();
             
             BindSlotFactory();
             BindItemFactory();

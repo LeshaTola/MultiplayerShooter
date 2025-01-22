@@ -15,9 +15,9 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 
         public override async UniTask Enter()
         {
+            _mainScreenPresenter.Setup();
             _mainScreenPresenter.Initialize();
             await _mainScreenPresenter.Show();
-            _mainScreenPresenter.Setup();
         }
 
         public override async UniTask Exit()

@@ -1,18 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Scenes.MainMenu.Roulette.Configs;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Scenes.MainMenu.Roulette
 {
     public class Roulette
     {
-        private RouletteView _view;
-        private RouletteConfig _config;
+        private readonly RouletteView _view;
+        private readonly RouletteConfig _config;
 
         private List<float> _sectorAngles;
         private float _currentRotation;
+
+        public Roulette(RouletteView view, RouletteConfig config)
+        {
+            _view = view;
+            _config = config;
+        }
 
         public void GenerateRoulette()
         {
@@ -33,13 +41,15 @@ namespace App.Scripts.Scenes.MainMenu.Roulette
         public async UniTask<float> SpinRoulette()
         {
             float angle = Random.Range(0, 360);
-            await _view.Spin(_config.SpinCount.GetRandom(), _config.SpinDuration, angle);
+            await _view.Spin(_config.SpinCount.GetRandom(),angle , _config.SpinDuration, _config.SpinCurve);
+            await UniTask.Delay(TimeSpan.FromSeconds(_config.ShowDuration));
+            _view.SpinToDefault();
             return angle;
         }
 
         public SectorConfig GetConfigByAngle(float finalAngle)
         {
-            float normalizedAngle = (360f - finalAngle) % 360f;
+            float normalizedAngle = finalAngle % 360f;
 
             for (int i = 0; i < _sectorAngles.Count; i++)
             {
@@ -48,7 +58,6 @@ namespace App.Scripts.Scenes.MainMenu.Roulette
 
                 if (normalizedAngle >= startAngle && normalizedAngle < endAngle)
                 {
-                    Debug.Log($"Сектор {i + 1}: Цвет {_config.Sectors[i].Color}");
                     return _config.Sectors[i];
                 }
             }

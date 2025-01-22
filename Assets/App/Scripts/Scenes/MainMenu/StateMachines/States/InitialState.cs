@@ -54,9 +54,10 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
             await StateMachine.ChangeState<MainState>();
         }
 
-        public override async UniTask Exit()
+        public override UniTask Exit()
         {
-            await _sceneTransition.PlayOffAsync();
+            _sceneTransition.PlayOffAsync().Forget();
+            return UniTask.CompletedTask;
         }
     }
 }

@@ -9,16 +9,16 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
     public class LeaderBoardProvider 
     {
-        private UserStatsProvider _userStatsProvider;
+        private UserRankProvider _userRankProvider;
         
         private int _kills = 0;
         private int _death = 0;
 
         public static LeaderBoardProvider Instance {get; private set;}
         
-        public LeaderBoardProvider(UserStatsProvider userStatsProvider)
+        public LeaderBoardProvider(UserRankProvider userRankProvider)
         {
-            _userStatsProvider = userStatsProvider;
+            _userRankProvider = userRankProvider;
             Instance = this;
             UpdateTable();
         }
@@ -67,7 +67,7 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         {
             var pingProp = new ExitGames.Client.Photon.Hashtable
             {
-                ["Rank"] = _userStatsProvider.CurrentRankId,
+                ["Rank"] = _userRankProvider.CurrentRankId,
                 ["Ping"] = PhotonNetwork.GetPing(),
                 ["Kills"] = _kills,
                 ["Death"] = _death
