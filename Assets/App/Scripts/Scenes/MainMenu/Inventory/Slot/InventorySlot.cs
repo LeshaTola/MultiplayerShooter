@@ -12,15 +12,18 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
         [SerializeField] private Color _equipmentColor = Color.white;
         [SerializeField] private Color _skinColor = Color.white;
         [SerializeField] private Image _image;
+        [SerializeField] private Image _selectionImage;
         [SerializeField] private TextMeshProUGUI _keyText;
         
         private IInventorySlotStrategy _inventorySlotStrategy;
+        public ItemType Type { get; private set; }
         public int SlotIndex { get; private set; }
         public Item Item { get; set; }
 
         public void Initialize(IInventorySlotStrategy inventorySlotStrategy,
             int slotIndex,string keyText = "" ,ItemType itemType = ItemType.Weapon)
         {
+            Type = itemType;
             _inventorySlotStrategy = inventorySlotStrategy;
             SlotIndex = slotIndex;
             SetColor(itemType);
@@ -43,6 +46,16 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
                 default:
                     throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
             }
+        }
+
+        public void Select()
+        {
+            _selectionImage.gameObject.SetActive(true);
+        }
+
+        public void Unselect()
+        {
+            _selectionImage.gameObject.SetActive(false);
         }
 
         public void OnDrop(PointerEventData eventData)

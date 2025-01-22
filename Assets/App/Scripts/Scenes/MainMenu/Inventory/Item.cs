@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         Skin,
     }
     
-    public class Item : MonoBehaviour, IBeginDragHandler , IEndDragHandler , IDragHandler
+    public class Item : MonoBehaviour, IBeginDragHandler , IEndDragHandler , IDragHandler, IPointerClickHandler
     {
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private Image _image;
@@ -21,6 +22,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         private Transform _overlayParent;
 
         private InventorySlot _curentSlot;
+        private SelectionProvider _selectionProvider;
 
         public InventorySlot CurentSlot
         {
@@ -35,8 +37,13 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         public string ConfigId { get; private set; }
         public ItemType Type { get; private set; }
         
-        public void Initialize(Transform overlayParent, Sprite sprite, string id, ItemType type = ItemType.Weapon)
+        public void Initialize(SelectionProvider selectionProvider,
+            Transform overlayParent,
+            Sprite sprite,
+            string id,
+            ItemType type = ItemType.Weapon)
         {
+            _selectionProvider = selectionProvider;
             _overlayParent = overlayParent;
             _image.sprite = sprite;
             
@@ -46,7 +53,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
         
         public void OnBeginDrag(PointerEventData eventData)
         {
-            transform.SetParent(_overlayParent);
+            transform.SetParent(_overlayParent,false);
             _image.raycastTarget = false;
         }
 
@@ -58,9 +65,19 @@ namespace App.Scripts.Scenes.MainMenu.Inventory
 
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position = Input.mousePosition;
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                _rectTransform,
+                eventData.position,
+                Camera.main, 
+                out Vector3 worldPoint);
+            _rectTransform.position = worldPoint;
         }
-        
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _selectionProvider.Select(_curentSlot);
+        }
+
         public void MoveToParent()
         {
             transform.SetParent(CurentSlot.transform, false);

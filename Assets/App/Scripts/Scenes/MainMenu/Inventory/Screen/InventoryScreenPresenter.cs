@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
@@ -9,7 +11,7 @@ using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
 {
-    public class InventoryScreenPresenter : GameScreenPresenter
+    public class InventoryScreenPresenter : GameScreenPresenter , IInitializable, ICleanupable
     {
         private readonly InventoryScreeen _inventoryScreeen;
         private readonly TabSwitcher _tabSwitcher;
@@ -57,6 +59,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
 
         public override async UniTask Show()
         {
+            _tabSwitcher.Show();
             var tasks = new List<UniTask>
             {
                 _userStatsView.Show(),
@@ -73,7 +76,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Screen
                 _inventoryScreeen.Hide()
             };
             await UniTask.WhenAll(tasks);
-            
+            _tabSwitcher.Hide();
         }
     }
 }

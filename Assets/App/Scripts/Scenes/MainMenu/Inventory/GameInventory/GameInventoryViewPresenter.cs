@@ -6,6 +6,7 @@ using App.Scripts.Modules.Factories;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
@@ -13,17 +14,20 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
     public class GameInventoryViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly GameInventoryView _view;
+        private readonly SelectionProvider _selectionProvider;
         private readonly InventoryProvider _inventoryProvider;
         private readonly IFactory<InventorySlot> _inventorySlotFactory;
         private readonly IFactory<Item> _itemFactory;
         private readonly RectTransform _overlayTransform;
 
         public GameInventoryViewPresenter(GameInventoryView view,
+            SelectionProvider selectionProvider,
             InventoryProvider inventoryProvider,
             IFactory<InventorySlot> inventorySlotFactory,
             IFactory<Item> itemFactory, RectTransform overlayTransform)
         {
             _view = view;
+            _selectionProvider = selectionProvider;
             _inventoryProvider = inventoryProvider;
             _inventorySlotFactory = inventorySlotFactory;
             _itemFactory = itemFactory;
@@ -38,7 +42,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
             {
                 var slot = _inventorySlotFactory.GetItem();
                 slot.Initialize(
-                    new CorrectTypeInventorySlotStrategy(ItemType.Weapon, _inventoryProvider, _itemFactory, _view), i, $"{i+1}");
+                    new CorrectTypeInventorySlotStrategy(_selectionProvider, ItemType.Weapon, _inventoryProvider, _itemFactory, _view), i, $"{i+1}");
                 _view.AddWeaponSlot(slot);
 
                 SpawnItem(_inventoryProvider.GameInventory.Weapons[i], slot);
@@ -49,7 +53,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
                 var slot = _inventorySlotFactory.GetItem();
                 var key = i == 0 ? "Q" : "E";//TODO: REMOVE HARDCODE
                 slot.Initialize(
-                    new CorrectTypeInventorySlotStrategy(ItemType.Equipment, _inventoryProvider, _itemFactory, _view),
+                    new CorrectTypeInventorySlotStrategy(_selectionProvider, ItemType.Equipment, _inventoryProvider, _itemFactory, _view),
                     i,key, ItemType.Equipment);
                 _view.AddEquipmentSlot(slot);
 
@@ -67,7 +71,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
             var type = itemConfig is WeaponConfig ? ItemType.Weapon : ItemType.Equipment;
 
             var item = _itemFactory.GetItem();
-            item.Initialize(_overlayTransform, itemConfig.Sprite, itemConfig.Id, type);
+            item.Initialize(_selectionProvider, _overlayTransform, itemConfig.Sprite, itemConfig.Id, type);
             item.CurentSlot = slot;
             item.MoveToParent();
         }

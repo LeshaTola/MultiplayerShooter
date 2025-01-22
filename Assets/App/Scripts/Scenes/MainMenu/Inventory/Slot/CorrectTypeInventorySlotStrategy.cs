@@ -6,6 +6,7 @@ using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
 using Object = UnityEngine.Object;
 
 namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
@@ -16,12 +17,15 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
         private readonly InventoryProvider _inventoryProvider;
         private readonly IFactory<Item> _itemFactory;
         private readonly GameInventoryView _gameInventoryView;
+        private readonly SelectionProvider _selectionProvider;
 
-        public CorrectTypeInventorySlotStrategy(ItemType correctType,
+        public CorrectTypeInventorySlotStrategy(SelectionProvider selectionProvider,
+            ItemType correctType,
             InventoryProvider inventoryProvider,
             IFactory<Item> itemFactory,
             GameInventoryView gameInventoryView)
         {
+            _selectionProvider = selectionProvider;
             _correctType = correctType;
             _inventoryProvider = inventoryProvider;
             _itemFactory = itemFactory;
@@ -44,7 +48,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
 
             var config = _inventoryProvider.GetConfigById(item.ConfigId);
             var newItem = _itemFactory.GetItem();
-            newItem.Initialize(item.transform.parent, config.Sprite, config.Id, item.Type);
+            newItem.Initialize(_selectionProvider, item.transform.parent, config.Sprite, config.Id, item.Type);
             newItem.CurentSlot = inventorySlot;
             newItem.MoveToParent();
 

@@ -21,17 +21,109 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: <Stats>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[System.ValueTuple`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0410\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0442\u0441\u0440\u0435\u043B"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0423\u0440\u043E\u043D"
+    - Name: Item2
+      Entry: 1
+      Data: 17
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: 24
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0421\u043A\u043E\u043A\u0440\u043E\u0441\u0442\u044C \u0441\u0440\u0435\u043B\u044C\u0431\u044B"
+    - Name: Item2
+      Entry: 1
+      Data: 0.07
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0410\u043B\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u0430\u043D\u044F
+        \u0430\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u041F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u0435"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0421\u0438\u043B\u0430 \u043F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u044F"
+    - Name: Item2
+      Entry: 1
+      Data: x1.25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 0|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
+      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
-      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+      Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
       Data: 2
@@ -55,18 +147,18 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 4|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
+      Data: 5|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 14
+      Data: 17
     - Name: 
       Entry: 8
       Data: 
@@ -87,15 +179,15 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 5|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
+      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
+      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
-      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
       Data: 0
@@ -119,7 +211,7 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+      Data: 9|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -146,10 +238,10 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: UZI
-  <Sprite>k__BackingField: {fileID: 21300000, guid: f7597fd778888844db0106912e8a77e3, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 2f38be79c46c99044851e65f8826ffc2, type: 3}
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 85aebadfbcb600b44914b576b6699be6, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: d8018506ab4bd914d9b17655ea9c106a, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
   <MaxAmmoCount>k__BackingField: 24
   <ReloadCooldown>k__BackingField: 1
-  <AttackCooldown>k__BackingField: 0.1
+  <AttackCooldown>k__BackingField: 0.07

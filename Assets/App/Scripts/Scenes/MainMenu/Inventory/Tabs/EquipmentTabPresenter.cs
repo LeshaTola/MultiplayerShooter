@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
                 var slot = SlotFactory.GetItem();
                 slot.Initialize(new NoneInventorySlotStrategy(), -1, "",ItemType.Equipment);
                 var item = ItemFactory.GetItem();
-                item.Initialize(OverlayTransform, weapon.Sprite, weapon.Id, ItemType.Equipment);
+                item.Initialize(null, OverlayTransform, weapon.Sprite, weapon.Id, ItemType.Equipment);//TODO null isnt correct;
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);

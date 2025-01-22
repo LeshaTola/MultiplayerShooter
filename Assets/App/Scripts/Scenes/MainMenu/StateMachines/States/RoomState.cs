@@ -20,7 +20,6 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 
         public override async UniTask Enter()
         {
-            _roomsViewPresenter.Initialize();
             _roomsProviders.OnRoomListUpdated += OnRoomListUpdated;
             OnRoomListUpdated(_roomsProviders.Rooms);
             await _roomsViewPresenter.Show();
@@ -28,7 +27,6 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 
         public override async UniTask Exit()
         {
-            _roomsViewPresenter.Cleanup();
             _roomsProviders.OnRoomListUpdated -= OnRoomListUpdated;
             await _roomsViewPresenter.Hide();
         }

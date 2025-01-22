@@ -10,6 +10,7 @@ using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
+using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
 using UnityEngine;
 using Zenject;
 
@@ -59,7 +60,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<ChatViewPresenter>().AsSingle();
             
             Container.Bind<GameInventoryView>().FromInstance(_view).AsSingle();
-            Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>().AsSingle().WithArguments(_overlayContainer);
+            Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>().AsSingle().WithArguments(new SelectionProvider(),_overlayContainer);
         }
     }
 }

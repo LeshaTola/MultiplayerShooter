@@ -2,6 +2,7 @@
 using App.Scripts.Scenes.MainMenu.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 {
@@ -16,13 +17,11 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 
         public override async UniTask Enter()
         {
-            _inventoryScreenPresenter.Initialize();
             await _inventoryScreenPresenter.Show();
         }
 
         public override async UniTask Exit()
         {
-            _inventoryScreenPresenter.Cleanup();
             await _inventoryScreenPresenter.Hide();
         }
     }

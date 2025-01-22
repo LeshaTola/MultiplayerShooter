@@ -2,6 +2,8 @@
 using System.Linq;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
@@ -10,17 +12,15 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Screens.RoomsViews
 {
-    public class RoomsViewPresenter : GameScreenPresenter
+    public class RoomsViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly RoomsView _view;
-        private readonly StateMachine _stateMachine;
 
         private Dictionary<string, RoomInfo> _cachedRoomList = new();
 
-        public RoomsViewPresenter(RoomsView view, StateMachine stateMachine)
+        public RoomsViewPresenter(RoomsView view)
         {
             _view = view;
-            _stateMachine = stateMachine;
         }
 
         public override void Initialize()

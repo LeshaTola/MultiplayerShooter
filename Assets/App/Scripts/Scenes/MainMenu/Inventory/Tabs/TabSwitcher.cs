@@ -10,6 +10,8 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
         [SerializeField] List<GameScreen> _tabs = new();
         [SerializeField] List<ToggleCustom> _toggles = new();
 
+        private int _tabIndex;
+        
         public void Initialize()
         {
             foreach (var toggle in _toggles)
@@ -22,7 +24,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
                 tab.Hide();
             }
 
-            _tabs[0].Show();
+            _tabIndex = 0;
         }
 
         public void Cleanup()
@@ -41,6 +43,17 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
                 return;
             }
             _tabs[index].Show();
+            _tabIndex = index;
+        }
+
+        public void Show()
+        {
+            _tabs[_tabIndex].Show();
+        }
+
+        public void Hide()
+        {
+            _tabs[_tabIndex].Hide();
         }
     }
 }

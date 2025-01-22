@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace App.Scripts.Features.Inventory.Configs
         [field: SerializeField] public int MaxAmmoCount { get; private set; }
         [field: SerializeField] public float ReloadCooldown { get; private set; }
         [field: SerializeField] public float AttackCooldown { get; private set; }
+        
+        [field: SerializeField] public List<(string, string)> Stats { get; private set; }
 
 
         [field: HorizontalGroup(GroupID = "Attack")]
