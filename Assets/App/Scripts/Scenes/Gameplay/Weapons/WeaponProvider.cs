@@ -25,6 +25,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private ShootingModeFactory _shootingModeFactory;
         private PlayerController _playerController;
 
+        private int _weaponIndex;
         public Weapon CurrentWeapon { get; private set; }
 
         public void OnDestroy()
@@ -70,8 +71,25 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
             
             _gameInputProvider.OnNumber += RPCSetWeaponByIndex;
+            _gameInputProvider.OnScrollWheel += OnScrollWheel;
             var index = Weapons.FindIndex(x=>x);
             RPCSetWeaponByIndex(index + 1);
+        }
+
+        private void OnScrollWheel(float scroll)
+        {
+            _weaponIndex = scroll > 0 ? _weaponIndex - 1 : _weaponIndex + 1;
+            if (_weaponIndex == -1)
+            {
+                _weaponIndex = Weapons.Count - 1;
+            }
+
+            if (_weaponIndex == Weapons.Count)
+            {
+                _weaponIndex = 0;
+            }
+            
+            RPCSetWeaponByIndex(_weaponIndex + 1);
         }
 
         public void Cleanup()
@@ -82,6 +100,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
             
             _gameInputProvider.OnNumber -= RPCSetWeaponByIndex;
+            _gameInputProvider.OnScrollWheel -= OnScrollWheel;
         }
 
         private void RPCSetWeaponByIndex(int index)
@@ -93,6 +112,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             
             index--;
             index = Math.Clamp(index, 0, Weapons.Count - 1);
+            _weaponIndex = index;
+            
             var weapon = Weapons[index];
             if (!weapon || weapon == CurrentWeapon)
             {

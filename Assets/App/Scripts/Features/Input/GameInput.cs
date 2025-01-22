@@ -161,6 +161,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""dae7f685-317b-4923-89fb-96b39e1b1ba2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -372,6 +381,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4040fd3-57e2-4d89-98b2-aeae551846d7"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -395,6 +415,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Character_Key4 = m_Character.FindAction("Key4", throwIfNotFound: true);
         m_Character_Key5 = m_Character.FindAction("Key5", throwIfNotFound: true);
         m_Character_Tab = m_Character.FindAction("Tab", throwIfNotFound: true);
+        m_Character_MouseScroll = m_Character.FindAction("MouseScroll", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -476,6 +497,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Key4;
     private readonly InputAction m_Character_Key5;
     private readonly InputAction m_Character_Tab;
+    private readonly InputAction m_Character_MouseScroll;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
@@ -495,6 +517,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Key4 => m_Wrapper.m_Character_Key4;
         public InputAction @Key5 => m_Wrapper.m_Character_Key5;
         public InputAction @Tab => m_Wrapper.m_Character_Tab;
+        public InputAction @MouseScroll => m_Wrapper.m_Character_MouseScroll;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -549,6 +572,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Tab.started += instance.OnTab;
             @Tab.performed += instance.OnTab;
             @Tab.canceled += instance.OnTab;
+            @MouseScroll.started += instance.OnMouseScroll;
+            @MouseScroll.performed += instance.OnMouseScroll;
+            @MouseScroll.canceled += instance.OnMouseScroll;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -598,6 +624,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Tab.started -= instance.OnTab;
             @Tab.performed -= instance.OnTab;
             @Tab.canceled -= instance.OnTab;
+            @MouseScroll.started -= instance.OnMouseScroll;
+            @MouseScroll.performed -= instance.OnMouseScroll;
+            @MouseScroll.canceled -= instance.OnMouseScroll;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -632,5 +661,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnKey4(InputAction.CallbackContext context);
         void OnKey5(InputAction.CallbackContext context);
         void OnTab(InputAction.CallbackContext context);
+        void OnMouseScroll(InputAction.CallbackContext context);
     }
 }

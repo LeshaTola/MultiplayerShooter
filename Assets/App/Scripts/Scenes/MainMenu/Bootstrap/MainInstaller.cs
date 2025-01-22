@@ -22,9 +22,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private InventorySlot _slotTemplate;
         [SerializeField] private Item _itemTemplate;
 
-        [Header("UserStats")]
-        [SerializeField] private RanksDatabase _ranksDatabase;
-
         public override void InstallBindings()
         {
             Container.Bind<IUpdateService>().To<UpdateService>().AsSingle();
@@ -35,7 +32,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
             Container.Bind<ICameraSwitcher>().To<CameraSwitcher>().AsSingle().WithArguments(_camerasDatabase);
             
-            Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
             Container.Bind<CoinsProvider>().AsSingle();
             Container.Bind<TicketsProvider>().AsSingle();
             

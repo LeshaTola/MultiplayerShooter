@@ -1,6 +1,8 @@
 ﻿using App.Scripts.Features.Commands;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
 using App.Scripts.Features.Settings;
@@ -37,9 +39,11 @@ namespace App.Scripts.Features.Bootstrap
 
         [Header("Inventory")]
         [SerializeField] private GameInventory _gameInventory;
-
         [SerializeField] private GlobalInventory _globalInventory;
 
+        [Header("UserStats")]
+        [SerializeField] private RanksDatabase _ranksDatabase;
+        
         [Header("Settings")]
         [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
 
@@ -79,8 +83,10 @@ namespace App.Scripts.Features.Bootstrap
 
             Container.Bind<PresentersProvider>().AsSingle();
             Container.Bind<GameInputProvider>().AsSingle();
+            
             Container.Bind<RewardService>().AsSingle();
-
+            Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
+            
             Container.Bind<InventoryProvider>().AsSingle().WithArguments(_gameInventory, _globalInventory);
         }
 

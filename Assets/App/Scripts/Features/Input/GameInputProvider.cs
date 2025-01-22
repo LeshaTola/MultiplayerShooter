@@ -19,6 +19,7 @@ namespace App.Scripts.Features.Input
         public event Action OnRightMouseStarted;
         public event Action OnRightMouseCanceled;
         public event Action OnSpace;
+        public event Action<float> OnScrollWheel;
 
         private readonly GameInput _input;
 
@@ -46,6 +47,7 @@ namespace App.Scripts.Features.Input
             
             _input.Character.AttackAlternative.started += (data) => OnRightMouseStarted?.Invoke();
             _input.Character.AttackAlternative.canceled += (data) => OnRightMouseCanceled?.Invoke();
+            _input.Character.MouseScroll.performed += (data) => OnScrollWheel?.Invoke(data.ReadValue<float>());
         }
         
         public Vector2 GetMovementNormalized()

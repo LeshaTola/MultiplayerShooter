@@ -985,6 +985,7 @@ MonoBehaviour:
   _roomsProvider: {fileID: 1791732053}
   _slotTemplate: {fileID: -5099056684500095587, guid: 401627d9b034c2f4182840200af28056, type: 3}
   _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
+  _ranksDatabase: {fileID: 11400000, guid: a6a7b0daa0c7c7447af3dd31a3423486, type: 2}
 --- !u!114 &724108593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4980566883030904272, guid: ebd935bcfddce3040b9574df5159150a, type: 3}

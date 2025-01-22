@@ -12758,6 +12758,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3399521026819288296, guid: 89cfa981a10936840992cf383453a694, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3411330569322404898, guid: 89cfa981a10936840992cf383453a694, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -13048,11 +13052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6400653846088929175, guid: 89cfa981a10936840992cf383453a694, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6400653846088929175, guid: 89cfa981a10936840992cf383453a694, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6418926867266762235, guid: 89cfa981a10936840992cf383453a694, type: 3}
       propertyPath: m_AnchorMax.y
