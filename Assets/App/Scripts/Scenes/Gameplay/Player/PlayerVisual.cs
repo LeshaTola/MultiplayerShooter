@@ -11,9 +11,9 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private GlobalInventory _globalInventory;
 
-        public void RPCSetSkin(SkinConfig config)
+        public void RPCSetSkin(string skinId)
         {
-            photonView.RPC(nameof(SetSkin), RpcTarget.AllBuffered, config.Id);
+            photonView.RPC(nameof(SetSkin), RpcTarget.AllBuffered, skinId);
         }
 
         [PunRPC]

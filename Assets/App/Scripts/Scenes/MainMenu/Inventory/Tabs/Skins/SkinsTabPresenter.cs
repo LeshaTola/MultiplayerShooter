@@ -36,22 +36,23 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs.Skins
         public override void Initialize()
         {
             _skinsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory);
-            foreach (var weapon in InventoryProvider.GlobalInventory.SkinConfigs)
+            
+            foreach (var skinId in InventoryProvider.Inventory.Skins)
             {
                 var slot = SlotFactory.GetItem();
                 slot.Initialize(new NoneInventorySlotStrategy(), -1, "", ItemType.Skin);
                 var item = ItemFactory.GetItem();
-                item.Initialize(_selectionProvider, OverlayTransform, weapon.Sprite, weapon.Id, ItemType.Skin);
+                var skinConfig = InventoryProvider.SkinById(skinId);
+                item.Initialize(_selectionProvider, OverlayTransform, skinConfig.Sprite, skinId, ItemType.Skin);
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);
             }
-
             
             _skinSlot.Initialize(
                 new CorrectTypeInventorySlotStrategy(_selectionProvider ,ItemType.Skin, InventoryProvider, ItemFactory,
                     _gameInventoryView), -1, $"", ItemType.Skin);
-            SpawnItem(InventoryProvider.GameInventory.Skin, _skinSlot);
+            SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin), _skinSlot);
             
             _selectionProvider.Select(_skinSlot);
         }

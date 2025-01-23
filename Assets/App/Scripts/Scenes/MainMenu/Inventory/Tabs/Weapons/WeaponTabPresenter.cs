@@ -33,12 +33,13 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
             InventorySlots = new List<InventorySlot>();
             _statsView.Initialiе(_selectionProvider, InventoryProvider.GlobalInventory);
 
-            foreach (var weapon in InventoryProvider.GlobalInventory.Weapons)
+            foreach (var weaponId in InventoryProvider.Inventory.Weapons)
             {
                 var slot = SlotFactory.GetItem();
                 slot.Initialize(new NoneInventorySlotStrategy(), -1);
                 var item = ItemFactory.GetItem();
-                item.Initialize(_selectionProvider, OverlayTransform, weapon.Sprite, weapon.Id);
+                var weaponConfig = InventoryProvider.WeaponById(weaponId);
+                item.Initialize(_selectionProvider, OverlayTransform, weaponConfig.Sprite, weaponId);
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);

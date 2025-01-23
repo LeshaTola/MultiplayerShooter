@@ -38,17 +38,31 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
         {
             _view.Initialize();
 
-            for (int i = 0; i < _inventoryProvider.GameInventory.WeaponsCount; i++)
+            InitializeWeapons();
+            InitializeEquipment();
+        }
+
+        public override void Cleanup()
+        {
+            _view.Cleanup();
+        }
+
+        private void InitializeWeapons()
+        {
+            for (int i = 0; i < _inventoryProvider.GameInventory.Weapons.Count; i++)
             {
                 var slot = _inventorySlotFactory.GetItem();
                 slot.Initialize(
                     new CorrectTypeInventorySlotStrategy(_selectionProvider, ItemType.Weapon, _inventoryProvider, _itemFactory, _view), i, $"{i+1}");
                 _view.AddWeaponSlot(slot);
-
-                SpawnItem(_inventoryProvider.GameInventory.Weapons[i], slot);
+                var weaponConfig = _inventoryProvider.WeaponById(_inventoryProvider.GameInventory.Weapons[i]);
+                SpawnItem(weaponConfig, slot);
             }
+        }
 
-            for (int i = 0; i < _inventoryProvider.GameInventory.EquipmentCount; i++)
+        private void InitializeEquipment()
+        {
+            for (int i = 0; i < _inventoryProvider.GameInventory.Equipment.Count; i++)
             {
                 var slot = _inventorySlotFactory.GetItem();
                 var key = i == 0 ? "Q" : "E";//TODO: REMOVE HARDCODE
@@ -56,8 +70,8 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
                     new CorrectTypeInventorySlotStrategy(_selectionProvider, ItemType.Equipment, _inventoryProvider, _itemFactory, _view),
                     i,key, ItemType.Equipment);
                 _view.AddEquipmentSlot(slot);
-
-                SpawnItem(_inventoryProvider.GameInventory.Equipment[i], slot);
+                var equipmentConfig = _inventoryProvider.EquipmentById(_inventoryProvider.GameInventory.Equipment[i]);
+                SpawnItem(equipmentConfig, slot);
             }
         }
 
@@ -74,11 +88,6 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.GameInventory
             item.Initialize(_selectionProvider, _overlayTransform, itemConfig.Sprite, itemConfig.Id, type);
             item.CurentSlot = slot;
             item.MoveToParent();
-        }
-
-        public override void Cleanup()
-        {
-            _view.Cleanup();
         }
     }
 }

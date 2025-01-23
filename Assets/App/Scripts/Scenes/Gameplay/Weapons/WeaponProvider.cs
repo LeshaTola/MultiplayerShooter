@@ -44,21 +44,20 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _shootingModeFactory = shootingModeFactory;
             _playerController = playerController;
             
-            int i = 0;
-            foreach (var weapon in _inventoryProvider.GameInventory.Weapons)
+            foreach (var weaponId in _inventoryProvider.GameInventory.Weapons)
             {
-                if (!weapon)
+                if (string.IsNullOrEmpty(weaponId))
                 {
                     photonView.RPC(nameof(SetupWeapon), RpcTarget.AllBuffered, -1, -1, "");
-                    i++;
                     continue;
                 }
-                
+
+                var weaponConfig = inventoryProvider.WeaponById(weaponId);
                 var weaponObject
-                    = PhotonNetwork.Instantiate(weapon.Prefab.name, _weaponHolder.position, _weaponHolder.rotation)
+                    = PhotonNetwork.Instantiate(weaponConfig.Prefab.name, _weaponHolder.position, _weaponHolder.rotation)
                         .GetComponent<Weapon>();
                 
-                var newConfig = GetNewConfig(weapon);
+                var newConfig = GetNewConfig(weaponConfig);
                 weaponObject.Initialize(newConfig);
                 
                 weaponObject.OnPlayerHit += (value, damage) => OnPlayerHit?.Invoke(value, damage);
@@ -66,8 +65,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                     RpcTarget.AllBuffered, 
                     weaponObject.GetComponent<PhotonView>().ViewID, 
                     owner.GetComponent<PhotonView>().ViewID,
-                    _inventoryProvider.GameInventory.Weapons[i].Id);
-                i++;
+                    weaponId);
             }
             
             _gameInputProvider.OnNumber += RPCSetWeaponByIndex;

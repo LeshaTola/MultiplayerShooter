@@ -15,12 +15,13 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
 
         public override void Initialize()
         {
-            foreach (var weapon in InventoryProvider.GlobalInventory.Equipment)
+            foreach (var quipmentId in InventoryProvider.Inventory.Equipment)
             {
                 var slot = SlotFactory.GetItem();
                 slot.Initialize(new NoneInventorySlotStrategy(), -1, "",ItemType.Equipment);
                 var item = ItemFactory.GetItem();
-                item.Initialize(null, OverlayTransform, weapon.Sprite, weapon.Id, ItemType.Equipment);//TODO null isnt correct;
+                var equipmentConfig = InventoryProvider.EquipmentById(quipmentId);
+                item.Initialize(null, OverlayTransform, equipmentConfig.Sprite, quipmentId, ItemType.Equipment);//TODO null isnt correct;
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);

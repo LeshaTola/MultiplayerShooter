@@ -61,14 +61,14 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
             {
                 case WeaponConfig weaponConfig:
                     _inventoryProvider.GameInventory.Weapons[inventorySlot.SlotIndex]
-                        = weaponConfig;
+                        = weaponConfig.Id;
                     break;
                 case EquipmentConfig equipmentConfig:
                     _inventoryProvider.GameInventory.Equipment[inventorySlot.SlotIndex]
-                        = equipmentConfig;
+                        = equipmentConfig.Id;
                     break;
                 case SkinConfig skinConfig:
-                    _inventoryProvider.GameInventory.Skin = skinConfig;
+                    _inventoryProvider.GameInventory.Skin = skinConfig.Id;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -79,10 +79,10 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
         {
             var weaponIndex
                 = _inventoryProvider.GameInventory.Weapons
-                    .FindIndex(x => x && x.Id.Equals(item.ConfigId));
+                    .FindIndex(x => x.Equals(item.ConfigId));
             var equipmentIndex
                 = _inventoryProvider.GameInventory.Equipment
-                    .FindIndex(x => x && x.Id.Equals(item.ConfigId));
+                    .FindIndex(x => x.Equals(item.ConfigId));
 
             if (weaponIndex != -1)
             {
@@ -122,13 +122,13 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
             
             if (type == ItemType.Weapon)
             {
-                _inventoryProvider.GameInventory.Weapons[item.CurentSlot.SlotIndex] = swapItemConfig as WeaponConfig;
-                _inventoryProvider.GameInventory.Weapons[inventorySlot.SlotIndex] = config as WeaponConfig;
+                _inventoryProvider.GameInventory.Weapons[item.CurentSlot.SlotIndex] = swapItemConfig?.Id ?? "";
+                _inventoryProvider.GameInventory.Weapons[inventorySlot.SlotIndex] = config.Id ?? "";
             }
             else
             {
-                _inventoryProvider.GameInventory.Equipment[item.CurentSlot.SlotIndex] = swapItemConfig as EquipmentConfig;
-                _inventoryProvider.GameInventory.Equipment[inventorySlot.SlotIndex] = config as EquipmentConfig;
+                _inventoryProvider.GameInventory.Equipment[item.CurentSlot.SlotIndex] = swapItemConfig?.Id ?? "";
+                _inventoryProvider.GameInventory.Equipment[inventorySlot.SlotIndex] = config.Id ?? "";
             }
 
             if (swapItem != null)

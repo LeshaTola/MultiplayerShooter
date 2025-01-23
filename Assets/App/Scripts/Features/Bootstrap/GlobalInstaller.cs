@@ -24,6 +24,7 @@ using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace App.Scripts.Features.Bootstrap
@@ -37,8 +38,9 @@ namespace App.Scripts.Features.Bootstrap
 
         [SerializeField] private ConnectionProvider _connectionProvider;
 
+        [FormerlySerializedAs("_gameInventory")]
         [Header("Inventory")]
-        [SerializeField] private GameInventory _gameInventory;
+        [SerializeField] private InventoryConfig _inventoryConfig;
         [SerializeField] private GlobalInventory _globalInventory;
 
         [Header("UserStats")]
@@ -87,7 +89,7 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<RewardService>().AsSingle();
             Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
             
-            Container.Bind<InventoryProvider>().AsSingle().WithArguments(_gameInventory, _globalInventory);
+            Container.Bind<InventoryProvider>().AsSingle().WithArguments(_inventoryConfig, _globalInventory);
         }
 
         private void BindLocalizationSystem()
