@@ -38,8 +38,12 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
             {
                 return;
             }
-            
-            if (SwapItem(inventorySlot, item)) return;
+
+            if (SwapItem(inventorySlot, item))
+            {
+                _selectionProvider.Select(inventorySlot);
+                return;
+            }
 
             if (inventorySlot.Item != null)
             {
@@ -51,6 +55,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot
             newItem.Initialize(_selectionProvider, item.transform.parent, config.Sprite, config.Id, item.Type);
             newItem.CurentSlot = inventorySlot;
             newItem.MoveToParent();
+            _selectionProvider.Select(inventorySlot);
 
             switch (config)
             {

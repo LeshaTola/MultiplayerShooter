@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Inventory;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
@@ -13,7 +14,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
         protected readonly IFactory<InventorySlot> SlotFactory;
         protected readonly InventoryProvider InventoryProvider;
         protected readonly RectTransform OverlayTransform;
-
+        
         public InventoryTabPresenter(InventoryTab view,
             IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,

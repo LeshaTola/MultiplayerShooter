@@ -6,6 +6,7 @@ using App.Scripts.Scenes.MainMenu.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
+using App.Scripts.Scenes.MainMenu.Inventory.Tabs.Skins;
 using App.Scripts.Scenes.MainMenu.Inventory.Tabs.Weapons;
 using App.Scripts.Scenes.MainMenu.Roulette;
 using App.Scripts.Scenes.MainMenu.Roulette.Configs;
@@ -47,8 +48,8 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         [Space]
         [SerializeField] private InventoryTab _skinTab;
-
         [SerializeField] private InventorySlot _skinSlot;
+        [SerializeField] private SkinsView _skinsView;
 
         [Header("Roulette")]
         [SerializeField] private RouletteConfig _rouletteConfig;
@@ -89,7 +90,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<InventoryTabPresenter>().To<EquipmentTabPresenter>().AsSingle()
                 .WithArguments(_overlayContainer, _equipmentTab);
             Container.Bind<InventoryTabPresenter>().To<SkinsTabPresenter>().AsSingle()
-                .WithArguments(_overlayContainer, _skinTab, _skinSlot);
+                .WithArguments(_skinsView, _overlayContainer, _skinTab, _skinSlot);
             Container.BindInstance(_inventoryScreeen).AsSingle();
             Container.BindInstance(_gameInventoryView).AsSingle();
             Container.BindInstance(_tabSwitcher).AsSingle();

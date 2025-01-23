@@ -13,11 +13,6 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders
 
         public void Select(InventorySlot slot)
         {
-            if (slot == _selectedSkin || slot == _selectedWeapon)
-            {
-                return;
-            }
-
             if (slot.Type == ItemType.Weapon)
             {
                 _selectedWeapon?.Unselect();

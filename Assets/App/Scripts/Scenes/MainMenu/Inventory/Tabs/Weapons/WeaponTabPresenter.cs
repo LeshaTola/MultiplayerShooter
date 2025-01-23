@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Inventory;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
@@ -12,6 +13,8 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
         private readonly WeaponStatsView _statsView;
         private readonly SelectionProvider _selectionProvider;
 
+        protected List<InventorySlot> InventorySlots;
+        
         public WeaponTabPresenter(InventoryTab view,
             WeaponStatsView statsView,
             SelectionProvider selectionProvider,
@@ -27,6 +30,7 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
 
         public override void Initialize()
         {
+            InventorySlots = new List<InventorySlot>();
             _statsView.Initialiе(_selectionProvider, InventoryProvider.GlobalInventory);
 
             foreach (var weapon in InventoryProvider.GlobalInventory.Weapons)
@@ -38,7 +42,10 @@ namespace App.Scripts.Scenes.MainMenu.Inventory.Tabs
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);
+                InventorySlots.Add(slot);
             }
+            
+            _selectionProvider.Select(InventorySlots[0]);
         }
 
         public override void Cleanup()
