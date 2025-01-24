@@ -240,8 +240,8 @@ MonoBehaviour:
   <Id>k__BackingField: HantingRiffle
   <Sprite>k__BackingField: {fileID: 21300000, guid: 04a9cd45bb1b2fb4e9f6df19b2b82d24, type: 3}
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 01afea2c5773ef143bb7f9c417b4329e, type: 3}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: d8018506ab4bd914d9b17655ea9c106a, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: 670e0ea8f35f6c74fb2a8f328ad9f360, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0378e00670374834f9dd85d26a7e13e9, type: 3}
   <MaxAmmoCount>k__BackingField: 16
   <ReloadCooldown>k__BackingField: 2
   <AttackCooldown>k__BackingField: 0.25
