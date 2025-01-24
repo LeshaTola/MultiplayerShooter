@@ -8,7 +8,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 {
     public class StandartWeaponEffect : WeaponEffect
     {
-        public override event Action<Vector3, float> OnPlayerHit;
+        public override event Action<Vector3, float, bool> OnPlayerHit;
         
         [SerializeField] private int _damage = 10;
 
@@ -50,14 +50,22 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         {
             foreach (var damageable in _damageables)
             {
+                if (damageable.Key.Value == 0)
+                {
+                    return;
+                }
                 damageable.Key.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
 
-                if (damageable.Key.Value != 0 && damageable.Key.Value <= damageable.Value.Item1)
+                var damage = damageable.Value.Item1;
+                var isKilled = false;
+                if (damageable.Key.Value <= damageable.Value.Item1)
                 {
+                    damage = (int)damageable.Key.Value;
                     LeaderBoardProvider.Instance.AddKill();
+                    isKilled = true;
                 }
 
-                OnPlayerHit?.Invoke(damageable.Value.Item2, damageable.Value.Item1);
+                OnPlayerHit?.Invoke(damageable.Value.Item2, damage, isKilled);
                 damageable.Key.RPCTakeDamage(damageable.Value.Item1);
             }
 

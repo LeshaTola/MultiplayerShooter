@@ -13,7 +13,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     public class Weapon : MonoBehaviourPun
     {
         public event Action<int, int> OnAmmoChanged;
-        public event Action<Vector3, float> OnPlayerHit;
+        public event Action<Vector3, float, bool> OnPlayerHit;
         public event Action<float> OnReloadStarted;
         public event Action OnReloadFinised;
 
@@ -60,8 +60,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             
             CurrentAmmoCount = Config.MaxAmmoCount;
 
-            Config.ShootingMode.ShootStrategy.OnPlayerHit += (value, damage) => OnPlayerHit?.Invoke(value,damage);
-            Config.ShootingModeAlternative.ShootStrategy.OnPlayerHit += (value, damage) => OnPlayerHit?.Invoke(value,damage);
+            Config.ShootingMode.ShootStrategy.OnPlayerHit 
+                += (value, damage, killed) => OnPlayerHit?.Invoke(value,damage, killed);
+            Config.ShootingModeAlternative.ShootStrategy.OnPlayerHit 
+                += (value, damage, killed) => OnPlayerHit?.Invoke(value,damage, killed);
         }
 
         private void OnDisable()

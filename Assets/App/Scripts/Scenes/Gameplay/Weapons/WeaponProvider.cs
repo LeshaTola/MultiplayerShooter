@@ -14,7 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     public class WeaponProvider : MonoBehaviourPun
     {
         public event Action<Weapon> OnWeaponChanged;
-        public event Action<Vector3, float> OnPlayerHit;
+        public event Action<Vector3, float, bool> OnPlayerHit;
         
         [SerializeField] private Transform _weaponHolder;
         [SerializeField] private GlobalInventory _globalInventory;
@@ -60,7 +60,18 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 var newConfig = GetNewConfig(weaponConfig);
                 weaponObject.Initialize(newConfig);
                 
-                weaponObject.OnPlayerHit += (value, damage) => OnPlayerHit?.Invoke(value, damage);
+                weaponObject.OnPlayerHit += (value, damage, killed) =>
+                {
+                    OnPlayerHit?.Invoke(value, damage, killed);
+                    if (killed)
+                    {
+                        owner.PlayerAudioProvider.PlayKillSound();
+                    }
+                    else
+                    {
+                        owner.PlayerAudioProvider.PlayHitSound();
+                    }
+                };
                 photonView.RPC(nameof(SetupWeapon),
                     RpcTarget.AllBuffered, 
                     weaponObject.GetComponent<PhotonView>().ViewID, 

@@ -11,6 +11,19 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private GlobalInventory _globalInventory;
 
+        public void RPCSetImortal(bool imortable)
+        {
+            photonView.RPC(nameof(SetImortable), RpcTarget.AllBuffered, imortable);
+        }
+
+        [PunRPC]
+        public void SetImortable(bool imortable)
+        {
+            var color = _meshRenderer.material.color;
+            color.a = imortable ? 0.2f : 1;
+            _meshRenderer.material.color = color;
+        }
+        
         public void RPCSetSkin(string skinId)
         {
             photonView.RPC(nameof(SetSkin), RpcTarget.AllBuffered, skinId);

@@ -25,7 +25,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
                 var recoilRotation = Recoil.GetRecoilRotation(_camera.transform);
                 var direction = recoilRotation * _camera.transform.forward;
 
-                if (!Physics.Raycast(_camera.transform.position, direction, out RaycastHit hit))
+                if (!Physics.Raycast(_camera.transform.position, direction, out RaycastHit hit, 
+                        Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
                 {
                     Weapon.NetworkSetLine(Weapon.ShootPoint.position + Weapon.ShootPoint.forward * 100);
                     Weapon.NetworkFadeOutLine();

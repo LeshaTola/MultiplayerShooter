@@ -6,6 +6,8 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 {
 	public class Health : MonoBehaviourPun, IDamageable
 	{
+		[SerializeField] private int _startHealth = -1;
+		
 		public event Action<float, float> OnValueChanged;
 		public event Action<float> OnDamage;
 		public event Action<float> OnHealing;
@@ -16,7 +18,16 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 		public int LastHitPlayerId { get; private set; }
 		public string LastHitWeaponId { get; private set; }
 		public bool IsImortal { get; private set; }
-		
+
+		public void Start()
+		{
+			if (_startHealth <= 0)
+			{
+				return;
+			}
+			Initialize(_startHealth);
+		}
+
 		public void Initialize(int _maxHealth)
 		{
 			MaxValue = _maxHealth;

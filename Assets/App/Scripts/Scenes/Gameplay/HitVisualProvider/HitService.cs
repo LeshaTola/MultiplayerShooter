@@ -14,6 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
         private readonly HitConfig _config;
         private readonly PlayerProvider _playerProvider;
         private readonly IPool<DamageView> _pool;
+        private Sequence _sequence;
 
         public HitService(Image hitMarkImage, HitConfig config, PlayerProvider playerProvider, IPool<DamageView> pool)
         {
@@ -33,16 +34,16 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
             _playerProvider.Player.WeaponProvider.OnPlayerHit -= Hit;
         }
 
-        private void Hit(Vector3 hitPoint, float damage)
+        private void Hit(Vector3 hitPoint, float damage, bool killed)
         {
-            HitMarkAnimation();
-            DamageViewAnimation(hitPoint, damage);
+            HitMarkAnimation(killed);
+            DamageViewAnimation(hitPoint, damage, killed);
         }
 
-        private void DamageViewAnimation(Vector3 hitPoint, float damage)
+        private void DamageViewAnimation(Vector3 hitPoint, float damage, bool killed)
         {
             var damageView = _pool.Get();
-            damageView.Setup($"{(int) damage}");
+            damageView.Setup($"{(int) damage}", killed);
 
             damageView.transform.position = hitPoint;
             var viewTransform = damageView.ContentTransform;
@@ -57,15 +58,22 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
             sequence.onComplete += () => { _pool.Release(damageView); };
         }
 
-        private void HitMarkAnimation()
+        private void HitMarkAnimation(bool killed)
         {
+            if (_sequence.IsActive())
+            {
+                _sequence.Complete();
+                _sequence.Kill();
+            }
+            
             _hitMarkImage.transform.localScale = Vector3.one;
-            _hitMarkImage.color = _config.FadeColor;
-            var sequence = DOTween.Sequence();
+            _hitMarkImage.color = killed? _config.KilledColor:_config.MainColor;
+            _hitMarkImage.DOFade(1, 0f);
+            _sequence = DOTween.Sequence();
 
-            sequence.Append(_hitMarkImage.DOFade(_config.FadeValue, 0f));
-            sequence.Join(_hitMarkImage.transform.DOScale(_config.ScaleValue, _config.ScaleAnimationTime));
-            sequence.Append(_hitMarkImage.DOFade(0, _config.FadeOutTime));
+            _sequence.Append(_hitMarkImage.DOFade(_config.FadeValue, 0f));
+            _sequence.Join(_hitMarkImage.transform.DOScale(_config.ScaleValue, _config.ScaleAnimationTime));
+            _sequence.Append(_hitMarkImage.DOFade(0, _config.FadeOutTime));
         }
     }
 }

@@ -938,6 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f748f8fdc5479448afec930e1a48b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startHealth: -1
 --- !u!114 &1923097396185842887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,7 +1016,9 @@ MonoBehaviour:
   _jumpingCategory: Jump
   _landingCategory: Fall
   _damageCategory: Damage
-  _healingCategory: 
+  _destroyCategory: Death
+  _hitCategory: Hit
+  _killCategory: Kill
 --- !u!114 &4677047985132999472
 MonoBehaviour:
   m_ObjectHideFlags: 0

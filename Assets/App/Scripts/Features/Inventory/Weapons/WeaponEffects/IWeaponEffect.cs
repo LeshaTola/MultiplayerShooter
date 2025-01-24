@@ -7,7 +7,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 {
     public interface IWeaponEffect
     {
-        public event Action<Vector3, float> OnPlayerHit;
+        public event Action<Vector3, float, bool> OnPlayerHit;
 
         public void Effect(List<(Vector3, GameObject)> hitValues);
         public void Initialize(Weapon weapon);
@@ -16,7 +16,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
     public abstract class WeaponEffect : IWeaponEffect
     {
-        public abstract event Action<Vector3, float> OnPlayerHit;
+        public abstract event Action<Vector3, float, bool> OnPlayerHit;
 
         protected Weapon Weapon;
 

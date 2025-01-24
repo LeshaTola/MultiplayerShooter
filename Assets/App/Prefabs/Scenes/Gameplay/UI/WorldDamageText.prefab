@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8255798385119086991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageText: {fileID: 4274786400533530650}
-  _defaultColor: {r: 0, g: 0.760746, b: 1, a: 1}
+  _defaultColor: {r: 0.8509804, g: 0.8509804, b: 0.8509804, a: 1}
   _headShotColor: {r: 1, g: 0, b: 0, a: 1}
   <ContentTransform>k__BackingField: {fileID: 5229017228002676275}
 --- !u!114 &7628675057054439403
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294951424
-  m_fontColor: {r: 0, g: 0.7607843, b: 1, a: 1}
+    rgba: 4292467161
+  m_fontColor: {r: 0.8509804, g: 0.8509804, b: 0.8509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

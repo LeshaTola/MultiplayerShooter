@@ -36,10 +36,11 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             _playerProvider.Player.Health.RPCSetImmortal(true);
             _postProcessingProvider.ApplyImmortalEffect();
-            
+            _playerProvider.Player.PlayerVisual.RPCSetImortal(true);
             await UniTask.Delay(TimeSpan.FromSeconds(_playerProvider.Player.PlayerConfig.ImmortalTime));
             
             _playerProvider.Player.Health.RPCSetImmortal(false);
+            _playerProvider.Player.PlayerVisual.RPCSetImortal(false);
             _postProcessingProvider.RemoveImmortalEffect();
             
             _playerProvider.Player.Health.SetImmortal(true);

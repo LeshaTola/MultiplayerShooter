@@ -25,7 +25,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
         
         [Header("Damage")]
         [SerializeField, ValueDropdown(nameof(GetCategories))] private string _damageCategory;
-        [SerializeField, ValueDropdown(nameof(GetCategories))] private string _healingCategory;
+        [SerializeField, ValueDropdown(nameof(GetCategories))] private string _destroyCategory;
+        
+        [Header("Kill")]
+        [SerializeField, ValueDropdown(nameof(GetCategories))] private string _hitCategory;
+        [SerializeField, ValueDropdown(nameof(GetCategories))] private string _killCategory;
 
         private float _stepTimer;
         
@@ -54,14 +58,32 @@ namespace App.Scripts.Scenes.Gameplay.Player
             RPCPlaySound(_landingCategory, Random.Range(0,_audioConfig.AudioClips[_landingCategory].Count));
         }
         
-        public void PlayDamageSound()
+        public void PlayDestroySound()
         {
-            PlaySound(_damageCategory, Random.Range(0,_audioConfig.AudioClips[_damageCategory].Count));
+            photonView.RPC(
+                nameof(PlaySoundAtPlayerPos),
+                RpcTarget.All,
+                _destroyCategory,
+                Random.Range(0,_audioConfig.AudioClips[_destroyCategory].Count)
+                );
         }
         
-        public void PlayHealingSound()
+        public void PlayDamageSound()
         {
-            PlaySound(_healingCategory, Random.Range(0,_audioConfig.AudioClips[_healingCategory].Count));
+            if (photonView.IsMine)
+            {
+                PlaySound(_damageCategory, Random.Range(0,_audioConfig.AudioClips[_damageCategory].Count));
+            }
+        }
+
+        public void PlayHitSound()
+        {
+            PlaySound(_hitCategory, Random.Range(0,_audioConfig.AudioClips[_hitCategory].Count));
+        }
+        
+        public void PlayKillSound()
+        {
+            PlaySound(_killCategory, Random.Range(0,_audioConfig.AudioClips[_killCategory].Count));
         }
         
         public void RPCPlayReloadWeaponSound()
@@ -100,6 +122,17 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 return;
             }
             _audioSource.PlayOneShot(clips[soundIndex]);
+        }
+        
+        [PunRPC]
+        public void PlaySoundAtPlayerPos(string category, int soundIndex)
+        {
+            if (!_audioConfig.AudioClips.TryGetValue(category, out var clips))
+            {
+                Debug.LogError("Audio clip for " + category + " does not exist");
+                return;
+            }
+            AudioSource.PlayClipAtPoint(clips[soundIndex], transform.position, _audioSource.volume);
         }
 
         private List<string> GetCategories()

@@ -23,7 +23,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             base.Shoot();
             var ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
             
-            var targetPoint = Physics.Raycast(ray, out var hit) ? hit.point : ray.GetPoint(75);
+            var targetPoint = Physics.Raycast(ray, out var hit,Mathf.Infinity,
+                Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) ? hit.point : ray.GetPoint(75);
             var directionWithoutSpread = targetPoint - Weapon.ShootPoint.position;
             
             var spread = Recoil.GetRecoil();

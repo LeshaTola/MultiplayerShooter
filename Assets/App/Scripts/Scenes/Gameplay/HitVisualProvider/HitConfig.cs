@@ -13,7 +13,8 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
         [field: Space]
         [field: SerializeField] 
         public float FadeValue { get; private set; } = 0.5f;
-        [field: SerializeField] public Color FadeColor { get; private set; } = Color.white;
+        [field: SerializeField] public Color MainColor { get; private set; } = Color.white;
+        [field: SerializeField] public Color KilledColor { get; private set; } = Color.red;
 
         [field: Space]
         [field: SerializeField] 

@@ -33,7 +33,12 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Exp
         
         public async void RPCExplode()
         {
-            var targets = Physics.OverlapSphere(transform.position, _radius);
+            var targets 
+                = Physics.OverlapSphere(
+                    transform.position,
+                    _radius,
+                    Physics.DefaultRaycastLayers,
+                    QueryTriggerInteraction.Ignore);
             foreach (var target in targets)
             {
                 if (!target.TryGetComponent(out Health health) || health.IsImortal)

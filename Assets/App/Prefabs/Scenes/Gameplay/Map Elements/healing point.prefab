@@ -127,7 +127,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1826573739972335324, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
   m_audioClip: {fileID: 8300000, guid: b60724b9558021d4cb8749beac094005, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1.1
   Loop: 0
   Mute: 0
@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 5390771942338903928}
   _strategies:
+  - rid: 5057382415305015296
   - rid: 705511980065882130
   - rid: 705511980065882131
   references:
@@ -304,6 +305,9 @@ MonoBehaviour:
       type: {class: Disable, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
       data:
         _effectSpawnPoint: {fileID: 8117575130408590816}
+    - rid: 5057382415305015296
+      type: {class: PlaySoundStrategy, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
+      data: 
 --- !u!114 &296282980526393513
 MonoBehaviour:
   m_ObjectHideFlags: 0

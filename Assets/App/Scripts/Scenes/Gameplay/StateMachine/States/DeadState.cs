@@ -29,9 +29,9 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("Dead");
 
             _leaderBoardProvider.AddDeath();
-            
             UpdateKillChat();
             
+            _playerProvider.Player.PlayerAudioProvider.PlayDestroySound();
             _playerProvider.HidePlayer();
             RespawnPlayer();
             return UniTask.CompletedTask;

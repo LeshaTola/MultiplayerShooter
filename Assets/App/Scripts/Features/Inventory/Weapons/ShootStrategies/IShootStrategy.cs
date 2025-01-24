@@ -9,7 +9,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
 {
     public interface IShootStrategy
     {
-        public event Action<Vector3, float> OnPlayerHit;
+        public event Action<Vector3, float, bool> OnPlayerHit;
         
         public Recoil Recoil { get; }        
         public List<IWeaponEffect> WeaponEffects { get;  set; }
@@ -22,7 +22,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
 
     public abstract class ShootStrategy: IShootStrategy
     {
-        public virtual event Action<Vector3, float> OnPlayerHit;
+        public virtual event Action<Vector3, float, bool> OnPlayerHit;
 
         [SerializeField] public Recoil Recoil { get; private set; } = new();
         [SerializeField] public List<IWeaponEffect> WeaponEffects { get;  set;}
@@ -50,7 +50,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
 
             for (int i = 0; i < WeaponEffects.Count; i++)
             {
-                WeaponEffects[i].OnPlayerHit += (point, damage)=>OnPlayerHit?.Invoke(point, damage);
+                WeaponEffects[i].OnPlayerHit += (point, damage, killed)=>OnPlayerHit?.Invoke(point, damage, killed);
                 WeaponEffects[i].Import(original.WeaponEffects[i]);
             }
         }

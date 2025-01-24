@@ -17,7 +17,7 @@ MonoBehaviour:
   <FadeValue>k__BackingField: 0.5
   <FadeColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <FadeInTime>k__BackingField: 0
-  <FadeOutTime>k__BackingField: 0.2
+  <FadeOutTime>k__BackingField: 0.5
   <ViewPrefab>k__BackingField: {fileID: 8255798385119086991, guid: f748c8cdf0eb0ad4aa2d54bc764d5148, type: 3}
   <UpValue>k__BackingField: 1
   <UpTime>k__BackingField: 0.3

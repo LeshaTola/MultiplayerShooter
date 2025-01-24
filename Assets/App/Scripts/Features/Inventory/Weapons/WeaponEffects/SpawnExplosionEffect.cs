@@ -12,7 +12,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 {
     public class SpawnExplosionEffect : WeaponEffect
     {
-        public override event Action<Vector3, float> OnPlayerHit;
+        public override event Action<Vector3, float, bool> OnPlayerHit;
         
         [SerializeField] private int _damage = 10;
         [SerializeField] private float _radius = 1f;
@@ -24,17 +24,27 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 var point = hitValue.Item1;
                 
-                var explosion = PhotonNetwork.Instantiate(_template.name, point, Quaternion.identity).GetComponent<Explosion>();
+                var explosion 
+                    = PhotonNetwork.Instantiate(_template.name, point, Quaternion.identity).GetComponent<Explosion>();
                 explosion.Setup(_radius, (player, distance) =>
                 {
-                    if (player.Value != 0 && player.Value <= _damage)
+                    if (player.Value == 0)
                     {
+                        return;
+                    }
+                    
+                    var isKilled = false;
+                    var damage = _damage;
+                    if (player.Value <= _damage)
+                    {
+                        damage = (int)player.Value;
                         LeaderBoardProvider.Instance.AddKill();
+                        isKilled = true;
                     }
                     
                     player.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
-                    player.RPCTakeDamage(_damage);
-                    OnPlayerHit?.Invoke(player.transform.position, _damage);
+                    player.RPCTakeDamage(damage);
+                    OnPlayerHit?.Invoke(player.transform.position, _damage, isKilled);
                 });
 
                 explosion.RPCExplode();
