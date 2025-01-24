@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603e58c78cec4207bf73c195126464f1, type: 3}
   m_Name: _Inventory
   m_EditorClassIdentifier: 
-  <PlayerInventory>k__BackingField: {fileID: 11400000, guid: 4418846497f63914f82834740af7e8d0, type: 2}
+  <PlayerInventory>k__BackingField: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
   <Skin>k__BackingField: {fileID: 11400000, guid: 401eaddd920c230469a0c84f9f6d9827, type: 2}
   <Weapons>k__BackingField:
   - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}

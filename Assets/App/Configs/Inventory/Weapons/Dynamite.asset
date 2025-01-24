@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7591596ec0794fe293de16c30a86e4d4, type: 3}
-  m_Name: RocketLauncher
+  m_Name: Dynamite
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 4550930450135223814, guid: b660e438a23dc3441859937d626b8623, type: 3}
-    - {fileID: 1645694598745779037, guid: 8de0ee8b6331704469f461d7b420b136, type: 3}
+    - {fileID: 1645694598745779037, guid: 4f02d2b1aaa89af4a811cac659ddfe41, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,7 +29,7 @@ MonoBehaviour:
         mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 5
     - Name: 
       Entry: 7
       Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
@@ -39,8 +39,7 @@ MonoBehaviour:
       Data: "\u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0442\u0441\u0440\u0435\u043B
-        \u043F\u043E \u043E\u0431\u043B\u043E\u0441\u0442\u0438"
+      Data: "\u0414\u0430\u043B\u044C\u043D\u0438\u0439 \u0411\u0440\u043E\u0441\u043E\u043A"
     - Name: 
       Entry: 8
       Data: 
@@ -53,7 +52,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 80
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -93,20 +92,7 @@ MonoBehaviour:
         \u0430\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u041F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u0435"
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u0421\u0438\u043B\u0430 \u043F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u044F"
-    - Name: Item2
-      Entry: 1
-      Data: x1.25
+      Data: "\u0411\u0440\u043E\u0441\u043E\u043A \u043F\u043E\u0434 \u0441\u0435\u0431\u044F"
     - Name: 
       Entry: 8
       Data: 
@@ -161,10 +147,10 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 80
+      Data: 100
     - Name: _radius
       Entry: 4
-      Data: 4
+      Data: 5
     - Name: _template
       Entry: 10
       Data: 0
@@ -182,7 +168,7 @@ MonoBehaviour:
       Data: 1
     - Name: _projectileSpeed
       Entry: 4
-      Data: 100
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -191,11 +177,11 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
+      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
         Assembly-CSharp
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
+      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.ProjectilesShootingStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
@@ -208,7 +194,7 @@ MonoBehaviour:
       Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 0.1
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -227,31 +213,44 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|App.Scripts.Features.Inventory.Weapons.WeaponEffects.SpawnExplosionEffect,
+        Assembly-CSharp
+    - Name: _damage
+      Entry: 3
+      Data: 100
+    - Name: _radius
+      Entry: 4
+      Data: 5
+    - Name: _template
+      Entry: 10
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: _zoomFOV
+    - Name: _projectile
+      Entry: 10
+      Data: 1
+    - Name: _projectileSpeed
       Entry: 4
-      Data: 50
-    - Name: _animationDuration
-      Entry: 4
-      Data: 0.1
-    - Name: _zoomSensivity
-      Entry: 4
-      Data: 0.9
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  <Id>k__BackingField: RocketLauncher
+  <Id>k__BackingField: Dynamite
   <Sprite>k__BackingField: {fileID: 21300000, guid: 956864ed393fbb047902e030c0a8e285, type: 3}
-  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ed2e485c92857df4db7c05b9305983c7, type: 3}
+  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: f646cf8146f2df741918eeeb9aa46376, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: c79740913fa415d4890639fad0bc808c, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0ab1db19e0c7be647a7714f734700269, type: 3}
   <MaxAmmoCount>k__BackingField: 1

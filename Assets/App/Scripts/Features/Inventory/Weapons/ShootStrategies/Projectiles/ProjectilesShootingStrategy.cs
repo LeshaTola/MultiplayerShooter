@@ -30,9 +30,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             var direction = directionWithoutSpread + spread;
             direction.Normalize();
             
-            var projectile = PhotonNetwork.Instantiate(_projectile.name, Weapon.ShootPoint.position, Quaternion.identity).GetComponent<Projectile>();
+            var projectile = PhotonNetwork.Instantiate(_projectile.name, Weapon.ShootPoint.position,_camera.transform.rotation).GetComponent<Projectile>();
             projectile.transform.position = Weapon.ShootPoint.position;
-            projectile.transform.forward = direction.normalized;
             projectile.gameObject.SetActive(true);
             
             projectile.Setup((point, hitObject) =>
