@@ -2,7 +2,6 @@
 using System.Linq;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
-using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -25,9 +24,9 @@ namespace App.Scripts.Features.Inventory
             GameInventory.Equipment = inventoryConfig.Equipment.Select(x=>x?.Id ?? "").ToList();
             GameInventory.Skin = inventoryConfig.Skin?.Id ?? "";
             
-            Inventory.Weapons = inventoryConfig.PlayerInventory.Weapons.Select(x=>x?.Id ?? "").ToList();
-            Inventory.Equipment = inventoryConfig.PlayerInventory.Equipment.Select(x=>x?.Id ?? "").ToList();
-            Inventory.Skins = inventoryConfig.PlayerInventory.SkinConfigs.Select(x=>x?.Id ?? "").ToList();
+            Inventory.Weapons = inventoryConfig.PlayerInventory.Weapons.Select(x=>x?.Id ?? "").ToHashSet();
+            Inventory.Equipment = inventoryConfig.PlayerInventory.Equipment.Select(x=>x?.Id ?? "").ToHashSet();
+            Inventory.Skins = inventoryConfig.PlayerInventory.SkinConfigs.Select(x=>x?.Id ?? "").ToHashSet();
         }
         
         public ItemConfig GetConfigById(string id)

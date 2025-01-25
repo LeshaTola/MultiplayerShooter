@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
-using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
-using App.Scripts.Scenes.MainMenu.Inventory.Screen;
-using App.Scripts.Scenes.MainMenu.Inventory.Slot;
-using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
-using App.Scripts.Scenes.MainMenu.Inventory.Tabs;
-using App.Scripts.Scenes.MainMenu.Inventory.Tabs.Skins;
-using App.Scripts.Scenes.MainMenu.Inventory.Tabs.Weapons;
-using App.Scripts.Scenes.MainMenu.Roulette;
-using App.Scripts.Scenes.MainMenu.Roulette.Configs;
-using App.Scripts.Scenes.MainMenu.Roulette.Screen;
-using App.Scripts.Scenes.MainMenu.Screens.MainScreen;
-using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
-using App.Scripts.Scenes.MainMenu.Screens.TopViews;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Screen;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
+using App.Scripts.Scenes.MainMenu.Features.Roulette;
+using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
+using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
+using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
+using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
+using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
+using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
-using App.Scripts.Scenes.MainMenu.UserProfile;
 using Sirenix.Serialization;
 using UnityEngine;
 using Zenject;
@@ -97,7 +97,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
             Container.BindInstance(_rouletteScreen).AsSingle();
             Container.BindInstance(_rouletteView).AsSingle();
-            Container.Bind<Roulette.Roulette>().AsSingle().WithArguments(_rouletteConfig);
+            Container.Bind<Roulette>().AsSingle().WithArguments(_rouletteConfig);
             Container.BindInterfacesAndSelfTo<RouletteScreenPresentrer>().AsSingle().WithArguments(_rouletteConfig);
 
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();

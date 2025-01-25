@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Modules.StateMachine.States.General;
-using App.Scripts.Scenes.MainMenu.RoomsProviders;
-using App.Scripts.Scenes.MainMenu.Screens.RoomsViews;
+using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
+using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using Cysharp.Threading.Tasks;
 using Photon.Realtime;
 

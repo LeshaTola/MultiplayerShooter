@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Modules.PopupAndViews.Configs;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
 using App.Scripts.Modules.PopupAndViews.General.Providers;
+using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -15,8 +16,14 @@ namespace App.Scripts.Features.Bootstrap
 
         public override void InstallBindings()
         {
+            BindRouters();
             BindPopupProvider();
             BindPopupController();
+        }
+
+        private void BindRouters()
+        {
+            Container.Bind<RewardsPopupRouter>().AsSingle();
         }
 
         private void BindPopupController()

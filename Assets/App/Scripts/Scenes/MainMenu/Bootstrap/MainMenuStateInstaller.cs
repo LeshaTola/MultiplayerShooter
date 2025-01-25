@@ -4,7 +4,7 @@ using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.StateMachine;
 using App.Scripts.Modules.StateMachine.Factories.States;
 using App.Scripts.Modules.StateMachine.States.General;
-using App.Scripts.Scenes.MainMenu.Screens.MainScreen;
+using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards.Configs;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,7 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     public class MainMenuStateInstaller : MonoInstaller
     {
         [SerializeField] private CamerasDatabase _camerasDatabase;
-
+        
         [ValueDropdown(nameof(GetCamerasIds))]
         [SerializeField] private string _mainCameraId;
 
@@ -35,8 +35,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         private void BindInitialState()
         {
-            Container.Bind<State>().To<InitialState>().AsSingle()
-                .WithArguments(_mainCameraId);
+            Container.Bind<State>().To<InitialState>().AsSingle();
         }
 
         private void BindStateMachine()

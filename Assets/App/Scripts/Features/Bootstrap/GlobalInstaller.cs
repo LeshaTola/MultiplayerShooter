@@ -21,6 +21,7 @@ using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
+using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -88,6 +89,8 @@ namespace App.Scripts.Features.Bootstrap
             
             Container.Bind<RewardService>().AsSingle();
             Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
+            Container.Bind<CoinsProvider>().AsSingle();
+            Container.Bind<TicketsProvider>().AsSingle();
             
             Container.Bind<InventoryProvider>().AsSingle().WithArguments(_inventoryConfig, _globalInventory);
         }

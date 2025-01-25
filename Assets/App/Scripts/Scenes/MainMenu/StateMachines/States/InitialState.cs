@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.SceneTransitions;
-using App.Scripts.Features.Screens.Providers;
+using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -14,7 +14,6 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
     public class InitialState : State
     {
         private readonly IInitializeService _initializeService;
-        private readonly ICameraSwitcher _cameraSwitcher;
         private readonly string _cameraId;
         private readonly List<ISavable> _savable;
         private readonly ISceneTransition _sceneTransition;
@@ -22,13 +21,9 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         public InitialState(
             IInitializeService initializeService,
             ISceneTransition sceneTransition,
-            ICameraSwitcher cameraSwitcher,
-            List<ISavable> savable,
-            string cameraId)
+            List<ISavable> savable)
         {
             _initializeService = initializeService;
-            _cameraSwitcher = cameraSwitcher;
-            _cameraId = cameraId;
             _savable = savable;
             _sceneTransition = sceneTransition;
         }
@@ -42,9 +37,8 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
                 Debug.Log("In room");
                 PhotonNetwork.LeaveRoom();
             }
-            
+
             _initializeService.Initialize();
-            _cameraSwitcher.SwitchCamera(_cameraId);
 
             foreach (var savable in _savable)
             {

@@ -5,7 +5,7 @@ using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.States.General;
-using App.Scripts.Scenes.MainMenu.Roulette.Screen;
+using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using UnityEngine;

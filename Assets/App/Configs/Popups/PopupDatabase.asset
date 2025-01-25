@@ -21,4 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  popups: []
+  popups:
+  - {fileID: 945707574923088188, guid: d8a64cc29b9a88c4d9b143065307152b, type: 3}

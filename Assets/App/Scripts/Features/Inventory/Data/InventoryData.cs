@@ -6,8 +6,8 @@ namespace App.Scripts.Features.Inventory
     [Serializable]
     public class InventoryData
     {
-        public List<string> Skins;
-        public List<string> Weapons;
-        public List<string> Equipment;
+        public HashSet<string> Skins;
+        public HashSet<string> Weapons;
+        public HashSet<string> Equipment;
     }
 }

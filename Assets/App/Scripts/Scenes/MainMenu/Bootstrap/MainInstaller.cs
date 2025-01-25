@@ -1,14 +1,11 @@
-﻿using App.Scripts.Features.Inventory;
-using App.Scripts.Features.PlayerStats;
-using App.Scripts.Features.PlayerStats.Rank.Configs;
-using App.Scripts.Modules.CameraSwitchers;
+﻿using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.Factories.MonoFactories;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
-using App.Scripts.Scenes.MainMenu.Inventory;
-using App.Scripts.Scenes.MainMenu.Inventory.Slot;
-using App.Scripts.Scenes.MainMenu.RoomsProviders;
+using App.Scripts.Scenes.MainMenu.Features.Inventory;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
+using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     {
         [SerializeField] private CamerasDatabase _camerasDatabase;
         [SerializeField] private RoomsProvider _roomsProvider;
-        
+
         [SerializeField] private InventorySlot _slotTemplate;
         [SerializeField] private Item _itemTemplate;
 
@@ -27,20 +24,16 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<IUpdateService>().To<UpdateService>().AsSingle();
             Container.Bind<IInitializeService>().To<InitializeService>().AsSingle();
             Container.Bind<ICleanupService>().To<CleanupService>().AsSingle();
-            
+
             Container.Bind<RoomsProvider>().FromInstance(_roomsProvider);
 
             Container.Bind<ICameraSwitcher>().To<CameraSwitcher>().AsSingle().WithArguments(_camerasDatabase);
-            
-            Container.Bind<CoinsProvider>().AsSingle();
-            Container.Bind<TicketsProvider>().AsSingle();
-            
+
             BindSlotFactory();
             BindItemFactory();
         }
-        
-        
-        
+
+
         private void BindItemFactory()
         {
             Container.Bind<Modules.Factories.IFactory<Item>>()

@@ -9,8 +9,8 @@ using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
-using App.Scripts.Scenes.MainMenu.Inventory.GameInventory;
-using App.Scripts.Scenes.MainMenu.Inventory.Slot.SelectionProviders;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using UnityEngine;
 using Zenject;
 
