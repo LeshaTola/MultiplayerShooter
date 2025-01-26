@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
-using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards.Configs;
 using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using UnityEngine;
@@ -64,6 +65,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     if (damageable.Key.IsPlayer)
                     {
                         LeaderBoardProvider.Instance.AddKill();
+                        RewardProvider.Instance.ApplyKill();
                     }
                     isKilled = true;
                 }

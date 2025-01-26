@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
-using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards.Configs;
 using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Scenes.MainMenu.StateMachines.States

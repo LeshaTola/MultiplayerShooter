@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
+using App.Scripts.Features.Rewards;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Modules.Factories.MonoFactories;
 using App.Scripts.Modules.ObjectPool.MonoObjectPools;
 using App.Scripts.Modules.ObjectPool.Pools;
@@ -51,6 +53,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private InventorySlot _slotTemplate;
 
         [SerializeField] private Item _itemTemplate;
+        
+        [Header("Other")]
+        [SerializeField] private AccrualConfig _accrualConfig;
 
         public override void InstallBindings()
         {
@@ -73,6 +78,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
+            Container.Bind<RewardProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
             BindSlotFactory();
             BindItemFactory();

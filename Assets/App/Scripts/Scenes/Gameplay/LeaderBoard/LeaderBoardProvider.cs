@@ -10,12 +10,21 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
     public class LeaderBoardProvider 
     {
         private UserRankProvider _userRankProvider;
-        
-        private int _kills = 0;
-        private int _death = 0;
+
+        public int Kills { get; private set; } = 0;
+        public int Death { get; private set; } = 0;
+
+        public int MyPlace
+        {
+            get
+            {
+                var table = GetTable();
+                return table.FindIndex(x => x.Item2.Equals(PhotonNetwork.NickName)) + 1;
+            }
+        }
 
         public static LeaderBoardProvider Instance {get; private set;}
-        
+
         public LeaderBoardProvider(UserRankProvider userRankProvider)
         {
             _userRankProvider = userRankProvider;
@@ -25,13 +34,13 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 
         public void AddKill()
         {
-            _kills++;
+            Kills++;
             UpdateTable();
         }
 
         public void AddDeath()
         {
-            _death++;
+            Death++;
             UpdateTable();
         }
 
@@ -52,7 +61,8 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 
             foreach (var player in sortedPlayers)
             {
-                result.Add(new ValueTuple<int, string, int, int, int, bool>((int) player.CustomProperties["Rank"],
+                result.Add(new ValueTuple<int, string, int, int, int, bool>(
+                    (int) player.CustomProperties["Rank"],
                     player.NickName,
                     (int) player.CustomProperties["Kills"],
                     (int) player.CustomProperties["Death"],
@@ -69,8 +79,8 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             {
                 ["Rank"] = _userRankProvider.CurrentRankId,
                 ["Ping"] = PhotonNetwork.GetPing(),
-                ["Kills"] = _kills,
-                ["Death"] = _death
+                ["Kills"] = Kills,
+                ["Death"] = Death
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(pingProp);
         }

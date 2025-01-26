@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Explosions;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
@@ -41,6 +42,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                         if (player.IsPlayer)
                         {
                             LeaderBoardProvider.Instance.AddKill();
+                            RewardProvider.Instance.ApplyKill();
                         }
                         
                         isKilled = true;

@@ -16,14 +16,17 @@ namespace App.Scripts.Scenes.Gameplay.Timer
         private double _startTime;
         private bool _timerRunning;
 
+        public double LocalStartTime {get; private set;}
+
         public void Initialize()
         {
+            LocalStartTime = PhotonNetwork.Time;
             if (!PhotonNetwork.IsMasterClient)
             {
                 return;
             }
 
-            photonView.RPC(nameof(StartTimer), RpcTarget.AllBuffered, PhotonNetwork.Time);
+            photonView.RPC(nameof(StartTimer), RpcTarget.AllBufferedViaServer, PhotonNetwork.Time);
         }
 
         void IUpdatable.Update()

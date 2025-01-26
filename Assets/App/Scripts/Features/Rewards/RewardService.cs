@@ -4,9 +4,9 @@ using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
-using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards.Configs;
 using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Features.UserStats
@@ -18,9 +18,9 @@ namespace App.Scripts.Features.UserStats
         private readonly InventoryProvider _inventoryProvider;
         private readonly CoinsProvider _coinsProvider;
         private readonly TicketsProvider _ticketsProvider;
+        private readonly List<RewardConfig> _rewards = new();
 
         public int ExperienceToAdd { get; set; }
-        public List<RewardConfig> Rewards { get; } = new();
 
         public RewardService(RewardsPopupRouter popupRouter,
             UserRankProvider rankProvider,
@@ -35,9 +35,31 @@ namespace App.Scripts.Features.UserStats
             _ticketsProvider = ticketsProvider;
         }
 
+        public void AddReward(RewardConfig rewardConfig)
+        {
+            var reward = _rewards.FirstOrDefault(x => x.Reward.Id.Equals(rewardConfig.Reward.Id));
+            if (!reward)
+            {
+                _rewards.Add(rewardConfig);
+                return;
+            }
+
+            reward.Count += rewardConfig.Count;
+        }
+
         public bool HasAnyReward()
         {
-            return Rewards.Count > 0 || ExperienceToAdd > 0;
+            return _rewards.Count > 0 || ExperienceToAdd > 0;
+        }
+
+        public bool HasExperience()
+        {
+            return ExperienceToAdd > 0;
+        }
+
+        public bool HasRewards()
+        {
+            return _rewards.Count > 0;
         }
 
         public async UniTask ApplyRewardsAsync()
@@ -46,10 +68,10 @@ namespace App.Scripts.Features.UserStats
             ExperienceToAdd = 0;
             var expValue = (float) _rankProvider.Experience / _rankProvider.CurrentRank.ExpForRank;
 
-            var rewards = Rewards.ToList();
-            ApplyRewards(Rewards);
+            var rewards = _rewards.ToList();
+            ApplyRewards(_rewards);
 
-            Rewards.Clear();
+            _rewards.Clear();
             await _popupRouter.ShowPopup(rewards, levelUps, expValue);
         }
 

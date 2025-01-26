@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.Localization;
-using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards.Configs;
 
 namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 {

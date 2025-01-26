@@ -9016,6 +9016,7 @@ MonoBehaviour:
   _postProcessVolume: {fileID: 2013434820}
   _slotTemplate: {fileID: -5099056684500095587, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
   _itemTemplate: {fileID: 6486694960965321439, guid: 1d1ca5f7beac36245bc69c89f5e3296b, type: 3}
+  _accrualConfig: {fileID: 11400000, guid: 605800f0878126044bd0442cca2f37b1, type: 2}
 --- !u!1 &1495921623
 GameObject:
   m_ObjectHideFlags: 0

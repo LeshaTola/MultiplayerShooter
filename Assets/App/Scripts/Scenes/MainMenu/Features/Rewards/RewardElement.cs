@@ -1,7 +1,7 @@
-﻿using App.Scripts.Modules.Localization;
+﻿using App.Scripts.Features.Rewards.Configs;
+using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.Views;
-using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards.Configs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
