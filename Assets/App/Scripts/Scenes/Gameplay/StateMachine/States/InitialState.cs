@@ -46,7 +46,6 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _initializeService.Initialize();
             _timerProvider.Initialize();
             
-            
             _playerController.Setup(_playerProvider.Player);
 
             _healthBarUI.Initialize(_playerProvider.Player.Health);

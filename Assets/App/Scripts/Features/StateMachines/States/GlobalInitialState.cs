@@ -4,6 +4,7 @@ using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Features.StateMachines.States
 {
@@ -28,6 +29,12 @@ namespace App.Scripts.Features.StateMachines.States
             {
                 await StateMachine.ChangeState(NextState);
                 return;
+            }
+            
+            Scene activeScene = SceneManager.GetActiveScene();
+            if (activeScene.name != "MainMenu")
+            {
+                SceneManager.LoadScene("MainMenu");
             }
             
             Application.targetFrameRate = -1;
