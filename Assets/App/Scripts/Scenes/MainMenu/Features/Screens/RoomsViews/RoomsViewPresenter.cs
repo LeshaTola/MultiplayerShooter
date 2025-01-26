@@ -43,6 +43,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         public void UpdateRoomList(List<RoomInfo> roomList)
         {
+            if (roomList == null)
+            {
+                return;
+            }
             foreach (var room in roomList)
             {
                 if (room.RemovedFromList)
