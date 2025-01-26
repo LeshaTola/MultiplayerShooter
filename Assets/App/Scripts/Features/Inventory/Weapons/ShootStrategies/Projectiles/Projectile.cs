@@ -32,7 +32,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
 
         public async void Shoot(Vector3 dir, float speed)
         {
-            _rb.AddForce(dir * speed, ForceMode.Impulse);
+            photonView.RPC(nameof(PushProjectile), RpcTarget.All, dir * speed);
             
             if (_lifeTime >= 0)
             {
@@ -45,6 +45,12 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
                 }
                 catch (OperationCanceledException) { }
             }
+        }
+
+        [PunRPC]
+        public void PushProjectile(Vector3 force)
+        {
+            _rb.AddForce(force, ForceMode.Impulse);
         }
 
         private void OnCollisionEnter(Collision other)

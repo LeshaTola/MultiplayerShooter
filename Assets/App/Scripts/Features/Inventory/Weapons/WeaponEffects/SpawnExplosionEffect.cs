@@ -38,7 +38,11 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     if (player.Value <= _damage)
                     {
                         damage = (int)player.Value;
-                        LeaderBoardProvider.Instance.AddKill();
+                        if (player.IsPlayer)
+                        {
+                            LeaderBoardProvider.Instance.AddKill();
+                        }
+                        
                         isKilled = true;
                     }
                     

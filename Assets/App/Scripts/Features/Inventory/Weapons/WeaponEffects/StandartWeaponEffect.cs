@@ -61,7 +61,10 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                 if (damageable.Key.Value <= damageable.Value.Item1)
                 {
                     damage = (int)damageable.Key.Value;
-                    LeaderBoardProvider.Instance.AddKill();
+                    if (damageable.Key.IsPlayer)
+                    {
+                        LeaderBoardProvider.Instance.AddKill();
+                    }
                     isKilled = true;
                 }
 

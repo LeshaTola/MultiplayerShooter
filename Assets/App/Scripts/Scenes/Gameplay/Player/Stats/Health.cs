@@ -6,13 +6,15 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 {
 	public class Health : MonoBehaviourPun, IDamageable
 	{
-		[SerializeField] private int _startHealth = -1;
-		
 		public event Action<float, float> OnValueChanged;
 		public event Action<float> OnDamage;
 		public event Action<float> OnHealing;
 		public event Action OnDied;
 
+		[SerializeField] private int _startHealth = -1;
+		
+		[field: SerializeField] public bool IsPlayer { get; private set; } = false;
+		
 		public float Value { get; private set; }
 		public float MaxValue { get; private set; }
 		public int LastHitPlayerId { get; private set; }
