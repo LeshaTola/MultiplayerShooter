@@ -46,8 +46,14 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
                     TimeSpan.FromSeconds(_playerProvider.Player.PlayerConfig.ImmortalTime),
                     cancellationToken: _cts.Token);
             }
-            catch (OperationCanceledException) { }
-            finally{ _cts.Dispose(); }
+            catch (OperationCanceledException)
+            {
+            }
+            finally
+            {
+                _cts.Dispose();
+                _cts = null;
+            }
             
             
             _playerProvider.Player.Health.RPCSetImmortal(false);
