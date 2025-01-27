@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.StateMachine.States.General;
@@ -13,6 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private PlayerProvider _playerProvider;
         private PostProcessingProvider _postProcessingProvider;
         private IUpdateService _updateService;
+        private CancellationTokenSource _cts;
 
         public GameplayState(PlayerProvider playerProvider, PostProcessingProvider postProcessingProvider,
             IUpdateService updateService)
@@ -37,7 +39,16 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _playerProvider.Player.Health.RPCSetImmortal(true);
             _postProcessingProvider.ApplyImmortalEffect();
             _playerProvider.Player.PlayerVisual.RPCSetImortal(true);
-            await UniTask.Delay(TimeSpan.FromSeconds(_playerProvider.Player.PlayerConfig.ImmortalTime));
+            _cts = new CancellationTokenSource();
+            try
+            {
+                await UniTask.Delay(
+                    TimeSpan.FromSeconds(_playerProvider.Player.PlayerConfig.ImmortalTime),
+                    cancellationToken: _cts.Token);
+            }
+            catch (OperationCanceledException) { }
+            finally{ _cts.Dispose(); }
+            
             
             _playerProvider.Player.Health.RPCSetImmortal(false);
             _playerProvider.Player.PlayerVisual.RPCSetImortal(false);
@@ -57,6 +68,8 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _playerProvider.Player.Health.OnDied -= OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage -= ApplyDamageEffect;
             _playerProvider.Player.Health.OnHealing -= ApplyHealingEffect;
+            
+            _cts?.Cancel();
             return UniTask.CompletedTask;
         }
 

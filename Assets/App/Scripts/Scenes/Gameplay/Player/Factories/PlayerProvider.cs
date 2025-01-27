@@ -65,8 +65,8 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
 
         public void RespawnPlayer()
         {
-            _player.RPCSetActive(true);
             _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
+            _player.RPCSetActive(true);
             
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
             _player.Health.RPCSetLasHit(_player.photonView.ViewID, null);
