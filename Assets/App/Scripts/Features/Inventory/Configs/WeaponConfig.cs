@@ -19,7 +19,6 @@ namespace App.Scripts.Features.Inventory.Configs
         [field: Header("General")]
         [field: SerializeField] public int MaxAmmoCount { get; private set; }
         [field: SerializeField] public float ReloadCooldown { get; private set; }
-        [field: SerializeField] public float AttackCooldown { get; private set; }
         
         [field: SerializeField] public List<(string, string)> Stats { get; private set; }
 

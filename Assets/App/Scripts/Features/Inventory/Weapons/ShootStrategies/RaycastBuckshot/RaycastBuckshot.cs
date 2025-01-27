@@ -18,6 +18,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
         public override void Shoot()
         {
             base.Shoot();
+            var shootPoint = Weapon.GetShootPoint();
+            Weapon.RPCPlayMuzzleFlash(shootPoint);
 
             List<(Vector3, GameObject)> data = new();
             for (int i = 0; i < _buckshotCount; i++)
@@ -28,7 +30,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
                 if (!Physics.Raycast(_camera.transform.position, direction, out RaycastHit hit, 
                         Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
                 {
-                    Weapon.NetworkSetLine(Weapon.ShootPoint.position + Weapon.ShootPoint.forward * 100);
+                    Weapon.NetworkSetLine(shootPoint,shootPoint + _camera.transform.forward * 100);
                     Weapon.NetworkFadeOutLine();
                     return;
 
@@ -41,7 +43,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
                 weaponEffect.Effect(data);
             }
             
-            Weapon.NetworkSetLine(data.Last().Item1);
+            Weapon.NetworkSetLine(shootPoint,data.Last().Item1);
             Weapon.NetworkFadeOutLine();
         }
 

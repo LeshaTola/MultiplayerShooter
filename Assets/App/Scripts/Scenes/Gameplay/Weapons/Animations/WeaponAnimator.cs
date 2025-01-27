@@ -11,11 +11,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Animations
         {
             _weapon = weapon;
         }
-        
-        public void AttackAnimation()
-        {
-            AttackAnimation(_weapon.Config.AttackCooldown);
-        }
 
         public void AttackAnimation(float duration)
         {

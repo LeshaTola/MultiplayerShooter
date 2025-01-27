@@ -6,8 +6,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 {
     public interface IShootingModeStrategy
     {
+        public float AttackCooldown { get; }
+
         public IShootStrategy ShootStrategy { get; set; }
-        
+
         public bool IsShooting { get;}
 
         public void Initialize(Weapon weapon);
@@ -22,6 +24,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
     public abstract class ShootingMode : IShootingModeStrategy
     {
+        [field: SerializeField] public float AttackCooldown { get; private set; }
+
         [field: SerializeField] public IShootStrategy ShootStrategy { get; set; }
 
         protected Weapon Weapon;
@@ -52,6 +56,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void Import(IShootingModeStrategy original)
         {
+            AttackCooldown = original.AttackCooldown;
             ShootStrategy.Import(original.ShootStrategy);
         }
     }

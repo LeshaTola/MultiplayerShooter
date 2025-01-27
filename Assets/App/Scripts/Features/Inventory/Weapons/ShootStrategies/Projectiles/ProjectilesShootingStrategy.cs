@@ -21,18 +21,21 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
         public override void Shoot()
         {
             base.Shoot();
+            var shootPoint = Weapon.GetShootPoint();
+            Weapon.RPCPlayMuzzleFlash(shootPoint);
+
             var ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
             
             var targetPoint = Physics.Raycast(ray, out var hit,Mathf.Infinity,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) ? hit.point : ray.GetPoint(75);
-            var directionWithoutSpread = targetPoint - Weapon.ShootPoint.position;
+            var directionWithoutSpread = targetPoint - shootPoint;
             
             var spread = Recoil.GetRecoil();
             var direction = directionWithoutSpread + spread;
             direction.Normalize();
             
-            var projectile = PhotonNetwork.Instantiate(_projectile.name, Weapon.ShootPoint.position,_camera.transform.rotation).GetComponent<Projectile>();
-            projectile.transform.position = Weapon.ShootPoint.position;
+            var projectile = PhotonNetwork.Instantiate(_projectile.name, shootPoint,_camera.transform.rotation).GetComponent<Projectile>();
+            projectile.transform.position = shootPoint;
             projectile.gameObject.SetActive(true);
             
             projectile.Setup((point, hitObject) =>

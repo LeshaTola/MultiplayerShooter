@@ -41,7 +41,6 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
         public virtual void Shoot()
         {
             Recoil.Add();
-            Weapon.RPCPlayMuzzleFlash();
         }
 
         public virtual void Import(IShootStrategy original)

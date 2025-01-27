@@ -8,11 +8,11 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         public override void PerformAttack()
         {
             ShootStrategy.Shoot();
-            Weapon.Animator.AttackAnimation();
+            Weapon.Animator.AttackAnimation(AttackCooldown);
             Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
             Weapon.ChangeAmmoCount(-1);
             
-            Weapon.StartAttackCooldown(Weapon.Config.AttackCooldown);
+            Weapon.StartAttackCooldown(AttackCooldown);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using App.Scripts.Scenes.Gameplay.Weapons;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 {
-    public class BurstShootingStrategy : ShootingMode
+    public class AutoBurstShootingStrategy : ShootingMode
     {
         [SerializeField] private int _burstCount = 3;
+        [SerializeField] private float _burstCooldown = 0.5f;
 
         private int _currentCount;
 
@@ -19,7 +19,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         {
             if (_currentCount <= 0)
             {
-                CancelAttack();
+                Weapon.StartAttackCooldown(_burstCooldown);
+                _currentCount = _burstCount;
                 return;
             }
 
@@ -35,9 +36,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         public override void Import(IShootingModeStrategy original)
         {
             base.Import(original);
-            var concreteOriginal = (BurstShootingStrategy) original;
+            var concreteOriginal = (AutoBurstShootingStrategy) original;
 
             _burstCount = concreteOriginal._burstCount;
+            _burstCooldown = concreteOriginal._burstCooldown;
         }
     }
 }

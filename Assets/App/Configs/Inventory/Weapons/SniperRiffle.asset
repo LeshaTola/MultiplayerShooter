@@ -117,6 +117,9 @@ MonoBehaviour:
       Entry: 7
       Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
         Assembly-CSharp
+    - Name: <AttackCooldown>k__BackingField
+      Entry: 4
+      Data: 1
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
@@ -181,6 +184,9 @@ MonoBehaviour:
       Entry: 7
       Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
         Assembly-CSharp
+    - Name: <AttackCooldown>k__BackingField
+      Entry: 4
+      Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
@@ -244,4 +250,3 @@ MonoBehaviour:
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 2b69b0777b710b54bb5876a88b1c44d6, type: 3}
   <MaxAmmoCount>k__BackingField: 10
   <ReloadCooldown>k__BackingField: 2
-  <AttackCooldown>k__BackingField: 1

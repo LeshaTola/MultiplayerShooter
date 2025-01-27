@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
+using App.Scripts.Features.Inventory.Weapons.ShootPointStrategies;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using DG.Tweening;
@@ -29,7 +31,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         [field: Space]
         [field: SerializeField]
-        public Transform ShootPoint { get; private set; }
+        public List<Transform> ShootPoints { get; private set; }
+        [SerializeField, SerializeReference] private ShootPointStrategy _shootPointProvider;
 
         [Space]
         [SerializeField] private float _trailFadeTime = 0.1f;
@@ -43,10 +46,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public int CurrentAmmoCount { get; private set; }
         public Player.Player Owner { get; private set; }
 
-        private void Start() //TODO: Is a problem
-        {
-            _trialStartColor = _tracerEffect.startColor;
-        }
 
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -54,7 +53,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _isLocal = true;
             
             Animator.Initialize(this);
-            
+            _shootPointProvider.Initialize(ShootPoints);
+            _trialStartColor = _tracerEffect.startColor;
+
             Config.ShootingMode.Initialize(this);
             Config.ShootingModeAlternative.Initialize(this);
             
@@ -135,6 +136,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public void ReloadImmidiate()
         {
+            if (_shootPointProvider.ReloadReset)
+            {
+                _shootPointProvider.Reset();
+            }
+            
             CurrentAmmoCount = Config.MaxAmmoCount;
             OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
         }
@@ -149,6 +155,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             Owner.PlayerAudioProvider.RPCPlayReloadWeaponSound();
             Animator.ReloadAnimation();
             StartReloadCooldown();
+        }
+
+        public Vector3 GetShootPoint()
+        {
+            return _shootPointProvider.GetShootPoint();
         }
 
         public void SetupPlayer(Player.Player player)
@@ -195,11 +206,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             photonView.RPC(nameof(FadeOutLine), RpcTarget.All);
         }
 
-        public void NetworkSetLine(Vector3 endPoint)
+        public void NetworkSetLine(Vector3 shootPoint,Vector3 endPoint)
         {
             photonView.RPC(nameof(SetLine),
                 RpcTarget.All,
-                ShootPoint.position,
+                shootPoint,
                 endPoint);
         }
 
@@ -232,19 +243,20 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             PhotonNetwork.Instantiate(_impactEffect.name, position, Quaternion.identity);
         }
 
-        public void RPCPlayMuzzleFlash()
+        public void RPCPlayMuzzleFlash(Vector3 position)
         {
             if (_muzzleFlash == null)
             {
                 return;
             }
 
-            photonView.RPC(nameof(PlayMuzzleFlash), RpcTarget.All);
+            photonView.RPC(nameof(PlayMuzzleFlash), RpcTarget.All, position);
         }
 
         [PunRPC]
-        private void PlayMuzzleFlash()
+        private void PlayMuzzleFlash(Vector3 position)
         {
+            _muzzleFlash.transform.position = position;
             _muzzleFlash.Play();
         }
         

@@ -117,6 +117,9 @@ MonoBehaviour:
       Entry: 7
       Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
         Assembly-CSharp
+    - Name: <AttackCooldown>k__BackingField
+      Entry: 4
+      Data: 0.3
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
@@ -181,6 +184,9 @@ MonoBehaviour:
       Entry: 7
       Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.BurstShootingStrategy,
         Assembly-CSharp
+    - Name: <AttackCooldown>k__BackingField
+      Entry: 4
+      Data: 0.1
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
@@ -241,9 +247,6 @@ MonoBehaviour:
     - Name: _burstCount
       Entry: 3
       Data: 8
-    - Name: _burstCooldown
-      Entry: 4
-      Data: 0.1
     - Name: 
       Entry: 8
       Data: 
@@ -254,4 +257,3 @@ MonoBehaviour:
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 78cce3e679372904ba09f522634231f1, type: 3}
   <MaxAmmoCount>k__BackingField: 8
   <ReloadCooldown>k__BackingField: 1
-  <AttackCooldown>k__BackingField: 0.3

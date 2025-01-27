@@ -96,8 +96,19 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 3947304137682392587}
   _impactEffect: {fileID: 1317193628172381456, guid: e4dfde9ca134adf439e6975d3b3674fc, type: 3}
   _tracerEffect: {fileID: 8123250644232625794}
-  <ShootPoint>k__BackingField: {fileID: 2891680068617210708}
+  <ShootPoints>k__BackingField:
+  - {fileID: 2891680068617210708}
+  _shootPointProvider:
+    rid: 5057382477485309957
   _trailFadeTime: 0.15
+  references:
+    version: 2
+    RefIds:
+    - rid: 5057382477485309957
+      type: {class: SinglePointProvider, ns: App.Scripts.Features.Inventory.Weapons.ShootPointStrategies, asm: Assembly-CSharp}
+      data:
+        <ReloadReset>k__BackingField: 0
+        _pointIndex: 0
 --- !u!120 &8123250644232625794
 LineRenderer:
   serializedVersion: 2
