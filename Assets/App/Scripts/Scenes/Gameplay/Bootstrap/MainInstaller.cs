@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
+using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Modules.Factories.MonoFactories;
@@ -40,9 +41,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
         [Header("Player")]
         [SerializeField] private Camera _playerCamera;
-
         [SerializeField] private Player.Player _playerPrefab;
-        [SerializeField] private List<Transform> _spawnPoints;
 
         [Header("PostProcessing")]
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
@@ -56,6 +55,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         
         [Header("Other")]
         [SerializeField] private AccrualConfig _accrualConfig;
+        [SerializeField] private SceneNetworkControoller _sceneNetworkControoller;
 
         public override void InstallBindings()
         {
@@ -71,13 +71,14 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<ProjectilesFactory>().AsSingle();
             Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
-            Container.Bind<PlayerProvider>().AsSingle().WithArguments(_spawnPoints, _playerPrefab);
+            Container.Bind<PlayerProvider>().AsSingle().WithArguments(_playerPrefab);
             Container.Bind<PostProcessingProvider>().AsSingle()
                 .WithArguments(_postProcessingConfig, _postProcessVolume);
 
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneNetworkControoller>().FromInstance(_sceneNetworkControoller).AsSingle();
             Container.Bind<RewardProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
             BindSlotFactory();

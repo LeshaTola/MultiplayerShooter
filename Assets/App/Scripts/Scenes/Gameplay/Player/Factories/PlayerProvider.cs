@@ -22,7 +22,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         private readonly InventoryProvider _inventoryProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
         private readonly CameraProvider _cameraProvider;
-        private readonly List<Transform> _spawnPoints;
+        private List<Transform> _spawnPoints;
         private readonly Player _playerPrefab;
 
         private Player _player;
@@ -43,7 +43,6 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
 
         public PlayerProvider(GameInputProvider gameInputProvider,
             PlayerController playerController,
-            List<Transform> spawnPoints,
             Player playerPrefab,
             InventoryProvider inventoryProvider,
             ShootingModeFactory shootingModeFactory,
@@ -51,16 +50,26 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         {
             _gameInputProvider = gameInputProvider;
             _playerController = playerController;
-            _spawnPoints = spawnPoints;
             _playerPrefab = playerPrefab;
             _inventoryProvider = inventoryProvider;
             _shootingModeFactory = shootingModeFactory;
             _cameraProvider = cameraProvider;
         }
 
-        public void HidePlayer()
+        private Player Create()
         {
-            _player.RPCSetActive(false);
+            var player = PhotonNetwork.Instantiate(
+                _playerPrefab.gameObject.name,
+                // _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
+                Vector3.zero,
+                Quaternion.identity).GetComponent<Player>();
+            player.Initialize(PhotonNetwork.NickName);
+            player.PlayerVisual.RPCSetSkin(_inventoryProvider.GameInventory.Skin);
+            
+            _cameraProvider.RegisterCamera(player.VirtualCamera);
+            
+            player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,_shootingModeFactory, player);
+            return player;
         }
 
         public void RespawnPlayer()
@@ -82,19 +91,14 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             }
         }
 
-        private Player Create()
+        public void HidePlayer()
         {
-            var player = PhotonNetwork.Instantiate(
-                _playerPrefab.gameObject.name,
-                _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
-                Quaternion.identity).GetComponent<Player>();
-            player.Initialize(PhotonNetwork.NickName);
-            player.PlayerVisual.RPCSetSkin(_inventoryProvider.GameInventory.Skin);
-            
-            _cameraProvider.RegisterCamera(player.VirtualCamera);
-            
-            player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,_shootingModeFactory, player);
-            return player;
+            _player.RPCSetActive(false);
+        }
+
+        public void SetSpawnPoints(List<Transform> spawnPoints)
+        {
+            _spawnPoints = spawnPoints;
         }
     }
 }

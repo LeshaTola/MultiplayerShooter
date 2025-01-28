@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.Features.Match.Configs;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using Photon.Pun;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Timer
 {
-    public class TimerProvider : MonoBehaviourPun, IInitializable, IUpdatable
+    public class TimerProvider : MonoBehaviourPunCallbacks, IInitializable, IUpdatable
     {
         public event Action<double> OnTimerTick;
         public event Action OnTimerExpired;
@@ -26,7 +27,7 @@ namespace App.Scripts.Scenes.Gameplay.Timer
                 return;
             }
 
-            photonView.RPC(nameof(StartTimer), RpcTarget.AllBufferedViaServer, PhotonNetwork.Time);
+            photonView.RPC(nameof(StartTimer), RpcTarget.AllBuffered, PhotonNetwork.Time);
         }
 
         void IUpdatable.Update()
@@ -52,6 +53,14 @@ namespace App.Scripts.Scenes.Gameplay.Timer
         {
             _startTime = time;
             _timerRunning = true;
+        }
+
+        public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
+        {
+            if (_timerRunning && newMasterClient.IsMasterClient)
+            {
+                photonView.RPC(nameof(StartTimer), RpcTarget.AllBuffered, _startTime);
+            }
         }
     }
 }

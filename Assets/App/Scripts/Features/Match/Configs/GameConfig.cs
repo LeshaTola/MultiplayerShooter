@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace App.Scripts.Scenes.Gameplay.Timer
+namespace App.Scripts.Features.Match.Configs
 {
     [CreateAssetMenu(fileName = "GameConfig", menuName = "Configs/Game")]
     public class GameConfig : ScriptableObject

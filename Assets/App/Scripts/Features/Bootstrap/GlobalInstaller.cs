@@ -1,6 +1,8 @@
 ﻿using App.Scripts.Features.Commands;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Match.Configs;
+using App.Scripts.Features.Match.Maps;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.SceneTransitions;
@@ -21,6 +23,7 @@ using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
+using App.Scripts.Scenes.Gameplay.Timer;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using TNRD;
 using UnityEngine;
@@ -39,6 +42,9 @@ namespace App.Scripts.Features.Bootstrap
 
         [SerializeField] private ConnectionProvider _connectionProvider;
 
+        [Header("Game")]
+        [SerializeField] private MapsConfig _mapsConfig;
+        
         [FormerlySerializedAs("_gameInventory")]
         [Header("Inventory")]
         [SerializeField] private InventoryConfig _inventoryConfig;
@@ -93,6 +99,8 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<TicketsProvider>().AsSingle();
             
             Container.Bind<InventoryProvider>().AsSingle().WithArguments(_inventoryConfig, _globalInventory);
+            
+            Container.Bind<MapsProvider>().AsSingle().WithArguments(_mapsConfig);
         }
 
         private void BindLocalizationSystem()

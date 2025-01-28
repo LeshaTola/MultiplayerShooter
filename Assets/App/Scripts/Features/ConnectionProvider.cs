@@ -1,6 +1,9 @@
 using System;
+using App.Scripts.Features.Match.Maps;
+using App.Scripts.Scenes.Gameplay.Timer;
 using Photon.Pun;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace App.Scripts.Features
@@ -8,8 +11,15 @@ namespace App.Scripts.Features
     public class ConnectionProvider : MonoBehaviourPunCallbacks
     {
         public const string NAME_DATA = "playerName";
-
         public event Action OnConnectionFinished;
+        
+        private MapsProvider _mapsProvider;
+        
+        [Inject]
+        public void Constructor(MapsProvider mapsProvider)
+        {
+            _mapsProvider = mapsProvider;
+        }
         
         public void Connect()
         {
@@ -45,6 +55,7 @@ namespace App.Scripts.Features
 
         public void QuickGame()
         {
+            _mapsProvider.SetRandomMap();
             PhotonNetwork.JoinRandomOrCreateRoom();
         }
     }

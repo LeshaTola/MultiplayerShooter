@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Rewards;
+﻿using App.Scripts.Features.Match.Configs;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.EndGame;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
