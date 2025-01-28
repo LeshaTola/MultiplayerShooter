@@ -10,6 +10,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
 
         protected List<Transform> Points;
         protected int CurrentIndex;
+        
+        public Vector3 ShotPoint { get; protected set; }
 
         public virtual void Initialize(List<Transform> points)
         {

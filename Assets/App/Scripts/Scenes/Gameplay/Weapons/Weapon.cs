@@ -46,6 +46,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public int CurrentAmmoCount { get; private set; }
         public Player.Player Owner { get; private set; }
 
+        public ShootPointStrategy ShootPointProvider => _shootPointProvider;
+
 
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -53,7 +55,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _isLocal = true;
             
             Animator.Initialize(this);
-            _shootPointProvider.Initialize(ShootPoints);
+            ShootPointProvider.Initialize(ShootPoints);
             _trialStartColor = _tracerEffect.startColor;
 
             Config.ShootingMode.Initialize(this);
@@ -136,9 +138,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public void ReloadImmidiate()
         {
-            if (_shootPointProvider.ReloadReset)
+            if (ShootPointProvider.ReloadReset)
             {
-                _shootPointProvider.Reset();
+                ShootPointProvider.Reset();
             }
             
             CurrentAmmoCount = Config.MaxAmmoCount;
@@ -159,7 +161,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public Vector3 GetShootPoint()
         {
-            return _shootPointProvider.GetShootPoint();
+            return ShootPointProvider.GetShootPoint();
         }
 
         public void SetupPlayer(Player.Player player)

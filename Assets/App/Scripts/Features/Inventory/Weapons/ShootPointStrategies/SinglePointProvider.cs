@@ -17,8 +17,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
         {
             if (Points.Count == 0)
                 return Vector3.zero;
-            
-            return Points[_pointIndex].position;
+            ShotPoint = Points[_pointIndex].position; 
+            return ShotPoint;
         }
 
         public override void Import(ShootPointStrategy strategy)

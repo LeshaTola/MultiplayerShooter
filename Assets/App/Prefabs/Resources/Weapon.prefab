@@ -80,6 +80,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c67b4bf559496e973dec8aea5b33c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animation:
+    rid: 5057382501509758976
+  _viewProvider:
+    rid: 5057382501509758977
+  references:
+    version: 2
+    RefIds:
+    - rid: 5057382501509758976
+      type: {class: SlideAnimation, ns: App.Scripts.Scenes.Gameplay.Weapons.Animations, asm: Assembly-CSharp}
+      data:
+        _slideOffset: 0.15
+    - rid: 5057382501509758977
+      type: {class: ConstWeaponViewProvider, ns: App.Scripts.Scenes.Gameplay.Weapons.Animations, asm: Assembly-CSharp}
+      data:
+        _weaponView: {fileID: 8333018714683944101}
 --- !u!114 &8110540984061423504
 MonoBehaviour:
   m_ObjectHideFlags: 0

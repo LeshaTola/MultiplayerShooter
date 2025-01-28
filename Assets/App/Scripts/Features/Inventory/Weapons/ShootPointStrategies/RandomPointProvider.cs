@@ -17,7 +17,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
                 return Vector3.zero; // или выбрасывать исключение
 
             int randomIndex = random.Next(Points.Count);
-            return Points[randomIndex].position;
+            ShotPoint = Points[randomIndex].position;
+            return ShotPoint;
         }
     }
 }

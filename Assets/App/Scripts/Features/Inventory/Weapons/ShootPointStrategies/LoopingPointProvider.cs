@@ -9,10 +9,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
             if (Points.Count == 0)
                 return Vector3.zero; 
 
-            Vector3 shootPoint = Points[CurrentIndex].position;
+            ShotPoint = Points[CurrentIndex].position;
             CurrentIndex = (CurrentIndex + 1) % Points.Count; 
 
-            return shootPoint;
+            return ShotPoint;
         }
     }
 }
