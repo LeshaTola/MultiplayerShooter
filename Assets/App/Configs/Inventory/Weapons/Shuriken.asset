@@ -120,7 +120,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.3
+      Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.ProjectilesShootingStrategy,
@@ -190,7 +190,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.3
+      Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
@@ -248,9 +248,9 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: Shuriken
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 956864ed393fbb047902e030c0a8e285, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c3244f37255892148932ad6830dd42c6, type: 3}
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: be87edd1e6b3d6643b7e62711d1f802a, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 9b5272e602b46af4d898461176e4589c, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
   <MaxAmmoCount>k__BackingField: 1
-  <ReloadCooldown>k__BackingField: 0.4
+  <ReloadCooldown>k__BackingField: 0.3

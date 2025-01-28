@@ -255,7 +255,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: Dynamite
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 956864ed393fbb047902e030c0a8e285, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: b46d4524328dcbd4eb20558db99df63b, type: 3}
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: f646cf8146f2df741918eeeb9aa46376, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
