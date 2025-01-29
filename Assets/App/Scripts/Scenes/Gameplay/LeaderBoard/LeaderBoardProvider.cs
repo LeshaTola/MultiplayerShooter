@@ -44,6 +44,13 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             UpdateTable();
         }
 
+        public void Reset()
+        {
+            Kills = 0;
+            Death = 0;
+            UpdateTable();
+        }
+
         public List<(int, string, int, int, int, bool)> GetTable()
         {
             List<(int, string, int, int, int, bool)> result = new();

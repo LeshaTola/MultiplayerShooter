@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4338501228493944201}
   - component: {fileID: 1645694598745779037}
   - component: {fileID: 3713381470204557260}
-  - component: {fileID: 7895306452367289545}
+  - component: {fileID: 6470586150590008545}
   - component: {fileID: 3098583111338872807}
   - component: {fileID: 8593454855337000812}
   - component: {fileID: -8708965378622071557}
@@ -81,8 +81,8 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!135 &7895306452367289545
-SphereCollider:
+--- !u!65 &6470586150590008545
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,7 +100,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.28
+  m_Size: {x: 0.05, y: 0.4, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &3098583111338872807
 TrailRenderer:
@@ -343,8 +343,30 @@ PrefabInstance:
     - {fileID: 6314715161255974767, guid: 869ecb3179c4cb64a876b0ba75758db7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6944143203478259832, guid: 869ecb3179c4cb64a876b0ba75758db7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5007576929735357406}
   m_SourcePrefab: {fileID: 100100000, guid: 869ecb3179c4cb64a876b0ba75758db7, type: 3}
+--- !u!1 &3635906445695843275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6944143203478259832, guid: 869ecb3179c4cb64a876b0ba75758db7, type: 3}
+  m_PrefabInstance: {fileID: 5921064547476779955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5007576929735357406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635906445695843275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a239133200fa45fea3b076e2111288c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: {x: 1, y: 0, z: 0}
+  _timeOnOneSpin: 0.5
 --- !u!4 &4124880589380690289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7716176749640520386, guid: 869ecb3179c4cb64a876b0ba75758db7, type: 3}

@@ -132,8 +132,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             OnWeaponChanged?.Invoke(weapon);
             if (CurrentWeapon != null)
             {
-                CurrentWeapon.CancelAttack(true);
-                CurrentWeapon.CancelAttack(false);
+                CurrentWeapon.GuaranteedCancelAttack(true);
+                CurrentWeapon.GuaranteedCancelAttack(false);
             }
             
             photonView.RPC(nameof(SetWeaponByIndex), RpcTarget.AllBuffered, index);

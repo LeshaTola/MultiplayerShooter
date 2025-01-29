@@ -52,7 +52,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 40
+      Data: 100
     - Name: 
       Entry: 8
       Data: 

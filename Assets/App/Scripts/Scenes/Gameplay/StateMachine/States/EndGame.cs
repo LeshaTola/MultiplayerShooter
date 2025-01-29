@@ -15,6 +15,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private readonly RewardProvider _rewardProvider;
         private readonly GameConfig _gameConfig;
         private readonly TimerProvider _timerProvider;
+        private readonly LeaderBoardProvider _leaderBoardProvider;
         private readonly Modules.Timer _timer;
 
         private bool _exit;
@@ -22,12 +23,14 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         public EndGame(EndGameViewPresenter endGameViewPresenter,
             RewardProvider rewardProvider,
             GameConfig gameConfig,
-            TimerProvider timerProvider)
+            TimerProvider timerProvider,
+            LeaderBoardProvider leaderBoardProvider)
         {
             _endGameViewPresenter = endGameViewPresenter;
             _rewardProvider = rewardProvider;
             _gameConfig = gameConfig;
             _timerProvider = timerProvider;
+            _leaderBoardProvider = leaderBoardProvider;
             _timer = new();
         }
 
@@ -52,6 +55,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             _timer.StopTimer();
             _exit = true;
+            _leaderBoardProvider.Reset();
             return base.Exit();
         }
     }

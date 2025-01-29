@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 8824545611606139306}
   _maxColisionCount: -1
-  _lifeTime: 30
+  _lifeTime: 15
   _rb: {fileID: 3713381470204557260}
 --- !u!65 &6297375175463191398
 BoxCollider:

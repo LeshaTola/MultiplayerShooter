@@ -64,7 +64,7 @@ MonoBehaviour:
         \u0443\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 60
+      Data: 120
     - Name: 
       Entry: 8
       Data: 
@@ -174,7 +174,7 @@ MonoBehaviour:
       Data: 
     - Name: _buckshotCount
       Entry: 3
-      Data: 6
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
@@ -241,7 +241,7 @@ MonoBehaviour:
       Data: 
     - Name: _buckshotCount
       Entry: 3
-      Data: 6
+      Data: 8
     - Name: 
       Entry: 8
       Data: 

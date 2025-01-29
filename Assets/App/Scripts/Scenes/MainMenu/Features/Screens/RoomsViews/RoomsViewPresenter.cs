@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Features;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -13,17 +14,26 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
     public class RoomsViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly RoomsView _view;
+        private readonly ConnectionProvider _connectionProvider;
 
         private Dictionary<string, RoomInfo> _cachedRoomList = new();
 
-        public RoomsViewPresenter(RoomsView view)
+        public RoomsViewPresenter(RoomsView view, 
+            ConnectionProvider connectionProvider)
         {
             _view = view;
+            _connectionProvider = connectionProvider;
         }
 
         public override void Initialize()
         {
             _view.Initialize();
+            _view.OnQuickGameButtonClicked += OnQuickGameButtonClicked;
+        }
+
+        private void OnQuickGameButtonClicked()
+        {
+            _connectionProvider.QuickGame();
         }
 
         public override void Cleanup()

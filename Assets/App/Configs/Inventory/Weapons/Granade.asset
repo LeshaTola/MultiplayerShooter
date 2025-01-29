@@ -150,10 +150,10 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 40
+      Data: 80
     - Name: _radius
       Entry: 4
-      Data: 5
+      Data: 7
     - Name: _template
       Entry: 10
       Data: 0

@@ -11,6 +11,11 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public override void StartAttack()
         {
+            if (IsShooting)
+            {
+                return;
+            }
+            
             _currentCount = _burstCount;
             base.StartAttack();
         }
@@ -19,7 +24,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         {
             if (_currentCount <= 0)
             {
-                CancelAttack();
+                IsShooting = false;
+                ShootStrategy.Recoil.IsShooting = false;
                 return;
             }
 
@@ -31,7 +37,11 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             Weapon.StartAttackCooldown(AttackCooldown);
             _currentCount--;
         }
-        
+
+        public override void CancelAttack()
+        {
+        }
+
         public override void Import(IShootingModeStrategy original)
         {
             base.Import(original);

@@ -10,6 +10,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 {
     public class RoomsView : AnimatedView
     {
+        public event Action OnQuickGameButtonClicked;
+        
         [SerializeField] private RectTransform _container;
         [SerializeField] private RoomView _prefab;
 
@@ -23,12 +25,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         public void Initialize()
         {
             _createRoomButton.onClick.AddListener(ShowCreateRoom);
-            _quickGameButton.onClick.AddListener(CreateQuickGame);
-        }
-
-        private void CreateQuickGame()
-        {
-            PhotonNetwork.JoinRandomOrCreateRoom(roomName: "Room");
+            _quickGameButton.onClick.AddListener(()=>OnQuickGameButtonClicked?.Invoke());
         }
 
         public void Cleanup()

@@ -110,6 +110,16 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
             Config.ShootingModeAlternative.CancelAttack();
         }
+        
+        public void GuaranteedCancelAttack(bool isAlternative)
+        {
+            if (!isAlternative)
+            {
+                Config.ShootingMode.GuaranteedCancelAttack();
+                return;
+            }
+            Config.ShootingModeAlternative.GuaranteedCancelAttack();
+        }
 
         private void PerformAttack()
         {
@@ -153,7 +163,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 return;
             }
-
+            
+            GuaranteedCancelAttack(true);
+            GuaranteedCancelAttack(false);
             Owner.PlayerAudioProvider.RPCPlayReloadWeaponSound();
             Animator.ReloadAnimation();
             StartReloadCooldown();

@@ -19,6 +19,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         public void PerformAttack();
 
         public void CancelAttack();
+
+        public void GuaranteedCancelAttack();
+        
         public void Import(IShootingModeStrategy original);
     }
 
@@ -49,6 +52,12 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         }
 
         public virtual void CancelAttack()
+        {
+            IsShooting = false;
+            ShootStrategy.Recoil.IsShooting = false;
+        }
+
+        public virtual void GuaranteedCancelAttack()
         {
             IsShooting = false;
             ShootStrategy.Recoil.IsShooting = false;

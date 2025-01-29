@@ -2,6 +2,7 @@ using System;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Scenes.Gameplay.Timer;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -55,8 +56,15 @@ namespace App.Scripts.Features
 
         public void QuickGame()
         {
+            string roomName = $"Room_{Random.Range(0, 1000)}";
+            var options = new RoomOptions
+            {
+                MaxPlayers = (byte)10,
+                IsOpen = true,
+                IsVisible = true
+            };
             _mapsProvider.SetRandomMap();
-            PhotonNetwork.JoinRandomOrCreateRoom();
+            PhotonNetwork.JoinRandomOrCreateRoom(roomName:roomName, roomOptions:options);
         }
     }
 }

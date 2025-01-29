@@ -182,7 +182,7 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.BurstShootingStrategy,
+      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
@@ -196,13 +196,13 @@ MonoBehaviour:
       Data: 8|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 3
+      Data: 4
     - Name: <Decrement>k__BackingField
       Entry: 4
       Data: 2
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.3
+      Data: 0.1
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0.3
@@ -244,9 +244,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: _burstCount
-      Entry: 3
-      Data: 8
     - Name: 
       Entry: 8
       Data: 
