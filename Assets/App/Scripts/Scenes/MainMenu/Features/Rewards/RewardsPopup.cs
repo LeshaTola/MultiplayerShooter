@@ -4,6 +4,7 @@ using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.General.Popup;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
         [SerializeField] private Image _curRankImage;
         [SerializeField] private Image _nextRankImage;
         [SerializeField] private Slider _expSlider;
+        [SerializeField] private TextMeshProUGUI _expText;
         [SerializeField] private float _expAnimationDuration = 0.3f;
         
         [Space]
@@ -35,15 +37,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
             Initialize();
             _acceptButton.UpdateAction(()=>Hide().Forget());
             
-            SetUpExpSlider();
-            SetupRanks(_vm.RankProvider.CurrentRankId);
-
+            SetUpExp();
             Translate();
         }
 
-        private void SetUpExpSlider()
+        private void SetUpExp()
         {
-            _expSlider.value = (float)_vm.RankProvider.Experience / _vm.RankProvider.CurrentRank.ExpForRank;
+            var animationData = _vm.AnimationDatas[0];
+            SetupRanks(animationData.FromSprite, animationData.ToSprite);
+
+            _expSlider.value = animationData.FromExp / animationData.MaxExp;
+            _expText.text = animationData.FromExp  + "/" + animationData.MaxExp;
         }
 
         public override async UniTask Show()
@@ -96,37 +100,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 
         private async UniTask ExpSliderAnimation()
         {
-            var levelUps = _vm.LevelUps;
-            
-            while (levelUps > 0)
+            foreach (var animationData in _vm.AnimationDatas)
             {
-                await DOVirtual.Float(_expSlider.value, _expSlider.maxValue, _expAnimationDuration, (value) =>
+                SetupRanks(animationData.FromSprite, animationData.ToSprite);
+                await DOVirtual.Float(animationData.FromExp, animationData.ToExp, _expAnimationDuration, (value) =>
                 {
-                    _expSlider.value = value;
+                    _expSlider.value = value/animationData.MaxExp;
+                    _expText.text = (int)value + "/" + animationData.MaxExp;
                 });
-                levelUps--;
-                
-                await LevelUp(_vm.RankProvider.CurrentRankId - levelUps);
-                _expSlider.value = 0;
             }
-            
-            await DOVirtual.Float(_expSlider.value, _vm.ExpValue, _expAnimationDuration, (value) =>
-            {
-                _expSlider.value = value;
-            });
-        }
-
-        private async UniTask LevelUp(int rankId)
-        {
-            SetupRanks(rankId);
-            await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-        }
-        
-        private void SetupRanks(int rankId)
-        {
-            var curRank = _vm.RankProvider.RanksDatabase.Ranks[rankId];
-            var nextRank = _vm.RankProvider.RanksDatabase.Ranks[rankId+1];
-            SetupRanks(curRank.Sprite, nextRank.Sprite);
         }
 
         private void SetupRanks(Sprite cur, Sprite next)

@@ -114,8 +114,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private void SetupRank()
         {
             var rank = _userRankProvider.CurrentRank;
-            var normalizedExp =_userRankProvider.Experience/ rank.ExpForRank;
-            _userStatsView.SetupRank(rank.Name, rank.Sprite, normalizedExp);
+            _userStatsView.SetupRank(
+                rank.Name,
+                rank.Sprite,
+                _userRankProvider.Experience,
+                _userRankProvider.CurrentRank.ExpForRank);
         }
 
         private void OnCoinsChanged(int coins)

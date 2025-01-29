@@ -5,9 +5,11 @@ using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Rewards.Configs;
+using App.Scripts.Modules.MinMaxValue;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Features.UserStats
 {
@@ -64,15 +66,61 @@ namespace App.Scripts.Features.UserStats
 
         public async UniTask ApplyRewardsAsync()
         {
+            List<ExpAnimationData> animationDatas = new();
+            ExpAnimationData startExpValue = new()
+            {
+                FromExp = _rankProvider.Experience,
+                ToExp = _rankProvider.CurrentRank.ExpForRank,
+                MaxExp = _rankProvider.CurrentRank.ExpForRank,
+                FromSprite = _rankProvider.CurrentRank.Sprite,
+                ToSprite = _rankProvider.NextRank.Sprite,
+            };
             var levelUps = _rankProvider.AddExperience(ExperienceToAdd);
             ExperienceToAdd = 0;
-            var expValue = (float) _rankProvider.Experience / _rankProvider.CurrentRank.ExpForRank;
+
+
+            if (levelUps > 0)
+            {
+                animationDatas.Add(startExpValue);
+                while (levelUps > 1)
+                {
+                    levelUps--;
+                    var rankId = _rankProvider.CurrentRankId - levelUps;
+                    var rank = _rankProvider.RanksDatabase.Ranks[rankId];
+                    var nextRank = _rankProvider.RanksDatabase.Ranks[rankId + 1];
+                    ;
+                    ExpAnimationData animationData = new()
+                    {
+                        FromExp = 0,
+                        ToExp = rank.ExpForRank,
+                        MaxExp = rank.ExpForRank,
+                        FromSprite = rank.Sprite,
+                        ToSprite = nextRank.Sprite,
+                    };
+                    animationDatas.Add(animationData);
+                }
+
+                ExpAnimationData endExpValue = new()
+                {
+                    FromExp = 0,
+                    ToExp = _rankProvider.Experience,
+                    MaxExp = _rankProvider.CurrentRank.ExpForRank,
+                    FromSprite = _rankProvider.CurrentRank.Sprite,
+                    ToSprite = _rankProvider.NextRank.Sprite,
+                };
+                animationDatas.Add(endExpValue);
+            }
+            else
+            {
+                startExpValue.ToExp = _rankProvider.Experience;
+                animationDatas.Add(startExpValue);
+            }
 
             var rewards = _rewards.ToList();
             ApplyRewards(_rewards);
 
             _rewards.Clear();
-            await _popupRouter.ShowPopup(rewards, levelUps, expValue);
+            await _popupRouter.ShowPopup(rewards, animationDatas);
         }
 
         private void ApplyRewards(List<RewardConfig> rewardConfigs)
@@ -113,4 +161,14 @@ namespace App.Scripts.Features.UserStats
             }
         }
     }
+
+    public class ExpAnimationData
+    {
+        public float FromExp;
+        public float ToExp;
+        public float MaxExp;
+        public Sprite FromSprite;
+        public Sprite ToSprite;
+    }
+    
 }

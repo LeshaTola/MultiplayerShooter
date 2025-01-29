@@ -11,6 +11,7 @@ namespace App.Scripts.Features.PlayerStats
         public int Experience { get; private set; }
         public int CurrentRankId { get; private set; }
         public RankData CurrentRank =>RanksDatabase.Ranks[CurrentRankId];
+        public RankData NextRank => RanksDatabase.Ranks[CurrentRankId + 1];
         
         public UserRankProvider(RanksDatabase ranksDatabase)
         {
@@ -27,11 +28,11 @@ namespace App.Scripts.Features.PlayerStats
 
             while (experience > CurrentRank.ExpForRank)
             {
-                levelUps++;
                 experience -= CurrentRank.ExpForRank;
+                CurrentRankId ++;
+                levelUps++; 
             }
             Experience += experience;
-            CurrentRankId += levelUps;
             
             OnExperienceChanded?.Invoke();
             return levelUps;

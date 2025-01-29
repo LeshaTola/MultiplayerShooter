@@ -17,6 +17,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         [SerializeField] private TextMeshProUGUI _rankName;
         [SerializeField] private Image _rankImage;
         [SerializeField] private Slider _rankSlider;
+        [SerializeField] private TextMeshProUGUI _rankExpText;
         
         public override void Initialize()
         {
@@ -36,11 +37,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
             _moneyText.text = money.ToString();
         }
         
-        public void SetupRank(string rankName, Sprite rankSprite, float normalizedExp)
+        public void SetupRank(string rankName, Sprite rankSprite, float curentExp, float maxExp)
         {
             _rankName.text = rankName;
             _rankImage.sprite = rankSprite;
+            var normalizedExp = curentExp / maxExp;
             _rankSlider.value = normalizedExp;
+            _rankExpText.text = $"{curentExp}/{maxExp}";
         }
 
         public override void Cleanup()
