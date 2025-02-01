@@ -9,7 +9,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
 {
     public class RouletteScreen : GameScreen
     {
-        public Action SpinButtonPressed;
+        public event Action SpinButtonPressed;
 
         [SerializeField] private Image _screenBlocker;
         [SerializeField] private Button _spinButton;

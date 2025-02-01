@@ -4,12 +4,13 @@ using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs;
+using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
 {
-    public class InventoryScreenPresenter : GameScreenPresenter , IInitializable, ICleanupable
+    public class InventoryScreenPresenter : GameScreenPresenter , IInitializable, ICleanupable, ITopViewElementPrezenter
     {
         private readonly InventoryScreeen _inventoryScreeen;
         private readonly TabSwitcher _tabSwitcher;

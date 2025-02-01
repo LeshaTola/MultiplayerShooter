@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59fa5ac3cee14be4a0382657e4f6c679, type: 3}
-  m_Name: _MapsConfig
+  m_Script: {fileID: 11500000, guid: b5ab0534859942149e110854af331d30, type: 3}
+  m_Name: DuelMap
   m_EditorClassIdentifier: 
-  <Maps>k__BackingField:
-  - {fileID: 11400000, guid: 0f8add22623febd4a9e607c14f7fce05, type: 2}
-  - {fileID: 11400000, guid: 6426a55c27771fe4faec475f16cdac44, type: 2}
+  <Name>k__BackingField: DuelMap
+  <Sprite>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 6196763212998865393, guid: 15d8b9e399bbb734b8e6ee9ca84f971b, type: 3}

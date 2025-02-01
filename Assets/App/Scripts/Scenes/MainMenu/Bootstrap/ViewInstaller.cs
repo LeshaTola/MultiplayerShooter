@@ -91,22 +91,13 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         [SerializeField] private SettingsView _settingsView;
 
-        [SerializeField] [SerializeReference] [OdinSerialize]
-        private List<Type> _states = new()
-        {
-            typeof(RoomState),
-            typeof(InventoryState),
-            typeof(InventoryState),
-            typeof(MainScreen),
-        };
-
         public override void InstallBindings()
         {
-            Container.Bind<MainScreenPresenter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MainScreenPresenter>().AsSingle();
             Container.BindInstance(_mainScreen).AsSingle();
             Container.BindInstance(_userStatsView).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<RoomsViewPresenter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RoomsViewElementPresenter>().AsSingle();
             Container.BindInstance(_roomsView).AsSingle();
 
             BindInventoryScreen();
@@ -116,13 +107,13 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
             Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();
-            Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle().WithArguments(_states);
+            Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle();
         }
 
         private void BindShopScreen()
         {
             Container.BindInstance(_shopScreen).AsSingle();
-            Container.BindInterfacesAndSelfTo<ShopScreenPrezenter>().AsSingle(); 
+            Container.BindInterfacesAndSelfTo<ShopScreenElementPrezenter>().AsSingle(); 
         }
 
         private void BindInventoryScreen()

@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 7810648799684163330}
   - component: {fileID: 2203486027807478541}
   - component: {fileID: 296282980526393513}
+  - component: {fileID: 7346264759253041259}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -246,6 +247,20 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7346264759253041259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668014215566438612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a239133200fa45fea3b076e2111288c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: {x: 0, y: 1, z: 0}
+  _timeOnOneSpin: 3
 --- !u!1001 &6249964282009397322
 PrefabInstance:
   m_ObjectHideFlags: 0

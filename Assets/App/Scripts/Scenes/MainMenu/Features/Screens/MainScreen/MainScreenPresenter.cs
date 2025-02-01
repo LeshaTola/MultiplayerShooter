@@ -3,6 +3,10 @@ using App.Scripts.Features;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
+using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
@@ -11,31 +15,31 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 {
-    public class MainScreenPresenter : GameScreenPresenter
+    public class MainScreenPresenter : GameScreenPresenter, IInitializable, ICleanupable, ITopViewElementPrezenter
     {
         private readonly MainScreen _screen;
-        private readonly StateMachine _stateMachine;
         private readonly ConnectionProvider _connectionProvider;
         private readonly UserRankProvider _userRankProvider;
         private readonly CoinsProvider _coinsProvider;
         private readonly TicketsProvider _ticketsProvider;
         private readonly UserStatsView _userStatsView;
+        private readonly RouletteScreenPresentrer _rouletteScreenPresentrer;
 
         public MainScreenPresenter(MainScreen screen,
-            StateMachine stateMachine, 
             ConnectionProvider connectionProvider,
             UserRankProvider userRankProvider,
             CoinsProvider coinsProvider,
             TicketsProvider ticketsProvider,
-            UserStatsView userStatsView)
+            UserStatsView userStatsView,
+            RouletteScreenPresentrer rouletteScreenPresentrer)
         {
             _screen = screen;
-            _stateMachine = stateMachine;
             _connectionProvider = connectionProvider;
             _userRankProvider = userRankProvider;
             _coinsProvider = coinsProvider;
             _ticketsProvider = ticketsProvider;
             _userStatsView = userStatsView;
+            _rouletteScreenPresentrer = rouletteScreenPresentrer;
         }
 
         public override void Initialize()
@@ -97,7 +101,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         
         private async void OnRouletteButtonAction()
         {
-            await _stateMachine.ChangeState<RouletteState>();
+            await Hide();
+            await _rouletteScreenPresentrer.Show();
         }
         
         private void OnPlayerNameChanged(string name)

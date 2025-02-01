@@ -4,6 +4,8 @@ using App.Scripts.Features;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
+using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
@@ -11,24 +13,28 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 {
-    public class RoomsViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
+    public class RoomsViewElementPresenter : GameScreenPresenter, IInitializable, ICleanupable, ITopViewElementPrezenter
     {
         private readonly RoomsView _view;
         private readonly ConnectionProvider _connectionProvider;
+        private readonly RoomsProvider _roomsProvider;
 
         private Dictionary<string, RoomInfo> _cachedRoomList = new();
 
-        public RoomsViewPresenter(RoomsView view, 
-            ConnectionProvider connectionProvider)
+        public RoomsViewElementPresenter(RoomsView view, 
+            ConnectionProvider connectionProvider,
+            RoomsProvider roomsProvider)
         {
             _view = view;
             _connectionProvider = connectionProvider;
+            _roomsProvider = roomsProvider;
         }
 
         public override void Initialize()
         {
             _view.Initialize();
             _view.OnQuickGameButtonClicked += OnQuickGameButtonClicked;
+            _roomsProvider.OnRoomListUpdated += UpdateRoomList;
         }
 
         private void OnQuickGameButtonClicked()
@@ -39,6 +45,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         public override void Cleanup()
         {
             _view.Initialize();
+            _view.OnQuickGameButtonClicked -= OnQuickGameButtonClicked;
+            _roomsProvider.OnRoomListUpdated -= UpdateRoomList;
         }
 
         public override async UniTask Show()

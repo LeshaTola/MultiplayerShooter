@@ -7,6 +7,7 @@ using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
+using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
 using SettingsProvider = App.Scripts.Features.Settings.SettingsProvider;
@@ -18,22 +19,23 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private readonly TopView _view;
         private readonly SettingsView _settingsView;
         private readonly SettingsProvider _settingsProvider;
-        private readonly IAudioService _audioService;
-        private readonly StateMachine _stateMachine;
-        private readonly MouseSensivityProvider _mouseSensitivityProvider;
-        private readonly List<Type> _states;
+        private readonly List<ITopViewElementPrezenter> _prezenters;
+        private readonly RouletteScreenPresentrer _rouletteScreenPresenter;
+
+        private ITopViewElementPrezenter _activeScreenPresenter;
         
         public TopViewPrezentor(TopView view,
             SettingsView settingsView,
             SettingsProvider settingsProvider,
-            StateMachine stateMachine,
-            List<Type> states)
+            List<ITopViewElementPrezenter> prezenters,
+            RouletteScreenPresentrer rouletteScreenPresenter)
         {
             _view = view;
             _settingsView = settingsView;
             _settingsProvider = settingsProvider;
-            _stateMachine = stateMachine;
-            _states = states;
+            _prezenters = prezenters;
+            _rouletteScreenPresenter = rouletteScreenPresenter;
+            _activeScreenPresenter = prezenters[0];
         }
 
         public override void Initialize()
@@ -78,13 +80,22 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private async void OnCloseClicked()
         {
+            if (_activeScreenPresenter!= null)
+            {
+                await _activeScreenPresenter.Hide();
+            }
             _view.SetLastToggle();
-            await _stateMachine.ChangeState<MainState>();
         }
 
         private async void OnToggleClicked(int index)
         {
-            await _stateMachine.ChangeState(_states[index]);
+            await _rouletteScreenPresenter.Hide();
+            if (_activeScreenPresenter!= null)
+            {
+                await _activeScreenPresenter.Hide();
+            }
+            _activeScreenPresenter = _prezenters[index];
+            await _activeScreenPresenter.Show();
         }
     }
 }

@@ -10,10 +10,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 {
     public class TopView : GameScreen
     {
-        public event Action<int> OnToggleClicked; 
+        public event Action<int> OnToggleClicked;
         public event Action OnSettingsClicked;
         public event Action OnCloseClicked;
-        
+
         [SerializeField] private List<ToggleCustom> _toggles;
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _closeButton;
@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             {
                 toggle.OnValueChanged.AddListener(OnToggleChanged);
             }
-            
+
             _settingsButton.onClick.AddListener(OnSettingsClick);
             _closeButton.onClick.AddListener(GoToMainMenu);
         }
@@ -46,6 +46,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private void OnToggleChanged(bool isActive, int index)
         {
+            if (!isActive)
+            {
+                return;
+            }
+
             OnToggleClicked?.Invoke(index);
         }
     }
