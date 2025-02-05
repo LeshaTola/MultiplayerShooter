@@ -56,6 +56,7 @@ namespace App.Scripts.Features
 
         public void QuickGame()
         {
+            Debug.Log("Состояние сети: " + PhotonNetwork.NetworkClientState);
             string roomName = $"Room_{Random.Range(0, 1000)}";
             var options = new RoomOptions
             {

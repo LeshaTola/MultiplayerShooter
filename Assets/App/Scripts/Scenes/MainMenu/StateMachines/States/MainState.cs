@@ -22,7 +22,6 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         public override async UniTask Enter()
         {
             _mainScreenPresenter.Setup();
-            _mainScreenPresenter.Initialize();
             await _mainScreenPresenter.Show();
             
             await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
@@ -34,7 +33,6 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 
         public override async UniTask Exit()
         {
-            _mainScreenPresenter.Cleanup();
             await _mainScreenPresenter.Hide();
         }
     }
