@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TableMap
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Table
-  <Sprite>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 6387ecca1481f6b4c86427f43f7c236e, type: 3}
   <Prefab>k__BackingField: {fileID: 6919149218487269038, guid: 3dc80a2f3ffd0164797469e952ab0484, type: 3}

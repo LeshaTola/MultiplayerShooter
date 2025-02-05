@@ -1,4 +1,7 @@
-﻿using App.Scripts.Features.Screens;
+﻿using App.Scripts.Features.Commands;
+using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Commands.General;
+using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
@@ -15,16 +18,19 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         private readonly RouletteScreen _rouletteScreen;
         private readonly Roulette _roulette;
         private readonly TicketsProvider _ticketsProvider;
+        private readonly InfoPopupRouter _infoPopupRouter;
 
         public RouletteScreenPresentrer(RouletteConfig rouletteConfig,
             RouletteScreen rouletteScreen,
             Roulette roulette, 
-            TicketsProvider ticketsProvider)
+            TicketsProvider ticketsProvider, 
+            InfoPopupRouter infoPopupRouter)
         {
             _rouletteConfig = rouletteConfig;
             _rouletteScreen = rouletteScreen;
             _roulette = roulette;
             _ticketsProvider = ticketsProvider;
+            _infoPopupRouter = infoPopupRouter;
         }
 
         public override void Initialize()
@@ -57,7 +63,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         {
             if (!_ticketsProvider.IsEnough(1))
             {
-                Debug.LogError("The tickets is not enough");
+                await _infoPopupRouter.ShowPopup("Внимание!", "Не достаточно билетов");
                 return;
             }
             

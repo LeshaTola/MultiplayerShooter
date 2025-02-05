@@ -1,30 +1,56 @@
-﻿using App.Scripts.Modules.PopupAndViews.Views;
+﻿using App.Scripts.Features.Match.Configs;
+using App.Scripts.Features.Match.Maps;
+using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.PopupAndViews.Views;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 {
     public class CreateRoomView : AnimatedView
     {
+        public const int MIN_SERVER_NAME_LENGTH = 3;
+        public const int MAX_SERVER_NAME_LENGTH = 16;
+        public const int MIN_PASSWORD_LENGTH = 4;
+        public const int MAX_PASSWORD_LENGTH = 6;
+        public const int MAX_PLAYERS = 10;
+
         [SerializeField] private TMP_InputField _serverNameInputField;
         [SerializeField] private TMP_InputField _playersInputField;
         [SerializeField] private TMP_InputField _passwordInputField;
 
         [SerializeField] private TMP_Dropdown _modeDropdown;
+        
+        [Header("Map")]
+        [SerializeField] private MapsConfig _mapsConfig;
         [SerializeField] private Image _mapImage;
-
+        [SerializeField] private TextMeshProUGUI _mapNameText;
+        
+        [SerializeField] private Button _nextButton;
+        [SerializeField] private Button _prevButton;
+        
+        private int _mapIndex = 0;
+        
         [Header("Buttons")]
         [SerializeField] private Button _createButton;
         [SerializeField] private Button _closeButton;
-
-        public const int MIN_SERVER_NAME_LENGTH = 3;
-        public const int MAX_SERVER_NAME_LENGTH = 16;
-        public const int MAX_PASSWORD_LENGTH = 6;
-        public const int MAX_PLAYERS = 10;
-
+        
+        private InfoPopupRouter _infoPopupRouter;
+        private MapsProvider _mapsProvider;
+        
+        [Inject]
+        public void Construct(InfoPopupRouter infoPopupRouter,
+            MapsProvider mapsProvider)
+        {
+            _infoPopupRouter = infoPopupRouter;
+            _mapsProvider = mapsProvider;
+        }
+        
         private void OnEnable()
         {
             _createButton.onClick.AddListener(CreateRoom);
@@ -33,6 +59,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             _serverNameInputField.onValueChanged.AddListener(ValidateServerName);
             _passwordInputField.onValueChanged.AddListener(ValidatePassword);
             _playersInputField.onValueChanged.AddListener(ValidatePlayers);
+            
+            _nextButton.onClick.AddListener(NextMap);
+            _prevButton.onClick.AddListener(PrevMap);
+
+            _mapIndex = 0;
+            UpdateMapUI();
+            _serverNameInputField.text = $"Room_{Random.Range(0, 1000)}";
+            _passwordInputField.text = "";
+            _playersInputField.text = MAX_PLAYERS.ToString();
         }
 
         private async void HideYourself()
@@ -45,6 +80,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             _createButton.onClick.RemoveAllListeners();
             _closeButton.onClick.RemoveAllListeners();
 
+            _nextButton.onClick.RemoveAllListeners();
+            _prevButton.onClick.RemoveAllListeners();
+            
             _serverNameInputField.onValueChanged.RemoveListener(ValidateServerName);
             _passwordInputField.onValueChanged.RemoveListener(ValidatePassword);
             _playersInputField.onValueChanged.RemoveListener(ValidatePlayers);
@@ -77,22 +115,22 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             }
             else
             {
-                _playersInputField.text = ""; // Очищаем поле, если введены нечисловые значения
+                _playersInputField.text = "";
             }
         }
 
-        private void CreateRoom()
+        private async void CreateRoom()
         {
             string serverName = _serverNameInputField.text;
             string password = _passwordInputField.text;
             string playersInput = _playersInputField.text;
 
-            if (!IsServerNameValid(serverName) || !IsPasswordValid(password) ||
-                !IsPlayerCountValid(playersInput, out int maxPlayers))
+            if (!await ValidateServerSettings(serverName, password, playersInput)) 
             {
                 return;
             }
 
+            TryParsePlayerCount(playersInput,out int maxPlayers);
             var options = new RoomOptions
             {
                 MaxPlayers = (byte)maxPlayers,
@@ -105,39 +143,99 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
                     ? new string[] { }
                     : new[] { "Password" }
             };
-
+            
+            _mapsProvider.Map = _mapsConfig.Maps[_mapIndex].Prefab;
             PhotonNetwork.CreateRoom(serverName, options);
         }
 
-        private bool IsServerNameValid(string serverName)
+        private async UniTask<bool> IsServerNameValid(string serverName)
         {
             if (string.IsNullOrWhiteSpace(serverName) || serverName.Length < MIN_SERVER_NAME_LENGTH || serverName.Length > MAX_SERVER_NAME_LENGTH)
             {
-                Debug.LogError($"Server name must be between {MIN_SERVER_NAME_LENGTH} and {MAX_SERVER_NAME_LENGTH} characters.");
+                await _infoPopupRouter.ShowPopup(
+                    "Ошибка",
+                    $"Длинна названия сервера должна быть между {MIN_SERVER_NAME_LENGTH} и {MAX_SERVER_NAME_LENGTH} символами.");
                 return false;
             }
             return true;
         }
 
-        private bool IsPasswordValid(string password)
+        private async UniTask<bool> IsPasswordValid(string password)
         {
-            if (!string.IsNullOrEmpty(password) && password.Length < MAX_PASSWORD_LENGTH)
+            if (string.IsNullOrEmpty(password))
             {
-                Debug.LogError($"Password must be at least {MAX_PASSWORD_LENGTH} characters long.");
+                return true;
+            }
+            
+            if (password.Length < MIN_PASSWORD_LENGTH || password.Length > MAX_PASSWORD_LENGTH)
+            {
+                await _infoPopupRouter.ShowPopup(
+                    "Ошибка",
+                    $"Длинна пароля должна быть между {MIN_PASSWORD_LENGTH} и {MAX_PASSWORD_LENGTH} символами.");
+
+                return false;
+            }
+            
+            return true;
+        }
+
+        private bool TryParsePlayerCount(string playersInput, out int maxPlayers)
+        {
+            return int.TryParse(playersInput, out maxPlayers) && maxPlayers > 0 && maxPlayers <= MAX_PLAYERS;
+        }
+
+        private async UniTask<bool> IsPlayerCountValid(string playersInput)
+        {
+            if (!TryParsePlayerCount(playersInput, out _))
+            {
+                await _infoPopupRouter.ShowPopup(
+                    "Ошибка",
+                    $"Количество игроков должно быть между 1 и {MAX_PLAYERS}.");
                 return false;
             }
             return true;
         }
-
-        private bool IsPlayerCountValid(string playersInput, out int maxPlayers)
+        
+        private async UniTask<bool> ValidateServerSettings(string serverName, string password, string playersInput)
         {
-            maxPlayers = 0;
-            if (!int.TryParse(playersInput, out maxPlayers) || maxPlayers <= 0 || maxPlayers > MAX_PLAYERS)
-            {
-                Debug.LogError($"Player count must be a number between 1 and {MAX_PLAYERS}.");
-                return false;
-            }
+            if (!await IsServerNameValid(serverName)) return false;
+            if (!await IsPasswordValid(password)) return false;
+
+            var isPlayerCountValid= await IsPlayerCountValid(playersInput);
+            if (!isPlayerCountValid) return false;
+
             return true;
+        }
+        
+        
+
+        private void NextMap()
+        {
+            if (_mapIndex < _mapsConfig.Maps.Count - 1)
+            {
+                _mapIndex++;
+                UpdateMapUI();
+            }
+        }
+
+        private void PrevMap()
+        {
+            if (_mapIndex > 0)
+            {
+                _mapIndex--;
+                UpdateMapUI();
+            }
+        }
+
+        private void UpdateMapUI()
+        {
+            var map = _mapsConfig.Maps[_mapIndex];
+
+            _mapNameText.text = map.Name;
+            _mapImage.sprite = map.Sprite;
+
+            _prevButton.interactable = _mapIndex > 0;
+            _nextButton.interactable = _mapIndex < _mapsConfig.Maps.Count - 1;
         }
     }
 }
