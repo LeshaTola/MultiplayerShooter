@@ -1,2 +1,93 @@
 key,en
+Настройки,Settings
+Ранг:,Rank:
+Бронза 1,Bronze 1
+Бронза 2,Bronze 2
+Бронза 3,Bronze 3
+Бронза 4,Bronze 4
+Бронза 5,Bronze 5
+Серебро 1,Silver 1
+Серебро 2,Silver 2
+Серебро 3,Silver 3
+Серебро 4,Silver 4
+Серебро 5,Silver 5
+Железо 1,Iron 1
+Железо 2,Iron 2
+Железо 3,Iron 3
+Железо 4,Iron 4
+Железо 5,Iron 5
+Золото 1,Gold 1
+Золото 2,Gold 2
+Золото 3,Gold 3
+Золото 4,Gold 4
+Золото 5,Gold 5
+Платина 1,Platinum 1
+Платина 2,Platinum 2
+Платина 3,Platinum 3
+Платина 4,Platinum 4
+Платина 5,Platinum 5
+Даймонд 1,Diamond 1
+Даймонд 2,Diamond 2
+Даймонд 3,Diamond 3
+Даймонд 4,Diamond 4
+Даймонд 5,Diamond 5
+Легенда,Legend
 Быстрая игра,Quick game
+главная,Main
+Сервера,Servers
+Инвентарь,Inventory
+Магазин,Shop
+Создать комнату,Create room
+Карта,Map
+Режим,Mode
+Игроков,Players
+Подключиться,Connect
+Сервер,Server
+Название комнаты,Room name
+Пароль,Password
+Чуствительность мыши:,Mouse Sensitivity:
+Язык:,Language:
+Общая громкость:,Master Volume:
+Громкость музыки:,Music Volume:
+Громкость эффектов:,Effects Volume:
+Ваше имя...,Your name...
+Гойда Шутер,Robot's War
+Вооружение,Weapons
+Скины,Skins
+Пауза,Pause
+Продолжить,Continue
+Выйти,Exit
+Легендарный,Legendary
+Эпический,Epic
+Редкий,Rare
+Необычный,Unusual
+Колесо Фортуны,The Wheel of Fortune
+Внимание!,Attention!
+Принять,To accept
+Не достаточно билетов,Not enough tickets
+Ошибка,Error
+Длинна названия сервера должна быть между 3 и 16 символами.,The server name must be between 3 and 16 characters long.
+Длинна пароля должна быть между 4 и 6 символами.,The password must be between 4 and 6 characters long.
+Атака,Attack
+Урон,Damage
+Обойма,The clip
+Время между выстрелами,Time between shots
+Альтернативаня атака,Alternative attack
+Сила прицеливания,Aiming power
+Урон за 1 дробь,Damage per 1 fraction
+Одиночный вытсрел,Single shot
+Автоматическая,Automatic
+Прицеливание,Aiming
+Урон за 1 дробь,Damage per 1 fraction
+Максимальный урон,Maximum damage
+Двойная выстрел,Double shot
+Дальний Бросок,Long Range Throw
+Время перезарядки,Recharge time
+Бросок под себя,A throw for yourself
+Автоматическая 3мя патронами,Automatic with 3 cartridges
+Близкий бросок,A close throw
+Одиночный вытсрел по облости,Single shot at the area
+Бросок сюрикена,Shuriken throw
+До оживления:,Before reviving:
+Нажмите любую кнопку чтобы продолжить,Press any button to continue
+Введите текст,Enter the text

@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Localization.Localizers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         [SerializeField] private TMP_InputField _playerInputField;
 
         [Header("Rank")]
-        [SerializeField] private TextMeshProUGUI _rankName;
+        [SerializeField] private TMPLocalizer _rankName;
         [SerializeField] private Image _rankImage;
         [SerializeField] private Slider _rankSlider;
         [SerializeField] private TextMeshProUGUI _rankExpText;
@@ -39,7 +40,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         
         public void SetupRank(string rankName, Sprite rankSprite, float curentExp, float maxExp)
         {
-            _rankName.text = rankName;
+            _rankName.Key = rankName;
+            _rankName.Translate();
             _rankImage.sprite = rankSprite;
             var normalizedExp = curentExp / maxExp;
             _rankSlider.value = normalizedExp;

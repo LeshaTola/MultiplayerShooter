@@ -2304,6 +2304,7 @@ GameObject:
   - component: {fileID: 611867274}
   - component: {fileID: 611867276}
   - component: {fileID: 611867275}
+  - component: {fileID: 611867277}
   m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2427,6 +2428,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611867273}
   m_CullTransparentMesh: 1
+--- !u!114 &611867277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611867273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 611867275}
 --- !u!1001 &629294042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2533,7 +2547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -240
+      value: -240.15997
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3695,6 +3709,7 @@ GameObject:
   - component: {fileID: 1035269544}
   - component: {fileID: 1035269546}
   - component: {fileID: 1035269545}
+  - component: {fileID: 1035269547}
   m_Layer: 6
   m_Name: PressAnyButtonToContinue
   m_TagString: Untagged
@@ -3819,6 +3834,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035269543}
   m_CullTransparentMesh: 1
+--- !u!114 &1035269547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035269543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1035269545}
 --- !u!1001 &1044535633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4899,7 +4927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -380
+      value: -380.15997
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6394,7 +6422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: -100.15997
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7195,7 +7223,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tmProLocalizers:
-  - {fileID: 5014631354249108594}
+  - {fileID: 1035269547}
+  - {fileID: 2062892744}
+  - {fileID: 611867277}
   - {fileID: 629294047}
   - {fileID: 1334025808}
   - {fileID: 1500789827}
@@ -7206,6 +7236,7 @@ MonoBehaviour:
   - {fileID: 1805976307668221140}
   - {fileID: 1805976307668221141}
   - {fileID: 1805976307668221142}
+  - {fileID: 5014631354249108594}
 --- !u!1 &1937718421
 GameObject:
   m_ObjectHideFlags: 0
@@ -7544,6 +7575,7 @@ GameObject:
   - component: {fileID: 2062892741}
   - component: {fileID: 2062892743}
   - component: {fileID: 2062892742}
+  - component: {fileID: 2062892744}
   m_Layer: 6
   m_Name: BeforeRespawnText
   m_TagString: Untagged
@@ -7667,6 +7699,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062892740}
   m_CullTransparentMesh: 1
+--- !u!114 &2062892744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062892740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2062892742}
 --- !u!224 &2106608631 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4054361959781775730, guid: 89cfa981a10936840992cf383453a694, type: 3}

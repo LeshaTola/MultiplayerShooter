@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moneyText: {fileID: 2294770117202828694}
   _playerInputField: {fileID: 1722375982459623128}
-  _rankName: {fileID: 6992824574194961093}
+  _rankName: {fileID: 7427013037685316404}
   _rankImage: {fileID: 6260405447066307515}
   _rankSlider: {fileID: 1333973732872448649}
   _rankExpText: {fileID: 1837459080002667777}
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F...."
+  m_text: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 576244945062001826}
   - component: {fileID: 3730206910591194931}
   - component: {fileID: 6992824574194961093}
+  - component: {fileID: 7427013037685316404}
   m_Layer: 5
   m_Name: RankValue
   m_TagString: Untagged
@@ -1375,6 +1376,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7427013037685316404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7861150119545466313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6992824574194961093}
 --- !u!1 &8070672852903294498
 GameObject:
   m_ObjectHideFlags: 0

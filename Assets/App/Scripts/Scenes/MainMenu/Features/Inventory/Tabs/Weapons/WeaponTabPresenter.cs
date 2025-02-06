@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Modules.Factories;
+using App.Scripts.Modules.Localization;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
     {
         private readonly WeaponStatsView _statsView;
         private readonly SelectionProvider _selectionProvider;
+        private readonly ILocalizationSystem _localizationSystem;
 
         protected List<InventorySlot> InventorySlots;
         
@@ -20,17 +22,18 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,
             InventoryProvider inventoryProvider,
-            RectTransform overlayTransform) : base(view, itemFactory, slotFactory,
+            RectTransform overlayTransform, ILocalizationSystem localizationSystem) : base(view, itemFactory, slotFactory,
             inventoryProvider, overlayTransform)
         {
             _statsView = statsView;
             _selectionProvider = selectionProvider;
+            _localizationSystem = localizationSystem;
         }
 
         public override void Initialize()
         {
             InventorySlots = new List<InventorySlot>();
-            _statsView.Initialiе(_selectionProvider, InventoryProvider.GlobalInventory);
+            _statsView.Initialiе(_selectionProvider, InventoryProvider.GlobalInventory, _localizationSystem);
 
             foreach (var weaponId in InventoryProvider.Inventory.Weapons)
             {
