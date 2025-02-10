@@ -1,0 +1,68 @@
+{
+  "PlayerName": "Шаман",
+  "SettingsData": {
+    "MasterVolume": 1.0,
+    "MusicVolume": 0.5,
+    "EffectsVolume": 0.5,
+    "MouseSensitivity": 0.6364235
+  },
+  "UserStatsData": {
+    "Experience": 3,
+    "CurrentRankId": 0,
+    "GameInventory": {
+      "Skin": "RussiaSkin",
+      "Weapons": [
+        "Revolver",
+        "AK",
+        "SPAS",
+        "RocketLauncher",
+        "SniperRiffle"
+      ],
+      "Equipment": [
+        "TestEq",
+        ""
+      ]
+    },
+    "Inventory": {
+      "Skins": [
+        "RedSkin",
+        "BlackSkin",
+        "BlueSkin",
+        "GreenSkin",
+        "OrangeSkin",
+        "WiteSkin",
+        "YellowSkin",
+        "RussiaSkin"
+      ],
+      "Weapons": [
+        "AK",
+        "Revolver",
+        "SniperRiffle",
+        "SPAS",
+        "RocketLauncher",
+        "UZI",
+        "HantingRiffle"
+      ],
+      "Equipment": [
+        "TestEq"
+      ]
+    },
+    "Coins": 0,
+    "Tickets": 0
+  },
+  "stringKeys": [],
+  "stringValues": [],
+  "floatKeys": [],
+  "floatValues": [],
+  "intKeys": [],
+  "intValues": [],
+  "intExample": 5,
+  "strExample": "Hello!",
+  "boolExample": [
+    false,
+    false,
+    false,
+    false
+  ],
+  "idSave": 10
+}

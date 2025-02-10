@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.SceneTransitions;
-using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;

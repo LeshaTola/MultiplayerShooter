@@ -40,7 +40,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             }
             _gameInventoryViewPresenter.Initialize();
             _inventoryScreeen.Initialize();
-            _userStatsView.Initialize();
         }
 
         public override void Cleanup()
@@ -53,7 +52,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             _tabSwitcher.Cleanup();
             _gameInventoryViewPresenter.Cleanup();
             _inventoryScreeen.Cleanup();
-            _userStatsView.Cleanup();
         }
 
         public override async UniTask Show()

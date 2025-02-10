@@ -1,40 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
-using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Rewards.Configs;
-using App.Scripts.Modules.MinMaxValue;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace App.Scripts.Features.UserStats
+namespace App.Scripts.Features.Rewards
 {
     public class RewardService
     {
         private readonly RewardsPopupRouter _popupRouter;
-        private readonly UserRankProvider _rankProvider;
-        private readonly InventoryProvider _inventoryProvider;
-        private readonly CoinsProvider _coinsProvider;
-        private readonly TicketsProvider _ticketsProvider;
+        private readonly UserStatsProvider _userStatsProvider;
+
         private readonly List<RewardConfig> _rewards = new();
 
         public int ExperienceToAdd { get; set; }
 
-        public RewardService(RewardsPopupRouter popupRouter,
-            UserRankProvider rankProvider,
-            InventoryProvider inventoryProvider,
-            CoinsProvider coinsProvider,
-            TicketsProvider ticketsProvider)
+        public RewardService(RewardsPopupRouter popupRouter,UserStatsProvider userStatsProvider)
         {
             _popupRouter = popupRouter;
-            _rankProvider = rankProvider;
-            _inventoryProvider = inventoryProvider;
-            _coinsProvider = coinsProvider;
-            _ticketsProvider = ticketsProvider;
+            _userStatsProvider = userStatsProvider;
         }
 
         public void AddReward(RewardConfig rewardConfig)
@@ -69,13 +57,13 @@ namespace App.Scripts.Features.UserStats
             List<ExpAnimationData> animationDatas = new();
             ExpAnimationData startExpValue = new()
             {
-                FromExp = _rankProvider.Experience,
-                ToExp = _rankProvider.CurrentRank.ExpForRank,
-                MaxExp = _rankProvider.CurrentRank.ExpForRank,
-                FromSprite = _rankProvider.CurrentRank.Sprite,
-                ToSprite = _rankProvider.NextRank.Sprite,
+                FromExp = _userStatsProvider.RankProvider.Experience,
+                ToExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
+                MaxExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
+                FromSprite = _userStatsProvider.RankProvider.CurrentRank.Sprite,
+                ToSprite = _userStatsProvider.RankProvider.NextRank.Sprite,
             };
-            var levelUps = _rankProvider.AddExperience(ExperienceToAdd);
+            var levelUps = _userStatsProvider.RankProvider.AddExperience(ExperienceToAdd);
             ExperienceToAdd = 0;
 
 
@@ -85,9 +73,9 @@ namespace App.Scripts.Features.UserStats
                 while (levelUps > 1)
                 {
                     levelUps--;
-                    var rankId = _rankProvider.CurrentRankId - levelUps;
-                    var rank = _rankProvider.RanksDatabase.Ranks[rankId];
-                    var nextRank = _rankProvider.RanksDatabase.Ranks[rankId + 1];
+                    var rankId = _userStatsProvider.RankProvider.CurrentRankId - levelUps;
+                    var rank = _userStatsProvider.RankProvider.RanksDatabase.Ranks[rankId];
+                    var nextRank = _userStatsProvider.RankProvider.RanksDatabase.Ranks[rankId + 1];
                     ;
                     ExpAnimationData animationData = new()
                     {
@@ -103,24 +91,26 @@ namespace App.Scripts.Features.UserStats
                 ExpAnimationData endExpValue = new()
                 {
                     FromExp = 0,
-                    ToExp = _rankProvider.Experience,
-                    MaxExp = _rankProvider.CurrentRank.ExpForRank,
-                    FromSprite = _rankProvider.CurrentRank.Sprite,
-                    ToSprite = _rankProvider.NextRank.Sprite,
+                    ToExp = _userStatsProvider.RankProvider.Experience,
+                    MaxExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
+                    FromSprite = _userStatsProvider.RankProvider.CurrentRank.Sprite,
+                    ToSprite = _userStatsProvider.RankProvider.NextRank.Sprite,
                 };
                 animationDatas.Add(endExpValue);
             }
             else
             {
-                startExpValue.ToExp = _rankProvider.Experience;
+                startExpValue.ToExp = _userStatsProvider.RankProvider.Experience;
                 animationDatas.Add(startExpValue);
             }
 
             var rewards = _rewards.ToList();
             ApplyRewards(_rewards);
+            _userStatsProvider.SaveState();
 
             _rewards.Clear();
             await _popupRouter.ShowPopup(rewards, animationDatas);
+            
         }
 
         private void ApplyRewards(List<RewardConfig> rewardConfigs)
@@ -130,22 +120,22 @@ namespace App.Scripts.Features.UserStats
                 switch (rewardConfig.Reward)
                 {
                     case WeaponConfig weaponConfig:
-                        _inventoryProvider.Inventory.Weapons.Add(weaponConfig.Id);
+                        _userStatsProvider.InventoryProvider.Inventory.Weapons.Add(weaponConfig.Id);
                         break;
                     case EquipmentConfig equipmentConfig:
-                        _inventoryProvider.Inventory.Equipment.Add(equipmentConfig.Id);
+                        _userStatsProvider.InventoryProvider.Inventory.Equipment.Add(equipmentConfig.Id);
                         break;
                     case SkinConfig skinConfig:
-                        _inventoryProvider.Inventory.Skins.Add(skinConfig.Id);
+                        _userStatsProvider.InventoryProvider.Inventory.Skins.Add(skinConfig.Id);
                         break;
                     case OtherItemConfig otherItemConfig:
                         switch (otherItemConfig.ItemType)
                         {
                             case OtherItemType.Coin:
-                                _coinsProvider.ChangeCoins(rewardConfig.Count);
+                                _userStatsProvider.CoinsProvider.ChangeCoins(rewardConfig.Count);
                                 break;
                             case OtherItemType.Ticket:
-                                _ticketsProvider.ChangeTickets(rewardConfig.Count);
+                                _userStatsProvider.TicketsProvider.ChangeTickets(rewardConfig.Count);
                                 break;
                             case OtherItemType.Exp:
                                 ExperienceToAdd += rewardConfig.Count;
@@ -170,5 +160,4 @@ namespace App.Scripts.Features.UserStats
         public Sprite FromSprite;
         public Sprite ToSprite;
     }
-    
 }

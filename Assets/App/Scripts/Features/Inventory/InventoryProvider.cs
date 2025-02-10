@@ -2,6 +2,7 @@
 using System.Linq;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons;
+using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -9,24 +10,14 @@ namespace App.Scripts.Features.Inventory
 {
     public class InventoryProvider
     {
-       // private readonly InventoryConfig _inventoryConfig;
-
         public GameInventoryData GameInventory { get; private set; } = new();
         public InventoryData Inventory { get; private set; } = new();
         public GlobalInventory GlobalInventory { get; }
 
-        public InventoryProvider(InventoryConfig inventoryConfig, GlobalInventory globalInventory)
+        public InventoryProvider( GlobalInventory globalInventory)
         {
-            //_inventoryConfig = Object.Instantiate(inventoryConfig);
             GlobalInventory = Object.Instantiate(globalInventory);
-            
-            GameInventory.Weapons = inventoryConfig.Weapons.Select(x=>x?.Id ?? "").ToList();
-            GameInventory.Equipment = inventoryConfig.Equipment.Select(x=>x?.Id ?? "").ToList();
-            GameInventory.Skin = inventoryConfig.Skin?.Id ?? "";
-            
-            Inventory.Weapons = inventoryConfig.PlayerInventory.Weapons.Select(x=>x?.Id ?? "").ToHashSet();
-            Inventory.Equipment = inventoryConfig.PlayerInventory.Equipment.Select(x=>x?.Id ?? "").ToHashSet();
-            Inventory.Skins = inventoryConfig.PlayerInventory.SkinConfigs.Select(x=>x?.Id ?? "").ToHashSet();
+
         }
         
         public ItemConfig GetConfigById(string id)
@@ -60,6 +51,12 @@ namespace App.Scripts.Features.Inventory
         public SkinConfig SkinById(string id)
         {
             return GlobalInventory.SkinConfigs.FirstOrDefault(x => x.Id.Equals(id));
+        }
+
+        public void SetState(UserStatsData userStats)
+        {
+            GameInventory  = userStats.GameInventory;
+            Inventory = userStats.Inventory; 
         }
     }
 }

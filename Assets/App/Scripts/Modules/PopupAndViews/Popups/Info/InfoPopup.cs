@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Rewards.Configs;
-using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.Localization.Elements.Buttons;
 using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.General.Popup;

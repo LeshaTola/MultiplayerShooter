@@ -12,6 +12,7 @@ using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using UnityEngine;
+using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 {
@@ -72,6 +73,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _userStatsView.Cleanup();
             _userRankProvider.OnExperienceChanded -= OnExperienceChanded;
             _userStatsView.OnPlayerNameChanged -= OnPlayerNameChanged;
+            _coinsProvider.OnCoinsChanged -= OnCoinsChanged;
+            _ticketsProvider.OnTicketsChanged -= OnTicketsChanged;
         }
 
         public override async UniTask Show()
@@ -107,7 +110,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         
         private void OnPlayerNameChanged(string name)
         {
+#if YANDEX
+            YG2.saves.PlayerName = name;
+            YG2.SaveProgress();
+#else
             PlayerPrefs.SetString(ConnectionProvider.NAME_DATA, name);
+#endif
             PhotonNetwork.NickName = name;
         }
 

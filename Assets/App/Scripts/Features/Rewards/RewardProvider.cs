@@ -1,9 +1,5 @@
 ﻿using App.Scripts.Features.Rewards.Configs;
-using App.Scripts.Features.UserStats;
-using App.Scripts.Modules.StateMachine.Services.CleanupService;
-using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
-using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Timer;
 using Photon.Pun;
 using UnityEngine;
@@ -16,10 +12,10 @@ namespace App.Scripts.Features.Rewards
         private readonly LeaderBoardProvider _leaderboard;
         private readonly AccrualConfig _accrualConfig;
         private readonly TimerProvider _timerProvider;
-        
+
         private float _experience;
         private float _coins;
-        
+
         public static RewardProvider Instance { get; private set; }
 
         public RewardProvider(RewardService rewardService,
@@ -42,13 +38,13 @@ namespace App.Scripts.Features.Rewards
             }
 
             int playersCount = _leaderboard.GetTable().Count;
-            
+
             var exp = _leaderboard.MyPlace * _accrualConfig.ExpPerPlace[playersCount];
             _experience += exp;
 
             var coins = _leaderboard.MyPlace * _accrualConfig.CoinsPerPlace[playersCount];
             _coins += coins;
-            
+
             ApplyCoins();
             ApplyExp();
         }
@@ -56,12 +52,12 @@ namespace App.Scripts.Features.Rewards
         public void ApplyKill()
         {
             int playersCount = _leaderboard.GetTable().Count;
-            var exp =  _accrualConfig.ExpPerKill[playersCount];
+            var exp = _accrualConfig.ExpPerKill[playersCount];
             _experience += exp;
-            
+
             var coins = _accrualConfig.CoinsPerKill[playersCount];
             _coins += coins;
-            
+
             ApplyCoins();
             ApplyExp();
         }
@@ -77,7 +73,7 @@ namespace App.Scripts.Features.Rewards
             var coinsReward = GameObject.Instantiate(_accrualConfig.RewardConfig);
             coinsReward.Count = (int) _coins;
             _coins -= (int) _coins;
-            
+
             _rewardService.AddReward(coinsReward);
         }
     }

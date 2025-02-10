@@ -5,11 +5,12 @@ using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
 using App.Scripts.Features.Settings;
 using App.Scripts.Features.StateMachines.States;
-using App.Scripts.Features.UserStats;
+using App.Scripts.Features.Yandex.Saves;
 using App.Scripts.Modules.Commands.Provider;
 using App.Scripts.Modules.FileProvider;
 using App.Scripts.Modules.Localization;
@@ -76,11 +77,18 @@ namespace App.Scripts.Features.Bootstrap
 
             Container.Bind<IAudioService>().To<AudioService>().AsSingle().WithArguments(_audioMixer);
             Container.BindInterfacesAndSelfTo<SettingsProvider>().AsSingle();
+#if YANDEX
+            Container
+                .Bind<IDataProvider<SettingsData>>()
+                .To<YandexSettingsDataProvider>()
+                .AsSingle();
+#else
             Container
                 .Bind<IDataProvider<SettingsData>>()
                 .To<DataProvider<SettingsData>>()
                 .AsSingle()
                 .WithArguments("settingsSaves");
+#endif
 
             Container.Bind<IScreenService>().To<ScreenService>().AsSingle();
 
@@ -93,12 +101,22 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<PresentersProvider>().AsSingle();
             Container.Bind<GameInputProvider>().AsSingle();
             
+#if YANDEX
+            Container
+                .Bind<IDataProvider<UserStatsData>>()
+                .To<YandexUserStatsDataProvider>()
+                .AsSingle();
+#else
+            Debug.LogError("Not implemented for this platform");
+#endif
+            
             Container.Bind<RewardService>().AsSingle();
+            Container.Bind<UserStatsProvider>().AsSingle().WithArguments(_inventoryConfig);
             Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
             Container.Bind<CoinsProvider>().AsSingle();
             Container.Bind<TicketsProvider>().AsSingle();
             
-            Container.Bind<InventoryProvider>().AsSingle().WithArguments(_inventoryConfig, _globalInventory);
+            Container.Bind<InventoryProvider>().AsSingle().WithArguments(_globalInventory);
             
             Container.Bind<MapsProvider>().AsSingle().WithArguments(_mapsConfig);
         }

@@ -2,6 +2,7 @@
 using App.Scripts.Features.Settings;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu;
+using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,15 +13,19 @@ namespace App.Scripts.Features.StateMachines.States
     {
         private readonly ConnectionProvider _connectionProvider;
         private readonly SettingsProvider _settingsProvider;
+        private readonly UserStatsProvider _userStatsProvider;
 
         private  bool _isValid = true;
         
         public Type NextState { get; set; }
 
-        public GlobalInitialState(ConnectionProvider connectionProvider, SettingsProvider settingsProvider)
+        public GlobalInitialState(ConnectionProvider connectionProvider,
+            SettingsProvider settingsProvider,
+            UserStatsProvider userStatsProvider)
         {
             _connectionProvider = connectionProvider;
             _settingsProvider = settingsProvider;
+            _userStatsProvider = userStatsProvider;
         }
 
         public override async UniTask Enter()
@@ -41,6 +46,7 @@ namespace App.Scripts.Features.StateMachines.States
             _connectionProvider.OnConnectionFinished += OnConectedToServer;
             
             _settingsProvider.LoadState();
+            _userStatsProvider.LoadState();
             
             _isValid = false;
             _connectionProvider.Connect();

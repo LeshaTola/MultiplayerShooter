@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Scripts.Features.UserStats;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
 using Cysharp.Threading.Tasks;

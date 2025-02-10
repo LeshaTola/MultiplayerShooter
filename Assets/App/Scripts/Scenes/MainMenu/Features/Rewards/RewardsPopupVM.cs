@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
-using App.Scripts.Features.UserStats;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.MinMaxValue;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
+using App.Scripts.Scenes.MainMenu.Features.UserStats;
 
 namespace App.Scripts.Features.PlayerStats
 {
@@ -36,6 +37,13 @@ namespace App.Scripts.Features.PlayerStats
             
             OnExperienceChanded?.Invoke();
             return levelUps;
+        }
+
+        public void SetState(UserStatsData userStats)
+        {
+            Experience = userStats.Experience;
+            CurrentRankId = userStats.CurrentRankId;
+            OnExperienceChanded?.Invoke();
         }
     }
 }

@@ -22,7 +22,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,
             InventoryProvider inventoryProvider,
-            RectTransform overlayTransform, ILocalizationSystem localizationSystem) : base(view, itemFactory, slotFactory,
+            RectTransform overlayTransform,
+            ILocalizationSystem localizationSystem) 
+            : base(view, itemFactory, slotFactory,
             inventoryProvider, overlayTransform)
         {
             _statsView = statsView;
