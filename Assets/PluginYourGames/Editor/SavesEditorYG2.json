@@ -7,7 +7,7 @@
     "MouseSensitivity": 0.6364235
   },
   "UserStatsData": {
-    "Experience": 3,
+    "Experience": 12,
     "CurrentRankId": 0,
     "GameInventory": {
       "Skin": "RussiaSkin",
@@ -47,8 +47,8 @@
         "TestEq"
       ]
     },
-    "Coins": 0,
-    "Tickets": 0
+    "Coins": 400,
+    "Tickets": 18
   },
   "stringKeys": [],
   "stringValues": [],
@@ -64,5 +64,5 @@
     false,
     false
   ],
-  "idSave": 10
+  "idSave": 72
 }

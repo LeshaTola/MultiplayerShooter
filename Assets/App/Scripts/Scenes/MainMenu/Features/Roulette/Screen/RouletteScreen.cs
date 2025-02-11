@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
@@ -18,11 +19,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         [SerializeField] private Button _spinButton;
         [SerializeField] private TextMeshProUGUI _ticketsText;
 
+        [Header("Sectors")]
         [SerializeField] private SectorView _sectorViewPrefab;
         [SerializeField] private RectTransform _sectorViewContainer;
+        
+        [Header("Win Item Conteiners")]
+        [SerializeField] private WinItemContainerView _winItemContainerPrefab;
+        [SerializeField] private RectTransform _winItemContainerContainer;
 
         private ILocalizationSystem _localizationSystem;
-        private List<SectorView> _sectorViews;
+        private List<SectorView> _sectorViews = new();
         
         [Inject]
         public void Construct(ILocalizationSystem localizationSystem)
@@ -38,12 +44,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         public override void Cleanup()
         {
             _spinButton.onClick.RemoveAllListeners();
-            foreach (var sectorView in _sectorViews)
+            DefaultSectors();
+            DefaultWinItems();
+        }
+
+        public void SetupWinItems(Dictionary<SectorConfig, List<RewardConfig>> winItems)
+        {
+            DefaultWinItems();
+    
+            foreach (var kvp in winItems)
             {
-                sectorView.Cleanup();
-                Destroy(sectorView.gameObject);
+                var sectorColor = kvp.Key.Color;
+        
+                foreach (var reward in kvp.Value)
+                {
+                    var container = Instantiate(_winItemContainerPrefab, _winItemContainerContainer);
+                    container.Setup(sectorColor, reward);
+                }
             }
-            _sectorViews.Clear();
         }
 
         public void SetupTicketsCount(int ticketsCount)
@@ -51,9 +69,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             _ticketsText.text = ticketsCount.ToString();
         }
 
-        public void Setup(RouletteConfig rouletteConfig)
+        public void SetupSectors(RouletteConfig rouletteConfig)
         {
-            _sectorViews = new();
+            DefaultSectors();
             foreach (var sector in rouletteConfig.Sectors)
             {
                 var sectorView = Instantiate(_sectorViewPrefab, _sectorViewContainer);
@@ -66,6 +84,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         public void SetBlockSreen(bool isBlocked)
         {
             _screenBlocker.gameObject.SetActive(isBlocked);
+        }
+
+        private void DefaultSectors()
+        {
+            foreach (var sectorView in _sectorViews)
+            {
+                sectorView.Cleanup();
+                Destroy(sectorView.gameObject);
+            }
+            _sectorViews.Clear();
+        }
+
+        private void DefaultWinItems()
+        {
+            foreach (Transform child in _winItemContainerContainer)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 }

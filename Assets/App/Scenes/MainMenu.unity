@@ -891,6 +891,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camerasDatabase: {fileID: 60214116}
+  _rewardConfigs:
+  - {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}
+  - {fileID: 11400000, guid: f9d5f68a9b0a62f4b8700b77868106ed, type: 2}
   _mainCameraId: Main
 --- !u!114 &642694291
 MonoBehaviour:

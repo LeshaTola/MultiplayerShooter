@@ -25,12 +25,21 @@ namespace App.Scripts.Features.Rewards
             _userStatsProvider = userStatsProvider;
         }
 
+        public void AddRewards(List<RewardConfig> rewards)
+        {
+            foreach (var reward in rewards)
+            {
+                AddReward(reward);
+            }
+        }
+        
         public void AddReward(RewardConfig rewardConfig)
         {
             var reward = _rewards.FirstOrDefault(x => x.Reward.Id.Equals(rewardConfig.Reward.Id));
             if (!reward)
             {
-                _rewards.Add(rewardConfig);
+                var newRewardConfig = GameObject.Instantiate(rewardConfig);
+                _rewards.Add(newRewardConfig);
                 return;
             }
 

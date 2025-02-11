@@ -1,11 +1,12 @@
-﻿using App.Scripts.Features.Commands;
+﻿using System.Collections.Generic;
+using System.Linq;
+using App.Scripts.Features.Rewards;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.Screens;
-using App.Scripts.Modules.Commands.General;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
-using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -17,27 +18,34 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         private readonly RouletteConfig _rouletteConfig;
         private readonly RouletteScreen _rouletteScreen;
         private readonly Roulette _roulette;
-        private readonly TicketsProvider _ticketsProvider;
+        private readonly UserStatsProvider _userStatsProvider;
+        private readonly RewardService _rewardService;
         private readonly InfoPopupRouter _infoPopupRouter;
 
+        private Dictionary<SectorConfig, List<RewardConfig>> _winItems;
+        
         public RouletteScreenPresentrer(RouletteConfig rouletteConfig,
             RouletteScreen rouletteScreen,
-            Roulette roulette, 
-            TicketsProvider ticketsProvider, 
+            Roulette roulette,
+            UserStatsProvider userStatsProvider,
+            RewardService rewardService,
             InfoPopupRouter infoPopupRouter)
         {
             _rouletteConfig = rouletteConfig;
             _rouletteScreen = rouletteScreen;
             _roulette = roulette;
-            _ticketsProvider = ticketsProvider;
+            _userStatsProvider = userStatsProvider;
+            _rewardService = rewardService;
             _infoPopupRouter = infoPopupRouter;
         }
 
         public override void Initialize()
         {
             _rouletteScreen.SpinButtonPressed += OnSpinButtonPressed;
+            _userStatsProvider.TicketsProvider.OnTicketsChanged += _rouletteScreen.SetupTicketsCount;
+            _rouletteScreen.SetupSectors(_rouletteConfig);
             
-            _rouletteScreen.Setup(_rouletteConfig);
+            UpdateWinItems();
             _rouletteScreen.Initialize();
             _roulette.GenerateRoulette();
         }
@@ -45,12 +53,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         public override void Cleanup()
         {
             _rouletteScreen.SpinButtonPressed -= OnSpinButtonPressed;
+            _userStatsProvider.TicketsProvider.OnTicketsChanged -= _rouletteScreen.SetupTicketsCount;
             _rouletteScreen.Cleanup();
         }
 
         public override async UniTask Show()
         {
-            _rouletteScreen.SetupTicketsCount(0);
+            _rouletteScreen.SetupTicketsCount(_userStatsProvider.TicketsProvider.Tickets);
             await _rouletteScreen.Show();
         }
 
@@ -59,18 +68,55 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             await _rouletteScreen.Hide();
         }
 
+        private void UpdateWinItems()
+        {
+            _winItems = new ();
+            var inventory = _userStatsProvider.InventoryProvider.Inventory;
+    
+            foreach (var sector in _rouletteConfig.Sectors)
+            {
+                var availableItems = sector.WinItems
+                    .Where(item => !inventory.Skins.Contains(item.Id) &&
+                                   !inventory.Weapons.Contains(item.Id) &&
+                                   !inventory.Equipment.Contains(item.Id)).ToList();
+        
+                var sectorWinItems = new List<RewardConfig>();
+        
+                for (int i = 0; i < sector.WinItemsCount; i++)
+                {
+                    if (availableItems.Count == 0) break;
+            
+                    var item = availableItems[Random.Range(0, availableItems.Count)];
+                    availableItems.Remove(item);
+            
+                    sectorWinItems.Add(item);
+                }
+        
+                _winItems[sector] = sectorWinItems;
+            }
+            _rouletteScreen.SetupWinItems(_winItems);
+        }
+
         private async void OnSpinButtonPressed()
         {
-            if (!_ticketsProvider.IsEnough(1))
+            if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
                 await _infoPopupRouter.ShowPopup("Внимание!", "Не достаточно билетов");
                 return;
             }
-            
+
+            _userStatsProvider.TicketsProvider.ChangeTickets(-1);
             _rouletteScreen.SetBlockSreen(true);
             var angle = await _roulette.SpinRoulette();
             var result = _roulette.GetConfigByAngle(angle);
             Debug.Log($"Angle: {angle} Sector: {result.Name}");
+            UpdateWinItems();
+
+            var availableItems = _winItems[result];
+            var winItem = availableItems[Random.Range(0, availableItems.Count)];
+            _rewardService.AddReward(winItem);
+            await _rewardService.ApplyRewardsAsync();
+            
             _rouletteScreen.SetBlockSreen(false);
         }
     }

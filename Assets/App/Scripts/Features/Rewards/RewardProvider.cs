@@ -70,6 +70,11 @@ namespace App.Scripts.Features.Rewards
 
         private void ApplyCoins()
         {
+            if (_coins <= 1)
+            {
+                return;
+            }
+
             var coinsReward = GameObject.Instantiate(_accrualConfig.RewardConfig);
             coinsReward.Count = (int) _coins;
             _coins -= (int) _coins;

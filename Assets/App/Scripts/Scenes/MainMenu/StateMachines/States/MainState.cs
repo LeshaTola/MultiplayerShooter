@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Rewards;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Modules.StateMachine.States.General;
+using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 {
@@ -11,12 +15,14 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
     {
         private readonly MainScreenPresenter _mainScreenPresenter;
         private readonly RewardService _rewardService;
+        private readonly List<RewardConfig> _rewardConfigs;
 
         public MainState(MainScreenPresenter mainScreenPresenter,
-            RewardService rewardService)
+            RewardService rewardService, List<RewardConfig> rewardConfigs)
         {
             _mainScreenPresenter = mainScreenPresenter;
             _rewardService = rewardService;
+            _rewardConfigs = rewardConfigs;
         }
 
         public override async UniTask Enter()
@@ -34,6 +40,15 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         public override async UniTask Exit()
         {
             await _mainScreenPresenter.Hide();
+        }
+
+        public override async UniTask Update()
+        {
+            if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.O) && Input.GetKeyDown(KeyCode.Y))
+            {
+                _rewardService.AddRewards(_rewardConfigs);
+                await _rewardService.ApplyRewardsAsync();
+            }
         }
     }
 }

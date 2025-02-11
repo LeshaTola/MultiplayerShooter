@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Inventory;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;
@@ -6,6 +7,7 @@ using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
+using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
@@ -17,19 +19,25 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
         private readonly InventoryProvider _inventoryProvider;
         private readonly IFactory<InventorySlot> _inventorySlotFactory;
         private readonly IFactory<Item> _itemFactory;
+        private readonly UserStatsProvider _userStatsProvider;
         private readonly RectTransform _overlayTransform;
 
+        private readonly List<CorrectTypeInventorySlotStrategy> _subscriptionsSlots = new();
+        
         public GameInventoryViewPresenter(GameInventoryView view,
             SelectionProvider selectionProvider,
             InventoryProvider inventoryProvider,
             IFactory<InventorySlot> inventorySlotFactory,
-            IFactory<Item> itemFactory, RectTransform overlayTransform)
+            IFactory<Item> itemFactory,
+            UserStatsProvider userStatsProvider,
+            RectTransform overlayTransform)
         {
             _view = view;
             _selectionProvider = selectionProvider;
             _inventoryProvider = inventoryProvider;
             _inventorySlotFactory = inventorySlotFactory;
             _itemFactory = itemFactory;
+            _userStatsProvider = userStatsProvider;
             _overlayTransform = overlayTransform;
         }
 
@@ -43,6 +51,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
 
         public override void Cleanup()
         {
+            foreach (var slot in _subscriptionsSlots)
+            {
+                slot.OnInventoryChanged -= OnInventoryChanged;
+            }
+            _subscriptionsSlots.Clear();
             _view.Cleanup();
         }
 
@@ -51,8 +64,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
             for (int i = 0; i < _inventoryProvider.GameInventory.Weapons.Count; i++)
             {
                 var slot = _inventorySlotFactory.GetItem();
-                slot.Initialize(
-                    new CorrectTypeInventorySlotStrategy(_selectionProvider, ItemType.Weapon, _inventoryProvider, _itemFactory, _view), i, $"{i+1}");
+                var slotStrategy
+                    = new CorrectTypeInventorySlotStrategy(_selectionProvider,
+                        ItemType.Weapon,
+                        _inventoryProvider,
+                        _itemFactory, _view);
+                slotStrategy.OnInventoryChanged += OnInventoryChanged;
+                _subscriptionsSlots.Add(slotStrategy);
+                
+                slot.Initialize(slotStrategy, i, $"{i + 1}");
                 _view.AddWeaponSlot(slot);
                 var weaponConfig = _inventoryProvider.WeaponById(_inventoryProvider.GameInventory.Weapons[i]);
                 SpawnItem(weaponConfig, slot);
@@ -64,10 +84,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
             for (int i = 0; i < _inventoryProvider.GameInventory.Equipment.Count; i++)
             {
                 var slot = _inventorySlotFactory.GetItem();
-                var key = i == 0 ? "Q" : "E";//TODO: REMOVE HARDCODE
-                slot.Initialize(
-                    new CorrectTypeInventorySlotStrategy(_selectionProvider, ItemType.Equipment, _inventoryProvider, _itemFactory, _view),
-                    i,key, ItemType.Equipment);
+                var key = i == 0 ? "Q" : "E"; //TODO: REMOVE HARDCODE
+
+                var slotStrategy = new CorrectTypeInventorySlotStrategy(_selectionProvider,
+                    ItemType.Equipment,
+                    _inventoryProvider,
+                    _itemFactory, _view);
+                slotStrategy.OnInventoryChanged += OnInventoryChanged;
+                _subscriptionsSlots.Add(slotStrategy);
+
+                slot.Initialize(slotStrategy, i, key, ItemType.Equipment);
                 _view.AddEquipmentSlot(slot);
                 var equipmentConfig = _inventoryProvider.EquipmentById(_inventoryProvider.GameInventory.Equipment[i]);
                 SpawnItem(equipmentConfig, slot);
@@ -87,6 +113,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
             item.Initialize(_selectionProvider, _overlayTransform, itemConfig.Sprite, itemConfig.Id, type);
             item.CurentSlot = slot;
             item.MoveToParent();
+        }
+        
+        private void OnInventoryChanged()
+        {
+            _userStatsProvider.SaveState();
         }
     }
 }

@@ -2,22 +2,23 @@
 using App.Scripts.Features;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
-using App.Scripts.Modules.StateMachine;
+using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
-using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
-using UnityEngine;
 using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 {
     public class MainScreenPresenter : GameScreenPresenter, IInitializable, ICleanupable, ITopViewElementPrezenter
     {
+        private const int MIN_NAME_LENGTH = 3;
+        private const int MAX_NAME_LENGTH = 10;
+
         private readonly MainScreen _screen;
         private readonly ConnectionProvider _connectionProvider;
         private readonly UserRankProvider _userRankProvider;
@@ -25,6 +26,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private readonly TicketsProvider _ticketsProvider;
         private readonly UserStatsView _userStatsView;
         private readonly RouletteScreenPresentrer _rouletteScreenPresentrer;
+        private readonly InfoPopupRouter _infoPopupRouter;
 
         public MainScreenPresenter(MainScreen screen,
             ConnectionProvider connectionProvider,
@@ -32,7 +34,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             CoinsProvider coinsProvider,
             TicketsProvider ticketsProvider,
             UserStatsView userStatsView,
-            RouletteScreenPresentrer rouletteScreenPresentrer)
+            RouletteScreenPresentrer rouletteScreenPresentrer,
+            InfoPopupRouter infoPopupRouter)
         {
             _screen = screen;
             _connectionProvider = connectionProvider;
@@ -41,6 +44,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _ticketsProvider = ticketsProvider;
             _userStatsView = userStatsView;
             _rouletteScreenPresentrer = rouletteScreenPresentrer;
+            _infoPopupRouter = infoPopupRouter;
         }
 
         public override void Initialize()
@@ -48,7 +52,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _screen.RouletteButtonAction += OnRouletteButtonAction;
             _screen.PlayButtonAction += OnPlayButtonAction;
             _screen.Initialize();
-            
+
             _userStatsView.Initialize();
             _userRankProvider.OnExperienceChanded += OnExperienceChanded;
             _coinsProvider.OnCoinsChanged += OnCoinsChanged;
@@ -58,7 +62,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 
         public void Setup()
         {
-            _userStatsView.Setup(PhotonNetwork.NickName);
+            _userStatsView.SetupName(PhotonNetwork.NickName);
             SetupRank();
             _userStatsView.SetupMoney(_coinsProvider.Coins);
             _screen.SetTicketsCount(_ticketsProvider.Tickets);
@@ -69,7 +73,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _screen.RouletteButtonAction -= OnRouletteButtonAction;
             _screen.PlayButtonAction -= OnPlayButtonAction;
             _screen.Cleanup();
-            
+
             _userStatsView.Cleanup();
             _userRankProvider.OnExperienceChanded -= OnExperienceChanded;
             _userStatsView.OnPlayerNameChanged -= OnPlayerNameChanged;
@@ -101,15 +105,28 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         {
             _connectionProvider.QuickGame();
         }
-        
+
         private async void OnRouletteButtonAction()
         {
             await Hide();
             await _rouletteScreenPresentrer.Show();
         }
-        
+
         private void OnPlayerNameChanged(string name)
         {
+            if (name.Length < MIN_NAME_LENGTH || name.Length > MAX_NAME_LENGTH)
+            {
+                _infoPopupRouter.ShowPopup(
+                    "Ошибка",
+                    $"Длина имени должна быть между {MIN_NAME_LENGTH} и {MAX_NAME_LENGTH} символами.").Forget();
+                name = name.Length < MIN_NAME_LENGTH
+                    ? name.PadRight(MIN_NAME_LENGTH, '_')
+                    : name.Length > MAX_NAME_LENGTH
+                        ? name.Substring(0, MAX_NAME_LENGTH)
+                        : name;
+                _userStatsView.SetupName(name);
+            }
+
 #if YANDEX
             YG2.saves.PlayerName = name;
             YG2.SaveProgress();
@@ -138,7 +155,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         {
             _userStatsView.SetupMoney(coins);
         }
-        
+
         private void OnTicketsChanged(int tickets)
         {
             _screen.SetTicketsCount(tickets);

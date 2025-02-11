@@ -10,6 +10,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
 {
     public class CorrectTypeInventorySlotStrategy : IInventorySlotStrategy
     {
+        public event Action OnInventoryChanged;
+        
         private readonly ItemType _correctType;
         private readonly InventoryProvider _inventoryProvider;
         private readonly IFactory<Item> _itemFactory;
@@ -39,6 +41,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
             if (SwapItem(inventorySlot, item))
             {
                 _selectionProvider.Select(inventorySlot);
+                OnInventoryChanged?.Invoke();
                 return;
             }
 
@@ -70,6 +73,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            OnInventoryChanged?.Invoke();
         }
 
         private bool SwapItem(InventorySlot inventorySlot, Item item)

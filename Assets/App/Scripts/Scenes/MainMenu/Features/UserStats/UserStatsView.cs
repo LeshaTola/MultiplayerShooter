@@ -28,7 +28,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
             });
         }
 
-        public void Setup(string playerName)
+        public void SetupName(string playerName)
         {
             _playerInputField.text = playerName;
         }

@@ -21,39 +21,51 @@ MonoBehaviour:
   - Name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439"
     Percent: 0.01
     Color: {r: 0.99607843, g: 0.7921569, b: 0.047058824, a: 1}
-    WinItems: []
+    WinItems:
+    - {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}
+    - {fileID: 11400000, guid: f9d5f68a9b0a62f4b8700b77868106ed, type: 2}
+    WinItemsCount: 1
   - Name: "\u042D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439"
     Percent: 0.09
     Color: {r: 0.84705883, g: 0.17254902, b: 0.85882354, a: 1}
-    WinItems: []
+    WinItems:
+    - {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}
+    - {fileID: 11400000, guid: f9d5f68a9b0a62f4b8700b77868106ed, type: 2}
+    WinItemsCount: 1
   - Name: "\u0420\u0435\u0434\u043A\u0438\u0439"
     Percent: 0.15
     Color: {r: 0.22745098, g: 0.36862746, b: 1, a: 1}
-    WinItems: []
+    WinItems:
+    - {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}
+    - {fileID: 11400000, guid: f9d5f68a9b0a62f4b8700b77868106ed, type: 2}
+    WinItemsCount: 2
   - Name: "\u041D\u0435\u043E\u0431\u044B\u0447\u043D\u044B\u0439"
     Percent: 0.75
     Color: {r: 0.30980393, g: 1, b: 0.30980393, a: 1}
-    WinItems: []
+    WinItems:
+    - {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}
+    - {fileID: 11400000, guid: f9d5f68a9b0a62f4b8700b77868106ed, type: 2}
+    WinItemsCount: 2
   <SpinCurve>k__BackingField:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.041062728
+      outSlope: 0.041062728
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.63179916
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: -0
-      outSlope: -0
+      value: 1.0047188
+      inSlope: 0.0000012606646
+      outSlope: 0.0000012606646
       tangentMode: 0
       weightedMode: 3
-      inWeight: 0.9958159
+      inWeight: 1
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

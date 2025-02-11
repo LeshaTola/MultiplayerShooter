@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.StateMachines.States;
 using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.StateMachine;
@@ -14,6 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     public class MainMenuStateInstaller : MonoInstaller
     {
         [SerializeField] private CamerasDatabase _camerasDatabase;
+        [SerializeField] private List<RewardConfig> _rewardConfigs;
         
         [ValueDropdown(nameof(GetCamerasIds))]
         [SerializeField] private string _mainCameraId;
@@ -25,7 +27,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             BindStateMachine();
 
             BindInitialState();
-            Container.Bind<State>().To<MainState>().AsSingle();
+            Container.Bind<State>().To<MainState>().AsSingle().WithArguments(_rewardConfigs);
             Container.Bind<State>().To<LoadSceneState>().AsSingle().WithArguments("Gameplay");
         }
 

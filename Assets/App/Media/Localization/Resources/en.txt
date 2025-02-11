@@ -63,14 +63,14 @@ key,en
 Необычный,Unusual
 Колесо Фортуны,The Wheel of Fortune
 Внимание!,Attention!
-Принять,To accept
+Принять,Accept
 Не достаточно билетов,Not enough tickets
 Ошибка,Error
-Длинна названия сервера должна быть между 3 и 16 символами.,The server name must be between 3 and 16 characters long.
-Длинна пароля должна быть между 4 и 6 символами.,The password must be between 4 and 6 characters long.
+Длина названия сервера должна быть между 3 и 16 символами.,The server name must be between 3 and 16 characters long.
+Длина пароля должна быть между 4 и 6 символами.,The password must be between 4 and 6 characters long.
 Атака,Attack
 Урон,Damage
-Обойма,The clip
+Обойма,Clip
 Время между выстрелами,Time between shots
 Альтернативаня атака,Alternative attack
 Сила прицеливания,Aiming power
@@ -83,7 +83,7 @@ key,en
 Двойная выстрел,Double shot
 Дальний Бросок,Long Range Throw
 Время перезарядки,Recharge time
-Бросок под себя,A throw for yourself
+Бросок под себя,Throw for yourself
 Автоматическая 3мя патронами,Automatic with 3 cartridges
 Близкий бросок,A close throw
 Одиночный вытсрел по облости,Single shot at the area
@@ -91,3 +91,4 @@ key,en
 До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Press any button to continue
 Введите текст,Enter the text
+Длина имени должна быть между 3 и 10 символами.,The name must be between 3 and 10 characters long.

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
+using App.Scripts.Features.Rewards.Configs;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Configs
 {
@@ -10,6 +12,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Configs
         public string Name;
         [Range(0, 1)] public float Percent;
         public Color Color = Color.white;
-        public List<ItemConfig> WinItems;
+        public List<RewardConfig> WinItems;
+        [FormerlySerializedAs("WinItemCount")] public int WinItemsCount;
     }
 }
