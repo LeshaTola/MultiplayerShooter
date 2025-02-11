@@ -1,4 +1,6 @@
-﻿using App.Scripts.Features.Inventory;
+﻿using System.Collections.Generic;
+using System.Linq;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
@@ -36,22 +38,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             _userStatsProvider = userStatsProvider;
             _gameInventoryView = gameInventoryView;
         }
+        
+        private Dictionary<string,InventorySlot> _inventorySlots;
 
         public override void Initialize()
         {
+            _inventorySlots = new();
             _skinsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory);
             
-            foreach (var skinId in InventoryProvider.Inventory.Skins)
-            {
-                var slot = SlotFactory.GetItem();
-                slot.Initialize(new NoneInventorySlotStrategy(), -1, "", ItemType.Skin);
-                var item = ItemFactory.GetItem();
-                var skinConfig = InventoryProvider.SkinById(skinId);
-                item.Initialize(_selectionProvider, OverlayTransform, skinConfig.Sprite, skinId, ItemType.Skin);
-                item.CurentSlot = slot;
-                item.MoveToParent();
-                View.AddSlot(slot);
-            }
+            InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
+            UpdateInventory();
 
             _slotStrategy = new CorrectTypeInventorySlotStrategy(_selectionProvider,
                 ItemType.Skin,
@@ -65,7 +61,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             
             _selectionProvider.Select(_skinSlot);
         }
-        
+
         private void SpawnItem(ItemConfig itemConfig, InventorySlot slot)
         {
             if (!itemConfig)
@@ -83,8 +79,29 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         {
             _skinsView.Cleanup();
             _slotStrategy.OnInventoryChanged -= OnInventoryChanged;
+            InventoryProvider.Inventory.OnInventoryUpdated -= UpdateInventory;
         }
-        
+
+        private void UpdateInventory()
+        {
+            foreach (var skinId in InventoryProvider.Inventory.Skins)
+            {
+                if (_inventorySlots.ContainsKey(skinId))
+                {
+                    continue;
+                }
+                
+                var slot = SlotFactory.GetItem();
+                slot.Initialize(new NoneInventorySlotStrategy(), -1, "", ItemType.Skin);
+                var item = ItemFactory.GetItem();
+                var skinConfig = InventoryProvider.SkinById(skinId);
+                item.Initialize(_selectionProvider, OverlayTransform, skinConfig.Sprite, skinId, ItemType.Skin);
+                item.CurentSlot = slot;
+                item.MoveToParent();
+                View.AddSlot(slot);
+            }
+        }
+
         private void OnInventoryChanged()
         {
             _userStatsProvider.SaveState();

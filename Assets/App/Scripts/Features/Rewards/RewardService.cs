@@ -130,12 +130,15 @@ namespace App.Scripts.Features.Rewards
                 {
                     case WeaponConfig weaponConfig:
                         _userStatsProvider.InventoryProvider.Inventory.Weapons.Add(weaponConfig.Id);
+                        _userStatsProvider.InventoryProvider.Inventory.InvokeInventoryUpdate();
                         break;
                     case EquipmentConfig equipmentConfig:
                         _userStatsProvider.InventoryProvider.Inventory.Equipment.Add(equipmentConfig.Id);
+                        _userStatsProvider.InventoryProvider.Inventory.InvokeInventoryUpdate();
                         break;
                     case SkinConfig skinConfig:
                         _userStatsProvider.InventoryProvider.Inventory.Skins.Add(skinConfig.Id);
+                        _userStatsProvider.InventoryProvider.Inventory.InvokeInventoryUpdate();
                         break;
                     case OtherItemConfig otherItemConfig:
                         switch (otherItemConfig.ItemType)

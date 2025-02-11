@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Modules.Localization;
@@ -14,7 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         private readonly SelectionProvider _selectionProvider;
         private readonly ILocalizationSystem _localizationSystem;
 
-        protected List<InventorySlot> InventorySlots;
+        private Dictionary<string,InventorySlot> _inventorySlots;
         
         public WeaponTabPresenter(InventoryTab view,
             WeaponStatsView statsView,
@@ -34,11 +35,29 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
         public override void Initialize()
         {
-            InventorySlots = new List<InventorySlot>();
-            _statsView.Initialiе(_selectionProvider, InventoryProvider.GlobalInventory, _localizationSystem);
+            _inventorySlots = new();
+            _statsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory, _localizationSystem);
+            InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
+            UpdateInventory();
+            
+            _selectionProvider.Select(_inventorySlots.First().Value);
+        }
 
+        public override void Cleanup()
+        {
+            _statsView.Cleanup();
+            InventoryProvider.Inventory.OnInventoryUpdated -= UpdateInventory;
+        }
+        
+        private void UpdateInventory()
+        {
             foreach (var weaponId in InventoryProvider.Inventory.Weapons)
             {
+                if (_inventorySlots.ContainsKey(weaponId))
+                {
+                    continue;
+                }
+                
                 var slot = SlotFactory.GetItem();
                 slot.Initialize(new NoneInventorySlotStrategy(), -1);
                 var item = ItemFactory.GetItem();
@@ -47,15 +66,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);
-                InventorySlots.Add(slot);
+                _inventorySlots.Add(weaponId, slot);
             }
-            
-            _selectionProvider.Select(InventorySlots[0]);
-        }
-
-        public override void Cleanup()
-        {
-            _statsView.Cleanup();
         }
     }
 }

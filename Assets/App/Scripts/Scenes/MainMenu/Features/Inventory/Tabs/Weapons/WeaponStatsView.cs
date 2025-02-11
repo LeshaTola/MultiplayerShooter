@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         private SelectionProvider _selectionProvider;
         private GlobalInventory _inventory;
         
-        public void Initialiе(SelectionProvider selectionProvider, GlobalInventory inventory, ILocalizationSystem localizationSystem)
+        public void Initialize(SelectionProvider selectionProvider, GlobalInventory inventory, ILocalizationSystem localizationSystem)
         {
             _localizationSystem = localizationSystem;
 

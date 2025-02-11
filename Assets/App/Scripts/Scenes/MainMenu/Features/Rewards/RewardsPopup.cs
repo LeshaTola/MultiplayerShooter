@@ -100,6 +100,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 
         private async UniTask ExpSliderAnimation()
         {
+            if (_vm.AnimationDatas[0].FromExp.Equals(_vm.AnimationDatas[0].ToExp))
+            {
+                return;
+            }
+            
             foreach (var animationData in _vm.AnimationDatas)
             {
                 SetupRanks(animationData.FromSprite, animationData.ToSprite);

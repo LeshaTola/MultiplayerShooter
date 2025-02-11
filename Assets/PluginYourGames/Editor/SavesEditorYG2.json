@@ -7,13 +7,13 @@
     "MouseSensitivity": 0.6364235
   },
   "UserStatsData": {
-    "Experience": 12,
+    "Experience": 30,
     "CurrentRankId": 0,
     "GameInventory": {
       "Skin": "RussiaSkin",
       "Weapons": [
         "Revolver",
-        "AK",
+        "UZI",
         "SPAS",
         "RocketLauncher",
         "SniperRiffle"
@@ -40,15 +40,14 @@
         "SniperRiffle",
         "SPAS",
         "RocketLauncher",
-        "UZI",
-        "HantingRiffle"
+        "UZI"
       ],
       "Equipment": [
         "TestEq"
       ]
     },
-    "Coins": 400,
-    "Tickets": 18
+    "Coins": 10978,
+    "Tickets": 3
   },
   "stringKeys": [],
   "stringValues": [],
@@ -64,5 +63,5 @@
     false,
     false
   ],
-  "idSave": 72
+  "idSave": 263
 }

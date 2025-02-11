@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
   m_Name: TicketsReward
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: TicketsReward
   <Reward>k__BackingField: {fileID: 11400000, guid: c4395466e41a3f5498d86331ba9e351a, type: 2}
-  <Count>k__BackingField: 10
+  <IsFixedCount>k__BackingField: 1
+  <Count>k__BackingField: 2
+  <CountRange>k__BackingField:
+    Min: 0
+    Max: 0

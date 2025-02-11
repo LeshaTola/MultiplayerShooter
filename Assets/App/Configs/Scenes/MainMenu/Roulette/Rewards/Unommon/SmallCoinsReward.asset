@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
-  m_Name: CoinsReward
+  m_Name: SmallCoinsReward
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: CoinsReward
+  <Id>k__BackingField: SmallCoinsReward
   <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
-  <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 100
+  <IsFixedCount>k__BackingField: 0
+  <Count>k__BackingField: 65
   <CountRange>k__BackingField:
-    Min: 0
-    Max: 0
+    Min: 60
+    Max: 100

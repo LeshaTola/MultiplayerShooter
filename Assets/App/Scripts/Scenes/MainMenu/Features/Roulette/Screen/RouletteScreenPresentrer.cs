@@ -76,9 +76,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             foreach (var sector in _rouletteConfig.Sectors)
             {
                 var availableItems = sector.WinItems
-                    .Where(item => !inventory.Skins.Contains(item.Id) &&
-                                   !inventory.Weapons.Contains(item.Id) &&
-                                   !inventory.Equipment.Contains(item.Id)).ToList();
+                    .Where(item => !inventory.Skins.Contains(item.Reward.Id) &&
+                                   !inventory.Weapons.Contains(item.Reward.Id) &&
+                                   !inventory.Equipment.Contains(item.Reward.Id)).ToList();
         
                 var sectorWinItems = new List<RewardConfig>();
         
@@ -87,6 +87,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
                     if (availableItems.Count == 0) break;
             
                     var item = availableItems[Random.Range(0, availableItems.Count)];
+                    item.UpdateConfig();
                     availableItems.Remove(item);
             
                     sectorWinItems.Add(item);
@@ -110,12 +111,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             var angle = await _roulette.SpinRoulette();
             var result = _roulette.GetConfigByAngle(angle);
             Debug.Log($"Angle: {angle} Sector: {result.Name}");
-            UpdateWinItems();
-
+            
             var availableItems = _winItems[result];
             var winItem = availableItems[Random.Range(0, availableItems.Count)];
             _rewardService.AddReward(winItem);
             await _rewardService.ApplyRewardsAsync();
+            
+            UpdateWinItems();
             
             _rouletteScreen.SetBlockSreen(false);
         }
