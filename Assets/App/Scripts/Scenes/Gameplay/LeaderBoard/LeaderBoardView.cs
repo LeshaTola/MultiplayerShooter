@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
+using App.Scripts.Features.UserStats.Rank.Configs;
 using TMPro;
 using UnityEngine;
 using Zenject;

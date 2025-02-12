@@ -10,6 +10,7 @@ using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Features.Screens.Providers;
 using App.Scripts.Features.Settings;
 using App.Scripts.Features.StateMachines.States;
+using App.Scripts.Features.UserStats.Rank.Configs;
 using App.Scripts.Features.Yandex.Saves;
 using App.Scripts.Modules.Commands.Provider;
 using App.Scripts.Modules.FileProvider;

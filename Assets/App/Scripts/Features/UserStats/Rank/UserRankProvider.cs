@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
+using App.Scripts.Features.UserStats.Rank.Configs;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 
 namespace App.Scripts.Features.PlayerStats

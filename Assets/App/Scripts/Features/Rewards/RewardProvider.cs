@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Rewards.Configs;
+﻿using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Timer;
 using Photon.Pun;
@@ -12,6 +13,7 @@ namespace App.Scripts.Features.Rewards
         private readonly LeaderBoardProvider _leaderboard;
         private readonly AccrualConfig _accrualConfig;
         private readonly TimerProvider _timerProvider;
+        private readonly UserRankProvider _rankProvider;
 
         private float _experience;
         private float _coins;
@@ -21,12 +23,14 @@ namespace App.Scripts.Features.Rewards
         public RewardProvider(RewardService rewardService,
             LeaderBoardProvider leaderboard,
             AccrualConfig accrualConfig,
-            TimerProvider timerProvider)
+            TimerProvider timerProvider, 
+            UserRankProvider rankProvider)
         {
             _rewardService = rewardService;
             _leaderboard = leaderboard;
             _accrualConfig = accrualConfig;
             _timerProvider = timerProvider;
+            _rankProvider = rankProvider;
             Instance = this;
         }
 
@@ -38,24 +42,26 @@ namespace App.Scripts.Features.Rewards
             }
 
             int playersCount = _leaderboard.GetTable().Count;
-
-            var exp = _leaderboard.MyPlace * _accrualConfig.ExpPerPlace[playersCount];
-            _experience += exp;
-
-            var coins = _leaderboard.MyPlace * _accrualConfig.CoinsPerPlace[playersCount];
-            _coins += coins;
-
+            int middlePlace = playersCount / 2;
+            if (_leaderboard.MyPlace <= middlePlace)
+            {
+                var maxExpPercent = _accrualConfig.MaxExpPercent * playersCount / 10;
+                var myPlaceDivider = (_leaderboard.MyPlace - 1) * 2;
+                var exp =  maxExpPercent / myPlaceDivider * _rankProvider.CurrentRank.ExpForRank / 100;
+                _experience += exp;
+            }
+            
             ApplyCoins();
             ApplyExp();
         }
 
         public void ApplyKill()
         {
-            int playersCount = _leaderboard.GetTable().Count;
-            var exp = _accrualConfig.ExpPerKill[playersCount];
+            var growsCount = (int)((PhotonNetwork.Time - _timerProvider.LocalStartTime) / _accrualConfig.GrowExpTime);
+            var exp = _accrualConfig.ExpPerKill + growsCount * _accrualConfig.GrowExpValue;
             _experience += exp;
 
-            var coins = _accrualConfig.CoinsPerKill[playersCount];
+            var coins = _accrualConfig.CoinsPerKill;
             _coins += coins;
 
             ApplyCoins();
@@ -75,7 +81,7 @@ namespace App.Scripts.Features.Rewards
                 return;
             }
 
-            var coinsReward = GameObject.Instantiate(_accrualConfig.RewardConfig);
+            var coinsReward = Object.Instantiate(_accrualConfig.CoinReward);
             coinsReward.Count = (int) _coins;
             _coins -= (int) _coins;
 

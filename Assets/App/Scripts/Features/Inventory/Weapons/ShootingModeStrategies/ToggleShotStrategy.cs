@@ -10,11 +10,15 @@
 
         public override void CancelAttack()
         {
+            GuaranteedCancelAttack();
+        }
+
+        public override void GuaranteedCancelAttack()
+        {
             if (!IsShooting)
             {
                 return;
             }
-
             IsShooting = false;
             ShootStrategy.Shoot();
         }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Timer
 {
-    public class TimerProvider : MonoBehaviourPunCallbacks, IInitializable, IUpdatable
+    public class TimerProvider : MonoBehaviourPunCallbacks, IUpdatable
     {
         public event Action<double> OnTimerTick;
         public event Action OnTimerExpired;
