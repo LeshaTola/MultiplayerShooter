@@ -828,7 +828,7 @@ PlayerSettings:
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
-  webGLDecompressionFallback: 0
+  webGLDecompressionFallback: 1
   webGLInitialMemorySize: 32
   webGLMaximumMemorySize: 2048
   webGLMemoryGrowthMode: 2
@@ -847,9 +847,9 @@ PlayerSettings:
     PS5: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2
     QNX: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2
     Stadia: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2
-    Standalone: DOTWEEN;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;UNITASK_DOTWEEN_SUPPORT;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;PLUGIN_YG_2;TMP_YG2;NJSON_YG2
+    Standalone: DOTWEEN;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;UNITASK_DOTWEEN_SUPPORT;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;Authorization_yg;AutoTranslateLangs_yg;Clipboard_yg;EnvirData_yg;Flags_yg;Fullscreen_yg;GameLabel_yg;InterstitialAdv_yg;Leaderboards_yg;Localization_yg;Metrica_yg;OpenURL_yg;Payments_yg;PlayerStats_yg;QuitGameEvent_yg;RedefinePlayerPrefs_yg;Review_yg;RewardedAdv_yg;ServerTime_yg;StickyAdv_yg;Storage_yg;YandexGamesPlatform_yg
     VisionOS: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2
-    WebGL: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITASK_DOTWEEN_SUPPORT;UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;YandexGamesPlatform_yg;InterstitialAdv_yg;RewardedAdv_yg;Storage_yg;Authorization_yg;Leaderboards_yg;Payments_yg;AutoTranslateLangs_yg;Clipboard_yg;EnvirData_yg;Flags_yg;Fullscreen_yg;GameLabel_yg;Localization_yg;Metrica_yg;OpenURL_yg;PlayerStats_yg;QuitGameEvent_yg;RedefinePlayerPrefs_yg;Review_yg;ServerTime_yg;StickyAdv_yg;NJSON_STORAGE_YG2;YANDEX
+    WebGL: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITASK_DOTWEEN_SUPPORT;UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;PLUGIN_YG_2;TMP_YG2;NJSON_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Storage_yg;Authorization_yg;Leaderboards_yg;Payments_yg;AutoTranslateLangs_yg;Clipboard_yg;EnvirData_yg;Flags_yg;Fullscreen_yg;GameLabel_yg;Localization_yg;Metrica_yg;OpenURL_yg;PlayerStats_yg;QuitGameEvent_yg;RedefinePlayerPrefs_yg;Review_yg;ServerTime_yg;StickyAdv_yg;NJSON_STORAGE_YG2;YANDEX;YandexGamesPlatform_yg
     Windows Store Apps: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     XboxOne: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2
     iPhone: DOTWEEN;PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER

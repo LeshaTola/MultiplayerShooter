@@ -1,7 +1,4 @@
-﻿using Photon.Pun.Demo.PunBasics;
-using UnityEngine;
-
-namespace App.Scripts.Scenes.Gameplay.Controller.Providers
+﻿namespace App.Scripts.Scenes.Gameplay.Controller.Providers
 {
     public class MouseSensivityProvider
     {

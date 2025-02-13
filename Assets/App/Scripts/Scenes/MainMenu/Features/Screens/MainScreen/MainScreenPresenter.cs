@@ -10,6 +10,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using RedefineYG;
 using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen

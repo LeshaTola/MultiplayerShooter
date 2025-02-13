@@ -108,7 +108,11 @@ namespace App.Scripts.Features.Bootstrap
                 .To<YandexUserStatsDataProvider>()
                 .AsSingle();
 #else
-            Debug.LogError("Not implemented for this platform");
+            Container
+                .Bind<IDataProvider<UserStatsData>>()
+                .To<DataProvider<UserStatsData>>()
+                .AsSingle()
+                .WithArguments("userStatsDataSaves");
 #endif
             
             Container.Bind<RewardService>().AsSingle();
