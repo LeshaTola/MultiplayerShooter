@@ -13,7 +13,7 @@
       "Skin": "WiteSkin",
       "Weapons": [
         "Revolver",
-        "AK",
+        "UZI",
         "SPAS",
         "RocketLauncher",
         "SniperRiffle"
@@ -39,14 +39,15 @@
         "Revolver",
         "SniperRiffle",
         "SPAS",
-        "RocketLauncher"
+        "RocketLauncher",
+        "UZI"
       ],
       "Equipment": [
         "TestEq"
       ]
     },
-    "Coins": 0,
-    "Tickets": 0
+    "Coins": 100,
+    "Tickets": 1
   },
   "stringKeys": [],
   "stringValues": [],
@@ -62,5 +63,5 @@
     false,
     false
   ],
-  "idSave": 4
+  "idSave": 8
 }
