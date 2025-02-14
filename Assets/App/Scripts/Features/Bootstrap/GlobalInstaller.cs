@@ -31,6 +31,7 @@ using TNRD;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
+using YG;
 using Zenject;
 
 namespace App.Scripts.Features.Bootstrap
@@ -128,12 +129,18 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindLocalizationSystem()
         {
+#if YANDEX
+            var lang = YG2.lang.Equals("ru")? "ru" : "en";
+#else
+                lang = _language;
+#endif
             Container.Bind<LocalizationDatabase>().FromInstance(_localizationDatabase);
             Container
                 .Bind<ILocalizationSystem>()
                 .To<LocalizationSystem>()
                 .AsSingle()
-                .WithArguments(_language);
+                .WithArguments(lang);
+
         }
 
         private void BindLocalizationDataProvider()

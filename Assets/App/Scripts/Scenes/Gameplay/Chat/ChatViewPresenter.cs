@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Features.Input;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.Controller;
@@ -13,23 +14,26 @@ namespace App.Scripts.Scenes.Gameplay.Chat
         private readonly ChatView _view;
         private readonly GameInputProvider _gameInputProvider;
         private readonly PlayerController _playerController;
-        
+        private readonly ILocalizationSystem _localizationSystem;
+
         private bool _isActive;
 
         public ChatViewPresenter(ChatView view,
             GameInputProvider gameInputProvider,
-            PlayerController playerController)
+            PlayerController playerController,
+            ILocalizationSystem localizationSystem)
         {
             _view = view;
             _gameInputProvider = gameInputProvider;
             _playerController = playerController;
+            _localizationSystem = localizationSystem;
         }
 
         public override void Initialize()
         {
             _view.OnSendMessageButtonPressed += SendMessage;
             
-            _view.Initialize();
+            _view.Initialize(_localizationSystem);
             _gameInputProvider.OnEsc += OnEsc;
             _gameInputProvider.OnEnter += OnEnter;
         }
@@ -56,7 +60,17 @@ namespace App.Scripts.Scenes.Gameplay.Chat
             _playerController.IsBusy = false;
             return base.Hide();
         }
-
+        
+        public void SendJoinMessage(string player)
+        {
+            _view.SendJoinMessage(player);
+        }
+        
+        public void SendLeaveMessage(string player)
+        {
+            _view.SendLeaveMessage(player);
+        }
+        
         public void SendMessage()
         {
             _view.RPCSendMessage();

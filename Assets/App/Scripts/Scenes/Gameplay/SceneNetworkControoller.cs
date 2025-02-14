@@ -1,4 +1,5 @@
 using App.Scripts.Features.Match.Maps;
+using App.Scripts.Scenes.Gameplay.Chat;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using Photon.Pun;
 using UnityEngine;
@@ -13,10 +14,14 @@ namespace App.Scripts.Scenes.Gameplay
         private MapsProvider _mapsProvider;
         private PlayerProvider _playerProvider;
         private int _mapId;
+        private ChatViewPresenter _chatViewPresenter;
 
         [Inject]
-        public void Constructor(MapsProvider mapsProvider, PlayerProvider playerProvider)
+        public void Constructor(MapsProvider mapsProvider, 
+            PlayerProvider playerProvider,
+            ChatViewPresenter chatViewPresenter)
         {
+            _chatViewPresenter = chatViewPresenter;
             _mapsProvider = mapsProvider;
             _playerProvider = playerProvider;
         }
@@ -52,5 +57,23 @@ namespace App.Scripts.Scenes.Gameplay
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        
+
+        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                _chatViewPresenter.SendJoinMessage(newPlayer.NickName);
+            }
+        }
+
+        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                _chatViewPresenter.SendLeaveMessage(otherPlayer.NickName);
+            }
+        }
+        
     }
 }

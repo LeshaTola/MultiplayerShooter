@@ -4,10 +4,10 @@
     "MasterVolume": 1.0,
     "MusicVolume": 0.5,
     "EffectsVolume": 0.5,
-    "MouseSensitivity": 0.5
+    "MouseSensitivity": 0.6637394
   },
   "UserStatsData": {
-    "Experience": 0,
+    "Experience": 12,
     "CurrentRankId": 0,
     "GameInventory": {
       "Skin": "WiteSkin",
@@ -46,8 +46,8 @@
         "TestEq"
       ]
     },
-    "Coins": 100,
-    "Tickets": 1
+    "Coins": 285,
+    "Tickets": 0
   },
   "stringKeys": [],
   "stringValues": [],
@@ -63,5 +63,5 @@
     false,
     false
   ],
-  "idSave": 8
+  "idSave": 28
 }

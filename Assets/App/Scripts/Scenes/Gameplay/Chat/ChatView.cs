@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Modules.Localization;
 using ModestTree.Util;
 using Photon.Pun;
 using TMPro;
@@ -26,9 +27,12 @@ namespace App.Scripts.Scenes.Gameplay.Chat
         
         private List<Message> _history;
         private int _historyIndex = 0;
-        
-        public void Initialize()
+        private ILocalizationSystem _localizationSystem;
+
+        public void Initialize(ILocalizationSystem localizationSystem)
         {
+            _localizationSystem = localizationSystem;
+            
             _sendButton.onClick.AddListener(()=>OnSendMessageButtonPressed?.Invoke());
             _history = new List<Message>(_historySize);
             for (int i = 0; i < _historySize; i++)
@@ -75,15 +79,31 @@ namespace App.Scripts.Scenes.Gameplay.Chat
         [PunRPC]
         public void SendMessage(string player, string message)
         {
-           var messageObject = Instantiate(_messagePrefab, _container);
-           messageObject.SetupText(player, message);
-           messageObject.Fade();
+            SetupMesage(player, message);
+        }
+        
+        public void SendJoinMessage(string player)
+        {
+            var message =  _localizationSystem.Translate("Подключился");
+            SetupMesage(player, message);
+        }
+        
+        public void SendLeaveMessage(string player)
+        {
+            var message =  _localizationSystem.Translate("Отключился");
+            SetupMesage(player, message);
+        }
 
-           var historyMessage = _history[_historyIndex];
-           _historyIndex = (_historyIndex + 1) % _history.Count;
-           historyMessage.SetupText(player, message);
-           historyMessage.SetAsLastMessage();
-           
+        private void SetupMesage(string player, string message)
+        {
+            var messageObject = Instantiate(_messagePrefab, _container);
+            messageObject.SetupText(player, message);
+            messageObject.Fade();
+
+            var historyMessage = _history[_historyIndex];
+            _historyIndex = (_historyIndex + 1) % _history.Count;
+            historyMessage.SetupText(player, message);
+            historyMessage.SetAsLastMessage();
         }
         
     }

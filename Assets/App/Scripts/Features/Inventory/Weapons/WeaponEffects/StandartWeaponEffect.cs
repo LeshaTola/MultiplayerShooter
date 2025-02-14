@@ -53,6 +53,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 if (damageable.Key.Value == 0)
                 {
+                    _damageables.Clear();
                     return;
                 }
                 damageable.Key.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
