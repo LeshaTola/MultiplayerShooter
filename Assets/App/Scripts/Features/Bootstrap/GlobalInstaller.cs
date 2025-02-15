@@ -132,7 +132,7 @@ namespace App.Scripts.Features.Bootstrap
 #if YANDEX
             var lang = YG2.lang.Equals("ru")? "ru" : "en";
 #else
-                lang = _language;
+                var lang = _language;
 #endif
             Container.Bind<LocalizationDatabase>().FromInstance(_localizationDatabase);
             Container
