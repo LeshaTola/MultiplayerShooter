@@ -11,6 +11,7 @@ using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
 using App.Scripts.Scenes.MainMenu.Features.Roulette;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
+using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
@@ -26,12 +27,12 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 {
     public class ViewInstaller : MonoInstaller
     {
-        [Header("Main")]
+        [FoldoutGroup("Main")]
         [SerializeField] private MainScreen _mainScreen;
-
+        [FoldoutGroup("Main")]
         [SerializeField] private UserStatsView _userStatsView;
 
-        [Header("Rooms")]
+        [FoldoutGroup("Rooms")]
         [SerializeField] private RoomsView _roomsView;
 
         [SerializeField]
@@ -80,34 +81,58 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [FoldoutGroup("Shop")]
         private ShopScreen _shopScreen;
 
-        [Header("Roulette")]
+        [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteConfig _rouletteConfig;
-
+        [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteScreen _rouletteScreen;
+        [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteView _rouletteView;
 
-        [Header("TopScreen")]
-        [SerializeField] private TopView _topView;
+        [FoldoutGroup("BattlePass")]
+        [SerializeField] private BattlePassScreen _battlePassScreen;
 
+        
+        [FoldoutGroup("TopScreen")]
+        [SerializeField] private TopView _topView;
+        [FoldoutGroup("TopScreen")]
         [SerializeField] private SettingsView _settingsView;
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<MainScreenPresenter>().AsSingle();
-            Container.BindInstance(_mainScreen).AsSingle();
             Container.BindInstance(_userStatsView).AsSingle();
-
-            Container.BindInterfacesAndSelfTo<RoomsViewElementPresenter>().AsSingle();
-            Container.BindInstance(_roomsView).AsSingle();
-
+            Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
+            
+            BindTopView();
+            BindMainScreen();
+            BindRoomsScreen();
             BindInventoryScreen();
             BindRouletteScreen();
+            BindBattlePassScreen();
             BindShopScreen();
+        }
 
+        private void BindMainScreen()
+        {
+            Container.BindInstance(_mainScreen).AsSingle();
+            Container.BindInterfacesAndSelfTo<MainScreenPresenter>().AsSingle();
+        }
 
-            Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
+        private void BindRoomsScreen()
+        {
+            Container.BindInstance(_roomsView).AsSingle();
+            Container.BindInterfacesAndSelfTo<RoomsViewElementPresenter>().AsSingle();
+        }
+
+        private void BindTopView()
+        {
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();
             Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle();
+        }
+
+        private void BindBattlePassScreen()
+        {
+            Container.BindInstance(_battlePassScreen).AsSingle();
+            Container.BindInterfacesAndSelfTo<BattlePassScreenPrezenter>().AsSingle();
         }
 
         private void BindShopScreen()

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using App.Scripts.Features.Rewards.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,5 +16,7 @@ namespace App.Scripts.Features.PlayerStats.Rank.Configs
         public Sprite Sprite;
         [FoldoutGroup("@Name")]
         public int ExpForRank;
+        [FoldoutGroup("@Name")]
+        public List<RewardConfig> Rewards;
     }
 }

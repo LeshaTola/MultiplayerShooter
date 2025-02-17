@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.Features.Screens;
-using App.Scripts.Modules.Sounds.Services;
-using App.Scripts.Modules.StateMachine;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
-using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
-using App.Scripts.Scenes.MainMenu.StateMachines.States;
+using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using Cysharp.Threading.Tasks;
 using SettingsProvider = App.Scripts.Features.Settings.SettingsProvider;
 
@@ -21,6 +17,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private readonly SettingsProvider _settingsProvider;
         private readonly List<ITopViewElementPrezenter> _prezenters;
         private readonly RouletteScreenPresentrer _rouletteScreenPresenter;
+        private readonly BattlePassScreenPrezenter _battlePassScreenPresenter;
 
         private ITopViewElementPrezenter _activeScreenPresenter;
         
@@ -28,13 +25,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             SettingsView settingsView,
             SettingsProvider settingsProvider,
             List<ITopViewElementPrezenter> prezenters,
-            RouletteScreenPresentrer rouletteScreenPresenter)
+            RouletteScreenPresentrer rouletteScreenPresenter,
+            BattlePassScreenPrezenter battlePassScreenPresenter)
         {
             _view = view;
             _settingsView = settingsView;
             _settingsProvider = settingsProvider;
             _prezenters = prezenters;
             _rouletteScreenPresenter = rouletteScreenPresenter;
+            _battlePassScreenPresenter = battlePassScreenPresenter;
             _activeScreenPresenter = prezenters[0];
         }
 
@@ -90,6 +89,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private async void OnToggleClicked(int index)
         {
             await _rouletteScreenPresenter.Hide();
+            await _battlePassScreenPresenter.Hide();
             if (_activeScreenPresenter!= null)
             {
                 await _activeScreenPresenter.Hide();

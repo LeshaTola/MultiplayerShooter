@@ -69,11 +69,10 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void Update()
         {
-            var isGroundedNow = IsLanded();
-            _isGrounded = isGroundedNow;
+            _isGrounded = IsLanded();
             if (_isGrounded && _velocity < 0)
             {
-                _velocity = -2f;
+                _velocity = -5f;
             }
             
             MoveInternal(_moveDirection);

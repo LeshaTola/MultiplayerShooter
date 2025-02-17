@@ -6,6 +6,7 @@ using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
+using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private readonly TicketsProvider _ticketsProvider;
         private readonly UserStatsView _userStatsView;
         private readonly RouletteScreenPresentrer _rouletteScreenPresentrer;
+        private readonly BattlePassScreenPrezenter _battlePassScreenPrezenter;
         private readonly InfoPopupRouter _infoPopupRouter;
 
         public MainScreenPresenter(MainScreen screen,
@@ -36,6 +38,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             TicketsProvider ticketsProvider,
             UserStatsView userStatsView,
             RouletteScreenPresentrer rouletteScreenPresentrer,
+            BattlePassScreenPrezenter battlePassScreenPrezenter,
             InfoPopupRouter infoPopupRouter)
         {
             _screen = screen;
@@ -45,6 +48,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _ticketsProvider = ticketsProvider;
             _userStatsView = userStatsView;
             _rouletteScreenPresentrer = rouletteScreenPresentrer;
+            _battlePassScreenPrezenter = battlePassScreenPrezenter;
             _infoPopupRouter = infoPopupRouter;
         }
 
@@ -52,6 +56,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         {
             _screen.RouletteButtonAction += OnRouletteButtonAction;
             _screen.PlayButtonAction += OnPlayButtonAction;
+            _screen.BattlePassButtonAction += OnBattlePassButtonAction;
             _screen.Initialize();
 
             _userStatsView.Initialize();
@@ -73,6 +78,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         {
             _screen.RouletteButtonAction -= OnRouletteButtonAction;
             _screen.PlayButtonAction -= OnPlayButtonAction;
+            _screen.BattlePassButtonAction -= OnBattlePassButtonAction;
             _screen.Cleanup();
 
             _userStatsView.Cleanup();
@@ -111,6 +117,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         {
             await Hide();
             await _rouletteScreenPresentrer.Show();
+        }
+        
+        private async void OnBattlePassButtonAction()
+        {
+            await Hide();
+            await _battlePassScreenPrezenter.Show();
         }
 
         private void OnPlayerNameChanged(string name)
