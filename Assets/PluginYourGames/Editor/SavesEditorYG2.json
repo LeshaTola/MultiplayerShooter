@@ -4,16 +4,16 @@
     "MasterVolume": 1.0,
     "MusicVolume": 0.5,
     "EffectsVolume": 0.5,
-    "MouseSensitivity": 0.6637394
+    "MouseSensitivity": 0.5
   },
   "UserStatsData": {
-    "Experience": 12,
-    "CurrentRankId": 0,
+    "Experience": 274,
+    "CurrentRankId": 4,
     "GameInventory": {
       "Skin": "WiteSkin",
       "Weapons": [
         "Revolver",
-        "UZI",
+        "AK",
         "SPAS",
         "RocketLauncher",
         "SniperRiffle"
@@ -40,14 +40,21 @@
         "SniperRiffle",
         "SPAS",
         "RocketLauncher",
-        "UZI"
+        "UZI",
+        "HantingRiffle",
+        "Granade",
+        "Dynamite",
+        "Shuriken",
+        "Double-Barrel",
+        "Famas",
+        "DualPistols"
       ],
       "Equipment": [
         "TestEq"
       ]
     },
-    "Coins": 285,
-    "Tickets": 0
+    "Coins": 800,
+    "Tickets": 19
   },
   "stringKeys": [],
   "stringValues": [],
@@ -63,5 +70,5 @@
     false,
     false
   ],
-  "idSave": 28
+  "idSave": 25
 }

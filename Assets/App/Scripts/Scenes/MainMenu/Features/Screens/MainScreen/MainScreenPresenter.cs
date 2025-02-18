@@ -162,6 +162,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
                 rank.Sprite,
                 _userRankProvider.Experience,
                 _userRankProvider.CurrentRank.ExpForRank);
+            
+            _screen.SetupRank(_userRankProvider.CurrentRank.Sprite, _userRankProvider.CurrentRank.Name);
         }
 
         private void OnCoinsChanged(int coins)

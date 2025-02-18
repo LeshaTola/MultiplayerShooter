@@ -28,9 +28,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
             _screen.Initialize(_localizationSystem);
             _screen.SetupRewards(_userRankProvider);
             _screen.SetupRewardInfo(_userRankProvider.CurrentRank.Rewards.FirstOrDefault());
-            
-            _screen.SetupRankInfo(_userRankProvider.CurrentRank, _userRankProvider.Experience);
+            UpdateRank();
 
+            _userRankProvider.OnExperienceChanded += UpdateRank;
             _screen.OnRewardSelected += SelectReward;
         }
 
@@ -38,6 +38,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         {
             _screen.Cleanup();
 
+            _userRankProvider.OnExperienceChanded -= UpdateRank;
             _screen.OnRewardSelected -= SelectReward;
         }
 
@@ -49,6 +50,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         public override async UniTask Hide()
         {
             await _screen.Hide();
+        }
+
+        private void UpdateRank()
+        {
+            _screen.SetupRankInfo(_userRankProvider.CurrentRank, _userRankProvider.Experience);
+            _screen.UpdateSlider(_userRankProvider);
         }
 
         private void SelectReward(int id)

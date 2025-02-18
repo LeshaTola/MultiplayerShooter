@@ -22,20 +22,22 @@ namespace App.Scripts.Features.PlayerStats
         
         public int AddExperience(int experience)
         {
-            int levelUps = 0;
             if (experience < 0)
             {
                 return 0;
             }
 
-            while (experience > CurrentRank.ExpForRank)
+            int levelUps = 0;
+            experience += Experience;
+
+            while (experience >= CurrentRank.ExpForRank)
             {
                 experience -= CurrentRank.ExpForRank;
-                CurrentRankId ++;
-                levelUps++; 
+                CurrentRankId++;
+                levelUps++;
             }
-            Experience += experience;
-            
+
+            Experience = experience;
             OnExperienceChanded?.Invoke();
             return levelUps;
         }
