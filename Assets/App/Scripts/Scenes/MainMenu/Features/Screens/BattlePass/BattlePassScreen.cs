@@ -40,6 +40,26 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
             _rankValue.Initialize(localizationSystem);
             _rewardName.Initialize(localizationSystem);
         }
+
+        public void UpdateSlider(UserRankProvider userRankProvider)
+        {
+            int id = 0;
+            foreach (var element in _elements)
+            {
+                float sliderValue = 0;
+                if (userRankProvider.CurrentRankId > id)
+                {
+                    sliderValue = 1f;
+                }
+                else if (userRankProvider.CurrentRankId == id)
+                {
+                    sliderValue = (float)userRankProvider.Experience / userRankProvider.CurrentRank.ExpForRank;
+                }
+                
+                element.UpdateSlider(sliderValue);
+                id++;
+            }   
+        }
         
         public override void Cleanup()
         {
@@ -83,22 +103,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
                 newElement.Initialize();
                 var rewardSprite = rank.Rewards.Count > 0 ? rank.Rewards[0].Reward.Sprite : null;
                 
-                float sliderValue = 0;
-                if (userRankProvider.CurrentRankId > id)
-                {
-                    sliderValue = 1f;
-                }
-                else if (userRankProvider.CurrentRankId == id)
-                {
-                    sliderValue = (float)userRankProvider.Experience / userRankProvider.CurrentRank.ExpForRank;
-                }
-                
-                newElement.Setup(id ,rewardSprite,rank.Sprite,sliderValue);
+                newElement.Setup(id ,rewardSprite,rank.Sprite);
                 newElement.OnButtonClicked += SelectReward;
                 _elements.Add(newElement);
                 
                 id++;
             }
+
+            UpdateSlider(userRankProvider);
         }
 
         private void CleanupRewards()

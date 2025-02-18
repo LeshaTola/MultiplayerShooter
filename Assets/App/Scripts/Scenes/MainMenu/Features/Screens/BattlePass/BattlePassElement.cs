@@ -30,7 +30,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
             _rewardButton.onClick.RemoveAllListeners();
         }
         
-        public void Setup(int rankId ,Sprite rewardSprite, Sprite rankSprite, float sliderValue)
+        public void Setup(int rankId ,Sprite rewardSprite, Sprite rankSprite)
         {
             _rankId = rankId;
             if (rewardSprite == null)
@@ -39,6 +39,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
             }
             _rewardImage.sprite = rewardSprite;
             _rankImage.sprite = rankSprite;
+        }
+
+        public void UpdateSlider(float sliderValue)
+        {
             _expSlider.value = sliderValue;
             _progressImage.color = sliderValue > 0 ? _completeColor : _defaultColor;
         }
