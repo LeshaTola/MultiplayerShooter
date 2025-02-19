@@ -253,6 +253,8 @@ MonoBehaviour:
       Data: 
   <Id>k__BackingField: Double-Barrel
   <Sprite>k__BackingField: {fileID: 21300000, guid: 8f449f0c68a9bbe4da40ba304caea44a, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: f3e7f39e276770d449c165e1ae7118e9, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 4d77e6afe98cf2648bb1651429f359ce, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: e456da3eb268e57449a59a077815aeba, type: 3}

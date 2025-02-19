@@ -23,4 +23,6 @@ MonoBehaviour:
     SerializationNodes: []
   <Id>k__BackingField: Ticket
   <Sprite>k__BackingField: {fileID: 21300000, guid: df00de8d87912c2438fae8b82c41092e, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Rare
   <ItemType>k__BackingField: 1

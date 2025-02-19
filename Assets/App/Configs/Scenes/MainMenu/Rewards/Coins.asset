@@ -21,6 +21,8 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <Id>k__BackingField: OtherItemConfig
+  <Id>k__BackingField: Coins
   <Sprite>k__BackingField: {fileID: 21300000, guid: 3993f28754ba2144f925d197ff55e798, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Uncomon
   <ItemType>k__BackingField: 0

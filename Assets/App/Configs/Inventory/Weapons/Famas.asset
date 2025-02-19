@@ -252,6 +252,8 @@ MonoBehaviour:
       Data: 
   <Id>k__BackingField: Famas
   <Sprite>k__BackingField: {fileID: 21300000, guid: 0bbeb9a2d1b71d2478ca2b028dea5a45, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: fff8ea3401d304343aa59a07298e83c1, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 287be1263f2aae94daab57d8f2b07917, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 62250ac163937ac4c90b65a7ec76cd48, type: 3}

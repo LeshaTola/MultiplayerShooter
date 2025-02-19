@@ -239,6 +239,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1401840683}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &127666029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2819275576701621899, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128835795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1080,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde5886e5041426cbfca8c6029fbc903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &567853006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7538155084683820927, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &572383175 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4127773589905709207, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
@@ -1200,6 +1222,10 @@ MonoBehaviour:
   _skinSlot: {fileID: 1929346471}
   _skinsView: {fileID: 536587379}
   _shopScreen: {fileID: 1524223508}
+  _marketSectionView: {fileID: 1196012691}
+  _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  _costsDatabase: {fileID: 11400000, guid: fb2f4c66ec8bf0345a857dd43a0258eb, type: 2}
   _rouletteConfig: {fileID: 11400000, guid: 77ed6b796dbe40846bbbc012e232d88c, type: 2}
   _rouletteScreen: {fileID: 3500448212905769656}
   _rouletteView: {fileID: 3500448212905769655}
@@ -1788,6 +1814,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &834199568 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6351286775516597828, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &846194031 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2670303059793445462, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
@@ -1832,6 +1869,17 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7233219525648026918, guid: ebd935bcfddce3040b9574df5159150a, type: 3}
   m_PrefabInstance: {fileID: 7048209309611277849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &907967105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6461029141872042893, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -2134,6 +2182,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1196012691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8048274252033339267, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83b89a75f8042fc9cd66682f632c8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1198780790 stripped
@@ -3422,6 +3481,10 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tmProLocalizers:
+  - {fileID: 127666029}
+  - {fileID: 834199568}
+  - {fileID: 567853006}
+  - {fileID: 907967105}
   - {fileID: 2139973710}
   - {fileID: 899863900}
   - {fileID: 1933232301}

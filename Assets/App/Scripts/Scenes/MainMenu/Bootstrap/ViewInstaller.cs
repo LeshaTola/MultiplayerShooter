@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Screen;
@@ -15,6 +17,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
@@ -80,6 +83,18 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField]
         [FoldoutGroup("Shop")]
         private ShopScreen _shopScreen;
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private MarketSectionView _marketSectionView;
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private GlobalInventory _globalInventory;
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private RaritiesDatabase _raritiesDatabase;
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private CostsDatabase _costsDatabase;
 
         [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteConfig _rouletteConfig;
@@ -101,6 +116,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         {
             Container.BindInstance(_userStatsView).AsSingle();
             Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
+            
+            Container.BindInstance(_raritiesDatabase).AsSingle();
+            Container.BindInstance(_costsDatabase).AsSingle();
             
             BindTopView();
             BindMainScreen();
@@ -137,6 +155,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         private void BindShopScreen()
         {
+            Container.BindInstance(_marketSectionView).AsSingle();
+            Container.Bind<MarketSectionPrezenter>().AsSingle().WithArguments(_globalInventory); 
+            
             Container.BindInstance(_shopScreen).AsSingle();
             Container.BindInterfacesAndSelfTo<ShopScreenElementPrezenter>().AsSingle(); 
         }

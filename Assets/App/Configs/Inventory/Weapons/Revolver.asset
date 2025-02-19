@@ -249,6 +249,8 @@ MonoBehaviour:
       Data: 
   <Id>k__BackingField: Revolver
   <Sprite>k__BackingField: {fileID: 21300000, guid: ea11550b1747bb94d8b7b055aa9b8817, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: a504edf4830c89d4c8ea823241c9bdc9, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 6c545b0f3157c5e408f4d90155148574, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 78cce3e679372904ba09f522634231f1, type: 3}

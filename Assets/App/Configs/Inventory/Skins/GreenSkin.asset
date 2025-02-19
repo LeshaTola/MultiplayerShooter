@@ -23,4 +23,6 @@ MonoBehaviour:
     SerializationNodes: []
   <Id>k__BackingField: GreenSkin
   <Sprite>k__BackingField: {fileID: 21300000, guid: af88ed3832c883f4594420d5b5767583, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Uncomon
   <Material>k__BackingField: {fileID: 2100000, guid: 470d1400f0a166d4db4266dbe3479edc, type: 2}

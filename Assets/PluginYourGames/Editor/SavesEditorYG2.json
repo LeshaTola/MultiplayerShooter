@@ -39,15 +39,7 @@
         "Revolver",
         "SniperRiffle",
         "SPAS",
-        "RocketLauncher",
-        "UZI",
-        "HantingRiffle",
-        "Granade",
-        "Dynamite",
-        "Shuriken",
-        "Double-Barrel",
-        "Famas",
-        "DualPistols"
+        "RocketLauncher"
       ],
       "Equipment": [
         "TestEq"
@@ -70,5 +62,5 @@
     false,
     false
   ],
-  "idSave": 66
+  "idSave": 75
 }

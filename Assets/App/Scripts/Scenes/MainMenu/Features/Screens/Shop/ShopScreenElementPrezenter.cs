@@ -2,6 +2,7 @@
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
@@ -14,20 +15,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
     {
         private readonly ShopScreen _view;
         private readonly UserStatsView _userStatsView;
+        private readonly MarketSectionPrezenter _marketSectionPrezenter;
 
         private readonly List<float> _startNormalizedPositions = new();
 
-        public ShopScreenElementPrezenter(ShopScreen view, UserStatsView userStatsView)
+        public ShopScreenElementPrezenter(ShopScreen view, UserStatsView userStatsView, MarketSectionPrezenter marketSectionPrezenter)
         {
             _view = view;
             _userStatsView = userStatsView;
+            _marketSectionPrezenter = marketSectionPrezenter;
+            
             _view.OnTabClicked += ScrollToSection;
         }
 
         public override void Initialize()
         {
             _view.Initialize();
-
+            _marketSectionPrezenter.Initialzie();
+                
             float value = 1;
             _view.Show();
             var contentHeight = _view.ScrollRect.content.rect.height;
@@ -47,6 +52,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
         public override void Cleanup()
         {
             _view.Cleanup();
+            _marketSectionPrezenter.Cleanup();
         }
 
         private void ScrollToSection(int index)
