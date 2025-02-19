@@ -1,10 +1,12 @@
-﻿using App.Scripts.Features.Screens;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
 {
@@ -12,19 +14,34 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
     {
         private readonly ShopScreen _view;
         private readonly UserStatsView _userStatsView;
-        private readonly int _sectionCount;
+
+        private readonly List<float> _startNormalizedPositions = new();
 
         public ShopScreenElementPrezenter(ShopScreen view, UserStatsView userStatsView)
         {
             _view = view;
             _userStatsView = userStatsView;
-            _sectionCount = view.Sections.Count;
             _view.OnTabClicked += ScrollToSection;
         }
 
         public override void Initialize()
         {
             _view.Initialize();
+
+            float value = 1;
+            _view.Show();
+            var contentHeight = _view.ScrollRect.content.rect.height;
+            var viewportHeightNormalized = _view.ScrollRect.viewport.rect.height/contentHeight/2;
+            _view.Hide();
+            
+            _startNormalizedPositions.Add(value);
+            for (int i = 0; i < _view.Sections.Count-1; i++)
+            {
+                float sectionHeight = _view.Sections[i].rect.height;
+                value -= sectionHeight / contentHeight;
+                value -= viewportHeightNormalized;
+                _startNormalizedPositions.Add(Mathf.Clamp01(value));
+            }
         }
 
         public override void Cleanup()
@@ -34,28 +51,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
 
         private void ScrollToSection(int index)
         {
-            float targetX = (float)index / (_sectionCount - 1);
-            _view.SetScrollPosition(targetX);
+            _view.SetScrollPosition(_startNormalizedPositions[index]);
             _view.HighlightTab(index);
-        }
-
-        public void UpdateScrollPosition()
-        {
-            float pos = _view.ScrollRect.horizontalNormalizedPosition;
-            int closestIndex = 0;
-            float closestDistance = Mathf.Abs(pos - (float)closestIndex / (_sectionCount - 1));
-
-            for (int i = 1; i < _sectionCount; i++)
-            {
-                float distance = Mathf.Abs(pos - (float)i / (_sectionCount - 1));
-                if (distance < closestDistance)
-                {
-                    closestIndex = i;
-                    closestDistance = distance;
-                }
-            }
-
-            _view.HighlightTab(closestIndex);
         }
         
         public override async UniTask Show()
