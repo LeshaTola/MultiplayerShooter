@@ -24,19 +24,19 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 401eaddd920c230469a0c84f9f6d9827, type: 2}
     - {fileID: 11400000, guid: 29c5a532970f0ba42b40a205a3715bbe, type: 2}
     - {fileID: 11400000, guid: 312fd3914e91532429a9fa3f29ca0fa8, type: 2}
-    - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
     - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
+    - {fileID: 11400000, guid: c95b9c87872a10b4d808ae7acc915a59, type: 2}
+    - {fileID: 11400000, guid: d8a533f26ac99f747ad38346f97c03df, type: 2}
+    - {fileID: 11400000, guid: 3172757cac10ed048a04424d144d4cd6, type: 2}
+    - {fileID: 11400000, guid: b4b8518c967ac2d41acae9588edb8266, type: 2}
+    - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
     - {fileID: 11400000, guid: 06dd0eb33c0eba543b3a31e3b6cf7485, type: 2}
     - {fileID: 11400000, guid: 294e413ba9dbaeb4e92b33edeeec7f85, type: 2}
     - {fileID: 11400000, guid: 29cda4439d0679f4e9326ef7457d12e6, type: 2}
     - {fileID: 11400000, guid: f0f78cbb0141f254f912ff7474bb000f, type: 2}
-    - {fileID: 11400000, guid: c95b9c87872a10b4d808ae7acc915a59, type: 2}
-    - {fileID: 11400000, guid: d8a533f26ac99f747ad38346f97c03df, type: 2}
-    - {fileID: 11400000, guid: 5419cb219a3c2464cb51d5706a3f878f, type: 2}
-    - {fileID: 11400000, guid: 3172757cac10ed048a04424d144d4cd6, type: 2}
-    - {fileID: 11400000, guid: b4b8518c967ac2d41acae9588edb8266, type: 2}
     - {fileID: 11400000, guid: 9f08cfb074ed61a4ba0c9ee84c2896ea, type: 2}
     - {fileID: 11400000, guid: 3aa16a3e34f78a1448c600ef0bc6b872, type: 2}
+    - {fileID: 11400000, guid: 5419cb219a3c2464cb51d5706a3f878f, type: 2}
     - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -69,7 +69,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 21
+      Data: 13
     - Name: 
       Entry: 10
       Data: 0
@@ -110,6 +110,28 @@ MonoBehaviour:
       Entry: 10
       Data: 12
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Epic
+    - Name: $v
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
       Entry: 10
       Data: 13
     - Name: 
@@ -122,6 +144,28 @@ MonoBehaviour:
       Entry: 10
       Data: 16
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Rare
+    - Name: $v
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
       Entry: 10
       Data: 17
     - Name: 
@@ -130,9 +174,6 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 19
-    - Name: 
-      Entry: 10
-      Data: 20
     - Name: 
       Entry: 13
       Data: 
@@ -150,11 +191,14 @@ MonoBehaviour:
       Data: Legendary
     - Name: $v
       Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+      Data: 5|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 20
     - Name: 
       Entry: 10
       Data: 21

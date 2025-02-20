@@ -246,7 +246,7 @@ MonoBehaviour:
   <Id>k__BackingField: AK
   <Sprite>k__BackingField: {fileID: 21300000, guid: 727937af476240a4694226363bca59be, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 27991953fe0860946bd4b176c198004b, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 287be1263f2aae94daab57d8f2b07917, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 62250ac163937ac4c90b65a7ec76cd48, type: 3}

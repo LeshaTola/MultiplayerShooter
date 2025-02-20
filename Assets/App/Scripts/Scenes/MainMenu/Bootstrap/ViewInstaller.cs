@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
+using App.Scripts.Features.Yandex.Saves;
+using App.Scripts.Modules.Saves;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Screen;
@@ -156,7 +158,16 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         private void BindShopScreen()
         {
             Container.BindInstance(_marketSectionView).AsSingle();
-            Container.Bind<MarketSectionPrezenter>().AsSingle().WithArguments(_globalInventory); 
+            Container.Bind<MarketSectionPrezenter>().AsSingle(); 
+            Container.BindInterfacesAndSelfTo<MarketService>().AsSingle().WithArguments(_globalInventory).NonLazy();
+#if YANDEX
+            Container.Bind<IDataProvider<MarketSavesData>>().To<YandexMarketSavesDataProvider>().AsSingle();
+#else
+            Container.Bind<IDataProvider<MarketSavesData>>().
+                To<DataProvider<MarketSavesData>>().
+                AsSingle().
+                WithArguments("MarketSavesKey");
+#endif
             
             Container.BindInstance(_shopScreen).AsSingle();
             Container.BindInterfacesAndSelfTo<ShopScreenElementPrezenter>().AsSingle(); 
