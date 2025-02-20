@@ -231,9 +231,16 @@ MonoBehaviour:
   _audioSource: {fileID: 6520392046500333739}
   _strategies:
   - rid: 5057382273596784640
+  - rid: 1563722606953627650
   references:
     version: 2
     RefIds:
+    - rid: 1563722606953627650
+      type: {class: AddForceStrategy, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
+      data:
+        _forceData:
+        - ForceVector: {x: 0, y: 0, z: 0}
+          Delay: 0
     - rid: 5057382273596784640
       type: {class: PlaySoundStrategy, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
       data: 
