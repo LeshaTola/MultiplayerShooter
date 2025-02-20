@@ -258,7 +258,7 @@ MonoBehaviour:
   <Id>k__BackingField: RocketLauncher
   <Sprite>k__BackingField: {fileID: 21300000, guid: 956864ed393fbb047902e030c0a8e285, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ed2e485c92857df4db7c05b9305983c7, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: c79740913fa415d4890639fad0bc808c, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0ab1db19e0c7be647a7714f734700269, type: 3}

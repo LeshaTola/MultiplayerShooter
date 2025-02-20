@@ -5605,9 +5605,10 @@ MonoBehaviour:
   - {fileID: 7484775451551263220}
   - {fileID: 3992243107895154336}
   - {fileID: 6375624173337656496}
-  _preTimerText: "\u0414\u043E \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F
-    \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C:"
+  _preTimerText: "\u041D\u043E\u0432\u043E\u0435 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435
+    \u0447\u0435\u0440\u0435\u0437:"
   _timerText: {fileID: 3937032149414769260}
+  _timerImage: {fileID: 5002771260695362641}
   _updateButton: {fileID: 2082029307240750377}
 --- !u!1 &2609393852065719423
 GameObject:
@@ -9307,8 +9308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -38, y: 0}
-  m_SizeDelta: {x: -84, y: -8}
+  m_AnchoredPosition: {x: -40, y: 0}
+  m_SizeDelta: {x: -96, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1232839951566572308
 CanvasRenderer:
@@ -9338,8 +9339,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u043E \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F
-    \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C:"
+  m_text: "\u041D\u043E\u0432\u043E\u0435 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435
+    \u0447\u0435\u0440\u0435\u0437:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10278,13 +10279,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillClockwise: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5842841105630451364

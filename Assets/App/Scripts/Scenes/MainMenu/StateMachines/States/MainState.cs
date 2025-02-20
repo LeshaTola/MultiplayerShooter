@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
+using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
@@ -15,13 +16,17 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
     {
         private readonly MainScreenPresenter _mainScreenPresenter;
         private readonly RewardService _rewardService;
+        private readonly IUpdateService _updateService;
         private readonly List<RewardConfig> _rewardConfigs;
 
         public MainState(MainScreenPresenter mainScreenPresenter,
-            RewardService rewardService, List<RewardConfig> rewardConfigs)
+            RewardService rewardService, 
+            IUpdateService updateService,
+            List<RewardConfig> rewardConfigs)
         {
             _mainScreenPresenter = mainScreenPresenter;
             _rewardService = rewardService;
+            _updateService = updateService;
             _rewardConfigs = rewardConfigs;
         }
 
@@ -44,6 +49,7 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
 
         public override async UniTask Update()
         {
+            _updateService.Update();
             if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.O) && Input.GetKeyDown(KeyCode.Y))
             {
                 _rewardService.ExperienceToAdd = 300;

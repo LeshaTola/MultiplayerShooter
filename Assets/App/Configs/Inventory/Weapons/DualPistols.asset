@@ -246,7 +246,7 @@ MonoBehaviour:
   <Id>k__BackingField: DualPistols
   <Sprite>k__BackingField: {fileID: 21300000, guid: 5beda87c651b44f42b9e318ed8c46a00, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Rare
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 318d463f89d1fe945913f3618edd8dd6, type: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 6c545b0f3157c5e408f4d90155148574, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 78cce3e679372904ba09f522634231f1, type: 3}
