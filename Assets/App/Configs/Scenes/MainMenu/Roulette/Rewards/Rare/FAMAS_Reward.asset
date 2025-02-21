@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
-  m_Name: SmallCoinsReward
+  m_Name: FAMAS_Reward
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: SmallCoinsReward
-  <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
-  <IsFixedCount>k__BackingField: 0
-  <Count>k__BackingField: 38
+  <Id>k__BackingField: FAMAS_Reward
+  <Reward>k__BackingField: {fileID: 11400000, guid: 9f08cfb074ed61a4ba0c9ee84c2896ea, type: 2}
+  <IsFixedCount>k__BackingField: 1
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
-    Min: 30
-    Max: 50
+    Min: 0
+    Max: 0

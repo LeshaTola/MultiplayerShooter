@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: EpicCoinsReward
   <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
   <IsFixedCount>k__BackingField: 0
-  <Count>k__BackingField: 444
+  <Count>k__BackingField: 180
   <CountRange>k__BackingField:
-    Min: 400
-    Max: 500
+    Min: 150
+    Max: 200

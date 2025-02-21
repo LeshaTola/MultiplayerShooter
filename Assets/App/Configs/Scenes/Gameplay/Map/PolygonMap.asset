@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Polygon
   <Sprite>k__BackingField: {fileID: 21300000, guid: 0512e3f10c3576a459c1a44ba6c0c5ad, type: 3}
-  <Prefab>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 6196763212998865393, guid: 6206dd95476d3b14a81ad04c92b938b5, type: 3}

@@ -84,11 +84,38 @@ key,en
 Дальний Бросок,Long Range Throw
 Время перезарядки,Recharge time
 Бросок под себя,Throw for yourself
-Автоматическая 3мя патронами,Automatic with 3 cartridges
+Автоматическая 3мя патронами,Burst of 3 rounds
 Близкий бросок,A close throw
-Одиночный вытсрел по облости,Single shot at the area
+Одиночный вытcрел по облости,Single shot at the area
 Бросок сюрикена,Shuriken throw
 До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Press any button to continue
 Введите текст,Enter the text
 Длина имени должна быть между 3 и 10 символами.,The name must be between 3 and 10 characters long.
+AK,AK-47
+Double-Barrel,Double-barrel shotgun
+DualPistols,Dual Berettas
+Dynamite,Motion-sensor dynamite
+Famas,FAMAS-F1
+Granade,Granade
+HantingRiffle,Taiga
+Revolver,Python .357
+RocketLauncher,Bazooka
+Shuriken,Shuriken
+SniperRiffle,M700
+SPAS,Benelli M4
+UZI,MP-9
+Coins,RoboBucks
+Ticket,Ticket
+DuelMap,Duel Box
+Polygon,Polygon
+Ships,Gaiti
+Table,Table-City
+ПРЕДЛОЖЕНИЯ,OFFERS
+МАРКЕТ,MARKET
+БИЛЕТЫ,TICKETS
+ВАЛЮТА,CURRENCY
+Билетик,Ticket
+Маркет,Market
+Валюта,Currency
+Новое предложение через:,New offer in:

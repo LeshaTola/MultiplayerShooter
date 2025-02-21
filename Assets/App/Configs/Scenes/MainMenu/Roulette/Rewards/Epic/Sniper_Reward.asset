@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
-  m_Name: RareTicketsReward
+  m_Name: Sniper_Reward
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: RareTicketsReward
-  <Reward>k__BackingField: {fileID: 11400000, guid: c4395466e41a3f5498d86331ba9e351a, type: 2}
+  <Id>k__BackingField: Sniper_Reward
+  <Reward>k__BackingField: {fileID: 11400000, guid: 06dd0eb33c0eba543b3a31e3b6cf7485, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 2
+  <Count>k__BackingField: 0
   <CountRange>k__BackingField:
     Min: 0
     Max: 0

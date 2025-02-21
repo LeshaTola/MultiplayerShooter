@@ -4,28 +4,28 @@
     "MasterVolume": 1.0,
     "MusicVolume": 0.5,
     "EffectsVolume": 0.5,
-    "MouseSensitivity": 0.6157446
+    "MouseSensitivity": 0.5
   },
   "MarketData": {
     "CurrentItems": [
-      "HantingRiffle",
-      "Famas",
-      "AK",
+      "Shuriken",
+      "UZI",
+      "SPAS",
       "Dynamite"
     ],
-    "LastUpdate": "2025-02-20T22:00:00.0022625+03:00"
+    "LastUpdate": "2025-02-21T18:26:39.8822244+03:00"
   },
   "UserStatsData": {
-    "Experience": 274,
-    "CurrentRankId": 4,
+    "Experience": 176,
+    "CurrentRankId": 2,
     "GameInventory": {
       "Skin": "WiteSkin",
       "Weapons": [
-        "UZI",
-        "AK",
-        "SPAS",
-        "RocketLauncher",
-        "SniperRiffle"
+        "Revolver",
+        "HantingRiffle",
+        "Double-Barrel",
+        "Granade",
+        ""
       ],
       "Equipment": [
         "TestEq",
@@ -45,14 +45,18 @@
       ],
       "Weapons": [
         "Revolver",
-        "UZI"
+        "Double-Barrel",
+        "HantingRiffle",
+        "Granade",
+        "Famas",
+        "Shuriken"
       ],
       "Equipment": [
         "TestEq"
       ]
     },
-    "Coins": 959,
-    "Tickets": 17
+    "Coins": 286,
+    "Tickets": 0
   },
   "stringKeys": [],
   "stringValues": [],
@@ -68,5 +72,5 @@
     false,
     false
   ],
-  "idSave": 5691
+  "idSave": 25
 }
