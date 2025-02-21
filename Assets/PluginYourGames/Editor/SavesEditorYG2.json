@@ -4,28 +4,27 @@
     "MasterVolume": 1.0,
     "MusicVolume": 0.5,
     "EffectsVolume": 0.5,
-    "MouseSensitivity": 0.443106443
+    "MouseSensitivity": 0.5
   },
   "MarketData": {
     "CurrentItems": [
       "HantingRiffle",
-      "DualPistols",
       "SPAS",
       "Dynamite"
     ],
-    "LastUpdate": "2025-02-21T20:00:00"
+    "LastUpdate": "2025-02-21T22:00:00"
   },
   "UserStatsData": {
-    "Experience": 574,
-    "CurrentRankId": 4,
+    "Experience": 601,
+    "CurrentRankId": 2,
     "GameInventory": {
       "Skin": "WiteSkin",
       "Weapons": [
-        "Revolver",
-        "",
-        "",
+        "DualPistols",
+        "HantingRiffle",
+        "Double-Barrel",
         "Granade",
-        "HantingRiffle"
+        "Revolver"
       ],
       "Equipment": [
         "TestEq",
@@ -44,14 +43,15 @@
         "RussiaSkin"
       ],
       "Weapons": [
-        "Revolver"
+        "Revolver",
+        "DualPistols"
       ],
       "Equipment": [
         "TestEq"
       ]
     },
-    "Coins": 10000,
-    "Tickets": 10
+    "Coins": 2624,
+    "Tickets": 2
   },
   "stringKeys": [],
   "stringValues": [],
@@ -67,5 +67,5 @@
     false,
     false
   ],
-  "idSave": 88
+  "idSave": 116
 }

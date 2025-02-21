@@ -78,7 +78,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
                     _weaponStats.Add(newStat);
                 }
 
-                Instantiate(weaponConfig.Prefab, _vm.SpawnPoint);
+                var weapon = Instantiate(weaponConfig.Prefab, _vm.SpawnPoint);
+                weapon.transform.localPosition += weaponConfig.ViewOffset;
+                weapon.transform.localRotation *= Quaternion.Euler(weaponConfig.ViewRotationOffset);
+                weapon.transform.localScale = Vector3.Scale(weapon.transform.localScale, weaponConfig.ViewScaleMultiplier);
             }
         }
 

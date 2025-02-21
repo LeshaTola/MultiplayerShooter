@@ -253,6 +253,9 @@ MonoBehaviour:
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 16463dabfa215ea40800e740c412bc28, type: 3}
+  <ViewOffset>k__BackingField: {x: 0, y: 0.1, z: -0.25}
+  <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 4d77e6afe98cf2648bb1651429f359ce, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: e456da3eb268e57449a59a077815aeba, type: 3}
   <MaxAmmoCount>k__BackingField: 8

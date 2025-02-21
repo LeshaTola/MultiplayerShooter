@@ -11,6 +11,10 @@ namespace App.Scripts.Features.Inventory.Configs
     {
         [field: Header("View")]
         [field: SerializeField] public Weapon Prefab { get; private set; }
+        [field: SerializeField] public Vector3 ViewOffset { get; private set; }
+        [field: SerializeField] public Vector3 ViewRotationOffset { get; private set; }
+        [field: SerializeField] public Vector3 ViewScaleMultiplier { get; private set; } = Vector3.one;
+
         
         [field: Header("Audio")]
         [field: SerializeField] public AudioClip ShotSound { get; private set; }

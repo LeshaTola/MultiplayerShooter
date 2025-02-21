@@ -2957,6 +2957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponView
       objectReference: {fileID: 0}
+    - target: {fileID: 1558103423152418444, guid: d76129858340fd9449a7ce2978d2ecea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1691170425190832098, guid: d76129858340fd9449a7ce2978d2ecea, type: 3}
       propertyPath: m_Pivot.x
       value: 0

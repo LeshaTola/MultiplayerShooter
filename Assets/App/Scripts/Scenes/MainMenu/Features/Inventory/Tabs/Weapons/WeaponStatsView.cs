@@ -64,7 +64,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
                 _weaponStats.Add(newStat);
             }
             
-            Instantiate(config.Prefab, _spawnPoint);
+            var weapon = Instantiate(config.Prefab, _spawnPoint);
+            
+            weapon.transform.localPosition += config.ViewOffset;
+            weapon.transform.localRotation *= Quaternion.Euler(config.ViewRotationOffset);
+            weapon.transform.localScale = Vector3.Scale(weapon.transform.localScale, config.ViewScaleMultiplier);
         }
 
         private void Default()
