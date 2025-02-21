@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f748f8fdc5479448afec930e1a48b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 9999
+  _startHealth: 100
   <IsPlayer>k__BackingField: 1
 --- !u!114 &5147651866653908048
 MonoBehaviour:
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3089810387732913572}
   _strategies:
+  - rid: 4941598268993568769
   - rid: 4941598268993568768
   references:
     version: 2
@@ -209,6 +210,11 @@ MonoBehaviour:
       type: {class: Disable, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
       data:
         _effectSpawnPoint: {fileID: 6728944216003776620}
+    - rid: 4941598268993568769
+      type: {class: ChangeHealth, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
+      data:
+        _changeValue: 100
+        _healingObject: {fileID: 4543916577324251667}
 --- !u!136 &6335031914155415039
 CapsuleCollider:
   m_ObjectHideFlags: 0
