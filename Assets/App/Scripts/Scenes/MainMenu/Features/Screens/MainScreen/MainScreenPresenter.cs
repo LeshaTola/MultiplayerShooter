@@ -130,7 +130,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             if (name.Length < MIN_NAME_LENGTH || name.Length > MAX_NAME_LENGTH)
             {
                 _infoPopupRouter.ShowPopup(
-                    "Ошибка",
+                    ConstStrings.ERROR,
                     $"Длина имени должна быть между {MIN_NAME_LENGTH} и {MAX_NAME_LENGTH} символами.").Forget();
                 name = name.Length < MIN_NAME_LENGTH
                     ? name.PadRight(MIN_NAME_LENGTH, '_')

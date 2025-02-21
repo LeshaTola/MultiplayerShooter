@@ -20,6 +20,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
 using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
@@ -81,10 +82,11 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [FoldoutGroup("Inventory")]
         [SerializeField]
         private SkinsView _skinsView;
-
+        
         [SerializeField]
         [FoldoutGroup("Shop")]
         private ShopScreen _shopScreen;
+        
         [SerializeField]
         [FoldoutGroup("Shop")]
         private MarketSectionView _marketSectionView;

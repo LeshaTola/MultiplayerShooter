@@ -1,4 +1,5 @@
-﻿using App.Scripts.Features.Match.Configs;
+﻿using App.Scripts.Features;
+using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.PopupAndViews.Views;
@@ -156,7 +157,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
                 serverName.Length > MAX_SERVER_NAME_LENGTH)
             {
                 await _infoPopupRouter.ShowPopup(
-                    "Ошибка",
+                    ConstStrings.ERROR,
                     $"Длина названия сервера должна быть между {MIN_SERVER_NAME_LENGTH} и {MAX_SERVER_NAME_LENGTH} символами.");
                 return false;
             }
@@ -174,7 +175,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             if (password.Length < MIN_PASSWORD_LENGTH || password.Length > MAX_PASSWORD_LENGTH)
             {
                 await _infoPopupRouter.ShowPopup(
-                    "Ошибка",
+                    ConstStrings.ERROR,
                     $"Длина пароля должна быть между {MIN_PASSWORD_LENGTH} и {MAX_PASSWORD_LENGTH} символами.");
 
                 return false;
@@ -193,7 +194,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             if (!TryParsePlayerCount(playersInput, out _))
             {
                 await _infoPopupRouter.ShowPopup(
-                    "Ошибка",
+                    ConstStrings.ERROR,
                     $"Количество игроков должно быть между 1 и {MAX_PLAYERS}.");
                 return false;
             }

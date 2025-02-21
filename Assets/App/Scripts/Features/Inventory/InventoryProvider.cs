@@ -17,7 +17,6 @@ namespace App.Scripts.Features.Inventory
         public InventoryProvider( GlobalInventory globalInventory)
         {
             GlobalInventory = Object.Instantiate(globalInventory);
-
         }
         
         public ItemConfig GetConfigById(string id)

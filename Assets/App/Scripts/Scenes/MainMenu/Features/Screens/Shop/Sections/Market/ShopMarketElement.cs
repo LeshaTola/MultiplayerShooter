@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
-using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Modules.Localization.Localizers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
+namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 {
     public class ShopMarketElement : MonoBehaviour
     {
-        public event Action OnElementClicked;
+        public event Action<int> OnElementClicked;
         
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private Image _weaponImage;
@@ -21,10 +18,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         [SerializeField] private Button _buyButton;
         
         [SerializeField] private RaritiesDatabase _raritiesDatabase;
+        
+        private int _id;
 
         public void Initialize()
         {
-            _buyButton.onClick.AddListener(() => OnElementClicked?.Invoke());
+            _buyButton.onClick.AddListener(() => OnElementClicked?.Invoke(_id));
         }
 
         public void Cleanup()
@@ -32,8 +31,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
             _buyButton.onClick.RemoveAllListeners();
         }
         
-        public void Setup(ShopItemData shopItemData)
+        public void Setup(ShopItemData shopItemData, int id)
         {
+            _id = id;
             var item = shopItemData.Item;
             _backgroundImage.color = _raritiesDatabase.Rarities[item.Rarity].Color;
             _weaponImage.sprite = item.Sprite;

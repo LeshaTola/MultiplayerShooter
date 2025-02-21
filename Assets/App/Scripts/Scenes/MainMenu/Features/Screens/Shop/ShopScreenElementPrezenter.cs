@@ -3,6 +3,7 @@ using App.Scripts.Features.Screens;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,16 +60,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         {
             foreach (var shopMarketElement in _shopMarketElements)
             {
+                shopMarketElement.OnElementClicked -= OnElementClicked;
                 shopMarketElement.gameObject.SetActive(false);
             }
 
             for (int i = 0; i < shopItemConfigs.Count; i++)
             {
                 _shopMarketElements[i].gameObject.SetActive(true);
-                _shopMarketElements[i].Setup(shopItemConfigs[i]);
-                var id = i;
-                _shopMarketElements[i].OnElementClicked += () => OnItemClicked?.Invoke(id);
+                _shopMarketElements[i].Setup(shopItemConfigs[i], i);
+                _shopMarketElements[i].OnElementClicked += OnElementClicked;
             }
+        }
+
+        private void OnElementClicked(int id)
+        {
+            OnItemClicked?.Invoke(id);
         }
 
         private void OnValidate()

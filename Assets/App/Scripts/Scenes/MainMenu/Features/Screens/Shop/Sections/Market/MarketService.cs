@@ -3,62 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
-using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
+namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 {
-    public class MarketSectionPrezenter
-    {
-        private readonly MarketSectionView _view;
-        private readonly MarketService _marketService;
-        private readonly ILocalizationSystem _localizationSystem;
-
-        public MarketSectionPrezenter(MarketSectionView view,
-            MarketService marketService,
-            ILocalizationSystem localizationSystem)
-        {
-            _view = view;
-            _marketService = marketService;
-            _localizationSystem = localizationSystem;
-        }
-
-        public void Initialzie()
-        {
-            _view.Initialzie(_localizationSystem);
-
-            _marketService.OnItemsUpdated += _view.UpdateSections;
-            _marketService.OnTimerUpdated += _view.UpdateTimer;
-            _view.OnItemClicked += OnItemClicked;
-            _view.OnUpdateButtonClicked += OnUpdateButtonClicked;
-        }
-
-        public void Cleanup()
-        {
-            _view.Cleanup();
-
-            _marketService.OnItemsUpdated -= _view.UpdateSections;
-            _marketService.OnTimerUpdated -= _view.UpdateTimer;
-            _view.OnItemClicked -= OnItemClicked;
-            _view.OnUpdateButtonClicked += OnUpdateButtonClicked;
-        }
-
-        private void OnUpdateButtonClicked()
-        {
-            _marketService.UpdateItems();
-        }
-
-        private void OnItemClicked(int id)
-        {
-        }
-    }
-
     public class MarketService : ISavable, IInitializable, IUpdatable, ICleanupable
     {
         public event Action<float, float> OnTimerUpdated;
@@ -71,7 +25,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         private readonly IDataProvider<MarketSavesData> _dataProvider;
 
         private DateTime _lastUpdate;
-        
+
         public float RemainingTime { get; private set; }
         public List<ShopItemData> CurrentItems { get; private set; } = new();
 
@@ -91,11 +45,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
 
         public void Initialize()
         {
-            // LoadState();
+            _userStatsProvider.InventoryProvider.Inventory.OnInventoryUpdated += ValidateCurrentItems;
         }
 
         public void Cleanup()
         {
+            _userStatsProvider.InventoryProvider.Inventory.OnInventoryUpdated -= ValidateCurrentItems;
             SaveState();
         }
 
@@ -113,10 +68,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
 
         public void SaveState()
         {
-            _dataProvider.SaveData(new()
+            _dataProvider.SaveData(new MarketSavesData
             {
                 LastUpdate = _lastUpdate,
-                CurrentItems = CurrentItems.Select(x=>x.Item.Id).ToList(),
+                CurrentItems = CurrentItems.Select(x => x.Item.Id).ToList(),
             });
         }
 
@@ -124,7 +79,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         {
             if (!_dataProvider.HasData())
             {
-                _dataProvider.SaveData(new()
+                _dataProvider.SaveData(new MarketSavesData
                 {
                     LastUpdate = default,
                     CurrentItems = new List<string>(),
@@ -143,16 +98,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
                     Item = item
                 });
             }
-            
+
             OnItemsUpdated?.Invoke(CurrentItems);
             UpdateRemainingTime();
         }
-        
+
         public void UpdateItems()
         {
             var inventory = _userStatsProvider.InventoryProvider.Inventory;
 
-            CurrentItems.Clear();
+            var newItems = new List<ShopItemData>();
             foreach (var rarity in _raritiesDatabase.Rarities.Values)
             {
                 if (!_globalInventory.ItemsByRarity.TryGetValue(rarity.Name, out var items))
@@ -169,15 +124,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
                     continue;
                 }
 
-                CurrentItems.Add(new ShopItemData
+                newItems.Add(new ShopItemData
                 {
                     Price = _costsDatabase.PriceByRarity[rarity.Name],
                     Item = availableItems[Random.Range(0, availableItems.Count)]
                 });
-                
-                OnItemsUpdated?.Invoke(CurrentItems);
-                SaveState();
             }
+
+            UpdateItemsInternal(newItems);
+        }
+
+        public void UpdateItemsInternal(List<ShopItemData> newItems)
+        {
+            CurrentItems = newItems;
+            OnItemsUpdated?.Invoke(CurrentItems);
+            SaveState();
         }
 
         private void UpdateRemainingTime()
@@ -188,7 +149,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
                 _lastUpdate = DateTime.Now;
                 return;
             }
-            
+
             DateTime now = DateTime.Now;
             int periodStart = (now.Hour / 2) * 2;
             DateTime periodStartTime = new DateTime(now.Year, now.Month, now.Day, periodStart, 0, 0);
@@ -196,15 +157,19 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
             TimeSpan timeLeft = periodEndTime - now;
             var newRemainingTime = (float) timeLeft.TotalSeconds;
             RemainingTime = newRemainingTime;
-            
+
             _lastUpdate = periodStartTime;
         }
-    }
 
-    [Serializable]
-    public class MarketSavesData
-    {
-        public List<string> CurrentItems;
-        public DateTime LastUpdate;
+
+        private void ValidateCurrentItems()
+        {
+            var inventory = _userStatsProvider.InventoryProvider.Inventory;
+            var availableItems = CurrentItems
+                .Where(item => !inventory.Skins.Contains(item.Item.Id) &&
+                               !inventory.Weapons.Contains(item.Item.Id) &&
+                               !inventory.Equipment.Contains(item.Item.Id)).ToList();
+            UpdateItemsInternal(availableItems);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Features;
 using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.Screens;
@@ -102,7 +103,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         {
             if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
-                await _infoPopupRouter.ShowPopup("Внимание!", "Не достаточно билетов");
+                await _infoPopupRouter.ShowPopup(ConstStrings.Attention, ConstStrings.NOT_ENOUGH_TICKETS);
                 return;
             }
 
