@@ -8,9 +8,9 @@ namespace App.Scripts.Features.Inventory
     {
         public event Action OnInventoryUpdated;
         
-        public HashSet<string> Skins;
-        public HashSet<string> Weapons;
-        public HashSet<string> Equipment;
+        public HashSet<string> Skins ;
+        public HashSet<string> Weapons ;
+        public HashSet<string> Equipment ;
 
         public void InvokeInventoryUpdate()
         {

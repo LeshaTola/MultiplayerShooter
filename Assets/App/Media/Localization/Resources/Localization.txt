@@ -33,7 +33,7 @@ key,ru,en
 Даймонд 5,Даймонд 5,Diamond 5
 Легенда,Легенда,Legend
 Быстрая игра,Быстрая игра,Quick game
-главная,главная,Main
+главная,Главная,Main
 Сервера,Сервера,Servers
 Инвентарь,Инвентарь,Inventory
 Магазин,Магазин,Shop
@@ -84,11 +84,38 @@ key,ru,en
 Дальний Бросок,Дальний Бросок,Long Range Throw
 Время перезарядки,Время перезарядки,Recharge time
 Бросок под себя,Бросок под себя,Throw for yourself
-Автоматическая 3мя патронами,Автоматическая 3мя патронами,Automatic with 3 cartridges
+Автоматическая 3мя патронами,Очередь 3 патрона,Burst of 3 rounds
 Близкий бросок,Близкий бросок,A close throw
-Одиночный вытсрел по облости,Одиночный вытсрел по облости,Single shot at the area
+Одиночный вытcрел по облости,Одиночный выстрел по облости,Single shot at the area
 Бросок сюрикена,Бросок сюрикена,Shuriken throw
 До оживления:,До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Нажмите любую кнопку чтобы продолжить,Press any button to continue
 Введите текст,Введите текст,Enter the text
 Длина имени должна быть между 3 и 10 символами.,Длина имени должна быть между 3 и 10 символами.,The name must be between 3 and 10 characters long.
+AK,AK-47,AK-47
+Double-Barrel,Двухстволка,Double-barrel shotgun
+DualPistols,Двойные Береты,Dual Berettas
+Dynamite,Динамит с датчиком движения ,Motion-sensor dynamite
+Famas,ФАМАС-Ф1,FAMAS-F1
+Granade,Граната,Granade
+HantingRiffle,Таёжник,Taiga
+Revolver,Питон .357 ,Python .357
+RocketLauncher,Базука,Bazooka
+Shuriken,Сюрикен,Shuriken
+SniperRiffle,М700,M700
+SPAS,Бенелли М4,Benelli M4
+UZI,MP-9,MP-9
+Coins,РобоБаксы,RoboBucks
+Ticket,Билетик,Ticket
+DuelMap,Дульная коробка,Duel Box
+Polygon,Полигон,Polygon
+Ships,Гаити,Gaiti
+Table,Город-Стол,Table-City
+ПРЕДЛОЖЕНИЯ,ПРЕДЛОЖЕНИЯ,OFFERS
+МАРКЕТ,МАРКЕТ,MARKET
+БИЛЕТЫ,БИЛЕТЫ,TICKETS
+ВАЛЮТА,ВАЛЮТА,CURRENCY
+Билетик,Билетик,Ticket
+Маркет,Маркет,Market
+Валюта,Валюта,Currency
+Новое предложение через:,Новое предложение через:,New offer in:

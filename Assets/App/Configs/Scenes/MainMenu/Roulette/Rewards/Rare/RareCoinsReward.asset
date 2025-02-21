@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: RareCoinsReward
   <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
   <IsFixedCount>k__BackingField: 0
-  <Count>k__BackingField: 153
+  <Count>k__BackingField: 98
   <CountRange>k__BackingField:
-    Min: 150
-    Max: 200
+    Min: 80
+    Max: 120

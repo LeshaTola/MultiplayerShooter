@@ -1243,6 +1243,7 @@ MonoBehaviour:
       type: {class: ChangeHealth, ns: App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific, asm: Assembly-CSharp}
       data:
         _changeValue: -9999999
+        _healingObject: {fileID: 0}
 --- !u!1 &2826871620066849019
 GameObject:
   m_ObjectHideFlags: 0

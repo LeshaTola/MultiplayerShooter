@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: LegendaryCoinsReward
   <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
   <IsFixedCount>k__BackingField: 0
-  <Count>k__BackingField: 859
+  <Count>k__BackingField: 258
   <CountRange>k__BackingField:
-    Min: 800
-    Max: 1000
+    Min: 250
+    Max: 400

@@ -72,3 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .idea
+Assets/PluginYourGames/Editor/SavesEditorYG2.json
