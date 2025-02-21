@@ -24,12 +24,16 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
         {
             if (other.TryGetComponent(out Player.Player player))
             {
-                foreach (IEffectorStrategy strategy in _strategies)
-                {
-                    strategy.Apply(player);
-                }
+                ApplyEffect(player);
             }
-            
+        }
+
+        public void ApplyEffect(Player.Player player)
+        {
+            foreach (IEffectorStrategy strategy in _strategies)
+            {
+                strategy.Apply(player);
+            }
         }
         
         public void RPCPlaySoud()

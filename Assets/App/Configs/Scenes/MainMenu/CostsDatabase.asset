@@ -37,7 +37,7 @@ MonoBehaviour:
       Data: Uncomon
     - Name: Item2
       Entry: 3
-      Data: 150
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -50,7 +50,7 @@ MonoBehaviour:
       Data: Rare
     - Name: Item2
       Entry: 3
-      Data: 500
+      Data: 250
     - Name: 
       Entry: 8
       Data: 
@@ -63,7 +63,7 @@ MonoBehaviour:
       Data: Epic
     - Name: Item2
       Entry: 3
-      Data: 1000
+      Data: 500
     - Name: 
       Entry: 8
       Data: 
@@ -76,7 +76,7 @@ MonoBehaviour:
       Data: Legendary
     - Name: Item2
       Entry: 3
-      Data: 2000
+      Data: 1000
     - Name: 
       Entry: 8
       Data: 

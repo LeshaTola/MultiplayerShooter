@@ -12,6 +12,157 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d977df924974c739ddfa2ab77ddfba0, type: 3}
   m_Name: StartInventory
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 252d2f11180e36440beadcf6345739a0, type: 2}
+    - {fileID: 11400000, guid: 7528794a3d8294c4ebb2c1a6fbd27f41, type: 2}
+    - {fileID: 11400000, guid: 2d178d166f7f170459e8db1f5f3f7e7d, type: 2}
+    - {fileID: 11400000, guid: 4fa6ff8a25957a04c8db8ee0193380a1, type: 2}
+    - {fileID: 11400000, guid: d7d70da6e7cb6be4589479f64c7b11c9, type: 2}
+    - {fileID: 11400000, guid: 401eaddd920c230469a0c84f9f6d9827, type: 2}
+    - {fileID: 11400000, guid: 29c5a532970f0ba42b40a205a3715bbe, type: 2}
+    - {fileID: 11400000, guid: 312fd3914e91532429a9fa3f29ca0fa8, type: 2}
+    - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
+    - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
+    - {fileID: 11400000, guid: 06dd0eb33c0eba543b3a31e3b6cf7485, type: 2}
+    - {fileID: 11400000, guid: 294e413ba9dbaeb4e92b33edeeec7f85, type: 2}
+    - {fileID: 11400000, guid: 29cda4439d0679f4e9326ef7457d12e6, type: 2}
+    - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <ItemsByRarity>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Uncomon
+    - Name: $v
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Epic
+    - Name: $v
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Legendary
+    - Name: $v
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Configs.ItemConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   <SkinConfigs>k__BackingField:
   - {fileID: 11400000, guid: 252d2f11180e36440beadcf6345739a0, type: 2}
   - {fileID: 11400000, guid: 7528794a3d8294c4ebb2c1a6fbd27f41, type: 2}
@@ -29,3 +180,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29cda4439d0679f4e9326ef7457d12e6, type: 2}
   <Equipment>k__BackingField:
   - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
