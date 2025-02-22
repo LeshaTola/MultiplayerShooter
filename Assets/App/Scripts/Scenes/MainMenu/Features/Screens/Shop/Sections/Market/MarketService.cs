@@ -88,6 +88,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 
             var marketData = _dataProvider.GetData();
             _lastUpdate = marketData.LastUpdate;
+            if (_lastUpdate == default) _lastUpdate = DateTime.Now;
             CurrentItems.Clear();
             foreach (var itemId in marketData.CurrentItems)
             {
@@ -143,22 +144,25 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 
         private void UpdateRemainingTime()
         {
-            if (DateTime.Now - _lastUpdate > TimeSpan.FromSeconds(7200))
+            DateTime now = DateTime.Now;
+
+            int periodStartHour = (now.Hour / 2) * 2;
+            DateTime currentPeriodStart = new DateTime(now.Year, now.Month, now.Day, periodStartHour, 0, 0);
+            DateTime currentPeriodEnd = currentPeriodStart.AddHours(2);
+
+            int lastPeriodStartHour = (_lastUpdate.Hour / 2) * 2;
+            DateTime lastPeriodStart = new DateTime(_lastUpdate.Year, _lastUpdate.Month, _lastUpdate.Day, lastPeriodStartHour, 0, 0);
+
+            if (_lastUpdate.Date != now.Date || lastPeriodStart != currentPeriodStart)
             {
                 RemainingTime = 0;
-                _lastUpdate = DateTime.Now;
+                _lastUpdate = now;
                 return;
             }
 
-            DateTime now = DateTime.Now;
-            int periodStart = (now.Hour / 2) * 2;
-            DateTime periodStartTime = new DateTime(now.Year, now.Month, now.Day, periodStart, 0, 0);
-            DateTime periodEndTime = periodStartTime.AddHours(2);
-            TimeSpan timeLeft = periodEndTime - now;
-            var newRemainingTime = (float) timeLeft.TotalSeconds;
-            RemainingTime = newRemainingTime;
-
-            _lastUpdate = periodStartTime;
+            TimeSpan timeLeft = currentPeriodEnd - now;
+            RemainingTime = (float)timeLeft.TotalSeconds;
+            _lastUpdate = now;
         }
 
 

@@ -13,6 +13,18 @@ namespace App.Scripts.Modules.Localization.Elements.Buttons
 
         private UnityAction buttonAction;
 
+        private void OnValidate()
+        {
+            if (button == null)
+            {
+                button = GetComponent<Button>();
+            }
+            if (text == null)
+            {
+                text.GetComponentInChildren <TMPLocalizer>();
+            }
+        }
+
         public void Initialize(ILocalizationSystem localizationSystem)
         {
             text.Initialize(localizationSystem);
