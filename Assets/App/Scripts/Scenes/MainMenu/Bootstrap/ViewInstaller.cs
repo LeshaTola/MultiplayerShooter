@@ -21,6 +21,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.StateMachines.States;
@@ -86,7 +87,12 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField]
         [FoldoutGroup("Shop")]
         private ShopScreen _shopScreen;
-        
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private TicketsSectionView _ticketsSectionView;
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private TicketsSectionConfig _ticketsSectionConfig;
         [SerializeField]
         [FoldoutGroup("Shop")]
         private MarketSectionView _marketSectionView;
@@ -159,8 +165,13 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         private void BindShopScreen()
         {
+            Container.BindInstance(_ticketsSectionView).AsSingle();
+            Container.BindInterfacesAndSelfTo<TicketsSectionViewPrezenter>().AsSingle().WithArguments(_ticketsSectionConfig); 
+            
             Container.BindInstance(_marketSectionView).AsSingle();
             Container.Bind<MarketSectionPrezenter>().AsSingle(); 
+            
+            
             Container.BindInterfacesAndSelfTo<MarketService>().AsSingle().WithArguments(_globalInventory).NonLazy();
 #if YANDEX
             Container.Bind<IDataProvider<MarketSavesData>>().To<YandexMarketSavesDataProvider>().AsSingle();

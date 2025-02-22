@@ -66,7 +66,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     if (damageable.Key.IsPlayer)
                     {
                         LeaderBoardProvider.Instance.AddKill();
-                        RewardProvider.Instance.ApplyKill();
+                        RewardsProvider.Instance.ApplyKill();
                     }
                     isKilled = true;
                 }

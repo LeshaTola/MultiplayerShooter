@@ -42,7 +42,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                         if (player.IsPlayer)
                         {
                             LeaderBoardProvider.Instance.AddKill();
-                            RewardProvider.Instance.ApplyKill();
+                            RewardsProvider.Instance.ApplyKill();
                         }
                         
                         isKilled = true;

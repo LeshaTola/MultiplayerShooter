@@ -1,10 +1,12 @@
-﻿using App.Scripts.Modules.CameraSwitchers;
+﻿using App.Scripts.Features.Rewards;
+using App.Scripts.Modules.CameraSwitchers;
 using App.Scripts.Modules.Factories.MonoFactories;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes;
 using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popups;
 using UnityEngine;
@@ -20,6 +22,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private InventorySlot _slotTemplate;
         [SerializeField] private Item _itemTemplate;
         [SerializeField] private Transform _weaponContainer;
+        [SerializeField] private PromocodesDatabase _promocodesDatabase;
 
         public override void InstallBindings()
         {
@@ -31,6 +34,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<MarketPopupRoutrer>().AsSingle().WithArguments(_weaponContainer);
 
             Container.Bind<ICameraSwitcher>().To<CameraSwitcher>().AsSingle().WithArguments(_camerasDatabase);
+            Container.BindInterfacesAndSelfTo<PromocodesProvider>().AsSingle().WithArguments(_promocodesDatabase).NonLazy();
 
             BindSlotFactory();
             BindItemFactory();

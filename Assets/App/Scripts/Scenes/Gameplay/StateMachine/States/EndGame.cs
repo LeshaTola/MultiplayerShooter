@@ -12,7 +12,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
     public class EndGame : State
     {
         private readonly EndGameViewPresenter _endGameViewPresenter;
-        private readonly RewardProvider _rewardProvider;
+        private readonly RewardsProvider _rewardsProvider;
         private readonly GameConfig _gameConfig;
         private readonly TimerProvider _timerProvider;
         private readonly LeaderBoardProvider _leaderBoardProvider;
@@ -21,13 +21,13 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private bool _exit;
         
         public EndGame(EndGameViewPresenter endGameViewPresenter,
-            RewardProvider rewardProvider,
+            RewardsProvider rewardsProvider,
             GameConfig gameConfig,
             TimerProvider timerProvider,
             LeaderBoardProvider leaderBoardProvider)
         {
             _endGameViewPresenter = endGameViewPresenter;
-            _rewardProvider = rewardProvider;
+            _rewardsProvider = rewardsProvider;
             _gameConfig = gameConfig;
             _timerProvider = timerProvider;
             _leaderBoardProvider = leaderBoardProvider;
@@ -38,7 +38,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             Debug.Log("End");
             _exit = false;
-            _rewardProvider.ApplyEndMatchRewards();
+            _rewardsProvider.ApplyEndMatchRewards();
             
             await _endGameViewPresenter.Show();
             await _timer.StartTimer(_gameConfig.EndGameTime, _endGameViewPresenter.UpdateTimer);

@@ -108,7 +108,7 @@ MonoBehaviour:
       Data: Uncomon
     - Name: $v
       Entry: 3
-      Data: 150
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -120,7 +120,7 @@ MonoBehaviour:
       Data: Rare
     - Name: $v
       Entry: 3
-      Data: 500
+      Data: 250
     - Name: 
       Entry: 8
       Data: 
@@ -132,7 +132,7 @@ MonoBehaviour:
       Data: Epic
     - Name: $v
       Entry: 3
-      Data: 1000
+      Data: 500
     - Name: 
       Entry: 8
       Data: 
@@ -144,7 +144,7 @@ MonoBehaviour:
       Data: Legendary
     - Name: $v
       Entry: 3
-      Data: 2000
+      Data: 1000
     - Name: 
       Entry: 8
       Data: 

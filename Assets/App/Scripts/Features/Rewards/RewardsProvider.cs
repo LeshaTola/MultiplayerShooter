@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace App.Scripts.Features.Rewards
 {
-    public class RewardProvider
+    public class RewardsProvider
     {
         private readonly RewardService _rewardService;
         private readonly LeaderBoardProvider _leaderboard;
@@ -18,9 +18,9 @@ namespace App.Scripts.Features.Rewards
         private float _experience;
         private float _coins;
 
-        public static RewardProvider Instance { get; private set; }
+        public static RewardsProvider Instance { get; private set; }
 
-        public RewardProvider(RewardService rewardService,
+        public RewardsProvider(RewardService rewardService,
             LeaderBoardProvider leaderboard,
             AccrualConfig accrualConfig,
             TimerProvider timerProvider, 

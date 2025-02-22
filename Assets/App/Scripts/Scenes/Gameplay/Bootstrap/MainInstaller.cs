@@ -79,7 +79,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneNetworkControoller>().FromInstance(_sceneNetworkControoller).AsSingle();
-            Container.Bind<RewardProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
+            Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
             BindSlotFactory();
             BindItemFactory();

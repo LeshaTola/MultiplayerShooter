@@ -21,7 +21,7 @@ namespace App.Scripts.Modules.Localization.Elements.Buttons
             }
             if (text == null)
             {
-                text.GetComponentInChildren <TMPLocalizer>();
+                text = GetComponentInChildren <TMPLocalizer>();
             }
         }
 
