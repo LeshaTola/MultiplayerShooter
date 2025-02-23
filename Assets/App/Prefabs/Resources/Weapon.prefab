@@ -90,6 +90,7 @@ MonoBehaviour:
     - rid: 5057382501509758976
       type: {class: SlideAnimation, ns: App.Scripts.Scenes.Gameplay.Weapons.Animations, asm: Assembly-CSharp}
       data:
+        _speedMultiplier: 1
         _slideOffset: 0.15
     - rid: 5057382501509758977
       type: {class: ConstWeaponViewProvider, ns: App.Scripts.Scenes.Gameplay.Weapons.Animations, asm: Assembly-CSharp}
@@ -132,8 +133,8 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8714189243324003871}
-  m_Enabled: 0
-  m_CastShadows: 1
+  m_Enabled: 1
+  m_CastShadows: 3
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -189,8 +190,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.653165, b: 0, a: 1}
-      key1: {r: 1, g: 0.6834848, b: 0, a: 1}
+      key0: {r: 0, g: 0.65795946, b: 1, a: 1}
+      key1: {r: 0.0048570633, g: 0, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

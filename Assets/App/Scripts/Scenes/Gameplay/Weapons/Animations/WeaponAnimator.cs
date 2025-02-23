@@ -94,6 +94,14 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Animations
         public abstract void PlayAnimation(Transform transform, float duration);
     }
 
+    public class NoAnimation : WeaponAnimation
+    {
+        public override void PlayAnimation(Transform transform, float duration)
+        {
+            
+        }
+    }
+
     public class SlideAnimation : WeaponAnimation
     {
         [SerializeField] private float _slideOffset = 0.15f;

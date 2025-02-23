@@ -29,6 +29,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d8a533f26ac99f747ad38346f97c03df, type: 2}
     - {fileID: 11400000, guid: 3172757cac10ed048a04424d144d4cd6, type: 2}
     - {fileID: 11400000, guid: b4b8518c967ac2d41acae9588edb8266, type: 2}
+    - {fileID: 11400000, guid: 438736f22094a854b947e8944df0180d, type: 2}
+    - {fileID: 11400000, guid: de58866e12326cd45b2840571975be4c, type: 2}
     - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
     - {fileID: 11400000, guid: 06dd0eb33c0eba543b3a31e3b6cf7485, type: 2}
     - {fileID: 11400000, guid: 294e413ba9dbaeb4e92b33edeeec7f85, type: 2}
@@ -37,6 +39,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9f08cfb074ed61a4ba0c9ee84c2896ea, type: 2}
     - {fileID: 11400000, guid: 3aa16a3e34f78a1448c600ef0bc6b872, type: 2}
     - {fileID: 11400000, guid: 780345b9e68e8f14182a8a2c173eadbd, type: 2}
+    - {fileID: 11400000, guid: 3830d31b995edc14daa5e8085b963e43, type: 2}
     - {fileID: 11400000, guid: 5419cb219a3c2464cb51d5706a3f878f, type: 2}
     - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
     SerializedBytesString: 
@@ -70,7 +73,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 13
+      Data: 15
     - Name: 
       Entry: 10
       Data: 0
@@ -111,6 +114,12 @@ MonoBehaviour:
       Entry: 10
       Data: 12
     - Name: 
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 10
+      Data: 14
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -134,16 +143,16 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 10
-      Data: 13
-    - Name: 
-      Entry: 10
-      Data: 14
-    - Name: 
-      Entry: 10
       Data: 15
     - Name: 
       Entry: 10
       Data: 16
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
     - Name: 
       Entry: 13
       Data: 
@@ -165,19 +174,22 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 10
-      Data: 17
-    - Name: 
-      Entry: 10
-      Data: 18
+      Data: 5
     - Name: 
       Entry: 10
       Data: 19
     - Name: 
       Entry: 10
       Data: 20
+    - Name: 
+      Entry: 10
+      Data: 21
+    - Name: 
+      Entry: 10
+      Data: 22
+    - Name: 
+      Entry: 10
+      Data: 23
     - Name: 
       Entry: 13
       Data: 
@@ -202,10 +214,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 10
-      Data: 21
+      Data: 24
     - Name: 
       Entry: 10
-      Data: 22
+      Data: 25
     - Name: 
       Entry: 13
       Data: 
@@ -245,6 +257,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f08cfb074ed61a4ba0c9ee84c2896ea, type: 2}
   - {fileID: 11400000, guid: 3aa16a3e34f78a1448c600ef0bc6b872, type: 2}
   - {fileID: 11400000, guid: 780345b9e68e8f14182a8a2c173eadbd, type: 2}
+  - {fileID: 11400000, guid: 438736f22094a854b947e8944df0180d, type: 2}
+  - {fileID: 11400000, guid: 3830d31b995edc14daa5e8085b963e43, type: 2}
+  - {fileID: 11400000, guid: de58866e12326cd45b2840571975be4c, type: 2}
   <Equipment>k__BackingField:
   - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}

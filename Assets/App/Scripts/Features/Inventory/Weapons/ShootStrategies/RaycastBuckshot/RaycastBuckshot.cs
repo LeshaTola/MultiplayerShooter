@@ -7,7 +7,6 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
     public class RaycastBuckshot : ShootStrategy
     {
         [SerializeField] private int _buckshotCount = 5;
-        
         private readonly Camera _camera;
         
         public RaycastBuckshot(Camera camera)

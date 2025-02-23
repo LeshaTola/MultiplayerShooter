@@ -181,7 +181,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void MoveInternal(Vector3 direction)
         {
-            Debug.Log(_moveVelocity);
             if (_moveVelocity.magnitude > PlayerConfig.Speed)
             {
                 var dampingForce = direction * PlayerConfig.Speed;

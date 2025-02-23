@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7591596ec0794fe293de16c30a86e4d4, type: 3}
-  m_Name: FlintStone
+  m_Name: LaserGun
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -63,7 +63,7 @@ MonoBehaviour:
       Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
     - Name: Item2
       Entry: 1
-      Data: 1
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -115,11 +115,11 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 1
+      Data: 0.1
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
@@ -154,27 +154,14 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 5|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.WeaponEffects.PushVeaponEffect,
-        Assembly-CSharp
-    - Name: _verticalPushForce
-      Entry: 4
-      Data: 5
-    - Name: _horizontalPushForce
-      Entry: 4
-      Data: 20
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -195,18 +182,18 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
+      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
       Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
+      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
-      Data: 9|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
       Data: 0
@@ -230,7 +217,7 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 10|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+      Data: 9|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -243,7 +230,7 @@ MonoBehaviour:
       Data: 
     - Name: _zoomFOV
       Entry: 4
-      Data: 40
+      Data: 30
     - Name: _animationDuration
       Entry: 4
       Data: 0.1
@@ -256,15 +243,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  <Id>k__BackingField: FlintStone
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 6dcb361e38bb64d4aa4af8188ec3fa58, type: 3}
+  <Id>k__BackingField: LaserGun
+  <Sprite>k__BackingField: {fileID: 21300000, guid: f1cee5188b66bad48a3bdff240e02ae1, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Rare
-  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: f0d00627270768a44b5c5fb158f64be5, type: 3}
+  <Rarity>k__BackingField: Uncomon
+  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 341a430cc02120e4c8b3e1fbc2464f95, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.2}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: c7c4fc11f434dcb4184e15a6650282e0, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 2b69b0777b710b54bb5876a88b1c44d6, type: 3}
-  <MaxAmmoCount>k__BackingField: 1
-  <ReloadCooldown>k__BackingField: 3
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
+  <MaxAmmoCount>k__BackingField: 100
+  <ReloadCooldown>k__BackingField: 2
