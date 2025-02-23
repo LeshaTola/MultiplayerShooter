@@ -26,11 +26,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Promocodes
         public void Initialize()
         {
             YG2.onRewardAdv += ApplyPromocode;
+            YG2.onPurchaseSuccess += ApplyPromocode;
         }
 
         public void Cleanup()
         {
             YG2.onRewardAdv -= ApplyPromocode;
+            YG2.onPurchaseSuccess -= ApplyPromocode;
         }
 
         public void ApplyPromocode(string promocode)

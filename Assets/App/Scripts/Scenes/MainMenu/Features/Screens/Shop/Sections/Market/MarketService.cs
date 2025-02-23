@@ -70,7 +70,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         {
             _dataProvider.SaveData(new MarketSavesData
             {
-                LastUpdate = _lastUpdate,
+                LastUpdate = _lastUpdate.Ticks,
                 CurrentItems = CurrentItems.Select(x => x.Item.Id).ToList(),
             });
         }
@@ -87,8 +87,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             }
 
             var marketData = _dataProvider.GetData();
-            _lastUpdate = marketData.LastUpdate;
-            if (_lastUpdate == default) _lastUpdate = DateTime.Now;
+            if (marketData.LastUpdate == 0)
+            {
+                _lastUpdate = DateTime.Now.AddHours(-2);
+            }
+                //if (_lastUpdate == default) _lastUpdate = DateTime.Now.AddHours(-2);
             CurrentItems.Clear();
             foreach (var itemId in marketData.CurrentItems)
             {

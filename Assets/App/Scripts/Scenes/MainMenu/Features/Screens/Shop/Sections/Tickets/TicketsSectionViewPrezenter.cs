@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Features;
+using App.Scripts.Features.Rewards;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -13,6 +14,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         private readonly TicketsSectionConfig _config;
         private readonly UserStatsProvider _userStatsProvider;
         private readonly InfoPopupRouter _infoPopupRouter;
+        private readonly RewardService _rewardService;
 
         private int _ticketsCount = 1;
         private int _totalCost;
@@ -20,12 +22,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         public TicketsSectionViewPrezenter(TicketsSectionView view,
             TicketsSectionConfig config,
             UserStatsProvider userStatsProvider,
-            InfoPopupRouter infoPopupRouter)
+            InfoPopupRouter infoPopupRouter,
+            RewardService rewardService)
         {
             _view = view;
             _config = config;
             _userStatsProvider = userStatsProvider;
             _infoPopupRouter = infoPopupRouter;
+            _rewardService = rewardService;
         }
 
         public void Initialize()
@@ -58,12 +62,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         {
             if (!_userStatsProvider.CoinsProvider.IsEnough(_totalCost))
             {
-                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
+                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_MONEY).Forget();
                 return;
             }
             _userStatsProvider.CoinsProvider.ChangeCoins(-_totalCost);
-            _userStatsProvider.TicketsProvider.ChangeTickets(_ticketsCount);
-            _userStatsProvider.SaveState();
+            _config.TicketReward.Count = _ticketsCount;
+            _rewardService.AddReward(_config.TicketReward);
+            _rewardService.ApplyRewardsAsync().Forget();
         }
 
         private void UpdateCount()

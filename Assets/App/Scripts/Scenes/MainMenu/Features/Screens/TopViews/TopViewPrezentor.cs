@@ -28,6 +28,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private readonly ILocalizationSystem _localizationSystem;
 
         private ITopViewElementPrezenter _activeScreenPresenter;
+        private bool _isSwitching;
 
         public TopViewPrezentor(TopView view,
             SettingsView settingsView,
@@ -110,8 +111,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private async void OnToggleClicked(int index)
         {
+            if (_isSwitching) return; // Блокируем повторный вызов
+            _isSwitching = true;
+
             await _rouletteScreenPresenter.Hide();
             await _battlePassScreenPresenter.Hide();
+
             if (_activeScreenPresenter != null)
             {
                 await _activeScreenPresenter.Hide();
@@ -119,6 +124,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
             _activeScreenPresenter = _prezenters[index];
             await _activeScreenPresenter.Show();
+
+            _isSwitching = false; // Разблокируем переключение
         }
     }
 }
