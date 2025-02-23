@@ -8,11 +8,12 @@
   },
   "MarketData": {
     "CurrentItems": [
-      "HantingRiffle",
-      "SPAS",
+      "Shuriken",
+      "Famas",
+      "AK",
       "Dynamite"
     ],
-    "LastUpdate": "2025-02-21T22:00:00"
+    "LastUpdate": "2025-02-23T14:31:31.614885+03:00"
   },
   "UserStatsData": {
     "Experience": 601,
@@ -51,7 +52,7 @@
       ]
     },
     "Coins": 2624,
-    "Tickets": 2
+    "Tickets": 1
   },
   "stringKeys": [],
   "stringValues": [],
@@ -67,5 +68,5 @@
     false,
     false
   ],
-  "idSave": 116
+  "idSave": 127
 }
