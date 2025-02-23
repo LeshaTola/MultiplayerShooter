@@ -116,7 +116,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Move(Vector2 direction)
         {
-            _moveDirection = new Vector3(direction.x, 0, direction.y);
+            _moveDirection = new (direction.x, 0, direction.y);
             _moveDirection
                 = transform.forward * _moveDirection.z
                   + transform.right * _moveDirection.x;
@@ -137,9 +137,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
             if (force.y > 0)
             {
                 JumpInternal(force.y);
-                force.y = 0;
             }
-                
+            else
+            {
+                _velocity += force.y;
+            }
+            force.y = 0;
+
             _moveVelocity += force;
         }
 
@@ -177,6 +181,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void MoveInternal(Vector3 direction)
         {
+            Debug.Log(_moveVelocity);
             if (_moveVelocity.magnitude > PlayerConfig.Speed)
             {
                 var dampingForce = direction * PlayerConfig.Speed;

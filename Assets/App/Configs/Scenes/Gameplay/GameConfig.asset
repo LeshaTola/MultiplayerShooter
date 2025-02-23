@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba22ac9dab24e22b999259010ae810d, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  <MatchDurationTime>k__BackingField: 30
+  <MatchDurationTime>k__BackingField: 600
   <RespawnTime>k__BackingField: 1
   <EndGameTime>k__BackingField: 9
