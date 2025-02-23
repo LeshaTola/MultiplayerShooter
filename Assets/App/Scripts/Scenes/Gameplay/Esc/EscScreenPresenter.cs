@@ -51,7 +51,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             _escMenuView.OnContinueButtonClicked += Continue;
             _escMenuView.OnSettingsButtonClicked += OpenSettings;
             _escMenuView.OnExitButtonClicked += LeaveRoom;
-            _gameInputProvider.OnEsc += OnEscPreformed;
+            _gameInputProvider.OnPause += OnPausePreformed;
 
         }
 
@@ -61,18 +61,23 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             _escMenuView.OnContinueButtonClicked -= Continue;
             _escMenuView.OnSettingsButtonClicked -= OpenSettings;
             _escMenuView.OnExitButtonClicked -= LeaveRoom;
-            _gameInputProvider.OnEsc -= OnEscPreformed;
+            _gameInputProvider.OnPause -= OnPausePreformed;
         }
 
         public void Show()
         {
             _escMenuView.Show();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public void Hide()
         {
             _escMenuView.Hide();
             _settingsView.Hide();
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OpenSettings()
@@ -99,7 +104,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             await _stateMachine.ChangeState<LeaveMatch>();
         }
         
-        private void OnEscPreformed()
+        private void OnPausePreformed()
         {
             if (!_isActive)
             {
@@ -108,15 +113,12 @@ namespace App.Scripts.Scenes.Gameplay.Esc
                     return;
                 }
                 Show();
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+
                 _playerController.IsBusy = true;
             }
             else
             {
                 Hide();
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
                 _playerController.IsBusy = false;
             }
             _isActive = !_isActive;

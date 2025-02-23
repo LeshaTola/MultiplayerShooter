@@ -37,7 +37,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Promocodes
         {
             if (!_promocodesDatabase.Promocodes.TryGetValue(promocode, out var promocodeRewards))
             {
-                _infoPopupRouter.ShowPopup(ConstStrings.Attention, "Такого промокода не существует").Forget();
+                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, "Такого промокода не существует").Forget();
                 return;
             }
             

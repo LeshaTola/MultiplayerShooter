@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Modules.PopupAndViews.Configs;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
 using App.Scripts.Modules.PopupAndViews.General.Providers;
+using App.Scripts.Modules.PopupAndViews.Popups.Image;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace App.Scripts.Features.Bootstrap
         {
             Container.Bind<RewardsPopupRouter>().AsSingle();
             Container.Bind<InfoPopupRouter>().AsSingle();
+            Container.Bind<ImagePopupRouter>().AsSingle();
         }
 
         private void BindPopupController()

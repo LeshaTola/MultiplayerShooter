@@ -121,6 +121,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField] private TopView _topView;
         [FoldoutGroup("TopScreen")]
         [SerializeField] private SettingsView _settingsView;
+        [FoldoutGroup("TopScreen")]
+        [SerializeField] private TutorialConfig _tutorialConfig;
+        
 
         public override void InstallBindings()
         {
@@ -154,7 +157,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         private void BindTopView()
         {
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();
-            Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle().WithArguments(_tutorialConfig);
         }
 
         private void BindBattlePassScreen()

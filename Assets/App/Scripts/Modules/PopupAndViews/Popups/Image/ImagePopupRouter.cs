@@ -1,18 +1,18 @@
-﻿using System;
-using App.Scripts.Features;
+﻿using App.Scripts.Features;
 using App.Scripts.Features.Commands;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
-namespace App.Scripts.Modules.PopupAndViews.Popups.Info
+namespace App.Scripts.Modules.PopupAndViews.Popups.Image
 {
-    public class InfoPopupRouter
+    public class ImagePopupRouter
     {
         private readonly IPopupController _popupController;
         private readonly ILocalizationSystem _localizationSystem;
 
-        public InfoPopupRouter(
+        public ImagePopupRouter(
             IPopupController popupController,
             ILocalizationSystem localizationSystem)
         {
@@ -20,27 +20,27 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Info
             _localizationSystem = localizationSystem;
         }
         
-        private InfoPopup _popup;
+        private ImagePopup _popup;
 
-        public async UniTask ShowPopup(InfoPopupData popupData)
+        public async UniTask ShowPopup(ImagePopupData popupData)
         {
             if (_popup == null)
             {
-                _popup = _popupController.GetPopup<InfoPopup>();
+                _popup = _popupController.GetPopup<ImagePopup>();
             }
 
-            var viewModule = new InfoPopupVM(_localizationSystem, popupData);
+            var viewModule = new ImagePopupVM(_localizationSystem, popupData);
             _popup.Setup(viewModule);
 
             await _popup.Show();
         }
         
-        public async UniTask ShowPopup(string header, string message)
+        public async UniTask ShowPopup(string header, Sprite sprite)
         {
-            await ShowPopup(new InfoPopupData()
+            await ShowPopup(new ImagePopupData()
             {
                 Header = header,
-                Mesage = message,
+                Image = sprite,
                 Command = new CustomCommand(ConstStrings.CONFIRM, async () =>
                 {
                     await HidePopup();

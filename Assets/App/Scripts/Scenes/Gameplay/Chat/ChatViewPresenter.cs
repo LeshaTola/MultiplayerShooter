@@ -34,7 +34,7 @@ namespace App.Scripts.Scenes.Gameplay.Chat
             _view.OnSendMessageButtonPressed += SendMessage;
             
             _view.Initialize(_localizationSystem);
-            _gameInputProvider.OnEsc += OnEsc;
+            _gameInputProvider.OnPause += OnPause;
             _gameInputProvider.OnEnter += OnEnter;
         }
 
@@ -43,7 +43,7 @@ namespace App.Scripts.Scenes.Gameplay.Chat
             _view.OnSendMessageButtonPressed -= SendMessage;
 
             _view.CleanUp();
-            _gameInputProvider.OnEsc -= OnEsc;
+            _gameInputProvider.OnPause -= OnPause;
             _gameInputProvider.OnEnter += OnEnter;
         }
 
@@ -77,7 +77,7 @@ namespace App.Scripts.Scenes.Gameplay.Chat
             Hide();
         }
         
-        private void OnEsc()
+        private void OnPause()
         {
             if (_isActive)
             {

@@ -55,7 +55,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         {
             if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
-                _infoPopupRouter.ShowPopup(ConstStrings.Attention, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
+                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
                 return;
             }
             _userStatsProvider.TicketsProvider.ChangeTickets(-1);

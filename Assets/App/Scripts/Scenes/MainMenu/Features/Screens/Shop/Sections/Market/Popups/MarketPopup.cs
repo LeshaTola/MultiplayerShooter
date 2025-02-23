@@ -110,7 +110,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
         {
             if (!_vm.UserStatsProvider.CoinsProvider.IsEnough(_vm.ShopItemData.Price))
             {
-                _vm.InfoPopupRouter.ShowPopup(ConstStrings.Attention, ConstStrings.NOT_ENOUGH_MONEY).Forget();
+                _vm.InfoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_MONEY).Forget();
                 return;
             }
             

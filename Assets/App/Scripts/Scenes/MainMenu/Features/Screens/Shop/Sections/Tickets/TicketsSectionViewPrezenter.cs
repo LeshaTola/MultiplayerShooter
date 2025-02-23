@@ -58,7 +58,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         {
             if (!_userStatsProvider.CoinsProvider.IsEnough(_totalCost))
             {
-                _infoPopupRouter.ShowPopup(ConstStrings.Attention, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
+                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
                 return;
             }
             _userStatsProvider.CoinsProvider.ChangeCoins(-_totalCost);

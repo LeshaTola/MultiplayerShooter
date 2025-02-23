@@ -7,7 +7,7 @@ namespace App.Scripts.Features.Input
     {
         public event Action<int> OnNumber;
 
-        public event Action OnEsc;
+        public event Action OnPause;
         public event Action OnEnter;
         public event Action OnR;
         public event Action OnE;
@@ -28,7 +28,7 @@ namespace App.Scripts.Features.Input
             _input = new GameInput();
             _input.Character.Enable();
 
-            _input.Character.ESC.performed += (data) => OnEsc?.Invoke();
+            _input.Character.Pause.performed += (data) => OnPause?.Invoke();
             _input.Character.Enter.performed += (data) => OnEnter?.Invoke();
             _input.Character.R.performed += (data) => OnR?.Invoke();
             _input.Character.E.performed += (data) => OnE?.Invoke();
@@ -59,7 +59,7 @@ namespace App.Scripts.Features.Input
 
         public Vector2 GetMouseLook()
         {
-            var mouseLook = new Vector2(UnityEngine.Input.GetAxis("Mouse X"), UnityEngine.Input.GetAxis("Mouse Y"));
+            var mouseLook = new Vector2(UnityEngine.Input.GetAxisRaw("Mouse X"), UnityEngine.Input.GetAxisRaw("Mouse Y"));
             // var mouseLook = _input.Character.MouseLook.ReadValue<Vector2>();
             return mouseLook;
         }

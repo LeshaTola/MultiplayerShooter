@@ -4,6 +4,7 @@ using System.Linq;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.CustomToggles;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
@@ -12,11 +13,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
     {
         public event Action<int> OnToggleClicked;
         public event Action OnSettingsClicked;
-        public event Action OnCloseClicked;
-
+        public event Action OnTutorClicked;
+        
         [SerializeField] private List<ToggleCustom> _toggles;
         [SerializeField] private Button _settingsButton;
-        [SerializeField] private Button _closeButton;
+        [SerializeField] private Button _tutorButton;
 
         public override void Initialize()
         {
@@ -26,7 +27,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             }
 
             _settingsButton.onClick.AddListener(OnSettingsClick);
-            _closeButton.onClick.AddListener(GoToMainMenu);
+            _tutorButton.onClick.AddListener(OpenTutor);
         }
 
         public void SetLastToggle()
@@ -34,9 +35,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _toggles.Last().IsOn = true;
         }
 
-        private void GoToMainMenu()
+        private void OpenTutor()
         {
-            OnCloseClicked?.Invoke();
+            OnTutorClicked?.Invoke();
         }
 
         private void OnSettingsClick()

@@ -51,7 +51,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ESC",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "edec8198-60a7-4ae6-b5cb-50a960055008",
                     "expectedControlType": "",
@@ -253,11 +253,11 @@
                 {
                     "name": "",
                     "id": "30207cec-069b-48e9-b1df-13954690a6d4",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/backquote",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ESC",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

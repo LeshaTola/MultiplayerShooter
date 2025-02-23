@@ -1726,6 +1726,7 @@ MonoBehaviour:
   _slotTemplate: {fileID: -5099056684500095587, guid: 401627d9b034c2f4182840200af28056, type: 3}
   _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
   _weaponContainer: {fileID: 750517214}
+  _promocodesDatabase: {fileID: 11400000, guid: 510bb46e0207628498aa7ae4078ca657, type: 2}
 --- !u!114 &724108593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4980566883030904272, guid: ebd935bcfddce3040b9574df5159150a, type: 3}

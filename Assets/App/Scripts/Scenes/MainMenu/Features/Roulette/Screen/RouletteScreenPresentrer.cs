@@ -103,7 +103,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         {
             if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
-                await _infoPopupRouter.ShowPopup(ConstStrings.Attention, ConstStrings.NOT_ENOUGH_TICKETS);
+                await _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS);
                 return;
             }
 
