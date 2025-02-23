@@ -17,5 +17,5 @@ MonoBehaviour:
   <ExpPerKill>k__BackingField: 5
   <CoinsPerKill>k__BackingField: 1
   <MinMatchTime>k__BackingField: 120
-  <MaxExpPercent>k__BackingField: 0
+  <MaxExpPercent>k__BackingField: 10
   <CoinReward>k__BackingField: {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}

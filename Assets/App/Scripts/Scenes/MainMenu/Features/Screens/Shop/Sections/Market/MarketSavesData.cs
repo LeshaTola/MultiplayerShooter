@@ -7,6 +7,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
     public class MarketSavesData
     {
         public List<string> CurrentItems;
-        public DateTime LastUpdate;
+        public long LastUpdate;
     }
 }

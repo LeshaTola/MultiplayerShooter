@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5568628, g: 0.08235294, b: 0.5647059, a: 1}
+  m_Color: {r: 0.4392157, g: 0.3764706, b: 0.7176471, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5604,7 +5604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5568628, g: 0.08235294, b: 0.5647059, a: 1}
+  m_Color: {r: 0.4392157, g: 0.3764706, b: 0.7176471, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6347,15 +6347,15 @@ PrefabInstance:
       objectReference: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
     - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_Color.b
-      value: 0.5647059
+      value: 0.7176471
       objectReference: {fileID: 0}
     - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_Color.g
-      value: 0.08235294
+      value: 0.3764706
       objectReference: {fileID: 0}
     - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_Color.r
-      value: 0.5568628
+      value: 0.4392157
       objectReference: {fileID: 0}
     - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
@@ -6832,18 +6832,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
-    - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5647059
-      objectReference: {fileID: 0}
-    - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
-      propertyPath: m_Color.g
-      value: 0.08235294
-      objectReference: {fileID: 0}
-    - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5568628
-      objectReference: {fileID: 0}
     - target: {fileID: 248524341594549949, guid: 3b9bfec5675bda447b14819f8ca2c665, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 4

@@ -1,4 +1,5 @@
-﻿using App.Scripts.Modules.MinMaxValue;
+﻿using App.Scripts.Features.Rewards.Configs;
+using App.Scripts.Modules.MinMaxValue;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
@@ -8,5 +9,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
     {
         [field: SerializeField] public MinMaxInt TicketsCount { get; private set; }
         [field: SerializeField] public int Cost { get; private set; }
+        [field: SerializeField] public RewardConfig TicketReward { get; private set; }
     }
 }

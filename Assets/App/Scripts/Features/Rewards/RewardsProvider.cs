@@ -40,7 +40,7 @@ namespace App.Scripts.Features.Rewards
             {
                 return;
             }
-
+            
             int playersCount = _leaderboard.GetTable().Count;
             int middlePlace = playersCount / 2;
             if (_leaderboard.MyPlace <= middlePlace)

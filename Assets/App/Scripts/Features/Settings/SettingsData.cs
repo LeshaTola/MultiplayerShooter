@@ -1,7 +1,10 @@
-﻿using App.Scripts.Features.Settings;
+﻿using System;
+using App.Scripts.Features.Settings;
+using UnityEngine;
 
 namespace App.Scripts.Features.Settings
 {
+    [Serializable]
     public class SettingsData
     {
         public float MasterVolume;

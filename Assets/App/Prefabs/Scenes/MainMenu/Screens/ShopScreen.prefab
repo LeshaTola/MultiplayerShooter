@@ -1998,7 +1998,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1828201788328492965}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8687187595415131243}
+        m_TargetAssemblyTypeName: YG.PurchaseYG, Assembly-CSharp
+        m_MethodName: BuyPurchase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1190666551957659348
 GameObject:
   m_ObjectHideFlags: 0
@@ -5090,7 +5102,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1039182705497574292}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.74372864
+  m_Size: 0.74398994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15964,7 +15976,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100 R
+  m_text: 30 R
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
