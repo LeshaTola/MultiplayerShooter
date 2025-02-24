@@ -119,3 +119,6 @@ Table,Table-City
 Маркет,Market
 Валюта,Currency
 Новое предложение через:,New offer in:
+Coins 1,RoboBucks
+Coins 2,RoboBucks
+Coins 3,RoboBucks

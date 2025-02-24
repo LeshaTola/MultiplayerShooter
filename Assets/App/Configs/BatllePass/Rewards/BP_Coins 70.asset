@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BP_Coins 70
   m_EditorClassIdentifier: 
   <Id>k__BackingField: BP_Coins 70
-  <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
+  <Reward>k__BackingField: {fileID: 11400000, guid: fdd42532bc34c7b4caa9775a30d86207, type: 2}
   <IsFixedCount>k__BackingField: 1
   <Count>k__BackingField: 70
   <CountRange>k__BackingField:

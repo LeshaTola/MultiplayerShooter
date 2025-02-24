@@ -51,7 +51,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 34
+      Data: 35
     - Name: 
       Entry: 8
       Data: 
@@ -77,7 +77,7 @@ MonoBehaviour:
       Data: "\u0412\u0440\u0435\u043C\u044F \u043C\u0435\u0436\u0434\u0443 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
     - Name: Item2
       Entry: 1
-      Data: 0.5
+      Data: 0.3
     - Name: 
       Entry: 8
       Data: 
@@ -130,13 +130,13 @@ MonoBehaviour:
       Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 3
     - Name: <Decrement>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 2
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 0.07
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 34
+      Data: 35
     - Name: 
       Entry: 8
       Data: 
@@ -183,7 +183,7 @@ MonoBehaviour:
       Data: 3
     - Name: _burstCooldown
       Entry: 4
-      Data: 0.5
+      Data: 0.3
     - Name: 
       Entry: 8
       Data: 
@@ -260,5 +260,5 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 1.5, y: 1.5, z: 1.5}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 287be1263f2aae94daab57d8f2b07917, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 62250ac163937ac4c90b65a7ec76cd48, type: 3}
-  <MaxAmmoCount>k__BackingField: 27
-  <ReloadCooldown>k__BackingField: 1
+  <MaxAmmoCount>k__BackingField: 24
+  <ReloadCooldown>k__BackingField: 2.5
