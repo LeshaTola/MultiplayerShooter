@@ -171,7 +171,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             StartReloadCooldown();
         }
 
-        public Vector3 GetShootPoint()
+        public Vector3 NextShootPoint()
         {
             return ShootPointProvider.GetShootPoint();
         }
@@ -233,6 +233,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         {
             _tracerEffect.SetPosition(0, startPos);
             _tracerEffect.SetPosition(1, endPos);
+            
+            _tracerEffect.enabled = true;
+            _tracerEffect.startColor = _trialStartColor;
+            _tracerEffect.endColor = _trialStartColor;
         }
 
         [PunRPC]

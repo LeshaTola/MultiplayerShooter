@@ -21,7 +21,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
         public override void Shoot()
         {
             base.Shoot();
-            var shootPoint = Weapon.GetShootPoint();
+            var shootPoint = Weapon.NextShootPoint();
             Weapon.RPCPlayMuzzleFlash(shootPoint);
 
             var ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
