@@ -22,7 +22,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom
 
         private Tween _currentTween;
 
-        public ZoomStrategy(CameraProvider cameraProvider, MouseSensivityProvider sensitivityProvider)
+        public ZoomStrategy(Camera camera,
+            CameraProvider cameraProvider,
+            MouseSensivityProvider sensitivityProvider) : base(camera)
         {
             _sensitivityProvider = sensitivityProvider;
             _camera = cameraProvider.GetPlayerCamera();

@@ -27,7 +27,14 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
         [SerializeField] public Recoil Recoil { get; private set; } = new();
         [SerializeField] public List<IWeaponEffect> WeaponEffects { get;  set;}
         
+        [SerializeField] protected float _maxDistance = 50f;
         protected Weapon Weapon;
+        protected Camera Camera;
+
+        protected ShootStrategy(Camera camera)
+        {
+            Camera = camera;
+        }
 
         public virtual void Initialize(Weapon weapon)
         {
@@ -52,6 +59,21 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
                 WeaponEffects[i].OnPlayerHit += (point, damage, killed)=>OnPlayerHit?.Invoke(point, damage, killed);
                 WeaponEffects[i].Import(original.WeaponEffects[i]);
             }
+        }
+
+        public (RaycastHit, Vector3) GetRaycastHit()
+        {
+            var recoilRotation = Recoil.GetRecoilRotation(Camera.transform);
+            var direction = recoilRotation * Camera.transform.forward;
+
+            Vector3 endPoint = Camera.transform.position + direction * _maxDistance;
+            if (Physics.Raycast(Camera.transform.position, direction, out var hit, _maxDistance, Physics.DefaultRaycastLayers,
+                    QueryTriggerInteraction.Ignore))
+            {
+                endPoint = hit.point;
+            }
+
+            return (hit, endPoint);
         }
     }
 }

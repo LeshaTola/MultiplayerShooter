@@ -9,14 +9,11 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
     {
         [SerializeField] private Projectile _projectile;
         [SerializeField] private float _projectileSpeed;
-        
-        private readonly Camera _camera;
 
-        public ProjectilesShootingStrategy(Camera camera)
+
+        public ProjectilesShootingStrategy(Camera camera) : base(camera)
         {
-            _camera = camera;
         }
-
 
         public override void Shoot()
         {
@@ -24,7 +21,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             var shootPoint = Weapon.NextShootPoint();
             Weapon.RPCPlayMuzzleFlash(shootPoint);
 
-            var ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
+            var ray = Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
             
             var targetPoint = Physics.Raycast(ray, out var hit,Mathf.Infinity,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) ? hit.point : ray.GetPoint(75);
@@ -34,7 +31,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             var direction = directionWithoutSpread + spread;
             direction.Normalize();
             
-            var projectile = PhotonNetwork.Instantiate(_projectile.name, shootPoint,_camera.transform.rotation).GetComponent<Projectile>();
+            var projectile = PhotonNetwork.Instantiate(_projectile.name, shootPoint, Camera.transform.rotation).GetComponent<Projectile>();
             projectile.transform.position = shootPoint;
             projectile.gameObject.SetActive(true);
             

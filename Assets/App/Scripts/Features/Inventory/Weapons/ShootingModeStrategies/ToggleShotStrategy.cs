@@ -4,6 +4,11 @@
     {
         public override void StartAttack()
         {
+            if (!Weapon.IsReady)
+            {
+                return;
+            }
+            
             IsShooting = true;
             ShootStrategy.Shoot();
         }

@@ -38,13 +38,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [SerializeField] private float _trailFadeTime = 0.1f;
 
         private Color _trialStartColor;
-        private bool _isReady = true;
         private bool _isReloading;
         private bool _isLocal;
 
         public WeaponConfig Config { get; private set; }
         public int CurrentAmmoCount { get; private set; }
         public Player.Player Owner { get; private set; }
+        public bool IsReady { get; private set; } = true;
 
         public ShootPointStrategy ShootPointProvider => _shootPointProvider;
 
@@ -77,7 +77,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 OnReloadFinised?.Invoke();
                 _isReloading = false;
             }
-            _isReady = true;
+            IsReady = true;
         }
 
         private void Update()
@@ -123,7 +123,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void PerformAttack()
         {
-            if (!_isLocal || !_isReady)
+            if (!_isLocal || !IsReady)
             {
                 return;
             }
@@ -159,7 +159,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public void Reload()
         {
-            if (!_isReady || CurrentAmmoCount == Config.MaxAmmoCount)
+            if (!IsReady || CurrentAmmoCount == Config.MaxAmmoCount)
             {
                 return;
             }
@@ -198,19 +198,19 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private IEnumerator AttackCooldown(float cooldown)
         {
-            _isReady = false;
+            IsReady = false;
             yield return new WaitForSeconds(cooldown);
-            _isReady = true;
+            IsReady = true;
         }
 
         private IEnumerator ReloadCooldown()
         {
             OnReloadStarted?.Invoke(Config.ReloadCooldown);
-            _isReady = false;
+            IsReady = false;
             _isReloading = true;
             yield return new WaitForSeconds(Config.ReloadCooldown);
-            _isReady = false;
-            _isReady = true;
+            IsReady = false;
+            IsReady = true;
             ReloadImmidiate();
             OnReloadFinised?.Invoke();
         }

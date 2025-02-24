@@ -7,11 +7,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
     public class RaycastBuckshot : ShootStrategy
     {
         [SerializeField] private int _buckshotCount = 5;
-        private readonly Camera _camera;
-        
-        public RaycastBuckshot(Camera camera)
+
+        public RaycastBuckshot(Camera camera) : base(camera)
         {
-            _camera = camera;
         }
 
         public override void Shoot()
@@ -23,13 +21,13 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
             List<(Vector3, GameObject)> data = new();
             for (int i = 0; i < _buckshotCount; i++)
             {
-                var recoilRotation = Recoil.GetRecoilRotation(_camera.transform);
-                var direction = recoilRotation * _camera.transform.forward;
+                var recoilRotation = Recoil.GetRecoilRotation(Camera.transform);
+                var direction = recoilRotation * Camera.transform.forward;
 
-                if (!Physics.Raycast(_camera.transform.position, direction, out RaycastHit hit, 
+                if (!Physics.Raycast(Camera.transform.position, direction, out RaycastHit hit, 
                         Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
                 {
-                    Weapon.NetworkSetLine(shootPoint,shootPoint + _camera.transform.forward * 100);
+                    Weapon.NetworkSetLine(shootPoint,shootPoint + Camera.transform.forward * 100);
                     Weapon.NetworkFadeOutLine();
                     return;
 

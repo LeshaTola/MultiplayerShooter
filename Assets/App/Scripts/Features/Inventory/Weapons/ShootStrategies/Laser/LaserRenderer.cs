@@ -13,7 +13,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
         }
         public void InitializeRPC(Vector3 startPoint, Vector3 endPoint)
         {
-            photonView.RPC("Initialize", RpcTarget.All, startPoint, endPoint);
+            photonView.RPC("Initialize", RpcTarget.AllBuffered, startPoint, endPoint);
         }
         public void ShowRPC()
         {
@@ -44,14 +44,13 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
         [PunRPC]
         public void Show()
         {
-            _lineRenderer.enabled = true;
+            gameObject.SetActive(true);
         }
 
         [PunRPC]
         public void Hide()
         {
-            _lineRenderer.enabled = false;
+            gameObject.SetActive(false);
         }
-
     }
 }
