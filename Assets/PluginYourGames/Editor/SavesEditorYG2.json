@@ -8,19 +8,19 @@
   },
   "MarketData": {
     "CurrentItems": [],
-    "LastUpdate": 638760202852435648
+    "LastUpdate": 638760278873238887
   },
   "UserStatsData": {
     "Experience": 3958,
     "CurrentRankId": 8,
     "GameInventory": {
-      "Skin": "WiteSkin",
+      "Skin": "YellowSkin",
       "Weapons": [
-        "Revolver",
-        "Double-Barrel",
-        "HantingRiffle",
-        "Granade",
-        "AK"
+        "Shuriken",
+        "SPAS",
+        "RocketLauncher",
+        "FlintStone",
+        "LaserGun"
       ],
       "Equipment": [
         "TestEq",
@@ -61,8 +61,8 @@
         "TestEq"
       ]
     },
-    "Coins": 658,
-    "Tickets": 97
+    "Coins": 573,
+    "Tickets": 95
   },
   "stringKeys": [],
   "stringValues": [],
@@ -78,5 +78,5 @@
     false,
     false
   ],
-  "idSave": 233
+  "idSave": 362
 }

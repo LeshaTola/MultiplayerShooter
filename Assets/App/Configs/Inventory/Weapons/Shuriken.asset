@@ -51,7 +51,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 50
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -64,7 +64,7 @@ MonoBehaviour:
       Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
     - Name: Item2
       Entry: 1
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -116,7 +116,7 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.BurstShootingStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
@@ -130,10 +130,10 @@ MonoBehaviour:
       Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: <Decrement>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 0.2
     - Name: <Increment>k__BackingField
       Entry: 4
       Data: 0.1
@@ -181,6 +181,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _burstCount
+      Entry: 3
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -257,5 +260,5 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 9b5272e602b46af4d898461176e4589c, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
-  <MaxAmmoCount>k__BackingField: 1
+  <MaxAmmoCount>k__BackingField: 3
   <ReloadCooldown>k__BackingField: 0.3

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
   m_Name: BP_Coins 110
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: BP_Coins 47
-  <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
+  <Id>k__BackingField: BP_Coins 110
+  <Reward>k__BackingField: {fileID: 11400000, guid: 961d7a85e97b2b5498c7ebc5af3bf25c, type: 2}
   <IsFixedCount>k__BackingField: 1
   <Count>k__BackingField: 110
   <CountRange>k__BackingField:
