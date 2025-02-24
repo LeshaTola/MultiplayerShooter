@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DuelMap
   m_EditorClassIdentifier: 
   <Name>k__BackingField: DuelMap
-  <Sprite>k__BackingField: {fileID: 21300000, guid: f91ead5e04b11a4449ce83b836ffe2d7, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 47e01defd03e2be408d5e1714044a57d, type: 3}
   <Prefab>k__BackingField: {fileID: 6196763212998865393, guid: 15d8b9e399bbb734b8e6ee9ca84f971b, type: 3}
