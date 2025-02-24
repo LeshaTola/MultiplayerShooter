@@ -57,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Splat3:
         m_Texture: {fileID: 2800000, guid: 69ae0ee39332f9f42ada5ac2aee74c8f, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 1}
     m_Ints: []
     m_Floats:

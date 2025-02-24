@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShipsMap
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Ships
-  <Sprite>k__BackingField: {fileID: 21300000, guid: c5e359ce7f23ec04da9fb489e64759ee, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: eadbe4b9981239a4782b703df96c4784, type: 3}
   <Prefab>k__BackingField: {fileID: 4341686671961271356, guid: 91a3a9a6d25dc3b4199de0f4c6680321, type: 3}
