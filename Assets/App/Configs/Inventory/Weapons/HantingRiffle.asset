@@ -50,7 +50,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 43
+      Data: 49
     - Name: 
       Entry: 8
       Data: 
@@ -63,7 +63,7 @@ MonoBehaviour:
       Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
     - Name: Item2
       Entry: 1
-      Data: 16
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -103,7 +103,7 @@ MonoBehaviour:
       Data: "\u0421\u0438\u043B\u0430 \u043F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u044F"
     - Name: Item2
       Entry: 1
-      Data: x2
+      Data: x2.5
     - Name: 
       Entry: 8
       Data: 
@@ -119,7 +119,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.25
+      Data: 0.4
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
@@ -161,7 +161,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 43
+      Data: 49
     - Name: 
       Entry: 8
       Data: 
@@ -186,7 +186,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.25
+      Data: 1
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
@@ -230,10 +230,10 @@ MonoBehaviour:
       Data: 
     - Name: _zoomFOV
       Entry: 4
-      Data: 32
+      Data: 20
     - Name: _animationDuration
       Entry: 4
-      Data: 0.1
+      Data: 0.2
     - Name: _zoomSensivity
       Entry: 4
       Data: 0.6
@@ -253,5 +253,5 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 670e0ea8f35f6c74fb2a8f328ad9f360, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0378e00670374834f9dd85d26a7e13e9, type: 3}
-  <MaxAmmoCount>k__BackingField: 16
-  <ReloadCooldown>k__BackingField: 2
+  <MaxAmmoCount>k__BackingField: 10
+  <ReloadCooldown>k__BackingField: 3
