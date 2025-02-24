@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: -5906158332611659712, guid: 63e958ab4f78b79419802972930f01db, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -115,14 +116,14 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.1
+      Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
+      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.LaserShootStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
@@ -171,9 +172,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: _buckshotCount
-      Entry: 3
-      Data: 1
+    - Name: _maxDistance
+      Entry: 4
+      Data: 50
+    - Name: _cooldown
+      Entry: 4
+      Data: 0.1
+    - Name: _laserTemplate
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

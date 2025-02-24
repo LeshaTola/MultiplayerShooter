@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startHealth: 100
-  <IsPlayer>k__BackingField: 1
+  <IsPlayer>k__BackingField: 0
 --- !u!114 &5147651866653908048
 MonoBehaviour:
   m_ObjectHideFlags: 0

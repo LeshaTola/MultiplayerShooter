@@ -17,7 +17,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
         public override void Shoot()
         {
             base.Shoot();
-            var shootPoint = Weapon.GetShootPoint();
+            var shootPoint = Weapon.NextShootPoint();
             Weapon.RPCPlayMuzzleFlash(shootPoint);
 
             List<(Vector3, GameObject)> data = new();
