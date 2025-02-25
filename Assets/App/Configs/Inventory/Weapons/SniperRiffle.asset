@@ -37,7 +37,20 @@ MonoBehaviour:
       Data: "\u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0442\u0441\u0440\u0435\u043B"
+      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0441\u0442\u0440\u0435\u043B"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0410\u043B\u044C\u0442 \u0410\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u041F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u0435"
     - Name: 
       Entry: 8
       Data: 
@@ -73,10 +86,11 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0412\u0440\u0435\u043C\u044F \u043C\u0435\u0436\u0434\u0443 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
+      Data: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u0440\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C
+        (\u0432\u044B\u0441\u0442\u0440\u0435\u043B\u043E\u0432/c)"
     - Name: Item2
       Entry: 1
-      Data: 1,5
+      Data: 0,6
     - Name: 
       Entry: 8
       Data: 
@@ -86,24 +100,10 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0410\u043B\u044C\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u0430\u043D\u044F
-        \u0430\u0442\u0430\u043A\u0430"
+      Data: "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
     - Name: Item2
       Entry: 1
-      Data: "\u041F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u0435"
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u0421\u0438\u043B\u0430 \u043F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u044F"
-    - Name: Item2
-      Entry: 1
-      Data: x3
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -171,6 +171,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _buckshotCount
       Entry: 3
       Data: 1
@@ -228,6 +231,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _zoomFOV
       Entry: 4
       Data: 15

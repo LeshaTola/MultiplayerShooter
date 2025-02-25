@@ -1,5 +1,5 @@
 {
-  "PlayerName": "Игрок 456",
+  "PlayerName": "Шаман",
   "SettingsData": {
     "MasterVolume": 1.0,
     "MusicVolume": 0.5,
@@ -7,20 +7,22 @@
     "MouseSensitivity": 0.5
   },
   "MarketData": {
-    "CurrentItems": [],
-    "LastUpdate": 638760304918052250
+    "CurrentItems": [
+      "Build"
+    ],
+    "LastUpdate": 638761008148559322
   },
   "UserStatsData": {
-    "Experience": 3958,
-    "CurrentRankId": 8,
+    "Experience": 0,
+    "CurrentRankId": 0,
     "GameInventory": {
-      "Skin": "YellowSkin",
+      "Skin": "WiteSkin",
       "Weapons": [
-        "Shuriken",
-        "SPAS",
-        "RocketLauncher",
-        "FlintStone",
-        "LaserGun"
+        "Revolver",
+        "HantingRiffle",
+        "Double-Barrel",
+        "Granade",
+        "AK"
       ],
       "Equipment": [
         "TestEq",
@@ -43,26 +45,26 @@
         "Double-Barrel",
         "HantingRiffle",
         "Granade",
-        "M4",
-        "FlintStone",
-        "SPAS",
-        "Dynamite",
-        "Shuriken",
-        "LaserGun",
-        "Molotov",
-        "SniperRiffle",
-        "UZI",
-        "RocketLauncher",
         "AK",
+        "LaserGun",
+        "FlintStone",
+        "DualPistols",
+        "Shuriken",
+        "Molotov",
+        "Benelli",
+        "Dynamite",
+        "M4",
+        "MP-9",
+        "RocketLauncher",
         "Famas",
-        "DualPistols"
+        "SniperRiffle"
       ],
       "Equipment": [
         "TestEq"
       ]
     },
-    "Coins": 573,
-    "Tickets": 95
+    "Coins": 43504,
+    "Tickets": 59
   },
   "stringKeys": [],
   "stringValues": [],
@@ -78,5 +80,5 @@
     false,
     false
   ],
-  "idSave": 398
+  "idSave": 132
 }

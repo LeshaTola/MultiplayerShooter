@@ -50,6 +50,19 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
+      Data: "\u0410\u043B\u044C\u0442 \u0410\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u0412\u0437\u0440\u044B\u0432 \u043F\u043E \u0442\u0430\u0439\u043C\u0435\u0440\u0443"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
@@ -63,10 +76,11 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
+      Data: "\u0412\u0440\u0435\u043C\u044F \u0434\u043E \u0432\u0437\u0440\u044B\u0432\u0430
+        (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
     - Name: Item2
       Entry: 1
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -76,24 +90,10 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0412\u0440\u0435\u043C\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438"
+      Data: "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
     - Name: Item2
       Entry: 1
       Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u0410\u043B\u044C\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u043D\u0430\u044F
-        \u0430\u0442\u0430\u043A\u0430"
-    - Name: Item2
-      Entry: 1
-      Data: "\u0412\u0437\u0440\u044B\u0432 3\u0441"
     - Name: 
       Entry: 8
       Data: 
@@ -167,6 +167,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _projectile
       Entry: 10
       Data: 1
@@ -243,6 +246,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _projectile
       Entry: 10
       Data: 2

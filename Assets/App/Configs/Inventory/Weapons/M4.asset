@@ -27,7 +27,7 @@ MonoBehaviour:
         mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
@@ -37,7 +37,21 @@ MonoBehaviour:
       Data: "\u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F"
+      Data: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F
+        \u0441\u0442\u0440\u0435\u043B\u044C\u0431\u0430"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0410\u043B\u044C\u0442 \u0410\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u041E\u0447\u0435\u0440\u0435\u0434\u044C"
     - Name: 
       Entry: 8
       Data: 
@@ -73,10 +87,11 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0412\u0440\u0435\u043C\u044F \u043C\u0435\u0436\u0434\u0443 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
+      Data: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u0440\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C
+        (\u0432\u044B\u0441\u0442\u0440\u0435\u043B\u043E\u0432/c)"
     - Name: Item2
       Entry: 1
-      Data: 0.2
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -86,12 +101,10 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0410\u043B\u044C\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u0430\u043D\u044F
-        \u0430\u0442\u0430\u043A\u0430"
+      Data: "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
     - Name: Item2
       Entry: 1
-      Data: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F
-        3\u043C\u044F \u043F\u0430\u0442\u0440\u043E\u043D\u0430\u043C\u0438"
+      Data: 2,5
     - Name: 
       Entry: 8
       Data: 
@@ -159,6 +172,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _buckshotCount
       Entry: 3
       Data: 1
@@ -226,6 +242,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _buckshotCount
       Entry: 3
       Data: 1
@@ -242,7 +261,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: M4
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 1d6d12148a81a844b8170f6b97d20c74, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: f81fe396ddca9cc48bb012f9c2da1383, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 1c2e354b6fab9a742a16dcb3c0282008, type: 3}

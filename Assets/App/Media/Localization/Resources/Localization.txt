@@ -103,8 +103,8 @@ Revolver,Питон .357 ,Python .357
 RocketLauncher,Базука,Bazooka
 Shuriken,Сюрикен,Shuriken
 SniperRiffle,М700,M700
-SPAS,Бенелли М4,Benelli M4
-UZI,MP-9,MP-9
+Benelli,Бенелли М4,Benelli M4
+MP-9,MP-9,MP-9
 Coins,РобоБаксы,RoboBucks
 Ticket,Билетик,Ticket
 DuelMap,Дульная коробка,Duel Box

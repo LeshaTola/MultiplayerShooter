@@ -23,8 +23,8 @@ MonoBehaviour:
     Color: {r: 0.99607843, g: 0.7921569, b: 0.047058824, a: 1}
     WinItems:
     - {fileID: 11400000, guid: 88a319e3a380cbe46931f0e853f0b0c8, type: 2}
-    - {fileID: 11400000, guid: 9990dd945d3b6744dba2bacd70e427c8, type: 2}
     - {fileID: 11400000, guid: 02e08a7be4d54404c96da3eda7f3c992, type: 2}
+    - {fileID: 11400000, guid: 9990dd945d3b6744dba2bacd70e427c8, type: 2}
     WinItemsCount: 1
   - Name: "\u042D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439"
     Percent: 0.09
@@ -45,6 +45,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 12c400b612f56de42917da896e72b894, type: 2}
     - {fileID: 11400000, guid: 6541e1dd05b3ecf48ac2e5e2165a48af, type: 2}
     - {fileID: 11400000, guid: 1932c21c75a6ffa4e80ba51e1ff8dd58, type: 2}
+    - {fileID: 11400000, guid: 9418f0fc372079d4f98592d2e89f5946, type: 2}
     WinItemsCount: 2
   - Name: "\u041D\u0435\u043E\u0431\u044B\u0447\u043D\u044B\u0439"
     Percent: 0.75
@@ -52,6 +53,8 @@ MonoBehaviour:
     WinItems:
     - {fileID: 11400000, guid: 827c254b650e7f642a288a29d926d88d, type: 2}
     - {fileID: 11400000, guid: ee9b70050970a4345888565f42994b12, type: 2}
+    - {fileID: 11400000, guid: f7eb93bf65292d34ca9fd82e4bcdea14, type: 2}
+    - {fileID: 11400000, guid: 74f588c31a42acd49b8d4943b92c447d, type: 2}
     WinItemsCount: 2
   <SpinCurve>k__BackingField:
     serializedVersion: 2

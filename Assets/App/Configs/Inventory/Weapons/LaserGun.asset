@@ -38,7 +38,7 @@ MonoBehaviour:
       Data: "\u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0442\u0441\u0440\u0435\u043B"
+      Data: "\u041B\u0430\u0437\u0435\u0440\u043D\u044B\u0439 \u043B\u0443\u0447"
     - Name: 
       Entry: 8
       Data: 
@@ -48,47 +48,7 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0423\u0440\u043E\u043D"
-    - Name: Item2
-      Entry: 1
-      Data: 100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
-    - Name: Item2
-      Entry: 1
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u0412\u0440\u0435\u043C\u044F \u043C\u0435\u0436\u0434\u0443 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
-    - Name: Item2
-      Entry: 1
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u0410\u043B\u044C\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u0430\u043D\u044F
-        \u0430\u0442\u0430\u043A\u0430"
+      Data: "\u0410\u043B\u044C\u0442 \u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
       Data: "\u041F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u0435"
@@ -101,10 +61,50 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u0421\u0438\u043B\u0430 \u043F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u043D\u0438\u044F"
+      Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: x3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u0440\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C
+        (\u0432\u044B\u0441\u0442\u0440\u0435\u043B\u043E\u0432/\u0441)"
+    - Name: Item2
+      Entry: 1
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
+    - Name: Item2
+      Entry: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -235,6 +235,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
     - Name: _zoomFOV
       Entry: 4
       Data: 30
@@ -251,7 +254,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: LaserGun
-  <Sprite>k__BackingField: {fileID: 21300000, guid: f1cee5188b66bad48a3bdff240e02ae1, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 1af200b4d5ad9f44cb2748aa17baaa3d, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 341a430cc02120e4c8b3e1fbc2464f95, type: 3}

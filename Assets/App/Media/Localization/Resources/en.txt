@@ -103,8 +103,8 @@ Revolver,Python .357
 RocketLauncher,Bazooka
 Shuriken,Shuriken
 SniperRiffle,M700
-SPAS,Benelli M4
-UZI,MP-9
+Benelli,Benelli M4
+MP-9,MP-9
 Coins,RoboBucks
 Ticket,Ticket
 DuelMap,Duel Box
