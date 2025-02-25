@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7591596ec0794fe293de16c30a86e4d4, type: 3}
-  m_Name: Famas
+  m_Name: Crossbow
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 4550930450135223814, guid: b660e438a23dc3441859937d626b8623, type: 3}
+    - {fileID: 1645694598745779037, guid: 5673cdaa1191b204982ff2991f768eaa, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,7 +29,7 @@ MonoBehaviour:
         mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 5
     - Name: 
       Entry: 7
       Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
@@ -37,7 +39,8 @@ MonoBehaviour:
       Data: "\u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u041E\u0447\u0435\u0440\u0435\u0434\u044C"
+      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0441\u0442\u0440\u0435\u043B
+        \u0441 \u043E\u0442\u0434\u0430\u0447\u0435\u0439"
     - Name: 
       Entry: 8
       Data: 
@@ -63,7 +66,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 35
+      Data: 40+60
     - Name: 
       Entry: 8
       Data: 
@@ -73,24 +76,11 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
+      Data: "\u0412\u0440\u0435\u043C\u044F \u0434\u043E \u0432\u0437\u0440\u044B\u0432\u0430
+        (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
     - Name: Item2
       Entry: 1
-      Data: 24
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
-        mscorlib
-    - Name: Item1
-      Entry: 1
-      Data: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u0440\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C
-        (\u0432\u044B\u0441\u0442\u0440\u0435\u043B\u043E\u0432/c)"
-    - Name: Item2
-      Entry: 1
-      Data: '9 '
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -103,7 +93,7 @@ MonoBehaviour:
       Data: "\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 (\u0441\u0435\u043A\u0443\u043D\u0434\u044B)"
     - Name: Item2
       Entry: 1
-      Data: 2.5
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -115,27 +105,27 @@ MonoBehaviour:
       Data: 
     - Name: <ShootingMode>k__BackingField
       Entry: 7
-      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoBurstShootingStrategy,
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.1
+      Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
+      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.ProjectilesShootingStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
       Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 3
+      Data: 0
     - Name: <Decrement>k__BackingField
       Entry: 4
-      Data: 2
+      Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.07
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -154,14 +144,30 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 5|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
+      Data: 5|App.Scripts.Features.Inventory.Weapons.WeaponEffects.SpawnExplosionEffect,
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 35
+      Data: 60
+    - Name: _radius
+      Entry: 4
+      Data: 5
+    - Name: _template
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
+        Assembly-CSharp
+    - Name: _damage
+      Entry: 3
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -174,35 +180,32 @@ MonoBehaviour:
     - Name: _maxDistance
       Entry: 4
       Data: 0
-    - Name: _buckshotCount
-      Entry: 3
+    - Name: _projectile
+      Entry: 10
       Data: 1
+    - Name: _projectileSpeed
+      Entry: 4
+      Data: 60
     - Name: 
       Entry: 8
       Data: 
-    - Name: _burstCount
-      Entry: 3
-      Data: 3
-    - Name: _burstCooldown
-      Entry: 4
-      Data: 0.3
     - Name: 
       Entry: 8
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
+      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
       Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
+      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
-      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+      Data: 9|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
       Data: 0
@@ -226,7 +229,7 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+      Data: 10|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -242,7 +245,7 @@ MonoBehaviour:
       Data: 0
     - Name: _zoomFOV
       Entry: 4
-      Data: 45
+      Data: 50
     - Name: _animationDuration
       Entry: 4
       Data: 0.1
@@ -255,15 +258,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  <Id>k__BackingField: Famas
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 0bbeb9a2d1b71d2478ca2b028dea5a45, type: 3}
+  <Id>k__BackingField: Crossbow
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 1d6d12148a81a844b8170f6b97d20c74, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Rare
-  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: fff8ea3401d304343aa59a07298e83c1, type: 3}
+  <Rarity>k__BackingField: Uncomon
+  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ca869e73b15d2b44aa9c74c59cce0417, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.25}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <ViewScaleMultiplier>k__BackingField: {x: 1.5, y: 1.5, z: 1.5}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: 287be1263f2aae94daab57d8f2b07917, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 62250ac163937ac4c90b65a7ec76cd48, type: 3}
-  <MaxAmmoCount>k__BackingField: 24
-  <ReloadCooldown>k__BackingField: 2.5
+  <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: c79740913fa415d4890639fad0bc808c, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0ab1db19e0c7be647a7714f734700269, type: 3}
+  <MaxAmmoCount>k__BackingField: 1
+  <ReloadCooldown>k__BackingField: 3

@@ -69,25 +69,25 @@ key,en
 Длина названия сервера должна быть между 3 и 16 символами.,The server name must be between 3 and 16 characters long.
 Длина пароля должна быть между 4 и 6 символами.,The password must be between 4 and 6 characters long.
 Атака,Attack
+Автоматическая стрельба,Automatic shooting
+Альт Атака,Alt Attack
+Прицеливание,Aiming
 Урон,Damage
 Обойма,Clip
-Время между выстрелами,Time between shots
-Альтернативаня атака,Alternative attack
-Сила прицеливания,Aiming power
-Урон за 1 дробь,Damage per 1 fraction
-Одиночный вытсрел,Single shot
-Автоматическая,Automatic
-Прицеливание,Aiming
-Урон за 1 дробь,Damage per 1 fraction
-Максимальный урон,Maximum damage
-Двойная выстрел,Double shot
-Дальний Бросок,Long Range Throw
-Время перезарядки,Recharge time
-Бросок под себя,Throw for yourself
-Автоматическая 3мя патронами,Burst of 3 rounds
-Близкий бросок,A close throw
-Одиночный вытcрел по облости,Single shot at the area
-Бросок сюрикена,Shuriken throw
+Скорострельность (выстрелов/c),Rate of fire (rounds/sec)
+Перезарядка (секунды),Recharge time (seconds)
+Одиночный выстрел,Single shot
+Урон (1 дробь / макс дробинок),Damage (1 shot / max shots)
+Слабый бросок,Weak throw
+Сильный бросок,Strong throw
+Очередь,Burst
+Одиночный выстрел с отдачей,Single shot with recoil
+Контактный взрыв,Contact explosion
+Взрыв по таймеру,Timer explosion
+Время до взрыва (секунды),Time to explosion (seconds)
+Лазерный луч,Laser beam
+Время горения (секунды),Gorenje time (seconds)
+Тройной бросок,Triple shot
 До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Press any button to continue
 Введите текст,Enter the text
@@ -122,3 +122,8 @@ Table,Table-City
 Coins 1,RoboBucks
 Coins 2,RoboBucks
 Coins 3,RoboBucks
+Двойной выстрел,Double shot
+LaserGun,Laser gun
+M4,M4
+Molotov,Flame grenade
+FlintStone,Flintlock pistol
