@@ -1,4 +1,6 @@
 ﻿using App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn.App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using UnityEngine;
 
@@ -7,12 +9,14 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
     public class ObjectSpawnStrategy : ShootStrategy
     {
         [SerializeField] private GhostObjectVisualizator _visualizator;
-        [SerializeField] private GameObject _prefab;
+        [SerializeField] private Projectile _prefab;
         
         private GhostObjectVisualizator _ghostObjectVisualizator;
+        private readonly ProjectilesFactory _projectilesFactory;
 
-        public ObjectSpawnStrategy(Camera camera) : base(camera)
+        public ObjectSpawnStrategy(Camera camera, ProjectilesFactory projectilesFactory) : base(camera)
         {
+            _projectilesFactory = projectilesFactory;
         }
 
         public override void Initialize(Weapon weapon)
@@ -33,9 +37,24 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
                 return;
             }
             base.Shoot();
+
+            var projectile =_projectilesFactory.CreateProjectile(_prefab,hit.point,Quaternion.FromToRotation(Vector3.up, hit.normal));
+            projectile.gameObject.SetActive(true);
             
-            var newObject = Object.Instantiate(_prefab, hit.point, Quaternion.identity);
-            newObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            projectile.Setup((point, hitObject) =>
+            {
+                if (!hitObject)
+                {
+                    return;
+                }
+                foreach (var weaponEffect in WeaponEffects)
+                {
+                    weaponEffect.Effect(new ()
+                    {
+                        (point, hitObject)
+                    });
+                }
+            });
         }
 
         public override void Import(IShootStrategy original)

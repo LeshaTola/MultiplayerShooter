@@ -22,6 +22,15 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Fac
             return  newProjectile;
         }
         
+        public Projectile CreateProjectile(Projectile projectile, Vector3 position, Quaternion rotation)
+        {
+            var newProjectile 
+                = PhotonNetwork.Instantiate(projectile.name, position, rotation)
+                    .GetComponent<Projectile>();
+            newProjectile.gameObject.SetActive(false);
+            return  newProjectile;
+        }
+        
         
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
@@ -12,16 +13,17 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
             [SerializeField] private Material _ghostMaterial;
         
             private ShootStrategy _shootStrategy;
-            private GameObject _prefab;
-            private GameObject _ghost;
+            private Projectile _prefab;
+            private Projectile _ghost;
 
-            public void Initialize(ShootStrategy shootStrategy, GameObject prefab)
+            public void Initialize(ShootStrategy shootStrategy, Projectile prefab)
             {
                 _shootStrategy = shootStrategy;
                 _prefab = prefab;
 
                 _ghost = Instantiate(_prefab, transform);
-                SetGhostMaterial(_ghost);
+                _ghost.GetComponent<Collider>().enabled = false;
+                SetGhostMaterial(_ghost.gameObject);
             }
 
             private void LateUpdate()
@@ -31,13 +33,13 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
 
                 if (hit.collider)
                 {
-                    _ghost.SetActive(true);
+                    _ghost.gameObject.SetActive(true);
                     _ghost.transform.position = hit.point;
                     _ghost.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 }
                 else
                 {
-                    _ghost.SetActive(false);
+                    _ghost.gameObject.SetActive(false);
                 }
             }
 
