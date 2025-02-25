@@ -31,6 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: b4b8518c967ac2d41acae9588edb8266, type: 2}
     - {fileID: 11400000, guid: 438736f22094a854b947e8944df0180d, type: 2}
     - {fileID: 11400000, guid: de58866e12326cd45b2840571975be4c, type: 2}
+    - {fileID: 11400000, guid: 001f7ba04ac176548acb6797275d3445, type: 2}
     - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
     - {fileID: 11400000, guid: 06dd0eb33c0eba543b3a31e3b6cf7485, type: 2}
     - {fileID: 11400000, guid: 294e413ba9dbaeb4e92b33edeeec7f85, type: 2}
@@ -74,7 +75,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 15
+      Data: 16
     - Name: 
       Entry: 10
       Data: 0
@@ -121,6 +122,9 @@ MonoBehaviour:
       Entry: 10
       Data: 14
     - Name: 
+      Entry: 10
+      Data: 15
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -144,9 +148,6 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 10
-      Data: 15
-    - Name: 
-      Entry: 10
       Data: 16
     - Name: 
       Entry: 10
@@ -154,6 +155,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
     - Name: 
       Entry: 13
       Data: 
@@ -178,9 +182,6 @@ MonoBehaviour:
       Data: 5
     - Name: 
       Entry: 10
-      Data: 19
-    - Name: 
-      Entry: 10
       Data: 20
     - Name: 
       Entry: 10
@@ -191,6 +192,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 23
+    - Name: 
+      Entry: 10
+      Data: 24
     - Name: 
       Entry: 13
       Data: 
@@ -215,13 +219,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 24
-    - Name: 
-      Entry: 10
       Data: 25
     - Name: 
       Entry: 10
       Data: 26
+    - Name: 
+      Entry: 10
+      Data: 27
     - Name: 
       Entry: 13
       Data: 
@@ -265,6 +269,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3830d31b995edc14daa5e8085b963e43, type: 2}
   - {fileID: 11400000, guid: de58866e12326cd45b2840571975be4c, type: 2}
   - {fileID: 11400000, guid: 377d799589b760c40aa324f35e787da9, type: 2}
+  - {fileID: 11400000, guid: 001f7ba04ac176548acb6797275d3445, type: 2}
   <Equipment>k__BackingField:
   - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
