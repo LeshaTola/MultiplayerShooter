@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles;
+using App.Scripts.Scenes.Gameplay.Player.Stats;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
@@ -23,6 +24,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
 
                 _ghost = Instantiate(_prefab, transform);
                 _ghost.GetComponent<Collider>().enabled = false;
+                Destroy(_ghost.GetComponent<Health>());
                 SetGhostMaterial(_ghost.gameObject);
             }
 

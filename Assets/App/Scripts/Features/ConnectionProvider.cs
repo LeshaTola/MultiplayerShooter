@@ -59,7 +59,7 @@ namespace App.Scripts.Features
         
         public override void OnJoinedRoom()
         {
-            PhotonNetwork.LoadLevel("Gameplay");
+            //PhotonNetwork.LoadLevel("Gameplay");
             OnJoinedRoomEvent?.Invoke();
         }
 
