@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8593454855337000812}
   - component: {fileID: -8708965378622071557}
   m_Layer: 0
-  m_Name: MolotovProjectile
+  m_Name: MolotovProjectileTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 0}
-  _maxColisionCount: 0
-  _lifeTime: 2
+  _maxColisionCount: -1
+  _lifeTime: 3
   _rb: {fileID: 3713381470204557260}
 --- !u!54 &3713381470204557260
 Rigidbody:

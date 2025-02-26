@@ -64,7 +64,7 @@ MonoBehaviour:
         \u0434\u0440\u043E\u0431\u0438\u043D\u043E\u043A)"
     - Name: Item2
       Entry: 1
-      Data: 10 / 80
+      Data: 10 \\ 80
     - Name: 
       Entry: 8
       Data: 
@@ -268,4 +268,4 @@ MonoBehaviour:
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 4d77e6afe98cf2648bb1651429f359ce, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: e456da3eb268e57449a59a077815aeba, type: 3}
   <MaxAmmoCount>k__BackingField: 2
-  <ReloadCooldown>k__BackingField: 1.6
+  <ReloadCooldown>k__BackingField: 1.2

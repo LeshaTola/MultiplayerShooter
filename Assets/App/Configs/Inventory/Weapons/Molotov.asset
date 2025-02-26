@@ -18,6 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 2329890679932416473, guid: 8296ecbd6735ffd44889b6fe9b39908d, type: 3}
     - {fileID: 1645694598745779037, guid: 1a786e111663b1c488c909b134a82094, type: 3}
+    - {fileID: 1645694598745779037, guid: 0b8f14f0361988f42bf478b0f25500c2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -39,7 +40,7 @@ MonoBehaviour:
       Data: "\u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u0421\u0438\u043B\u044C\u043D\u044B\u0439 \u0431\u0440\u043E\u0441\u043E\u043A"
+      Data: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u043D\u044B\u0439 \u0432\u0437\u0440\u044B\u0432"
     - Name: 
       Entry: 8
       Data: 
@@ -52,7 +53,7 @@ MonoBehaviour:
       Data: "\u0410\u043B\u044C\u0442 \u0410\u0442\u0430\u043A\u0430"
     - Name: Item2
       Entry: 1
-      Data: "\u0421\u043B\u0430\u0431\u044B\u0439 \u0431\u0440\u043E\u0441\u043E\u043A"
+      Data: "\u0412\u0437\u0440\u044B\u0432 \u043F\u043E \u0442\u0430\u0439\u043C\u0435\u0440\u0443"
     - Name: 
       Entry: 8
       Data: 
@@ -124,7 +125,7 @@ MonoBehaviour:
       Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.1
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
       Data: 1
     - Name: _projectileSpeed
       Entry: 4
-      Data: 20
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -209,7 +210,7 @@ MonoBehaviour:
       Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.1
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -262,10 +263,10 @@ MonoBehaviour:
       Data: 0
     - Name: _projectile
       Entry: 10
-      Data: 1
+      Data: 2
     - Name: _projectileSpeed
       Entry: 4
-      Data: 10
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -283,4 +284,4 @@ MonoBehaviour:
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
   <MaxAmmoCount>k__BackingField: 1
-  <ReloadCooldown>k__BackingField: 3
+  <ReloadCooldown>k__BackingField: 2

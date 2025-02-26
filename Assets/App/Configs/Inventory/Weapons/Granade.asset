@@ -125,7 +125,7 @@ MonoBehaviour:
       Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.1
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
       Data: 0
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.1
+      Data: 0
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -272,4 +272,4 @@ MonoBehaviour:
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
   <MaxAmmoCount>k__BackingField: 1
-  <ReloadCooldown>k__BackingField: 2
+  <ReloadCooldown>k__BackingField: 1.8
