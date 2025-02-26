@@ -70,7 +70,6 @@ namespace App.Scripts.Features.Rewards
 
         private void ApplyExp()
         {
-            Debug.Log((int) _experience);
             _rewardService.ExperienceToAdd += (int) _experience;
             _experience -= (int) _experience;
         }

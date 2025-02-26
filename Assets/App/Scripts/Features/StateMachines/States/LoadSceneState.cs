@@ -26,16 +26,14 @@ namespace App.Scripts.Features.StateMachines.States
 
             public override async UniTask Enter()
             {
-                await base.Enter();
-                
                 _cleanupService.Cleanup();
+                PhotonNetwork.LoadLevel(_sceneName);
                 
-                if (_sceneTransition != null)
+                /*if (_sceneTransition != null)
                 {
                     await _sceneTransition.PlayOnAsync();
-                }
+                }*/
                 
-                PhotonNetwork.LoadLevel(_sceneName);
                 CleanupAnimations();
             }
 
