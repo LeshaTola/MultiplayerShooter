@@ -46,7 +46,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
             var strategy = GetShootStrategy(original.GetType());
 
             strategy.WeaponEffects = GetWeaponEffects(original.WeaponEffects);
-            strategy.Import(original);
             return strategy;
         }
         
@@ -58,7 +57,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
         private IWeaponEffect GetWeaponEffect(IWeaponEffect original)
         {
             var strategy = GetWeaponEffect(original.GetType());
-            strategy.Import(original);
             return strategy;
         }
         

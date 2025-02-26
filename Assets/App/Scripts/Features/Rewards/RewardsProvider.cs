@@ -70,6 +70,7 @@ namespace App.Scripts.Features.Rewards
 
         private void ApplyExp()
         {
+            Debug.Log((int) _experience);
             _rewardService.ExperienceToAdd += (int) _experience;
             _experience -= (int) _experience;
         }
@@ -80,6 +81,7 @@ namespace App.Scripts.Features.Rewards
             {
                 return;
             }
+            Debug.Log((int) _coins);
 
             var coinsReward = Object.Instantiate(_accrualConfig.CoinReward);
             coinsReward.Count = (int) _coins;

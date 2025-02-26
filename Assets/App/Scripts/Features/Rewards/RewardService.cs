@@ -48,7 +48,7 @@ namespace App.Scripts.Features.Rewards
 
         public bool HasAnyReward()
         {
-            return _rewards.Count > 0 || ExperienceToAdd > 0;
+            return HasRewards() || HasExperience();
         }
 
         public bool HasExperience()
@@ -72,6 +72,7 @@ namespace App.Scripts.Features.Rewards
                 FromSprite = _userStatsProvider.RankProvider.CurrentRank.Sprite,
                 ToSprite = _userStatsProvider.RankProvider.NextRank.Sprite,
             };
+            Debug.Log(ExperienceToAdd);
             var levelUps = _userStatsProvider.RankProvider.AddExperience(ExperienceToAdd);
             ExperienceToAdd = 0;
 

@@ -56,11 +56,6 @@ namespace App.Scripts.Features
             OnConnectionFinished?.Invoke();
         }
 
-        public override void OnJoinedRoom()
-        {
-            PhotonNetwork.LoadLevel("Gameplay");
-        }
-
         public void QuickGame()
         {
             Debug.Log("Состояние сети: " + PhotonNetwork.NetworkClientState);

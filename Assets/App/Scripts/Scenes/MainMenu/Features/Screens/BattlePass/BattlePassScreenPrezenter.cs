@@ -28,7 +28,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
             _screen.Initialize(_localizationSystem);
             _screen.SetupRewards(_userRankProvider);
             _screen.SetupRewardInfo(_userRankProvider.CurrentRank.Rewards.FirstOrDefault());
-            UpdateRank();
 
             _userRankProvider.OnExperienceChanded += UpdateRank;
             _screen.OnRewardSelected += SelectReward;

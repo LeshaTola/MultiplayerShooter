@@ -1,4 +1,5 @@
-﻿using App.Scripts.Modules.StateMachine.Services.InitializeService;
+﻿using App.Scripts.Features.SceneTransitions;
+using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
@@ -19,13 +20,15 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private readonly TimerProvider _timerProvider;
         private readonly HealthBarUI _healthBarUI;
         private readonly WeaponView _weaponView;
+        private readonly ISceneTransition _sceneTransition;
 
         public InitialState(PlayerProvider playerProvider,
             TimerProvider timerProvider,
             IInitializeService initializeService,
             PlayerController playerController,
             HealthBarUI healthBarUI,
-            WeaponView weaponView) 
+            WeaponView weaponView,
+            ISceneTransition sceneTransition) 
         {
             _playerProvider = playerProvider;
             _timerProvider = timerProvider;
@@ -33,6 +36,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _playerController = playerController;
             _healthBarUI = healthBarUI;
             _weaponView = weaponView;
+            _sceneTransition = sceneTransition;
         }
 
         public override async UniTask Enter()
@@ -58,6 +62,12 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private async void OnTimerExpired()
         {
             await StateMachine.ChangeState<EndGame>();
+        }
+
+        public override async UniTask Exit()
+        {
+            await base.Exit();
+            await _sceneTransition.PlayOffAsync();
         }
     }
 }
