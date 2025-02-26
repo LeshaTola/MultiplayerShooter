@@ -13,6 +13,7 @@ namespace App.Scripts.Features
     {
         public const string NAME_DATA = "playerName";
         public event Action OnConnectionFinished;
+        public event Action OnJoinedRoomEvent;
 
         private MapsProvider _mapsProvider;
 
@@ -54,6 +55,11 @@ namespace App.Scripts.Features
         {
             Debug.Log("Connected To Lobby");
             OnConnectionFinished?.Invoke();
+        }
+        
+        public override void OnJoinedRoom()
+        {
+            OnJoinedRoomEvent?.Invoke();
         }
 
         public void QuickGame()
