@@ -91,7 +91,7 @@ MonoBehaviour:
         (\u0432\u044B\u0441\u0442\u0440\u0435\u043B\u043E\u0432/c)"
     - Name: Item2
       Entry: 1
-      Data: 10
+      Data: 13
     - Name: 
       Entry: 8
       Data: 
@@ -120,7 +120,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0.001
+      Data: 0
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.LaserShootStrategy,
@@ -174,10 +174,10 @@ MonoBehaviour:
       Data: 
     - Name: _maxDistance
       Entry: 4
-      Data: 50
+      Data: 75
     - Name: _cooldown
       Entry: 4
-      Data: 0.1
+      Data: 0.07
     - Name: _laserTemplate
       Entry: 10
       Data: 0

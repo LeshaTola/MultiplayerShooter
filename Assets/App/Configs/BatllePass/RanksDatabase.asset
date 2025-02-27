@@ -102,7 +102,8 @@ MonoBehaviour:
   - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 4"
     Sprite: {fileID: 21300000, guid: 7256e51cd68ed4f4b8fd101304aad530, type: 3}
     ExpForRank: 14923
-    Rewards: []
+    Rewards:
+    - {fileID: 11400000, guid: 3cf10ad9efe4c3141a356d41460b71e3, type: 2}
   - Name: "\u0417\u043E\u043B\u043E\u0442\u043E 5"
     Sprite: {fileID: 21300000, guid: ba527425e142b4d4fb4d44ba28491336, type: 3}
     ExpForRank: 16283
