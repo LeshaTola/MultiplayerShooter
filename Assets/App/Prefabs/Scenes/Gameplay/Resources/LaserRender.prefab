@@ -173,4 +173,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLength: 0
+  _direction: {x: 0, y: 0, z: 0}
   _lineRenderer: {fileID: -4866515809856449695}
