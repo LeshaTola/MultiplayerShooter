@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
-  m_Name: Mine_Reward
+  m_Name: Molotov_Reward
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Mine_Reward
-  <Reward>k__BackingField: {fileID: 11400000, guid: 656cf1f690d89534095a73bb8ff4422c, type: 2}
+  <Id>k__BackingField: Molotov_Reward
+  <Reward>k__BackingField: {fileID: 11400000, guid: 3830d31b995edc14daa5e8085b963e43, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 0
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0
     Max: 0

@@ -68,7 +68,8 @@ MonoBehaviour:
   - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 2"
     Sprite: {fileID: 21300000, guid: d710bc82cb6a3f2418da68902a3e466c, type: 3}
     ExpForRank: 6832
-    Rewards: []
+    Rewards:
+    - {fileID: 11400000, guid: a4c60188b7988264393ca61fc66c05e8, type: 2}
   - Name: "\u0421\u0435\u0440\u0435\u0431\u0440\u043E 3"
     Sprite: {fileID: 21300000, guid: 1b173276b2a56ab478493c30ebf6e248, type: 3}
     ExpForRank: 7828
@@ -153,7 +154,8 @@ MonoBehaviour:
   - Name: "\u0414\u0430\u0439\u043C\u043E\u043D\u0434 5"
     Sprite: {fileID: 21300000, guid: 4118f0cf72fa476439264419ac020558, type: 3}
     ExpForRank: 32441
-    Rewards: []
+    Rewards:
+    - {fileID: 11400000, guid: 6a13200334b21ed46b84705b952da9e1, type: 2}
   - Name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430"
     Sprite: {fileID: 21300000, guid: 2c37951fdcef32c4ea953c2335cdb240, type: 3}
     ExpForRank: 34301

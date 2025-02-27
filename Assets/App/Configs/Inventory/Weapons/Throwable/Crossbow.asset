@@ -109,7 +109,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.ProjectilesShootingStrategy,
@@ -259,14 +259,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: Crossbow
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 1d6d12148a81a844b8170f6b97d20c74, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 47efe0af1bd68a94d9a5a6a06dc90d3d, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ca869e73b15d2b44aa9c74c59cce0417, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.25}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: c79740913fa415d4890639fad0bc808c, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 0ab1db19e0c7be647a7714f734700269, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: a5340d10420045740a0ed48aa8ae728f, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 3cd9bfcd8dbb11b49993c64beaf723f0, type: 3}
   <MaxAmmoCount>k__BackingField: 1
-  <ReloadCooldown>k__BackingField: 1
+  <ReloadCooldown>k__BackingField: 2

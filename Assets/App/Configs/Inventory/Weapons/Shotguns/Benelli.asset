@@ -263,7 +263,7 @@ MonoBehaviour:
   <ViewOffset>k__BackingField: {x: 0, y: 0.1, z: -0.25}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: 4d77e6afe98cf2648bb1651429f359ce, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: e456da3eb268e57449a59a077815aeba, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: d7b7a91426d358e4db7d2bb51e6bc88f, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 43d80d8a8f4ff9e4e978d1f631daf1e1, type: 3}
   <MaxAmmoCount>k__BackingField: 7
   <ReloadCooldown>k__BackingField: 2.2

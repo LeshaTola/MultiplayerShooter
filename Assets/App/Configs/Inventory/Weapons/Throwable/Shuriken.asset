@@ -139,7 +139,7 @@ MonoBehaviour:
       Data: 0.1
     - Name: <MinValue>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 0.3
     - Name: <Value>k__BackingField
       Entry: 4
       Data: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.3}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: 9b5272e602b46af4d898461176e4589c, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: b2993de8ef8829845b1a6d66b942b8c6, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: f4d7a772f28e50b47842822ff0ee01d1, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 0}
   <MaxAmmoCount>k__BackingField: 3
   <ReloadCooldown>k__BackingField: 0.3
