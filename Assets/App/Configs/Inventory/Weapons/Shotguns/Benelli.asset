@@ -182,23 +182,36 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <ShootEffects>k__BackingField
+      Entry: 7
+      Data: 6|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.ShootEffects.ShootEffect,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: <ShootingModeAlternative>k__BackingField
       Entry: 7
-      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
+      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.AutoShootingStrategy,
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
       Data: 0.2
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
-      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
+      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot.RaycastBuckshot,
         Assembly-CSharp
     - Name: Recoil
       Entry: 7
-      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+      Data: 9|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
       Data: 3
@@ -222,14 +235,14 @@ MonoBehaviour:
       Data: 
     - Name: WeaponEffects
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+      Data: 10|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 10|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
+      Data: 11|App.Scripts.Features.Inventory.Weapons.WeaponEffects.StandartWeaponEffect,
         Assembly-CSharp
     - Name: _damage
       Entry: 3
@@ -249,6 +262,19 @@ MonoBehaviour:
     - Name: _buckshotCount
       Entry: 3
       Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <ShootEffects>k__BackingField
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.ShootEffects.ShootEffect,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
     - Name: 
       Entry: 8
       Data: 

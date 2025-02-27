@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Features.Inventory.Weapons.ShootEffects;
 using App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies;
 using App.Scripts.Features.Inventory.Weapons.WeaponEffects;
@@ -31,6 +32,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
             
             var strategy = GetShootingMode(type);
             strategy.ShootStrategy  = GetShootStrategy(original.ShootStrategy);
+            strategy.ShootEffects = GetShootEffects(original.ShootEffects);
             
             strategy.Import(original);
             return strategy;
@@ -71,6 +73,21 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Factories
             foreach (var weaponEffect in effects)
             {
                 newEffects.Add(GetWeaponEffect(weaponEffect));
+            }
+            return newEffects;
+        }
+        
+        private ShootEffect GetShootEffect(Type type)
+        {
+            return (ShootEffect)_container.Instantiate(type);
+        }
+
+        private List<ShootEffect> GetShootEffects(List<ShootEffect> effects)
+        {
+            var newEffects = new List<ShootEffect>();
+            foreach (var shootEffect in effects)
+            {
+                newEffects.Add(GetShootEffect(shootEffect.GetType()));
             }
             return newEffects;
         }

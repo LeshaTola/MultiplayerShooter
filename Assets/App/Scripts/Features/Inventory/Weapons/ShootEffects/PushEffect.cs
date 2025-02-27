@@ -1,26 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
+namespace App.Scripts.Features.Inventory.Weapons.ShootEffects
 {
-    public class PushVeaponEffect : WeaponEffect
+    public class PushEffect:ShootEffect
     {
-        public override event Action<Vector3, float, bool> OnPlayerHit;
-        
         [SerializeField] private float _verticalPushForce;
         [SerializeField] private float _horizontalPushForce;
         
-        public override void Effect(List<(Vector3, GameObject)> hitValues)
+        public override void Effect()
         {
             var dir = -Weapon.transform.forward;
             var force = new Vector3(dir.x*_horizontalPushForce,dir.y*_verticalPushForce,dir.z*_horizontalPushForce);
             Weapon.Owner.AddForce(force);
         }
 
-        public override void Import(IWeaponEffect original)
+        public override void Update()
         {
-            var concrete = (PushVeaponEffect) original;
+        }
+
+        public override void Default()
+        {
+        }
+
+        public override void Import(ShootEffect original)
+        {
+            base.Import(original);
+            var concrete = (PushEffect) original;
+
             _verticalPushForce = concrete._verticalPushForce;
             _horizontalPushForce = concrete._horizontalPushForce;
         }

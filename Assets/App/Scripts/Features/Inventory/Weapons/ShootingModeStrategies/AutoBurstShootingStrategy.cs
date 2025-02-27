@@ -51,6 +51,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             ShootStrategy.Recoil.IsShooting = true;
 
             ShootStrategy.Shoot();
+            base.PerformAttack();
             Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
 
             Weapon.ChangeAmmoCount(-1);

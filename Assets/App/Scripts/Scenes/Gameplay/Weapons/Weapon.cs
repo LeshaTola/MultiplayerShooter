@@ -87,6 +87,17 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 return;    
             }
+
+            foreach (var effect in Config.ShootingMode.ShootEffects)
+            {
+                effect.Update();
+            }
+
+            foreach (var effect in Config.ShootingModeAlternative.ShootEffects)
+            {
+                effect.Update();
+            }
+            
             Config.ShootingMode.ShootStrategy.Recoil.Update();
             Config.ShootingModeAlternative.ShootStrategy.Recoil.Update();
         }
@@ -116,9 +127,17 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             if (!isAlternative)
             {
                 Config.ShootingMode.GuaranteedCancelAttack();
+                foreach (var effect in Config.ShootingMode.ShootEffects)
+                {
+                    effect.Default();
+                }
                 return;
             }
             Config.ShootingModeAlternative.GuaranteedCancelAttack();
+            foreach (var effect in Config.ShootingModeAlternative.ShootEffects)
+            {
+                effect.Default();
+            }
         }
 
         private void PerformAttack()

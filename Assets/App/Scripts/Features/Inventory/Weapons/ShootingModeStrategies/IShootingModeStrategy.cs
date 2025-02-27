@@ -1,4 +1,6 @@
-﻿using App.Scripts.Features.Inventory.Weapons.ShootStrategies;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Inventory.Weapons.ShootEffects;
+using App.Scripts.Features.Inventory.Weapons.ShootStrategies;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using UnityEngine;
 
@@ -9,6 +11,8 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         public float AttackCooldown { get; }
 
         public IShootStrategy ShootStrategy { get; set; }
+        
+        public List<ShootEffect> ShootEffects {get;set;}
 
         public bool IsShooting { get;}
 
@@ -27,9 +31,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
     public abstract class ShootingMode : IShootingModeStrategy
     {
-        [field: SerializeField] public float AttackCooldown { get; private set; }
-
+        [field: SerializeField] public float AttackCooldown { get; set; }
         [field: SerializeField] public IShootStrategy ShootStrategy { get; set; }
+        [field: SerializeField] public List<ShootEffect> ShootEffects {get;set;}
 
         protected Weapon Weapon;
         
@@ -37,6 +41,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void Initialize(Weapon weapon)
         {
+            foreach (var shootEffect in ShootEffects)
+            {
+                shootEffect.Initialize(weapon, this);
+            }
             ShootStrategy.Initialize(weapon);
             Weapon = weapon;
         }
@@ -49,6 +57,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void PerformAttack()
         {
+            foreach (var shootEffect in ShootEffects)
+            {
+                shootEffect.Effect();
+            }
         }
 
         public virtual void CancelAttack()
@@ -67,6 +79,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         {
             AttackCooldown = original.AttackCooldown;
             ShootStrategy.Import(original.ShootStrategy);
+            for (int i = 0; i < ShootEffects.Count; i++)
+            {
+                ShootEffects[i].Import(original.ShootEffects[i]);
+            }
         }
     }
 }

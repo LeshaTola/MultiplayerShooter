@@ -7,6 +7,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
     {
         public override void PerformAttack()
         {
+            base.PerformAttack();
             ShootStrategy.Shoot();
             Weapon.Animator.AttackAnimation(AttackCooldown);
             Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();

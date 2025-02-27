@@ -28,6 +28,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
                 ShootStrategy.Recoil.IsShooting = false;
                 return;
             }
+            base.PerformAttack();
 
             ShootStrategy.Shoot();
             Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
