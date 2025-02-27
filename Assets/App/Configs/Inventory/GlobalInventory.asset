@@ -36,6 +36,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 06dd0eb33c0eba543b3a31e3b6cf7485, type: 2}
     - {fileID: 11400000, guid: 294e413ba9dbaeb4e92b33edeeec7f85, type: 2}
     - {fileID: 11400000, guid: 29cda4439d0679f4e9326ef7457d12e6, type: 2}
+    - {fileID: 11400000, guid: 656cf1f690d89534095a73bb8ff4422c, type: 2}
     - {fileID: 11400000, guid: f0f78cbb0141f254f912ff7474bb000f, type: 2}
     - {fileID: 11400000, guid: 9f08cfb074ed61a4ba0c9ee84c2896ea, type: 2}
     - {fileID: 11400000, guid: 3aa16a3e34f78a1448c600ef0bc6b872, type: 2}
@@ -145,7 +146,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 10
       Data: 16
@@ -158,6 +159,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 19
+    - Name: 
+      Entry: 10
+      Data: 20
     - Name: 
       Entry: 13
       Data: 
@@ -182,9 +186,6 @@ MonoBehaviour:
       Data: 5
     - Name: 
       Entry: 10
-      Data: 20
-    - Name: 
-      Entry: 10
       Data: 21
     - Name: 
       Entry: 10
@@ -195,6 +196,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 24
+    - Name: 
+      Entry: 10
+      Data: 25
     - Name: 
       Entry: 13
       Data: 
@@ -219,13 +223,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 25
-    - Name: 
-      Entry: 10
       Data: 26
     - Name: 
       Entry: 10
       Data: 27
+    - Name: 
+      Entry: 10
+      Data: 28
     - Name: 
       Entry: 13
       Data: 
@@ -270,6 +274,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de58866e12326cd45b2840571975be4c, type: 2}
   - {fileID: 11400000, guid: 377d799589b760c40aa324f35e787da9, type: 2}
   - {fileID: 11400000, guid: 001f7ba04ac176548acb6797275d3445, type: 2}
+  - {fileID: 11400000, guid: 656cf1f690d89534095a73bb8ff4422c, type: 2}
   <Equipment>k__BackingField:
   - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}

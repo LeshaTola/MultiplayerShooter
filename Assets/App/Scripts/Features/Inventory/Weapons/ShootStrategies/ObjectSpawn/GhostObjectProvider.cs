@@ -47,15 +47,28 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn
 
             private void SetGhostMaterial(GameObject obj)
             {
-                //if (_ghostMaterial == null) return;
+                if (_ghostMaterial == null) return;
         
                 var renderers = obj.GetComponentsInChildren<Renderer>();
                 var propertyBlock = new MaterialPropertyBlock();
+                Color ghostColor = new Color(1, 1, 1, 0.2f); // Полупрозрачный белый
 
                 foreach (var renderer in renderers)
                 {
+                    if (renderer == null) continue;
+
                     renderer.GetPropertyBlock(propertyBlock);
-                    propertyBlock.SetColor("_BaseColor", new Color(1, 1, 1, 0.5f));
+        
+                    // Проверяем, какой параметр шейдер поддерживает (_BaseColor или _Color)
+                    if (renderer.sharedMaterial.HasProperty("_BaseColor"))
+                    {
+                        propertyBlock.SetColor("_BaseColor", ghostColor);
+                    }
+                    else if (renderer.sharedMaterial.HasProperty("_Color"))
+                    {
+                        propertyBlock.SetColor("_Color", ghostColor);
+                    }
+
                     renderer.SetPropertyBlock(propertyBlock);
                 }
             }

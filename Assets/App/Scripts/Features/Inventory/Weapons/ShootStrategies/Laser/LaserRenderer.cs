@@ -1,11 +1,47 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
 {
     public class LaserRenderer : MonoBehaviourPun
     {
+        [SerializeField] private float _maxLength;
+        [SerializeField] private Vector3 _direction;
+        
         [SerializeField] private LineRenderer _lineRenderer;
+        private Vector3 _targetPosition;
+
+
+        private void Start()
+        {
+            if (_maxLength > 0)
+            {
+                Vector3 worldDirection = transform.TransformDirection(_direction);
+                _targetPosition = transform.position + worldDirection * _maxLength;
+                if (Physics.Raycast(transform.position, worldDirection, out RaycastHit hit, _maxLength))
+                {
+                    _targetPosition = hit.point;
+                }
+
+                Initialize(transform.position , _targetPosition);
+            }
+        }
+
+        public void RPCSetParent(PhotonView target)
+        {
+            photonView.RPC("SetParent", RpcTarget.AllBuffered, target.ViewID);
+        }
+        
+        [PunRPC]
+        void SetParent(int parentViewID)
+        {
+            PhotonView parentView = PhotonView.Find(parentViewID);
+            if (parentView != null)
+            {
+                transform.SetParent(parentView.transform);
+            }
+        }
         
         public void SetLengthRPC(Vector3 endPoint)
         {

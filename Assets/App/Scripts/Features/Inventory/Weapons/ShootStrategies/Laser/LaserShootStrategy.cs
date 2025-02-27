@@ -40,11 +40,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
             if (!_laser)
             {
                 _laser = PhotonNetwork
-                    .Instantiate(_laserTemplate.name, Weapon.transform.position, Weapon.transform.rotation)
+                    .Instantiate(_laserTemplate.name, Weapon.NextShootPoint(), Weapon.transform.rotation)
                     .GetComponent<LaserRenderer>();
                 
-                _laser.transform.SetParent(Weapon.transform);
-                _laser.transform.position = Weapon.NextShootPoint();
+                _laser.RPCSetParent(Weapon.photonView);
                 _laser.InitializeRPC(Weapon.ShootPointProvider.ShotPoint, GetRaycastHit().Item2);
             }
             else
@@ -91,11 +90,13 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
             _cooldown = concrete._cooldown;
             _laserTemplate = concrete._laserTemplate;
         }
-
-
+        
         private void ShootInternal()
         {
+            Weapon.Animator.AttackAnimation(_cooldown);
+            Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
             Weapon.ChangeAmmoCount(-1);
+            
             Recoil.Add();
             var hitData = GetRaycastHit();
 

@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7591596ec0794fe293de16c30a86e4d4, type: 3}
+  m_Name: LandMine
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 4550930450135223814, guid: b660e438a23dc3441859937d626b8623, type: 3}
+    - {fileID: 4509921449572555719, guid: 614b5521b2c5eb84993fe17ece0914a6, type: 3}
+    - {fileID: 1645694598745779037, guid: d885339781b415b44969c047dba7eb47, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <Stats>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[System.ValueTuple`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0410\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u041E\u0434\u0438\u043D\u043E\u0447\u043D\u044B\u0439 \u0432\u044B\u0442\u0441\u0440\u0435\u043B"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0423\u0440\u043E\u043D"
+    - Name: Item2
+      Entry: 1
+      Data: 32
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0412\u0440\u0435\u043C\u044F \u043C\u0435\u0436\u0434\u0443 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
+    - Name: Item2
+      Entry: 1
+      Data: 0.4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0410\u043B\u044C\u0442\u0435\u0440\u043D\u0430\u0442\u0438\u0432\u0430\u043D\u044F
+        \u0430\u0442\u0430\u043A\u0430"
+    - Name: Item2
+      Entry: 1
+      Data: "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F"
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: System.ValueTuple`2[[System.String, mscorlib],[System.String, mscorlib]],
+        mscorlib
+    - Name: Item1
+      Entry: 1
+      Data: "\u0412\u0440\u0435\u043C\u044F \u043C\u0435\u0436\u0434\u0443 \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430\u043C\u0438"
+    - Name: Item2
+      Entry: 1
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <ShootingMode>k__BackingField
+      Entry: 7
+      Data: 1|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.SingleShotStrategy,
+        Assembly-CSharp
+    - Name: <AttackCooldown>k__BackingField
+      Entry: 4
+      Data: 0.4
+    - Name: <ShootStrategy>k__BackingField
+      Entry: 7
+      Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.ObjectSpawn.ObjectSpawnStrategy,
+        Assembly-CSharp
+    - Name: Recoil
+      Entry: 7
+      Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+    - Name: <Radius>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Decrement>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Increment>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <MinValue>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Value>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <IsShooting>k__BackingField
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: WeaponEffects
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 5|App.Scripts.Features.Inventory.Weapons.WeaponEffects.SpawnExplosionEffect,
+        Assembly-CSharp
+    - Name: _damage
+      Entry: 3
+      Data: 100
+    - Name: _radius
+      Entry: 4
+      Data: 2.5
+    - Name: _template
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 200
+    - Name: _visualizator
+      Entry: 10
+      Data: 1
+    - Name: _prefab
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <ShootingModeAlternative>k__BackingField
+      Entry: 7
+      Data: 6|App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies.ToggleShotStrategy,
+        Assembly-CSharp
+    - Name: <AttackCooldown>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <ShootStrategy>k__BackingField
+      Entry: 7
+      Data: 7|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Zoom.ZoomStrategy,
+        Assembly-CSharp
+    - Name: Recoil
+      Entry: 7
+      Data: 8|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
+    - Name: <Radius>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Decrement>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Increment>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <MinValue>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <Value>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <IsShooting>k__BackingField
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: WeaponEffects
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[App.Scripts.Features.Inventory.Weapons.WeaponEffects.IWeaponEffect,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _maxDistance
+      Entry: 4
+      Data: 0
+    - Name: _zoomFOV
+      Entry: 4
+      Data: 32
+    - Name: _animationDuration
+      Entry: 4
+      Data: 0.3
+    - Name: _zoomSensivity
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  <Id>k__BackingField: LandMine
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 8942fa983f3063e438b5837257d7ceb4, type: 3}
+  _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
+  <Rarity>k__BackingField: Epic
+  <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 16c0be6630215f442bdc48dae5ab51cf, type: 3}
+  <ViewOffset>k__BackingField: {x: 0, y: 0.1, z: -0.5}
+  <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
+  <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: 6c545b0f3157c5e408f4d90155148574, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 78cce3e679372904ba09f522634231f1, type: 3}
+  <MaxAmmoCount>k__BackingField: 6
+  <ReloadCooldown>k__BackingField: 2
