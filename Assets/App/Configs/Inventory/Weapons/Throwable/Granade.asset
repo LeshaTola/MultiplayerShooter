@@ -109,7 +109,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: <AttackCooldown>k__BackingField
       Entry: 4
-      Data: 0
+      Data: 0.02
     - Name: <ShootStrategy>k__BackingField
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.ProjectilesShootingStrategy,
@@ -295,7 +295,7 @@ MonoBehaviour:
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.6}
   <ViewRotationOffset>k__BackingField: {x: 0, y: -25, z: 0}
   <ViewScaleMultiplier>k__BackingField: {x: 1.8, y: 1.8, z: 1.8}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
-  <ReloadSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: 669e8fc9893d23b44bb51e963e0beeb6, type: 3}
+  <ReloadSound>k__BackingField: {fileID: 0}
   <MaxAmmoCount>k__BackingField: 1
   <ReloadCooldown>k__BackingField: 1.8
