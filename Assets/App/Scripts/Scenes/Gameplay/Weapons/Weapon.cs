@@ -192,7 +192,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public Vector3 NextShootPoint()
         {
-            return ShootPointProvider.GetShootPoint();
+            return ShootPointProvider.NextShootPoint();
         }
 
         public void SetupPlayer(Player.Player player)

@@ -4,12 +4,11 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
 {
     public class LoopingPointProvider : ShootPointStrategy
     {
-        public override Vector3 GetShootPoint()
+        public override Vector3 NextShootPoint()
         {
             if (Points.Count == 0)
                 return Vector3.zero; 
 
-            ShotPoint = Points[CurrentIndex].position;
             CurrentIndex = (CurrentIndex + 1) % Points.Count; 
 
             return ShotPoint;

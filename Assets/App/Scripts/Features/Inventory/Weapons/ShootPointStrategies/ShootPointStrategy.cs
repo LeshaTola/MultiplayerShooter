@@ -10,15 +10,15 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
 
         protected List<Transform> Points;
         protected int CurrentIndex;
-        
-        public Vector3 ShotPoint { get; protected set; }
+
+        public Vector3 ShotPoint => Points[CurrentIndex].position;
 
         public virtual void Initialize(List<Transform> points)
         {
             Points = points;
         }
         
-        public abstract Vector3 GetShootPoint();
+        public abstract Vector3 NextShootPoint();
 
         public virtual void Reset()
         {

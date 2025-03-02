@@ -45,6 +45,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0371d1a043a813c41a7554f561950d45, type: 2}
     - {fileID: 11400000, guid: 5419cb219a3c2464cb51d5706a3f878f, type: 2}
     - {fileID: 11400000, guid: 377d799589b760c40aa324f35e787da9, type: 2}
+    - {fileID: 11400000, guid: f4ec3451627bc5846a3f8dc2b7dd7bbb, type: 2}
     - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -224,7 +225,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 10
       Data: 27
@@ -234,6 +235,9 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 29
+    - Name: 
+      Entry: 10
+      Data: 30
     - Name: 
       Entry: 13
       Data: 
@@ -280,6 +284,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 001f7ba04ac176548acb6797275d3445, type: 2}
   - {fileID: 11400000, guid: 656cf1f690d89534095a73bb8ff4422c, type: 2}
   - {fileID: 11400000, guid: 0371d1a043a813c41a7554f561950d45, type: 2}
+  - {fileID: 11400000, guid: f4ec3451627bc5846a3f8dc2b7dd7bbb, type: 2}
   <Equipment>k__BackingField:
   - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}

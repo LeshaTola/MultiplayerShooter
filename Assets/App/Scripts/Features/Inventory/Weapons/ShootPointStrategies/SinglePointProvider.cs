@@ -13,11 +13,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
             _pointIndex = Mathf.Clamp(_pointIndex, 0, points.Count - 1);
         }
 
-        public override Vector3 GetShootPoint()
+        public override Vector3 NextShootPoint()
         {
             if (Points.Count == 0)
                 return Vector3.zero;
-            ShotPoint = Points[_pointIndex].position; 
             return ShotPoint;
         }
 

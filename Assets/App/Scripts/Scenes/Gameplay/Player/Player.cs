@@ -113,6 +113,27 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 PlayerAudioProvider.PlayJumpingSound();
             }
         }
+        
+        public void JumpToTarget(Vector3 targetPoint, float trajectoryHeight)
+        {
+            /*if (!_isGrounded)
+                PlayerAudioProvider.PlayJumpingSound();
+                */
+            Freese();
+
+            Vector3 jumpVelocity = CalculateJumpVelocity(transform.position, targetPoint, trajectoryHeight);
+    
+            _velocity = jumpVelocity.y;
+            _moveVelocity += new Vector3(jumpVelocity.x, 0, jumpVelocity.z);
+
+        }
+
+        public void Freese()
+        {
+            _moveDirection = Vector3.zero;
+            _moveVelocity = Vector3.zero;
+            _velocity = 0f;
+        }
 
         public void Move(Vector2 direction)
         {
@@ -255,5 +276,23 @@ namespace App.Scripts.Scenes.Gameplay.Player
         {
             return GRAVITY * PlayerConfig.JumpFallSpeed * Time.deltaTime;
         }
+        
+        private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+        {
+            float gravity = GRAVITY * PlayerConfig.JumpFallSpeed;
+            float displacementY = endPoint.y - startPoint.y;
+            Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+    
+            float timeUp = Mathf.Sqrt(-2 * trajectoryHeight / gravity);
+            float timeDown = Mathf.Sqrt(2 * Mathf.Max(0, displacementY - trajectoryHeight) / -gravity);
+            float totalTime = timeUp + timeDown;
+
+            Vector3 velocityXZ = displacementXZ / totalTime;
+
+            return velocityXZ + velocityY;
+        }
+
     }
 }

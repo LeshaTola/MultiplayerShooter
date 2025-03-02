@@ -4,20 +4,19 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootPointStrategies
 {
     public class RandomPointProvider : ShootPointStrategy
     {
-        private System.Random random;
+        private readonly System.Random random;
 
         public RandomPointProvider()
         {
             random = new System.Random();
         }
 
-        public override Vector3 GetShootPoint()
+        public override Vector3 NextShootPoint()
         {
             if (Points.Count == 0)
                 return Vector3.zero; // или выбрасывать исключение
 
             int randomIndex = random.Next(Points.Count);
-            ShotPoint = Points[randomIndex].position;
             return ShotPoint;
         }
     }
