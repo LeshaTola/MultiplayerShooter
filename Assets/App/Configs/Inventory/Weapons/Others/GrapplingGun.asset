@@ -169,6 +169,24 @@ MonoBehaviour:
     - Name: _overshootYAxis
       Entry: 4
       Data: 1
+    - Name: _minMaxSpeed
+      Entry: 7
+      Data: App.Scripts.Modules.MinMaxValue.MinMaxFloat, Assembly-CSharp
+    - Name: Min
+      Entry: 4
+      Data: 5
+    - Name: Max
+      Entry: 4
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _speedMultiplier
+      Entry: 4
+      Data: 5
+    - Name: _offMultiplier
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 

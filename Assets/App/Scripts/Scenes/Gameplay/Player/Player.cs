@@ -9,6 +9,12 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
+    public enum PlayerState
+    {
+        Normal,
+        Grappling
+    }
+    
     [RequireComponent(typeof(CharacterController))]
     public class Player : MonoBehaviourPun, IControllable
     {
@@ -16,8 +22,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         [SerializeField] private PlayerConfig _playerConfig;
 
-        [Space]
-        [SerializeField] private CharacterController _controller;
+        [field: Space] [field: SerializeField] public CharacterController Controller { get; private set; }
 
         [Space]
         [SerializeField] private Transform _checkGroundPivot;
@@ -43,6 +48,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private float _verticalRotation;
         private float _targetHorizontalOffset;
+        public PlayerState PlayerState { get; set; } = PlayerState.Normal;
 
         public string NickName { get; private set; }
 
@@ -69,14 +75,22 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void Update()
         {
+            switch (PlayerState)
+            {
+                case PlayerState.Normal:
+                    MoveInternal(_moveDirection);
+                    DoGravity();
+
+                    break;
+                case PlayerState.Grappling:
+                    break;
+            }
+            
             _isGrounded = IsLanded();
             if (_isGrounded && _velocity < 0)
             {
                 _velocity = -5f;
             }
-            
-            MoveInternal(_moveDirection);
-            DoGravity();
             MoveCamera();
         }
 
@@ -119,12 +133,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
             /*if (!_isGrounded)
                 PlayerAudioProvider.PlayJumpingSound();
                 */
-            Freese();
-
             Vector3 jumpVelocity = CalculateJumpVelocity(transform.position, targetPoint, trajectoryHeight);
-    
+            
             _velocity = jumpVelocity.y;
-            _moveVelocity += new Vector3(jumpVelocity.x, 0, jumpVelocity.z);
+            _moveDirection = 
+            _moveVelocity = new Vector3(jumpVelocity.x, 0, jumpVelocity.z);
 
         }
 
@@ -195,17 +208,18 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Teleport(Vector3 position)
         {
-            _controller.enabled = false;
+            Controller.enabled = false;
             transform.position = position;
-            _controller.enabled = true;
+            Controller.enabled = true;
         }
 
         private void MoveInternal(Vector3 direction)
         {
-            if (_moveVelocity.magnitude > PlayerConfig.Speed)
+            if (_moveVelocity.magnitude >= PlayerConfig.Speed)
             {
                 var dampingForce = direction * PlayerConfig.Speed;
                 var nextVelocity = _moveVelocity + dampingForce * Time.deltaTime;
+                 nextVelocity -= nextVelocity.normalized * 3f * Time.deltaTime;
                 if (nextVelocity.magnitude < _moveVelocity.magnitude)
                 {
                     _moveVelocity = nextVelocity;
@@ -223,7 +237,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
                     _moveVelocity + direction * PlayerConfig.Speed,
                     ref _moveVelocityIdk, 0.1f);
             
-            _controller.Move(Time.deltaTime * _currentMoveVelocity);
+            Controller.Move(Time.deltaTime * _currentMoveVelocity);
             
             PlayWalkingSound();
         }
@@ -269,7 +283,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private void DoGravity()
         {
             _velocity += CalculateGravity();
-            _controller.Move(Vector3.up * (_velocity * Time.deltaTime));
+            Controller.Move(Vector3.up * (_velocity * Time.deltaTime));
         }
 
         private float CalculateGravity()
