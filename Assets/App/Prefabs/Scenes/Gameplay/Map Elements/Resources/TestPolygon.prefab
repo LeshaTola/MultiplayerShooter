@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8877295643894555039}
   - component: {fileID: 5145730460252761134}
   - component: {fileID: 5329339393759589513}
-  - component: {fileID: 4727045100418590456}
   - component: {fileID: 3047917608904172630}
   - component: {fileID: 2360174130567914395}
   m_Layer: 5
@@ -87,21 +86,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &4727045100418590456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540183841280311476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c88238c5724ba45b25ea59e255b113, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slider: {fileID: 0}
-  _text: {fileID: 0}
-  _health: {fileID: 0}
 --- !u!114 &3047917608904172630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +663,6 @@ GameObject:
   - component: {fileID: 1311524147988045465}
   - component: {fileID: 5894936219499888847}
   - component: {fileID: 4690667171388268060}
-  - component: {fileID: 532545769602639317}
   - component: {fileID: 5374953539072070516}
   - component: {fileID: 304455740947335805}
   m_Layer: 5
@@ -755,21 +738,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &532545769602639317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8098980167851852061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c88238c5724ba45b25ea59e255b113, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slider: {fileID: 0}
-  _text: {fileID: 0}
-  _health: {fileID: 0}
 --- !u!114 &5374953539072070516
 MonoBehaviour:
   m_ObjectHideFlags: 0

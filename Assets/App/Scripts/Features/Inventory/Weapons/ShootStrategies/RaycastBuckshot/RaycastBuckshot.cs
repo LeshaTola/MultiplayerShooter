@@ -29,7 +29,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
                 {
                     // Weapon.NetworkSetLine(shootPoint,shootPoint + Camera.transform.forward * 100);
                     // Weapon.NetworkFadeOutLine();
-                    return;
+                    continue;
 
                 }
                 data.Add((hit.point, hit.collider.gameObject));

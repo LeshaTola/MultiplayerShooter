@@ -19,11 +19,20 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         {
             if (_isActive)
             {
-                _cts.Cancel();
-                Weapon.FadeOutLine();
                 _isActive = false;
-                return;
+                if (_hitPoint != default)
+                {
+                    _cts.Cancel();
+                    Weapon.FadeOutLine();
+                    _hitPoint = default;
+                    return;
+                }
+                else
+                {
+                    return;
+                }
             }
+            _isActive = true;
 
             if (hitValues.Count < 1)
             {
@@ -32,7 +41,6 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
             _hitPoint = hitValues[0].Item1;
             Weapon.NetworkSetLine(Weapon.ShootPointProvider.ShotPoint, _hitPoint);
-            _isActive = true;
             _cts = new CancellationTokenSource();
             LateUpdateLoop(_cts.Token).Forget();
         }

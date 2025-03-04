@@ -183,10 +183,13 @@ MonoBehaviour:
       Data: 
     - Name: _speedMultiplier
       Entry: 4
-      Data: 5
+      Data: 3
+    - Name: _targetFovMultiplier
+      Entry: 4
+      Data: 0.75
     - Name: _offMultiplier
       Entry: 4
-      Data: 1
+      Data: 0.5
     - Name: 
       Entry: 8
       Data: 

@@ -215,17 +215,19 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void MoveInternal(Vector3 direction)
         {
-            if (_moveVelocity.magnitude >= PlayerConfig.Speed)
+            if (_moveVelocity.magnitude > PlayerConfig.Speed)
             {
                 var dampingForce = direction * PlayerConfig.Speed;
                 var nextVelocity = _moveVelocity + dampingForce * Time.deltaTime;
-                 nextVelocity -= nextVelocity.normalized * 3f * Time.deltaTime;
+                 nextVelocity -= nextVelocity * Time.deltaTime;
                 if (nextVelocity.magnitude < _moveVelocity.magnitude)
                 {
                     _moveVelocity = nextVelocity;
                 }
-                
-                _moveVelocity = Vector3.Lerp(_moveVelocity, Vector3.zero, Time.deltaTime);
+                if (_moveVelocity.magnitude <= PlayerConfig.Speed)
+                {
+                    _moveVelocity = Vector3.zero;
+                }
             }
             else
             {
