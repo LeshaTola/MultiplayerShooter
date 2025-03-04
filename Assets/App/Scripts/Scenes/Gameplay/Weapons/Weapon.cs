@@ -214,6 +214,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         {
             StartCoroutine(ReloadCooldown());
         }
+        
 
         private IEnumerator AttackCooldown(float cooldown)
         {

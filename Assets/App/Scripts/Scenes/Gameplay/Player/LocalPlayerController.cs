@@ -14,6 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private Player _player;
         [SerializeField] private HealthBarUI _healthBarUI;
         [SerializeField] private WeaponProvider _weaponProvider;
+        [SerializeField] private GameObject _view;
 
         public void Start()
         {
@@ -28,6 +29,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
                     ChangeLayerRecursively.SetLayerRecursively(weapon.transform, "Weapon");
                 }
                 _healthBarUI.gameObject.SetActive(false);
+                _view.gameObject.SetActive(false);
                 return;
             }
 			
