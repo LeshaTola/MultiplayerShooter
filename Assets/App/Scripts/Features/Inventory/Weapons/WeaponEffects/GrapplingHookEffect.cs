@@ -6,6 +6,9 @@ using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Player;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
@@ -20,6 +23,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         [SerializeField] private MinMaxFloat _minMaxSpeed;
         [SerializeField] private float _speedMultiplier;
         [SerializeField, Range(0.4f,2f)] private float _targetFovMultiplier;
+        [SerializeField] private float _fovChangeDuration = 0.3f;
         [SerializeField] private float _offMultiplier;
 
         private readonly float _defaultFov;
@@ -30,6 +34,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         private float _speed;
         private Vector3 _direction;
         private bool _isActive;
+        private Tween _fovTween;
 
         public GrapplingHookEffect(CameraProvider cameraProvider)
         {
@@ -93,6 +98,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             _speedMultiplier = concrete._speedMultiplier;
             _offMultiplier = concrete._offMultiplier;
             _targetFovMultiplier = concrete._targetFovMultiplier;
+            _fovChangeDuration = concrete._fovChangeDuration;
         }
 
         private void StartGrappling(List<(Vector3, GameObject)> hitValues)
@@ -100,8 +106,14 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             Weapon.Owner.PlayerState = PlayerState.Grappling;
             Weapon.Owner.Freese();
             _hitPoint = hitValues[0].Item1;
-            
-            _playerCamera.m_Lens.FieldOfView = _defaultFov/ _targetFovMultiplier;
+
+            _fovTween?.Kill();
+            _fovTween = DOTween.To(
+                () => _playerCamera.m_Lens.FieldOfView,
+                x => _playerCamera.m_Lens.FieldOfView = x,
+                _defaultFov / _targetFovMultiplier,
+                _fovChangeDuration
+            );
 
             _cts = new CancellationTokenSource();
             UpdateLoop(_cts.Token).Forget();
@@ -109,7 +121,14 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
         private void CancelGrappling()
         {
-            _playerCamera.m_Lens.FieldOfView = _defaultFov;
+            _fovTween?.Kill();
+            _fovTween = DOTween.To(
+                () => _playerCamera.m_Lens.FieldOfView,
+                x => _playerCamera.m_Lens.FieldOfView = x,
+                _defaultFov,
+                _fovChangeDuration
+            );
+
             _cts.Cancel();
             _hitPoint = default;
             Weapon.Owner.PlayerState = PlayerState.Normal;

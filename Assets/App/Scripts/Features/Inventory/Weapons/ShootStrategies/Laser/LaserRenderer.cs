@@ -1,5 +1,4 @@
-﻿using System;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
@@ -8,8 +7,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
     {
         [SerializeField] private float _maxLength;
         [SerializeField] private Vector3 _direction;
-        
+
         [SerializeField] private LineRenderer _lineRenderer;
+        [SerializeField] private BoxCollider _collider;
         private Vector3 _targetPosition;
 
 
@@ -24,7 +24,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
                     _targetPosition = hit.point;
                 }
 
-                Initialize(transform.position , _targetPosition);
+                Initialize(transform.position, _targetPosition);
             }
         }
 
@@ -32,9 +32,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
         {
             photonView.RPC("SetParent", RpcTarget.AllBuffered, target.ViewID);
         }
-        
+
         [PunRPC]
-        void SetParent(int parentViewID)
+        private void SetParent(int parentViewID)
         {
             PhotonView parentView = PhotonView.Find(parentViewID);
             if (parentView != null)
@@ -42,29 +42,34 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
                 transform.SetParent(parentView.transform);
             }
         }
-        
+
         public void SetLengthRPC(Vector3 endPoint)
         {
             photonView.RPC("SetLength", RpcTarget.All, endPoint);
         }
+
         public void InitializeRPC(Vector3 startPoint, Vector3 endPoint)
         {
             photonView.RPC("Initialize", RpcTarget.AllBuffered, startPoint, endPoint);
         }
+
         public void ShowRPC()
         {
             photonView.RPC("Show", RpcTarget.All);
         }
+
         public void HideRPC()
         {
             photonView.RPC("Hide", RpcTarget.All);
         }
-        
+
         [PunRPC]
         public void SetLength(Vector3 endPoint)
         {
             Vector3 localEndPoint = transform.InverseTransformPoint(endPoint);
-            _lineRenderer.SetPosition(1, localEndPoint);  
+            _lineRenderer.SetPosition(1, localEndPoint);
+
+            UpdateCollider();
         }
 
         [PunRPC]
@@ -74,7 +79,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
             Vector3 localEndPoint = transform.InverseTransformPoint(endPoint);
             _lineRenderer.SetPosition(0, localStartPoint);
             _lineRenderer.SetPosition(1, localEndPoint);
-            
+            UpdateCollider();
         }
 
         [PunRPC]
@@ -87,6 +92,22 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
         public void Hide()
         {
             gameObject.SetActive(false);
+        }
+
+        private void UpdateCollider()
+        {
+            if (!_collider)
+            {
+                return;
+            }
+
+            Vector3 startPos = _lineRenderer.GetPosition(0);
+            Vector3 endPos = _lineRenderer.GetPosition(1);
+            Vector3 midPoint = (startPos + endPos) / 2f;
+            float length = Vector3.Distance(startPos, endPos);
+
+            _collider.center = midPoint;
+            _collider.size = new Vector3(0.1f,length, 0.1f);
         }
     }
 }

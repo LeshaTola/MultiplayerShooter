@@ -187,6 +187,9 @@ MonoBehaviour:
     - Name: _targetFovMultiplier
       Entry: 4
       Data: 0.75
+    - Name: _fovChangeDuration
+      Entry: 4
+      Data: 0.15
     - Name: _offMultiplier
       Entry: 4
       Data: 0.5
