@@ -288,7 +288,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: LandMine
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 8942fa983f3063e438b5837257d7ceb4, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 69f61c8d5b6205a41a3eff2a246902d7, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 16c0be6630215f442bdc48dae5ab51cf, type: 3}
