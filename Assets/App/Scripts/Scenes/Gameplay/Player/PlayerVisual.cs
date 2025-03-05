@@ -8,8 +8,16 @@ namespace App.Scripts.Scenes.Gameplay.Player
 {
     public class PlayerVisual : MonoBehaviourPun
     {
+        private const string WALK_X = "WalkingX";
+        private const string WALK_Y = "WalkingY";
+        private const string JUMP_TRIGGER = "Jump";
+        private const string LAND_TRIGGER = "Landing";
+        private const string SHOOT_TRIGGER = "Shot";
+        
         [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private GlobalInventory _globalInventory;
+        [SerializeField] private Animator _animator;
+        private Vector3 _animationDirection;
 
         public void RPCSetImortal(bool imortable)
         {
@@ -38,6 +46,27 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 return;
             }
             _meshRenderer.material = skinConfig.Material;
+        }
+
+        public void MoveAnimation(Vector3 direction)
+        {
+            _animationDirection = Vector3.Lerp(_animationDirection, direction, Time.deltaTime * 5);
+            _animator.SetFloat(WALK_X, Mathf.Clamp(_animationDirection.x,-1, 1));
+            _animator.SetFloat(WALK_Y, Mathf.Clamp(_animationDirection.z,-1, 1));
+        }
+
+        public void JumpAnimation()
+        {
+            _animator.SetTrigger(JUMP_TRIGGER);
+        }
+        public void LandAnimation()
+        {
+            _animator.SetTrigger(LAND_TRIGGER);
+        }
+
+        public void ShootAnimation()
+        {
+            _animator.SetTrigger(SHOOT_TRIGGER);
         }
     }
 }

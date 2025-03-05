@@ -2249,6 +2249,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7285471341643666016, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7285471341643666016, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
     - target: {fileID: 8058743405672477868, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_Name
       value: Player

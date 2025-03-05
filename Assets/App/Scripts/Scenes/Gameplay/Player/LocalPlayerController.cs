@@ -29,7 +29,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
                     ChangeLayerRecursively.SetLayerRecursively(weapon.transform, "Weapon");
                 }
                 _healthBarUI.gameObject.SetActive(false);
-                _view.gameObject.SetActive(false);
+                //_view.gameObject.SetActive(false);
                 return;
             }
 			

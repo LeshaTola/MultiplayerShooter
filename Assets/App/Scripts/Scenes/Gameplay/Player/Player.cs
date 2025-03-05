@@ -150,7 +150,10 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Move(Vector2 direction)
         {
+
             _moveDirection = new (direction.x, 0, direction.y);
+            PlayerVisual.MoveAnimation(_moveDirection);
+            
             _moveDirection
                 = transform.forward * _moveDirection.z
                   + transform.right * _moveDirection.x;
@@ -256,6 +259,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
             var isGroundedNow = IsOnTheGround();
             if (isGroundedNow && !_isGrounded && _velocity < GRAVITY)
             {
+                PlayerVisual.LandAnimation();
                 PlayerAudioProvider.PlayLandingSound();
             }
 
@@ -274,6 +278,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private void JumpInternal(float height)
         {
             _velocity = Mathf.Sqrt( height * PlayerConfig.JumpFallSpeed * -2 * GRAVITY);
+            PlayerVisual.JumpAnimation();
         }
 
         private bool IsOnTheGround()

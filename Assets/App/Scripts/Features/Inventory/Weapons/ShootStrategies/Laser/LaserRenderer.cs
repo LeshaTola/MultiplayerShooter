@@ -107,7 +107,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Laser
             float length = Vector3.Distance(startPos, endPos);
 
             _collider.center = midPoint;
-            _collider.size = new Vector3(0.1f,length, 0.1f);
+            _collider.size = new Vector3(_collider.size.x,length, _collider.size.z);
         }
     }
 }
