@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using Photon.Pun;
@@ -14,7 +15,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private const string LAND_TRIGGER = "Landing";
         private const string SHOOT_TRIGGER = "Shot";
         
-        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private List<MeshRenderer> _meshRenderer;
+        [SerializeField] private MeshRenderer _eyeEeshRenderer;
         [SerializeField] private GlobalInventory _globalInventory;
         [SerializeField] private Animator _animator;
         private Vector3 _animationDirection;
@@ -27,11 +29,25 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [PunRPC]
         public void SetImortable(bool imortable)
         {
-            var color = _meshRenderer.material.color;
-            color.a = imortable ? 0.2f : 1;
-            _meshRenderer.material.color = color;
+            foreach (MeshRenderer renderer in _meshRenderer)
+            {
+                var color = renderer.material.color;
+                color.a = imortable ? 0.2f : 1;
+            
+                renderer.material.color = color;
+            }
+
+            SetEye(imortable);
         }
-        
+
+        private void SetEye(bool imortable)
+        {
+            var color = _eyeEeshRenderer.material.color;
+            color.a = imortable ? 0.2f : 1;
+            
+            _eyeEeshRenderer.material.color = color;
+        }
+
         public void RPCSetSkin(string skinId)
         {
             photonView.RPC(nameof(SetSkin), RpcTarget.AllBuffered, skinId);
@@ -45,7 +61,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
             {
                 return;
             }
-            _meshRenderer.material = skinConfig.Material;
+
+            foreach (MeshRenderer renderer in _meshRenderer)
+            {
+                renderer.material = skinConfig.Material;
+            }
+            _eyeEeshRenderer.material = skinConfig.EyeMaterial;
         }
 
         public void MoveAnimation(Vector3 direction)

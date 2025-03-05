@@ -25,4 +25,5 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncomon
-  <Material>k__BackingField: {fileID: 2100000, guid: 2cf42431e5b43f6498b7dcb41367dd00, type: 2}
+  <EyeMaterial>k__BackingField: {fileID: 1038180449527285695, guid: 6d0e61b1243ae964cbc87578f627b53c, type: 3}
+  <Material>k__BackingField: {fileID: 2100000, guid: f4bc0e2992b8b6448b00f4f5d48ce76e, type: 2}
