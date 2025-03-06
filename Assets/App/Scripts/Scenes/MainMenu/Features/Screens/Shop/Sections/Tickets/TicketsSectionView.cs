@@ -55,7 +55,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
                 _sb.Clear();
                 _sb.Append(x).Append(ConstStrings.R);
                 _costText.text = _sb.ToString();
-            }, cost, 0.5f).SetEase(Ease.OutQuad);
+            }, cost, _costAnimationDuration).SetEase(Ease.OutQuad);
         }
 
 

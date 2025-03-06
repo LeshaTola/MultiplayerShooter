@@ -32,20 +32,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
 
         public void SetColor(ItemType itemType)
         {
-            switch (itemType)
+            Color color = itemType switch
             {
-                case ItemType.Weapon:
-                    _image.color =  _weaponColor;
-                    break;
-                case ItemType.Equipment:
-                    _image.color =  _equipmentColor;
-                    break;
-                case ItemType.Skin:
-                    _image.color =  _skinColor;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(itemType), itemType, null);
-            }
+                ItemType.Weapon => _weaponColor,
+                ItemType.Equipment => _equipmentColor,
+                ItemType.Skin => _skinColor
+            };
+
+            _image.color =  color;
+            _selectionImage.color = color;
+
         }
 
         public void Select()

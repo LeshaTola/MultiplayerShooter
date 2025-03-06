@@ -24,7 +24,7 @@ namespace App.Scripts.Features.StateMachines.States
                 _sceneName = sceneName;
             }
 
-            public override async UniTask Enter()
+            public override UniTask Enter()
             {
                 _cleanupService.Cleanup();
                 PhotonNetwork.LoadLevel(_sceneName);
@@ -35,6 +35,7 @@ namespace App.Scripts.Features.StateMachines.States
                 }*/
                 
                 CleanupAnimations();
+                return UniTask.CompletedTask;
             }
 
             private void CleanupAnimations()
