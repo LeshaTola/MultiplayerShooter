@@ -23,7 +23,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                 if (_hitPoint != default)
                 {
                     _cts.Cancel();
-                    Weapon.FadeOutLine();
+                    Weapon.NetworkFadeOutLine();
                     _hitPoint = default;
                     return;
                 }
@@ -51,7 +51,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 while (!token.IsCancellationRequested)
                 {
-                    Weapon.SetLine(Weapon.ShootPointProvider.ShotPoint, _hitPoint);
+                    Weapon.NetworkSetLine(Weapon.ShootPointProvider.ShotPoint, _hitPoint);
                     await UniTask.Yield(PlayerLoopTiming.PostLateUpdate, token);
                 }
             }

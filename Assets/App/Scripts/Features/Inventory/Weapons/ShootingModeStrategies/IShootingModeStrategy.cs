@@ -51,6 +51,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void StartAttack()
         {
+            Weapon.Owner.PlayerVisual.ShootAnimation(true,AttackCooldown);
             IsShooting = true;
             ShootStrategy.Recoil.IsShooting = true;
         }
@@ -65,6 +66,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void CancelAttack()
         {
+            Weapon.Owner.PlayerVisual.ShootAnimation(false, AttackCooldown);
             IsShooting = false;
             ShootStrategy.Recoil.IsShooting = false;
         }

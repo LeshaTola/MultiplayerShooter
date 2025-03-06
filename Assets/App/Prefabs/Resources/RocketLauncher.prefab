@@ -32,6 +32,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 8123250644232625794, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123250644232625794, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8333018714683944101, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

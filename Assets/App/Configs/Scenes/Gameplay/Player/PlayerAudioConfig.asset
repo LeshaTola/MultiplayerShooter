@@ -27,6 +27,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 54f7902baa9943546ae03601c5df4198, type: 3}
     - {fileID: 8300000, guid: 9741fc3bd841c4f4e89a589e3911b2fb, type: 3}
     - {fileID: 8300000, guid: 34654ed16e6d80649a755c2b37815412, type: 3}
+    - {fileID: 8300000, guid: 268c6465fc6af4947b22151c085e01ab, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -45,7 +46,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 8
     - Name: 
       Entry: 7
       Data: 
@@ -224,6 +225,31 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SwitchGun
+    - Name: $v
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[UnityEngine.AudioClip, UnityEngine.AudioModule]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 11
     - Name: 
       Entry: 13
       Data: 

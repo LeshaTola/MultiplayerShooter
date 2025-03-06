@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3098583111338872807}
   - component: {fileID: 8593454855337000812}
   - component: {fileID: -8708965378622071557}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GranadeProjectileContact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,9 +279,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4338501228493944201}
     m_Modifications:
+    - target: {fileID: 2085240758166259594, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473510409234384984, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5917616929724552771, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
       propertyPath: m_Name
       value: (Prb)Granade
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917616929724552771, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6436850659900886265, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
       propertyPath: m_LocalScale.x
@@ -338,6 +350,10 @@ PrefabInstance:
     - target: {fileID: 6436850659900886265, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7966566926627922160, guid: 8227a0d72b778944d86c560e73d42060, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3642409281437814075, guid: 8227a0d72b778944d86c560e73d42060, type: 3}

@@ -9,14 +9,31 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 {
     public class StandartWeaponEffect : WeaponEffect
     {
+        private readonly Camera _camera;
         public override event Action<Vector3, float, bool> OnPlayerHit;
         
         [SerializeField] private int _damage = 10;
 
         private readonly Dictionary<Health, (int, Vector3)> _damageables = new();
 
+        public StandartWeaponEffect(Camera camera)
+        {
+            _camera = camera;
+        }
+
         public override void Effect(List<(Vector3, GameObject)> hitValues)
         {
+            var shootPoint = Weapon.ShootPointProvider.ShotPoint;
+            if (hitValues.Count == 0)
+            {
+                Weapon.NetworkSetLine(shootPoint,shootPoint + _camera.transform.forward * 100);
+            }
+            else
+            {
+                Weapon.NetworkSetLine(shootPoint,hitValues[0].Item1);
+            }
+            Weapon.NetworkFadeOutLine();
+            
             foreach (var hitValue in hitValues)
             {
                 var point = hitValue.Item1;

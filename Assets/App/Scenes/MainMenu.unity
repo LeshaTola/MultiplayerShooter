@@ -2161,6 +2161,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1555787615}
     m_Modifications:
+    - target: {fileID: 1332475858330885273, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1660892159941937881, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2177,9 +2181,21 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2154765546783794025, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190572777630656600, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2618612351175116522, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192852669396854516, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4596338897840441631, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2221,6 +2237,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4792676709993826354, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5110892625877943717, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2236,6 +2256,10 @@ PrefabInstance:
     - target: {fileID: 5561804340809529689, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000462832743997873, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6642920475438124354, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_Enabled
@@ -2264,6 +2288,10 @@ PrefabInstance:
     - target: {fileID: 8772563939488847323, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962656493856574818, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8977238983308060550, guid: dd0969145f28ddf43b06dcf7b86e6870, type: 3}
       propertyPath: m_IsActive

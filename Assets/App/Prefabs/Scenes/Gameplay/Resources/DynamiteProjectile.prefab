@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -8708965378622071557}
   - component: {fileID: 8824545611606139306}
   - component: {fileID: 2166035674567227426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DynamiteProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,6 +320,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: (Prb)Dynamite
       objectReference: {fileID: 0}
+    - target: {fileID: 186480239371898391, guid: bd573f5067c581245bdcfac3b765d946, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 710814917251568813, guid: bd573f5067c581245bdcfac3b765d946, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -359,6 +363,10 @@ PrefabInstance:
     - target: {fileID: 710814917251568813, guid: bd573f5067c581245bdcfac3b765d946, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458469114236314841, guid: bd573f5067c581245bdcfac3b765d946, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3572287524056944308, guid: bd573f5067c581245bdcfac3b765d946, type: 3}

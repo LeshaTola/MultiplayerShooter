@@ -34,6 +34,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         [SerializeField] private NickNameUI _nickNameUI;
         
+        [SerializeField] private GameObject _arm;
+        
         [field: SerializeField] public PlayerAudioProvider PlayerAudioProvider { get; private set; }
         [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
         [field: SerializeField] public Health Health { get; private set; }
@@ -44,10 +46,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private Vector3 _moveVelocityIdk;
         private Vector3 _moveVelocity;
         private Vector3 _currentMoveVelocity;
-        private bool _isGrounded;
 
         private float _verticalRotation;
         private float _targetHorizontalOffset;
+        
+        private Vector3 _localArmRotation;
+
+        public bool IsGrounded { get; private set; }
         public PlayerState PlayerState { get; set; } = PlayerState.Normal;
 
         public string NickName { get; private set; }
@@ -57,6 +62,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         public void Initialize(string name)
         {
             photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
+            _localArmRotation = _arm.transform.localRotation.eulerAngles;
         }
 
         [PunRPC]
@@ -66,11 +72,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
             _nickNameUI.Setup(NickName);
             Health.Initialize(_playerConfig.MaxHealth);
             Health.OnDamage += OnDamage;
-        }
-
-        private void OnDamage(float obj)
-        {
-            PlayerAudioProvider.PlayDamageSound();
+            WeaponProvider.OnWeaponChanged += OnWeaponChanged;
         }
 
         private void Update()
@@ -86,12 +88,18 @@ namespace App.Scripts.Scenes.Gameplay.Player
                     break;
             }
             
-            _isGrounded = IsLanded();
-            if (_isGrounded && _velocity < 0)
+            IsGrounded = IsLanded();
+            if (IsGrounded && _velocity < 0)
             {
                 _velocity = -5f;
             }
             MoveCamera();
+        }
+
+        private void OnDestroy()
+        {
+            Health.OnDamage -= OnDamage;
+            WeaponProvider.OnWeaponChanged -= OnWeaponChanged;
         }
 
         public void StartAttack()
@@ -121,24 +129,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Jump()
         {
-            if (_isGrounded)
+            if (IsGrounded)
             {
                 JumpInternal(PlayerConfig.JumpHeight);
                 PlayerAudioProvider.PlayJumpingSound();
             }
-        }
-        
-        public void JumpToTarget(Vector3 targetPoint, float trajectoryHeight)
-        {
-            /*if (!_isGrounded)
-                PlayerAudioProvider.PlayJumpingSound();
-                */
-            Vector3 jumpVelocity = CalculateJumpVelocity(transform.position, targetPoint, trajectoryHeight);
-            
-            _velocity = jumpVelocity.y;
-            _moveDirection = 
-            _moveVelocity = new Vector3(jumpVelocity.x, 0, jumpVelocity.z);
-
         }
 
         public void Freese()
@@ -150,7 +145,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Move(Vector2 direction)
         {
-
             _moveDirection = new (direction.x, 0, direction.y);
             PlayerVisual.MoveAnimation(_moveDirection);
             
@@ -195,20 +189,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
             gameObject.SetActive(active);
         }
 
-        private void RPCSetVertical(float verticalRotation)
-        {
-            photonView.RPC(nameof(SetVertical), RpcTarget.All, verticalRotation);
-        }
-
-        [PunRPC]
-        public void SetVertical(float verticalRotation)
-        {
-            if (!photonView.IsMine)
-            {
-                VirtualCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
-            }
-        }
-
         public void Teleport(Vector3 position)
         {
             Controller.enabled = false;
@@ -249,15 +229,17 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void MoveCamera()
         {
+            _arm.transform.localRotation 
+                = Quaternion.Euler(_localArmRotation.x - _verticalRotation, _localArmRotation.y , _localArmRotation.z);
             VirtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
             transform.Rotate(Vector3.up * _targetHorizontalOffset );
-            RPCSetVertical(_verticalRotation);
+            // RPCSetVertical(_verticalRotation);
         }
 
         private bool IsLanded()
         {
             var isGroundedNow = IsOnTheGround();
-            if (isGroundedNow && !_isGrounded && _velocity < GRAVITY)
+            if (isGroundedNow && !IsGrounded && _velocity < GRAVITY)
             {
                 PlayerVisual.LandAnimation();
                 PlayerAudioProvider.PlayLandingSound();
@@ -268,7 +250,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void PlayWalkingSound()
         {
-            if (!_isGrounded || _currentMoveVelocity.magnitude < 0.2f)
+            if (!IsGrounded || _currentMoveVelocity.magnitude < 0.2f)
             {
                 return;
             }
@@ -315,5 +297,28 @@ namespace App.Scripts.Scenes.Gameplay.Player
             return velocityXZ + velocityY;
         }
 
+        private void RPCSetVertical(float verticalRotation)
+        {
+            photonView.RPC(nameof(SetVertical), RpcTarget.All, verticalRotation);
+        }
+
+        [PunRPC]
+        public void SetVertical(float verticalRotation)
+        {
+            if (!photonView.IsMine)
+            {
+                // _arm.transform.localRotation = Quaternion.Euler(verticalRotation + _offsetAngle, 0f, 90f);
+            }
+        }
+        
+        private void OnWeaponChanged(Weapon obj)
+        {
+            PlayerAudioProvider.PlaySwitchWeaponSound();
+        }
+
+        private void OnDamage(float obj)
+        {
+            PlayerAudioProvider.PlayDamageSound();
+        }
     }
 }

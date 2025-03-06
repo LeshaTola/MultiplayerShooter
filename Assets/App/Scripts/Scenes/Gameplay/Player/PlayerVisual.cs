@@ -2,8 +2,10 @@
 using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
+using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
@@ -13,13 +15,26 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private const string WALK_Y = "WalkingY";
         private const string JUMP_TRIGGER = "Jump";
         private const string LAND_TRIGGER = "Landing";
-        private const string SHOOT_TRIGGER = "Shot";
-        
+        private const string SHOOT_BOOL = "IsShooting";
+        private const string SHOOT_TRIGGER = "Shoot";
+        private const string FIRE_SPEED = "FireSpeed";
+
         [SerializeField] private List<MeshRenderer> _meshRenderer;
-        [SerializeField] private MeshRenderer _eyeEeshRenderer;
+        [SerializeField] private MeshRenderer _eyeMeshRenderer;
         [SerializeField] private GlobalInventory _globalInventory;
         [SerializeField] private Animator _animator;
+
         private Vector3 _animationDirection;
+
+        public void Hide()
+        {
+            foreach (MeshRenderer renderer in _meshRenderer)
+            {
+                renderer.enabled = false;
+            }
+
+            _eyeMeshRenderer.enabled = false;
+        }
 
         public void RPCSetImortal(bool imortable)
         {
@@ -29,23 +44,20 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [PunRPC]
         public void SetImortable(bool imortable)
         {
+            // Обрабатываем все MeshRenderer в _meshRenderer
             foreach (MeshRenderer renderer in _meshRenderer)
             {
-                var color = renderer.material.color;
-                color.a = imortable ? 0.2f : 1;
-            
-                renderer.material.color = color;
+                Material
+                    material = renderer.material; // Используем material, чтобы изменения касались только этого объекта
+                SetMaterialTransparent(material, imortable);
+
+                var color = material.color;
+                color.a = imortable ? 0.2f : 1; // Устанавливаем альфа-канал
+                material.color = color;
             }
 
+            // Обрабатываем глаз
             SetEye(imortable);
-        }
-
-        private void SetEye(bool imortable)
-        {
-            var color = _eyeEeshRenderer.material.color;
-            color.a = imortable ? 0.2f : 1;
-            
-            _eyeEeshRenderer.material.color = color;
         }
 
         public void RPCSetSkin(string skinId)
@@ -56,7 +68,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [PunRPC]
         public void SetSkin(string skinId)
         {
-            var skinConfig = _globalInventory.SkinConfigs.FirstOrDefault(x=>x.Id.Equals( skinId));
+            var skinConfig = _globalInventory.SkinConfigs.FirstOrDefault(x => x.Id.Equals(skinId));
             if (!skinConfig)
             {
                 return;
@@ -66,28 +78,69 @@ namespace App.Scripts.Scenes.Gameplay.Player
             {
                 renderer.material = skinConfig.Material;
             }
-            _eyeEeshRenderer.material = skinConfig.EyeMaterial;
+
+            _eyeMeshRenderer.material = skinConfig.EyeMaterial;
         }
 
         public void MoveAnimation(Vector3 direction)
         {
             _animationDirection = Vector3.Lerp(_animationDirection, direction, Time.deltaTime * 5);
-            _animator.SetFloat(WALK_X, Mathf.Clamp(_animationDirection.x,-1, 1));
-            _animator.SetFloat(WALK_Y, Mathf.Clamp(_animationDirection.z,-1, 1));
+            _animator.SetFloat(WALK_X, Mathf.Clamp(_animationDirection.x, -1, 1));
+            _animator.SetFloat(WALK_Y, Mathf.Clamp(_animationDirection.z, -1, 1));
         }
 
         public void JumpAnimation()
         {
             _animator.SetTrigger(JUMP_TRIGGER);
         }
+
         public void LandAnimation()
         {
             _animator.SetTrigger(LAND_TRIGGER);
         }
 
-        public void ShootAnimation()
+        public void ShootAnimation(bool isShooting, float fireRate = 1)
         {
+            _animator.SetFloat(FIRE_SPEED, 1 / fireRate);
+            _animator.SetBool(SHOOT_BOOL, isShooting);
+        }
+
+        public void ShootAnimation(float fireRate = 1)
+        {
+            _animator.SetFloat(FIRE_SPEED, 1 / fireRate);
             _animator.SetTrigger(SHOOT_TRIGGER);
+        }
+
+        private void SetEye(bool imortable)
+        {
+            Material material = _eyeMeshRenderer.material;
+            SetMaterialTransparent(material, imortable);
+
+            var color = material.color;
+            color.a = imortable ? 0.2f : 1;
+            material.color = color;
+        }
+
+        private void SetMaterialTransparent(Material material, bool isTransparent)
+        {
+            if (isTransparent)
+            {
+                material.SetOverrideTag("RenderType", "Transparent");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.SrcAlpha);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                material.SetInt("_ZWrite", 0); // Отключаем запись в Z-buffer
+                material.renderQueue = (int) UnityEngine.Rendering.RenderQueue.Transparent;
+                material.EnableKeyword("_ALPHABLEND_ON"); // Включаем альфа-смешивание
+            }
+            else
+            {
+                material.SetOverrideTag("RenderType", "Opaque");
+                material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1); // Включаем запись в Z-buffer
+                material.renderQueue = (int) UnityEngine.Rendering.RenderQueue.Geometry;
+                material.DisableKeyword("_ALPHABLEND_ON"); // Выключаем альфа-смешивание
+            }
         }
     }
 }

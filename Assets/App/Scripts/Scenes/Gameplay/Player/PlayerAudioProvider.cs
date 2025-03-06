@@ -31,11 +31,18 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField, ValueDropdown(nameof(GetCategories))] private string _hitCategory;
         [SerializeField, ValueDropdown(nameof(GetCategories))] private string _killCategory;
 
+        [Header("Weapons")]
+        [SerializeField] private float _switchInterval = 0.05f;
+        [SerializeField, ValueDropdown(nameof(GetCategories))] private string _switchWeaponCategory;
+
         private float _stepTimer;
+        private float _switchTimer;
         
         private void Update()
         {
             _stepTimer -= Time.deltaTime;
+            _switchTimer -= Time.deltaTime;
+            
         }
 
         public void PlayWalkingSound()
@@ -46,6 +53,16 @@ namespace App.Scripts.Scenes.Gameplay.Player
             }
             RPCPlaySound(_walkingCategory, Random.Range(0,_audioConfig.AudioClips[_walkingCategory].Count));
             _stepTimer = _stepInterval;
+        }
+        
+        public void PlaySwitchWeaponSound()
+        {
+            if (_switchTimer > 0)
+            {
+                return;
+            }
+            RPCPlaySound(_switchWeaponCategory, Random.Range(0,_audioConfig.AudioClips[_switchWeaponCategory].Count));
+            _switchTimer = _switchInterval;
         }
         
         public void PlayJumpingSound()

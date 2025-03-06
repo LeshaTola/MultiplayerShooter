@@ -48,6 +48,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public ShootPointStrategy ShootPointProvider => _shootPointProvider;
 
+        private void Awake()
+        {
+            _trialStartColor = _tracerEffect.startColor;
+        }
 
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -56,7 +60,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             
             Animator.Initialize(this);
             ShootPointProvider.Initialize(ShootPoints);
-            _trialStartColor = _tracerEffect.startColor;
+            NetworkFadeOutLine();
 
             Config.ShootingMode.Initialize(this);
             Config.ShootingModeAlternative.Initialize(this);
@@ -214,7 +218,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         {
             StartCoroutine(ReloadCooldown());
         }
-        
 
         private IEnumerator AttackCooldown(float cooldown)
         {

@@ -1,9 +1,12 @@
 ﻿using App.Scripts.Modules;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
+using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using Cinemachine;
 using Photon.Pun;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
@@ -14,7 +17,14 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private Player _player;
         [SerializeField] private HealthBarUI _healthBarUI;
         [SerializeField] private WeaponProvider _weaponProvider;
-        [SerializeField] private GameObject _view;
+
+        [SerializeField] private GameObject _weaponHolder;
+        [SerializeField] private Transform _weaponHolderPosition;
+        [SerializeField] private SwayNBobScript _sway;
+
+        
+        [SerializeField] [ValueDropdown("GetLayerNames")]
+        public string _selectedLayer;
 
         public void Start()
         {
@@ -26,15 +36,32 @@ namespace App.Scripts.Scenes.Gameplay.Player
                     {
                         continue;
                     }
+
                     ChangeLayerRecursively.SetLayerRecursively(weapon.transform, "Weapon");
                 }
+
                 _healthBarUI.gameObject.SetActive(false);
-                //_view.gameObject.SetActive(false);
+                _player.PlayerVisual.Hide();
+                _player.gameObject.layer = LayerMask.NameToLayer(_selectedLayer);
+                _weaponHolder.transform.SetParent(_weaponHolderPosition);
+                _weaponHolder.transform.localScale = Vector3.one;
+                _weaponHolder.transform.localPosition = Vector3.zero;
                 return;
             }
-			
+
             _virtualCamera.enabled = false;
             _player.enabled = false;
+            _sway.enabled = false;
+        }
+        
+        private string[] GetLayerNames()
+        {
+            string[] layers = new string[32]; // В Unity всего 32 слоя
+            for (int i = 0; i < 32; i++)
+            {
+                layers[i] = LayerMask.LayerToName(i);
+            }
+            return layers;
         }
     }
 }

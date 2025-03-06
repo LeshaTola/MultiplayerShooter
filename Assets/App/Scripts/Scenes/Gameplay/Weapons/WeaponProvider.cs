@@ -135,7 +135,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 CurrentWeapon.GuaranteedCancelAttack(true);
                 CurrentWeapon.GuaranteedCancelAttack(false);
             }
-            
             photonView.RPC(nameof(SetWeaponByIndex), RpcTarget.AllBuffered, index);
         }
 

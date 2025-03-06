@@ -20,9 +20,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.466
       objectReference: {fileID: 0}
-    - target: {fileID: 8123250644232625794, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
-      propertyPath: m_CastShadows
-      value: 3
+    - target: {fileID: 3753080844072017039, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753080844072017039, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.014
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753080844072017039, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.053
       objectReference: {fileID: 0}
     - target: {fileID: 8333018714683944101, guid: dd01439ac3410fc4bac9d7836807266c, type: 3}
       propertyPath: m_LocalPosition.x
