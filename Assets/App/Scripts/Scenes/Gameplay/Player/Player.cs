@@ -82,7 +82,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 case PlayerState.Normal:
                     MoveInternal(_moveDirection);
                     DoGravity();
-
                     break;
                 case PlayerState.Grappling:
                     break;
@@ -94,6 +93,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 _velocity = -5f;
             }
             MoveCamera();
+        }
+
+        private void LateUpdate()
+        {
+            /*_arm.transform.localRotation 
+                = Quaternion.Euler(_localArmRotation.x - _verticalRotation, _localArmRotation.y , _localArmRotation.z);*/
+             RPCSetVertical(_verticalRotation);
         }
 
         private void OnDestroy()
@@ -229,11 +235,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void MoveCamera()
         {
-            _arm.transform.localRotation 
-                = Quaternion.Euler(_localArmRotation.x - _verticalRotation, _localArmRotation.y , _localArmRotation.z);
             VirtualCamera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
             transform.Rotate(Vector3.up * _targetHorizontalOffset );
-            // RPCSetVertical(_verticalRotation);
         }
 
         private bool IsLanded()
@@ -307,7 +310,8 @@ namespace App.Scripts.Scenes.Gameplay.Player
         {
             if (!photonView.IsMine)
             {
-                // _arm.transform.localRotation = Quaternion.Euler(verticalRotation + _offsetAngle, 0f, 90f);
+                _arm.transform.localRotation 
+                    = Quaternion.Euler(_localArmRotation.x - _verticalRotation, _localArmRotation.y , _localArmRotation.z);
             }
         }
         

@@ -1391,6 +1391,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4580758364420421112, guid: 89c44f1270c07df45b49e8077a4a44db, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580758364420421112, guid: 89c44f1270c07df45b49e8077a4a44db, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580758364420421112, guid: 89c44f1270c07df45b49e8077a4a44db, type: 3}
       propertyPath: TrailModule.colorOverLifetime.maxColor.a
       value: 0.09803922
       objectReference: {fileID: 0}
