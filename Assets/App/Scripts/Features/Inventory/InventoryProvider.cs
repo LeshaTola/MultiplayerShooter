@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using App.Scripts.Features.Inventory.Configs;
+using App.Scripts.Features.Inventory.Data;
 using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using UnityEngine;
@@ -55,7 +56,9 @@ namespace App.Scripts.Features.Inventory
         public void SetState(UserStatsData userStats)
         {
             GameInventory  = userStats.GameInventory;
-            Inventory = userStats.Inventory; 
+            Inventory.Skins = userStats.Inventory.Skins.ToHashSet(); 
+            Inventory.Weapons = userStats.Inventory.Weapons.ToHashSet(); 
+            Inventory.Equipment = userStats.Inventory.Equipment.ToHashSet(); 
         }
     }
 }

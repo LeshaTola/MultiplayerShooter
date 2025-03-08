@@ -1,5 +1,6 @@
 ﻿using System;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Data;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 
 namespace App.Scripts.Scenes.MainMenu.Features.UserStats
@@ -11,7 +12,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         public int CurrentRankId;
 
         public GameInventoryData GameInventory;
-        public InventoryData Inventory;
+        public InventoryDataForSaves Inventory;
 
         public int Coins;
         public int Tickets;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Data;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -56,11 +57,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
                         Equipment = _inventoryConfig.Equipment.Select(x=>x?.Id ?? "").ToList()
                     },
 
-                    Inventory = new InventoryData()
+                    Inventory = new ()
                     {
-                        Skins = _inventoryConfig.PlayerInventory.SkinConfigs.Select(x=>x?.Id ?? "").ToHashSet(),
-                        Weapons = _inventoryConfig.PlayerInventory.Weapons.Select(x=>x?.Id ?? "").ToHashSet(),
-                        Equipment = _inventoryConfig.PlayerInventory.Equipment.Select(x=>x?.Id ?? "").ToHashSet()
+                        Skins = _inventoryConfig.PlayerInventory.SkinConfigs.Select(x=>x?.Id ?? "").ToList(),
+                        Weapons = _inventoryConfig.PlayerInventory.Weapons.Select(x=>x?.Id ?? "").ToList(),
+                        Equipment = _inventoryConfig.PlayerInventory.Equipment.Select(x=>x?.Id ?? "").ToList()
                     }
                 });
             }
@@ -78,7 +79,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
                 Tickets = TicketsProvider.Tickets,
 
                 GameInventory = InventoryProvider.GameInventory,
-                Inventory = InventoryProvider.Inventory,
+                Inventory = InventoryProvider.Inventory.ToSavesData(),
             };
         }
 
