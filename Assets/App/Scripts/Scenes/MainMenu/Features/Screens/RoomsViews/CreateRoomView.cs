@@ -1,6 +1,8 @@
-﻿using App.Scripts.Features;
+﻿using System.Linq;
+using App.Scripts.Features;
 using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Match.Maps;
+using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.PopupAndViews.Views;
 using Cysharp.Threading.Tasks;
@@ -31,7 +33,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         [SerializeField] private MapsConfig _mapsConfig;
 
         [SerializeField] private Image _mapImage;
-        [SerializeField] private TextMeshProUGUI _mapNameText;
+        [SerializeField] private TMPLocalizer _mapNameText;
 
         [SerializeField] private Button _nextButton;
         [SerializeField] private Button _prevButton;
@@ -127,6 +129,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             string serverName = _serverNameInputField.text;
             string password = _passwordInputField.text;
             string playersInput = _playersInputField.text;
+            //string gameMode = _gameModeDropdown.value.ToString();
 
             if (!await ValidateServerSettings(serverName, password, playersInput))
             {
@@ -134,21 +137,37 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             }
 
             TryParsePlayerCount(playersInput, out int maxPlayers);
+            var options = SetupOptions(maxPlayers);
+            AddPassword(password, options);
+
+            _mapsProvider.Map = _mapsConfig.Maps[_mapIndex].Prefab;
+            PhotonNetwork.CreateRoom(serverName, options);
+        }
+
+        private RoomOptions SetupOptions(int maxPlayers)
+        {
             var options = new RoomOptions
             {
                 MaxPlayers = (byte) maxPlayers,
                 IsOpen = true,
                 IsVisible = true,
-                CustomRoomProperties = string.IsNullOrEmpty(password)
-                    ? new ExitGames.Client.Photon.Hashtable()
-                    : new ExitGames.Client.Photon.Hashtable {{"Password", password}},
-                CustomRoomPropertiesForLobby = string.IsNullOrEmpty(password)
-                    ? new string[] { }
-                    : new[] {"Password"}
+                CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
+                {
+                    {"Map", _mapsConfig.Maps[_mapIndex].Prefab.name},
+                    {"GameMode", /*gameMode*/"PVP"}
+                },
+                CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
+            return options;
+        }
 
-            _mapsProvider.Map = _mapsConfig.Maps[_mapIndex].Prefab;
-            PhotonNetwork.CreateRoom(serverName, options);
+        private void AddPassword(string password, RoomOptions options)
+        {
+            if (!string.IsNullOrEmpty(password))
+            {
+                options.CustomRoomProperties.Add("Password", password);
+                options.CustomRoomPropertiesForLobby = options.CustomRoomPropertiesForLobby.Append("Password").ToArray();
+            }
         }
 
         private async UniTask<bool> IsServerNameValid(string serverName)
@@ -235,7 +254,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         {
             var map = _mapsConfig.Maps[_mapIndex];
 
-            _mapNameText.text = map.Name;
+            _mapNameText.Key = map.Name;
+            _mapNameText.Translate();
             _mapImage.sprite = map.Sprite;
 
             _prevButton.interactable = _mapIndex > 0;

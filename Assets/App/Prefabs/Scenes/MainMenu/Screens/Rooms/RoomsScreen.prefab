@@ -1955,6 +1955,7 @@ GameObject:
   - component: {fileID: 396197088140882758}
   - component: {fileID: 3252957466055132209}
   - component: {fileID: 6968364432774193563}
+  - component: {fileID: 2385527091801722364}
   m_Layer: 5
   m_Name: MapText
   m_TagString: Untagged
@@ -2078,6 +2079,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2385527091801722364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188932996542654760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6968364432774193563}
 --- !u!1 &3410602911166596009
 GameObject:
   m_ObjectHideFlags: 0
@@ -5885,7 +5899,7 @@ MonoBehaviour:
   _modeDropdown: {fileID: 7304701070803489436}
   _mapsConfig: {fileID: 11400000, guid: 24e6f5796d1c2b945a70d7bffb7600da, type: 2}
   _mapImage: {fileID: 3278093890500557264}
-  _mapNameText: {fileID: 6968364432774193563}
+  _mapNameText: {fileID: 2385527091801722364}
   _nextButton: {fileID: 1865055640938106363}
   _prevButton: {fileID: 8643668808362110656}
   _createButton: {fileID: 5932607099856290890}

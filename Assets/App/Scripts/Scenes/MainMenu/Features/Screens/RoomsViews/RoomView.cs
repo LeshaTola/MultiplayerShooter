@@ -1,4 +1,6 @@
 ﻿using System;
+using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.Localization.Localizers;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
@@ -9,21 +11,36 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
     public class RoomView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _serverNameText;
-        [SerializeField] private TextMeshProUGUI _mapText;
+        [SerializeField] private TMPLocalizer _mapText;
         [SerializeField] private TextMeshProUGUI _modeText;
         [SerializeField] private TextMeshProUGUI _playersCountText;
         
         [SerializeField] private Image _closedImage;
         [SerializeField] private Button _joinButton;
 
-        public void Setup(RoomInfo roomInfo,string mode, Action onClick)
+        public void Initialize(ILocalizationSystem localizationSystem)
         {
-            Cleanup();
+            _mapText.Initialize(localizationSystem);
+        }
+
+        public void Cleanup()
+        {
+            _mapText.Cleanup();
+        }
+        
+        public void Setup(RoomInfo roomInfo, Action onClick)
+        {
+            Default();
             _serverNameText.text = roomInfo.Name;
 
             _playersCountText.text = $"{roomInfo.PlayerCount}/{roomInfo.MaxPlayers}";
             _closedImage.gameObject.SetActive(roomInfo.CustomProperties.TryGetValue("Password", out _));
-            _modeText.text = mode;
+            _ = roomInfo.CustomProperties.TryGetValue("Map", out var map);
+            _ = roomInfo.CustomProperties.TryGetValue("GameMode", out var gameMode);
+            _modeText.text = gameMode as string;
+            
+            _mapText.Key = map as string;
+            _mapText.Translate();
             
             _joinButton.onClick.AddListener(() =>
             {
@@ -32,7 +49,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         }
 
 
-        private void Cleanup()
+        private void Default()
         {
             _joinButton.onClick.RemoveAllListeners();
         }

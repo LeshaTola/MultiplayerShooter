@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Views;
 using Photon.Pun;
 using Photon.Realtime;
@@ -22,8 +23,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         [SerializeField] private CreateRoomView _createRoomView;
         [SerializeField] private InputPasswordView _inputPasswordView;
         
-        public void Initialize()
+        private ILocalizationSystem _localizationSystem;
+        private List<RoomView> _roomItems;
+
+        public void Initialize(ILocalizationSystem localizationSystem)
         {
+            _localizationSystem = localizationSystem;
+        
             _createRoomButton.onClick.AddListener(ShowCreateRoom);
             _quickGameButton.onClick.AddListener(()=>OnQuickGameButtonClicked?.Invoke());
         }
@@ -36,16 +42,25 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         public void UpdateRoomListUI(List<RoomInfo> rooms, Action<RoomInfo, string> action)
         {
-            foreach (Transform child in _container.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            CleanupRoomList();
 
             foreach (var room in rooms)
             {
                 var roomItem = Instantiate(_prefab, _container.transform);
-                roomItem.Setup(room,"PVP", ()=>OnJoinRoom(room, action));
+                roomItem.Setup(room, ()=>OnJoinRoom(room, action));
+                roomItem.Initialize(_localizationSystem);
+                _roomItems.Add(roomItem);
             }
+        }
+
+        private void CleanupRoomList()
+        {
+            foreach (var roomItem in _roomItems)
+            {
+                roomItem.Cleanup();
+                Destroy(roomItem.gameObject);
+            }
+            _roomItems.Clear();
         }
 
         private async void OnJoinRoom(RoomInfo room,Action<RoomInfo, string> action)

@@ -2,6 +2,7 @@
 using System.Linq;
 using App.Scripts.Features;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
@@ -18,21 +19,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         private readonly RoomsView _view;
         private readonly ConnectionProvider _connectionProvider;
         private readonly RoomsProvider _roomsProvider;
+        private readonly ILocalizationSystem _localizationSystem;
 
         private Dictionary<string, RoomInfo> _cachedRoomList = new();
 
         public RoomsViewElementPresenter(RoomsView view, 
             ConnectionProvider connectionProvider,
-            RoomsProvider roomsProvider)
+            RoomsProvider roomsProvider,
+            ILocalizationSystem localizationSystem)
         {
             _view = view;
             _connectionProvider = connectionProvider;
             _roomsProvider = roomsProvider;
+            _localizationSystem = localizationSystem;
         }
 
         public override void Initialize()
         {
-            _view.Initialize();
+            _view.Initialize(_localizationSystem);
             _view.OnQuickGameButtonClicked += OnQuickGameButtonClicked;
             _roomsProvider.OnRoomListUpdated += UpdateRoomList;
         }
@@ -44,7 +48,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         public override void Cleanup()
         {
-            _view.Initialize();
+            _view.Cleanup();
             _view.OnQuickGameButtonClicked -= OnQuickGameButtonClicked;
             _roomsProvider.OnRoomListUpdated -= UpdateRoomList;
         }

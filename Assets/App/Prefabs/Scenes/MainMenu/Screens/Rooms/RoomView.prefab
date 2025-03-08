@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 1843172831626908364}
   - component: {fileID: 3337911500846491549}
   - component: {fileID: 582592895730067802}
+  - component: {fileID: 3649842186255705943}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -680,6 +681,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3649842186255705943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5063479266621750328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 582592895730067802}
 --- !u!1 &5144608438507682819
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serverNameText: {fileID: 3928177097506683201}
-  _mapText: {fileID: 582592895730067802}
+  _mapText: {fileID: 3649842186255705943}
   _modeText: {fileID: 2862956296233162691}
   _playersCountText: {fileID: 865839156830648124}
   _closedImage: {fileID: 5189963988687672276}
