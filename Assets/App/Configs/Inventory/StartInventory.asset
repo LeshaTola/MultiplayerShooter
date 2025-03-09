@@ -164,25 +164,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <SkinConfigs>k__BackingField:
-  - {fileID: 11400000, guid: 252d2f11180e36440beadcf6345739a0, type: 2}
-  - {fileID: 11400000, guid: 7528794a3d8294c4ebb2c1a6fbd27f41, type: 2}
-  - {fileID: 11400000, guid: 2d178d166f7f170459e8db1f5f3f7e7d, type: 2}
-  - {fileID: 11400000, guid: 4fa6ff8a25957a04c8db8ee0193380a1, type: 2}
-  - {fileID: 11400000, guid: d7d70da6e7cb6be4589479f64c7b11c9, type: 2}
   - {fileID: 11400000, guid: 401eaddd920c230469a0c84f9f6d9827, type: 2}
-  - {fileID: 11400000, guid: 29c5a532970f0ba42b40a205a3715bbe, type: 2}
-  - {fileID: 11400000, guid: 312fd3914e91532429a9fa3f29ca0fa8, type: 2}
-  - {fileID: 11400000, guid: 9d9f88693c8efad4eb948dfdb971c74b, type: 2}
-  - {fileID: 11400000, guid: 9955d756b5a6469478d59c949476c576, type: 2}
-  - {fileID: 11400000, guid: f4d1ff991ea88584b98f10318c0d99c6, type: 2}
-  - {fileID: 11400000, guid: 1b39ec6c36e6b054dbf6a6dd5d5e517f, type: 2}
-  - {fileID: 11400000, guid: 71246b9e7f863554d82bb221679cefee, type: 2}
-  - {fileID: 11400000, guid: 57e2bb09a214392479b4d900ba910804, type: 2}
-  - {fileID: 11400000, guid: 96da1f0db33aa2d4a9764ed98f0283dd, type: 2}
-  - {fileID: 11400000, guid: 8f5f14f5febddbe4b94c622c139d7818, type: 2}
-  - {fileID: 11400000, guid: c0e764205b4efbb438dd826a0bedb919, type: 2}
-  - {fileID: 11400000, guid: 1c88933f2e8083a4181a1715cc21175a, type: 2}
-  - {fileID: 11400000, guid: 912b57994a02fbd4891cd75f5cfc8c44, type: 2}
   <Weapons>k__BackingField:
   - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
   - {fileID: 11400000, guid: b4b8518c967ac2d41acae9588edb8266, type: 2}
