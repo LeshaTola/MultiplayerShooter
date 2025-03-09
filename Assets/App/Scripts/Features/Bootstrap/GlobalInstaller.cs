@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Features.Commands;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Features.PlayerStats;
@@ -55,6 +56,7 @@ namespace App.Scripts.Features.Bootstrap
 
         [Header("UserStats")]
         [SerializeField] private RanksDatabase _ranksDatabase;
+        [SerializeField] private CostsDatabase _costsDatabase;
         
         [Header("Settings")]
         [SerializeField] private MouseSensivityConfig _mouseSensivityConfig;
@@ -116,7 +118,7 @@ namespace App.Scripts.Features.Bootstrap
                 .WithArguments("userStatsDataSaves");
 #endif
             
-            Container.Bind<RewardService>().AsSingle();
+            Container.Bind<RewardService>().AsSingle().WithArguments(_costsDatabase);
             Container.Bind<UserStatsProvider>().AsSingle().WithArguments(_inventoryConfig);
             Container.Bind<UserRankProvider>().AsSingle().WithArguments(_ranksDatabase);
             Container.Bind<CoinsProvider>().AsSingle();

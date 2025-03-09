@@ -20,6 +20,7 @@ namespace App.Scripts.Features.Inventory
             GlobalInventory = Object.Instantiate(globalInventory);
         }
         
+        
         public ItemConfig GetConfigById(string id)
         {
             ItemConfig config = WeaponById(id);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Features.Inventory.Configs;
 
 namespace App.Scripts.Features.Inventory.Data
 {
@@ -13,6 +14,18 @@ namespace App.Scripts.Features.Inventory.Data
         public HashSet<string> Weapons = new();
         public HashSet<string> Equipment = new();
 
+        public bool IsAvailable(string id)
+        {
+            return !Skins.Contains(id) && !Weapons.Contains(id) && !Equipment.Contains(id);
+        }
+        
+        public List<ItemConfig> GetAvailablesItems(List<ItemConfig> items)
+        {
+            var availableItems = items
+                .Where(item => IsAvailable(item.Id)).ToList();
+            return availableItems;
+        }
+        
         public void InvokeInventoryUpdate()
         {
             OnInventoryUpdated?.Invoke();

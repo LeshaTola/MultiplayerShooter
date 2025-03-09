@@ -44,6 +44,8 @@ namespace App.Scripts.Features.Inventory
         }
         
         [field: SerializeField, ReadOnly] public Dictionary<string, List<ItemConfig>> ItemsByRarity { get; private set; }
+        
+        
 
     }
 }

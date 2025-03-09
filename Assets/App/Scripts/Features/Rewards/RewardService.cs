@@ -7,6 +7,7 @@ using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace App.Scripts.Features.Rewards
 {
@@ -14,15 +15,19 @@ namespace App.Scripts.Features.Rewards
     {
         private readonly RewardsPopupRouter _popupRouter;
         private readonly UserStatsProvider _userStatsProvider;
+        private readonly CostsDatabase _costsDatabase;
 
         private readonly List<RewardConfig> _rewards = new();
 
         public int ExperienceToAdd { get; set; }
 
-        public RewardService(RewardsPopupRouter popupRouter,UserStatsProvider userStatsProvider)
+        public RewardService(RewardsPopupRouter popupRouter,
+            UserStatsProvider userStatsProvider,
+            CostsDatabase costsDatabase)
         {
             _popupRouter = popupRouter;
             _userStatsProvider = userStatsProvider;
+            _costsDatabase = costsDatabase;
         }
 
         public void AddRewards(List<RewardConfig> rewards)
@@ -32,13 +37,15 @@ namespace App.Scripts.Features.Rewards
                 AddReward(reward);
             }
         }
-        
+
         public void AddReward(RewardConfig rewardConfig)
         {
+            rewardConfig = ChangeRewardIfNotAvailable(rewardConfig);
+            
             var reward = _rewards.FirstOrDefault(x => x.Reward.Id.Equals(rewardConfig.Reward.Id));
             if (!reward)
             {
-                var newRewardConfig = GameObject.Instantiate(rewardConfig);
+                var newRewardConfig = Object.Instantiate(rewardConfig);
                 _rewards.Add(newRewardConfig);
                 return;
             }
@@ -64,19 +71,62 @@ namespace App.Scripts.Features.Rewards
         public async UniTask ApplyRewardsAsync()
         {
             List<ExpAnimationData> animationDatas = new();
-            ExpAnimationData startExpValue = new()
+            var startExpValue = CreateDefaultExpAnimData();
+
+            var levelUps = ApplyExperience();
+            SetupAnimationDatas(levelUps, animationDatas, startExpValue);
+            
+            AddRewards(GetRewardsFromLevelUps(levelUps));
+            var rewards = _rewards.ToList();
+            ApplyRewards(_rewards);
+            
+            _userStatsProvider.SaveState();
+            _rewards.Clear();
+            
+            await _popupRouter.ShowPopup(rewards, animationDatas);
+        }
+
+        private RewardConfig ChangeRewardIfNotAvailable(RewardConfig rewardConfig)
+        {
+            if (rewardConfig.Reward is not OtherItemConfig)
             {
-                FromExp = _userStatsProvider.RankProvider.Experience,
-                ToExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
-                MaxExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
-                FromSprite = _userStatsProvider.RankProvider.CurrentRank.Sprite,
-                ToSprite = _userStatsProvider.RankProvider.NextRank.Sprite,
-            };
-            Debug.Log(ExperienceToAdd);
-            var levelUps = _userStatsProvider.RankProvider.AddExperience(ExperienceToAdd);
-            ExperienceToAdd = 0;
+                if (!_userStatsProvider.InventoryProvider.Inventory.IsAvailable(rewardConfig.Reward.Id))
+                {
+                    var coinReward = _costsDatabase.GetCoinRewardByRarity(rewardConfig.Reward.Rarity);
+                    coinReward.Count = (int)(coinReward.Count * 0.8f);//TODO to config
+                    return coinReward;
+                }
+            }
 
+            return rewardConfig;
+        }
 
+        private List<RewardConfig> GetRewardsFromLevelUps(int levelUps)
+        {
+            var rewards = new List<RewardConfig>();
+            var userRankProvider = _userStatsProvider.RankProvider;
+            while (levelUps > 0)
+            {
+                levelUps--;
+                int rankId = userRankProvider.CurrentRankId - levelUps;
+                var rankRewards = GetRankRewards( rankId);
+                rewards.AddRange(rankRewards);
+            }
+
+            return rewards;
+        }
+
+        private List<RewardConfig> GetRankRewards(int rankId)
+        {
+            var userRankProvider = _userStatsProvider.RankProvider;
+            var rankRewards = userRankProvider.RanksDatabase.Ranks[rankId].Rewards;
+            return rankRewards;
+        }
+
+        private void SetupAnimationDatas(int levelUps,
+            List<ExpAnimationData> animationDatas,
+            ExpAnimationData startExpValue)
+        {
             if (levelUps > 0)
             {
                 animationDatas.Add(startExpValue);
@@ -86,7 +136,7 @@ namespace App.Scripts.Features.Rewards
                     var rankId = _userStatsProvider.RankProvider.CurrentRankId - levelUps;
                     var rank = _userStatsProvider.RankProvider.RanksDatabase.Ranks[rankId];
                     var nextRank = _userStatsProvider.RankProvider.RanksDatabase.Ranks[rankId + 1];
-                    ;
+                    
                     ExpAnimationData animationData = new()
                     {
                         FromExp = 0,
@@ -113,14 +163,27 @@ namespace App.Scripts.Features.Rewards
                 startExpValue.ToExp = _userStatsProvider.RankProvider.Experience;
                 animationDatas.Add(startExpValue);
             }
+        }
 
-            var rewards = _rewards.ToList();
-            ApplyRewards(_rewards);
-            _userStatsProvider.SaveState();
+        private int ApplyExperience()
+        {
+            Debug.Log(ExperienceToAdd);
+            var levelUps = _userStatsProvider.RankProvider.AddExperience(ExperienceToAdd);
+            ExperienceToAdd = 0;
+            return levelUps;
+        }
 
-            _rewards.Clear();
-            await _popupRouter.ShowPopup(rewards, animationDatas);
-            
+        private ExpAnimationData CreateDefaultExpAnimData()
+        {
+            ExpAnimationData startExpValue = new()
+            {
+                FromExp = _userStatsProvider.RankProvider.Experience,
+                ToExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
+                MaxExp = _userStatsProvider.RankProvider.CurrentRank.ExpForRank,
+                FromSprite = _userStatsProvider.RankProvider.CurrentRank.Sprite,
+                ToSprite = _userStatsProvider.RankProvider.NextRank.Sprite,
+            };
+            return startExpValue;
         }
 
         private void ApplyRewards(List<RewardConfig> rewardConfigs)

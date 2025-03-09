@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
+using App.Scripts.Features.Inventory.Data;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -172,11 +173,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private void ValidateCurrentItems()
         {
             var inventory = _userStatsProvider.InventoryProvider.Inventory;
+            var availableItems = GetAvailablesItems(inventory);
+            UpdateItemsInternal(availableItems);
+        }
+
+        private List<ShopItemData> GetAvailablesItems(InventoryData inventory)
+        {
             var availableItems = CurrentItems
                 .Where(item => !inventory.Skins.Contains(item.Item.Id) &&
                                !inventory.Weapons.Contains(item.Item.Id) &&
                                !inventory.Equipment.Contains(item.Item.Id)).ToList();
-            UpdateItemsInternal(availableItems);
+            return availableItems;
         }
     }
 }

@@ -100,6 +100,7 @@ MonoBehaviour:
   _inventoryConfig: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
   _ranksDatabase: {fileID: 11400000, guid: a6a7b0daa0c7c7447af3dd31a3423486, type: 2}
+  _costsDatabase: {fileID: 11400000, guid: fb2f4c66ec8bf0345a857dd43a0258eb, type: 2}
   _mouseSensivityConfig: {fileID: 11400000, guid: d15f01e04af9f0843bb83956c7580639, type: 2}
   _soundProvider: {fileID: 646344925996821794}
   _audioMixer: {fileID: 24100000, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
