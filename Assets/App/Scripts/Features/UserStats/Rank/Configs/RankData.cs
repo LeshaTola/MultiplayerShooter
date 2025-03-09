@@ -17,6 +17,8 @@ namespace App.Scripts.Features.PlayerStats.Rank.Configs
         [FoldoutGroup("@Name")]
         public int ExpForRank;
         [FoldoutGroup("@Name")]
+        public Color RankColor = Color.white;
+        [FoldoutGroup("@Name")]
         public List<RewardConfig> Rewards;
     }
 }

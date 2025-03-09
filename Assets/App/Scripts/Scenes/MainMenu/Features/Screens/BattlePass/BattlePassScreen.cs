@@ -4,33 +4,33 @@ using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.Screens;
-using App.Scripts.Features.UserStats.Rank.Configs;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Localization.Localizers;
-using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
 {
     public class BattlePassScreen : GameScreen
     {
-        public event Action<int> OnRewardSelected; 
-        
+        public event Action<int> OnRewardSelected;
+
         [Header("Rank Info")]
         [SerializeField] private TMPLocalizer _rankValue;
+
         [SerializeField] private TextMeshProUGUI _curExpValue;
         [SerializeField] private TextMeshProUGUI _maxExpValue;
-        
+
         [Header("Reward Info")]
         [SerializeField] private Image _rewardImage;
+
         [SerializeField] private TMPLocalizer _rewardName;
         [SerializeField] private Button _rewardButton;
-        
+
         [Header("Rewards")]
         [SerializeField] private BattlePassElement _battlePassElementPrefab;
+
         [SerializeField] private RectTransform _rewardsContainer;
 
         private readonly List<BattlePassElement> _elements = new();
@@ -53,14 +53,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
                 }
                 else if (userRankProvider.CurrentRankId == id)
                 {
-                    sliderValue = (float)userRankProvider.Experience / userRankProvider.CurrentRank.ExpForRank;
+                    sliderValue = (float) userRankProvider.Experience / userRankProvider.CurrentRank.ExpForRank;
                 }
-                
+
                 element.UpdateSlider(sliderValue);
                 id++;
-            }   
+            }
         }
-        
+
         public override void Cleanup()
         {
             CleanupRewards();
@@ -71,12 +71,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         public void SetupRankInfo(RankData rankData, int curExp)
         {
             _rankValue.Key = rankData.Name;
+            _rankValue.Text.color = rankData.RankColor;
             _rankValue.Translate();
-            
+
             _curExpValue.text = curExp.ToString();
             _maxExpValue.text = rankData.ExpForRank.ToString();
         }
-        
+
         public void SetupRewardInfo(RewardConfig rewardConfig)
         {
             if (rewardConfig == default)
@@ -86,13 +87,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
                 _rewardName.Text.text = "";
                 return;
             }
-            
+
             _rewardImage.gameObject.SetActive(true);
             _rewardImage.sprite = rewardConfig.Reward.Sprite;
             _rewardName.Key = rewardConfig.Reward.Id;
             _rewardName.Translate();
         }
-        
+
         public void SetupRewards(UserRankProvider userRankProvider)
         {
             CleanupRewards();
@@ -102,11 +103,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
                 var newElement = Instantiate(_battlePassElementPrefab, _rewardsContainer);
                 newElement.Initialize();
                 var rewardSprite = rank.Rewards.Count > 0 ? rank.Rewards[0].Reward.Sprite : null;
-                
-                newElement.Setup(id ,rewardSprite,rank.Sprite);
+
+                newElement.Setup(id, rewardSprite, rank.Sprite);
                 newElement.OnButtonClicked += SelectReward;
                 _elements.Add(newElement);
-                
+
                 id++;
             }
 
@@ -121,6 +122,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
                 element.Cleanup();
                 Destroy(element.gameObject);
             }
+
             _elements.Clear();
         }
 

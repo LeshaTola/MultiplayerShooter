@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e0bd483cde4d988bca47d352242a39, type: 3}
   m_Name: AccuralConfig
   m_EditorClassIdentifier: 
-  <GrowExpTime>k__BackingField: 10
+  <GrowExpTime>k__BackingField: 120
   <GrowExpValue>k__BackingField: 1
   <ExpPerKill>k__BackingField: 5
-  <CoinsPerKill>k__BackingField: 1
-  <MinMatchTime>k__BackingField: 0
+  <CoinsPerKill>k__BackingField: 0.7
+  <MinMatchTime>k__BackingField: 120
   <MaxExpPercent>k__BackingField: 10
   <CoinReward>k__BackingField: {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}

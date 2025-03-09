@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,12 +32,17 @@ namespace App.Scripts.Modules.CustomToggles
         [SerializeField] private bool _isChangeImageColor;
         [SerializeField] private int _onSize = 36;
         [SerializeField] private int _offSize = 20;
+        [SerializeField] private float _duration = 0.3f;
+        
         [SerializeField] private Color _onStateColor;
         [SerializeField] private Color _offStateColor;
 
         public ToggleCustomEvent OnValueChanged = new ToggleCustomEvent();
         [field:SerializeField] public int Index { get; private set; }
 
+        private Tween _sizeTween;
+        private float _currentTargetSize;
+        
         private void OnEnable()
         {
             OnValueChanged.AddListener((bool x, int index) => Set(x, Index));
@@ -123,8 +129,23 @@ namespace App.Scripts.Modules.CustomToggles
             if (_text != null)
             {
                 _text.color = value ? _onStateColor : _offStateColor;
-                _text.fontSize = value ? _onSize : _offSize;
+                SetFontSize(value);
             }
+        }
+        
+        public void SetFontSize(bool value)
+        {
+            float targetSize = value ? _onSize : _offSize;
+            if (_currentTargetSize.Equals(targetSize)) return;
+
+            _currentTargetSize = targetSize;
+            _sizeTween?.Kill();
+
+            _sizeTween = DOVirtual.Float(_text.fontSize, targetSize, _duration, size =>
+                {
+                    _text.fontSize = size;
+                })
+                .SetEase(Ease.InOutBack);
         }
 
         public void SetToggleGroup(ToggleGroupCustom newGroup, bool setMemberValue)
