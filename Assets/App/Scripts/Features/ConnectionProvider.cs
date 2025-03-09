@@ -1,5 +1,9 @@
 using System;
+using App.Scripts.Features.Commands;
 using App.Scripts.Features.Match.Maps;
+using App.Scripts.Modules.Commands.General;
+using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -16,11 +20,13 @@ namespace App.Scripts.Features
         public event Action OnJoinedRoomEvent;
 
         private MapsProvider _mapsProvider;
+        private InfoPopupRouter _infoPopupRouter;
 
         [Inject]
-        public void Constructor(MapsProvider mapsProvider)
+        public void Constructor(MapsProvider mapsProvider, InfoPopupRouter infoPopupRouter)
         {
             _mapsProvider = mapsProvider;
+            _infoPopupRouter = infoPopupRouter;
         }
 
         public void Connect()
@@ -59,13 +65,26 @@ namespace App.Scripts.Features
         
         public override void OnJoinedRoom()
         {
-            //PhotonNetwork.LoadLevel("Gameplay");
             OnJoinedRoomEvent?.Invoke();
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            _infoPopupRouter.ShowPopup(new InfoPopupData()
+            {
+                Header = ConstStrings.ERROR,
+                Mesage = ConstStrings.CONNECTION_ERROR,
+                #if YANDEX
+                Command = new CustomCommand(ConstStrings.RECСONECT,TryReconnect)
+                // Command = new CustomCommand(ConstStrings.RECСONECT, ReloadPage)
+                #else
+                Command = new CustomCommand(ConstStrings.RECСONECT,TryReconnect)
+                #endif
+            }).Forget();
         }
 
         public void QuickGame()
         {
-            Debug.Log("Состояние сети: " + PhotonNetwork.NetworkClientState);
             string roomName = $"Room_{Random.Range(0, 1000)}";
             var options = new RoomOptions
             {
@@ -76,6 +95,24 @@ namespace App.Scripts.Features
             _mapsProvider.SetRandomMap();
             PhotonNetwork.JoinRandomOrCreateRoom(roomName: roomName, roomOptions: options);
         }
+
+        private void ReloadPage()
+        {
+            Application.OpenURL(Application.absoluteURL);
+        }
+        
+        private void TryReconnect()
+        {
+            if (PhotonNetwork.IsConnectedAndReady)
+            {
+                PhotonNetwork.ReconnectAndRejoin();
+            }
+            else
+            {
+                PhotonNetwork.ConnectUsingSettings();
+            }
+        }
+        
     }
 }
 
