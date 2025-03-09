@@ -22,18 +22,26 @@ MonoBehaviour:
     Percent: 0.01
     Color: {r: 1, g: 0.47843137, b: 0, a: 1}
     WinItems:
+    - {fileID: 11400000, guid: 5b58e6fa1c970b4478257e0abc39e777, type: 2}
     - {fileID: 11400000, guid: 88a319e3a380cbe46931f0e853f0b0c8, type: 2}
-    - {fileID: 11400000, guid: 02e08a7be4d54404c96da3eda7f3c992, type: 2}
     - {fileID: 11400000, guid: 9990dd945d3b6744dba2bacd70e427c8, type: 2}
+    - {fileID: 11400000, guid: 02e08a7be4d54404c96da3eda7f3c992, type: 2}
+    - {fileID: 11400000, guid: 6b6b64a0f68e49f4aa9678ad138dccdf, type: 2}
+    - {fileID: 11400000, guid: c572b5d03681669408df2301d9509b0f, type: 2}
     WinItemsCount: 1
   - Name: "\u042D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439"
     Percent: 0.09
     Color: {r: 0.7882353, g: 0.29411766, b: 0.8862745, a: 1}
     WinItems:
-    - {fileID: 11400000, guid: 1789775747838eb43af9b134d0dde2a2, type: 2}
     - {fileID: 11400000, guid: 686cbb95141e4074ca272045530abb46, type: 2}
+    - {fileID: 11400000, guid: 1789775747838eb43af9b134d0dde2a2, type: 2}
+    - {fileID: 11400000, guid: 6a13200334b21ed46b84705b952da9e1, type: 2}
     - {fileID: 11400000, guid: 49baee8df93ef1541ac0744aebcb3a88, type: 2}
     - {fileID: 11400000, guid: e797faa752391a04095b5aee360045bd, type: 2}
+    - {fileID: 11400000, guid: 449cd6f38a2d36a4f9ed63f60548c242, type: 2}
+    - {fileID: 11400000, guid: fc821252cda23014ba72c183fabb49d3, type: 2}
+    - {fileID: 11400000, guid: c0243025ea1121246be9545110aa590b, type: 2}
+    - {fileID: 11400000, guid: 7660d4604a483c948b11f91be03ce0da, type: 2}
     - {fileID: 11400000, guid: de358011a6086c9458a9e322c974e8c1, type: 2}
     - {fileID: 11400000, guid: e9bbc66c1648d4e4ebaf993d2c99584a, type: 2}
     WinItemsCount: 1
@@ -43,18 +51,33 @@ MonoBehaviour:
     WinItems:
     - {fileID: 11400000, guid: 737317d7afffe57488af5606b25fed8b, type: 2}
     - {fileID: 11400000, guid: 12c400b612f56de42917da896e72b894, type: 2}
-    - {fileID: 11400000, guid: 6541e1dd05b3ecf48ac2e5e2165a48af, type: 2}
-    - {fileID: 11400000, guid: 1932c21c75a6ffa4e80ba51e1ff8dd58, type: 2}
     - {fileID: 11400000, guid: 9418f0fc372079d4f98592d2e89f5946, type: 2}
+    - {fileID: 11400000, guid: 3cf10ad9efe4c3141a356d41460b71e3, type: 2}
+    - {fileID: 11400000, guid: fe53549865133374a8dbb483ed4ed8f8, type: 2}
+    - {fileID: 11400000, guid: 1932c21c75a6ffa4e80ba51e1ff8dd58, type: 2}
+    - {fileID: 11400000, guid: 6541e1dd05b3ecf48ac2e5e2165a48af, type: 2}
+    - {fileID: 11400000, guid: 42e34bd95666583428684048425a6f22, type: 2}
+    - {fileID: 11400000, guid: cf284c8571259da4b826ab3a5733fd3c, type: 2}
+    - {fileID: 11400000, guid: ba1e69621f6ca9840ad85dbf8d022947, type: 2}
+    - {fileID: 11400000, guid: 9a1b2189f6637fd4c8ae2aabeb7010a7, type: 2}
+    - {fileID: 11400000, guid: 24375d6ed049a8e43b258b5caea951fe, type: 2}
     WinItemsCount: 2
   - Name: "\u041D\u0435\u043E\u0431\u044B\u0447\u043D\u044B\u0439"
     Percent: 0.75
     Color: {r: 0.4509804, g: 0.78039217, b: 0, a: 1}
     WinItems:
-    - {fileID: 11400000, guid: 827c254b650e7f642a288a29d926d88d, type: 2}
-    - {fileID: 11400000, guid: ee9b70050970a4345888565f42994b12, type: 2}
-    - {fileID: 11400000, guid: f7eb93bf65292d34ca9fd82e4bcdea14, type: 2}
+    - {fileID: 11400000, guid: a4c60188b7988264393ca61fc66c05e8, type: 2}
     - {fileID: 11400000, guid: 74f588c31a42acd49b8d4943b92c447d, type: 2}
+    - {fileID: 11400000, guid: f7eb93bf65292d34ca9fd82e4bcdea14, type: 2}
+    - {fileID: 11400000, guid: 827c254b650e7f642a288a29d926d88d, type: 2}
+    - {fileID: 11400000, guid: b390263d926cbf14fbe92b46e526bcd8, type: 2}
+    - {fileID: 11400000, guid: ee9b70050970a4345888565f42994b12, type: 2}
+    - {fileID: 11400000, guid: 8fe455bb1125f2b488ce2dc488b2404c, type: 2}
+    - {fileID: 11400000, guid: 298bb580a84037945a2f6d1aa4fb15e1, type: 2}
+    - {fileID: 11400000, guid: 8c50a89b0405df544a3b120226757bd6, type: 2}
+    - {fileID: 11400000, guid: 18f4b2556cdd54f448a761c772b2fc4e, type: 2}
+    - {fileID: 11400000, guid: 27c5289fd2d2a2c4d9044f31059231b2, type: 2}
+    - {fileID: 11400000, guid: c12f3f75ab2768d4c9dfd1d2fc92a145, type: 2}
     WinItemsCount: 2
   <SpinCurve>k__BackingField:
     serializedVersion: 2

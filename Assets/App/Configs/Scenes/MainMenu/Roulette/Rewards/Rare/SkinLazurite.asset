@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
+  m_Name: SkinLazurite
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: SkinLazurite
+  <Reward>k__BackingField: {fileID: 11400000, guid: 9955d756b5a6469478d59c949476c576, type: 2}
+  <IsFixedCount>k__BackingField: 1
+  <Count>k__BackingField: 1
+  <CountRange>k__BackingField:
+    Min: 0
+    Max: 0
