@@ -23,7 +23,7 @@ namespace App.Scripts.Features.Rewards
         public RewardsProvider(RewardService rewardService,
             LeaderBoardProvider leaderboard,
             AccrualConfig accrualConfig,
-            TimerProvider timerProvider, 
+            TimerProvider timerProvider,
             UserRankProvider rankProvider)
         {
             _rewardService = rewardService;
@@ -36,29 +36,21 @@ namespace App.Scripts.Features.Rewards
 
         public void ApplyEndMatchRewards()
         {
-            if (PhotonNetwork.Time - _timerProvider.LocalStartTime < _accrualConfig.MinMatchTime)
+            if (!IsMinimumTime())
             {
                 return;
             }
-            
-            int playersCount = _leaderboard.GetTable().Count;
-            int middlePlace = playersCount / 2;
-            if (_leaderboard.MyPlace <= middlePlace)
-            {
-                var maxExpPercent = _accrualConfig.MaxExpPercent * playersCount / 10;
-                var myPlaceDivider = (_leaderboard.MyPlace - 1) * 2;
-                var exp =  maxExpPercent / myPlaceDivider * _rankProvider.CurrentRank.ExpForRank / 100;
-                _experience += exp;
-            }
-            
+
+            AddExpFromPlace();
             ApplyCoins();
             ApplyExp();
         }
 
         public void ApplyKill()
         {
-            var growsCount = (int)((PhotonNetwork.Time - _timerProvider.LocalStartTime) / _accrualConfig.GrowExpTime);
+            var growsCount = (int) ((PhotonNetwork.Time - _timerProvider.LocalStartTime) / _accrualConfig.GrowExpTime);
             var exp = _accrualConfig.ExpPerKill + growsCount * _accrualConfig.GrowExpValue;
+            Debug.Log($"EXP FOR KILL: {exp}");
             _experience += exp;
 
             var coins = _accrualConfig.CoinsPerKill;
@@ -71,6 +63,7 @@ namespace App.Scripts.Features.Rewards
         private void ApplyExp()
         {
             _rewardService.ExperienceToAdd += (int) _experience;
+            Debug.Log((int) _experience);
             _experience -= (int) _experience;
         }
 
@@ -80,6 +73,7 @@ namespace App.Scripts.Features.Rewards
             {
                 return;
             }
+
             Debug.Log((int) _coins);
 
             var coinsReward = Object.Instantiate(_accrualConfig.CoinReward);
@@ -87,6 +81,26 @@ namespace App.Scripts.Features.Rewards
             _coins -= (int) _coins;
 
             _rewardService.AddReward(coinsReward);
+        }
+
+        private void AddExpFromPlace()
+        {
+            int playersCount = _leaderboard.GetTable().Count;
+            int middlePlace = playersCount / 2;
+            if (_leaderboard.MyPlace <= middlePlace)
+            {
+                var maxExpPercent = _accrualConfig.MaxExpPercent * playersCount / 10;
+                var myPlaceDivider = (_leaderboard.MyPlace - 1) * 2;
+                myPlaceDivider = myPlaceDivider == 0 ? 1 : myPlaceDivider;
+                var exp = maxExpPercent / myPlaceDivider * _rankProvider.CurrentRank.ExpForRank / 100;
+                Debug.Log($"EXP FOR PLACE: {exp}");
+                _experience += exp;
+            }
+        }
+
+        private bool IsMinimumTime()
+        {
+            return PhotonNetwork.Time - _timerProvider.LocalStartTime > _accrualConfig.MinMatchTime;
         }
     }
 }

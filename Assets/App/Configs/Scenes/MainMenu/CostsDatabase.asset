@@ -154,4 +154,5 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  _coinReward: {fileID: 11400000, guid: acc6879b17653a940adaff7638bc15fa, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
