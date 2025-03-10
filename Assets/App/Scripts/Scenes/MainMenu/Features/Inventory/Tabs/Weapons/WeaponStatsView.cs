@@ -4,10 +4,9 @@ using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Localization.Localizers;
+using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
-using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 {
@@ -17,16 +16,20 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         [SerializeField] private RectTransform _statsContainer;
         [SerializeField] private WeaponStat _weaponStatPrefab;
 
-        [SerializeField] private Transform _spawnPoint;
-        
         private readonly List<WeaponStat> _weaponStats = new();
         private ILocalizationSystem _localizationSystem;
         private SelectionProvider _selectionProvider;
         private GlobalInventory _inventory;
-        
-        public void Initialize(SelectionProvider selectionProvider, GlobalInventory inventory, ILocalizationSystem localizationSystem)
+
+        private WeaponModelsUIProvider _weaponModelsUIProvider;
+
+        public void Initialize(SelectionProvider selectionProvider,
+            GlobalInventory inventory,
+            ILocalizationSystem localizationSystem,
+            WeaponModelsUIProvider weaponModelsUIProvider)
         {
             _localizationSystem = localizationSystem;
+            _weaponModelsUIProvider = weaponModelsUIProvider;
 
             _weaponName.Initialize(_localizationSystem);
             _inventory = inventory;
@@ -41,21 +44,39 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             _weaponName.Cleanup();
         }
 
-        private void OnWeaponSelected(string id)
+        private void Default()
         {
-            var config = _inventory.Weapons.FirstOrDefault(x => x.Id.Equals(id));
-            if (config != null)
-            {
-                Setup(config);
-            }
+            CleanupWeaponStats();
+
+            _weaponModelsUIProvider.Cleanup();
         }
 
-        public void Setup(WeaponConfig config)
+        private void CleanupWeaponStats()
+        {
+            foreach (var weaponStat in _weaponStats)
+            {
+                weaponStat.Cleanup();
+                Destroy(weaponStat.gameObject);
+            }
+
+            _weaponStats.Clear();
+        }
+
+        private void Setup(WeaponConfig config)
         {
             Default();
+            SetupHeader(config);
+            SetupStats(config);
+            SetupWeaponView(config);
+        }
 
-            _weaponName.Key = config.name;
-            _weaponName.Translate();
+        private void SetupWeaponView(WeaponConfig config)
+        {
+            _weaponModelsUIProvider.SetupWeapon(config);
+        }
+
+        private void SetupStats(WeaponConfig config)
+        {
             foreach (var stat in config.Stats)
             {
                 var newStat = Instantiate(_weaponStatPrefab, _statsContainer);
@@ -63,26 +84,20 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
                 newStat.Setup(stat.Item1, stat.Item2);
                 _weaponStats.Add(newStat);
             }
-            
-            var weapon = Instantiate(config.Prefab, _spawnPoint);
-            
-            weapon.transform.localPosition += config.ViewOffset;
-            weapon.transform.localRotation *= Quaternion.Euler(config.ViewRotationOffset);
-            weapon.transform.localScale = Vector3.Scale(weapon.transform.localScale, config.ViewScaleMultiplier);
         }
 
-        private void Default()
+        private void SetupHeader(WeaponConfig config)
         {
-            foreach (var weaponStat in _weaponStats)
-            {
-                weaponStat.Cleanup();
-                Destroy(weaponStat.gameObject);
-            }
-            _weaponStats.Clear();
+            _weaponName.Key = config.name;
+            _weaponName.Translate();
+        }
 
-            foreach (Transform child in _spawnPoint)
+        private void OnWeaponSelected(string id)
+        {
+            var config = _inventory.Weapons.FirstOrDefault(x => x.Id.Equals(id));
+            if (config)
             {
-                Destroy(child.gameObject);
+                Setup(config);
             }
         }
     }

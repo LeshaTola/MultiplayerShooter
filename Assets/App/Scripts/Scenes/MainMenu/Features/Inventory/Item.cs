@@ -69,6 +69,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory
                 eventData.position,
                 Camera.main, 
                 out Vector3 worldPoint);
+            
             _rectTransform.position = worldPoint;
         }
 

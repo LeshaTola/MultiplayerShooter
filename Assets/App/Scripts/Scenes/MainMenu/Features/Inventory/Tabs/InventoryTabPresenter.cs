@@ -2,6 +2,7 @@
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
@@ -17,7 +18,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
         public InventoryTabPresenter(InventoryTab view,
             IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,
-            InventoryProvider inventoryProvider, RectTransform overlayTransform)
+            InventoryProvider inventoryProvider,
+            RectTransform overlayTransform)
         {
             View = view;
             ItemFactory = itemFactory;
@@ -29,6 +31,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
         public override void Cleanup()
         {
             View.Cleanup();
+        }
+        
+        public override async UniTask Hide()
+        {
+            await base.Show();
+            View.Hide();
         }
     }
 }

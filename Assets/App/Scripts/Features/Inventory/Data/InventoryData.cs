@@ -19,7 +19,7 @@ namespace App.Scripts.Features.Inventory.Data
             return !Skins.Contains(id) && !Weapons.Contains(id) && !Equipment.Contains(id);
         }
         
-        public List<ItemConfig> GetAvailablesItems(List<ItemConfig> items)
+        public List<ItemConfig> GetAvailableItems(List<ItemConfig> items)
         {
             var availableItems = items
                 .Where(item => IsAvailable(item.Id)).ToList();

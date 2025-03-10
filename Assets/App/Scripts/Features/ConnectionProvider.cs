@@ -74,13 +74,20 @@ namespace App.Scripts.Features
             {
                 Header = ConstStrings.ERROR,
                 Mesage = ConstStrings.CONNECTION_ERROR,
-                #if YANDEX
-                Command = new CustomCommand(ConstStrings.RECСONECT,TryReconnect)
-                // Command = new CustomCommand(ConstStrings.RECСONECT, ReloadPage)
-                #else
-                Command = new CustomCommand(ConstStrings.RECСONECT,TryReconnect)
-                #endif
+                Command = new CustomCommand(ConstStrings.RECСONECT, Reconnect)
+
             }).Forget();
+        }
+
+        public void Reconnect()
+        {
+#if YANDEX
+            TryReconnect();
+//            ReloadPage();
+#else
+            TryReconnect();
+#endif
+            _infoPopupRouter.HidePopup().Forget();
         }
 
         public void QuickGame()

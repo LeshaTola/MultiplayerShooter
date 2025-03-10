@@ -2,6 +2,7 @@
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.CustomToggles;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
 {
@@ -11,6 +12,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
         [SerializeField] List<ToggleCustom> _toggles = new();
 
         private int _tabIndex;
+        private List<InventoryTabPresenter> _inventoryTabPresenters;
+
+        [Inject]
+        public void Construct(List<InventoryTabPresenter> inventoryTabPresenters)
+        {
+            _inventoryTabPresenters = inventoryTabPresenters;
+        }
         
         public void Initialize()
         {
@@ -39,21 +47,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
         {
             if (!value)
             {
-                _tabs[index].Hide();
+                _inventoryTabPresenters[index].Hide();
                 return;
             }
-            _tabs[index].Show();
+            _inventoryTabPresenters[index].Show();
             _tabIndex = index;
         }
 
         public void Show()
         {
-            _tabs[_tabIndex].Show();
+            _inventoryTabPresenters[_tabIndex].Show();
         }
 
         public void Hide()
         {
-            _tabs[_tabIndex].Hide();
+            _inventoryTabPresenters[_tabIndex].Hide();
         }
     }
 }

@@ -3,8 +3,10 @@ using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
@@ -14,9 +16,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         private readonly WeaponStatsView _statsView;
         private readonly SelectionProvider _selectionProvider;
         private readonly ILocalizationSystem _localizationSystem;
+        private readonly WeaponModelsUIProvider _weaponModelsUIProvider;
 
-        private Dictionary<string,InventorySlot> _inventorySlots;
-        
+        private Dictionary<string, InventorySlot> _inventorySlots;
+
         public WeaponTabPresenter(InventoryTab view,
             WeaponStatsView statsView,
             SelectionProvider selectionProvider,
@@ -24,23 +27,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             IFactory<InventorySlot> slotFactory,
             InventoryProvider inventoryProvider,
             RectTransform overlayTransform,
-            ILocalizationSystem localizationSystem) 
+            ILocalizationSystem localizationSystem,
+            WeaponModelsUIProvider weaponModelsUIProvider)
             : base(view, itemFactory, slotFactory,
-            inventoryProvider, overlayTransform)
+                inventoryProvider, overlayTransform)
         {
             _statsView = statsView;
             _selectionProvider = selectionProvider;
             _localizationSystem = localizationSystem;
+            _weaponModelsUIProvider = weaponModelsUIProvider;
         }
 
         public override void Initialize()
         {
-            _inventorySlots = new();
-            _statsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory, _localizationSystem);
+            _inventorySlots = new ();
+            _statsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory, _localizationSystem,
+                _weaponModelsUIProvider);
             InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
             UpdateInventory();
-            
-            _selectionProvider.Select(_inventorySlots.First().Value);
         }
 
         public override void Cleanup()
@@ -48,7 +52,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             _statsView.Cleanup();
             InventoryProvider.Inventory.OnInventoryUpdated -= UpdateInventory;
         }
-        
+
+        public override async UniTask Show()
+        {
+            await base.Show();
+            View.Show();
+            _selectionProvider.Select(_inventorySlots.First().Value);
+        }
+
         private void UpdateInventory()
         {
             foreach (var weaponId in InventoryProvider.Inventory.Weapons)
@@ -57,9 +68,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
                 {
                     continue;
                 }
-                
+
                 var slot = SlotFactory.GetItem();
                 slot.Initialize(new NoneInventorySlotStrategy(), -1);
+                
                 var item = ItemFactory.GetItem();
                 var weaponConfig = InventoryProvider.WeaponById(weaponId);
                 item.Initialize(_selectionProvider, OverlayTransform, weaponConfig.Sprite, weaponId);

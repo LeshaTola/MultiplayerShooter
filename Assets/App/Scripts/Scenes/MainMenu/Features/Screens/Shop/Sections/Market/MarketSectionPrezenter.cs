@@ -14,14 +14,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private readonly ILocalizationSystem _localizationSystem;
         private readonly UserStatsProvider _userStatsProvider;
         private readonly InfoPopupRouter _infoPopupRouter;
-        private readonly MarketPopupRoutrer _marketPopupRouter;
+        private readonly MarketPopupRouter _marketPopupRouter;
 
         public MarketSectionPrezenter(MarketSectionView view,
             MarketService marketService,
             ILocalizationSystem localizationSystem,
             UserStatsProvider userStatsProvider, 
             InfoPopupRouter infoPopupRouter,
-            MarketPopupRoutrer marketPopupRouter)
+            MarketPopupRouter marketPopupRouter)
         {
             _view = view;
             _marketService = marketService;
@@ -48,7 +48,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             _marketService.OnItemsUpdated -= _view.UpdateSections;
             _marketService.OnTimerUpdated -= _view.UpdateTimer;
             _view.OnItemClicked -= OnItemClicked;
-            _view.OnUpdateButtonClicked += OnUpdateButtonClicked;
+            _view.OnUpdateButtonClicked -= OnUpdateButtonClicked;
         }
 
         private void OnUpdateButtonClicked()

@@ -92,7 +92,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             {
                 _lastUpdate = DateTime.Now.AddHours(-2);
             }
-                //if (_lastUpdate == default) _lastUpdate = DateTime.Now.AddHours(-2);
+            else
+            {
+                _lastUpdate = new DateTime(marketData.LastUpdate);
+            }
+            
             CurrentItems.Clear();
             foreach (var itemId in marketData.CurrentItems)
             {
@@ -119,11 +123,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                 {
                     continue;
                 }
-
-                var availableItems = items
-                    .Where(item => !inventory.Skins.Contains(item.Id) &&
-                                   !inventory.Weapons.Contains(item.Id) &&
-                                   !inventory.Equipment.Contains(item.Id)).ToList();
+                
+                var availableItems = inventory.GetAvailableItems(items);
                 if (availableItems.Count <= 0)
                 {
                     continue;
@@ -139,7 +140,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             UpdateItemsInternal(newItems);
         }
 
-        public void UpdateItemsInternal(List<ShopItemData> newItems)
+        private void UpdateItemsInternal(List<ShopItemData> newItems)
         {
             CurrentItems = newItems;
             OnItemsUpdated?.Invoke(CurrentItems);
@@ -173,16 +174,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private void ValidateCurrentItems()
         {
             var inventory = _userStatsProvider.InventoryProvider.Inventory;
-            var availableItems = GetAvailablesItems(inventory);
+            var availableItems = GetAvailableItems(inventory);
             UpdateItemsInternal(availableItems);
         }
 
-        private List<ShopItemData> GetAvailablesItems(InventoryData inventory)
+        private List<ShopItemData> GetAvailableItems(InventoryData inventory)
         {
             var availableItems = CurrentItems
-                .Where(item => !inventory.Skins.Contains(item.Item.Id) &&
-                               !inventory.Weapons.Contains(item.Item.Id) &&
-                               !inventory.Equipment.Contains(item.Item.Id)).ToList();
+                .Where(item => inventory.IsAvailable(item.Item.Id)).ToList();
             return availableItems;
         }
     }
