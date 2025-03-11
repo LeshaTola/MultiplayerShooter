@@ -72,6 +72,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             SetupRank();
             _userStatsView.SetupMoney(_coinsProvider.Coins);
             _screen.SetTicketsCount(_ticketsProvider.Tickets);
+            _userStatsView.SetupTickets(_ticketsProvider.Tickets);
         }
 
         public override void Cleanup()
@@ -174,6 +175,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private void OnTicketsChanged(int tickets)
         {
             _screen.SetTicketsCount(tickets);
+            _userStatsView.SetupTickets(tickets);
         }
     }
 }

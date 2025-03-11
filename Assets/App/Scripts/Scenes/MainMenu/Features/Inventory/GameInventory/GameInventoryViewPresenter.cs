@@ -46,7 +46,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
             _view.Initialize();
 
             InitializeWeapons();
-            InitializeEquipment();
         }
 
         public override void Cleanup()
@@ -78,28 +77,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
                 SpawnItem(weaponConfig, slot);
             }
         }
-
-        private void InitializeEquipment()
-        {
-            for (int i = 0; i < _inventoryProvider.GameInventory.Equipment.Count; i++)
-            {
-                var slot = _inventorySlotFactory.GetItem();
-                var key = i == 0 ? "Q" : "E"; //TODO: REMOVE HARDCODE
-
-                var slotStrategy = new CorrectTypeInventorySlotStrategy(_selectionProvider,
-                    ItemType.Equipment,
-                    _inventoryProvider,
-                    _itemFactory, _view);
-                slotStrategy.OnInventoryChanged += OnInventoryChanged;
-                _subscriptionsSlots.Add(slotStrategy);
-
-                slot.Initialize(slotStrategy, i, key, ItemType.Equipment);
-                _view.AddEquipmentSlot(slot);
-                var equipmentConfig = _inventoryProvider.EquipmentById(_inventoryProvider.GameInventory.Equipment[i]);
-                SpawnItem(equipmentConfig, slot);
-            }
-        }
-
         private void SpawnItem(ItemConfig itemConfig, InventorySlot slot)
         {
             if (!itemConfig)

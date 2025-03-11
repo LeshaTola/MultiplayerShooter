@@ -153,7 +153,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
                 IsVisible = true,
                 CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
                 {
-                    {"Map", _mapsConfig.Maps[_mapIndex].Prefab.name},
+                    {"Map", _mapsConfig.Maps[_mapIndex].Name},
                     {"GameMode", /*gameMode*/"PVP"}
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}

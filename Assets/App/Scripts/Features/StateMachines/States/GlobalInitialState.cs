@@ -42,7 +42,7 @@ namespace App.Scripts.Features.StateMachines.States
                 SceneManager.LoadScene("MainMenu");
             }
             
-            Application.targetFrameRate = -1;
+            Application.targetFrameRate = 60;
             _connectionProvider.OnConnectionFinished += OnConectedToServer;
             
             _settingsProvider.LoadState();

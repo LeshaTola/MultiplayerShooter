@@ -85,19 +85,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
                 = _inventoryProvider.GameInventory.Equipment
                     .FindIndex(x => x.Equals(item.ConfigId));
 
-            if (weaponIndex != -1)
+            if (weaponIndex == -1)
             {
-                SwapPerformed(inventorySlot, item, _gameInventoryView.WeaponsSlots[weaponIndex].Item, ItemType.Weapon);
-                return true;
+                return false;
             }
+            
+            SwapPerformed(inventorySlot, item, _gameInventoryView.WeaponsSlots[weaponIndex].Item, ItemType.Weapon);
+            return true;
 
-            if (equipmentIndex != -1)
-            {
-                SwapPerformed(inventorySlot, item, _gameInventoryView.EquipmentSlots[equipmentIndex].Item, ItemType.Equipment);
-                return true;
-            }
-
-            return false;
         }
 
         private void SwapPerformed(InventorySlot inventorySlot, Item item, Item inventoryItem, ItemType type)

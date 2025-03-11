@@ -20,6 +20,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         [SerializeField] private Slider _rankSlider;
         [SerializeField] private TextMeshProUGUI _rankExpText;
         
+        [Header("Tickets")]
+        [SerializeField] private TextMeshProUGUI _ticketsText;
+        
         public override void Initialize()
         {
             _playerInputField.onEndEdit.AddListener((value) =>
@@ -46,6 +49,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
             var normalizedExp = curentExp / maxExp;
             _rankSlider.value = normalizedExp;
             _rankExpText.text = $"{curentExp}/{maxExp}";
+        }
+
+        public void SetupTickets(int tickets)
+        {
+            _ticketsText.text = tickets.ToString();
         }
 
         public override void Cleanup()

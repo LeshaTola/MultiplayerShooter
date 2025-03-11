@@ -47,8 +47,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             foreach (var room in rooms)
             {
                 var roomItem = Instantiate(_prefab, _container.transform);
-                roomItem.Setup(room, () => OnJoinRoom(room, action));
                 roomItem.Initialize(_localizationSystem);
+                roomItem.Setup(room, () => OnJoinRoom(room, action));
                 _roomItems.Add(roomItem);
             }
         }

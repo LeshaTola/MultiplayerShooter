@@ -67,10 +67,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [FoldoutGroup("Inventory")]
         private WeaponStatsView _weaponStatsView;
 
-        [FoldoutGroup("Inventory")]
-        [SerializeField]
-        private InventoryTab _equipmentTab;
-
         [Space]
         [FoldoutGroup("Inventory")]
         [SerializeField]
@@ -198,8 +194,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<InventoryTabPresenter>().To<WeaponTabPresenter>().AsSingle()
                 .WithArguments(_overlayContainer, _weaponTab, _weaponStatsView);
 
-            Container.Bind<InventoryTabPresenter>().To<EquipmentTabPresenter>().AsSingle()
-                .WithArguments(_overlayContainer, _equipmentTab);
             Container.Bind<InventoryTabPresenter>().To<SkinsTabPresenter>().AsSingle()
                 .WithArguments(_skinsView, _overlayContainer, _skinTab, _skinSlot);
             Container.BindInstance(_inventoryScreeen).AsSingle();
