@@ -8,9 +8,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
 {
     public class InventorySlot : MonoBehaviour, IDropHandler
     {
-        [SerializeField] private Color _weaponColor = Color.white;
-        [SerializeField] private Color _equipmentColor = Color.white;
-        [SerializeField] private Color _skinColor = Color.white;
         [SerializeField] private Image _image;
         [SerializeField] private Image _selectionImage;
         [SerializeField] private TextMeshProUGUI _keyText;
@@ -26,22 +23,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
             Type = itemType;
             _inventorySlotStrategy = inventorySlotStrategy;
             SlotIndex = slotIndex;
-            SetColor(itemType);
             _keyText.text = keyText;
-        }
-
-        public void SetColor(ItemType itemType)
-        {
-            Color color = itemType switch
-            {
-                ItemType.Weapon => _weaponColor,
-                ItemType.Equipment => _equipmentColor,
-                ItemType.Skin => _skinColor
-            };
-
-            _image.color =  color;
-            _selectionImage.color = color;
-
         }
 
         public void Select()

@@ -19,12 +19,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         private readonly InventorySlot _skinSlot;
         private readonly UserStatsProvider _userStatsProvider;
         private readonly GameInventoryView _gameInventoryView;
-        private readonly PlayerModelsUIProvider _playerModelsUIProvider;
-        private readonly SkinsView _skinsView;
         private CorrectTypeInventorySlotStrategy _slotStrategy;
 
         public SkinsTabPresenter(InventoryTab view,
-            SkinsView skinsView,
             SelectionProvider selectionProvider,
             IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,
@@ -32,15 +29,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             RectTransform overlayTransform,
             InventorySlot skinSlot,
             UserStatsProvider userStatsProvider,
-            GameInventoryView gameInventoryView, PlayerModelsUIProvider playerModelsUIProvider)
+            GameInventoryView gameInventoryView)
             : base(view, itemFactory, slotFactory, inventoryProvider, overlayTransform)
         {
-            _skinsView = skinsView;
             _selectionProvider = selectionProvider;
             _skinSlot = skinSlot;
             _userStatsProvider = userStatsProvider;
             _gameInventoryView = gameInventoryView;
-            _playerModelsUIProvider = playerModelsUIProvider;
         }
         
         private Dictionary<string,InventorySlot> _inventorySlots;
@@ -48,7 +43,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         public override void Initialize()
         {
             _inventorySlots = new();
-            _skinsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory, _playerModelsUIProvider);
             
             InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
             UpdateInventory();
@@ -66,7 +60,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
 
         public override void Cleanup()
         {
-            _skinsView.Cleanup();
             _slotStrategy.OnInventoryChanged -= OnInventoryChanged;
             InventoryProvider.Inventory.OnInventoryUpdated -= UpdateInventory;
         }
@@ -74,7 +67,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         public override async UniTask Show()
         {
             await base.Show();
-            View.Show();
+            await View.Show();
             _selectionProvider.Select(_skinSlot);
         }
 

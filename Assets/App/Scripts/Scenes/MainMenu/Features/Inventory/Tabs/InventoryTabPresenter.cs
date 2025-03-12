@@ -36,7 +36,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
         public override async UniTask Hide()
         {
             await base.Show();
-            View.Hide();
+            await View.Hide();
         }
     }
 }

@@ -13,22 +13,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 {
     public class WeaponTabPresenter : InventoryTabPresenter
     {
-        private readonly WeaponStatsView _statsView;
+        private readonly MarketView _statsView;
         private readonly SelectionProvider _selectionProvider;
         private readonly ILocalizationSystem _localizationSystem;
         private readonly WeaponModelsUIProvider _weaponModelsUIProvider;
+        private readonly PlayerModelsUIProvider _playerModelsUIProvider;
 
         private Dictionary<string, InventorySlot> _inventorySlots;
 
         public WeaponTabPresenter(InventoryTab view,
-            WeaponStatsView statsView,
+            MarketView statsView,
             SelectionProvider selectionProvider,
             IFactory<Item> itemFactory,
             IFactory<InventorySlot> slotFactory,
             InventoryProvider inventoryProvider,
             RectTransform overlayTransform,
             ILocalizationSystem localizationSystem,
-            WeaponModelsUIProvider weaponModelsUIProvider)
+            WeaponModelsUIProvider weaponModelsUIProvider,
+            PlayerModelsUIProvider playerModelsUIProvider)
             : base(view, itemFactory, slotFactory,
                 inventoryProvider, overlayTransform)
         {
@@ -36,13 +38,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             _selectionProvider = selectionProvider;
             _localizationSystem = localizationSystem;
             _weaponModelsUIProvider = weaponModelsUIProvider;
+            _playerModelsUIProvider = playerModelsUIProvider;
         }
 
         public override void Initialize()
         {
             _inventorySlots = new ();
             _statsView.Initialize(_selectionProvider, InventoryProvider.GlobalInventory, _localizationSystem,
-                _weaponModelsUIProvider);
+                _weaponModelsUIProvider, _playerModelsUIProvider);
             InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
             UpdateInventory();
         }
@@ -56,7 +59,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         public override async UniTask Show()
         {
             await base.Show();
-            View.Show();
+            await View.Show();
             _selectionProvider.Select(_inventorySlots.First().Value);
         }
 

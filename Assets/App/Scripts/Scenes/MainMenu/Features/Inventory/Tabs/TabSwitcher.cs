@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.CustomToggles;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -47,21 +48,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
         {
             if (!value)
             {
-                _inventoryTabPresenters[index].Hide();
+                _inventoryTabPresenters[index].Hide().Forget();
                 return;
             }
-            _inventoryTabPresenters[index].Show();
+            _inventoryTabPresenters[index].Show().Forget();
             _tabIndex = index;
         }
 
         public void Show()
         {
-            _inventoryTabPresenters[_tabIndex].Show();
+            _inventoryTabPresenters[_tabIndex].Show().Forget();
         }
 
         public void Hide()
         {
-            _inventoryTabPresenters[_tabIndex].Hide();
+            _inventoryTabPresenters[_tabIndex].Hide().Forget();
         }
     }
 }

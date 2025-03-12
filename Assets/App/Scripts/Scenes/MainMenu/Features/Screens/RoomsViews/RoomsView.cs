@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Views;
 using Photon.Realtime;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 {
-    public class RoomsView : AnimatedView
+    public class RoomsView : GameScreen
     {
         public event Action OnQuickGameButtonClicked;
 
@@ -34,7 +35,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             _quickGameButton.onClick.AddListener(() => OnQuickGameButtonClicked?.Invoke());
         }
 
-        public void Cleanup()
+        public override void Cleanup()
         {
             _createRoomButton.onClick.RemoveAllListeners();
             _quickGameButton.onClick.RemoveAllListeners();

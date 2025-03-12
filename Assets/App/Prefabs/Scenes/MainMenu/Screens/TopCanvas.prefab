@@ -490,10 +490,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toggles:
+  - {fileID: 8716170796752178183}
   - {fileID: 1723152143629520711}
   - {fileID: 3171678129281534997}
-  - {fileID: 3894824790784787189}
   - {fileID: 6590020937527746361}
+  - {fileID: 8651281086808741430}
+  - {fileID: 3894824790784787189}
   _settingsButton: {fileID: 6389879016337037043}
   _tutorButton: {fileID: 4455502539191332212}
 --- !u!1 &5155447490249035082
@@ -927,15 +929,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 30
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 40
+  m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -1098,7 +1100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 226
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1178,7 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 5670066451853888911}
     - target: {fileID: 6907867888732390152, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: <Index>k__BackingField
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6917082410825829571, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_text
@@ -1283,7 +1285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1363,7 +1365,7 @@ PrefabInstance:
       objectReference: {fileID: 5670066451853888911}
     - target: {fileID: 6907867888732390152, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: <Index>k__BackingField
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6917082410825829571, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_text
@@ -1407,6 +1409,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
   m_PrefabInstance: {fileID: 2869403677195670846}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8651281086808741430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6907867888732390152, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+  m_PrefabInstance: {fileID: 2869403677195670846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed15d1c8730492d448e28c193a2db80b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3549616483895284062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1675,7 +1688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1954,7 +1967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2030,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 5670066451853888911}
     - target: {fileID: 6907867888732390152, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: <Index>k__BackingField
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6917082410825829571, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_text
@@ -2119,7 +2132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_SizeDelta.y

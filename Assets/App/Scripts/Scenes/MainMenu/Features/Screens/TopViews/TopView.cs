@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.CustomToggles;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
@@ -30,9 +28,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _tutorButton.onClick.AddListener(OpenTutor);
         }
 
-        public void SetLastToggle()
+        public void SetTab(int index)
         {
-            _toggles.Last().IsOn = true;
+            _toggles[index].IsOn = true;
         }
 
         private void OpenTutor()

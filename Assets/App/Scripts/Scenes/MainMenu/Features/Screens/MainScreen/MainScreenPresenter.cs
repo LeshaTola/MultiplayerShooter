@@ -27,8 +27,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private readonly CoinsProvider _coinsProvider;
         private readonly TicketsProvider _ticketsProvider;
         private readonly UserStatsView _userStatsView;
-        private readonly RouletteScreenPresentrer _rouletteScreenPresentrer;
-        private readonly BattlePassScreenPrezenter _battlePassScreenPrezenter;
+        private readonly TopView _topView;
         private readonly InfoPopupRouter _infoPopupRouter;
 
         public MainScreenPresenter(MainScreen screen,
@@ -37,9 +36,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             CoinsProvider coinsProvider,
             TicketsProvider ticketsProvider,
             UserStatsView userStatsView,
-            RouletteScreenPresentrer rouletteScreenPresentrer,
-            BattlePassScreenPrezenter battlePassScreenPrezenter,
-            InfoPopupRouter infoPopupRouter)
+            InfoPopupRouter infoPopupRouter, 
+            TopView topView)
         {
             _screen = screen;
             _connectionProvider = connectionProvider;
@@ -47,9 +45,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _coinsProvider = coinsProvider;
             _ticketsProvider = ticketsProvider;
             _userStatsView = userStatsView;
-            _rouletteScreenPresentrer = rouletteScreenPresentrer;
-            _battlePassScreenPrezenter = battlePassScreenPrezenter;
             _infoPopupRouter = infoPopupRouter;
+            _topView = topView;
         }
 
         public override void Initialize()
@@ -117,13 +114,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private async void OnRouletteButtonAction()
         {
             await Hide();
-            await _rouletteScreenPresentrer.Show();
+            _topView.SetTab(4);
         }
         
         private async void OnBattlePassButtonAction()
         {
             await Hide();
-            await _battlePassScreenPrezenter.Show();
+            _topView.SetTab(3);
         }
 
         private void OnPlayerNameChanged(string name)

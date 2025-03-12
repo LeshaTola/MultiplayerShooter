@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.Features.Inventory;
+﻿using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Yandex.Saves;
 using App.Scripts.Modules.Saves;
@@ -24,10 +22,9 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
-using App.Scripts.Scenes.MainMenu.StateMachines.States;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace App.Scripts.Scenes.MainMenu.Bootstrap
@@ -36,6 +33,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     {
         [FoldoutGroup("Main")]
         [SerializeField] private MainScreen _mainScreen;
+
         [FoldoutGroup("Main")]
         [SerializeField] private UserStatsView _userStatsView;
 
@@ -63,9 +61,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [FoldoutGroup("Inventory")]
         private InventoryTab _weaponTab;
 
+        [FormerlySerializedAs("_weaponStatsView")]
         [SerializeField]
         [FoldoutGroup("Inventory")]
-        private WeaponStatsView _weaponStatsView;
+        private MarketView _marketView;
 
         [Space]
         [FoldoutGroup("Inventory")]
@@ -76,65 +75,71 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [SerializeField]
         private InventorySlot _skinSlot;
 
-        [FoldoutGroup("Inventory")]
-        [SerializeField]
-        private SkinsView _skinsView;
-        
         [SerializeField]
         [FoldoutGroup("Shop")]
         private ShopScreen _shopScreen;
+
         [SerializeField]
         [FoldoutGroup("Shop")]
         private TicketsSectionView _ticketsSectionView;
+
         [SerializeField]
         [FoldoutGroup("Shop")]
         private TicketsSectionConfig _ticketsSectionConfig;
+
         [SerializeField]
         [FoldoutGroup("Shop")]
         private MarketSectionView _marketSectionView;
+
         [SerializeField]
         [FoldoutGroup("Shop")]
         private GlobalInventory _globalInventory;
+
         [SerializeField]
         [FoldoutGroup("Shop")]
         private RaritiesDatabase _raritiesDatabase;
+
         [SerializeField]
         [FoldoutGroup("Shop")]
         private CostsDatabase _costsDatabase;
 
         [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteConfig _rouletteConfig;
+
         [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteScreen _rouletteScreen;
+
         [FoldoutGroup("Roulette")]
         [SerializeField] private RouletteView _rouletteView;
 
         [FoldoutGroup("BattlePass")]
         [SerializeField] private BattlePassScreen _battlePassScreen;
 
-        
+
         [FoldoutGroup("TopScreen")]
         [SerializeField] private TopView _topView;
+
         [FoldoutGroup("TopScreen")]
         [SerializeField] private SettingsView _settingsView;
+
         [FoldoutGroup("TopScreen")]
         [SerializeField] private TutorialConfig _tutorialConfig;
-        
+
 
         public override void InstallBindings()
         {
             Container.BindInstance(_userStatsView).AsSingle();
             Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
-            
+
             Container.BindInstance(_raritiesDatabase).AsSingle();
             Container.BindInstance(_costsDatabase).AsSingle();
-            
+
             BindTopView();
             BindMainScreen();
             BindRoomsScreen();
             BindInventoryScreen();
-            BindRouletteScreen();
             BindBattlePassScreen();
+            BindRouletteScreen();
             BindShopScreen();
         }
 
@@ -153,7 +158,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         private void BindTopView()
         {
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();
-            Container.BindInterfacesAndSelfTo<TopViewPrezentor>().AsSingle().WithArguments(_tutorialConfig);
+            Container.BindInterfacesAndSelfTo<TopViewPresenter>().AsSingle().WithArguments(_tutorialConfig);
         }
 
         private void BindBattlePassScreen()
@@ -165,12 +170,13 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         private void BindShopScreen()
         {
             Container.BindInstance(_ticketsSectionView).AsSingle();
-            Container.BindInterfacesAndSelfTo<TicketsSectionViewPrezenter>().AsSingle().WithArguments(_ticketsSectionConfig); 
-            
+            Container.BindInterfacesAndSelfTo<TicketsSectionViewPrezenter>().AsSingle()
+                .WithArguments(_ticketsSectionConfig);
+
             Container.BindInstance(_marketSectionView).AsSingle();
-            Container.Bind<MarketSectionPrezenter>().AsSingle(); 
-            
-            
+            Container.Bind<MarketSectionPrezenter>().AsSingle();
+
+
             Container.BindInterfacesAndSelfTo<MarketService>().AsSingle().WithArguments(_globalInventory).NonLazy();
 #if YANDEX
             Container.Bind<IDataProvider<MarketSavesData>>().To<YandexMarketSavesDataProvider>().AsSingle();
@@ -180,9 +186,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
                 AsSingle().
                 WithArguments("MarketSavesKey");
 #endif
-            
+
             Container.BindInstance(_shopScreen).AsSingle();
-            Container.BindInterfacesAndSelfTo<ShopScreenElementPrezenter>().AsSingle(); 
+            Container.BindInterfacesAndSelfTo<ShopScreenElementPrezenter>().AsSingle();
         }
 
         private void BindInventoryScreen()
@@ -192,10 +198,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
             Container.Bind<SelectionProvider>().AsSingle();
             Container.Bind<InventoryTabPresenter>().To<WeaponTabPresenter>().AsSingle()
-                .WithArguments(_overlayContainer, _weaponTab, _weaponStatsView);
+                .WithArguments(_overlayContainer, _weaponTab, _marketView);
 
             Container.Bind<InventoryTabPresenter>().To<SkinsTabPresenter>().AsSingle()
-                .WithArguments(_skinsView, _overlayContainer, _skinTab, _skinSlot);
+                .WithArguments(_overlayContainer, _skinTab, _skinSlot);
             Container.BindInstance(_inventoryScreeen).AsSingle();
             Container.BindInstance(_gameInventoryView).AsSingle();
             Container.BindInstance(_tabSwitcher).AsSingle();

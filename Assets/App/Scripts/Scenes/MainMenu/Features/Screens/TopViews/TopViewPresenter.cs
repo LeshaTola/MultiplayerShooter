@@ -1,41 +1,34 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features;
 using App.Scripts.Features.Screens;
+using App.Scripts.Features.Settings;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Popups.Image;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
-using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
-using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using YG;
-using SettingsProvider = App.Scripts.Features.Settings.SettingsProvider;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 {
-    public class TopViewPrezentor : GameScreenPresenter, IInitializable, ICleanupable
+    public class TopViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly TopView _view;
         private readonly SettingsView _settingsView;
         private readonly SettingsProvider _settingsProvider;
-        private readonly List<ITopViewElementPrezenter> _prezenters;
-        private readonly RouletteScreenPresentrer _rouletteScreenPresenter;
-        private readonly BattlePassScreenPrezenter _battlePassScreenPresenter;
+        private readonly List<ITopViewElementPrezenter> _presenters;
         private readonly TutorialConfig _tutorialConfig;
         private readonly ImagePopupRouter _imagePopupRouter;
         private readonly ILocalizationSystem _localizationSystem;
 
         private ITopViewElementPrezenter _activeScreenPresenter;
-        private bool _isSwitching;
 
-        public TopViewPrezentor(TopView view,
+        public TopViewPresenter(TopView view,
             SettingsView settingsView,
             SettingsProvider settingsProvider,
-            List<ITopViewElementPrezenter> prezenters,
-            RouletteScreenPresentrer rouletteScreenPresenter,
-            BattlePassScreenPrezenter battlePassScreenPresenter,
+            List<ITopViewElementPrezenter> presenters,
             TutorialConfig tutorialConfig,
             ImagePopupRouter imagePopupRouter,
             ILocalizationSystem localizationSystem)
@@ -43,13 +36,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _view = view;
             _settingsView = settingsView;
             _settingsProvider = settingsProvider;
-            _prezenters = prezenters;
-            _rouletteScreenPresenter = rouletteScreenPresenter;
-            _battlePassScreenPresenter = battlePassScreenPresenter;
+            _presenters = presenters;
             _tutorialConfig = tutorialConfig;
             _imagePopupRouter = imagePopupRouter;
             _localizationSystem = localizationSystem;
-            _activeScreenPresenter = prezenters[0];
+
+            _activeScreenPresenter = presenters[0];
         }
 
         public override void Initialize()
@@ -68,6 +60,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _view.Cleanup();
 
             _view.OnSettingsClicked -= SettingsClicked;
+            _view.OnTutorClicked -= OnTutorClicked;
             _view.OnToggleClicked -= OnToggleClicked;
             _settingsView.OnCloseButtonClicked -= OnCloseSettingsButtonClicked;
         }
@@ -109,23 +102,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             await _imagePopupRouter.ShowPopup(ConstStrings.INPUT, tutorSprite);
         }
 
-        private async void OnToggleClicked(int index)
+        private void OnToggleClicked(int index)
         {
-            if (_isSwitching) return; // Блокируем повторный вызов
-            _isSwitching = true;
-
-            await _rouletteScreenPresenter.Hide();
-            await _battlePassScreenPresenter.Hide();
-
-            if (_activeScreenPresenter != null)
-            {
-                await _activeScreenPresenter.Hide();
-            }
-
-            _activeScreenPresenter = _prezenters[index];
-            await _activeScreenPresenter.Show();
-
-            _isSwitching = false; // Разблокируем переключение
+            _activeScreenPresenter?.Hide().Forget();
+            _activeScreenPresenter = _presenters[index];
+            _activeScreenPresenter.Show().Forget();
         }
     }
 }
