@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
+using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;

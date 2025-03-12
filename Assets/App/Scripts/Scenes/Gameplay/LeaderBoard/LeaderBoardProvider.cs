@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.UserStats.Rank;
 using Photon.Pun;
 using UnityEngine;
 

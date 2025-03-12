@@ -3,6 +3,7 @@ using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Data;
 using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using UnityEngine;

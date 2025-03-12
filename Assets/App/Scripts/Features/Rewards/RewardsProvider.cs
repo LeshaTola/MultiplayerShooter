@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Rewards.Configs;
+using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Timer;
 using Photon.Pun;

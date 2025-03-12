@@ -2,8 +2,9 @@
 using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.UserStats.Rank.Configs;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
+using YG;
 
-namespace App.Scripts.Features.PlayerStats
+namespace App.Scripts.Features.UserStats.Rank
 {
     public class UserRankProvider
     {
@@ -27,18 +28,26 @@ namespace App.Scripts.Features.PlayerStats
                 return 0;
             }
 
-            int levelUps = 0;
-            experience += Experience;
+            var levelUps = AddExpInternal(experience);
 
+            OnExperienceChanded?.Invoke();
+            UpdateLeaderBoard();
+            
+            return levelUps;
+        }
+
+        private int AddExpInternal(int experience)
+        {
+            var levelUps = 0;
+
+            experience += Experience;
             while (experience >= CurrentRank.ExpForRank)
             {
                 experience -= CurrentRank.ExpForRank;
                 CurrentRankId++;
                 levelUps++;
             }
-
             Experience = experience;
-            OnExperienceChanded?.Invoke();
             return levelUps;
         }
 
@@ -46,7 +55,14 @@ namespace App.Scripts.Features.PlayerStats
         {
             Experience = userStats.Experience;
             CurrentRankId = userStats.CurrentRankId;
+            
             OnExperienceChanded?.Invoke();
+            UpdateLeaderBoard();
+        }
+
+        private void UpdateLeaderBoard()
+        {
+            YG2.SetLeaderboard("ranks",CurrentRankId + 1);
         }
     }
 }
