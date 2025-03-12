@@ -13,7 +13,7 @@ namespace App.Scripts.Features.Inventory.Data
         public HashSet<string> Skins = new();
         public HashSet<string> Weapons = new();
         public HashSet<string> Equipment = new();
-
+        
         public bool IsAvailable(string id)
         {
             return !Skins.Contains(id) && !Weapons.Contains(id) && !Equipment.Contains(id);

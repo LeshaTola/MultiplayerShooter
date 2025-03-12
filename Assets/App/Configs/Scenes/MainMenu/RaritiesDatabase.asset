@@ -185,3 +185,8 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  <RarityOrder>k__BackingField:
+  - Legendary
+  - Epic
+  - Rare
+  - Uncomon

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
@@ -18,6 +19,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         private readonly ILocalizationSystem _localizationSystem;
         private readonly WeaponModelsUIProvider _weaponModelsUIProvider;
         private readonly PlayerModelsUIProvider _playerModelsUIProvider;
+        private readonly RaritiesDatabase _raritiesDatabase;
 
         private Dictionary<string, InventorySlot> _inventorySlots;
 
@@ -30,7 +32,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             RectTransform overlayTransform,
             ILocalizationSystem localizationSystem,
             WeaponModelsUIProvider weaponModelsUIProvider,
-            PlayerModelsUIProvider playerModelsUIProvider)
+            PlayerModelsUIProvider playerModelsUIProvider,
+            RaritiesDatabase raritiesDatabase)
             : base(view, itemFactory, slotFactory,
                 inventoryProvider, overlayTransform)
         {
@@ -39,6 +42,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             _localizationSystem = localizationSystem;
             _weaponModelsUIProvider = weaponModelsUIProvider;
             _playerModelsUIProvider = playerModelsUIProvider;
+            _raritiesDatabase = raritiesDatabase;
         }
 
         public override void Initialize()
@@ -65,23 +69,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
         private void UpdateInventory()
         {
-            foreach (var weaponId in InventoryProvider.Inventory.Weapons)
+            var weaponConfigs 
+                = InventoryProvider.Inventory.Weapons.Select(weaponId => InventoryProvider.WeaponById(weaponId)).ToList();
+            var sortedItems = _raritiesDatabase.SortByRarity(weaponConfigs.Cast<ItemConfig>().ToList());
+
+            foreach (var weapon in sortedItems)
             {
-                if (_inventorySlots.ContainsKey(weaponId))
+                if (_inventorySlots.ContainsKey(weapon.Id))
                 {
                     continue;
                 }
-
                 var slot = SlotFactory.GetItem();
-                slot.Initialize(new NoneInventorySlotStrategy(), -1);
-                
                 var item = ItemFactory.GetItem();
-                var weaponConfig = InventoryProvider.WeaponById(weaponId);
-                item.Initialize(_selectionProvider, OverlayTransform, weaponConfig.Sprite, weaponId);
+                slot.Initialize(new NoneInventorySlotStrategy(), -1,_raritiesDatabase.Rarities[weapon.Rarity].Color);
+                item.Initialize(_selectionProvider, OverlayTransform, weapon.Sprite, weapon.Id);
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);
-                _inventorySlots.Add(weaponId, slot);
+                _inventorySlots.Add(weapon.Id, slot);
             }
         }
     }

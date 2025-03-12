@@ -10,6 +10,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
     {
         [SerializeField] private Image _image;
         [SerializeField] private Image _selectionImage;
+        [SerializeField] private Image _rarityImage;
         [SerializeField] private TextMeshProUGUI _keyText;
         
         private IInventorySlotStrategy _inventorySlotStrategy;
@@ -18,12 +19,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
         public Item Item { get; set; }
 
         public void Initialize(IInventorySlotStrategy inventorySlotStrategy,
-            int slotIndex,string keyText = "" ,ItemType itemType = ItemType.Weapon)
+            int slotIndex, Color rarityColor ,string keyText = "" ,ItemType itemType = ItemType.Weapon)
         {
             Type = itemType;
             _inventorySlotStrategy = inventorySlotStrategy;
             SlotIndex = slotIndex;
             _keyText.text = keyText;
+            _rarityImage.color = rarityColor;
         }
 
         public void Select()

@@ -19,6 +19,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         private readonly InventorySlot _skinSlot;
         private readonly UserStatsProvider _userStatsProvider;
         private readonly GameInventoryView _gameInventoryView;
+        private readonly RaritiesDatabase _raritiesDatabase;
         private CorrectTypeInventorySlotStrategy _slotStrategy;
 
         public SkinsTabPresenter(InventoryTab view,
@@ -29,13 +30,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             RectTransform overlayTransform,
             InventorySlot skinSlot,
             UserStatsProvider userStatsProvider,
-            GameInventoryView gameInventoryView)
+            GameInventoryView gameInventoryView,
+            RaritiesDatabase raritiesDatabase)
             : base(view, itemFactory, slotFactory, inventoryProvider, overlayTransform)
         {
             _selectionProvider = selectionProvider;
             _skinSlot = skinSlot;
             _userStatsProvider = userStatsProvider;
             _gameInventoryView = gameInventoryView;
+            _raritiesDatabase = raritiesDatabase;
         }
         
         private Dictionary<string,InventorySlot> _inventorySlots;
@@ -54,7 +57,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
                 _gameInventoryView);
             _slotStrategy.OnInventoryChanged += OnInventoryChanged;
             
-            _skinSlot.Initialize(_slotStrategy, -1, $"", ItemType.Skin);
+            var color = Color.white;
+            color.a = 0f;
+            _skinSlot.Initialize(_slotStrategy, -1, color,$"", ItemType.Skin);
             SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin), _skinSlot);
         }
 
@@ -73,22 +78,26 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
 
         private void UpdateInventory()
         {
-            foreach (var skinId in InventoryProvider.Inventory.Skins)
+            
+            var skinConfigs 
+                = InventoryProvider.Inventory.Skins.Select(weaponId => InventoryProvider.SkinById(weaponId)).ToList();
+            var sortedItems = _raritiesDatabase.SortByRarity(skinConfigs.Cast<ItemConfig>().ToList());
+            
+            foreach (var skin in sortedItems)
             {
-                if (_inventorySlots.ContainsKey(skinId))
+                if (_inventorySlots.ContainsKey(skin.Id))
                 {
                     continue;
                 }
                 
                 var slot = SlotFactory.GetItem();
-                slot.Initialize(new NoneInventorySlotStrategy(), -1, "", ItemType.Skin);
                 var item = ItemFactory.GetItem();
-                var skinConfig = InventoryProvider.SkinById(skinId);
-                item.Initialize(_selectionProvider, OverlayTransform, skinConfig.Sprite, skinId, ItemType.Skin);
+                slot.Initialize(new NoneInventorySlotStrategy(), -1, _raritiesDatabase.Rarities[skin.Rarity].Color,"", ItemType.Skin);
+                item.Initialize(_selectionProvider, OverlayTransform, skin.Sprite, skin.Id, ItemType.Skin);
                 item.CurentSlot = slot;
                 item.MoveToParent();
                 View.AddSlot(slot);
-                _inventorySlots.Add(skinId, slot);
+                _inventorySlots.Add(skin.Id, slot);
             }
         }
 

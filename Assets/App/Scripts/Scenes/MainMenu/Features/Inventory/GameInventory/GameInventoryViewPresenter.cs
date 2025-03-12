@@ -70,8 +70,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
                         _itemFactory, _view);
                 slotStrategy.OnInventoryChanged += OnInventoryChanged;
                 _subscriptionsSlots.Add(slotStrategy);
-                
-                slot.Initialize(slotStrategy, i, $"{i + 1}");
+
+                var color = Color.white;
+                color.a = 0f;
+                slot.Initialize(slotStrategy, i, color,$"{i + 1}");
                 _view.AddWeaponSlot(slot);
                 var weaponConfig = _inventoryProvider.WeaponById(_inventoryProvider.GameInventory.Weapons[i]);
                 SpawnItem(weaponConfig, slot);
