@@ -20,6 +20,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         private readonly UserStatsProvider _userStatsProvider;
         private readonly GameInventoryView _gameInventoryView;
         private readonly RaritiesDatabase _raritiesDatabase;
+        
         private CorrectTypeInventorySlotStrategy _slotStrategy;
 
         public SkinsTabPresenter(InventoryTab view,
@@ -49,7 +50,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             
             InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
             UpdateInventory();
+            SetupSkinSlot();
+            SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin), _skinSlot);
+        }
 
+        private void SetupSkinSlot()
+        {
             _slotStrategy = new CorrectTypeInventorySlotStrategy(_selectionProvider,
                 ItemType.Skin,
                 InventoryProvider, 
@@ -60,13 +66,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             var color = Color.white;
             color.a = 0f;
             _skinSlot.Initialize(_slotStrategy, -1, color,$"", ItemType.Skin);
-            SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin), _skinSlot);
         }
 
         public override void Cleanup()
         {
-            _slotStrategy.OnInventoryChanged -= OnInventoryChanged;
             InventoryProvider.Inventory.OnInventoryUpdated -= UpdateInventory;
+            _slotStrategy.OnInventoryChanged -= OnInventoryChanged;
         }
 
         public override async UniTask Show()

@@ -69,7 +69,7 @@ namespace App.Scripts.Modules.PopupAndViews.General.Popup
             Active = false;
             raycaster.enabled = false;
         }
-        
+
         private void Cleanup()
         {
             if (cancellationTokenSource != null)

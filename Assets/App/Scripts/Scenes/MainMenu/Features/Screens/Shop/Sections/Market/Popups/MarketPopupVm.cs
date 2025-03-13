@@ -11,7 +11,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
     public class MarketPopupVm
     {
         public PlayerModelsUIProvider PlayerModelsUIProvider { get; }
-        public WeaponModelsUIProvider ModelsUIProvider { get; }
+        public WeaponModelsUIProvider WeaponsModelsUIProvider { get; }
         public InfoPopupRouter InfoPopupRouter { get; }
         public ILocalizationSystem LocalizationSystem { get; }
         public ShopItemData ShopItemData { get; }
@@ -22,11 +22,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             ILocalizationSystem localizationSystem,
             InfoPopupRouter infoPopupRouter,
             UserStatsProvider userStatsProvider, 
-            WeaponModelsUIProvider weaponModelsUIProvider,
+            WeaponModelsUIProvider weaponWeaponsModelsUIProvider,
             PlayerModelsUIProvider playerModelsUIProvider)
         {
             PlayerModelsUIProvider = playerModelsUIProvider;
-            ModelsUIProvider = weaponModelsUIProvider;
+            WeaponsModelsUIProvider = weaponWeaponsModelsUIProvider;
             UserStatsProvider = userStatsProvider;
             InfoPopupRouter = infoPopupRouter;
             LocalizationSystem = localizationSystem;

@@ -40,28 +40,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 
         public async UniTask ShowPopup(ShopItemData shopItemData)
         {
-            var popup = ResolvePopup(shopItemData);
+            var popup = _popupController.GetPopup<MarketPopup>();
 
             var viewModule = GetVm(shopItemData);
             popup.Setup(viewModule);
             
             await popup.Show();
-        }
-
-        private MarketPopup ResolvePopup(ShopItemData shopItemData)
-        {
-            MarketPopup popup;
-            
-            if (shopItemData.Item is WeaponConfig)
-            {
-                popup = _popupController.GetPopup<WeaponPopup>();
-            }
-            else
-            {
-                popup = _popupController.GetPopup<SkinPopup>();
-            }
-
-            return popup;
         }
 
         private MarketPopupVm GetVm(ShopItemData shopItemData)
