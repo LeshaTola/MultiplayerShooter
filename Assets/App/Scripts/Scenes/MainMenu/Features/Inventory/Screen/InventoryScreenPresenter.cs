@@ -12,23 +12,26 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
 {
     public class InventoryScreenPresenter : GameScreenPresenter , IInitializable, ICleanupable, ITopViewElementPrezenter
     {
-        private readonly InventoryScreeen _inventoryScreeen;
+        private readonly InventoryScreeen _inventoryScreen;
         private readonly TabSwitcher _tabSwitcher;
         private readonly GameInventoryViewPresenter _gameInventoryViewPresenter;
         private readonly List<InventoryTabPresenter> _inventoryTabPresenters;
         private readonly UserStatsView _userStatsView;
+        private readonly MarketViewPresenter _marketViewPresenter;
 
-        public InventoryScreenPresenter(InventoryScreeen inventoryScreeen,
+        public InventoryScreenPresenter(InventoryScreeen inventoryScreen,
             TabSwitcher tabSwitcher,
             GameInventoryViewPresenter gameInventoryViewPresenter,
             List<InventoryTabPresenter> inventoryTabPresenters,
-            UserStatsView userStatsView)
+            UserStatsView userStatsView,
+            MarketViewPresenter marketViewPresenter)
         {
-            _inventoryScreeen = inventoryScreeen;
+            _inventoryScreen = inventoryScreen;
             _tabSwitcher = tabSwitcher;
             _gameInventoryViewPresenter = gameInventoryViewPresenter;
             _inventoryTabPresenters = inventoryTabPresenters;
             _userStatsView = userStatsView;
+            _marketViewPresenter = marketViewPresenter;
         }
 
         public override void Initialize()
@@ -39,7 +42,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
                 inventoryTabPresenter.Initialize();
             }
             _gameInventoryViewPresenter.Initialize();
-            _inventoryScreeen.Initialize();
+            _inventoryScreen.Initialize();
+            
+            _marketViewPresenter.Initialize();
         }
 
         public override void Cleanup()
@@ -51,7 +56,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             
             _tabSwitcher.Cleanup();
             _gameInventoryViewPresenter.Cleanup();
-            _inventoryScreeen.Cleanup();
+            _inventoryScreen.Cleanup();
+            _marketViewPresenter.Cleanup();
         }
 
         public override async UniTask Show()
@@ -60,7 +66,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             var tasks = new List<UniTask>
             {
                 _userStatsView.Show(),
-                _inventoryScreeen.Show()
+                _inventoryScreen.Show()
             };
             await UniTask.WhenAll(tasks);
         }
@@ -70,7 +76,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             var tasks = new List<UniTask>
             {
                 _userStatsView.Hide(),
-                _inventoryScreeen.Hide()
+                _inventoryScreen.Hide()
             };
             await UniTask.WhenAll(tasks);
             _tabSwitcher.Hide();

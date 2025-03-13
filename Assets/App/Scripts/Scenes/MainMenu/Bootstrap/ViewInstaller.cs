@@ -193,12 +193,13 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         private void BindInventoryScreen()
         {
+            Container.Bind<MarketViewPresenter>().AsSingle().WithArguments(_marketView);
             Container.BindInterfacesAndSelfTo<InventoryScreenPresenter>().AsSingle();
             Container.Bind<GameInventoryViewPresenter>().AsSingle().WithArguments(_overlayContainer);
 
             Container.Bind<SelectionProvider>().AsSingle();
             Container.Bind<InventoryTabPresenter>().To<WeaponTabPresenter>().AsSingle()
-                .WithArguments(_overlayContainer, _weaponTab, _marketView);
+                .WithArguments(_overlayContainer, _weaponTab);
 
             Container.Bind<InventoryTabPresenter>().To<SkinsTabPresenter>().AsSingle()
                 .WithArguments(_overlayContainer, _skinTab, _skinSlot);
