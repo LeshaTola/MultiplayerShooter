@@ -17,14 +17,16 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
 {
     public class PlayerProvider
     {
+        public event Action<Player> OnPlayerCreated;
+        
         private readonly GameInputProvider _gameInputProvider;
         private readonly PlayerController _playerController;
         private readonly InventoryProvider _inventoryProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
         private readonly CameraProvider _cameraProvider;
-        private List<Transform> _spawnPoints;
         private readonly Player _playerPrefab;
 
+        private List<Transform> _spawnPoints;
         private Player _player;
 
         public Player Player
@@ -60,7 +62,6 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         {
             var player = PhotonNetwork.Instantiate(
                 _playerPrefab.gameObject.name,
-                // _spawnPoints[Random.Range(0, _spawnPoints.Count)].position,
                 Vector3.zero,
                 Quaternion.identity).GetComponent<Player>();
             player.Initialize(PhotonNetwork.NickName);
@@ -69,6 +70,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _cameraProvider.RegisterCamera(player.VirtualCamera);
             
             player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,_shootingModeFactory, player);
+            OnPlayerCreated?.Invoke(player);
             return player;
         }
 

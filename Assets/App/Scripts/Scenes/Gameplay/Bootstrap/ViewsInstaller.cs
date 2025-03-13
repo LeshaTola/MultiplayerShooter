@@ -4,6 +4,7 @@ using App.Scripts.Scenes.Gameplay.EndGame;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
+using App.Scripts.Scenes.Gameplay.Inventory;
 using App.Scripts.Scenes.Gameplay.KillChat;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player;
@@ -60,6 +61,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<ChatViewPresenter>().AsSingle();
             
             Container.Bind<GameInventoryView>().FromInstance(_view).AsSingle();
+            Container.BindInterfacesAndSelfTo<InventoryController>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>().AsSingle().WithArguments(new SelectionProvider(),_overlayContainer);
         }
     }

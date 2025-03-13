@@ -58,27 +58,44 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
             _view.Cleanup();
         }
 
+        public void SelectSlot(int index)
+        {
+            foreach (var slot in _view.WeaponsSlots)
+            {
+                slot.Unselect();   
+            }
+            _view.WeaponsSlots[index].Select();
+        }
+
         private void InitializeWeapons()
         {
             for (int i = 0; i < _inventoryProvider.GameInventory.Weapons.Count; i++)
             {
-                var slot = _inventorySlotFactory.GetItem();
-                var slotStrategy
-                    = new CorrectTypeInventorySlotStrategy(_selectionProvider,
-                        ItemType.Weapon,
-                        _inventoryProvider,
-                        _itemFactory, _view);
-                slotStrategy.OnInventoryChanged += OnInventoryChanged;
-                _subscriptionsSlots.Add(slotStrategy);
-
-                var color = Color.white;
-                color.a = 0f;
-                slot.Initialize(slotStrategy, i, color,$"{i + 1}");
+                var slot = GetSlot(i);
+                
                 _view.AddWeaponSlot(slot);
                 var weaponConfig = _inventoryProvider.WeaponById(_inventoryProvider.GameInventory.Weapons[i]);
                 SpawnItem(weaponConfig, slot);
             }
         }
+
+        private InventorySlot GetSlot(int i)
+        {
+            var slot = _inventorySlotFactory.GetItem();
+            var slotStrategy
+                = new CorrectTypeInventorySlotStrategy(_selectionProvider,
+                    ItemType.Weapon,
+                    _inventoryProvider,
+                    _itemFactory, _view);
+            slotStrategy.OnInventoryChanged += OnInventoryChanged;
+            _subscriptionsSlots.Add(slotStrategy);
+
+            var color = Color.white;
+            color.a = 0f;
+            slot.Initialize(slotStrategy, i, color,$"{i + 1}");
+            return slot;
+        }
+
         private void SpawnItem(ItemConfig itemConfig, InventorySlot slot)
         {
             if (!itemConfig)

@@ -72,8 +72,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
             Container.Bind<PlayerProvider>().AsSingle().WithArguments(_playerPrefab);
-            Container.Bind<PostProcessingProvider>().AsSingle()
-                .WithArguments(_postProcessingConfig, _postProcessVolume);
+            Container.Bind<PostProcessingProvider>().AsSingle().WithArguments(_postProcessingConfig, _postProcessVolume);
 
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);

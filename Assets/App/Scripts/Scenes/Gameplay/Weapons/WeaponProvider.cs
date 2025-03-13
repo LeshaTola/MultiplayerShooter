@@ -14,6 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
     public class WeaponProvider : MonoBehaviourPun
     {
         public event Action<Weapon> OnWeaponChanged;
+        public event Action<int> OnWeaponIndexChanged;
         public event Action<Vector3, float, bool> OnPlayerHit;
         
         [SerializeField] private Transform _weaponHolder;
@@ -130,6 +131,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
             
             OnWeaponChanged?.Invoke(weapon);
+            OnWeaponIndexChanged?.Invoke(index);
             if (CurrentWeapon != null)
             {
                 CurrentWeapon.GuaranteedCancelAttack(true);
