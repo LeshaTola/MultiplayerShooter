@@ -287,9 +287,9 @@ MonoBehaviour:
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncomon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: be87edd1e6b3d6643b7e62711d1f802a, type: 3}
-  <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.3}
+  <ViewOffset>k__BackingField: {x: 0, y: 0, z: -1.1}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
-  <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
+  <ViewScaleMultiplier>k__BackingField: {x: 3, y: 3, z: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: f4d7a772f28e50b47842822ff0ee01d1, type: 3}
   <ReloadSound>k__BackingField: {fileID: 0}
   <MaxAmmoCount>k__BackingField: 3

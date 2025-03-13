@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   <Id>k__BackingField: RedSkin
-  <Sprite>k__BackingField: {fileID: 21300000, guid: c99374fdf4ab2fb4ca8592fd7925ec91, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 3193f294f4d4bb748a0aee4a2e432b16, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncomon
   <EyeMaterial>k__BackingField: {fileID: 1038180449527285695, guid: 6d0e61b1243ae964cbc87578f627b53c, type: 3}

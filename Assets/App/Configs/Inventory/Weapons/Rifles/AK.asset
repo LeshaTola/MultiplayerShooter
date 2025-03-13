@@ -288,7 +288,7 @@ MonoBehaviour:
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 27991953fe0860946bd4b176c198004b, type: 3}
-  <ViewOffset>k__BackingField: {x: 0, y: 0.1, z: -0.1}
+  <ViewOffset>k__BackingField: {x: 0, y: 0.1, z: -0.2}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ViewScaleMultiplier>k__BackingField: {x: 1, y: 1, z: 1}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 287be1263f2aae94daab57d8f2b07917, type: 3}

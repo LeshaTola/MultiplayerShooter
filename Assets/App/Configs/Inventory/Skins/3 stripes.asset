@@ -22,8 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   <Id>k__BackingField: 3 stripes
-  <Sprite>k__BackingField: {fileID: 21300000, guid: eaf4d5ee7fc42924984e197d4f4ece6a, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 1ec0b66b2ae8f3f45a79290cc84b637c, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Epic
-  <EyeMaterial>k__BackingField: {fileID: 1038180449527285695, guid: 6d0e61b1243ae964cbc87578f627b53c, type: 3}
+  <EyeMaterial>k__BackingField: {fileID: 2100000, guid: c96b553ead857784fbe934718c6d3ab0, type: 2}
   <Material>k__BackingField: {fileID: 2100000, guid: c96b553ead857784fbe934718c6d3ab0, type: 2}
