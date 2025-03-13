@@ -1323,7 +1323,6 @@ MonoBehaviour:
   _marketView: {fileID: 1379386203}
   _skinTab: {fileID: 1614531622}
   _skinSlot: {fileID: 1929346471}
-  _skinsView: {fileID: 0}
   _shopScreen: {fileID: 1524223508}
   _ticketsSectionView: {fileID: 801333463}
   _ticketsSectionConfig: {fileID: 11400000, guid: 75de39d64c0869f4fa0a9e127692e2f7, type: 2}
