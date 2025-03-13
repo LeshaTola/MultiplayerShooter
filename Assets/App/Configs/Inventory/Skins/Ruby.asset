@@ -22,8 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   <Id>k__BackingField: Ruby
-  <Sprite>k__BackingField: {fileID: 21300000, guid: eaf4d5ee7fc42924984e197d4f4ece6a, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: ea3680611280b59429a96faf2a019b6d, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Rare
-  <EyeMaterial>k__BackingField: {fileID: 1038180449527285695, guid: 6d0e61b1243ae964cbc87578f627b53c, type: 3}
+  <EyeMaterial>k__BackingField: {fileID: 2100000, guid: eb05acfd2ece63840922be7ca6b54926, type: 2}
   <Material>k__BackingField: {fileID: 2100000, guid: eb05acfd2ece63840922be7ca6b54926, type: 2}
