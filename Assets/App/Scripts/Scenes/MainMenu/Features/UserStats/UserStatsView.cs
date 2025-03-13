@@ -4,6 +4,7 @@ using App.Scripts.Modules.Localization.Localizers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.UserStats
 {
@@ -11,6 +12,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
     {
         public event Action<string> OnPlayerNameChanged; 
         
+        [SerializeField] private ImageLoadYG _playerImage;
         [SerializeField] private TextMeshProUGUI _moneyText;
         [SerializeField] private TMP_InputField _playerInputField;
 
@@ -25,6 +27,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         
         public override void Initialize()
         {
+            if (YG2.player.photo != null)
+            {
+                _playerImage.spriteImage.color = Color.white;
+                _playerImage.Load(YG2.player.photo);
+            }
+            
             _playerInputField.onEndEdit.AddListener((value) =>
             {
                 OnPlayerNameChanged?.Invoke(value);

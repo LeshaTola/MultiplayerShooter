@@ -13,6 +13,7 @@ using App.Scripts.Features.Settings;
 using App.Scripts.Features.StateMachines.States;
 using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Features.UserStats.Rank.Configs;
+using App.Scripts.Features.Yandex.Advertisement;
 using App.Scripts.Features.Yandex.Saves;
 using App.Scripts.Modules.Commands.Provider;
 using App.Scripts.Modules.FileProvider;
@@ -28,6 +29,10 @@ using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
 using App.Scripts.Scenes.Gameplay.Timer;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes.Factories;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes.Saves;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using TNRD;
 using UnityEngine;
@@ -49,7 +54,8 @@ namespace App.Scripts.Features.Bootstrap
 
         [Header("Game")]
         [SerializeField] private MapsConfig _mapsConfig;
-        
+        [SerializeField] private PromocodesDatabase _promocodesDatabase;
+
         [FormerlySerializedAs("_gameInventory")]
         [Header("Inventory")]
         [SerializeField] private InventoryConfig _inventoryConfig;
@@ -105,6 +111,14 @@ namespace App.Scripts.Features.Bootstrap
 
             Container.Bind<PresentersProvider>().AsSingle();
             Container.Bind<GameInputProvider>().AsSingle();
+            Container.Bind<AdvertisementProvider>().AsSingle();
+            
+#if YANDEX
+            Container.Bind<IDataProvider<PromocodesSavesData>>().To<YandexPromocodesDataProvider>().AsSingle();
+#endif
+            Container.Bind<PromocodesFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PromoCodesProvider>().AsSingle().WithArguments(_promocodesDatabase).NonLazy();
+
             
 #if YANDEX
             Container

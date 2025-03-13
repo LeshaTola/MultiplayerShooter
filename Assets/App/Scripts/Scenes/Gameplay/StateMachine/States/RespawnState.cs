@@ -1,5 +1,6 @@
 using System;
 using App.Scripts.Features.Match.Configs;
+using App.Scripts.Features.Yandex.Advertisement;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Player;
@@ -16,17 +17,20 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         private readonly PlayerController _playerController;
         private readonly GameConfig _gameConfig;
         private readonly RespawnView _respawnView;
+        private readonly AdvertisementProvider _advertisementProvider;
         private readonly Modules.Timer _timer;
         
         public RespawnState(PlayerProvider playerProvider,
             PlayerController playerController,
             GameConfig gameConfig,
-            RespawnView respawnView)
+            RespawnView respawnView,
+            AdvertisementProvider advertisementProvider)
         {
             _playerProvider = playerProvider;
             _playerController = playerController;
             _gameConfig = gameConfig;
             _respawnView = respawnView;
+            _advertisementProvider = advertisementProvider;
             _timer = new();
         }
 
@@ -35,6 +39,8 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("Respawn");
             _playerController.IsBusy = true;
             await _respawnView.Show();
+            _advertisementProvider.ShowInterstitialAd();
+            
             _respawnView.ShowTimerText();
             await _timer.StartTimer(_gameConfig.RespawnTime, _respawnView.UpdateTimer);
             _respawnView.ShowPressButtonText();

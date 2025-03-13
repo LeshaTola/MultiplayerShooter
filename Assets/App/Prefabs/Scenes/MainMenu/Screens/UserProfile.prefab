@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97db8092d99744349bb54c244b2af773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerImage: {fileID: 5834015470130126422}
   _moneyText: {fileID: 2294770117202828694}
   _playerInputField: {fileID: 1722375982459623128}
   _rankName: {fileID: 7427013037685316404}
@@ -832,6 +833,7 @@ GameObject:
   - component: {fileID: 7094649888987964817}
   - component: {fileID: 3371517339142521990}
   - component: {fileID: 769655379091500568}
+  - component: {fileID: 9007979150573415955}
   m_Layer: 5
   m_Name: Mask
   m_TagString: Untagged
@@ -910,6 +912,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &9007979150573415955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838599289305216067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.19607845, g: 0.20784315, b: 0.21960786, a: 1}
+  m_EffectDistance: {x: 5, y: -5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6467605974623790653
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1002,7 @@ GameObject:
   - component: {fileID: 7516498564750443693}
   - component: {fileID: 8470220633880768482}
   - component: {fileID: 8027878677026241919}
+  - component: {fileID: 5834015470130126422}
   m_Layer: 5
   m_Name: UserImage
   m_TagString: Untagged
@@ -1049,6 +1067,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5834015470130126422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621406011202441261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48d8d781d3e59d409adef5e128d2b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLoad: 0
+  urlImage: 
+  rawImage: {fileID: 0}
+  spriteImage: {fileID: 8027878677026241919}
+  loadAnimObj: {fileID: 0}
+  log: 0
 --- !u!1 &6802508298916622351
 GameObject:
   m_ObjectHideFlags: 0

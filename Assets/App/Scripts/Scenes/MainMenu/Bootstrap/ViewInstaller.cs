@@ -19,6 +19,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -87,6 +88,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [FoldoutGroup("Shop")]
         private TicketsSectionConfig _ticketsSectionConfig;
 
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private OffersView _offersView;
+        
         [SerializeField]
         [FoldoutGroup("Shop")]
         private MarketSectionView _marketSectionView;
@@ -173,6 +178,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.BindInterfacesAndSelfTo<TicketsSectionViewPrezenter>().AsSingle()
                 .WithArguments(_ticketsSectionConfig);
 
+            Container.BindInstance(_offersView).AsSingle();
+            Container.BindInterfacesAndSelfTo<OffersViewPresenter>().AsSingle();
+            
             Container.BindInstance(_marketSectionView).AsSingle();
             Container.Bind<MarketSectionPrezenter>().AsSingle();
 

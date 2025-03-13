@@ -1326,6 +1326,7 @@ MonoBehaviour:
   _shopScreen: {fileID: 1524223508}
   _ticketsSectionView: {fileID: 801333463}
   _ticketsSectionConfig: {fileID: 11400000, guid: 75de39d64c0869f4fa0a9e127692e2f7, type: 2}
+  _offersView: {fileID: 745011803}
   _marketSectionView: {fileID: 1196012691}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
@@ -1808,7 +1809,6 @@ MonoBehaviour:
   _itemTemplate: {fileID: 6486694960965321439, guid: 50074012516cf224eafa1c4dedbe4da6, type: 3}
   _weaponContainer: {fileID: 79394766}
   _playerVisual: {fileID: 1361474066}
-  _promocodesDatabase: {fileID: 11400000, guid: 510bb46e0207628498aa7ae4078ca657, type: 2}
 --- !u!114 &724108593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4980566883030904272, guid: ebd935bcfddce3040b9574df5159150a, type: 3}
@@ -1876,6 +1876,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &745011803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6552566296790644100, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1ccf5dde664a21973729e6dce18a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &758319505 stripped

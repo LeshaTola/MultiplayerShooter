@@ -97,6 +97,7 @@ MonoBehaviour:
       rid: -2
   _connectionProvider: {fileID: 738047473016714087}
   _mapsConfig: {fileID: 11400000, guid: 24e6f5796d1c2b945a70d7bffb7600da, type: 2}
+  _promocodesDatabase: {fileID: 11400000, guid: 510bb46e0207628498aa7ae4078ca657, type: 2}
   _inventoryConfig: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
   _ranksDatabase: {fileID: 11400000, guid: a6a7b0daa0c7c7447af3dd31a3423486, type: 2}

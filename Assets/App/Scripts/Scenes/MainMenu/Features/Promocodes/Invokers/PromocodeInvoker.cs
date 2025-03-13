@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,17 +17,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.Promocodes
 
         [SerializeField] protected Button _button;
 
-        private PromocodesProvider _promocodesProvider;
+        private PromoCodesProvider _promoCodesProvider;
 
         [Inject]
-        public void Construct(PromocodesProvider promocodesProvider)
+        public void Construct(PromoCodesProvider promoCodesProvider)
         {
-            _promocodesProvider = promocodesProvider;
+            _promoCodesProvider = promoCodesProvider;
         }
 
         protected virtual void OnEnable()
         {
-            _button.onClick.AddListener(() => _promocodesProvider.ApplyPromocode(_promocode));
+            _button.onClick.AddListener(() => _promoCodesProvider.ApplyPromoCode(_promocode));
         }
 
         protected virtual void OnDisable()
