@@ -307,7 +307,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   <Id>k__BackingField: GrapplingGun
-  <Sprite>k__BackingField: {fileID: 21300000, guid: bfce50d47694acd4097c39d67759fc0d, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: b16f1e6d405c99c4ea87b5ae6787d138, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Legendary
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: a3ea73bedb784d84398a2a4ad70d762f, type: 3}
