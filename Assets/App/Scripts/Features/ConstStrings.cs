@@ -14,5 +14,6 @@
         public const string PROMOCODE_FINISHED = "Промокод израсходован";
         public const string PROMOCODE_IS_NOT_EXIST = "Такого промокода не существует";
         public const string AD_IS_OFF = "Реклама успешно отключена!";
+        public const string MARKET_IS_UPDATED = "Магазин успешно обнавлен!";
     }
 }

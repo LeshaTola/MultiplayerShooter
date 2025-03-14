@@ -58,6 +58,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                 _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
                 return;
             }
+            
+            _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.MARKET_IS_UPDATED).Forget();
             _userStatsProvider.TicketsProvider.ChangeTickets(-1);
             _userStatsProvider.SaveState();
             _marketService.UpdateItems();

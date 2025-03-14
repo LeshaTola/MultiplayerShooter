@@ -20,10 +20,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         [SerializeField] private RaritiesDatabase _raritiesDatabase;
         
         private int _id;
+        private Quaternion _startRotation;
 
         public void Initialize()
         {
             _buyButton.onClick.AddListener(() => OnElementClicked?.Invoke(_id));
+            _startRotation = _weaponImage.transform.localRotation;
         }
 
         public void Cleanup()
@@ -40,6 +42,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             _weaponNameText.Key = item.Id;
             _weaponNameText.Translate();
             _priceText.text = shopItemData.Price + "R";
+
+            if (item is WeaponConfig)
+            {
+                _weaponImage.transform.rotation = _startRotation;
+            }
+            else
+            {
+                _weaponImage.transform.rotation =Quaternion.identity;
+            }
         }
     }
 

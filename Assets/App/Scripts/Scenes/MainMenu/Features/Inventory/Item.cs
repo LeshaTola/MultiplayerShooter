@@ -48,6 +48,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory
             
             ConfigId = id;
             Type = type;
+
+            if (type == ItemType.Skin)
+            {
+                transform.rotation = Quaternion.identity;
+            }
         }
         
         public void OnBeginDrag(PointerEventData eventData)

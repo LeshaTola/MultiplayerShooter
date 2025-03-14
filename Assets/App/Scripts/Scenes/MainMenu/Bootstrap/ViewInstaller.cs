@@ -10,6 +10,7 @@ using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
+using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
 using App.Scripts.Scenes.MainMenu.Features.Roulette;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
@@ -20,6 +21,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.PromoCodes;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -88,6 +90,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         [FoldoutGroup("Shop")]
         private TicketsSectionConfig _ticketsSectionConfig;
 
+        [SerializeField]
+        [FoldoutGroup("Shop")]
+        private PromoCodesView _promoCodesView;
+        
         [SerializeField]
         [FoldoutGroup("Shop")]
         private OffersView _offersView;
@@ -178,6 +184,9 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.BindInterfacesAndSelfTo<TicketsSectionViewPrezenter>().AsSingle()
                 .WithArguments(_ticketsSectionConfig);
 
+            Container.BindInstance(_promoCodesView).AsSingle();
+            Container.BindInterfacesAndSelfTo<PromoCodesViewPresenter>().AsSingle();
+            
             Container.BindInstance(_offersView).AsSingle();
             Container.BindInterfacesAndSelfTo<OffersViewPresenter>().AsSingle();
             
