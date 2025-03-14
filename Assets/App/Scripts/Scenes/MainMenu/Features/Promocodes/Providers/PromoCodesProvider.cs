@@ -6,13 +6,13 @@ using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Factories;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Saves;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Factories;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies;
 using Cysharp.Threading.Tasks;
 using YG;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers
 {
     public class PromoCodesProvider: IInitializable, ICleanupable, ISavable
     {
@@ -52,7 +52,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers
         {
             if (!_promocodesDatabase.Promocodes.TryGetValue(promoCode, out var promoCodeActions))
             {
-                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.PROMOCODE_IS_NOT_EXIST).Forget();
+                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.PROMO_CODE_IS_NOT_EXIST).Forget();
                 return;
             }
 
@@ -61,7 +61,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers
             {
                 if (promoCodeActions[0].ExecuteCount != -1 && promoCodeData.Uses >= promoCodeActions[0].ExecuteCount)
                 {
-                    _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.PROMOCODE_FINISHED).Forget();
+                    _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.PROMO_CODE_FINISHED).Forget();
                     return ;
                 }
             }

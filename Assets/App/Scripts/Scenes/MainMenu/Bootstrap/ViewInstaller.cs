@@ -10,7 +10,7 @@ using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 using App.Scripts.Scenes.MainMenu.Features.Roulette;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;

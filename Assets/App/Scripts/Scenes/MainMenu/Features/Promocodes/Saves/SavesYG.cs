@@ -1,4 +1,4 @@
-﻿using App.Scripts.Scenes.MainMenu.Features.Promocodes.Saves;
+﻿using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves;
 
 namespace YG
 {

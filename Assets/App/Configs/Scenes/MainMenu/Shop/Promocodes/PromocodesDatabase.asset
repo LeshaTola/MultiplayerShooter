@@ -22,6 +22,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 96fc7bcfe92f8904bad65e39cedfd15a, type: 2}
     - {fileID: 11400000, guid: 9391985ad3b0c6b4a86f2402f53dcede, type: 2}
     - {fileID: 11400000, guid: 504af3d22f8975245be18af24efabdbb, type: 2}
+    - {fileID: 11400000, guid: 7d953b53ce72a6f429012ee23554c8aa, type: 2}
+    - {fileID: 11400000, guid: 4b747a395b15d854097739b5538d1cc3, type: 2}
+    - {fileID: 11400000, guid: 242d44032483dd6428eb13ffdbe3299e, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,7 +32,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: <Promocodes>k__BackingField
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
@@ -40,7 +43,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 8
     - Name: 
       Entry: 7
       Data: 
@@ -49,14 +52,14 @@ MonoBehaviour:
       Data: ShopAdCoins
     - Name: $v
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 3|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.RewardPromocode,
+      Data: 3|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
@@ -97,14 +100,14 @@ MonoBehaviour:
       Data: large_coin_pack
     - Name: $v
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 5|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 6|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.RewardPromocode,
+      Data: 6|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
@@ -145,14 +148,14 @@ MonoBehaviour:
       Data: medium_coin_pack
     - Name: $v
       Entry: 7
-      Data: 8|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 8|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 9|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.RewardPromocode,
+      Data: 9|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
@@ -193,14 +196,14 @@ MonoBehaviour:
       Data: small_coin_pack
     - Name: $v
       Entry: 7
-      Data: 11|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 11|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 12|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.RewardPromocode,
+      Data: 12|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
@@ -241,14 +244,14 @@ MonoBehaviour:
       Data: ultra_large_coin_pack
     - Name: $v
       Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 14|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 15|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.RewardPromocode,
+      Data: 15|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
@@ -289,14 +292,14 @@ MonoBehaviour:
       Data: very_small_coin_pack
     - Name: $v
       Entry: 7
-      Data: 17|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 17|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 18|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.RewardPromocode,
+      Data: 18|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
@@ -337,18 +340,72 @@ MonoBehaviour:
       Data: TurnOffAd
     - Name: $v
       Entry: 7
-      Data: 20|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.PromocodeAction,
+      Data: 20|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 21|App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies.TurnOffAdPromocode,
+      Data: 21|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.TurnOffAdPromocode,
         Assembly-CSharp
     - Name: <ExecuteCount>k__BackingField
       Entry: 3
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: ReviewReward
+    - Name: $v
+      Entry: 7
+      Data: 22|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 23|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
+        Assembly-CSharp
+    - Name: <ExecuteCount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: _rewardConfigs
+      Entry: 7
+      Data: 24|System.Collections.Generic.List`1[[App.Scripts.Features.Rewards.Configs.RewardConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

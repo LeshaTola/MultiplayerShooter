@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
@@ -8,12 +9,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
     {
         [field: SerializeField] public List<PurchaseYG> PurchaseYGs { get; private set; }
         
-        public void ShowOnlyValid(List<string> validPromoCodes)
+        public void UpdateView(List<string> validPromoCodes)
         {
-            foreach (var purchaseYG in PurchaseYGs)
+            foreach (var purchaseYg in PurchaseYGs)
             {
-                purchaseYG.gameObject.SetActive(validPromoCodes.Contains(purchaseYG.id));
+                purchaseYg.gameObject.SetActive(validPromoCodes.Contains(purchaseYg.id));
             }
+            LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
         }
     }
 }

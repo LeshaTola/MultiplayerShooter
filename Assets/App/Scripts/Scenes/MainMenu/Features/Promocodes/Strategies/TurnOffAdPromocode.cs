@@ -4,7 +4,7 @@ using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using Cysharp.Threading.Tasks;
 using YG;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies
 {
     public class TurnOffAdPromocode : PromocodeAction
     {

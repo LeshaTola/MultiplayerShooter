@@ -4,7 +4,7 @@ using App.Scripts.Features.Rewards.Configs;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies
 {
     public class RewardPromocode : PromocodeAction
     {

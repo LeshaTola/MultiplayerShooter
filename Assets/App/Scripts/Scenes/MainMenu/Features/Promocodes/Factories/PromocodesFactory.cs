@@ -1,7 +1,7 @@
-﻿using App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies;
+﻿using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies;
 using Zenject;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Factories
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Factories
 {
     public class PromocodesFactory
     {

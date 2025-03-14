@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Saves
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves
 {
     [Serializable]
     public class PromocodeData

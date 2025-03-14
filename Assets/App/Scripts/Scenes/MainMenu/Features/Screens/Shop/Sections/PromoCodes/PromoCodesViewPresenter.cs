@@ -1,6 +1,6 @@
 ﻿using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.PromoCodes
 {

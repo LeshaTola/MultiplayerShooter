@@ -1,5 +1,5 @@
 ﻿using App.Scripts.Modules.Saves;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Saves;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves;
 using YG;
 
 namespace App.Scripts.Features.Yandex.Saves

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes.Strategies
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies
 {
     public abstract class PromocodeAction
     {

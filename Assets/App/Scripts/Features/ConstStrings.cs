@@ -11,9 +11,10 @@
         public const string INPUT = "Управление";
         public const string R = "R";
         public const string RECСONECT = "Переподключиться";
-        public const string PROMOCODE_FINISHED = "Промокод израсходован";
-        public const string PROMOCODE_IS_NOT_EXIST = "Такого промокода не существует";
+        public const string PROMO_CODE_FINISHED = "Промокод израсходован";
+        public const string PROMO_CODE_IS_NOT_EXIST = "Такого промокода не существует";
         public const string AD_IS_OFF = "Реклама успешно отключена!";
         public const string MARKET_IS_UPDATED = "Магазин успешно обнавлен!";
+        public const string REVIEW_IS_NOT_AVAILABLE = "Не возможно оставить отзыв";
     }
 }

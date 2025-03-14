@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
+using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace App.Scripts.Scenes.MainMenu.Features.Promocodes
+namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Invokers
 {
     public class PromocodeInvoker : MonoBehaviour
     {
@@ -17,17 +18,19 @@ namespace App.Scripts.Scenes.MainMenu.Features.Promocodes
 
         [SerializeField] protected Button _button;
 
-        private PromoCodesProvider _promoCodesProvider;
+        protected PromoCodesProvider PromoCodesProvider;
+        protected InfoPopupRouter InfoPopupRouter;
 
         [Inject]
-        public void Construct(PromoCodesProvider promoCodesProvider)
+        public void Construct(PromoCodesProvider promoCodesProvider, InfoPopupRouter infoPopupRouter)
         {
-            _promoCodesProvider = promoCodesProvider;
+            PromoCodesProvider = promoCodesProvider;
+            InfoPopupRouter = infoPopupRouter;
         }
 
         protected virtual void OnEnable()
         {
-            _button.onClick.AddListener(() => _promoCodesProvider.ApplyPromoCode(_promocode));
+            _button.onClick.AddListener(() => PromoCodesProvider.ApplyPromoCode(_promocode));
         }
 
         protected virtual void OnDisable()

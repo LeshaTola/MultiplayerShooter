@@ -2,7 +2,7 @@
 using System.Linq;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
-using App.Scripts.Scenes.MainMenu.Features.Promocodes.Providers;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
 {
@@ -31,7 +31,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
         private void UpdateOffers()
         {
             var availableOffers = GetValidPromoCodes();
-            _offersView.ShowOnlyValid(availableOffers);
+            _offersView.UpdateView(availableOffers);
         }
 
         private List<string> GetValidPromoCodes()
