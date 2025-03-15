@@ -47,7 +47,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             _selectionProvider.OnWeaponSelected -= OnWeaponSelected;
             _selectionProvider.OnSkinSelected -= OnSkinSelected;
         }
-        
 
         private void OnSkinSelected(string id)
         {

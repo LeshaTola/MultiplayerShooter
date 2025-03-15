@@ -83,9 +83,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
 
         private void UpdateInventory()
         {
-            
-            var skinConfigs 
-                = InventoryProvider.Inventory.Skins.Select(weaponId => InventoryProvider.SkinById(weaponId)).ToList();
+            var skinConfigs = InventoryProvider.Inventory.Skins
+                .Select(id => InventoryProvider.SkinById(id))
+                .Where(skin => skin != null)
+                .ToList();
             var sortedItems = _raritiesDatabase.SortByRarity(skinConfigs.Cast<ItemConfig>().ToList());
             
             foreach (var skin in sortedItems)
