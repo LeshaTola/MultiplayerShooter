@@ -5,6 +5,7 @@ using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
 {
@@ -69,6 +70,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
             _config.TicketReward.Count = _ticketsCount;
             _rewardService.AddReward(_config.TicketReward);
             _rewardService.ApplyRewardsAsync().Forget();
+            GameAnalytics.NewDesignEvent($"shop:tickets", _ticketsCount);
         }
 
         private void UpdateCount()

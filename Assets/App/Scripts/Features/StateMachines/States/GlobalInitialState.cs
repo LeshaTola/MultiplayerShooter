@@ -4,6 +4,7 @@ using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.MainMenu;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -44,7 +45,7 @@ namespace App.Scripts.Features.StateMachines.States
             
             Application.targetFrameRate = 60;
             _connectionProvider.OnConnectionFinished += OnConectedToServer;
-            
+            GameAnalytics.Initialize();
             _settingsProvider.LoadState();
             _userStatsProvider.LoadState();
             

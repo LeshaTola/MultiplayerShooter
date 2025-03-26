@@ -4,6 +4,7 @@ using App.Scripts.Scenes.Gameplay.KillChat;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 using Photon.Pun;
 using UnityEngine;
 
@@ -42,6 +43,8 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             var lastHitPlayer = PhotonView.Find(_playerProvider.Player.Health.LastHitPlayerId)
                 .GetComponent<Player.Player>();
             string weaponId = _playerProvider.Player.Health.LastHitWeaponId;
+            GameAnalytics.NewDesignEvent($"game:weapon:{weaponId}",1 );
+
             _killChatView.RPCSpawnKillElement(weaponId,lastHitPlayer.NickName, _playerProvider.Player.NickName);
         }
 

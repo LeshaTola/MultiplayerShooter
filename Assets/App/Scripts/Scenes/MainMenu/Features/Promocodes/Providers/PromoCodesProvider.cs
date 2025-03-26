@@ -10,6 +10,7 @@ using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Factories;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies;
 using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers
@@ -74,7 +75,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers
                 };
                 PromoCodesData.UsedPromocodes.Add(promoCodeData);
             }
-            
+
+            GameAnalytics.NewDesignEvent($"promo:{promoCodeData.PromoCode.ToLower()}", 1);
             promoCodeData.Uses++;
             OnPromoCodeApplied?.Invoke(promoCode);
             foreach (var action in promoCodeActions)

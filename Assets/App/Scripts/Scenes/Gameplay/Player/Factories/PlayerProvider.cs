@@ -9,6 +9,7 @@ using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 using Photon.Pun;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -65,7 +66,15 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 Vector3.zero,
                 Quaternion.identity).GetComponent<Player>();
             player.Initialize(PhotonNetwork.NickName);
-            player.PlayerVisual.RPCSetSkin(_inventoryProvider.GameInventory.Skin);
+            var skin = _inventoryProvider.GameInventory.Skin;
+            player.PlayerVisual.RPCSetSkin(skin);
+            
+            GameAnalytics.NewDesignEvent($"inventory:skin:{skin}",1 );
+            GameAnalytics.NewDesignEvent($"inventory:weapons:{string.Join(",", _inventoryProvider.GameInventory.Weapons)}",1);
+            foreach (var weapon in _inventoryProvider.GameInventory.Weapons)
+            {
+                GameAnalytics.NewDesignEvent($"inventory:weapon:{weapon}", 1);
+            }
             
             _cameraProvider.RegisterCamera(player.VirtualCamera);
             

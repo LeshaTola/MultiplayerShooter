@@ -4,6 +4,7 @@ using App.Scripts.Modules.Localization.Elements.Buttons;
 using App.Scripts.Modules.PopupAndViews.General.Popup;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
 using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,7 +91,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             ChangeMoney();
             AddItem();
             UpdateInventory();
-            
+            GameAnalytics.NewDesignEvent($"shop:{_vm.ShopItemData.Item.Id.ToLower()}", 1);
             Close();
         }
 

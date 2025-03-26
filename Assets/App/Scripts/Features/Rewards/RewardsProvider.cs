@@ -1,8 +1,11 @@
-﻿using App.Scripts.Features.PlayerStats;
+﻿using System.Linq;
+using App.Scripts.Features.Match.Maps;
+using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Timer;
+using GameAnalyticsSDK;
 using Photon.Pun;
 using UnityEngine;
 
@@ -15,6 +18,7 @@ namespace App.Scripts.Features.Rewards
         private readonly AccrualConfig _accrualConfig;
         private readonly TimerProvider _timerProvider;
         private readonly UserRankProvider _rankProvider;
+        private readonly MapsProvider _mapsProvider;
 
         private float _experience;
         private float _coins;
@@ -25,13 +29,15 @@ namespace App.Scripts.Features.Rewards
             LeaderBoardProvider leaderboard,
             AccrualConfig accrualConfig,
             TimerProvider timerProvider,
-            UserRankProvider rankProvider)
+            UserRankProvider rankProvider, 
+            MapsProvider mapsProvider)
         {
             _rewardService = rewardService;
             _leaderboard = leaderboard;
             _accrualConfig = accrualConfig;
             _timerProvider = timerProvider;
             _rankProvider = rankProvider;
+            _mapsProvider = mapsProvider;
             Instance = this;
         }
 
@@ -40,6 +46,14 @@ namespace App.Scripts.Features.Rewards
             if (!IsMinimumTime())
             {
                 return;
+            }
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                GameAnalytics.NewDesignEvent($"game:map:{_mapsProvider.CurrentMap.name.ToLower()}", 1);
+                var kills = _leaderboard.GetTable().Sum(x => x.Item3);
+                GameAnalytics.NewDesignEvent("game:kills:", kills);
+                GameAnalytics.NewDesignEvent("game:players:", _leaderboard.GetTable().Count);
             }
 
             AddExpFromPlace();

@@ -34,6 +34,7 @@ using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Factories;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
+using GameAnalyticsSDK;
 using TNRD;
 using UnityEngine;
 using UnityEngine.Audio;
