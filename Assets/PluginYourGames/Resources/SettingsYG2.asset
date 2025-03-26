@@ -137,7 +137,9 @@ MonoBehaviour:
       de: 
       hi: 
   Flags:
-    flags: []
+    flags:
+    - name: SALE
+      value: 0
   InterstitialAdv:
     showFirstAdv: 1
     interAdvInterval: 120
@@ -339,8 +341,8 @@ MonoBehaviour:
       title: 
       description: 
       imageURI: 
-      price: 100
-      priceValue: 
+      price: 100 YAN
+      priceValue: 100
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0
@@ -348,8 +350,8 @@ MonoBehaviour:
       title: 
       description: 
       imageURI: 
-      price: 79
-      priceValue: 
+      price: 79 YAN
+      priceValue: 79
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0
@@ -357,8 +359,8 @@ MonoBehaviour:
       title: 
       description: 
       imageURI: 
-      price: 550
-      priceValue: 
+      price: 249 YAN
+      priceValue: 249
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0
@@ -366,8 +368,8 @@ MonoBehaviour:
       title: 
       description: 
       imageURI: 
-      price: 
-      priceValue: 1500
+      price: 499 YAN
+      priceValue: 499
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0
@@ -375,8 +377,8 @@ MonoBehaviour:
       title: 
       description: 
       imageURI: 
-      price: 1999
-      priceValue: 
+      price: 1999 YAN
+      priceValue: 1999
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0
@@ -384,8 +386,8 @@ MonoBehaviour:
       title: 
       description: 
       imageURI: 
-      price: 
-      priceValue: 
+      price: 899 YAN
+      priceValue: 899
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0

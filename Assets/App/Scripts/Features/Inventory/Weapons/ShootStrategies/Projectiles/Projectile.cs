@@ -4,7 +4,6 @@ using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
