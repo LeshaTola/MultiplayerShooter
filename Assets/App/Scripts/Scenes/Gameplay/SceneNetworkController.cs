@@ -9,7 +9,7 @@ using IInitializable = App.Scripts.Modules.StateMachine.Services.InitializeServi
 
 namespace App.Scripts.Scenes.Gameplay
 {
-    public class SceneNetworkControoller : MonoBehaviourPunCallbacks, IInitializable
+    public class SceneNetworkController : MonoBehaviourPunCallbacks, IInitializable
     {
         private MapsProvider _mapsProvider;
         private PlayerProvider _playerProvider;
@@ -39,7 +39,8 @@ namespace App.Scripts.Scenes.Gameplay
         public void SetMapId(int mapId)
         {
             _mapId = mapId;
-            _playerProvider.SetSpawnPoints(PhotonView.Find(_mapId).GetComponent<Map>().SpawnPoints);
+            _mapsProvider.CurrentMap = PhotonView.Find(_mapId).GetComponent<Map>();
+            _playerProvider.SetSpawnPoints(_mapsProvider.CurrentMap.SpawnPoints);
         }
 
         public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)

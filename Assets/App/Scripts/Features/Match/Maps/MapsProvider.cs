@@ -9,6 +9,7 @@ namespace App.Scripts.Features.Match.Maps
     {
         public MapsConfig Config { get; }
         public Map Map { get; set; }
+        public Map CurrentMap { get; set; }
 
         public MapsProvider(MapsConfig config)
         {

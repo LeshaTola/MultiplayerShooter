@@ -10,6 +10,7 @@ using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
+using App.Scripts.Scenes.Gameplay.AI;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.HitVisualProvider;
@@ -21,6 +22,7 @@ using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -55,7 +57,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         
         [Header("Other")]
         [SerializeField] private AccrualConfig _accrualConfig;
-        [SerializeField] private SceneNetworkControoller _sceneNetworkControoller;
+        [SerializeField] private SceneNetworkController _sceneNetworkController;
+        [SerializeField] private BotAI _botAI;
 
         public override void InstallBindings()
         {
@@ -77,9 +80,11 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SceneNetworkControoller>().FromInstance(_sceneNetworkControoller).AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneNetworkController>().FromInstance(_sceneNetworkController).AsSingle();
             Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
+            Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
+            
             BindSlotFactory();
             BindItemFactory();
             /*Container.

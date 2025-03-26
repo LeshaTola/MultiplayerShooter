@@ -27,10 +27,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats
         
         public override void Initialize()
         {
-            if (YG2.player.photo != null)
+            if (YG2.player.auth && YG2.player.photo != null)
             {
                 _playerImage.spriteImage.color = Color.white;
                 _playerImage.Load(YG2.player.photo);
+            }
+            else
+            {
+                _playerImage.spriteImage.enabled = true;
             }
             
             _playerInputField.onEndEdit.AddListener((value) =>
