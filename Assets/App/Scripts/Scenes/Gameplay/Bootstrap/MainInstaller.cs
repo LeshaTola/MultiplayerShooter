@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Features.Input;
+﻿using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
 using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Rewards;
@@ -10,7 +9,6 @@ using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
-using App.Scripts.Scenes.Gameplay.AI;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.HitVisualProvider;
@@ -22,8 +20,7 @@ using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+using YG;
 using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Bootstrap
@@ -35,9 +32,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
         [Header("HitMark")]
         [SerializeField] private HitConfig _hitConfig;
-
-        [SerializeField] private Image _hitImage;
-
+        
         [Space]
         [SerializeField] private Transform _container;
 
@@ -58,7 +53,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("Other")]
         [SerializeField] private AccrualConfig _accrualConfig;
         [SerializeField] private SceneNetworkController _sceneNetworkController;
-        [SerializeField] private BotAI _botAI;
+        // [SerializeField] private BotAI _botAI;
 
         public override void InstallBindings()
         {
@@ -69,7 +64,13 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<TimerProvider>().FromInstance(_timerProvider).AsSingle();
             Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
             Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle();
-            Container.Bind<GameInputProvider>().AsSingle();
+
+            /*if (YG2.envir.isDesktop)
+                Container.Bind<IGameInputProvider>().To<GameInputProvider>().AsSingle();
+            else
+                Container.Bind<IGameInputProvider>().To<MobileGameInputProvider>().AsSingle();*/
+                Container.Bind<IGameInputProvider>().To<MobileGameInputProvider>().AsSingle();
+            
             Container.Bind<ShootingModeFactory>().AsSingle();
             Container.Bind<ProjectilesFactory>().AsSingle();
             Container.Bind<CameraProvider>().AsSingle();
@@ -78,12 +79,12 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<PostProcessingProvider>().AsSingle().WithArguments(_postProcessingConfig, _postProcessVolume);
 
             BindDamageTextPool();
-            Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig, _hitImage);
+            Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig);
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneNetworkController>().FromInstance(_sceneNetworkController).AsSingle();
             Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
-            Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
+            // Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
             
             BindSlotFactory();
             BindItemFactory();

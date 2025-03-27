@@ -21,7 +21,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [SerializeField] private GlobalInventory _globalInventory;
         
         public List<Weapon> Weapons { get; } = new();
-        private GameInputProvider _gameInputProvider;
+        private IGameInputProvider _gameInputProvider;
         private InventoryProvider _inventoryProvider;
         private ShootingModeFactory _shootingModeFactory;
         private PlayerController _playerController;
@@ -34,7 +34,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             Cleanup();
         }
 
-        public void Initialize(GameInputProvider gameInputProvider,
+        public void Initialize(IGameInputProvider gameInputProvider,
             PlayerController playerController,
             InventoryProvider inventoryProvider, 
             ShootingModeFactory shootingModeFactory,

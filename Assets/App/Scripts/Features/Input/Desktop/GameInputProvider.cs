@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace App.Scripts.Features.Input
 {
-    public class GameInputProvider
+    public class GameInputProvider : IGameInputProvider
     {
         public event Action<int> OnNumber;
 

@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.Provider;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using DG.Tweening;
 using UnityEngine;
@@ -10,15 +11,18 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
 {
     public class HitService : IInitializable, ICleanupable
     {
-        private readonly Image _hitMarkImage;
+        private readonly PlayerUIProvider _playerUIProvider;
         private readonly HitConfig _config;
         private readonly PlayerProvider _playerProvider;
         private readonly IPool<DamageView> _pool;
         private Sequence _sequence;
 
-        public HitService(Image hitMarkImage, HitConfig config, PlayerProvider playerProvider, IPool<DamageView> pool)
+        public HitService(PlayerUIProvider playerUIProvider,
+            HitConfig config,
+            PlayerProvider playerProvider,
+            IPool<DamageView> pool)
         {
-            _hitMarkImage = hitMarkImage;
+            _playerUIProvider = playerUIProvider;
             _config = config;
             _playerProvider = playerProvider;
             _pool = pool;
@@ -65,15 +69,17 @@ namespace App.Scripts.Scenes.Gameplay.HitVisualProvider
                 _sequence.Complete();
                 _sequence.Kill();
             }
+
+            var hitMarkImage = _playerUIProvider.PlayerView.WeaponView.HitMarkImage;
             
-            _hitMarkImage.transform.localScale = Vector3.one;
-            _hitMarkImage.color = killed? _config.KilledColor:_config.MainColor;
-            _hitMarkImage.DOFade(1, 0f);
+            hitMarkImage.transform.localScale = Vector3.one;
+            hitMarkImage.color = killed? _config.KilledColor:_config.MainColor;
+            hitMarkImage.DOFade(1, 0f);
             _sequence = DOTween.Sequence();
 
-            _sequence.Append(_hitMarkImage.DOFade(_config.FadeValue, 0f));
-            _sequence.Join(_hitMarkImage.transform.DOScale(_config.ScaleValue, _config.ScaleAnimationTime));
-            _sequence.Append(_hitMarkImage.DOFade(0, _config.FadeOutTime));
+            _sequence.Append(hitMarkImage.DOFade(_config.FadeValue, 0f));
+            _sequence.Join(hitMarkImage.transform.DOScale(_config.ScaleValue, _config.ScaleAnimationTime));
+            _sequence.Append(hitMarkImage.DOFade(0, _config.FadeOutTime));
         }
     }
 }

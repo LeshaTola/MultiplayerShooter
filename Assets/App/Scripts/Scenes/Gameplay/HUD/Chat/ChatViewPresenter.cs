@@ -12,14 +12,14 @@ namespace App.Scripts.Scenes.Gameplay.Chat
     public class ChatViewPresenter : GameScreenPresenter, IInitializable , ICleanupable
     {
         private readonly ChatView _view;
-        private readonly GameInputProvider _gameInputProvider;
+        private readonly IGameInputProvider _gameInputProvider;
         private readonly PlayerController _playerController;
         private readonly ILocalizationSystem _localizationSystem;
 
         private bool _isActive;
 
         public ChatViewPresenter(ChatView view,
-            GameInputProvider gameInputProvider,
+            IGameInputProvider gameInputProvider,
             PlayerController playerController,
             ILocalizationSystem localizationSystem)
         {

@@ -12,6 +12,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [SerializeField] private TextMeshProUGUI _ammoText;
         [SerializeField] private Image _ammoImage;
         [SerializeField] private Image _reloadImage;
+        
+        [field: SerializeField] public Image HitMarkImage { get; private set; }
 
         private WeaponProvider _weaponProvider;
         private Weapon _currentWeapon;

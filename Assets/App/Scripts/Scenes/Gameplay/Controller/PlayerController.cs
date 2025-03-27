@@ -13,14 +13,14 @@ namespace App.Scripts.Scenes.Gameplay.Controller
     public class PlayerController : IInitializable, ICleanupable, IUpdatable
     {
         private readonly LeaderBoardView _leaderBoardView;
-        private readonly GameInputProvider _gameInputProvider;
+        private readonly IGameInputProvider _gameInputProvider;
         private readonly MouseSensivityProvider _mouseSensivityProvider;
         
         private IControllable _controllable;
 
         public bool IsBusy { get; set; } = false;
 
-        public PlayerController(GameInputProvider gameInputProvider,
+        public PlayerController(IGameInputProvider gameInputProvider,
             MouseSensivityProvider mouseSensivityProvider, 
             LeaderBoardView leaderBoardView)
         {

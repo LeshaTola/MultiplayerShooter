@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
     {
         public event Action<Player> OnPlayerCreated;
         
-        private readonly GameInputProvider _gameInputProvider;
+        private readonly IGameInputProvider _gameInputProvider;
         private readonly PlayerController _playerController;
         private readonly InventoryProvider _inventoryProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
@@ -44,7 +44,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             }
         }
 
-        public PlayerProvider(GameInputProvider gameInputProvider,
+        public PlayerProvider(IGameInputProvider gameInputProvider,
             PlayerController playerController,
             Player playerPrefab,
             InventoryProvider inventoryProvider,

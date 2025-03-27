@@ -17,7 +17,7 @@ namespace App.Scripts.Features.Bootstrap
 		[Inject]
 		public void Construct(ILocalizationSystem localizationSystem)
 		{
-			this._localizationSystem = localizationSystem;
+			_localizationSystem = localizationSystem;
 			foreach (var localizer in _tmProLocalizers)
 			{
 				localizer.Initialize(localizationSystem);

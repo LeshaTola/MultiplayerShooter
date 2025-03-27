@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.Provider;
+using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.View;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -14,23 +17,26 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
 {
     public class GameInventoryViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
-        private readonly GameInventoryView _view;
+        private GameInventoryView _view;
         private readonly SelectionProvider _selectionProvider;
         private readonly InventoryProvider _inventoryProvider;
         private readonly IFactory<InventorySlot> _inventorySlotFactory;
         private readonly IFactory<Item> _itemFactory;
         private readonly UserStatsProvider _userStatsProvider;
         private readonly RectTransform _overlayTransform;
+        private readonly PlayerUIProvider _playerUIProvider;
 
         private readonly List<CorrectTypeInventorySlotStrategy> _subscriptionsSlots = new();
         
-        public GameInventoryViewPresenter(GameInventoryView view,
+        public GameInventoryViewPresenter(
             SelectionProvider selectionProvider,
             InventoryProvider inventoryProvider,
             IFactory<InventorySlot> inventorySlotFactory,
             IFactory<Item> itemFactory,
             UserStatsProvider userStatsProvider,
-            RectTransform overlayTransform)
+            RectTransform overlayTransform,
+            PlayerUIProvider playerUIProvider = null,
+            GameInventoryView view = null)
         {
             _view = view;
             _selectionProvider = selectionProvider;
@@ -39,13 +45,23 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
             _itemFactory = itemFactory;
             _userStatsProvider = userStatsProvider;
             _overlayTransform = overlayTransform;
+            _playerUIProvider = playerUIProvider;
         }
 
         public override void Initialize()
         {
-            _view.Initialize();
+            if (_view == null)
+            {
+                var inventoryView = _playerUIProvider.PlayerView.InventoryView;
+                if (inventoryView == null)
+                {
+                    _playerUIProvider.OnPlayerViewCreated += OnPlayerViewCreated;
+                    return;
+                }
 
-            InitializeWeapons();
+                _view = inventoryView;
+            }
+            InitializeInternal();
         }
 
         public override void Cleanup()
@@ -114,6 +130,19 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
         private void OnInventoryChanged()
         {
             _userStatsProvider.SaveState();
+        }
+
+
+        private void OnPlayerViewCreated(PlayerView playerView)
+        {
+            _view = playerView.InventoryView;
+            InitializeInternal();
+        }
+
+        private void InitializeInternal()
+        {
+            _view.Initialize();
+            InitializeWeapons();
         }
     }
 }

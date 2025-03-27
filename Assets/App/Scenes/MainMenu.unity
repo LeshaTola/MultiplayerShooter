@@ -178,15 +178,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 0101180000003c00430061006d0065007200610073003e006b005f005f004200610063006b0069006e0067004600690065006c0064002f000000000180000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00440069006300740069006f006e00610072007900600032005b005b00530079007300740065006d002e0053007400720069006e0067002c0020006d00730063006f0072006c00690062005d002c005b00430069006e0065006d0061006300680069006e0065002e00430069006e0065006d0061006300680069006e0065005600690072007400750061006c00430061006d006500720061002c002000430069006e0065006d0061006300680069006e0065005d005d002c0020006d00730063006f0072006c00690062000000000001010800000063006f006d00700061007200650072002f010000000159000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00470065006e00650072006900630045007100750061006c0069007400790043006f006d0070006100720065007200600031005b005b00530079007300740065006d002e0053007400720069006e0067002c0020006d00730063006f0072006c00690062005d005d002c0020006d00730063006f0072006c00690062000100000005060100000000000000042e27010200000024006b0001040000004d00610069006e000b01020000002400760000000000050705
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 1684072035}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: <Cameras>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Cinemachine.CinemachineVirtualCamera,
+        Cinemachine]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Main
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &79394765
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +850,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd747ef0da284e8a966ead822a0d2645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &271555356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7749408357108455307, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+  m_PrefabInstance: {fileID: 271555353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &315275786 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6526970947108286906, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
@@ -1147,14 +1190,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 01010a0000005f006e00650078007400530074006100740065002f00000000014e0000004100700070002e0053006300720069007000740073002e005300630065006e00650073002e004d00610069006e004d0065006e0075002e00530074006100740065004d0061006300680069006e00650073002e005300740061007400650073002e0049006e0069007400690061006c00530074006100740065002c00200041007300730065006d0062006c0079002d004300530068006100720070000000000005
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _nextState
+      Entry: 7
+      Data: 0|App.Scripts.Scenes.MainMenu.StateMachines.States.InitialState, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!4 &642694292
 Transform:
   m_ObjectHideFlags: 0
@@ -4147,7 +4196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -4156,19 +4205,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tmProLocalizers:
-  - {fileID: 1911274486}
-  - {fileID: 1682449512}
-  - {fileID: 467071192}
-  - {fileID: 1342042406}
-  - {fileID: 1867469583}
-  - {fileID: 438065787}
+  - {fileID: 271555356}
   - {fileID: 31952710}
   - {fileID: 127666029}
   - {fileID: 249009508}
   - {fileID: 315275786}
   - {fileID: 385218451}
   - {fileID: 435360197}
+  - {fileID: 438065787}
   - {fileID: 464708914}
+  - {fileID: 467071192}
   - {fileID: 475448290}
   - {fileID: 514310573}
   - {fileID: 524197672}
@@ -4202,6 +4248,7 @@ MonoBehaviour:
   - {fileID: 1150347835}
   - {fileID: 1179831513}
   - {fileID: 1198780790}
+  - {fileID: 1342042406}
   - {fileID: 1362301900}
   - {fileID: 1440329500}
   - {fileID: 1440329502}
@@ -4210,14 +4257,17 @@ MonoBehaviour:
   - {fileID: 1631686002}
   - {fileID: 1653823464}
   - {fileID: 1666021796}
+  - {fileID: 1682449512}
   - {fileID: 1730933792}
   - {fileID: 1751927910}
   - {fileID: 1830838333}
   - {fileID: 1839654193}
   - {fileID: 1844329599}
   - {fileID: 1862433766}
+  - {fileID: 1867469583}
   - {fileID: 1909419449}
   - {fileID: 1910883436}
+  - {fileID: 1911274486}
   - {fileID: 1933232301}
   - {fileID: 1954891548}
   - {fileID: 2057904604}

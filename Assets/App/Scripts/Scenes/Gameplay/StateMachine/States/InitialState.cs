@@ -2,6 +2,8 @@
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.Provider;
+using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.View;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Timer;
@@ -16,26 +18,23 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
     {
         private readonly IInitializeService _initializeService;
         private readonly PlayerController _playerController;
+        private readonly PlayerUIProvider _playerUIProvider;
         private readonly PlayerProvider _playerProvider;
         private readonly TimerProvider _timerProvider;
-        private readonly HealthBarUI _healthBarUI;
-        private readonly WeaponView _weaponView;
         private readonly ISceneTransition _sceneTransition;
 
         public InitialState(PlayerProvider playerProvider,
             TimerProvider timerProvider,
             IInitializeService initializeService,
             PlayerController playerController,
-            HealthBarUI healthBarUI,
-            WeaponView weaponView,
+            PlayerUIProvider playerUIProvider,
             ISceneTransition sceneTransition) 
         {
             _playerProvider = playerProvider;
             _timerProvider = timerProvider;
             _initializeService = initializeService;
             _playerController = playerController;
-            _healthBarUI = healthBarUI;
-            _weaponView = weaponView;
+            _playerUIProvider = playerUIProvider;
             _sceneTransition = sceneTransition;
         }
 
@@ -53,8 +52,9 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             
             _playerController.Setup(_playerProvider.Player);
 
-            _healthBarUI.Initialize(_playerProvider.Player.Health);
-            _weaponView.Initialize(_playerProvider.Player.WeaponProvider);
+            var playerView = _playerUIProvider.PlayerView;
+            playerView.HealthBar.Initialize(_playerProvider.Player.Health);
+            playerView.WeaponView.Initialize(_playerProvider.Player.WeaponProvider);
             
             await StateMachine.ChangeState<RespawnState>();
         }

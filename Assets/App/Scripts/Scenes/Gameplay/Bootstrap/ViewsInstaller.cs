@@ -1,15 +1,15 @@
-﻿using App.Scripts.Features.Inventory;
+﻿using App.Scripts.Features.Input;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Scenes.Gameplay.Chat;
 using App.Scripts.Scenes.Gameplay.EndGame;
 using App.Scripts.Scenes.Gameplay.Esc;
 using App.Scripts.Scenes.Gameplay.Esc.Menu;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
+using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.Provider;
 using App.Scripts.Scenes.Gameplay.Inventory;
 using App.Scripts.Scenes.Gameplay.KillChat;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player;
-using App.Scripts.Scenes.Gameplay.Player.Stats;
-using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using UnityEngine;
@@ -17,10 +17,11 @@ using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Bootstrap
 {
-    public class ViewsInstaller:MonoInstaller
+    public class ViewsInstaller : MonoInstaller
     {
-        [SerializeField] private HealthBarUI _healthBarUI;
-        [SerializeField] private WeaponView _weaponView;
+
+        [SerializeField] private PlayerUIProvider _playerUIProvider;
+        
         [SerializeField] private LeaderBoardView _leaderBoardView;
         [SerializeField] private KillChatView _killChatView;
         [SerializeField] private ChatView _chatView;
@@ -31,18 +32,18 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("ESC")]
         [SerializeField] private EscMenuView _escMenuView;
         [SerializeField] private SettingsView _settingsView;
-        
-        [Header("Inventory")]
-        [SerializeField] private GameInventoryView _view;
-        [SerializeField] private RectTransform _overlayContainer;
+
         
         [Header("EndGame")]
         [SerializeField] private EndGameView _endGameView;
 
+        [Header("Other")]
+        [SerializeField] private RectTransform _overlayContainer;
+        [SerializeField] private MobileInputView _mobileInputView;
+
         public override void InstallBindings()
         {
-            Container.Bind<HealthBarUI>().FromInstance(_healthBarUI).AsSingle();
-            Container.Bind<WeaponView>().FromInstance(_weaponView).AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerUIProvider>().FromInstance(_playerUIProvider).AsSingle();
             
             Container.Bind<LeaderBoardView>().FromInstance(_leaderBoardView).AsSingle();
             
@@ -56,13 +57,16 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<EndGameViewPresenter>().AsSingle();
             
             Container.Bind<KillChatView>().FromInstance(_killChatView).AsSingle();
-            
             Container.Bind<ChatView>().FromInstance(_chatView).AsSingle();
             Container.BindInterfacesAndSelfTo<ChatViewPresenter>().AsSingle();
-            
-            Container.Bind<GameInventoryView>().FromInstance(_view).AsSingle();
+
+            Container.Bind<SelectionProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<InventoryController>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>().AsSingle().WithArguments(new SelectionProvider(),_overlayContainer);
+            Container.BindInterfacesAndSelfTo<GameInventoryViewPresenter>()
+                .AsSingle()
+                .WithArguments(_overlayContainer);
+
+            Container.BindInstance(_mobileInputView).AsSingle();
         }
     }
 }

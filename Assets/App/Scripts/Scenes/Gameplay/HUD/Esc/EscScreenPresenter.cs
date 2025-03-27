@@ -23,7 +23,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
         private readonly Modules.StateMachine.StateMachine _stateMachine;
         private readonly IAudioService _audioService;
         private readonly PlayerController _playerController;
-        private readonly GameInputProvider _gameInputProvider;
+        private readonly IGameInputProvider _gameInputProvider;
 
         private bool _isActive;
         
@@ -32,7 +32,7 @@ namespace App.Scripts.Scenes.Gameplay.Esc
             SettingsProvider settingsProvider,
             Modules.StateMachine.StateMachine stateMachine,
             PlayerController playerController,
-            GameInputProvider gameInputProvider)
+            IGameInputProvider gameInputProvider)
         {
             _escMenuView = escMenuView;
             _settingsView = settingsView;

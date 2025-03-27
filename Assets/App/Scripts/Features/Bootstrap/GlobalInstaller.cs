@@ -111,7 +111,7 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<MoveToStateCommand>().AsTransient();
 
             Container.Bind<PresentersProvider>().AsSingle();
-            Container.Bind<GameInputProvider>().AsSingle();
+            // Container.Bind<GameInputProvider>().AsSingle();
             Container.Bind<AdvertisementProvider>().AsSingle();
             
 #if YANDEX
