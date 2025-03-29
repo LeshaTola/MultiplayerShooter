@@ -58,22 +58,33 @@ namespace App.Scripts.Features.Input
         private void HandleSwipe()
         {
             _swipeDelta = Vector2.zero;
-            if (UnityEngine.Input.touchCount != 1)
+
+            Touch? touch = GetFirstTouchInZone();
+            if (touch.HasValue)
             {
-                return;
+                ProcessSwipe(touch.Value);
             }
-            
-            var touch = UnityEngine.Input.GetTouch(0);
-            RectTransformUtility
-                .ScreenPointToLocalPointInRectangle(
-                    _swipeZone,
-                    touch.position,
-                    null,
-                    out var localPoint);
-            
-            if (!_swipeZone.rect.Contains(localPoint))
-                return;
-            
+        }
+
+        private Touch? GetFirstTouchInZone()
+        {
+            foreach (var touch in UnityEngine.Input.touches)
+            {
+                if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        _swipeZone,
+                        touch.position,
+                        null,
+                        out var localPoint) && 
+                    _swipeZone.rect.Contains(localPoint))
+                {
+                    return touch;
+                }
+            }
+            return null;
+        }
+
+        private void ProcessSwipe(Touch touch)
+        {
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -93,6 +104,7 @@ namespace App.Scripts.Features.Input
                     break;
             }
         }
+
         
         private void AddButtonListener(Button button, Action onPress, Action onRelease = null)
         {

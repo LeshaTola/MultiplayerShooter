@@ -55,7 +55,7 @@ namespace App.Scripts.Scenes.Gameplay.HUD.PlayerUI.Provider
 
         private void SpawnDesktopUI()
         {
-            PlayerView = Instantiate(_mobilePlayerUI, _container);
+            PlayerView = Instantiate(_playerUI, _container);
         }
     }
 }

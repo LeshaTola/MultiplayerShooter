@@ -65,10 +65,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
             Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle();
 
-            /*if (YG2.envir.isDesktop)
+            if (YG2.envir.isDesktop)
                 Container.Bind<IGameInputProvider>().To<GameInputProvider>().AsSingle();
             else
-                Container.Bind<IGameInputProvider>().To<MobileGameInputProvider>().AsSingle();*/
                 Container.Bind<IGameInputProvider>().To<MobileGameInputProvider>().AsSingle();
             
             Container.Bind<ShootingModeFactory>().AsSingle();

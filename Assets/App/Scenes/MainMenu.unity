@@ -621,6 +621,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5533699810069838860, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533699810069838860, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5779168109851991917, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -2993,6 +3001,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8511093000087187478, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511093000087187478, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8626694821885792232, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
       propertyPath: _tabElemets.Array.size
       value: 2
@@ -3636,6 +3652,14 @@ PrefabInstance:
     - target: {fileID: 6308040376715575963, guid: 614e06c17c26e694dac3d21d5f9e8ef0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450766276466329310, guid: 614e06c17c26e694dac3d21d5f9e8ef0, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450766276466329310, guid: 614e06c17c26e694dac3d21d5f9e8ef0, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8587274699893625034, guid: 614e06c17c26e694dac3d21d5f9e8ef0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4627,6 +4651,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -440
       objectReference: {fileID: 0}
+    - target: {fileID: 7450766276466329310, guid: b61ba7997a6e4a94e84a169e7a640ed6, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450766276466329310, guid: b61ba7997a6e4a94e84a169e7a640ed6, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4671,6 +4703,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 667699066}
+    - target: {fileID: 3572979948521308674, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572979948521308674, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4948324744475501441, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_Name
       value: MainScreen
@@ -4879,6 +4919,14 @@ PrefabInstance:
     - target: {fileID: 3296345455713146306, guid: ebd935bcfddce3040b9574df5159150a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730896140872748400, guid: ebd935bcfddce3040b9574df5159150a, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3730896140872748400, guid: ebd935bcfddce3040b9574df5159150a, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6449200009785780785, guid: ebd935bcfddce3040b9574df5159150a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5193,6 +5241,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2909683974849052430, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -99.999756
+      objectReference: {fileID: 0}
     - target: {fileID: 3385176092272766193, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5264,6 +5316,14 @@ PrefabInstance:
     - target: {fileID: 4864952036832489789, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533699810069838860, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533699810069838860, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5544842799248684940, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_AnchorMax.x

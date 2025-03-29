@@ -623,7 +623,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -661,7 +661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <HealthBar>k__BackingField: {fileID: 6347648208013359016}
   <WeaponView>k__BackingField: {fileID: 3186781410061349788}
-  <KillChatView>k__BackingField: {fileID: 0}
   <InventoryView>k__BackingField: {fileID: 4865368422847353671}
 --- !u!1 &5017995591080851213
 GameObject:
@@ -754,7 +753,7 @@ MonoBehaviour:
   _ammoText: {fileID: 2823120361505634023}
   _ammoImage: {fileID: 5435059124998820695}
   _reloadImage: {fileID: 2465965823522525876}
-  <HitMarkImage>k__BackingField: {fileID: 0}
+  <HitMarkImage>k__BackingField: {fileID: 1008842482161764467}
 --- !u!1 &5539669105542429183
 GameObject:
   m_ObjectHideFlags: 0
