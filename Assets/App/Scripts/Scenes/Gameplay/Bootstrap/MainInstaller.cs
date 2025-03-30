@@ -42,13 +42,13 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
         [Header("PostProcessing")]
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
-
         [SerializeField] private PostProcessVolume _postProcessVolume;
 
         [Header("Inventory")]
         [SerializeField] private InventorySlot _slotTemplate;
-
+        [SerializeField] private InventorySlot _mobileSlotTemplate;
         [SerializeField] private Item _itemTemplate;
+        [SerializeField] private Item _mobileItemTemplate;
         
         [Header("Other")]
         [SerializeField] private AccrualConfig _accrualConfig;
@@ -97,19 +97,21 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
         private void BindItemFactory()
         {
+            var item = YG2.envir.isMobile ? _mobileItemTemplate : _itemTemplate; 
             Container.Bind<Modules.Factories.IFactory<Item>>()
                 .To<MonoFactory<Item>>()
                 .AsSingle()
-                .WithArguments(_itemTemplate);
+                .WithArguments(item);
         }
 
         private void BindSlotFactory()
         {
+            var slotTemplate = YG2.envir.isMobile ? _mobileSlotTemplate : _slotTemplate;
             Container
                 .Bind<Modules.Factories.IFactory<InventorySlot>>()
                 .To<MonoFactory<InventorySlot>>()
                 .AsSingle()
-                .WithArguments(_slotTemplate);
+                .WithArguments(slotTemplate);
         }
 
         private void BindDamageTextPool()
