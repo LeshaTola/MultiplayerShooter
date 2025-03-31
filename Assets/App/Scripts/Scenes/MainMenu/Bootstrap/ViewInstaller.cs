@@ -16,6 +16,7 @@ using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
 using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen;
+using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks;
 using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
@@ -39,7 +40,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
 
         [FoldoutGroup("Main")]
         [SerializeField] private UserStatsView _userStatsView;
-
+        
+        [FoldoutGroup("Main")]
+        [SerializeField] private DailyTasksView _dailyTasksView;
+        
         [FoldoutGroup("Rooms")]
         [SerializeField] private RoomsView _roomsView;
 
@@ -140,6 +144,10 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         public override void InstallBindings()
         {
             Container.BindInstance(_userStatsView).AsSingle();
+            
+            Container.BindInstance(_dailyTasksView).AsSingle();
+            Container.BindInterfacesAndSelfTo<DailyTaskViewPresenter>().AsSingle();
+            
             Container.Bind<SettingsView>().FromInstance(_settingsView).AsSingle();
 
             Container.BindInstance(_raritiesDatabase).AsSingle();

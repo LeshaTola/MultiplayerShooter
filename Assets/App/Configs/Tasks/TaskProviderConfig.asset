@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba22ac9dab24e22b999259010ae810d, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: 89353da068e84aaab11d10e7280e78cd, type: 3}
+  m_Name: TaskProviderConfig
   m_EditorClassIdentifier: 
-  <MatchDurationTime>k__BackingField: 10
-  <RespawnTime>k__BackingField: 1
-  <EndGameTime>k__BackingField: 9
+  <TasksPool>k__BackingField: {fileID: 11400000, guid: bab2d7bbfc1daba4390bfc84eda79f85, type: 2}
+  <MaxTasksCount>k__BackingField: 3
+  <IsRandom>k__BackingField: 1

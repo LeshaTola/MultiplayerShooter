@@ -13,9 +13,9 @@ namespace App.Scripts.Modules.StateMachine.Services.InitializeService
 
         public void Initialize()
         {
-            foreach (var Initializable in Initializables)
+            foreach (var initializable in Initializables)
             {
-                Initializable.Initialize();
+                initializable.Initialize();
             }
         }
     }

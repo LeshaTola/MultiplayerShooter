@@ -105,6 +105,7 @@ MonoBehaviour:
   _mouseSensivityConfig: {fileID: 11400000, guid: d15f01e04af9f0843bb83956c7580639, type: 2}
   _soundProvider: {fileID: 646344925996821794}
   _audioMixer: {fileID: 24100000, guid: f1d2454c5e5d90f4f8ca6bbc84f1136f, type: 2}
+  _tasksProviderConfig: {fileID: 11400000, guid: 38bdc0531199db24da0e5c74c31901c0, type: 2}
   references:
     version: 2
     RefIds:

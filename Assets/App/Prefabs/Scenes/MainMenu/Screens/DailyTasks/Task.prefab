@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 4804013726454274059}
   - component: {fileID: 6238010017843052940}
   - component: {fileID: 4606125155268806561}
+  - component: {fileID: 2751168483627281797}
   m_Layer: 5
   m_Name: Task
   m_TagString: Untagged
@@ -302,7 +303,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3661448037172424107
 CanvasRenderer:
@@ -373,6 +374,23 @@ MonoBehaviour:
   m_EffectColor: {r: 0.38039216, g: 0.36862746, b: 0.3647059, a: 1}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &2751168483627281797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5892284657685649511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78513a06ec8a460d88f152430238c9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _task: {fileID: 932662071766212010}
+  _progressSlider: {fileID: 2228497246098916620}
+  _rewardPrefab: {fileID: 3586689773639613555, guid: 1f76f4aeae188f847bd173abd15aa51f, type: 3}
+  _container: {fileID: 6548687201255797561}
+  _maxRewards: 2
 --- !u!1 &8550873696686696307
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +477,7 @@ GameObject:
   - component: {fileID: 3774444413245689152}
   - component: {fileID: 429224349625021842}
   - component: {fileID: 6595177620272685996}
+  - component: {fileID: 932662071766212010}
   m_Layer: 5
   m_Name: TextWithValue
   m_TagString: Untagged
@@ -582,3 +601,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &932662071766212010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707065268928260563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594875215cde4713a652928ad999c21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 6595177620272685996}
+  _isReversed: 0

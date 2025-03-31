@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 5493992733937596919}
   - component: {fileID: 4182731675442623049}
   - component: {fileID: 82319220399249399}
+  - component: {fileID: 1539059588385197118}
   m_Layer: 5
   m_Name: TextWithValue
   m_TagString: Untagged
@@ -424,6 +425,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1539059588385197118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822809183596084842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594875215cde4713a652928ad999c21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 82319220399249399}
+  _isReversed: 0
 --- !u!1 &2992547347628143816
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +527,7 @@ GameObject:
   - component: {fileID: 1293390203258105850}
   - component: {fileID: 1155806790342352572}
   - component: {fileID: 3429295375947667083}
+  - component: {fileID: 1694984682813761037}
   m_Layer: 5
   m_Name: DailyTasks
   m_TagString: Untagged
@@ -619,6 +635,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1694984682813761037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3452753913719834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a774a0036e47d9b577b2a25eee8d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dailyTaskPrefab: {fileID: 2751168483627281797, guid: 84d0ff26211cb77448f0cc14a9c143b1, type: 3}
+  _container: {fileID: 6310052816691593975}
+  _timerPanel: {fileID: 5606848324542700361}
+  _timerText: {fileID: 1539059588385197118}
 --- !u!1 &3579192075818762408
 GameObject:
   m_ObjectHideFlags: 0

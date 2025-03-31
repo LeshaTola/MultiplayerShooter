@@ -1258,6 +1258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainScreen: {fileID: 2048058414}
   _userStatsView: {fileID: 965765236}
+  _dailyTasksView: {fileID: 6488704221128841780}
   _roomsView: {fileID: 1543539614}
   _inventoryScreeen: {fileID: 950457556}
   _gameInventoryView: {fileID: 666204000}
@@ -5212,6 +5213,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+--- !u!114 &6488704221128841780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1694984682813761037, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+  m_PrefabInstance: {fileID: 6488704221128841779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a774a0036e47d9b577b2a25eee8d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7048209309611277849
 PrefabInstance:
   m_ObjectHideFlags: 0

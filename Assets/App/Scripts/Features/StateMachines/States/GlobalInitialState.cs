@@ -1,7 +1,7 @@
 ﻿using System;
 using App.Scripts.Features.Settings;
 using App.Scripts.Modules.StateMachine.States.General;
-using App.Scripts.Scenes.MainMenu;
+using App.Scripts.Modules.TasksSystem.Providers;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using GameAnalyticsSDK;
@@ -15,6 +15,7 @@ namespace App.Scripts.Features.StateMachines.States
         private readonly ConnectionProvider _connectionProvider;
         private readonly SettingsProvider _settingsProvider;
         private readonly UserStatsProvider _userStatsProvider;
+        private readonly TasksProvider _tasksProvider;
 
         private  bool _isValid = true;
         
@@ -22,11 +23,13 @@ namespace App.Scripts.Features.StateMachines.States
 
         public GlobalInitialState(ConnectionProvider connectionProvider,
             SettingsProvider settingsProvider,
-            UserStatsProvider userStatsProvider)
+            UserStatsProvider userStatsProvider,
+            TasksProvider tasksProvider)
         {
             _connectionProvider = connectionProvider;
             _settingsProvider = settingsProvider;
             _userStatsProvider = userStatsProvider;
+            _tasksProvider = tasksProvider;
         }
 
         public override async UniTask Enter()
@@ -37,29 +40,50 @@ namespace App.Scripts.Features.StateMachines.States
                 return;
             }
             
+            ChangeToCorrectScene();
+            SetTargetFPS();
+            ConnectAnalytics();
+            LoadSaves();
+
+            _isValid = false;
+            
+            _connectionProvider.OnConnectionFinished += OnConnectedToServer;
+            _connectionProvider.Connect();
+        }
+
+        private void ConnectAnalytics()
+        {
+            GameAnalytics.Initialize();
+        }
+
+        public override UniTask Exit()
+        {
+            _connectionProvider.OnConnectionFinished -= OnConnectedToServer;
+            return UniTask.CompletedTask;
+        }
+
+        private void LoadSaves()
+        {
+            _settingsProvider.LoadState();
+            _userStatsProvider.LoadState();
+            _tasksProvider.FillTasks();
+        }
+
+        private static void SetTargetFPS()
+        {
+            Application.targetFrameRate = 60;
+        }
+
+        private static void ChangeToCorrectScene()
+        {
             Scene activeScene = SceneManager.GetActiveScene();
             if (activeScene.name != "MainMenu")
             {
                 SceneManager.LoadScene("MainMenu");
             }
-            
-            Application.targetFrameRate = 60;
-            _connectionProvider.OnConnectionFinished += OnConectedToServer;
-            GameAnalytics.Initialize();
-            _settingsProvider.LoadState();
-            _userStatsProvider.LoadState();
-            
-            _isValid = false;
-            _connectionProvider.Connect();
         }
 
-        public override UniTask Exit()
-        {
-            _connectionProvider.OnConnectionFinished -= OnConectedToServer;
-            return UniTask.CompletedTask;
-        }
-
-        private async void OnConectedToServer()
+        private async void OnConnectedToServer()
         {
              await StateMachine.ChangeState(NextState);
         }

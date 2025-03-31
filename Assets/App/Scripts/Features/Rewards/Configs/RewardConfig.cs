@@ -12,6 +12,7 @@ namespace App.Scripts.Features.Rewards.Configs
         [field: SerializeField, ReadOnly] public string Id { get; private set; }
         [field: SerializeField] public ItemConfig Reward { get; private set; }
         [field: SerializeField] public bool IsFixedCount { get; private set; } = true;
+        [field: SerializeField] public Color Color { get; private set; } = Color.white;
         [field: SerializeField, ShowIf(@"IsFixedCount")] public int Count { get; set; }
 
         [field: SerializeField, HideIf("IsFixedCount")] public MinMaxInt CountRange { get; set; }

@@ -9,6 +9,8 @@ using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
+using App.Scripts.Modules.TasksSystem.Factories;
+using App.Scripts.Modules.TasksSystem.Services;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.HitVisualProvider;
@@ -84,7 +86,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
             // Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
-            
+            BindTask();
+
+
             BindSlotFactory();
             BindItemFactory();
             /*Container.
@@ -92,6 +96,14 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
                 To<NetworkPool<Explosion>>().
                 AsSingle().
                 WithArguments(_explosionTemplate, 10, _explosionContainer);*/
+        }
+
+        private void BindTask()
+        {
+            Container.BindInterfacesAndSelfTo<TaskService>().AsSingle().NonLazy();
+            Container.Bind<TaskFactory>().AsSingle();
+            Container.Bind<CompleteActionFactory>().AsSingle();
+            Container.Bind<TasksContainerFactory>().AsSingle();
         }
 
 
