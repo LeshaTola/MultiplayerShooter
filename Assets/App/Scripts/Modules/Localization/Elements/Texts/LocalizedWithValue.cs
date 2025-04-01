@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace App.Scripts.Modules.Localization.Elements.Texts
@@ -7,7 +8,7 @@ namespace App.Scripts.Modules.Localization.Elements.Texts
     {
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private bool _isReversed;
-
+        
         private ILocalizationSystem _localizationSystem;
         private string _localizedPart;
         private string _value;

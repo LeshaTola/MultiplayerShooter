@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -26,7 +27,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
         {
             _dailyTasksView.Initialize(_localizationSystem);
             _tasksProvider.OnTasksUpdated += UpdateView;
+            _tasksProvider.OnTimerUpdated += OnTimerUpdated;
             UpdateView(_tasksProvider.ActiveTasks);
+        }
+
+        private void OnTimerUpdated(TimeSpan timeSpan)
+        {
+            _dailyTasksView.UpdateTimer(timeSpan);
         }
 
         public void Cleanup()
@@ -37,6 +44,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
 
         private void UpdateView(Dictionary<string, TaskContainerData> tasks)
         {
+            _dailyTasksView.SetActiveTimer(tasks.Count < 3);
             _dailyTasksView.Setup(tasks);
         }
     }

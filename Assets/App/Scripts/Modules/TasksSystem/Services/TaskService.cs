@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.TasksSystem.Configs;
 using App.Scripts.Modules.TasksSystem.Factories;
 using App.Scripts.Modules.TasksSystem.Providers;
@@ -9,7 +10,7 @@ using App.Scripts.Modules.TasksSystem.Tasks;
 
 namespace App.Scripts.Modules.TasksSystem.Services
 {
-    public class TaskService: IInitializable, ICleanupable
+    public class TaskService : IInitializable, ICleanupable
     {
         public event Action<List<TasksContainer>> OnTasksUpdated;
 
@@ -68,8 +69,9 @@ namespace App.Scripts.Modules.TasksSystem.Services
         private void UnregisterTask(TasksContainer task)
         {
             task.OnTaskCompleted -= UnregisterTask;
-            _tasksProvider.RemoveTask(task.Config.Id);
             ActiveTasks.Remove(task);
+            _tasksProvider.RemoveTask(task.Config.Id);
+            _tasksProvider.SaveState();
         }
     }
 }

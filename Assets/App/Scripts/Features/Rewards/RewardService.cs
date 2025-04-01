@@ -167,7 +167,6 @@ namespace App.Scripts.Features.Rewards
 
         private int ApplyExperience()
         {
-            Debug.Log(ExperienceToAdd);
             var levelUps = _userStatsProvider.RankProvider.AddExperience(ExperienceToAdd);
             ExperienceToAdd = 0;
             return levelUps;

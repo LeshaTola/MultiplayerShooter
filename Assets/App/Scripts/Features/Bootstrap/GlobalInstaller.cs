@@ -106,7 +106,22 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindTasks()
         {
-            Container.Bind<TasksProvider>().AsSingle().WithArguments(_tasksProviderConfig);
+            Container.BindInterfacesAndSelfTo<TasksProvider>().AsSingle().WithArguments(_tasksProviderConfig);
+            BindTasksDataProvider();
+        }
+
+        private void BindTasksDataProvider()
+        {
+#if YANDEX
+            Container.Bind<IDataProvider<TasksData>>()
+                .To<YandexTasksDataProvider>()
+                .AsSingle();
+#else
+            Container.Bind<IDataProvider<TasksData>>()
+                .To<DataProvider<TasksData>>()
+                .AsSingle()
+                .WithArguments("TasksDataSavesKey");
+#endif
         }
 
         private void BindUserStatsServices()

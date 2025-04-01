@@ -66,7 +66,6 @@ namespace App.Scripts.Features.StateMachines.States
         {
             _settingsProvider.LoadState();
             _userStatsProvider.LoadState();
-            _tasksProvider.FillTasks();
         }
 
         private static void SetTargetFPS()

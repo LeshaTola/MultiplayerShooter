@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Localization.Elements.Texts;
 using App.Scripts.Modules.TasksSystem.Tasks;
@@ -13,9 +14,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
 
         [Header("Timer")]
         [SerializeField] private GameObject _timerPanel;
-
         [SerializeField] private LocalizedWithValue _timerText;
+        [SerializeField] private string _localizedPart;
 
+        
         private ILocalizationSystem _localizationSystem;
         private readonly List<DailyTask> _tasks = new ();
 
@@ -37,6 +39,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
             }
         }
 
+        public void SetActiveTimer(bool active)
+        {
+            _timerPanel.SetActive(active);
+        }
+        
+        public void UpdateTimer(TimeSpan time)
+        {
+            _timerText.Setup(_localizedPart, time.ToString(@"hh\:mm\:ss"));
+        }
+
         public void Cleanup()
         {
             _timerText.Cleanup();
@@ -50,6 +62,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
                 task.Cleanup();
                 Destroy(task.gameObject);
             }
+            _tasks.Clear();
         }
     }
 }
