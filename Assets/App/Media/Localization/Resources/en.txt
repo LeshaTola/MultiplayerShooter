@@ -45,7 +45,7 @@ key,en
 Сервер,Server
 Название комнаты,Room name
 Пароль,Password
-Чуствительность мыши:,Mouse Sensitivity:
+Чуствительность мыши:,Control Sensitivity:
 Язык:,Language:
 Общая громкость:,Master Volume:
 Громкость музыки:,Music Volume:
@@ -86,7 +86,7 @@ key,en
 Взрыв по таймеру,Timer explosion
 Время до взрыва (секунды),Time to explosion (seconds)
 Лазерный луч,Laser beam
-Время горения (секунды),Gorenje time (seconds)
+Время горения (секунды),Fire time (seconds)
 Тройной бросок,Triple shot
 До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Press any button to continue
@@ -123,7 +123,49 @@ Coins 1,RoboBucks
 Coins 2,RoboBucks
 Coins 3,RoboBucks
 Двойной выстрел,Double shot
-LaserGun,Laser gun
+LaserGun,Laser Gun
 M4,M4
-Molotov,Flame grenade
-FlintStone,Flintlock pistol
+Molotov,Flame Grenade
+FlintStone,Flintlock Pistol
+Батлпасс,Battlepass
+Лотерея,Roullete
+Экипировано,Equiped
+Здоровье блока,Block health
+Притягивание,Graple
+Радиус взрыва,Explosion Radius
+Сrossbow,Crossbow
+GrapplingGun,Grappling Gun
+Box,Box
+LandMine,Land Mine
+Промокоды,Promo Code
+Введите промокод,Enter Promo Code
+Убрать всю рекламу,Remove all ads
+Оставьте отзыв и,Rate the game and
+получите cкин!,get a skin!
+Оставить отзыв,Rate now!
+Superme,Superme
+Bamblbee,Bamblbee
+Lil Stick,Lil Stick
+Yandex Games,Yandex Games
+Oilman,Oilman
+Lazurite,Lazurite
+Ravage,Ravage
+3 stripes,Three Stripes
+Desert,Desert
+Hardened lollipop,Hardened Lollipop
+Ruby,Ruby
+Lumberjack,Lumberjack
+Topaz,Topaz
+Military,Military
+Moss,Moss
+Применить,Activate
+Установка блока,Place Block
+Установка мины,Place Mine
+WhiteSkin,White
+GreenSkin,Green
+RedSkin,Red
+BlueSkin,Blue
+PinkSkin,Pink
+BlackSkin,Black
+YellowSkin,Yellow
+OrangeSkin,Orange
