@@ -28,6 +28,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 02e08a7be4d54404c96da3eda7f3c992, type: 2}
     - {fileID: 11400000, guid: 6b6b64a0f68e49f4aa9678ad138dccdf, type: 2}
     - {fileID: 11400000, guid: c572b5d03681669408df2301d9509b0f, type: 2}
+    - {fileID: 11400000, guid: ea3028bf0522ec044a69c1c8d7fa3183, type: 2}
     WinItemsCount: 1
   - Name: "\u042D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439"
     Percent: 0.09
@@ -44,6 +45,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7660d4604a483c948b11f91be03ce0da, type: 2}
     - {fileID: 11400000, guid: de358011a6086c9458a9e322c974e8c1, type: 2}
     - {fileID: 11400000, guid: e9bbc66c1648d4e4ebaf993d2c99584a, type: 2}
+    - {fileID: 11400000, guid: 382a908c7d51e404183d67cac4c7ba42, type: 2}
     WinItemsCount: 1
   - Name: "\u0420\u0435\u0434\u043A\u0438\u0439"
     Percent: 0.15
@@ -61,6 +63,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ba1e69621f6ca9840ad85dbf8d022947, type: 2}
     - {fileID: 11400000, guid: 9a1b2189f6637fd4c8ae2aabeb7010a7, type: 2}
     - {fileID: 11400000, guid: 24375d6ed049a8e43b258b5caea951fe, type: 2}
+    - {fileID: 11400000, guid: f52cf78f7f4343948b06869f3ff67ebe, type: 2}
+    - {fileID: 11400000, guid: 52108fc555f706345a6680698f5e5551, type: 2}
     WinItemsCount: 2
   - Name: "\u041D\u0435\u043E\u0431\u044B\u0447\u043D\u044B\u0439"
     Percent: 0.75
@@ -78,6 +82,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 18f4b2556cdd54f448a761c772b2fc4e, type: 2}
     - {fileID: 11400000, guid: 27c5289fd2d2a2c4d9044f31059231b2, type: 2}
     - {fileID: 11400000, guid: c12f3f75ab2768d4c9dfd1d2fc92a145, type: 2}
+    - {fileID: 11400000, guid: fd744058a456ad649b091fdd87c10b60, type: 2}
+    - {fileID: 11400000, guid: 9204d468cf35cf34580b81c72e47e312, type: 2}
     WinItemsCount: 2
   <SpinCurve>k__BackingField:
     serializedVersion: 2
