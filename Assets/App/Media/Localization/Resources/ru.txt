@@ -169,3 +169,12 @@ PinkSkin,Розовый
 BlackSkin,Чёрный
 YellowSkin,Жёлтый
 OrangeSkin,Оранжевый
+Supreme,Суприм
+BambleBee,Бамблби
+LilStick,Лил Стик
+Yandex,Яндекс Игры
+Epic,Эпический
+Legendary,Легендарный
+Rare,Редкий
+Uncomon,Необычный
+Coins,РобоБаксы

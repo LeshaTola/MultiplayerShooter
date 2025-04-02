@@ -60,7 +60,7 @@ key,en
 Легендарный,Legendary
 Эпический,Epic
 Редкий,Rare
-Необычный,Unusual
+Необычный,Uncommon
 Колесо Фортуны,The Wheel of Fortune
 Внимание!,Attention!
 Принять,Accept
@@ -169,3 +169,12 @@ PinkSkin,Pink
 BlackSkin,Black
 YellowSkin,Yellow
 OrangeSkin,Orange
+Supreme,Supreme
+BambleBee,Bamble Bee
+LilStick,Lil Stick
+Yandex,Yandex
+Epic,Epic
+Legendary,Legendary
+Rare,Rare
+Uncomon,Uncommon
+Coins,RoboBucks

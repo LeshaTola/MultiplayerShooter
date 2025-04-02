@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 2|App.Scripts.Features.Inventory.Configs.Rarity, Assembly-CSharp
     - Name: Name
       Entry: 1
-      Data: Uncomon
+      Data: Uncommon
     - Name: Color
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
