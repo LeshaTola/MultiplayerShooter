@@ -16,7 +16,8 @@ namespace App.Scripts.Scenes.Gameplay.Chat
         [SerializeField] private GameObject _chatPanel;
         [SerializeField] private GameObject _historyPanel;
         [SerializeField] private Button _sendButton;
-        [SerializeField] private TMP_InputField _inputField;
+        // [SerializeField] private TMP_InputField _inputField;
+        [SerializeField] private InputField _inputField;
 
         [SerializeField] private Message _messagePrefab;
         [SerializeField] private RectTransform _container;

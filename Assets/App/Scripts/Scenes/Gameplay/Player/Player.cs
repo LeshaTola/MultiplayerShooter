@@ -99,7 +99,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         {
             /*_arm.transform.localRotation 
                 = Quaternion.Euler(_localArmRotation.x - _verticalRotation, _localArmRotation.y , _localArmRotation.z);*/
-             RPCSetVertical(_verticalRotation);
+             // RPCSetVertical(_verticalRotation);
         }
 
         private void OnDestroy()

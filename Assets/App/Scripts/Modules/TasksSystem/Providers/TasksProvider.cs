@@ -28,7 +28,6 @@ namespace App.Scripts.Modules.TasksSystem.Providers
         {
             _config = config;
             _dataProvider = dataProvider;
-            CalculateNextUpdateTime();
         }
 
         public void Update()
@@ -85,13 +84,25 @@ namespace App.Scripts.Modules.TasksSystem.Providers
         {
             ActiveTasks.Clear();
             var data = _dataProvider.GetData();
+            if (IsCurrentDay(data.LastUpdateDate))
+            {
+                FillTasks();
+                SaveState();
+                return;
+            }
+            
             foreach (var task in data.Tasks)
             {
                 AddTask(task);
             }
-            
             OnTasksUpdated?.Invoke(ActiveTasks);
             CalculateNextUpdateTime();
+        }
+
+        private bool IsCurrentDay(long lastUpdateDateLong)
+        {
+            var lastUpdateDate = DateTimeOffset.FromUnixTimeSeconds(lastUpdateDateLong).UtcDateTime;
+            return lastUpdateDate.Date != DateTime.Now.Date;
         }
 
         private TasksData GetState()

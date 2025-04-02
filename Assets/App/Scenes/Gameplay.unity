@@ -1030,57 +1030,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 146440695}
     m_Modifications:
-    - target: {fileID: 1349501465977374993, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544690926444346928, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.b
-      value: 0.12941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544690926444346928, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.g
-      value: 0.12941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 1544690926444346928, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.r
-      value: 0.12941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814695318288944258, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: _historyContainer
-      value: 
-      objectReference: {fileID: 1093434671}
-    - target: {fileID: 3053822937522336421, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053822937522336421, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053822937522336421, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053822937522336421, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053822937522336421, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053822937522336421, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4074839951994265289, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
       propertyPath: m_Name
       value: Chat
-      objectReference: {fileID: 0}
-    - target: {fileID: 4074839951994265289, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
       propertyPath: m_Pivot.x
@@ -1108,23 +1060,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
       propertyPath: m_SizeDelta.y
       value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1174,61 +1114,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4177865015061813825, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364501434228246383, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.b
-      value: 0.12941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364501434228246383, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.g
-      value: 0.12941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364501434228246383, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.r
-      value: 0.12941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250017288728281477, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250017288728281477, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5250017288728281477, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5310220700553431811, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6185607608295356057, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7038015780103924722, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7038015780103924722, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7038015780103924722, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7038015780103924722, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1478013054521751878, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-    - {fileID: 9158965697191597036, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1236,11 +1126,6 @@ PrefabInstance:
 --- !u!224 &1093434670 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4156773710503656454, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
-  m_PrefabInstance: {fileID: 1093434669}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1093434671 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2654444046623604540, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
   m_PrefabInstance: {fileID: 1093434669}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1137322789
@@ -1333,14 +1218,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 01010a0000005f006e00650078007400530074006100740065002f00000000014d0000004100700070002e0053006300720069007000740073002e005300630065006e00650073002e00470061006d00650070006c00610079002e00530074006100740065004d0061006300680069006e0065002e005300740061007400650073002e0049006e0069007400690061006c00530074006100740065002c00200041007300730065006d0062006c0079002d004300530068006100720070000000000005
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: _nextState
+      Entry: 7
+      Data: 0|App.Scripts.Scenes.Gameplay.StateMachine.States.InitialState, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &1160378519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1814695318288944258, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
@@ -2060,7 +1951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 

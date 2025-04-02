@@ -9,7 +9,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.PromoCodes
     {
         public event Action<string> OnPromoCodeApplied;
         
-        [SerializeField] private TMP_InputField _promoCodeInputField;
+        // [SerializeField] private TMP_InputField _promoCodeInputField;
+        [SerializeField] private InputField _promoCodeInputField;
         [SerializeField] private Button _applyPromoCodeButton;
 
         public void Initialize()

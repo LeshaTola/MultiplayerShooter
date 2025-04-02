@@ -38,6 +38,7 @@ namespace App.Scripts.Modules.TasksSystem.Services
         {
             ActiveTasks.Clear();
             OnTasksUpdated?.Invoke(ActiveTasks);
+            _tasksProvider.SaveState();
         }
 
         private void GetTask(TaskContainerData taskData)
