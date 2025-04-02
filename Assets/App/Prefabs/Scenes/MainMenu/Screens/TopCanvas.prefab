@@ -489,6 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2396b783f00459bbef31c4bce425fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioDatabase: {fileID: 11400000, guid: 29a0492805081964eb71f674cc6b7cff, type: 2}
+  <ButtonSound>k__BackingField: Second_UI
+  <ToggleSound>k__BackingField: Main_UI
   _toggles:
   - {fileID: 8716170796752178183}
   - {fileID: 1723152143629520711}

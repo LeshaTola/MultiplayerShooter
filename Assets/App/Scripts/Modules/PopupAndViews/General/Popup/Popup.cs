@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using App.Scripts.Modules.PopupAndViews.Animations;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
+using App.Scripts.Modules.Sounds;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,6 +18,13 @@ namespace App.Scripts.Modules.PopupAndViews.General.Popup
         [SerializeReference]
         IAnimation popupAnimation;
 
+        [FoldoutGroup("General")]
+        [SerializeField] protected AudioDatabase audioDatabase;
+        
+        [FoldoutGroup("General")]
+        [ValueDropdown(@"GetAudioKeys")]
+        [SerializeField] protected string popupSoundKey;
+        
         [FoldoutGroup("General")]
         [SerializeField]
         protected GraphicRaycaster raycaster;
@@ -78,6 +88,15 @@ namespace App.Scripts.Modules.PopupAndViews.General.Popup
                 cancellationTokenSource.Dispose();
                 cancellationTokenSource = null;
             }
+        }
+        
+        public List<string> GetAudioKeys()
+        {
+            if (audioDatabase == null)
+            {
+                return null;
+            }
+            return audioDatabase.Audios.Keys.ToList();
         }
     }
 }

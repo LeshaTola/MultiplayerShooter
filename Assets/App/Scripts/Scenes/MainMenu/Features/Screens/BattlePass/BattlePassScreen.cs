@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.Rewards.Configs;
@@ -7,6 +8,8 @@ using App.Scripts.Features.Screens;
 using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Localization.Localizers;
+using App.Scripts.Modules.Sounds;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,19 +22,18 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
 
         [Header("Rank Info")]
         [SerializeField] private TMPLocalizer _rankValue;
-
         [SerializeField] private TextMeshProUGUI _curExpValue;
         [SerializeField] private TextMeshProUGUI _maxExpValue;
 
         [Header("Reward Info")]
         [SerializeField] private Image _rewardImage;
-
         [SerializeField] private TMPLocalizer _rewardName;
         [SerializeField] private Button _rewardButton;
 
         [Header("Rewards")]
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ClickSond { get; private set; }
         [SerializeField] private BattlePassElement _battlePassElementPrefab;
-
         [SerializeField] private RectTransform _rewardsContainer;
 
         private readonly List<BattlePassElement> _elements = new();
@@ -130,6 +132,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         private void SelectReward(int id)
         {
             OnRewardSelected?.Invoke(id);
+        }
+        
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

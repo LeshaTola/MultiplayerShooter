@@ -3,6 +3,7 @@ using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
@@ -16,13 +17,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         private readonly BattlePassScreen _screen;
         private readonly UserRankProvider _userRankProvider;
         private readonly ILocalizationSystem _localizationSystem;
+        private readonly ISoundProvider _soundProvider;
 
         public BattlePassScreenPrezenter(BattlePassScreen screen,
-            UserRankProvider userRankProvider, ILocalizationSystem localizationSystem)
+            UserRankProvider userRankProvider, ILocalizationSystem localizationSystem, ISoundProvider soundProvider)
         {
             _screen = screen;
             _userRankProvider = userRankProvider;
             _localizationSystem = localizationSystem;
+            _soundProvider = soundProvider;
         }
 
         public override void Initialize()
@@ -63,6 +66,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         private void SelectReward(int id)
         {
             _screen.SetupRewardInfo(_userRankProvider.RanksDatabase.Ranks[id].Rewards.FirstOrDefault());
+            _soundProvider.PlaySound(_screen.ClickSond);
         }
     }
 }

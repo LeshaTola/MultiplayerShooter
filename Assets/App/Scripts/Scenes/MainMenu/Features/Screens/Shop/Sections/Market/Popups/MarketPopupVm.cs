@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Features.Inventory;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -16,6 +17,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
         public ILocalizationSystem LocalizationSystem { get; }
         public ShopItemData ShopItemData { get; }
         public UserStatsProvider UserStatsProvider { get; }
+        public ISoundProvider SoundProvider { get; }
 
 
         public MarketPopupVm(ShopItemData shopItemData,
@@ -23,9 +25,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             InfoPopupRouter infoPopupRouter,
             UserStatsProvider userStatsProvider, 
             WeaponModelsUIProvider weaponWeaponsModelsUIProvider,
-            PlayerModelsUIProvider playerModelsUIProvider)
+            PlayerModelsUIProvider playerModelsUIProvider, ISoundProvider soundProvider)
         {
             PlayerModelsUIProvider = playerModelsUIProvider;
+            SoundProvider = soundProvider;
             WeaponsModelsUIProvider = weaponWeaponsModelsUIProvider;
             UserStatsProvider = userStatsProvider;
             InfoPopupRouter = infoPopupRouter;

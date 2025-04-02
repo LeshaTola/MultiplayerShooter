@@ -504,6 +504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupAnimation:
     rid: 4941597840309223424
+  audioDatabase: {fileID: 11400000, guid: 29a0492805081964eb71f674cc6b7cff, type: 2}
+  popupSoundKey: PopUp_sound
   raycaster: {fileID: 7156843981453881998}
   canvas: {fileID: 3080594782945506724}
   _header: {fileID: 5429133812175224394}

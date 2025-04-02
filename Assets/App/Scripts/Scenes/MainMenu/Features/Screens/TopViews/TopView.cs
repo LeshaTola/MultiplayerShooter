@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.CustomToggles;
+using App.Scripts.Modules.Sounds;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +15,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         public event Action<int> OnToggleClicked;
         public event Action OnSettingsClicked;
         public event Action OnTutorClicked;
+        
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ButtonSound { get; private set; }
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ToggleSound { get; private set; }
         
         [SerializeField] private List<ToggleCustom> _toggles;
         [SerializeField] private Button _settingsButton;
@@ -51,6 +58,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             }
 
             OnToggleClicked?.Invoke(index);
+        }
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

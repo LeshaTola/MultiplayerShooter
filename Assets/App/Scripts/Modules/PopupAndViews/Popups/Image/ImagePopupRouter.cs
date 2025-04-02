@@ -2,6 +2,7 @@
 using App.Scripts.Features.Commands;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
+using App.Scripts.Modules.Sounds.Providers;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -11,13 +12,15 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Image
     {
         private readonly IPopupController _popupController;
         private readonly ILocalizationSystem _localizationSystem;
+        private readonly ISoundProvider _soundProvider;
 
         public ImagePopupRouter(
             IPopupController popupController,
-            ILocalizationSystem localizationSystem)
+            ILocalizationSystem localizationSystem, ISoundProvider soundProvider)
         {
             _popupController = popupController;
             _localizationSystem = localizationSystem;
+            _soundProvider = soundProvider;
         }
         
         private ImagePopup _popup;
@@ -29,7 +32,7 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Image
                 _popup = _popupController.GetPopup<ImagePopup>();
             }
 
-            var viewModule = new ImagePopupVM(_localizationSystem, popupData);
+            var viewModule = new ImagePopupVM(_localizationSystem, popupData,_soundProvider);
             _popup.Setup(viewModule);
 
             await _popup.Show();

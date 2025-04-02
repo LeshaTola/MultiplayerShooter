@@ -3,6 +3,7 @@ using App.Scripts.Features;
 using App.Scripts.Features.Commands;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
+using App.Scripts.Modules.Sounds.Providers;
 using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Modules.PopupAndViews.Popups.Info
@@ -11,13 +12,15 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Info
     {
         private readonly IPopupController _popupController;
         private readonly ILocalizationSystem _localizationSystem;
+        private readonly ISoundProvider _soundProvider;
 
         public InfoPopupRouter(
             IPopupController popupController,
-            ILocalizationSystem localizationSystem)
+            ILocalizationSystem localizationSystem, ISoundProvider soundProvider)
         {
             _popupController = popupController;
             _localizationSystem = localizationSystem;
+            _soundProvider = soundProvider;
         }
         
         private InfoPopup _popup;
@@ -29,7 +32,7 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Info
                 _popup = _popupController.GetPopup<InfoPopup>();
             }
 
-            var viewModule = new InfoPopupVM(_localizationSystem, popupData);
+            var viewModule = new InfoPopupVM(_localizationSystem, popupData, _soundProvider);
             _popup.Setup(viewModule);
 
             await _popup.Show();

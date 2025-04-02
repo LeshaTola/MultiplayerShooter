@@ -4,6 +4,7 @@ using App.Scripts.Features.Screens;
 using App.Scripts.Features.Settings;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Popups.Image;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.Gameplay.Esc.Settings;
@@ -22,6 +23,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private readonly TutorialConfig _tutorialConfig;
         private readonly ImagePopupRouter _imagePopupRouter;
         private readonly ILocalizationSystem _localizationSystem;
+        private readonly ISoundProvider _soundProvider;
 
         private ITopViewElementPrezenter _activeScreenPresenter;
 
@@ -31,7 +33,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             List<ITopViewElementPrezenter> presenters,
             TutorialConfig tutorialConfig,
             ImagePopupRouter imagePopupRouter,
-            ILocalizationSystem localizationSystem)
+            ILocalizationSystem localizationSystem,
+            ISoundProvider soundProvider)
         {
             _view = view;
             _settingsView = settingsView;
@@ -40,6 +43,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _tutorialConfig = tutorialConfig;
             _imagePopupRouter = imagePopupRouter;
             _localizationSystem = localizationSystem;
+            _soundProvider = soundProvider;
 
             _activeScreenPresenter = presenters[0];
         }
@@ -82,6 +86,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private void SettingsClicked()
         {
+            _soundProvider.PlaySound(_view.ButtonSound);
             _settingsView.Show();
         }
 
@@ -107,6 +112,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _activeScreenPresenter?.Hide().Forget();
             _activeScreenPresenter = _presenters[index];
             _activeScreenPresenter.Show().Forget();
+            _soundProvider.PlaySound(_view.ToggleSound);
         }
     }
 }

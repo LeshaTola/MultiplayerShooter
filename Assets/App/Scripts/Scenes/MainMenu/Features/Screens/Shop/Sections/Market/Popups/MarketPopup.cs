@@ -5,6 +5,7 @@ using App.Scripts.Modules.PopupAndViews.General.Popup;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
 using Cysharp.Threading.Tasks;
 using GameAnalyticsSDK;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 {
     public class MarketPopup : Popup
     {
+        [ValueDropdown(@"GetAudioKeys")]
+        [SerializeField] private string _buySound;
+        
         [SerializeField] private MarketView _marketView;
 
         [Header("Buy")]
@@ -31,8 +35,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             Initialize();
         }
 
+        public override async UniTask Show()
+        {
+            _vm.SoundProvider.PlaySound(popupSoundKey);
+            await base.Show();
+        }
+
         public override async UniTask Hide()
         {
+            _vm.SoundProvider.PlaySound(popupSoundKey);
             await base.Hide();
             Cleanup();
         }
@@ -91,6 +102,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             ChangeMoney();
             AddItem();
             UpdateInventory();
+            _vm.SoundProvider.PlaySound(_buySound);
             GameAnalytics.NewDesignEvent($"shop:{_vm.ShopItemData.Item.Id.ToLower()}", 1);
             Close();
         }

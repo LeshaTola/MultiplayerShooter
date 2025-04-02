@@ -52,6 +52,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 
         public override async UniTask Show()
         {
+            _vm.SoundProvider.PlaySound(popupSoundKey);
             _acceptButton.transform.localScale = Vector3.zero;
             await base.Show();
             await ExpSliderAnimation();
@@ -61,6 +62,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 
         public override async UniTask Hide()
         {
+            _vm.SoundProvider.PlaySound(popupSoundKey);
             await base.Hide();
             Cleanup();
         }

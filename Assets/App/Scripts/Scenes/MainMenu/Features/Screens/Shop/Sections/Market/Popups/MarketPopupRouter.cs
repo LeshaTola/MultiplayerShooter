@@ -3,6 +3,7 @@ using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.General.Controllers;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -21,6 +22,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
         private readonly PlayerModelsUIProvider _playerModelsUIProvider;
         private readonly CoinsProvider _coinsProvider;
         private readonly InventoryProvider _inventoryProvider;
+        private readonly ISoundProvider _soundProvider;
 
         public MarketPopupRouter(
             IPopupController popupController,
@@ -28,7 +30,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             InfoPopupRouter infoPopupRouter,
             UserStatsProvider userStatsProvider,
             WeaponModelsUIProvider weaponModelsUIProvider,
-            PlayerModelsUIProvider playerModelsUIProvider)
+            PlayerModelsUIProvider playerModelsUIProvider, ISoundProvider soundProvider)
         {
             _popupController = popupController;
             _localizationSystem = localizationSystem;
@@ -36,6 +38,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             _userStatsProvider = userStatsProvider;
             _weaponModelsUIProvider = weaponModelsUIProvider;
             _playerModelsUIProvider = playerModelsUIProvider;
+            _soundProvider = soundProvider;
         }
 
         public async UniTask ShowPopup(ShopItemData shopItemData)
@@ -55,7 +58,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
                 _infoPopupRouter,
                 _userStatsProvider,
                 _weaponModelsUIProvider,
-                _playerModelsUIProvider);
+                _playerModelsUIProvider, _soundProvider);
             return viewModule;
         }
     }

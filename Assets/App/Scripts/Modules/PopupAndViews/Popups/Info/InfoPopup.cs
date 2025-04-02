@@ -23,8 +23,15 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Info
             Translate();
         }
 
+        public override async UniTask Show()
+        {
+            _vm.SoundProvider.PlaySound(popupSoundKey);
+            await base.Show();
+        }
+
         public override async UniTask Hide()
         {
+            _vm.SoundProvider.PlaySound(popupSoundKey);
             await base.Hide();
             Cleanup();
         }
