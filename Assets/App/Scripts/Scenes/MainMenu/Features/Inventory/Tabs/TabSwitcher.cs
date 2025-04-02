@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.CustomToggles;
 using Cysharp.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
 {
     public class TabSwitcher : MonoBehaviour
     {
+        public  event Action OnTabSwitched;
+        
         [SerializeField] List<GameScreen> _tabs = new();
         [SerializeField] List<ToggleCustom> _toggles = new();
 
@@ -53,6 +56,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs
             }
             _inventoryTabPresenters[index].Show().Forget();
             _tabIndex = index;
+            OnTabSwitched?.Invoke();
         }
 
         public void Show()

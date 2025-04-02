@@ -5,8 +5,10 @@ using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -32,7 +34,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             InventorySlot skinSlot,
             UserStatsProvider userStatsProvider,
             GameInventoryView gameInventoryView,
-            RaritiesDatabase raritiesDatabase)
+            RaritiesDatabase raritiesDatabase, MarketViewPresenter marketViewPresenter)
             : base(view, itemFactory, slotFactory, inventoryProvider, overlayTransform)
         {
             _selectionProvider = selectionProvider;
@@ -40,9 +42,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             _userStatsProvider = userStatsProvider;
             _gameInventoryView = gameInventoryView;
             _raritiesDatabase = raritiesDatabase;
+            _marketViewPresenter = marketViewPresenter;
         }
         
         private Dictionary<string,InventorySlot> _inventorySlots;
+        private readonly MarketViewPresenter _marketViewPresenter;
 
         public override void Initialize()
         {
@@ -52,6 +56,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             UpdateInventory();
             SetupSkinSlot();
             SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin), _skinSlot);
+            
         }
 
         private void SetupSkinSlot()
@@ -78,7 +83,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         {
             await base.Show();
             await View.Show();
-            _selectionProvider.Select(_skinSlot);
+            _selectionProvider.SelectWithoutNotification(_skinSlot);
+            _marketViewPresenter.OnSkinSelected(_skinSlot.Item.ConfigId);
         }
 
         private void UpdateInventory()

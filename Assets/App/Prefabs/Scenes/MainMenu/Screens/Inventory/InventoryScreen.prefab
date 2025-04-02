@@ -2019,6 +2019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb3fa9b0ad1459aa9b8eec9b2e24d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioDatabase: {fileID: 11400000, guid: 29a0492805081964eb71f674cc6b7cff, type: 2}
+  <SelectWeaponSound>k__BackingField: SwitchWeapn
+  <ToggleSond>k__BackingField: SwitchInventory
 --- !u!1 &8557652296219938822
 GameObject:
   m_ObjectHideFlags: 0

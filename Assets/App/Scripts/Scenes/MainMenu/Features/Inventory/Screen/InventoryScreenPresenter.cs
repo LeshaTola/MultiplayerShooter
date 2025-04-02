@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -18,13 +20,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
         private readonly List<InventoryTabPresenter> _inventoryTabPresenters;
         private readonly UserStatsView _userStatsView;
         private readonly MarketViewPresenter _marketViewPresenter;
+        private readonly ISoundProvider _soundProvider;
+        private readonly SelectionProvider _selectionProvider;
 
         public InventoryScreenPresenter(InventoryScreeen inventoryScreen,
             TabSwitcher tabSwitcher,
             GameInventoryViewPresenter gameInventoryViewPresenter,
             List<InventoryTabPresenter> inventoryTabPresenters,
             UserStatsView userStatsView,
-            MarketViewPresenter marketViewPresenter)
+            MarketViewPresenter marketViewPresenter, 
+            ISoundProvider soundProvider, 
+            SelectionProvider selectionProvider)
         {
             _inventoryScreen = inventoryScreen;
             _tabSwitcher = tabSwitcher;
@@ -32,11 +38,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             _inventoryTabPresenters = inventoryTabPresenters;
             _userStatsView = userStatsView;
             _marketViewPresenter = marketViewPresenter;
+            _soundProvider = soundProvider;
+            _selectionProvider = selectionProvider;
         }
 
         public override void Initialize()
         {
             _tabSwitcher.Initialize();
+            _tabSwitcher.OnTabSwitched += OnTabSwitched;
+            _selectionProvider.OnSkinSelected += OnSkinSelected;
+            _selectionProvider.OnWeaponSelected += OnSkinSelected;
+            
             foreach (var inventoryTabPresenter in _inventoryTabPresenters)
             {
                 inventoryTabPresenter.Initialize();
@@ -55,6 +67,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             }
             
             _tabSwitcher.Cleanup();
+            _tabSwitcher.OnTabSwitched -= OnTabSwitched;
+            _selectionProvider.OnSkinSelected -= OnSkinSelected;
+            _selectionProvider.OnWeaponSelected -= OnSkinSelected;
+            
             _gameInventoryViewPresenter.Cleanup();
             _inventoryScreen.Cleanup();
             _marketViewPresenter.Cleanup();
@@ -80,6 +96,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             };
             await UniTask.WhenAll(tasks);
             _tabSwitcher.Hide();
+        }
+
+        private void OnTabSwitched()
+        {
+            _soundProvider.PlaySound(_inventoryScreen.ToggleSond);
+        }
+
+        private void OnSkinSelected(string obj)
+        {
+            _soundProvider.PlaySound(_inventoryScreen.SelectWeaponSound);
         }
     }
 }

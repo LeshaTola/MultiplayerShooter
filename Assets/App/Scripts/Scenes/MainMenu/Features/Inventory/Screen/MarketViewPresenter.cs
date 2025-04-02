@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
@@ -48,18 +49,28 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             _selectionProvider.OnSkinSelected -= OnSkinSelected;
         }
 
-        private void OnSkinSelected(string id)
+        public void OnSkinSelected(string id)
         {
             var config = _inventoryProvider.GlobalInventory.SkinConfigs.FirstOrDefault(x => x.Id.Equals(id));
+            SelectSkin(config);
+        }
+
+        private void SelectSkin(SkinConfig config)
+        {
             if (config)
             {
                 _marketViewView.SetupSkin(config);
             }
         }
 
-        private void OnWeaponSelected(string id)
+        public void OnWeaponSelected(string id)
         {
             var config = _inventoryProvider.GlobalInventory.Weapons.FirstOrDefault(x => x.Id.Equals(id));
+            OnWeaponSelected(config);
+        }
+        
+        public void OnWeaponSelected(WeaponConfig config)
+        {
             if (config)
             {
                 _marketViewView.SetupWeapon(config);

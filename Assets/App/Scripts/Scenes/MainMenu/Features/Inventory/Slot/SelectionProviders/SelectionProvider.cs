@@ -13,13 +13,26 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders
 
         public void Select(InventorySlot slot)
         {
+            SelectWithoutNotification(slot);
+            if (slot.Type == ItemType.Weapon)
+            {
+                OnWeaponSelected?.Invoke(_selectedWeapon.Item.ConfigId);
+                OnWeaponSelectedSlotId?.Invoke(_selectedWeapon.SlotIndex);
+            }
+
+            if (slot.Type == ItemType.Skin)
+            {
+                OnSkinSelected?.Invoke(_selectedSkin.Item.ConfigId);
+            }
+        }
+        
+        public void SelectWithoutNotification(InventorySlot slot)
+        {
             if (slot.Type == ItemType.Weapon)
             {
                 _selectedWeapon?.Unselect();
                 _selectedWeapon = slot;
                 _selectedWeapon.Select();
-                OnWeaponSelected?.Invoke(_selectedWeapon.Item.ConfigId);
-                OnWeaponSelectedSlotId?.Invoke(_selectedWeapon.SlotIndex);
             }
 
             if (slot.Type == ItemType.Skin)
@@ -27,7 +40,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders
                 _selectedSkin?.Unselect();
                 _selectedSkin = slot;
                 _selectedSkin.Select();
-                OnSkinSelected?.Invoke(_selectedSkin.Item.ConfigId);
             }
         }
     }

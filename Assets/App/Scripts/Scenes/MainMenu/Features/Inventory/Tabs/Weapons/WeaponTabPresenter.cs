@@ -5,6 +5,7 @@ using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Factories;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
+using App.Scripts.Scenes.MainMenu.Features.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using Cysharp.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         private readonly SelectionProvider _selectionProvider;
 
         private readonly RaritiesDatabase _raritiesDatabase;
+        private readonly MarketViewPresenter _marketViewPresenter;
 
         private Dictionary<string, InventorySlot> _inventorySlots;
 
@@ -26,12 +28,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             IFactory<InventorySlot> slotFactory,
             InventoryProvider inventoryProvider,
             RectTransform overlayTransform,
-            RaritiesDatabase raritiesDatabase)
+            RaritiesDatabase raritiesDatabase,MarketViewPresenter marketViewPresenter)
             : base(view, itemFactory, slotFactory,
                 inventoryProvider, overlayTransform)
         {
             _selectionProvider = selectionProvider;
             _raritiesDatabase = raritiesDatabase;
+            _marketViewPresenter = marketViewPresenter;
         }
 
         public override void Initialize()
@@ -50,7 +53,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
         {
             await base.Show();
             await View.Show();
-            _selectionProvider.Select(_inventorySlots.First().Value);
+            _selectionProvider.SelectWithoutNotification(_inventorySlots.First().Value);
+            _marketViewPresenter.OnWeaponSelected(_inventorySlots.First().Value.Item.ConfigId);
         }
 
         private void UpdateInventory()
