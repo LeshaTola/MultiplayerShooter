@@ -60,7 +60,7 @@ key,ru,en
 Легендарный,Легендарный,Legendary
 Эпический,Эпический,Epic
 Редкий,Редкий,Rare
-Необычный,Необычный,Unusual
+Необычный,Необычный,Uncommon
 Колесо Фортуны,Колесо Фортуны,The Wheel of Fortune
 Внимание!,Внимание!,Attention!
 Принять,Принять,Accept
@@ -169,3 +169,12 @@ PinkSkin,Розовый,Pink
 BlackSkin,Чёрный,Black
 YellowSkin,Жёлтый,Yellow
 OrangeSkin,Оранжевый,Orange
+Supreme,Суприм,Supreme
+BambleBee,Бамблби,Bamble Bee
+LilStick,Лил Стик,Lil Stick
+Yandex,Яндекс Игры,Yandex
+Epic,Эпический,Epic
+Legendary,Легендарный,Legendary
+Rare,Редкий,Rare
+Uncomon,Необычный,Uncommon
+Coins,РобоБаксы,RoboBucks
