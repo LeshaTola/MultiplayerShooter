@@ -34,7 +34,7 @@ MonoBehaviour:
         mscorlib
     - Name: Item1
       Entry: 1
-      Data: Uncomon
+      Data: Uncommon
     - Name: Item2
       Entry: 3
       Data: 100
@@ -105,7 +105,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: Uncomon
+      Data: Uncommon
     - Name: $v
       Entry: 3
       Data: 100

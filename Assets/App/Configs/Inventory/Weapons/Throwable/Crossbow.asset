@@ -287,7 +287,7 @@ MonoBehaviour:
   <Id>k__BackingField: Crossbow
   <Sprite>k__BackingField: {fileID: 21300000, guid: 47efe0af1bd68a94d9a5a6a06dc90d3d, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Uncommon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ca869e73b15d2b44aa9c74c59cce0417, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.35}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 90}

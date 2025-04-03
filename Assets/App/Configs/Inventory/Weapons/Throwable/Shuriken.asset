@@ -285,7 +285,7 @@ MonoBehaviour:
   <Id>k__BackingField: Shuriken
   <Sprite>k__BackingField: {fileID: 21300000, guid: c3244f37255892148932ad6830dd42c6, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Uncommon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: be87edd1e6b3d6643b7e62711d1f802a, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -1.1}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}

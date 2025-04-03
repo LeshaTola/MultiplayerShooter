@@ -40,7 +40,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: Uncomon
+      Data: Uncommon
     - Name: $v
       Entry: 7
       Data: 2|App.Scripts.Features.Inventory.Configs.Rarity, Assembly-CSharp
@@ -189,4 +189,4 @@ MonoBehaviour:
   - Legendary
   - Epic
   - Rare
-  - Uncomon
+  - Uncommon

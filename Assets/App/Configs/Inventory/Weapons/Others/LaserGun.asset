@@ -282,7 +282,7 @@ MonoBehaviour:
   <Id>k__BackingField: LaserGun
   <Sprite>k__BackingField: {fileID: 21300000, guid: 1af200b4d5ad9f44cb2748aa17baaa3d, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Uncommon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 341a430cc02120e4c8b3e1fbc2464f95, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -0.4}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: 0}

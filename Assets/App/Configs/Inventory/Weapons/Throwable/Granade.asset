@@ -290,7 +290,7 @@ MonoBehaviour:
   <Id>k__BackingField: Granade
   <Sprite>k__BackingField: {fileID: 21300000, guid: 27e7be8fb55a05647a1ab1f94d1cd913, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Uncomon
+  <Rarity>k__BackingField: Uncommon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ff673cbb62a18bf43873daaa4c86aeb6, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0, z: -1}
   <ViewRotationOffset>k__BackingField: {x: 0, y: -25, z: 0}
