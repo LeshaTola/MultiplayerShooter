@@ -172,7 +172,7 @@ OrangeSkin,Оранжевый,Orange
 Supreme,Суприм,Supreme
 BambleBee,Бамблби,Bamble Bee
 LilStick,Лил Стик,Lil Stick
-Yandex,Яндекс Игры,Yandex
+Yandex,Яндекс Игры,Yandex Games
 Epic,Эпический,Epic
 Legendary,Легендарный,Legendary
 Rare,Редкий,Rare

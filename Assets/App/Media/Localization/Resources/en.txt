@@ -172,7 +172,7 @@ OrangeSkin,Orange
 Supreme,Supreme
 BambleBee,Bamble Bee
 LilStick,Lil Stick
-Yandex,Yandex
+Yandex,Yandex Games
 Epic,Epic
 Legendary,Legendary
 Rare,Rare
