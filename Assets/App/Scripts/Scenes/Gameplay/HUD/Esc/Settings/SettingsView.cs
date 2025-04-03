@@ -4,15 +4,19 @@ using System.Linq;
 using App.Scripts.Features.Settings;
 using App.Scripts.Modules.CustomToggles;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.PopupAndViews.Views;
+using App.Scripts.Modules.Sounds;
 using App.Scripts.Modules.Sounds.Services;
 using App.Scripts.Scenes.Gameplay.Controller.Providers;
+using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.Gameplay.Esc.Settings
 {
-    public class SettingsView : MonoBehaviour
+    public class SettingsView : AnimatedView
     {
         public event Action OnCloseButtonClicked;
         
@@ -50,15 +54,20 @@ namespace App.Scripts.Scenes.Gameplay.Esc.Settings
             InitializeAudioSettings(audioService);
         }
 
-        public void Show()
+        public void ShowWithoutAnimation()
         {
             gameObject.SetActive(true);
         }
-
-        public void Hide()
+        
+        public void HideWithoutAnimation()
         {
             gameObject.SetActive(false);
+        }
+
+        public override async UniTask Hide()
+        {
             _settingsProvider.SaveState();
+            await base.Hide();
         }
 
         private void SetLanguage( string curLanguage)

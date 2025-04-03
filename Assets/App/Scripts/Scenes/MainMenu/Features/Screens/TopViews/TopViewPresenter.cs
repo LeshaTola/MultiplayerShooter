@@ -81,6 +81,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private void OnCloseSettingsButtonClicked()
         {
+            _soundProvider.PlaySound(_view.ButtonSound);
             _settingsView.Hide();
         }
 
@@ -92,6 +93,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private async void OnTutorClicked()
         {
+            _soundProvider.PlaySound(_view.ButtonSound);
             Sprite tutorSprite;
             if (YG2.envir.isDesktop)
             {

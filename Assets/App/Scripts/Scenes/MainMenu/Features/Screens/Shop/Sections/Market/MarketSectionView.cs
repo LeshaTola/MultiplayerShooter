@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.Sounds;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +25,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         [SerializeField] private Image _timerImage;
         [SerializeField] private Button _updateButton;
 
+        [Header("Audio")]
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField, ValueDropdown(@"GetAudioKeys")] public string ClickSound { get; private set; }
+
+        
         private ILocalizationSystem _localizationSystem;
 
         public void Initialzie(ILocalizationSystem localizationSystem)
@@ -80,6 +88,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         private void OnValidate()
         {
             _timerText.text = _preTimerText;
+        }
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

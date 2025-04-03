@@ -1,4 +1,5 @@
-﻿using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
+﻿using System;
+using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -8,16 +9,30 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette
 {
     public class RouletteView : MonoBehaviour
     {
+        public event Action OnDegreePassed;
+        
         [SerializeField] private RectTransform _sectorParent;
         [SerializeField] private Image _sectorPrefab;
         
-
-        public UniTask Spin(int spins, float finalAngle, float spinDuration, AnimationCurve spinCurve)
+        public UniTask Spin(int spins, float finalAngle, float spinDuration, AnimationCurve spinCurve, int soundEveryDegrees = 90)
         {
             float targetRotation = 360f * spins + finalAngle;
+            float lastSoundAngle = 0f;
+            
             return _sectorParent
                 .DORotate(new Vector3(0, 0, targetRotation), spinDuration, RotateMode.FastBeyond360)
-                .SetEase(spinCurve).ToUniTask();
+                .SetEase(spinCurve)
+                .OnUpdate(() => {
+                    float currentAngle = _sectorParent.eulerAngles.z;
+                    float delta = Mathf.Abs(currentAngle - lastSoundAngle);
+            
+                    if (delta >= soundEveryDegrees)
+                    {
+                        lastSoundAngle = currentAngle;
+                        OnDegreePassed?.Invoke();
+                    }
+                })
+                .ToUniTask();
         }
 
         public void SpinToDefault()

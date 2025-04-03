@@ -1,13 +1,17 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features;
 using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.PopupAndViews.Views;
+using App.Scripts.Modules.Sounds;
+using App.Scripts.Modules.Sounds.Providers;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,18 +46,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         [Header("Buttons")]
         [SerializeField] private Button _createButton;
-
         [SerializeField] private Button _closeButton;
 
+                
+        [Header("Audio")]
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ButtonSoundKey { get; private set; }
+        
         private InfoPopupRouter _infoPopupRouter;
         private MapsProvider _mapsProvider;
+        private ISoundProvider _soundProvider;
 
         [Inject]
         public void Construct(InfoPopupRouter infoPopupRouter,
-            MapsProvider mapsProvider)
+            MapsProvider mapsProvider, ISoundProvider soundProvider)
         {
             _infoPopupRouter = infoPopupRouter;
             _mapsProvider = mapsProvider;
+            _soundProvider = soundProvider;
         }
 
         private void OnEnable()
@@ -77,6 +87,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private async void HideYourself()
         {
+            _soundProvider.PlaySound(ButtonSoundKey);
             await Hide();
         }
 
@@ -131,6 +142,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             string playersInput = _playersInputField.text;
             //string gameMode = _gameModeDropdown.value.ToString();
 
+            _soundProvider.PlaySound(ButtonSoundKey);
             if (!await ValidateServerSettings(serverName, password, playersInput))
             {
                 return;
@@ -236,6 +248,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         {
             if (_mapIndex < _mapsConfig.Maps.Count - 1)
             {
+                _soundProvider.PlaySound(ButtonSoundKey);
                 _mapIndex++;
                 UpdateMapUI();
             }
@@ -245,6 +258,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         {
             if (_mapIndex > 0)
             {
+                _soundProvider.PlaySound(ButtonSoundKey);
                 _mapIndex--;
                 UpdateMapUI();
             }
@@ -260,6 +274,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
             _prevButton.interactable = _mapIndex > 0;
             _nextButton.interactable = _mapIndex < _mapsConfig.Maps.Count - 1;
+        }
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

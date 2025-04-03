@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
@@ -17,15 +18,20 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
         private readonly ShopScreen _view;
         private readonly UserStatsView _userStatsView;
         private readonly MarketSectionPrezenter _marketSectionPrezenter;
+        private readonly ISoundProvider _soundProvider;
 
         private readonly List<float> _startNormalizedPositions = new();
 
-        public ShopScreenElementPrezenter(ShopScreen view, UserStatsView userStatsView, MarketSectionPrezenter marketSectionPrezenter)
+        public ShopScreenElementPrezenter(ShopScreen view,
+            UserStatsView userStatsView,
+            MarketSectionPrezenter marketSectionPrezenter,
+            ISoundProvider soundProvider)
         {
             _view = view;
             _userStatsView = userStatsView;
             _marketSectionPrezenter = marketSectionPrezenter;
-            
+            _soundProvider = soundProvider;
+
             _view.OnTabClicked += ScrollToSection;
         }
 
@@ -58,6 +64,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
 
         private void ScrollToSection(int index)
         {
+            _soundProvider.PlaySound(_view.ClickSound);
             _view.SetScrollPosition(_startNormalizedPositions[index]);
             _view.HighlightTab(index);
         }

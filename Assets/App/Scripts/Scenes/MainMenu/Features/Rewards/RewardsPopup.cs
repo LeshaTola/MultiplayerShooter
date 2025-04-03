@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Modules.Localization.Elements.Buttons;
 using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.General.Popup;
+using App.Scripts.Modules.Sounds;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +16,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 {
     public class RewardsPopup: Popup
     {
+        [ValueDropdown(@"GetAudioKeys")] [SerializeField] private string _awardSound;
+        [ValueDropdown(@"GetAudioKeys")] [SerializeField] private string _closeSound;
+
         [SerializeField] private TMPLocalizer _header;
         
         [Header("Rewards")]
@@ -35,7 +42,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
         {
             _vm = vm;
             Initialize();
-            _acceptButton.UpdateAction(()=>Hide().Forget());
+            _acceptButton.UpdateAction(Close);
             
             SetUpExp();
             Translate();
@@ -52,7 +59,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 
         public override async UniTask Show()
         {
-            _vm.SoundProvider.PlaySound(popupSoundKey);
             _acceptButton.transform.localScale = Vector3.zero;
             await base.Show();
             await ExpSliderAnimation();
@@ -62,7 +68,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
 
         public override async UniTask Hide()
         {
-            _vm.SoundProvider.PlaySound(popupSoundKey);
             await base.Hide();
             Cleanup();
         }
@@ -93,6 +98,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
         {
             foreach (var reward in _vm.Rewards)
             {
+                _vm.SoundProvider.PlaySound(_awardSound);
                 var element = Instantiate(_rewardElementPrefab, _rewardsContainer);
                 element.Initialize(_vm.LocalizationSystem);
                 element.Setup(reward);
@@ -122,6 +128,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
         {
             _curRankImage.sprite = cur;
             _nextRankImage.sprite = next;
+        }
+        
+        private void Close()
+        {
+            _vm.SoundProvider.PlaySound(_closeSound);
+            Hide().Forget();
         }
     }
 }

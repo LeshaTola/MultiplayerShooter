@@ -5,6 +5,7 @@ using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
@@ -23,6 +24,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         private readonly UserStatsProvider _userStatsProvider;
         private readonly RewardService _rewardService;
         private readonly InfoPopupRouter _infoPopupRouter;
+        private readonly ISoundProvider _soundProvider;
 
         private Dictionary<SectorConfig, List<RewardConfig>> _winItems;
         
@@ -31,7 +33,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             Roulette roulette,
             UserStatsProvider userStatsProvider,
             RewardService rewardService,
-            InfoPopupRouter infoPopupRouter)
+            InfoPopupRouter infoPopupRouter, 
+            ISoundProvider soundProvider)
         {
             _rouletteConfig = rouletteConfig;
             _rouletteScreen = rouletteScreen;
@@ -39,6 +42,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             _userStatsProvider = userStatsProvider;
             _rewardService = rewardService;
             _infoPopupRouter = infoPopupRouter;
+            _soundProvider = soundProvider;
         }
 
         public override void Initialize()
@@ -102,6 +106,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
 
         private async void OnSpinButtonPressed()
         {
+            _soundProvider.PlaySound(_rouletteScreen.ButtonSound);
             if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
                 await _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS);
@@ -110,9 +115,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
 
             _userStatsProvider.TicketsProvider.ChangeTickets(-1);
             _rouletteScreen.SetBlockSreen(true);
+            _roulette.OnDegreePassed += PlayPassedDegreeSound;
             var angle = await _roulette.SpinRoulette();
             var result = _roulette.GetConfigByAngle(angle);
             Debug.Log($"Angle: {angle} Sector: {result.Name}");
+            _roulette.OnDegreePassed -= PlayPassedDegreeSound;
             
             var availableItems = _winItems[result];
             var winItem = availableItems[Random.Range(0, availableItems.Count)];
@@ -122,6 +129,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             UpdateWinItems();
             
             _rouletteScreen.SetBlockSreen(false);
+        }
+
+        private void PlayPassedDegreeSound()
+        {
+            _soundProvider.PlaySound(_rouletteScreen.RouletteStepSond);
         }
     }
 }

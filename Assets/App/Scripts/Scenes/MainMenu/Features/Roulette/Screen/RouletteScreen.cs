@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.Sounds;
 using App.Scripts.Scenes.MainMenu.Features.Roulette.Configs;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +22,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         [SerializeField] private Button _spinButton;
         [SerializeField] private TextMeshProUGUI _ticketsText;
 
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ButtonSound { get; private set; }
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string RouletteStepSond { get; private set; }
+        
         [Header("Sectors")]
         [SerializeField] private SectorView _sectorViewPrefab;
         [SerializeField] private RectTransform _sectorViewContainer;
@@ -102,6 +109,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             {
                 Destroy(child.gameObject);
             }
+        }
+        
+                
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

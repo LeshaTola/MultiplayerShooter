@@ -1048,6 +1048,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366400b9708b4d9dab472fa3d2297399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 1213122699311012505}
+    - {fileID: 6405834195030517228}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: viewAnimation
+      Entry: 7
+      Data: 0|App.Scripts.Modules.PopupAndViews.Animations.ScaleWithBgAnimation,
+        Assembly-CSharp
+    - Name: showAnimationTime
+      Entry: 4
+      Data: 0.3
+    - Name: showEase
+      Entry: 3
+      Data: 27
+    - Name: hideAnimationTime
+      Entry: 4
+      Data: 0.3
+    - Name: hideEase
+      Entry: 3
+      Data: 26
+    - Name: _bgImage
+      Entry: 10
+      Data: 0
+    - Name: _window
+      Entry: 10
+      Data: 1
+    - Name: _fadeValue
+      Entry: 4
+      Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
   _closeButton: {fileID: 6619526840001207140}
   _localizationButton: {fileID: 5860137047216085628}
   _localizationText: {fileID: 2155503712876312930}

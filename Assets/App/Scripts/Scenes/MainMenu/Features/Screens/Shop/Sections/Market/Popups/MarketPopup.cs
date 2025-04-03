@@ -1,7 +1,10 @@
-﻿using App.Scripts.Features;
+﻿using System.Collections.Generic;
+using System.Linq;
+using App.Scripts.Features;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization.Elements.Buttons;
 using App.Scripts.Modules.PopupAndViews.General.Popup;
+using App.Scripts.Modules.Sounds;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
 using Cysharp.Threading.Tasks;
 using GameAnalyticsSDK;
@@ -14,8 +17,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 {
     public class MarketPopup : Popup
     {
-        [ValueDropdown(@"GetAudioKeys")]
-        [SerializeField] private string _buySound;
+        [ValueDropdown(@"GetAudioKeys")] [SerializeField] private string _buySound;
+        [ValueDropdown(@"GetAudioKeys")] [SerializeField] private string _closeSound;
         
         [SerializeField] private MarketView _marketView;
 
@@ -35,15 +38,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
             Initialize();
         }
 
-        public override async UniTask Show()
-        {
-            _vm.SoundProvider.PlaySound(popupSoundKey);
-            await base.Show();
-        }
-
         public override async UniTask Hide()
         {
-            _vm.SoundProvider.PlaySound(popupSoundKey);
             await base.Hide();
             Cleanup();
         }
@@ -88,6 +84,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 
         private void Close()
         {
+            _vm.SoundProvider.PlaySound(_closeSound);
             Hide().Forget();
         }
 

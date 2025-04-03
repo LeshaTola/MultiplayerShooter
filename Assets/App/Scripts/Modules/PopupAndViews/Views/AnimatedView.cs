@@ -13,7 +13,7 @@ namespace App.Scripts.Modules.PopupAndViews.Views
         private UniTask animationTask;
         private CancellationTokenSource cancellationTokenSource;
 
-        public async UniTask Show()
+        public virtual async UniTask Show()
         {
             Cleanup();
 
@@ -24,7 +24,7 @@ namespace App.Scripts.Modules.PopupAndViews.Views
             await animationTask;
         }
 
-        public async UniTask Hide()
+        public virtual async UniTask Hide()
         {
             Cleanup();
 

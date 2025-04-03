@@ -2,16 +2,19 @@
 using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Modules.PopupAndViews.General.Popup;
 using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Modules.PopupAndViews.Popups.Image
 {
     public class ImagePopup : Popup
     {
+        [ValueDropdown(@"GetAudioKeys")] [SerializeField] private string _closeSound;
+        
         [SerializeField] private TMPLocalizer _header;
         [SerializeField] private UnityEngine.UI.Image _image;
         [SerializeField] private TMPLocalizedButton _okButton;
-        
+
         private ImagePopupVM _vm;
 
         public void Setup(ImagePopupVM vm)
@@ -23,15 +26,8 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Image
             Translate();
         }
 
-        public override async UniTask Show()
-        {
-            _vm.SoundProvider.PlaySound(popupSoundKey);
-            await base.Show();
-        }
-
         public override async UniTask Hide()
         {
-            _vm.SoundProvider.PlaySound(popupSoundKey);
             await base.Hide();
             Cleanup();
         }
@@ -47,7 +43,11 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Image
             _header.Key = _vm.Data.Header;
             _image.sprite = _vm.Data.Image;
             _okButton.UpdateText(_vm.Data.Command.Label);
-            _okButton.UpdateAction(_vm.Data.Command.Execute);
+            _okButton.UpdateAction(()=>
+            {
+                _vm.SoundProvider.PlaySound(_closeSound);
+                _vm.Data.Command.Execute();
+            });
         }
 
         private void Initialize()

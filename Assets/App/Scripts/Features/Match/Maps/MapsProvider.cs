@@ -8,7 +8,10 @@ namespace App.Scripts.Features.Match.Maps
     public class MapsProvider
     {
         public MapsConfig Config { get; }
+        
         public Map Map { get; set; }
+        public MapConfig MapConfig { get; set; }
+        
         public Map CurrentMap { get; set; }
 
         public MapsProvider(MapsConfig config)
@@ -19,7 +22,8 @@ namespace App.Scripts.Features.Match.Maps
 
         public void SetRandomMap()
         {
-            Map = Config.Maps[Random.Range(0, Config.Maps.Count)].Prefab;
+            MapConfig = Config.Maps[Random.Range(0, Config.Maps.Count)];
+            Map = MapConfig.Prefab;
         }
     }
 }

@@ -9,6 +9,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette
 {
     public class Roulette
     {
+        public event Action OnDegreePassed;
+
+        
         private readonly RouletteView _view;
         private readonly RouletteConfig _config;
 
@@ -19,6 +22,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette
         {
             _view = view;
             _config = config;
+            _view.OnDegreePassed += () => OnDegreePassed?.Invoke();
         }
 
         public void GenerateRoulette()
@@ -40,7 +44,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette
         public async UniTask<float> SpinRoulette()
         {
             float angle = Random.Range(0, 360);
-            await _view.Spin(_config.SpinCount.GetRandom(),angle , _config.SpinDuration, _config.SpinCurve);
+            await _view.Spin(_config.SpinCount.GetRandom(),angle , _config.SpinDuration, _config.SpinCurve, _config.SoundEveryDegrees);
             await UniTask.Delay(TimeSpan.FromSeconds(_config.ShowDuration));
             _view.SpinToDefault();
             return angle;

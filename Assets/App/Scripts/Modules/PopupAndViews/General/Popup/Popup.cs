@@ -19,11 +19,7 @@ namespace App.Scripts.Modules.PopupAndViews.General.Popup
         IAnimation popupAnimation;
 
         [FoldoutGroup("General")]
-        [SerializeField] protected AudioDatabase audioDatabase;
-        
-        [FoldoutGroup("General")]
-        [ValueDropdown(@"GetAudioKeys")]
-        [SerializeField] protected string popupSoundKey;
+        [SerializeField] protected AudioDatabase _audioDatabase;
         
         [FoldoutGroup("General")]
         [SerializeField]
@@ -92,11 +88,11 @@ namespace App.Scripts.Modules.PopupAndViews.General.Popup
         
         public List<string> GetAudioKeys()
         {
-            if (audioDatabase == null)
+            if (_audioDatabase == null)
             {
                 return null;
             }
-            return audioDatabase.Audios.Keys.ToList();
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

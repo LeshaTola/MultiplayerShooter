@@ -2131,6 +2131,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1632534434602214995, guid: 41f2ab9cfa8025c4a9134f801b8a06be, type: 3}
+      propertyPath: m_text
+      value: "\u042D\u043A\u0438\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u043E"
+      objectReference: {fileID: 0}
     - target: {fileID: 5201788068425786826, guid: 41f2ab9cfa8025c4a9134f801b8a06be, type: 3}
       propertyPath: m_Name
       value: GameInventory

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SpinDuration>k__BackingField: 3
   <ShowDuration>k__BackingField: 0.5
+  <SoundEveryDegrees>k__BackingField: 60
   <SpinCount>k__BackingField:
     Min: 3
     Max: 5

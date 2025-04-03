@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Screens;
+using App.Scripts.Modules.Sounds;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,6 +17,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
         public event Action<int> OnTabClicked;
 
         [SerializeField] private  List<Button> _tabButtons;
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ClickSound { get; private set; }
         
         [field:SerializeField] public ScrollRect ScrollRect { get;  private set; }
         [field:SerializeField] public VerticalLayoutGroup LayoutGroup { get; private set; }
@@ -24,8 +29,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
             for (int i = 0; i < _tabButtons.Count; i++)
             {
                 int index = i;
-                _tabButtons[i].onClick.AddListener(() => OnTabClicked?.Invoke(index));
+                _tabButtons[i].onClick.AddListener(() => OnTabButtonClicked(index));
             }
+        }
+
+        private void OnTabButtonClicked(int index)
+        {
+            OnTabClicked?.Invoke(index);
         }
 
         public void SetScrollPosition(float target)
@@ -48,6 +58,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
             {
                 tabButton.onClick.RemoveAllListeners();
             }
+        }
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

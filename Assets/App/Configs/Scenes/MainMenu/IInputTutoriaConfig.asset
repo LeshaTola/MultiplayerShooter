@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <RuTutor>k__BackingField: {fileID: 21300000, guid: 3016d8e6c9c60654999488e7193206fb, type: 3}
   <EnTutor>k__BackingField: {fileID: 21300000, guid: fb0ff65a0fd20e14786ffea0be78d515, type: 3}
-  <RuMobileTutor>k__BackingField: {fileID: 21300000, guid: 3016d8e6c9c60654999488e7193206fb, type: 3}
-  <EnMobileTutor>k__BackingField: {fileID: 21300000, guid: fb0ff65a0fd20e14786ffea0be78d515, type: 3}
+  <RuMobileTutor>k__BackingField: {fileID: 21300000, guid: 56c73e32bd9e16b45944542f1a0886f1, type: 3}
+  <EnMobileTutor>k__BackingField: {fileID: 21300000, guid: ba00b1314b1b5c8489ac517742036869, type: 3}

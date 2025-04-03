@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Views;
+using App.Scripts.Modules.Sounds;
 using Photon.Realtime;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
     public class RoomsView : GameScreen
     {
         public event Action OnQuickGameButtonClicked;
+        public event Action OnCreateRoomButtonClicked;
 
         [SerializeField] private RectTransform _container;
         [SerializeField] private RoomView _prefab;
@@ -23,6 +27,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         [SerializeField] private CreateRoomView _createRoomView;
         [SerializeField] private InputPasswordView _inputPasswordView;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ButtonSoundKey { get; private set; }
+
 
         private ILocalizationSystem _localizationSystem;
         private List<RoomView> _roomItems = new();
@@ -67,9 +76,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private async void OnJoinRoom(RoomInfo room, Action<RoomInfo, string> action)
         {
+            _inputPasswordView.Setup((myPassword) => { action?.Invoke(room, myPassword); });
             if (room.CustomProperties.TryGetValue("Password", out object password) && password != null)
             {
-                _inputPasswordView.Setup((myPassword) => { action?.Invoke(room, myPassword); });
                 await _inputPasswordView.Show();
                 return;
             }
@@ -79,7 +88,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private async void ShowCreateRoom()
         {
+            OnCreateRoomButtonClicked?.Invoke();
             await _createRoomView.Show();
+        }                
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

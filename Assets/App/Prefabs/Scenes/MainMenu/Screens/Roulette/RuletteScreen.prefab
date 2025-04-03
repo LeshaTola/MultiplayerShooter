@@ -777,6 +777,9 @@ MonoBehaviour:
   _screenBlocker: {fileID: 0}
   _spinButton: {fileID: 6792446807372945276}
   _ticketsText: {fileID: 1199305654451446864}
+  _audioDatabase: {fileID: 11400000, guid: 29a0492805081964eb71f674cc6b7cff, type: 2}
+  <ButtonSound>k__BackingField: Second_UI
+  <RouletteStepSond>k__BackingField: SwitchWeapn
   _sectorViewPrefab: {fileID: 5972376276192642560, guid: 125a75ede1086b5488d285bb9a24aef0, type: 3}
   _sectorViewContainer: {fileID: 7359493732376979640}
   _winItemContainerPrefab: {fileID: 3464357396887247823, guid: 105bf7cb4da7b594fadf2dfc977694a1, type: 3}

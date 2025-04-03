@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using App.Scripts.Features;
+using App.Scripts.Modules.Sounds;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -26,6 +30,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
 
         [SerializeField] private Button _buyButton;
         [SerializeField] private float _costAnimationDuration = 0.5f;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioDatabase _audioDatabase;
+        [field: SerializeField, ValueDropdown(@"GetAudioKeys")] public string ClickSound { get; private set; }
+        [field: SerializeField, ValueDropdown(@"GetAudioKeys")] public string BuySound { get; private set; }
 
         private StringBuilder _sb = new StringBuilder(16);
         
@@ -74,6 +83,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
             {
                 _plusButton.interactable = active;
             }
+        }
+        
+        public List<string> GetAudioKeys()
+        {
+            if (_audioDatabase == null)
+            {
+                return null;
+            }
+            return _audioDatabase.Audios.Keys.ToList();
         }
     }
 }

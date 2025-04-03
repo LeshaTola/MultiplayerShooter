@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Features;
 using App.Scripts.Features.Rewards;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
@@ -16,6 +17,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         private readonly UserStatsProvider _userStatsProvider;
         private readonly InfoPopupRouter _infoPopupRouter;
         private readonly RewardService _rewardService;
+        private readonly ISoundProvider _soundProvider;
 
         private int _ticketsCount = 1;
         private int _totalCost;
@@ -24,13 +26,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
             TicketsSectionConfig config,
             UserStatsProvider userStatsProvider,
             InfoPopupRouter infoPopupRouter,
-            RewardService rewardService)
+            RewardService rewardService,
+            ISoundProvider soundProvider)
         {
             _view = view;
             _config = config;
             _userStatsProvider = userStatsProvider;
             _infoPopupRouter = infoPopupRouter;
             _rewardService = rewardService;
+            _soundProvider = soundProvider;
         }
 
         public void Initialize()
@@ -49,12 +53,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
 
         private void Plus()
         {
+            _soundProvider.PlaySound(_view.ClickSound);
             _ticketsCount++;
             UpdateCount();
         }
 
         private void Minus()
         {
+            _soundProvider.PlaySound(_view.ClickSound);
             _ticketsCount--;
             UpdateCount();
         }
@@ -63,9 +69,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         {
             if (!_userStatsProvider.CoinsProvider.IsEnough(_totalCost))
             {
+                _soundProvider.PlaySound(_view.ClickSound);
                 _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_MONEY).Forget();
                 return;
             }
+            _soundProvider.PlaySound(_view.BuySound);
             _userStatsProvider.CoinsProvider.ChangeCoins(-_totalCost);
             _config.TicketReward.Count = _ticketsCount;
             _rewardService.AddReward(_config.TicketReward);

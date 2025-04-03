@@ -93,13 +93,22 @@ namespace App.Scripts.Features
         public void QuickGame()
         {
             string roomName = $"Room_{Random.Range(0, 1000)}";
+            
+            _mapsProvider.SetRandomMap();
+            
             var options = new RoomOptions
             {
                 MaxPlayers = (byte) 10,
                 IsOpen = true,
-                IsVisible = true
+                IsVisible = true,
+                CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
+                {
+                    {"Map", _mapsProvider.MapConfig.Name},
+                    {"GameMode", /*gameMode*/"PVP"}
+                },
+                CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
-            _mapsProvider.SetRandomMap();
+            
             PhotonNetwork.JoinRandomOrCreateRoom(roomName: roomName, roomOptions: options);
         }
 
