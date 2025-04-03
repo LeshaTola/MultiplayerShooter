@@ -119,9 +119,9 @@ Table,Город-Стол,Table-City
 Маркет,Маркет,Market
 Валюта,Валюта,Currency
 Новое предложение через:,Новое предложение через:,New offer in:
-Coins 1,РобоБаксы,RoboBucks
-Coins 2,РобоБаксы,RoboBucks
-Coins 3,РобоБаксы,RoboBucks
+CoinsRare,РобоБаксы,RoboBucks
+CoinsEpic,РобоБаксы,RoboBucks
+CoinsLegendary,РобоБаксы,RoboBucks
 Двойной выстрел,Двойной выстрел,Double shot
 LaserGun,Лазерная пушка,Laser Gun
 M4,М4,M4
@@ -176,6 +176,15 @@ Yandex,Яндекс Игры,Yandex Games
 Epic,Эпический,Epic
 Legendary,Легендарный,Legendary
 Rare,Редкий,Rare
-Uncomon,Необычный,Uncommon
-Coins,РобоБаксы,RoboBucks
+Uncommon,Необычный,Uncommon
+CoinsUncommon,РобоБаксы,RoboBucks
 Количество тиков урона (в секунду),Количество тиков урона (в секунду),Number of damage ticks (per second)
+Exp,Ед. опыта,Experience points
+Займите первое место:,Займите первое место:,Take first place:
+Убейте 5 врагов за 10 сек:,Убейте 5 врагов за 10 сек:,Kill 5 enemies in 10 seconds:
+Убейте противников:,Убейте противников:,Kill opponents:
+Совершите 5 убийств не умирая:,Совершите 5 убийств не умирая:,Get 5 kills without dying:
+Нанесите урон:,Нанесите урон:,Deal damage:
+Сыграйте матчи:,Сыграйте матчи:,Play matches:
+Проведите в матчах:,Проведите в матчах:,Spend time in matches:
+Войдите в топ-3 в матче:,Войдите в топ-3 в матче:,Finish in the top 3 in a match:

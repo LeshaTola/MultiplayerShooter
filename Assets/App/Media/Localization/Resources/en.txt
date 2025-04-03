@@ -119,9 +119,9 @@ Table,Table-City
 Маркет,Market
 Валюта,Currency
 Новое предложение через:,New offer in:
-Coins 1,RoboBucks
-Coins 2,RoboBucks
-Coins 3,RoboBucks
+CoinsRare,RoboBucks
+CoinsEpic,RoboBucks
+CoinsLegendary,RoboBucks
 Двойной выстрел,Double shot
 LaserGun,Laser Gun
 M4,M4
@@ -176,6 +176,15 @@ Yandex,Yandex Games
 Epic,Epic
 Legendary,Legendary
 Rare,Rare
-Uncomon,Uncommon
-Coins,RoboBucks
+Uncommon,Uncommon
+CoinsUncommon,RoboBucks
 Количество тиков урона (в секунду),Number of damage ticks (per second)
+Exp,Experience points
+Займите первое место:,Take first place:
+Убейте 5 врагов за 10 сек:,Kill 5 enemies in 10 seconds:
+Убейте противников:,Kill opponents:
+Совершите 5 убийств не умирая:,Get 5 kills without dying:
+Нанесите урон:,Deal damage:
+Сыграйте матчи:,Play matches:
+Проведите в матчах:,Spend time in matches:
+Войдите в топ-3 в матче:,Finish in the top 3 in a match:
