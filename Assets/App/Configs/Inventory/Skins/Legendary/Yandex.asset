@@ -24,6 +24,6 @@ MonoBehaviour:
   <Id>k__BackingField: Yandex
   <Sprite>k__BackingField: {fileID: 21300000, guid: dfa71870e09012d4bbd5313e42d098e1, type: 3}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
-  <Rarity>k__BackingField: Rare
+  <Rarity>k__BackingField: Legendary
   <EyeMaterial>k__BackingField: {fileID: 2100000, guid: 05778ac2273e95948ad50717463a76b0, type: 2}
   <Material>k__BackingField: {fileID: 2100000, guid: 05778ac2273e95948ad50717463a76b0, type: 2}

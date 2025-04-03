@@ -65,7 +65,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 24375d6ed049a8e43b258b5caea951fe, type: 2}
     - {fileID: 11400000, guid: f52cf78f7f4343948b06869f3ff67ebe, type: 2}
     - {fileID: 11400000, guid: 52108fc555f706345a6680698f5e5551, type: 2}
-    - {fileID: 11400000, guid: 21468e660f63ea342a3600e643df6cc1, type: 2}
     WinItemsCount: 2
   - Name: "\u041D\u0435\u043E\u0431\u044B\u0447\u043D\u044B\u0439"
     Percent: 0.75
