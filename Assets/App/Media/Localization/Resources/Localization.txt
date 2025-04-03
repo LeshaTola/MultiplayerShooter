@@ -178,3 +178,4 @@ Legendary,Легендарный,Legendary
 Rare,Редкий,Rare
 Uncomon,Необычный,Uncommon
 Coins,РобоБаксы,RoboBucks
+Количество тиков урона (в секунду),Количество тиков урона (в секунду),Number of damage ticks (per second)

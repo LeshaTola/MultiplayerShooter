@@ -3346,6 +3346,10 @@ PrefabInstance:
       value: -447
       objectReference: {fileID: 0}
     - target: {fileID: 6070968559186734103, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_text
+      value: "[~] -- \u041F\u0430\u0443\u0437\u0430"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070968559186734103, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4
       objectReference: {fileID: 0}

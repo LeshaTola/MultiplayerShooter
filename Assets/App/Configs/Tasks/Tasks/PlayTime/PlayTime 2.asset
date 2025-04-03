@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed231cca58fb436699f0848c77f04020, type: 3}
+  m_Name: PlayTime 2
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 9f37cc66d7b452a43872c9a51603af66, type: 2}
+    - {fileID: 11400000, guid: 4d6231aa437156e4aa397de6abe917bb, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <Tasks>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[App.Scripts.Modules.TasksSystem.Tasks.Task,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|App.Scripts.Scenes.Gameplay.Tasks.Spesific.SpendTimeTask, Assembly-CSharp
+    - Name: _targetTime
+      Entry: 3
+      Data: 1800
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <CompleteActions>k__BackingField
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[App.Scripts.Modules.TasksSystem.CompleteActions.CompleteAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|App.Scripts.Scenes.Gameplay.Tasks.CompleteActions.GiveRewardAction,
+        Assembly-CSharp
+    - Name: _rewardConfigs
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[App.Scripts.Features.Rewards.Configs.RewardConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  <Id>k__BackingField: PlayTime 2
+  <Name>k__BackingField: "\u041F\u0440\u043E\u0432\u0435\u0434\u0438\u0442\u0435
+    \u0432 \u043C\u0430\u0442\u0447\u0430\u0445:"
+  <Description>k__BackingField: 
