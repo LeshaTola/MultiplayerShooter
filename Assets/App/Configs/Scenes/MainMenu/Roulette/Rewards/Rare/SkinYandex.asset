@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
   m_Name: SkinYandex
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: SkinTopaz
-  <Reward>k__BackingField: {fileID: 11400000, guid: c0e764205b4efbb438dd826a0bedb919, type: 2}
+  <Id>k__BackingField: SkinYandex
+  <Reward>k__BackingField: {fileID: 11400000, guid: a0fd8b792c0eb86418e6d86a9ffbc6be, type: 2}
   <IsFixedCount>k__BackingField: 1
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0
