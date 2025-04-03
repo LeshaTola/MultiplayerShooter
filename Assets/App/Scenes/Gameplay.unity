@@ -813,6 +813,7 @@ MonoBehaviour:
   _endGameView: {fileID: 238142282}
   _overlayContainer: {fileID: 146440695}
   _mobileInputView: {fileID: 454088263}
+  _dailyTasksView: {fileID: 2799628441634600116}
 --- !u!1 &875944701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,6 +3174,46 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5245718029759496617, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245718029759496617, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245718029759496617, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245718029759496617, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245718029759496617, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262685760449003163, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262685760449003163, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262685760449003163, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262685760449003163, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262685760449003163, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5348376259898742302, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3298,6 +3339,26 @@ PrefabInstance:
       value: 756.3797
       objectReference: {fileID: 0}
     - target: {fileID: 5899308837395202811, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919335092572923188, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919335092572923188, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919335092572923188, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919335092572923188, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919335092572923188, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -3713,6 +3774,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 789520703328781480, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
   m_PrefabInstance: {fileID: 2799628441634600114}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2799628441634600116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5032845291355835964, guid: 4267e1de241a8ae47abd46b144852520, type: 3}
+  m_PrefabInstance: {fileID: 2799628441634600114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a774a0036e47d9b577b2a25eee8d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

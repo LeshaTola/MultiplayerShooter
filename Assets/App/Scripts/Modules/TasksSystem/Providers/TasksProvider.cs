@@ -13,6 +13,7 @@ namespace App.Scripts.Modules.TasksSystem.Providers
     public class TasksProvider : ISavable, IUpdatable
     {
         public event Action<Dictionary<string, TaskContainerData>> OnTasksUpdated;
+        public event Action<Dictionary<string, TaskContainerData>> OnTasksProgressUpdated;
         public event Action<TimeSpan> OnTimerUpdated;
         
         private readonly TaskProviderConfig _config;
@@ -62,6 +63,7 @@ namespace App.Scripts.Modules.TasksSystem.Providers
             }
             containerData.Progress = tasksContainer.GetProgress();
             containerData.TasksData = tasksContainer.Config.Tasks.Select(x=>x.GetProgress()).ToList();
+            OnTasksProgressUpdated?.Invoke(ActiveTasks);
         }
 
         public void SaveState()

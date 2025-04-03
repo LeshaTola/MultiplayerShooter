@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
   m_Name: Gold 250 legend 1
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Gold 200 legend 1
+  <Id>k__BackingField: Gold 250 legend 1
   <Reward>k__BackingField: {fileID: 11400000, guid: 961d7a85e97b2b5498c7ebc5af3bf25c, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Color>k__BackingField: {r: 0.98039216, g: 0.91764706, b: 0, a: 1}
   <Count>k__BackingField: 250
   <CountRange>k__BackingField:
     Min: 0

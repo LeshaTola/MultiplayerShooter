@@ -39,6 +39,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
             }
         }
 
+        public void UpdateView(Dictionary<string, TaskContainerData> tasks)
+        {
+            int i = 0;
+            foreach (var task in tasks.Values)
+            {
+                if (i >= _tasks.Count)
+                {
+                    return;
+                }
+                _tasks[i].Setup(task);
+                
+                i++;
+            }
+        }
+
         public void SetActiveTimer(bool active)
         {
             _timerPanel.SetActive(active);

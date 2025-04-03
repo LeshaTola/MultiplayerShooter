@@ -27,8 +27,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
         {
             _dailyTasksView.Initialize(_localizationSystem);
             _tasksProvider.OnTasksUpdated += UpdateView;
+            _tasksProvider.OnTasksProgressUpdated += UpdateViewProgress;
             _tasksProvider.OnTimerUpdated += OnTimerUpdated;
             UpdateView(_tasksProvider.ActiveTasks);
+        }
+
+        private void UpdateViewProgress(Dictionary<string, TaskContainerData> tasks)
+        {
+            UpdateView(tasks);
         }
 
         private void OnTimerUpdated(TimeSpan timeSpan)
@@ -40,6 +46,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
         {
             _dailyTasksView.Cleanup();
             _tasksProvider.OnTasksUpdated -= UpdateView;
+            _tasksProvider.OnTasksProgressUpdated -= UpdateViewProgress;
+            _tasksProvider.OnTimerUpdated -= OnTimerUpdated;
         }
 
         private void UpdateView(Dictionary<string, TaskContainerData> tasks)

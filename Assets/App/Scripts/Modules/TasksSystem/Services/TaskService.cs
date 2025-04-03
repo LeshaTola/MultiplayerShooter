@@ -7,6 +7,7 @@ using App.Scripts.Modules.TasksSystem.Configs;
 using App.Scripts.Modules.TasksSystem.Factories;
 using App.Scripts.Modules.TasksSystem.Providers;
 using App.Scripts.Modules.TasksSystem.Tasks;
+using UnityEngine;
 
 namespace App.Scripts.Modules.TasksSystem.Services
 {
@@ -59,11 +60,12 @@ namespace App.Scripts.Modules.TasksSystem.Services
         {
             task.StartTask();
             task.OnTaskCompleted += UnregisterTask;
-            task.OnProgressChanged += (progress)=>OnProgressChanged(task);
+            task.OnProgressChanged += (progress) => OnProgressChanged(task);
         }
 
         private void OnProgressChanged(TasksContainer task)
         {
+            Debug.Log($"Task Progress: {task.Progress}");
             _tasksProvider.UpdateProgress(task);
         }
 

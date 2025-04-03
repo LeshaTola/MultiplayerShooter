@@ -12,6 +12,7 @@ using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
+using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks;
 using UnityEngine;
 using Zenject;
 
@@ -32,7 +33,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("ESC")]
         [SerializeField] private EscMenuView _escMenuView;
         [SerializeField] private SettingsView _settingsView;
-
         
         [Header("EndGame")]
         [SerializeField] private EndGameView _endGameView;
@@ -40,6 +40,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("Other")]
         [SerializeField] private RectTransform _overlayContainer;
         [SerializeField] private MobileInputView _mobileInputView;
+        [SerializeField] private DailyTasksView _dailyTasksView;
 
         public override void InstallBindings()
         {
@@ -67,6 +68,9 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
                 .WithArguments(_overlayContainer);
 
             Container.BindInstance(_mobileInputView).AsSingle();
+            
+            Container.BindInstance(_dailyTasksView).AsSingle();
+            Container.BindInterfacesAndSelfTo<DailyTaskViewPresenter>().AsSingle();
         }
     }
 }

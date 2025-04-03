@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.Gameplay.Tasks.Spesific
         public override void Start()
         {
             base.Start();
-            _playerProvider.OnPlayerCreated += Connect;
+            _playerProvider.Player.WeaponProvider.OnPlayerHit += OnHit;
         }
 
         public override void Complete()
@@ -44,12 +44,6 @@ namespace App.Scripts.Scenes.Gameplay.Tasks.Spesific
         {
             var concreteTask = (DamageTask) original;
             _damage = concreteTask._damage;
-        }
-
-        private void Connect(Player.Player player)
-        {
-            _playerProvider.OnPlayerCreated -= Connect;
-            player.WeaponProvider.OnPlayerHit += OnHit;
         }
 
         private void OnHit(Vector3 hitPoint, float damage, bool isKilled)

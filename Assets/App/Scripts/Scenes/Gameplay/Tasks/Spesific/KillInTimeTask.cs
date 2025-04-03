@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.Gameplay.Tasks.Spesific
         public override void Start()
         {
             base.Start();
-            _playerProvider.OnPlayerCreated += Connect;
+            _playerProvider.Player.WeaponProvider.OnPlayerHit += OnHit;
         }
 
         public override void Complete()
@@ -50,12 +50,6 @@ namespace App.Scripts.Scenes.Gameplay.Tasks.Spesific
             _target = concreteTask._target;
             _kills = concreteTask._kills;
             _seconds = concreteTask._seconds;
-        }
-
-        private void Connect(Player.Player player)
-        {
-            _playerProvider.OnPlayerCreated -= Connect;
-            player.WeaponProvider.OnPlayerHit += OnHit;
         }
 
         private void UpdateProgress()
