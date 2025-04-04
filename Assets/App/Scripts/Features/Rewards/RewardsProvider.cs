@@ -65,7 +65,6 @@ namespace App.Scripts.Features.Rewards
         {
             var growsCount = (int) ((PhotonNetwork.Time - _timerProvider.LocalStartTime) / _accrualConfig.GrowExpTime);
             var exp = _accrualConfig.ExpPerKill + growsCount * _accrualConfig.GrowExpValue;
-            Debug.Log($"EXP FOR KILL: {exp}");
             _experience += exp;
 
             var coins = _accrualConfig.CoinsPerKill;
@@ -78,7 +77,6 @@ namespace App.Scripts.Features.Rewards
         private void ApplyExp()
         {
             _rewardService.ExperienceToAdd += (int) _experience;
-            Debug.Log((int) _experience);
             _experience -= (int) _experience;
         }
 
@@ -88,8 +86,6 @@ namespace App.Scripts.Features.Rewards
             {
                 return;
             }
-
-            Debug.Log((int) _coins);
 
             var coinsReward = Object.Instantiate(_accrualConfig.CoinReward);
             coinsReward.Count = (int) _coins;
@@ -108,7 +104,6 @@ namespace App.Scripts.Features.Rewards
                 var myPlaceDivider = (_leaderboard.MyPlace - 1) * 2;
                 myPlaceDivider = myPlaceDivider == 0 ? 1 : myPlaceDivider;
                 var exp = maxExpPercent / myPlaceDivider * _rankProvider.CurrentRank.ExpForRank / 100;
-                Debug.Log($"EXP FOR PLACE: {exp}");
                 _experience += exp;
             }
         }

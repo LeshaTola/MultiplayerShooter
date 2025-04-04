@@ -15,7 +15,7 @@ MonoBehaviour:
   <Id>k__BackingField: Exp 100
   <Reward>k__BackingField: {fileID: 11400000, guid: 4d150790dc2a89e4a99add9d6591cb4d, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Color>k__BackingField: {r: 0.53333336, g: 0.3647059, b: 0.99215686, a: 1}
   <Count>k__BackingField: 100
   <CountRange>k__BackingField:
     Min: 0

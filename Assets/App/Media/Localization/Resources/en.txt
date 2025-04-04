@@ -133,11 +133,11 @@ FlintStone,Flintlock Pistol
 Здоровье блока,Block health
 Притягивание,Graple
 Радиус взрыва,Explosion Radius
-Сrossbow,Crossbow
+Crossbow,Crossbow
 GrapplingGun,Grappling Gun
 Box,Box
 LandMine,Land Mine
-Промокоды,Promo Code
+ПРОМОКОДЫ,PROMOS
 Введите промокод,Enter Promo Code
 Убрать всю рекламу,Remove all ads
 Оставьте отзыв и,Rate the game and
