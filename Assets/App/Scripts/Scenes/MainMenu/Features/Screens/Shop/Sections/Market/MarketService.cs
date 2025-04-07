@@ -123,8 +123,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                 {
                     continue;
                 }
-                
-                var availableItems = inventory.GetAvailableItems(items);
+
+                var availableItems = items.Where(x=>inventory.IsAvailable(x.Id) && !x.IsNotForSale).ToList();
                 if (availableItems.Count <= 0)
                 {
                     continue;
@@ -181,7 +181,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private List<ShopItemData> GetAvailableItems(InventoryData inventory)
         {
             var availableItems = CurrentItems
-                .Where(item => inventory.IsAvailable(item.Item.Id)).ToList();
+                .Where(item => inventory.IsAvailable(item.Item.Id) && !item.Item.IsNotForSale).ToList();
             return availableItems;
         }
     }

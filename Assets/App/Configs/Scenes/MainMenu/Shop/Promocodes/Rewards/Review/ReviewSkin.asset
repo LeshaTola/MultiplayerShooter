@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ReviewSkin
   m_EditorClassIdentifier: 
   <Id>k__BackingField: ReviewSkin
-  <Reward>k__BackingField: {fileID: 11400000, guid: 9d9f88693c8efad4eb948dfdb971c74b, type: 2}
+  <Reward>k__BackingField: {fileID: 11400000, guid: a0fd8b792c0eb86418e6d86a9ffbc6be, type: 2}
   <IsFixedCount>k__BackingField: 1
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0

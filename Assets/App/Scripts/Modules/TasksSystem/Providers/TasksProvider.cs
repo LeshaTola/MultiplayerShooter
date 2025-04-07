@@ -5,6 +5,7 @@ using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.TasksSystem.Configs;
 using App.Scripts.Modules.TasksSystem.Tasks;
+using GameAnalyticsSDK;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -38,8 +39,7 @@ namespace App.Scripts.Modules.TasksSystem.Providers
             
             if (_remainingTime <= TimeSpan.Zero)
             {
-                FillTasks();
-                SaveState();
+                UpdateTasks();
                 CalculateNextUpdateTime();
             }
         }
@@ -52,6 +52,8 @@ namespace App.Scripts.Modules.TasksSystem.Providers
             }
             
             ActiveTasks.Remove(configId);
+            GameAnalytics.NewDesignEvent($"tasks:completed:{configId}");
+            GameAnalytics.NewDesignEvent($"tasks:complete_in_day:{_config.MaxTasksCount - ActiveTasks.Count}");
             OnTasksUpdated?.Invoke(ActiveTasks);
         }
 
@@ -75,8 +77,7 @@ namespace App.Scripts.Modules.TasksSystem.Providers
         {
             if (!_dataProvider.HasData())
             {
-                FillTasks();
-                SaveState();
+                UpdateTasks();
                 return;
             }
             SetState();
@@ -88,8 +89,7 @@ namespace App.Scripts.Modules.TasksSystem.Providers
             var data = _dataProvider.GetData();
             if (IsCurrentDay(data.LastUpdateDate))
             {
-                FillTasks();
-                SaveState();
+                UpdateTasks();
                 return;
             }
             
@@ -114,6 +114,16 @@ namespace App.Scripts.Modules.TasksSystem.Providers
                 LastUpdateDate = DateTimeOffset.Now.ToUnixTimeSeconds(),
                 Tasks = ActiveTasks.Values.ToList()
             };
+        }
+
+        private void UpdateTasks()
+        {
+            FillTasks();
+            SaveState();
+            foreach (var task in ActiveTasks)
+            {
+                GameAnalytics.NewDesignEvent($"tasks:created:{task.Key}");
+            }
         }
         
         private void FillTasks()

@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
     public class MainScreenPresenter : GameScreenPresenter, IInitializable, ICleanupable, ITopViewElementPrezenter
     {
         private const int MIN_NAME_LENGTH = 3;
-        private const int MAX_NAME_LENGTH = 10;
+        private const int MAX_NAME_LENGTH = 20;
 
         private readonly MainScreen _screen;
         private readonly ConnectionProvider _connectionProvider;

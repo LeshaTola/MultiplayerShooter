@@ -81,12 +81,7 @@ namespace App.Scripts.Features
 
         public void Reconnect()
         {
-#if YANDEX
             TryReconnect();
-//            ReloadPage();
-#else
-            TryReconnect();
-#endif
             _infoPopupRouter.HidePopup().Forget();
         }
 
@@ -108,13 +103,8 @@ namespace App.Scripts.Features
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
-            
+    
             PhotonNetwork.JoinRandomOrCreateRoom(roomName: roomName, roomOptions: options);
-        }
-
-        private void ReloadPage()
-        {
-            Application.OpenURL(Application.absoluteURL);
         }
         
         private void TryReconnect()

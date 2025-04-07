@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,6 +13,7 @@ namespace App.Scripts.Features.Inventory.Configs
         [field: ReadOnly] 
         public string Id { get; private set; }
         [field: SerializeField] public Sprite Sprite { get; private set; }
+        [field: SerializeField] public bool IsNotForSale { get; private set; }
         
         [FormerlySerializedAs("_raritiesConfig")]
         [Space]

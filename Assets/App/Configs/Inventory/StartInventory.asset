@@ -139,10 +139,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 401eaddd920c230469a0c84f9f6d9827, type: 2}
   <Weapons>k__BackingField:
   - {fileID: 11400000, guid: f52bef00cbc96b04b90992999e63eccf, type: 2}
+  - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
   - {fileID: 11400000, guid: b4b8518c967ac2d41acae9588edb8266, type: 2}
   - {fileID: 11400000, guid: c95b9c87872a10b4d808ae7acc915a59, type: 2}
   - {fileID: 11400000, guid: d8a533f26ac99f747ad38346f97c03df, type: 2}
-  - {fileID: 11400000, guid: 6e1e6c3f215142c4caa576727b118f3f, type: 2}
   <Equipment>k__BackingField:
   - {fileID: 11400000, guid: 92d24791875d7c44cb54dd0e943787d2, type: 2}
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}

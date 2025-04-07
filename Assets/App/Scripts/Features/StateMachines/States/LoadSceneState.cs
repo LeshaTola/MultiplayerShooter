@@ -36,6 +36,25 @@ namespace App.Scripts.Features.StateMachines.States
                 
                 CleanupAnimations();
                 return UniTask.CompletedTask;
+                
+                /*PhotonNetwork.IsMessageQueueRunning = false;
+
+                if (_sceneTransition != null)
+                {
+                    await _sceneTransition.PlayOnAsync();
+                }
+
+                _cleanupService.Cleanup();
+                CleanupAnimations();
+
+                PhotonNetwork.LoadLevel(_sceneName);
+
+                await UniTask.WaitUntil(() =>
+                    PhotonNetwork.LevelLoadingProgress >= 1f &&
+                    SceneManager.GetActiveScene().name == _sceneName
+                );
+
+                PhotonNetwork.IsMessageQueueRunning = true;*/
             }
 
             private void CleanupAnimations()

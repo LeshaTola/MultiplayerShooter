@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Rewards.Configs;
+using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using Cysharp.Threading.Tasks;
@@ -40,6 +41,11 @@ namespace App.Scripts.Features.Rewards
 
         public void AddReward(RewardConfig rewardConfig)
         {
+            if (IsExpReward(rewardConfig))
+            {
+                ExperienceToAdd += rewardConfig.Count;
+            }
+            
             rewardConfig = ChangeRewardIfNotAvailable(rewardConfig);
             
             var reward = _rewards.FirstOrDefault(x => x.Reward.Id.Equals(rewardConfig.Reward.Id));
@@ -72,7 +78,7 @@ namespace App.Scripts.Features.Rewards
         {
             List<ExpAnimationData> animationDatas = new();
             var startExpValue = CreateDefaultExpAnimData();
-
+            
             var levelUps = ApplyExperience();
             SetupAnimationDatas(levelUps, animationDatas, startExpValue);
             
@@ -224,6 +230,11 @@ namespace App.Scripts.Features.Rewards
                         throw new InvalidOperationException($"Unknown reward config type: {rewardConfig.GetType()}");
                 }
             }
+        }
+
+        private static bool IsExpReward(RewardConfig rewardConfig)
+        {
+            return rewardConfig.Reward is OtherItemConfig {ItemType: OtherItemType.Exp};
         }
     }
 

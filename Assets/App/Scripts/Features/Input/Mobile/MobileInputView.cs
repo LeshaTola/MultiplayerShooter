@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Features.Input
@@ -12,8 +14,8 @@ namespace App.Scripts.Features.Input
         [SerializeField] private Button _rButton;
         [SerializeField] private Button _enterButton;
         [SerializeField] private Button _tabButton;
-        [SerializeField] private Button _leftMouseButton;
-        [SerializeField] private Button _rightMouseButton;
+        [FormerlySerializedAs("_leftMouseButton")] [SerializeField] private List<Button> _leftMouseButtons;
+        [FormerlySerializedAs("_rightMouseButton")] [SerializeField] private List<Button> _rightMouseButtons;
         [SerializeField] private Button _spaceButton;
         [SerializeField] private Joystick _joystick;
         [SerializeField] private RectTransform _swipeZone;
@@ -40,9 +42,16 @@ namespace App.Scripts.Features.Input
             AddButtonListener(_pauseButton, () => OnPause?.Invoke());
             AddButtonListener(_enterButton, () => OnEnter?.Invoke());
             AddButtonListener(_rButton, () => OnR?.Invoke());
+            foreach (var button in _leftMouseButtons)
+            {
+                AddButtonListener(button, () => OnLeftMouseStarted?.Invoke(), () => OnLeftMouseCanceled?.Invoke());
+            }
+            foreach (var button in _rightMouseButtons)
+            {            
+                AddButtonListener(button, () => OnRightMouseStarted?.Invoke(), () => OnRightMouseCanceled?.Invoke());
+            }
+
             AddButtonListener(_tabButton, () => OnTabPerformed?.Invoke(), () => OnTabCanceled?.Invoke());
-            AddButtonListener(_leftMouseButton, () => OnLeftMouseStarted?.Invoke(), () => OnLeftMouseCanceled?.Invoke());
-            AddButtonListener(_rightMouseButton, () => OnRightMouseStarted?.Invoke(), () => OnRightMouseCanceled?.Invoke());
             AddButtonListener(_spaceButton, () => OnSpace?.Invoke());
         }
 

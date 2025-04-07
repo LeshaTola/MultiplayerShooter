@@ -143,6 +143,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
         {
             _view.Initialize();
             InitializeWeapons();
+            _selectionProvider.SelectWithoutNotification(_view.WeaponsSlots[0]);
         }
     }
 }
