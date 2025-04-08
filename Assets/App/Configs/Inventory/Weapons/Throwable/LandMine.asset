@@ -275,13 +275,14 @@ MonoBehaviour:
       Data: 
   <Id>k__BackingField: LandMine
   <Sprite>k__BackingField: {fileID: 21300000, guid: 69f61c8d5b6205a41a3eff2a246902d7, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 16c0be6630215f442bdc48dae5ab51cf, type: 3}
   <ViewOffset>k__BackingField: {x: 0, y: 0.1, z: -1.1}
   <ViewRotationOffset>k__BackingField: {x: 0, y: 0, z: -90}
   <ViewScaleMultiplier>k__BackingField: {x: 2, y: 2, z: 2}
-  <ShotSound>k__BackingField: {fileID: 8300000, guid: 7f7e370bc78045b40b9f0b2dca4f702b, type: 3}
+  <ShotSound>k__BackingField: {fileID: 8300000, guid: 891ffb6986568e34fbc89791c5c02c6f, type: 3}
   <ReloadSound>k__BackingField: {fileID: 0}
   <MaxAmmoCount>k__BackingField: 3
   <ReloadCooldown>k__BackingField: 2

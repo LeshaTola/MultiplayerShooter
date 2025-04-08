@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 0}
   _maxColisionCount: 0
-  _lifeTime: 2
+  _lifeTime: 3
   _rb: {fileID: 3713381470204557260}
 --- !u!54 &3713381470204557260
 Rigidbody:
