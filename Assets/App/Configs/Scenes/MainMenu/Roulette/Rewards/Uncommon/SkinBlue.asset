@@ -15,7 +15,8 @@ MonoBehaviour:
   <Id>k__BackingField: SkinBlue
   <Reward>k__BackingField: {fileID: 11400000, guid: 2d178d166f7f170459e8db1f5f3f7e7d, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 0
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 30
     Max: 50

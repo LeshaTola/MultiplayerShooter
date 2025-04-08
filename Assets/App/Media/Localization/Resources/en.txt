@@ -91,7 +91,7 @@ key,en
 До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Press any button to continue
 Введите текст,Enter the text
-Длина имени должна быть между 3 и 10 символами.,The name must be between 3 and 10 characters long.
+Длина имени должна быть между 3 и 20 символами.,The name must be between 3 and 20 characters long.
 AK,AK-47
 Double-Barrel,Double-barrel shotgun
 DualPistols,Dual Berettas
@@ -188,3 +188,21 @@ Exp,Experience points
 Сыграйте матчи:,Play matches:
 Проведите в матчах:,Spend time in matches:
 Войдите в топ-3 в матче:,Finish in the top 3 in a match:
+Промокоды,Promos
+Не достаточно средств,Not enough funds
+Не достаточно билетов,Not enough tickets
+Ошибка,Error
+Подключение разорвано,Connection lost
+Внимание!,Attention!
+Принять,Confirm
+Управление,Control/Input
+Переподключиться,Reconnect
+Промокод израсходован,Promo code used up
+Такого промокода не существует,This promo code does not exist
+Реклама успешно отключена!,Ads successfully disabled!
+Магазин успешно обнавлен!,Shop successfully updated!
+Не возможно оставить отзыв,Unable to leave a review
+Получить,Claim
+Ваша награда,Your reward
+Награды,Prizes
+Таймер обновиться через:,Daily rewards reset in:

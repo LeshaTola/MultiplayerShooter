@@ -15,7 +15,8 @@ MonoBehaviour:
   <Id>k__BackingField: Lasergun_Reward
   <Reward>k__BackingField: {fileID: 11400000, guid: de58866e12326cd45b2840571975be4c, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 0
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0
     Max: 0

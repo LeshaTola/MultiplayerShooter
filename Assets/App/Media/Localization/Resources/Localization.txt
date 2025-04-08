@@ -91,7 +91,7 @@ key,ru,en
 До оживления:,До оживления:,Before reviving:
 Нажмите любую кнопку чтобы продолжить,Нажмите любую кнопку чтобы продолжить,Press any button to continue
 Введите текст,Введите текст,Enter the text
-Длина имени должна быть между 3 и 10 символами.,Длина имени должна быть между 3 и 10 символами.,The name must be between 3 and 10 characters long.
+Длина имени должна быть между 3 и 20 символами.,Длина имени должна быть между 3 и 20 символами.,The name must be between 3 and 20 characters long.
 AK,AK-47,AK-47
 Double-Barrel,Двухстволка,Double-barrel shotgun
 DualPistols,Двойные Береты,Dual Berettas
@@ -188,3 +188,21 @@ Exp,Ед. опыта,Experience points
 Сыграйте матчи:,Сыграйте матчи:,Play matches:
 Проведите в матчах:,Проведите в матчах:,Spend time in matches:
 Войдите в топ-3 в матче:,Войдите в топ-3 в матче:,Finish in the top 3 in a match:
+Промокоды,Промокоды,Promos
+Не достаточно средств,Не достаточно средств,Not enough funds
+Не достаточно билетов,Не достаточно билетов,Not enough tickets
+Ошибка,Ошибка,Error
+Подключение разорвано,Подключение разорвано,Connection lost
+Внимание!,Внимание!,Attention!
+Принять,Принять,Confirm
+Управление,Управление,Control/Input
+Переподключиться,Переподключиться,Reconnect
+Промокод израсходован,Промокод израсходован,Promo code used up
+Такого промокода не существует,Такого промокода не существует,This promo code does not exist
+Реклама успешно отключена!,Реклама успешно отключена!,Ads successfully disabled!
+Магазин успешно обнавлен!,Магазин успешно обнавлен!,Shop successfully updated!
+Не возможно оставить отзыв,Не возможно оставить отзыв,Unable to leave a review
+Получить,Получить,Claim
+Ваша награда,Ваша награда,Your reward
+Награды,Награды,Prizes
+Таймер обновиться через:,Награды обновятся через:,Daily rewards reset in:

@@ -16,7 +16,7 @@ MonoBehaviour:
   <Reward>k__BackingField: {fileID: 11400000, guid: c1d87f86139fa8e4996642269e37e5be, type: 2}
   <IsFixedCount>k__BackingField: 1
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <Count>k__BackingField: 0
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0
     Max: 0

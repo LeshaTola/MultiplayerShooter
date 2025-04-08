@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
   m_Name: Dynamite_Reward
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: RewardConfig
+  <Id>k__BackingField: Dynamite_Reward
   <Reward>k__BackingField: {fileID: 11400000, guid: 5419cb219a3c2464cb51d5706a3f878f, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 0
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0
     Max: 0

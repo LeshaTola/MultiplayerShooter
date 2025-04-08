@@ -15,7 +15,8 @@ MonoBehaviour:
   <Id>k__BackingField: Crossbow_Reward
   <Reward>k__BackingField: {fileID: 11400000, guid: 001f7ba04ac176548acb6797275d3445, type: 2}
   <IsFixedCount>k__BackingField: 1
-  <Count>k__BackingField: 0
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Count>k__BackingField: 1
   <CountRange>k__BackingField:
     Min: 0
     Max: 0
