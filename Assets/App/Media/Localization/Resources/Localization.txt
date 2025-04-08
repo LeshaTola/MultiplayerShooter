@@ -206,3 +206,11 @@ Exp,Ед. опыта,Experience points
 Ваша награда,Ваша награда,Your reward
 Награды,Награды,Prizes
 Таймер обновиться через:,Награды обновятся через:,Daily rewards reset in:
+WASD -- Движение,WASD -- Движение,WASD -- Movement
+Мышка -- Управление камерой,Мышка -- Управление камерой,Mouse -- Camera Control
+ЛКМ -- Атака,ЛКМ -- Атака,LMB -- Attack
+ПКМ -- Альт Атака,ПКМ -- Альт Атака,RMB -- Alt Attack
+Tab -- Статистика,Tab -- Статистика матча,Tab -- Match Statistic
+[~] -- Пауза,[~] -- Меню выхода,[~] -- Exit menu
+Enter -- Чат,Enter -- Чат,Enter -- Chat
+12345/Колесо -- Поменять оружие,12345/Колесо мышки -- Поменять оружие,12345/Mouse wheel-- Change Weapon
