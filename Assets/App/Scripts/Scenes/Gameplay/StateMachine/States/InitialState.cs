@@ -63,11 +63,5 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             await StateMachine.ChangeState<EndGame>();
         }
-
-        public override async UniTask Exit()
-        {
-            await base.Exit();
-            await _sceneTransition.PlayOffAsync();
-        }
     }
 }

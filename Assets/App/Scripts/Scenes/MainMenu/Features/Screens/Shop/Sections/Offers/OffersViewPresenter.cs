@@ -19,7 +19,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
 
         public void Initialize()
         {
-            UpdateOffers();
             _promoCodesProvider.OnPromoCodeApplied += OnPromoCodeApplied;
         }
 

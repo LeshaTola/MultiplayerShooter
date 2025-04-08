@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using GameAnalyticsSDK;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 namespace App.Scripts.Features.StateMachines.States
 {
@@ -44,6 +45,7 @@ namespace App.Scripts.Features.StateMachines.States
             SetTargetFPS();
             ConnectAnalytics();
             LoadSaves();
+            YG2.StickyAdActivity(YG2.saves.IsCanShowAd);
 
             _isValid = false;
             

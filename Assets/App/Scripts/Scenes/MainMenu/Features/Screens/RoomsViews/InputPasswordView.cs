@@ -8,7 +8,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 {
     public class InputPasswordView : AnimatedView
     {
-        [SerializeField] private TMP_InputField _passwordInput;
+        // [SerializeField] private TMP_InputField _passwordInput;
+        [SerializeField] private InputField _passwordInput;
 
         [SerializeField] private Button _confirmButton;
         [SerializeField] private Button _closeButton;

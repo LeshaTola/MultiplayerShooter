@@ -34,9 +34,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
             _salePanel.SetActive(true);
             _saleText.text = salePercentage + "%";
 
-                _purchaseYg.id = newId;
-                _purchaseYg.UpdateEntries(purchaseData);
-
+            _purchaseYg.UpdateEntries(purchaseData);
+            _purchaseYg.id = _beforeSaleId;
+            
             _prevPriceText.text = (int)(float.Parse(purchaseData.priceValue)*2) + " YAN";
             _curPriceText.text = purchaseData.price;
         }

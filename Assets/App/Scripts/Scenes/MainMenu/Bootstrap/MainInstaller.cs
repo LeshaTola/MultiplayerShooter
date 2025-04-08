@@ -23,7 +23,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
     public class MainInstaller : MonoInstaller
     {
         [SerializeField] private CamerasDatabase _camerasDatabase;
-        [SerializeField] private RoomsProvider _roomsProvider;
 
         [SerializeField] private InventorySlot _slotTemplate;
         [SerializeField] private Item _itemTemplate;
@@ -37,7 +36,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<IInitializeService>().To<InitializeService>().AsSingle();
             Container.Bind<ICleanupService>().To<CleanupService>().AsSingle();
             
-            Container.Bind<RoomsProvider>().FromInstance(_roomsProvider);
             Container.Bind<MarketPopupRouter>().AsSingle();
             Container.Bind<WeaponModelsUIProvider>().AsSingle().WithArguments(_weaponContainer, "Weapon");
             Container.Bind<PlayerModelsUIProvider>().AsSingle().WithArguments(_playerVisual);

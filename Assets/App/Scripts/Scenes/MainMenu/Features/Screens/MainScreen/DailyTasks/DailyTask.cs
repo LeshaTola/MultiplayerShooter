@@ -35,7 +35,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
             SetupHeader(task);
             SetupSlider(task);
 
-            Cleanup();
+            CleanupRewards();
             var rewards = GetRewardsData(task.TaskConfig);
             foreach (var rewardData in rewards)
             {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2888313877663239385}
   - component: {fileID: 738047473016714087}
+  - component: {fileID: 6272868002827421053}
   m_Layer: 0
   m_Name: ConectionProvider
   m_TagString: Untagged
@@ -42,6 +43,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2b6766761111b945bfe9cf30201ab39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6272868002827421053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852275395736316459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aea1495936047458f2a833029b635d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2065102624456843216
@@ -97,6 +110,7 @@ MonoBehaviour:
       rid: -2
   _connectionProvider: {fileID: 738047473016714087}
   _mapsConfig: {fileID: 11400000, guid: 24e6f5796d1c2b945a70d7bffb7600da, type: 2}
+  _roomsProvider: {fileID: 6272868002827421053}
   _promocodesDatabase: {fileID: 11400000, guid: 510bb46e0207628498aa7ae4078ca657, type: 2}
   _inventoryConfig: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}

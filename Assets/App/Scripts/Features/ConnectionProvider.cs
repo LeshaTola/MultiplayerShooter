@@ -1,8 +1,9 @@
 using System;
+using System.Linq;
 using App.Scripts.Features.Commands;
 using App.Scripts.Features.Match.Maps;
-using App.Scripts.Modules.Commands.General;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
@@ -21,11 +22,15 @@ namespace App.Scripts.Features
 
         private MapsProvider _mapsProvider;
         private InfoPopupRouter _infoPopupRouter;
+        private RoomsProvider _roomsProvider;
 
         [Inject]
-        public void Constructor(MapsProvider mapsProvider, InfoPopupRouter infoPopupRouter)
+        public void Constructor(MapsProvider mapsProvider,
+            InfoPopupRouter infoPopupRouter,
+            RoomsProvider roomsProvider)
         {
             _mapsProvider = mapsProvider;
+            _roomsProvider = roomsProvider;
             _infoPopupRouter = infoPopupRouter;
         }
 
@@ -42,7 +47,8 @@ namespace App.Scripts.Features
             YG2.saves.PlayerName = playerName;
             YG2.SaveProgress();
 #else
-            var playerName = PlayerPrefs.HasKey(NAME_DATA)? PlayerPrefs.GetString(NAME_DATA): $"Player {Random.Range(0, 1000)}";
+            var playerName =
+ PlayerPrefs.HasKey(NAME_DATA)? PlayerPrefs.GetString(NAME_DATA): $"Player {Random.Range(0, 1000)}";
             PlayerPrefs.SetString(playerName, NAME_DATA);
 #endif
             PhotonNetwork.NickName = playerName;
@@ -62,7 +68,7 @@ namespace App.Scripts.Features
             Debug.Log("Connected To Lobby");
             OnConnectionFinished?.Invoke();
         }
-        
+
         public override void OnJoinedRoom()
         {
             OnJoinedRoomEvent?.Invoke();
@@ -75,7 +81,6 @@ namespace App.Scripts.Features
                 Header = ConstStrings.ERROR,
                 Mesage = ConstStrings.CONNECTION_ERROR,
                 Command = new CustomCommand(ConstStrings.RECСONECT, Reconnect)
-
             }).Forget();
         }
 
@@ -87,10 +92,27 @@ namespace App.Scripts.Features
 
         public void QuickGame()
         {
+            var availableRoom
+                = _roomsProvider
+                    .Rooms
+                    .FirstOrDefault(x =>
+                        x.IsOpen
+                        && x.IsVisible
+                        && x.PlayerCount < 10
+                        && !x.CustomProperties.TryGetValue("Password", out _));
+            if (availableRoom == null)
+            {
+                OnJoinRandomFailed(300,"Ne smog sdelat komaty");
+                return;
+            }
+
+            PhotonNetwork.JoinRoom(availableRoom.Name);
+        }
+
+        public override void OnJoinRandomFailed(short returnCode, string message)
+        {
             string roomName = $"Room_{Random.Range(0, 1000)}";
-            
             _mapsProvider.SetRandomMap();
-            
             var options = new RoomOptions
             {
                 MaxPlayers = (byte) 10,
@@ -99,14 +121,14 @@ namespace App.Scripts.Features
                 CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
                 {
                     {"Map", _mapsProvider.MapConfig.Name},
-                    {"GameMode", /*gameMode*/"PVP"}
+                    {"GameMode", "PVP"}
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
-    
-            PhotonNetwork.JoinRandomOrCreateRoom(roomName: roomName, roomOptions: options);
+
+            PhotonNetwork.CreateRoom(roomName, options);
         }
-        
+
         private void TryReconnect()
         {
             if (PhotonNetwork.IsConnectedAndReady)
@@ -118,7 +140,6 @@ namespace App.Scripts.Features
                 PhotonNetwork.ConnectUsingSettings();
             }
         }
-        
     }
 }
 

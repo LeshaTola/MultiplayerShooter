@@ -31,6 +31,7 @@ using App.Scripts.Scenes.MainMenu.Features.PromoCodes;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Factories;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Saves;
+using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using TNRD;
 using UnityEngine;
@@ -52,7 +53,7 @@ namespace App.Scripts.Features.Bootstrap
 
         [Header("Game")]
         [SerializeField] private MapsConfig _mapsConfig;
-
+        [SerializeField] private RoomsProvider _roomsProvider;
         [SerializeField] private PromocodesDatabase _promocodesDatabase;
 
         [FormerlySerializedAs("_gameInventory")]
@@ -88,6 +89,8 @@ namespace App.Scripts.Features.Bootstrap
             BindLocalizationSystem();
             BindSettings();
 
+            Container.Bind<RoomsProvider>().FromInstance(_roomsProvider);
+            
             Container.Bind<ISceneTransition>().FromInstance(_sceneTransition.Value);
             Container.Bind<ConnectionProvider>().FromInstance(_connectionProvider);
 

@@ -41,6 +41,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers
         {
             YG2.onRewardAdv += ApplyPromoCode;
             YG2.onPurchaseSuccess += ApplyPromoCode;
+            YG2.ConsumePurchases();
         }
 
         public void Cleanup()
@@ -79,13 +80,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers
             GameAnalytics.NewDesignEvent($"promo:{promoCodeData.PromoCode.ToLower()}", 1);
             promoCodeData.Uses++;
             OnPromoCodeApplied?.Invoke(promoCode);
+            SaveState();
             foreach (var action in promoCodeActions)
             {
                 var newAction = _promocodesFactory.GetPromocodeAction(action);
                 newAction.Execute();
             }
-
-            SaveState();
         }
 
         public void SaveState()

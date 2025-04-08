@@ -41,11 +41,6 @@ namespace App.Scripts.Features.Rewards
 
         public void AddReward(RewardConfig rewardConfig)
         {
-            if (IsExpReward(rewardConfig))
-            {
-                ExperienceToAdd += rewardConfig.Count;
-            }
-            
             rewardConfig = ChangeRewardIfNotAvailable(rewardConfig);
             
             var reward = _rewards.FirstOrDefault(x => x.Reward.Id.Equals(rewardConfig.Reward.Id));
@@ -78,7 +73,8 @@ namespace App.Scripts.Features.Rewards
         {
             List<ExpAnimationData> animationDatas = new();
             var startExpValue = CreateDefaultExpAnimData();
-            
+
+            ApplyExpReward();
             var levelUps = ApplyExperience();
             SetupAnimationDatas(levelUps, animationDatas, startExpValue);
             
@@ -90,6 +86,17 @@ namespace App.Scripts.Features.Rewards
             _rewards.Clear();
             
             await _popupRouter.ShowPopup(rewards, animationDatas);
+        }
+
+        private void ApplyExpReward()
+        {
+            foreach (var rewardConfig in _rewards)
+            {
+                if (IsExpReward(rewardConfig))
+                {
+                    ExperienceToAdd += rewardConfig.Count;
+                }
+            }
         }
 
         private RewardConfig ChangeRewardIfNotAvailable(RewardConfig rewardConfig)
@@ -219,7 +226,7 @@ namespace App.Scripts.Features.Rewards
                                 _userStatsProvider.TicketsProvider.ChangeTickets(rewardConfig.Count);
                                 break;
                             case OtherItemType.Exp:
-                                ExperienceToAdd += rewardConfig.Count;
+                                //ExperienceToAdd += rewardConfig.Count;
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();

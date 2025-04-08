@@ -55,8 +55,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private void OnReloadFinised()
         {
             _tween.Kill();
+
+            if (!_ammoImage)
+            {
+                return;
+            }
             
-            _ammoImage?.gameObject?.SetActive(true);
+            _ammoImage.gameObject.SetActive(true);
             _ammoText.gameObject.SetActive(true);
             _reloadImage.gameObject.SetActive(false);
         }

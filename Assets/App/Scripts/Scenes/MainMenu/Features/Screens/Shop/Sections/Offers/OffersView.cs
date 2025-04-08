@@ -15,7 +15,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
             {
                 purchaseYg.gameObject.SetActive(validPromoCodes.Contains(purchaseYg.id));
             }
-            LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
         }
     }
 }
