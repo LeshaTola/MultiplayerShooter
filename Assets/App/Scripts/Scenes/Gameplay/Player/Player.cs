@@ -92,11 +92,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
             {
                 _velocity = -5f;
             }
-            MoveCamera();
         }
 
         private void LateUpdate()
         {
+            MoveCamera();
+
             /*_arm.transform.localRotation 
                 = Quaternion.Euler(_localArmRotation.x - _verticalRotation, _localArmRotation.y , _localArmRotation.z);*/
              // RPCSetVertical(_verticalRotation);

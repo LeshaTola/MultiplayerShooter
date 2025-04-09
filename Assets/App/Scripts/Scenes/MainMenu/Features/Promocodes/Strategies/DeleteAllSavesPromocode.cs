@@ -14,6 +14,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies
             YG2.saves.TasksData = null;
             YG2.saves.PromocodesesData = null;
             YG2.saves.MarketData = null;
+            YG2.saves.IsCanShowAd = true;
             YG2.SaveProgress();
 
             Reload();

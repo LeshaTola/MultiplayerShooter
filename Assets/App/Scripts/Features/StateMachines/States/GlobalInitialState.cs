@@ -72,7 +72,7 @@ namespace App.Scripts.Features.StateMachines.States
 
         private static void SetTargetFPS()
         {
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = -1;
         }
 
         private static void ChangeToCorrectScene()

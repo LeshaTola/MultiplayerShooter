@@ -58,8 +58,7 @@ namespace App.Scripts.Features
 
         public override void OnConnectedToMaster()
         {
-            Debug.Log("Connected To Server");
-
+            Debug.Log($"Connected To Server. Region: {PhotonNetwork.CloudRegion}");
             PhotonNetwork.JoinLobby();
         }
 
@@ -89,7 +88,7 @@ namespace App.Scripts.Features
             TryReconnect();
             _infoPopupRouter.HidePopup().Forget();
         }
-
+        
         public void QuickGame()
         {
             var availableRoom
@@ -105,10 +104,10 @@ namespace App.Scripts.Features
                 OnJoinRandomFailed(300,"Ne smog sdelat komaty");
                 return;
             }
-
+        
             PhotonNetwork.JoinRoom(availableRoom.Name);
         }
-
+        
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
             string roomName = $"Room_{Random.Range(0, 1000)}";
@@ -125,7 +124,7 @@ namespace App.Scripts.Features
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
-
+        
             PhotonNetwork.CreateRoom(roomName, options);
         }
 

@@ -27,9 +27,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         public const int MAX_PASSWORD_LENGTH = 6;
         public const int MAX_PLAYERS = 10;
 
-        [SerializeField] private InputField _serverNameInputField;
-        [SerializeField] private InputField _playersInputField;
-        [SerializeField] private InputField _passwordInputField;
+        [SerializeField] private TMP_InputField _serverNameInputField;
+        [SerializeField] private TMP_InputField _playersInputField;
+        [SerializeField] private TMP_InputField _passwordInputField;
 
         [SerializeField] private TMP_Dropdown _modeDropdown;
 

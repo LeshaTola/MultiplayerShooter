@@ -116,7 +116,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [PunRPC]
         public void PlayWeaponSound()
         {
-            _audioSource.PlayOneShot(_weaponProvider.CurrentWeapon.Config.ShotSound);
+            var clip = _weaponProvider.CurrentWeapon.Config.ShotSound;
+            if (clip == null)
+            {
+                return;
+            }
+            
+            _audioSource.PlayOneShot(clip);
         }
         
         [PunRPC]
