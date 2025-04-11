@@ -1,7 +1,11 @@
-﻿namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
+﻿using UnityEngine;
+
+namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 {
     public class ToggleShotStrategy : ShootingMode
     {
+        [SerializeField] private bool _isCanChangeBulletCount = false;
+            
         public override void StartAttack()
         {
             if (!Weapon.IsReady)
@@ -26,6 +30,23 @@
             }
             IsShooting = false;
             ShootStrategy.Shoot();
+            
+            ChangeAmmo();
+        }
+
+        private void ChangeAmmo()
+        {
+            if (_isCanChangeBulletCount)
+            {
+                Weapon.ChangeAmmoCount(-1);
+            }
+        }
+
+        public override void Import(IShootingModeStrategy original)
+        {
+            base.Import(original);
+            var concrete = (ToggleShotStrategy)original;
+            _isCanChangeBulletCount = concrete._isCanChangeBulletCount;
         }
     }
 }

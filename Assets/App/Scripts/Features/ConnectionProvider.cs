@@ -5,6 +5,7 @@ using App.Scripts.Features.Match.Maps;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
 using Cysharp.Threading.Tasks;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -97,7 +98,7 @@ namespace App.Scripts.Features
                     .FirstOrDefault(x =>
                         x.IsOpen
                         && x.IsVisible
-                        && x.PlayerCount < 10
+                        && x.PlayerCount is < 10 and > 0
                         && !x.CustomProperties.TryGetValue("Password", out _));
             if (availableRoom == null)
             {
@@ -117,6 +118,7 @@ namespace App.Scripts.Features
                 MaxPlayers = (byte) 10,
                 IsOpen = true,
                 IsVisible = true,
+                EmptyRoomTtl = 0 ,
                 CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
                 {
                     {"Map", _mapsProvider.MapConfig.Name},

@@ -171,6 +171,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -250,11 +253,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
   <Id>k__BackingField: GrapplingGun
   <Sprite>k__BackingField: {fileID: 21300000, guid: b16f1e6d405c99c4ea87b5ae6787d138, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Legendary
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: a3ea73bedb784d84398a2a4ad70d762f, type: 3}
@@ -263,5 +270,5 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 2, y: 2, z: 2}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: d40a26fe2ab664c41b5ed137694a9daf, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: c0910cf2ed7f93e4580a5a522f1a9348, type: 3}
-  <MaxAmmoCount>k__BackingField: 100
-  <ReloadCooldown>k__BackingField: 2
+  <MaxAmmoCount>k__BackingField: 1
+  <ReloadCooldown>k__BackingField: 0.5

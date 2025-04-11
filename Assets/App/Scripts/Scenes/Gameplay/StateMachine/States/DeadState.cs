@@ -33,6 +33,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             UpdateKillChat();
             
             _playerProvider.Player.PlayerAudioProvider.PlayDestroySound();
+            _playerProvider.Player.Freese();
             _playerProvider.HidePlayer();
             RespawnPlayer();
             return UniTask.CompletedTask;
