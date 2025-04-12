@@ -48,19 +48,4 @@ namespace App.Scripts.Features.Commands
             await _popupController.HideLastPopup();
         }
     }
-
-    public class CustomCommand : LabeledCommand
-    {
-        private readonly Action _action;
-
-        public CustomCommand(string label, Action action) : base(label)
-        {
-            _action = action;
-        }
-
-        public override void Execute()
-        {
-            _action?.Invoke();
-        }
-    }
 }
