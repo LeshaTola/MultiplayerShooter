@@ -64,7 +64,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 30
+      Data: 34
     - Name: 
       Entry: 8
       Data: 
@@ -130,13 +130,13 @@ MonoBehaviour:
       Data: 3|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 2
+      Data: 1
     - Name: <Decrement>k__BackingField
       Entry: 4
       Data: 2
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.15
+      Data: 0.1
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 30
+      Data: 34
     - Name: 
       Entry: 8
       Data: 
@@ -220,13 +220,13 @@ MonoBehaviour:
       Data: 10|App.Scripts.Features.Inventory.Weapons.ShootingRecoil.Recoil, Assembly-CSharp
     - Name: <Radius>k__BackingField
       Entry: 4
-      Data: 2
+      Data: 1.5
     - Name: <Decrement>k__BackingField
       Entry: 4
       Data: 2
     - Name: <Increment>k__BackingField
       Entry: 4
-      Data: 0.2
+      Data: 0.15
     - Name: <MinValue>k__BackingField
       Entry: 4
       Data: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 25
+      Data: 34
     - Name: 
       Entry: 8
       Data: 
@@ -295,6 +295,7 @@ MonoBehaviour:
       Data: 
   <Id>k__BackingField: M4
   <Sprite>k__BackingField: {fileID: 21300000, guid: f81fe396ddca9cc48bb012f9c2da1383, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncommon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 1c2e354b6fab9a742a16dcb3c0282008, type: 3}

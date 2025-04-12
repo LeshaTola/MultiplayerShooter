@@ -66,7 +66,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 90
+      Data: 65
     - Name: 
       Entry: 8
       Data: 
@@ -151,7 +151,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 90
+      Data: 65
     - Name: _radius
       Entry: 4
       Data: 10
@@ -290,11 +290,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
   <Id>k__BackingField: RocketLauncher
   <Sprite>k__BackingField: {fileID: 21300000, guid: 956864ed393fbb047902e030c0a8e285, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Epic
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: ed2e485c92857df4db7c05b9305983c7, type: 3}

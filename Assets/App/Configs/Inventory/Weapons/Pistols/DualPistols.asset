@@ -63,7 +63,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 20
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -161,7 +161,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 20
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -279,11 +279,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
   <Id>k__BackingField: DualPistols
   <Sprite>k__BackingField: {fileID: 21300000, guid: 5beda87c651b44f42b9e318ed8c46a00, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Rare
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 318d463f89d1fe945913f3618edd8dd6, type: 3}

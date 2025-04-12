@@ -64,7 +64,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 33
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -162,7 +162,7 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: _damage
       Entry: 3
-      Data: 33
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -305,11 +305,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
   <Id>k__BackingField: Minigun
   <Sprite>k__BackingField: {fileID: 21300000, guid: 15f94339e75ce6b42999550ecf733e4a, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Rare
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 2aa9c26caa86e834dbe2ef07fb9fbadc, type: 3}
