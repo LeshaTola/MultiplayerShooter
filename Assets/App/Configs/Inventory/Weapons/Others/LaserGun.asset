@@ -77,7 +77,7 @@ MonoBehaviour:
       Data: "\u041E\u0431\u043E\u0439\u043C\u0430"
     - Name: Item2
       Entry: 1
-      Data: 100
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -174,7 +174,7 @@ MonoBehaviour:
       Data: 
     - Name: _maxDistance
       Entry: 4
-      Data: 75
+      Data: 50
     - Name: _cooldown
       Entry: 4
       Data: 0.07
@@ -302,5 +302,5 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 2, y: 2, z: 2}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: d40a26fe2ab664c41b5ed137694a9daf, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: c0910cf2ed7f93e4580a5a522f1a9348, type: 3}
-  <MaxAmmoCount>k__BackingField: 100
+  <MaxAmmoCount>k__BackingField: 50
   <ReloadCooldown>k__BackingField: 2
