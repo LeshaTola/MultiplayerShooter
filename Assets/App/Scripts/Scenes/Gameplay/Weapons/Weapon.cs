@@ -51,6 +51,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private void Awake()
         {
             _trialStartColor = _tracerEffect.startColor;
+            ShootPointProvider.Initialize(ShootPoints);
         }
 
         public void Initialize(WeaponConfig weaponConfig)
@@ -59,7 +60,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _isLocal = true;
             
             Animator.Initialize(this);
-            ShootPointProvider.Initialize(ShootPoints);
             NetworkFadeOutLine();
 
             Config.ShootingMode.Initialize(this);
