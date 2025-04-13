@@ -243,6 +243,28 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             photonView.RPC(nameof(FadeOutLine), RpcTarget.All);
         }
 
+        public void NetworkSetLine(Vector3 endPoint)
+        {
+            photonView.RPC(nameof(SetLine), RpcTarget.All, endPoint);
+        }
+        
+        [PunRPC]
+        public void SetLine(Vector3 endPoint)
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                NextShootPoint();
+            }
+            
+            _tracerEffect.SetPosition(0, _shootPointProvider.ShotPoint);
+            _tracerEffect.SetPosition(1, endPoint);
+            
+            _tracerEffect.enabled = true;
+            _tracerEffect.startColor = _trialStartColor;
+            _tracerEffect.endColor = _trialStartColor;
+        }
+        
+        
         public void NetworkSetLine(Vector3 shootPoint,Vector3 endPoint)
         {
             photonView.RPC(nameof(SetLine),

@@ -40,7 +40,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             }
 
             _hitPoint = hitValues[0].Item1;
-            Weapon.NetworkSetLine(Weapon.ShootPointProvider.ShotPoint, _hitPoint);
+            Weapon.NetworkSetLine( _hitPoint);
             _cts = new CancellationTokenSource();
             LateUpdateLoop(_cts.Token).Forget();
         }
@@ -51,7 +51,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 while (!token.IsCancellationRequested)
                 {
-                    Weapon.NetworkSetLine(Weapon.ShootPointProvider.ShotPoint, _hitPoint);
+                    Weapon.NetworkSetLine(/*Weapon.ShootPointProvider.ShotPoint,*/ _hitPoint);
                     await UniTask.Yield(PlayerLoopTiming.PostLateUpdate, token);
                 }
             }

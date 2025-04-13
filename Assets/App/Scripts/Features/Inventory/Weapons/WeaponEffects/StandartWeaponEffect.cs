@@ -26,11 +26,11 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             var shootPoint = Weapon.ShootPointProvider.ShotPoint;
             if (hitValues.Count == 0)
             {
-                Weapon.NetworkSetLine(shootPoint,shootPoint + _camera.transform.forward * 100);
+                Weapon.NetworkSetLine(/*shootPoint,*/shootPoint + _camera.transform.forward * 100);
             }
             else
             {
-                Weapon.NetworkSetLine(shootPoint,hitValues[0].Item1);
+                Weapon.NetworkSetLine(/*shootPoint,*/hitValues[0].Item1);
             }
             Weapon.NetworkFadeOutLine();
             
