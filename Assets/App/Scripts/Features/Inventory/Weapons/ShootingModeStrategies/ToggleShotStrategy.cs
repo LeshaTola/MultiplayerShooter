@@ -13,10 +13,15 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
                 return;
             }
             
-            IsShooting = true;
             PerformAttack();
-            ShootStrategy.Shoot();
 
+            if (!IsMissCounted && _isMiss)
+            {
+                return;
+            }
+            
+            IsShooting = true;
+            ShootStrategy.Shoot();
         }
 
         public override void CancelAttack()
@@ -32,7 +37,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             }
             IsShooting = false;
             ShootStrategy.Shoot();
-            
+
             ToggleChangeAmmo();
         }
 
@@ -40,17 +45,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         {
             if (_isCanChangeBulletCount)
             {
-                if (IsMissCounted)
-                {
-                    Weapon.ChangeAmmoCount(-1);
-                }
-                else
-                {
-                    if (!_isMiss)
-                    {
-                        Weapon.ChangeAmmoCount(-1);
-                    }
-                }
+                Weapon.ChangeAmmoCount(-1);
             }
         }
 
