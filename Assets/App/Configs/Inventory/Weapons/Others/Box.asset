@@ -151,7 +151,7 @@ MonoBehaviour:
       Data: 
     - Name: _maxDistance
       Entry: 4
-      Data: 5
+      Data: 7
     - Name: _visualizator
       Entry: 10
       Data: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
       Data: 
     - Name: <IsMissCounted>k__BackingField
       Entry: 5
-      Data: true
+      Data: false
     - Name: _isCanChangeBulletCount
       Entry: 5
       Data: false
