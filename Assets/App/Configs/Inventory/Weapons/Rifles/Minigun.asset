@@ -310,7 +310,7 @@ MonoBehaviour:
       Data: 
     - Name: <IsMissCounted>k__BackingField
       Entry: 5
-      Data: false
+      Data: true
     - Name: _isCanChangeBulletCount
       Entry: 5
       Data: false
