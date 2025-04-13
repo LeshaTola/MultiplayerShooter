@@ -18,6 +18,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
         public void Shoot();
 
         public void Import(IShootStrategy original);
+        (RaycastHit, Vector3) GetRaycastHit();
     }
 
     public abstract class ShootStrategy: IShootStrategy
@@ -28,6 +29,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
         [SerializeField] public List<IWeaponEffect> WeaponEffects { get;  set;}
         
         [SerializeField] protected float _maxDistance = 50f;
+        
         protected Weapon Weapon;
         protected Camera Camera;
 
@@ -53,7 +55,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
         public virtual void Import(IShootStrategy original)
         {
             Recoil.Import(original.Recoil);
-
+            _maxDistance = ((ShootStrategy)original)._maxDistance;
             for (int i = 0; i < WeaponEffects.Count; i++)
             {
                 WeaponEffects[i].OnPlayerHit += (point, damage, killed)=>OnPlayerHit?.Invoke(point, damage, killed);
@@ -66,8 +68,14 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
             var recoilRotation = Recoil.GetRecoilRotation(Camera.transform);
             var direction = recoilRotation * Camera.transform.forward;
 
-            Vector3 endPoint = Camera.transform.position + direction * _maxDistance;
-            if (Physics.Raycast(Camera.transform.position, direction, out var hit, _maxDistance, Physics.DefaultRaycastLayers,
+            var maxDistance = _maxDistance;
+            if (_maxDistance <= 0)
+            {
+                _maxDistance = float.MaxValue;
+            }
+            
+            Vector3 endPoint = Camera.transform.position + direction * maxDistance;
+            if (Physics.Raycast(Camera.transform.position, direction, out var hit, maxDistance, Physics.DefaultRaycastLayers,
                     QueryTriggerInteraction.Ignore))
             {
                 endPoint = hit.point;

@@ -200,6 +200,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -279,11 +282,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: false
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
   <Id>k__BackingField: HantingRiffle
   <Sprite>k__BackingField: {fileID: 21300000, guid: 04a9cd45bb1b2fb4e9f6df19b2b82d24, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Uncommon
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: 01afea2c5773ef143bb7f9c417b4329e, type: 3}

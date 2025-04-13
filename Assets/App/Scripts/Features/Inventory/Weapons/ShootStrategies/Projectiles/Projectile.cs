@@ -32,7 +32,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
         public async void Shoot(Vector3 dir, float speed)
         {
             photonView.RPC(nameof(PushProjectile), RpcTarget.All, dir * speed);
-            
+
             if (_lifeTime >= 0)
             {
                 _cancellationTokenSource = new CancellationTokenSource();
@@ -42,7 +42,21 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
                         cancellationToken: _cancellationTokenSource.Token);
                     Kill();
                 }
-                catch (OperationCanceledException) { }
+                catch (OperationCanceledException)
+                {
+                }
+            }
+        }
+        
+        private void OnDestroy()
+        {
+            try
+            {
+                _cancellationTokenSource?.Cancel();
+                _cancellationTokenSource?.Dispose();
+            }
+            catch (ObjectDisposedException)
+            {
             }
         }
 
@@ -72,7 +86,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!photonView.IsMine )
+            if (!photonView.IsMine)
             {
                 return;
             }
@@ -81,6 +95,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
             {
                 return;
             }
+
             _cancellationTokenSource?.Cancel();
             Kill(other.transform.position, other.gameObject);
         }
@@ -102,8 +117,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles
                 _health.SetImmortal(true);
                 _health.OnDied -= OnDied;
             }
-            
+
             _onColisionAction?.Invoke(point, hitObject);
+            _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
             PhotonNetwork.Destroy(gameObject);
         }

@@ -128,7 +128,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [PunRPC]
         public void PlayReloadSound()
         {
-            _audioSource.PlayOneShot(_weaponProvider.CurrentWeapon.Config.ReloadSound);
+            var clip = _weaponProvider.CurrentWeapon.Config.ReloadSound;
+            if (clip == null)
+            {
+                return;
+            }
+            
+            _audioSource.PlayOneShot(clip);
         }
         
         public void RPCPlaySound(string category, int soundIndex)

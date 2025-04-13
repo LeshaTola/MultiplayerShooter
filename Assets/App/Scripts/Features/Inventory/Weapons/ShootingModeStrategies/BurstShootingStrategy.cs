@@ -28,11 +28,16 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
                 ShootStrategy.Recoil.IsShooting = false;
                 return;
             }
+
             base.PerformAttack();
+            if (!IsMissCounted && _isMiss)
+            {
+                return;
+            }
 
             ShootStrategy.Shoot();
             Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
-
+            
             Weapon.ChangeAmmoCount(-1);
             Weapon.Animator.AttackAnimation(AttackCooldown);
             Weapon.StartAttackCooldown(AttackCooldown);

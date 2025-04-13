@@ -5,7 +5,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
     public class ToggleShotStrategy : ShootingMode
     {
         [SerializeField] private bool _isCanChangeBulletCount = false;
-            
+
         public override void StartAttack()
         {
             if (!Weapon.IsReady)
@@ -14,7 +14,9 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             }
             
             IsShooting = true;
+            PerformAttack();
             ShootStrategy.Shoot();
+
         }
 
         public override void CancelAttack()
@@ -31,14 +33,24 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             IsShooting = false;
             ShootStrategy.Shoot();
             
-            ChangeAmmo();
+            ToggleChangeAmmo();
         }
 
-        private void ChangeAmmo()
+        private void ToggleChangeAmmo()
         {
             if (_isCanChangeBulletCount)
             {
-                Weapon.ChangeAmmoCount(-1);
+                if (IsMissCounted)
+                {
+                    Weapon.ChangeAmmoCount(-1);
+                }
+                else
+                {
+                    if (!_isMiss)
+                    {
+                        Weapon.ChangeAmmoCount(-1);
+                    }
+                }
             }
         }
 

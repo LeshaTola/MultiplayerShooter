@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Features.Inventory.Weapons.ShootStrategies;
+using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 {
@@ -48,12 +49,17 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
                 ShootStrategy.Recoil.IsShooting = false;
                 return;
             }
+            
+            base.PerformAttack();
+            if (!IsMissCounted && _isMiss)
+            {
+                return;
+            }
+            
             ShootStrategy.Recoil.IsShooting = true;
 
             ShootStrategy.Shoot();
-            base.PerformAttack();
             Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
-
             Weapon.ChangeAmmoCount(-1);
             Weapon.Animator.AttackAnimation(AttackCooldown);
             Weapon.StartAttackCooldown(AttackCooldown);

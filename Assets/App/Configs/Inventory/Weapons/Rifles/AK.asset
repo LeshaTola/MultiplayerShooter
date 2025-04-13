@@ -201,6 +201,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -280,6 +283,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: false
     - Name: _isCanChangeBulletCount
       Entry: 5
       Data: false

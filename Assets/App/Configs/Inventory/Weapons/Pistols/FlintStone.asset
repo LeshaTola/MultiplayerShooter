@@ -213,6 +213,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -292,11 +295,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: false
+    - Name: _isCanChangeBulletCount
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
   <Id>k__BackingField: FlintStone
   <Sprite>k__BackingField: {fileID: 21300000, guid: e19080c174849d04bab5f1aa987d1e4f, type: 3}
+  <IsNotForSale>k__BackingField: 0
   _raritiesDatabase: {fileID: 11400000, guid: cf552639f92000f4384a16eb8ecdfd1a, type: 2}
   <Rarity>k__BackingField: Rare
   <Prefab>k__BackingField: {fileID: 3721367782882904474, guid: f0d00627270768a44b5c5fb158f64be5, type: 3}

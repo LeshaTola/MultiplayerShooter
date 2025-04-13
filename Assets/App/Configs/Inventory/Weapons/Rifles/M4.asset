@@ -201,6 +201,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -277,13 +280,23 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 14|App.Scripts.Features.Inventory.Weapons.ShootEffects.PlayMuzzleFlash,
+        Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+    - Name: <IsMissCounted>k__BackingField
+      Entry: 5
+      Data: true
     - Name: _burstCount
       Entry: 3
       Data: 4

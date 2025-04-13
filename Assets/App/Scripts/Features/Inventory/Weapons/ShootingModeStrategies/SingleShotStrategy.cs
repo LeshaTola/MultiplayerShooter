@@ -8,6 +8,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         public override void PerformAttack()
         {
             base.PerformAttack();
+            if (!IsMissCounted && _isMiss)
+            {
+                return;
+            }
             Weapon.Owner.PlayerVisual.ShootAnimation(AttackCooldown);
             ShootStrategy.Shoot();
             Weapon.Animator.AttackAnimation(AttackCooldown);
