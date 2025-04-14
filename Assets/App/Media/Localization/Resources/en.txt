@@ -215,3 +215,5 @@ Tab -- Статистика,Tab -- Match Statistic
 Enter -- Чат,Enter -- Chat
 12345/Колесо -- Поменять оружие,12345/Mouse wheel-- Change Weapon
 Загрузка...,Loading...
+Время жизни (секунды),Life time (seconds)
+LavaLamp,Lava Lamp
