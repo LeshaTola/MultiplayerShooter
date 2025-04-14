@@ -36,7 +36,7 @@ namespace App.Scripts.Modules.Localization
 
             languageDictionary = new Dictionary<string, string>();
 
-            LoadLocalization();
+            // LoadLocalization();
             ChangeLanguage(this.language);
         }
 

@@ -330,6 +330,17 @@ Transform:
   - {fileID: 653652905}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &155424574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4500851306904205306, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
+  m_PrefabInstance: {fileID: 8684345209241296524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &249009508 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205839343499484338, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
@@ -2129,17 +2140,6 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6351286775516597828, guid: da80b6741f6fc54439b284c3f98543f3, type: 3}
   m_PrefabInstance: {fileID: 271555353}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &846194035 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4500851306904205306, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
-  m_PrefabInstance: {fileID: 8684345209241296524}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -4511,6 +4511,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tmProLocalizers:
+  - {fileID: 155424574}
   - {fileID: 31952710}
   - {fileID: 127666029}
   - {fileID: 249009508}
@@ -4535,7 +4536,6 @@ MonoBehaviour:
   - {fileID: 803802483}
   - {fileID: 822341045}
   - {fileID: 834199568}
-  - {fileID: 846194035}
   - {fileID: 899863900}
   - {fileID: 903838829}
   - {fileID: 907967105}
@@ -5823,7 +5823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1065739084281789520, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.739998
+      value: 5.73999
       objectReference: {fileID: 0}
     - target: {fileID: 1089414280760090947, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_AnchorMax.y

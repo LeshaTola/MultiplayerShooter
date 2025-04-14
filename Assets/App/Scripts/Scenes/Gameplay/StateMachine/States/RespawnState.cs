@@ -39,7 +39,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("Respawn");
             _playerController.IsBusy = true;
             await _respawnView.Show();
-            await UniTask.Delay(50);
+            //await UniTask.Delay(50);
             _advertisementProvider.ShowInterstitialAd();
             
             _respawnView.ShowTimerText();

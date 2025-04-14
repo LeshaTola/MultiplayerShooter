@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: _MapsConfig
   m_EditorClassIdentifier: 
   <Maps>k__BackingField:
-  - {fileID: 11400000, guid: 08011199585aa7544ad54beb479990a7, type: 2}
   - {fileID: 11400000, guid: 0f8add22623febd4a9e607c14f7fce05, type: 2}
   - {fileID: 11400000, guid: 6426a55c27771fe4faec475f16cdac44, type: 2}
   - {fileID: 11400000, guid: b9f9f4d3699a1e94ab15c72e526c137b, type: 2}
