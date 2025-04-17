@@ -8,6 +8,7 @@
     "com.unity.inputsystem": "1.11.2",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.postprocessing": "3.4.0",
+    "com.unity.render-pipelines.universal": "14.0.11",
     "com.unity.textmeshpro": "3.0.9",
     "com.unity.ugui": "1.0.0",
     "net.tnrd.serializableinterface": "https://github.com/Thundernerd/Unity3D-SerializableInterface.git",
