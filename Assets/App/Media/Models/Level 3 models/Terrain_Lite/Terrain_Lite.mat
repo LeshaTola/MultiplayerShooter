@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Terrain_Lite
-  m_Shader: {fileID: 4800000, guid: 040df5903d077d94584f02baef683411, type: 3}
+  m_Shader: {fileID: 4800000, guid: a6fa1b87769637d4f85491227af59b64, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -63,17 +63,21 @@ Material:
     m_Floats:
     - ENABLE_NORMAL_INTENSITY: 0
     - SMOOTHNESS_TEXTURE: 0
+    - _EnableNormalIntensity: 0
     - _Metallic0: 0
     - _Metallic1: 0
     - _Metallic2: 0
     - _Metallic3: 0
+    - _NormalIntensity: 0
     - _NormalIntensity0: 1
     - _NormalIntensity1: 1
     - _NormalIntensity2: 1
     - _NormalIntensity3: 1
+    - _NormalIntensityEnabled: 0
     - _Smoothness0: 1
     - _Smoothness1: 1
     - _Smoothness2: 1
     - _Smoothness3: 1
+    - _SmoothnessTexture: 0
     m_Colors: []
   m_BuildTextureStacks: []
