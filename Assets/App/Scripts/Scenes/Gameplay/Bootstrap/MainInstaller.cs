@@ -21,7 +21,7 @@ using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 using YG;
 using Zenject;
 
@@ -44,7 +44,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
         [Header("PostProcessing")]
         [SerializeField] private PostProcessingConfig _postProcessingConfig;
-        [SerializeField] private PostProcessVolume _postProcessVolume;
+        [SerializeField] private Volume _volume;
 
         [Header("Inventory")]
         [SerializeField] private InventorySlot _slotTemplate;
@@ -77,7 +77,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
             Container.Bind<PlayerProvider>().AsSingle().WithArguments(_playerPrefab);
-            Container.Bind<PostProcessingProvider>().AsSingle().WithArguments(_postProcessingConfig, _postProcessVolume);
+            Container.Bind<PostProcessingProvider>().AsSingle().WithArguments(_postProcessingConfig, _volume);
 
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig);
