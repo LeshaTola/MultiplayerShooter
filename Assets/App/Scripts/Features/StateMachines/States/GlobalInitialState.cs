@@ -87,6 +87,7 @@ namespace App.Scripts.Features.StateMachines.States
         private async void OnConnectedToServer()
         {
              await StateMachine.ChangeState(NextState);
+             YG2.GameReadyAPI();
         }
     }
 }

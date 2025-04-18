@@ -8,6 +8,7 @@ using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Timer;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using YG;
 
 namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 {
@@ -39,7 +40,6 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("Respawn");
             _playerController.IsBusy = true;
             await _respawnView.Show();
-            //await UniTask.Delay(50);
             _advertisementProvider.ShowInterstitialAd();
             
             _respawnView.ShowTimerText();
@@ -52,6 +52,12 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             
             _playerController.IsBusy = false;
             await StateMachine.ChangeState<GameplayState>();
+        }
+
+        public override UniTask Exit()
+        {
+            _advertisementProvider.ShowInterstitialAd();
+            return base.Exit();
         }
     }
 }

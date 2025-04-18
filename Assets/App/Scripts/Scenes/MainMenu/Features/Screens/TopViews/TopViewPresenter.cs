@@ -2,6 +2,7 @@
 using App.Scripts.Features;
 using App.Scripts.Features.Screens;
 using App.Scripts.Features.Settings;
+using App.Scripts.Features.Yandex.Advertisement;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.PopupAndViews.Popups.Image;
 using App.Scripts.Modules.Sounds.Providers;
@@ -26,6 +27,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private readonly ISoundProvider _soundProvider;
 
         private ITopViewElementPrezenter _activeScreenPresenter;
+        private readonly AdvertisementProvider _advertisementProvider;
 
         public TopViewPresenter(TopView view,
             SettingsView settingsView,
@@ -34,7 +36,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             TutorialConfig tutorialConfig,
             ImagePopupRouter imagePopupRouter,
             ILocalizationSystem localizationSystem,
-            ISoundProvider soundProvider)
+            ISoundProvider soundProvider, 
+            AdvertisementProvider advertisementProvider)
         {
             _view = view;
             _settingsView = settingsView;
@@ -44,6 +47,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _imagePopupRouter = imagePopupRouter;
             _localizationSystem = localizationSystem;
             _soundProvider = soundProvider;
+            _advertisementProvider = advertisementProvider;
 
             _activeScreenPresenter = presenters[0];
         }
@@ -111,6 +115,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private void OnToggleClicked(int index)
         {
+            _advertisementProvider.ShowInterstitialAd();
+
             _activeScreenPresenter?.Hide().Forget();
             _activeScreenPresenter = _presenters[index];
             _activeScreenPresenter.Show().Forget();

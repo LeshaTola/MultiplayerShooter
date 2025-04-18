@@ -3,6 +3,7 @@ using App.Scripts.Features;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Features.UserStats.Rank;
+using App.Scripts.Features.Yandex.Advertisement;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -30,6 +31,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private readonly UserStatsView _userStatsView;
         private readonly TopView _topView;
         private readonly InfoPopupRouter _infoPopupRouter;
+        private readonly AdvertisementProvider _advertisementProvider;
 
         public MainScreenPresenter(MainScreen screen,
             ConnectionProvider connectionProvider,
@@ -38,7 +40,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             TicketsProvider ticketsProvider,
             UserStatsView userStatsView,
             InfoPopupRouter infoPopupRouter, 
-            TopView topView)
+            TopView topView, AdvertisementProvider advertisementProvider)
         {
             _screen = screen;
             _connectionProvider = connectionProvider;
@@ -48,6 +50,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _userStatsView = userStatsView;
             _infoPopupRouter = infoPopupRouter;
             _topView = topView;
+            _advertisementProvider = advertisementProvider;
         }
 
         public override void Initialize()
@@ -109,6 +112,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 
         private void OnPlayButtonAction()
         {
+            _advertisementProvider.ShowInterstitialAd();
             _connectionProvider.QuickGame();
         }
 

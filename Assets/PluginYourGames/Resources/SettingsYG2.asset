@@ -411,7 +411,7 @@ MonoBehaviour:
     autoApplySettings: 0
     autoPauseGame: 1
     editEventSystem: 1
-    autoGRA: 1
+    autoGRA: 0
     logInEditor: 1
     archivingBuild: 0
     syncInitSDK: 0

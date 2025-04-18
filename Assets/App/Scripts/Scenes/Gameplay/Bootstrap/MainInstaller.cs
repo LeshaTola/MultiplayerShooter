@@ -55,7 +55,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [Header("Other")]
         [SerializeField] private AccrualConfig _accrualConfig;
         [SerializeField] private SceneNetworkController _sceneNetworkController;
-        // [SerializeField] private BotAI _botAI;
 
         public override void InstallBindings()
         {

@@ -17,8 +17,7 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
         private readonly List<ISavable> _savable;
         private readonly ISceneTransition _sceneTransition;
 
-        public InitialState(
-            IInitializeService initializeService,
+        public InitialState(IInitializeService initializeService,
             ISceneTransition sceneTransition,
             List<ISavable> savable)
         {
