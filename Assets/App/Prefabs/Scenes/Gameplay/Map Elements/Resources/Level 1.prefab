@@ -1321,126 +1321,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882124
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882137
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882124]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882137]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",23}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",10,0,-10},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",10}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",-10}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882124]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882124]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882124]._forceData.Array.data[0].ForceVector.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882124]._forceData.Array.data[0].ForceVector.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882124]._forceData.Array.data[0].ForceVector.z
-      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1500,96 +1387,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882125
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882126
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882125]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882126]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882125]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882125]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882125]._forceData.Array.data[0].ForceVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882125]._forceData.Array.data[0].ForceVector.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882125]._forceData.Array.data[0].ForceVector.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1597,7 +1401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1943,126 +1747,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882127
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882142
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882127]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882142]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",-20,0,0},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",-20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882127]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882127]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882127]._forceData.Array.data[0].ForceVector.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882127]._forceData.Array.data[0].ForceVector.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882127]._forceData.Array.data[0].ForceVector.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2342,126 +2033,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882122
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882138
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882122]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882138]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",10}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",-5,0,-5},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",-5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",-5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882122]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882122]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882122]._forceData.Array.data[0].ForceVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882122]._forceData.Array.data[0].ForceVector.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882122]._forceData.Array.data[0].ForceVector.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2595,126 +2173,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882123
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882140
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882123]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882140]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",0,0,-20},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",-20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882123]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882123]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882123]._forceData.Array.data[0].ForceVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882123]._forceData.Array.data[0].ForceVector.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882123]._forceData.Array.data[0].ForceVector.z
-      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3063,126 +2528,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882118
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882139
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882118]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882139]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",10}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",5,0,5},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",5}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882118]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882118]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882118]._forceData.Array.data[0].ForceVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882118]._forceData.Array.data[0].ForceVector.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882118]._forceData.Array.data[0].ForceVector.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3242,126 +2594,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882136
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882120]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882136]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",23}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",-10,0,10},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",-10}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",10}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882120]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882120]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882120]._forceData.Array.data[0].ForceVector.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882120]._forceData.Array.data[0].ForceVector.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882120]._forceData.Array.data[0].ForceVector.z
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3567,126 +2806,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882128
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882143
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882128]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882143]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",20,0,0},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882128]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882128]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882128]._forceData.Array.data[0].ForceVector.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882128]._forceData.Array.data[0].ForceVector.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882128]._forceData.Array.data[0].ForceVector.z
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5201,142 +4331,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4300557172647123862}
     m_Modifications:
-    - target: {fileID: -7958033898654711917, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[0]
-      value: 705511980065882112
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: _strategies.Array.data[1]
-      value: 705511980065882141
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.AddForceStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882141]
-      value: Assembly-CSharp App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.PlaySoundStrategy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_strategy._forceData","length":2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[1]
-      value: '"path":"_strategy._forceData.[0].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0.1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[2]
-      value: '"path":"_strategy._forceData.[0].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,2,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[3]
-      value: '"path":"_strategy._forceData.[0].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[4]
-      value: '"path":"_strategy._forceData.[1]","value":{"$id":0,"$type":"App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific.ForceData,
-        Assembly-CSharp","ForceVector":{"$type":"UnityEngine.Vector3, UnityEngine.CoreModule",0,0,20},"Delay":0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[5]
-      value: '"path":"_strategy._forceData.[1].Delay","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[6]
-      value: '"path":"_strategy._forceData.[1].ForceVector","value":{"$id":0,"$type":"UnityEngine.Vector3,
-        UnityEngine.CoreModule",0,0,0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[7]
-      value: '"path":"_strategy._forceData.[1].ForceVector.x","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[8]
-      value: '"path":"_strategy._forceData.[1].ForceVector.y","value":{"$id":0,"$type":"System.Single,
-        mscorlib",0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.data[9]
-      value: '"path":"_strategy._forceData.[1].ForceVector.z","value":{"$id":0,"$type":"System.Single,
-        mscorlib",20}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.size
+    - target: {fileID: 2431801645343170054, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
+      propertyPath: m_Radius
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[0].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[1].Delay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[0].ForceVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[0].ForceVector.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[0].ForceVector.z
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[1].ForceVector.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[1].ForceVector.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2867099413824476557, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: managedReferences[705511980065882112]._forceData.Array.data[1].ForceVector.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3917738058276644130, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_Name
       value: jumpAd (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4401506319260712856, guid: ca63b93f234d30b4a9c9f3aad1b2329f, type: 3}
       propertyPath: m_LocalPosition.x

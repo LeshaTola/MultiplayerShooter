@@ -38,7 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: c303a54fa00412a43864cdfb529bb202, type: 3}
-        m_Scale: {x: 200, y: 200}
+        m_Scale: {x: 600, y: 600}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: ca2018cce4b3041ca94fe509b701bce5, type: 3}
@@ -142,7 +142,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: c303a54fa00412a43864cdfb529bb202, type: 3}
-        m_Scale: {x: 200, y: 200}
+        m_Scale: {x: 600, y: 600}
         m_Offset: {x: 0, y: 0}
     - _MainTexRing:
         m_Texture: {fileID: 0}
@@ -512,9 +512,9 @@ Material:
     m_Colors:
     - _ASEOutlineColor: {r: 0.5181034, g: 0.4426903, b: 0.6764706, a: 0}
     - _AlbedoColor: {r: 0.18280526, g: 0.3903058, b: 0.49056602, a: 1}
-    - _BaseColor: {r: 0.4224813, g: 0.7829333, b: 0.8867924, a: 1}
+    - _BaseColor: {r: 0.42352945, g: 0.5865675, b: 0.8862745, a: 1}
     - _BlendColor: {r: 0.29411763, g: 0.29411763, b: 0.29411763, a: 1}
-    - _Color: {r: 0.42248127, g: 0.7829333, b: 0.8867924, a: 1}
+    - _Color: {r: 0.42352942, g: 0.5865675, b: 0.8862745, a: 1}
     - _Color1: {r: 0, g: 0.7735849, b: 0.7177879, a: 1}
     - _Color2: {r: 0.6698113, g: 0.53079385, b: 0, a: 1}
     - _DeepWaterColor: {r: 0.5, g: 0.2712264, b: 0.2712264, a: 0}
