@@ -26,17 +26,18 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
             var newId = _beforeSaleId + $"_{salePercentage}";
             var purchaseData = YG2.PurchaseByID(newId);
             
+            Debug.Log($"TryToLoad {newId}");
             if (purchaseData == null)
             {
                 return;
             }
             
+            _purchaseYg.id = newId;
+            _purchaseYg.UpdateEntries(purchaseData);
+            
             _salePanel.SetActive(true);
             _saleText.text = salePercentage + "%";
 
-            _purchaseYg.UpdateEntries(purchaseData);
-            _purchaseYg.id = _beforeSaleId;
-            
             _prevPriceText.text = (int)(float.Parse(purchaseData.priceValue)*2) + " YAN";
             _curPriceText.text = purchaseData.price;
         }

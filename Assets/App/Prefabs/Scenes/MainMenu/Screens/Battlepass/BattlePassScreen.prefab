@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 40
+  m_ScrollSensitivity: 0.2
   m_Viewport: {fileID: 4536974433373624353}
   m_HorizontalScrollbar: {fileID: 1986674587467337847}
   m_VerticalScrollbar: {fileID: 0}
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 383
 --- !u!114 &3991284960639652192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1706,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000045776367}
+  m_AnchoredPosition: {x: -1254, y: 0.000045776367}
   m_SizeDelta: {x: 4328, y: 264.9977}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2630597716059553317
@@ -2234,7 +2234,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5751258924317316524}
   m_HandleRect: {fileID: 2911408264942195026}
   m_Direction: 0
-  m_Value: 0.000000048672373
+  m_Value: 0.5
   m_Size: 0.42051756
   m_NumberOfSteps: 0
   m_OnValueChanged:

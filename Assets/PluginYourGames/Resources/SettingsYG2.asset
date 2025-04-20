@@ -139,7 +139,7 @@ MonoBehaviour:
   Flags:
     flags:
     - name: SALE
-      value: 0
+      value: 50
   InterstitialAdv:
     showFirstAdv: 1
     interAdvInterval: 120
@@ -388,6 +388,15 @@ MonoBehaviour:
       imageURI: 
       price: 899 YAN
       priceValue: 899
+      priceCurrencyCode: 
+      currencyImageURL: 
+      consumed: 0
+    - id: large_coin_pack_50
+      title: 
+      description: 
+      imageURI: 
+      price: 450 YAN
+      priceValue: 450
       priceCurrencyCode: 
       currencyImageURL: 
       consumed: 0

@@ -1520,7 +1520,6 @@ GameObject:
   - component: {fileID: 667699066}
   - component: {fileID: 667699065}
   - component: {fileID: 667699068}
-  - component: {fileID: 667699069}
   - component: {fileID: 667699070}
   m_Layer: 0
   m_Name: Main Camera
@@ -1637,18 +1636,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &667699069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667699064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &667699070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5062,6 +5049,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1012529308523565638, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857791801043226565, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2029714829642475021, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}

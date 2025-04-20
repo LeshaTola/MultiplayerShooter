@@ -40,7 +40,6 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("Respawn");
             _playerController.IsBusy = true;
             await _respawnView.Show();
-            _advertisementProvider.ShowInterstitialAd();
             
             _respawnView.ShowTimerText();
             await _timer.StartTimer(_gameConfig.RespawnTime, _respawnView.UpdateTimer);

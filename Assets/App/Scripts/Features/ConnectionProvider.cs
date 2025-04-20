@@ -62,6 +62,33 @@ namespace App.Scripts.Features
             Debug.Log($"Connected To Server. Region: {PhotonNetwork.CloudRegion}");
             PhotonNetwork.JoinLobby();
         }
+        
+        public override void OnRegionListReceived(RegionHandler regionHandler)
+        {
+            Debug.Log("Received list of regions!");
+
+            // Проверяем, есть ли регионы
+            if (regionHandler == null || regionHandler.EnabledRegions == null)
+            {
+                Debug.LogError("No regions available!");
+                return;
+            }
+
+            // Выводим информацию о каждом регионе
+            foreach (var region in regionHandler.EnabledRegions)
+            {
+                Debug.Log($"Region: {region.Code} | Ping: {region.Ping}ms");
+            }
+
+            // Можно запустить пинг для определения лучшего региона
+            if (!regionHandler.IsPinging)
+            {
+                regionHandler.PingMinimumOfRegions((handler) => 
+                {
+                    Debug.Log($"Best region: {handler.BestRegion.Code} (Ping: {handler.BestRegion.Ping}ms)");
+                }, "BestRegionPref");
+            }
+        }
 
         public override void OnJoinedLobby()
         {

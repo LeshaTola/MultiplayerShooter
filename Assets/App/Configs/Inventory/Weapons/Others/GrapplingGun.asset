@@ -151,7 +151,7 @@ MonoBehaviour:
       Data: 
     - Name: _maxDistance
       Entry: 4
-      Data: -1
+      Data: 99999
     - Name: _buckshotCount
       Entry: 3
       Data: 1

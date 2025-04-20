@@ -12,6 +12,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         public event Action PlayButtonAction;
         public event Action RouletteButtonAction;
         public event Action BattlePassButtonAction;
+        public event Action RegionChangedAction;
 
         [SerializeField] private Button _playButton;
 
@@ -25,6 +26,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         [SerializeField] private TMPLocalizer _rankName;
 
         [SerializeField] private TextMeshProUGUI _ticketsCountText;
+        [SerializeField] private TMP_Dropdown _regionDropdown;
 
         public override void Initialize()
         {
@@ -51,5 +53,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _rankName.Key = rankName;
             _rankName.Translate();
         }
+        
+        private void SetupRegions()
+        {
+            
+        }
+        
     }
 }
