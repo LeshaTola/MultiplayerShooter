@@ -109,7 +109,7 @@ Coins,RoboBucks
 Ticket,Ticket
 DuelMap,Duel Box
 Polygon,Polygon
-Ships,Gaiti
+Ships,Haiti
 Table,Table-City
 ПРЕДЛОЖЕНИЯ,OFFERS
 МАРКЕТ,MARKET
@@ -213,7 +213,7 @@ WASD -- Движение,WASD -- Movement
 Tab -- Статистика,Tab -- Match Statistic
 [~] -- Пауза,[~] -- Exit menu
 Enter -- Чат,Enter -- Chat
-12345/Колесо -- Поменять оружие,12345/Mouse wheel-- Change Weapon
+12345/Колесо -- Поменять оружие,"[1],[2],[3],[4],[5]/Mouse wheel-- Change Weapon"
 Загрузка...,Loading...
 Время жизни (секунды),Life time (seconds)
 LavaLamp,Lava Lamp
