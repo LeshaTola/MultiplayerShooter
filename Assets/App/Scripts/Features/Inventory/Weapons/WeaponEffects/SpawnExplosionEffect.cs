@@ -46,8 +46,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
         {
             return (player, distance) =>
             {
-                if (!CanDamagePlayer(player, distance) 
-                    || IsObstructed(explosion.transform.position, player.transform.position, distance))
+                if (!CanDamagePlayer(player))
                 {
                     return;
                 }
@@ -72,19 +71,21 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             };
         }
 
-        private bool CanDamagePlayer(Health player, float distance)
+        private bool CanDamagePlayer(Health player)
         {
-            return player.Value > 0 && distance <= _radius;
+            return player.Value > 0;
         }
 
-        private bool IsObstructed(Vector3 explosionCenter, Vector3 playerPosition, float distance)
+        /*private bool IsObstructed(Vector3 explosionCenter, Vector3 playerPosition)
         {
-            if (Physics.Raycast(explosionCenter, playerPosition - explosionCenter, out var hit, distance))
+            if (Physics.Raycast(explosionCenter, playerPosition - explosionCenter, out var hit, _radius))
             {
+                Debug.Log(hit.collider.gameObject.name);
                 return hit.collider.gameObject.TryGetComponent<Health>(out _);
             }
+            Debug.Log("Not found");
             return false;
-        }
+        }*/
 
         private int CalculateDamage(float distance)
         {

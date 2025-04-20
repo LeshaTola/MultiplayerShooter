@@ -162,8 +162,17 @@ MonoBehaviour:
       Data: 5|App.Scripts.Features.Inventory.Weapons.WeaponEffects.SpawnExplosionEffect,
         Assembly-CSharp
     - Name: _damage
+      Entry: 7
+      Data: App.Scripts.Modules.MinMaxValue.MinMaxInt, Assembly-CSharp
+    - Name: Min
       Entry: 3
-      Data: 50
+      Data: 100
+    - Name: Max
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: _radius
       Entry: 4
       Data: 5
