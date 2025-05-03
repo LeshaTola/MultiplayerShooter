@@ -35,11 +35,28 @@ namespace App.Scripts.Scenes.Gameplay
             }
         }
 
+        public void KillRoom()
+        {
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+            foreach (var player in PhotonNetwork.PlayerListOthers)
+            {
+                PhotonNetwork.CloseConnection(player);
+            }
+        }
+
         [PunRPC]
         public void SetMapId(int mapId)
         {
             _mapId = mapId;
-            _mapsProvider.CurrentMap = PhotonView.Find(_mapId).GetComponent<Map>();
+            var mapObject = PhotonView.Find(_mapId);
+            var map = mapObject?.GetComponent<Map>();
+            if (map == null)
+            {
+                map = FindObjectOfType<Map>();
+            }
+            
+            _mapsProvider.CurrentMap = map;
+            
             _playerProvider.SetSpawnPoints(_mapsProvider.CurrentMap.SpawnPoints);
         }
 

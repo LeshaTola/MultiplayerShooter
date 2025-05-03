@@ -8,6 +8,7 @@ using App.Scripts.Modules.Saves;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,7 +18,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
     public class MarketService : ISavable, IInitializable, IUpdatable, ICleanupable
     {
         public event Action<float, float> OnTimerUpdated;
-        public event Action<List<ShopItemData>> OnItemsUpdated;
+        public event Action<List<ShopItemData>,List<ShopItemData>> OnItemsUpdated;
 
         private readonly GlobalInventory _globalInventory;
         private readonly RaritiesDatabase _raritiesDatabase;
@@ -28,7 +29,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private DateTime _lastUpdate;
 
         public float RemainingTime { get; private set; }
-        public List<ShopItemData> CurrentItems { get; private set; } = new();
+        public List<ShopItemData> CurrentWeapons { get; private set; } = new();
+        public List<ShopItemData> CurrentSkins { get; private set; } = new();
 
         public MarketService(
             GlobalInventory globalInventory,
@@ -72,7 +74,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             _dataProvider.SaveData(new MarketSavesData
             {
                 LastUpdate = _lastUpdate.Ticks,
-                CurrentItems = CurrentItems.Select(x => x.Item.Id).ToList(),
+                Weapons = CurrentWeapons.Select(x => x.Item.Id).ToList(),
+                Skins = CurrentSkins.Select(x => x.Item.Id).ToList(),
             });
         }
 
@@ -83,32 +86,37 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                 _dataProvider.SaveData(new MarketSavesData
                 {
                     LastUpdate = default,
-                    CurrentItems = new List<string>(),
+                    Weapons = new List<string>(),
+                    Skins = new List<string>(),
                 });
             }
 
             var marketData = _dataProvider.GetData();
-            if (marketData.LastUpdate == 0)
-            {
-                _lastUpdate = DateTime.Now.AddHours(-2);
-            }
-            else
-            {
-                _lastUpdate = new DateTime(marketData.LastUpdate);
-            }
+            _lastUpdate = marketData.LastUpdate == 0 ? DateTime.Now.AddHours(-2) : new DateTime(marketData.LastUpdate);
             
-            CurrentItems.Clear();
-            foreach (var itemId in marketData.CurrentItems)
+            CurrentWeapons.Clear();
+            foreach (var itemId in marketData.Weapons)
             {
                 var item = _userStatsProvider.InventoryProvider.GetConfigById(itemId);
-                CurrentItems.Add(new ShopItemData
+                CurrentWeapons.Add(new ShopItemData
+                {
+                    Price = _costsDatabase.PriceByRarity[item.Rarity],
+                    Item = item
+                });
+            }
+            
+            CurrentSkins.Clear();
+            foreach (var itemId in marketData.Skins)
+            {
+                var item = _userStatsProvider.InventoryProvider.GetConfigById(itemId);
+                CurrentSkins.Add(new ShopItemData
                 {
                     Price = _costsDatabase.PriceByRarity[item.Rarity],
                     Item = item
                 });
             }
 
-            OnItemsUpdated?.Invoke(CurrentItems);
+            OnItemsUpdated?.Invoke(CurrentWeapons,CurrentSkins);
             UpdateRemainingTime();
         }
 
@@ -116,7 +124,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         {
             var inventory = _userStatsProvider.InventoryProvider.Inventory;
 
-            var newItems = new List<ShopItemData>();
+            var newWeapons = new List<ShopItemData>();
+            var newSkins = new List<ShopItemData>();
             foreach (var rarity in _raritiesDatabase.Rarities.Values)
             {
                 if (!_globalInventory.ItemsByRarity.TryGetValue(rarity.Name, out var items))
@@ -130,20 +139,35 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                     continue;
                 }
 
-                newItems.Add(new ShopItemData
+                var skins = availableItems.Where(x=>x is SkinConfig).ToList();
+                if (skins.Count > 0)
                 {
-                    Price = _costsDatabase.PriceByRarity[rarity.Name],
-                    Item = availableItems[Random.Range(0, availableItems.Count)]
-                });
+                    newSkins.Add(new ShopItemData
+                    {
+                        Price = _costsDatabase.PriceByRarity[rarity.Name],
+                        Item = skins[Random.Range(0, skins.Count)]
+                    });
+                }
+                
+                var weapons = availableItems.Where(x=>x is WeaponConfig).ToList();
+                if (weapons.Count > 0)
+                {
+                    newWeapons.Add(new ShopItemData
+                    {
+                        Price = _costsDatabase.PriceByRarity[rarity.Name],
+                        Item = weapons[Random.Range(0, weapons.Count)]
+                    });
+                }
             }
 
-            UpdateItemsInternal(newItems);
+            UpdateItemsInternal(newWeapons , newSkins);
         }
 
-        private void UpdateItemsInternal(List<ShopItemData> newItems)
+        private void UpdateItemsInternal(List<ShopItemData> newItems, List<ShopItemData> newSkins)
         {
-            CurrentItems = newItems;
-            OnItemsUpdated?.Invoke(CurrentItems);
+            CurrentWeapons = newItems;
+            CurrentSkins = newSkins;
+            OnItemsUpdated?.Invoke(CurrentWeapons,CurrentSkins);
             SaveState();
         }
 
@@ -174,14 +198,22 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private void ValidateCurrentItems()
         {
             var inventory = _userStatsProvider.InventoryProvider.Inventory;
-            var availableItems = GetAvailableItems(inventory);
-            UpdateItemsInternal(availableItems);
+            var availableWeapons = GetAvailableWeapons(inventory);
+            var availableSkins = GetAvailableSkins(inventory);
+            UpdateItemsInternal(availableWeapons, availableSkins);
         }
 
-        private List<ShopItemData> GetAvailableItems(InventoryData inventory)
+        private List<ShopItemData> GetAvailableSkins(InventoryData inventory)
         {
-            var availableItems = CurrentItems
-                .Where(item => inventory.IsAvailable(item.Item.Id) && !item.Item.IsNotForSale).ToList();
+            var availableItems = CurrentSkins
+                .Where(item => inventory.IsAvailable(item.Item.Id) && !item.Item.IsNotForSale && item.Item is SkinConfig).ToList();
+            return availableItems;
+        }
+
+        private List<ShopItemData> GetAvailableWeapons(InventoryData inventory)
+        {
+            var availableItems = CurrentWeapons
+                .Where(item => inventory.IsAvailable(item.Item.Id) && !item.Item.IsNotForSale && item.Item is WeaponConfig).ToList();
             return availableItems;
         }
     }

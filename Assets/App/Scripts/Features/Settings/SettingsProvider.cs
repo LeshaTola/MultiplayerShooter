@@ -35,8 +35,8 @@ namespace App.Scripts.Features.Settings
                 _dataProvider.SaveData(new SettingsData()
                 {
                     MasterVolume = 1,
-                    EffectsVolume = 0.5f,
-                    MusicVolume = 0.5f,
+                    EffectsVolume = 1f,
+                    MusicVolume = 1f,
                     MouseSensitivity = 0.5f,
                 });
             }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
@@ -53,7 +52,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Exp
 
             photonView.RPC(nameof(Explode), RpcTarget.All);
             await UniTask.WaitForSeconds(_particleSystem.main.duration);
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
         
         [PunRPC]

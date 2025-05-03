@@ -889,7 +889,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 383
 --- !u!114 &4372522388087490918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
         hideEase: 26
         _bgImage: {fileID: 8585802299412942135}
         _window: {fileID: 9184398238190947729}
-        _fadeValue: 0.5
+        _fadeValue: 0.9
 --- !u!1 &9184398238190947729
 GameObject:
   m_ObjectHideFlags: 0

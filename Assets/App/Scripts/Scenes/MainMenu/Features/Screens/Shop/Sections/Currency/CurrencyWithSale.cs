@@ -16,17 +16,18 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
         
         private string _beforeSaleId;
 
-        private void Awake()
+        public void Initialize()
         {
             _beforeSaleId = _purchaseYg.id;
+            // Debug.Log($"Start id: {_beforeSaleId}");
         }
 
         public void SetSale(int salePercentage)
         {
             var newId = _beforeSaleId + $"_{salePercentage}";
+            // Debug.Log($"TryToLoad {newId}");
             var purchaseData = YG2.PurchaseByID(newId);
             
-            Debug.Log($"TryToLoad {newId}");
             if (purchaseData == null)
             {
                 return;

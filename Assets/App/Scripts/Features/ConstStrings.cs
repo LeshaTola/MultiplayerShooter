@@ -16,5 +16,6 @@
         public const string AD_IS_OFF = "Реклама успешно отключена!";
         public const string MARKET_IS_UPDATED = "Магазин успешно обнавлен!";
         public const string REVIEW_IS_NOT_AVAILABLE = "Не возможно оставить отзыв";
+        public const string CANNOT_JOIN_ROOM = "Невозможно подключиться к комнате";
     }
 }

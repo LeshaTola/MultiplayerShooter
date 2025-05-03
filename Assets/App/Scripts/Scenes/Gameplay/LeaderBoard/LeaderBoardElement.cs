@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         [SerializeField] private TextMeshProUGUI _killsText;
         [SerializeField] private TextMeshProUGUI _deathText;
         [SerializeField] private TextMeshProUGUI _pingText;
+        [SerializeField] private Button _kickButton;
 
         [SerializeField] private Color _defaultColor = Color.white;
         [SerializeField] private Color _selectedColor = Color.yellow;
@@ -22,6 +24,8 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             _killsText.text = kills.ToString();
             _deathText.text = death.ToString();
             _pingText.text = ping.ToString();
+            
+            _kickButton.onClick.AddListener(KickPlayer);
         }
 
         public void SetupColor(bool isMine = false)
@@ -48,6 +52,12 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             _killsText.gameObject.SetActive(true);
             _deathText.gameObject.SetActive(true);
             _pingText.gameObject.SetActive(true);
+            
+#if UNITY_EDITOR
+            _kickButton.gameObject.SetActive(true);
+#else
+            _kickButton.gameObject.SetActive(false);
+#endif
         }
 
         public void Hide()
@@ -57,6 +67,21 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             _killsText.gameObject.SetActive(false);
             _deathText.gameObject.SetActive(false);
             _pingText.gameObject.SetActive(false);
+            
+            _kickButton.gameObject.SetActive(false);
+        }
+        
+        private void KickPlayer() //TODO: KASTIL
+        {
+            foreach (Photon.Realtime.Player player in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                if (player.NickName == _nickNameText.text)
+                {
+                    PhotonNetwork.CloseConnection(player);
+                    Debug.Log($"player {_nickNameText.text} was kicked.");
+                    return;
+                }
+            }
         }
     }
 }

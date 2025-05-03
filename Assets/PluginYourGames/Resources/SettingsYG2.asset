@@ -142,7 +142,7 @@ MonoBehaviour:
       value: 50
   InterstitialAdv:
     showFirstAdv: 1
-    interAdvInterval: 120
+    interAdvInterval: 60
     postponeCallByFail: 0
     postponeCallTimer: 10
     labelAdvSimLabel: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
       coverURL: https://avatars.mds.yandex.net/get-games/1890793/2a00000189c00383b5000f00c723ed0fa77c/pjpg128x128
       iconURL: https://avatars.mds.yandex.net/get-games/1890793/2a00000189c00383b5000f00c723ed0fa77c/pjpg128x128
   Payments:
+    durationPayPanel: 1
     testBuyFail: 0
     purshases:
     - id: TurnOffAd

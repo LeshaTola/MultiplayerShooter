@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using App.Scripts.Features.Commands;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
@@ -54,6 +55,8 @@ namespace App.Scripts.Features
 #endif
             PhotonNetwork.NickName = playerName;
 
+            SetupRegion();
+
             PhotonNetwork.ConnectUsingSettings();
         }
 
@@ -62,8 +65,9 @@ namespace App.Scripts.Features
             Debug.Log($"Connected To Server. Region: {PhotonNetwork.CloudRegion}");
             PhotonNetwork.JoinLobby();
         }
-        
-        public override void OnRegionListReceived(RegionHandler regionHandler)
+
+
+        /*public override void OnRegionListReceived(RegionHandler regionHandler)
         {
             Debug.Log("Received list of regions!");
 
@@ -88,7 +92,7 @@ namespace App.Scripts.Features
                     Debug.Log($"Best region: {handler.BestRegion.Code} (Ping: {handler.BestRegion.Ping}ms)");
                 }, "BestRegionPref");
             }
-        }
+        }*/
 
         public override void OnJoinedLobby()
         {
@@ -116,7 +120,7 @@ namespace App.Scripts.Features
             TryReconnect();
             _infoPopupRouter.HidePopup().Forget();
         }
-        
+
         public void QuickGame()
         {
             var availableRoom
@@ -125,7 +129,8 @@ namespace App.Scripts.Features
                     .FirstOrDefault(x =>
                         x.IsOpen
                         && x.IsVisible
-                        && x.PlayerCount is < 10 and > 0
+                        && x.PlayerCount > 0
+                        && x.PlayerCount < x.MaxPlayers
                         && !x.CustomProperties.TryGetValue("Password", out _));
             if (availableRoom == null)
             {
@@ -135,7 +140,7 @@ namespace App.Scripts.Features
         
             PhotonNetwork.JoinRoom(availableRoom.Name);
         }
-        
+
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
             string roomName = $"Room_{Random.Range(0, 1000)}";
@@ -157,15 +162,44 @@ namespace App.Scripts.Features
             PhotonNetwork.CreateRoom(roomName, options);
         }
 
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.Log($"Room {returnCode}: {message}");
+            _infoPopupRouter.ShowPopup(ConstStrings.ERROR,ConstStrings.CANNOT_JOIN_ROOM).Forget();
+        }
+
         private void TryReconnect()
         {
-            if (PhotonNetwork.IsConnectedAndReady)
+            /*if (PhotonNetwork.IsConnectedAndReady)
             {
                 PhotonNetwork.ReconnectAndRejoin();
             }
             else
             {
                 PhotonNetwork.ConnectUsingSettings();
+            }*/
+            Reload();
+        }
+
+
+        [DllImport("__Internal")]
+        private static extern void ReloadPage();
+
+        public void Reload()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            ReloadPage();
+#else
+            Debug.LogWarning("Reload game");
+#endif
+        }
+
+        private void SetupRegion()
+        {
+            var region = YG2.saves.Region;
+            if (!string.IsNullOrEmpty(region))
+            {
+                PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region;
             }
         }
     }

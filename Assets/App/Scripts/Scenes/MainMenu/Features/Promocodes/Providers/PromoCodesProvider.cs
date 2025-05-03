@@ -52,6 +52,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers
 
         public void ApplyPromoCode(string promoCode)
         {
+            if (string.IsNullOrEmpty(promoCode))
+            {
+                return;
+            }
+            
             if (!_promocodesDatabase.Promocodes.TryGetValue(promoCode, out var promoCodeActions))
             {
                 _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.PROMO_CODE_IS_NOT_EXIST).Forget();

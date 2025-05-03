@@ -47,15 +47,10 @@ namespace App.Scripts.Scenes.MainMenu.StateMachines.States
             await _mainScreenPresenter.Hide();
         }
 
-        public override async UniTask Update()
+        public override UniTask Update()
         {
             _updateService.Update();
-            if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.O) && Input.GetKeyDown(KeyCode.Y))
-            {
-                _rewardService.ExperienceToAdd = 300;
-                _rewardService.AddRewards(_rewardConfigs);
-                await _rewardService.ApplyRewardsAsync();
-            }
+            return UniTask.CompletedTask;
         }
     }
 }

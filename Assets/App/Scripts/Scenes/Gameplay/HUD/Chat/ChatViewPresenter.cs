@@ -31,7 +31,7 @@ namespace App.Scripts.Scenes.Gameplay.Chat
 
         public override void Initialize()
         {
-            _view.OnSendMessageButtonPressed += SendMessage;
+            _view.OnSendMessageButtonPressed += OnEnter;
             
             _view.Initialize(_localizationSystem);
             _gameInputProvider.OnPause += OnPause;
@@ -40,7 +40,7 @@ namespace App.Scripts.Scenes.Gameplay.Chat
 
         public override void Cleanup()
         {
-            _view.OnSendMessageButtonPressed -= SendMessage;
+            _view.OnSendMessageButtonPressed -= OnEnter;
 
             _view.CleanUp();
             _gameInputProvider.OnPause -= OnPause;

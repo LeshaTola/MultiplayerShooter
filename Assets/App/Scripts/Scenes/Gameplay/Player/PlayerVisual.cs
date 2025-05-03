@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
@@ -44,19 +45,16 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [PunRPC]
         public void SetImortable(bool imortable)
         {
-            // Обрабатываем все MeshRenderer в _meshRenderer
             foreach (MeshRenderer renderer in _meshRenderer)
             {
                 Material
-                    material = renderer.material; // Используем material, чтобы изменения касались только этого объекта
+                    material = renderer.material;
                 SetMaterialTransparent(material, imortable);
 
                 var color = material.color;
-                color.a = imortable ? 0.2f : 1; // Устанавливаем альфа-канал
+                color.a = imortable ? 0.2f : 1;
                 material.color = color;
             }
-
-            // Обрабатываем глаз
             SetEye(imortable);
         }
 

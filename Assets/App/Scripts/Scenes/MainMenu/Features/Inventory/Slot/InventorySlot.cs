@@ -12,6 +12,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
         [SerializeField] private Image _selectionImage;
         [SerializeField] private Image _rarityImage;
         [SerializeField] private TextMeshProUGUI _keyText;
+        [SerializeField] private bool isMobile;
         
         private IInventorySlotStrategy _inventorySlotStrategy;
         public ItemType Type { get; private set; }
@@ -40,6 +41,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
 
         public void OnDrop(PointerEventData eventData)
         {
+            if (isMobile)
+            {
+                return;
+            }
+            
             var item = eventData.pointerDrag.GetComponent<Item>();
             _inventorySlotStrategy.Drop(this,item);
         }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.Scenes.Gameplay.Effectors.Strategy;
 using Photon.Pun;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Effectors
@@ -10,7 +8,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
     public class Effector : MonoBehaviourPun
     {
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField, SerializeReference] private List<IEffectorStrategy> _strategies;
+        [SerializeField] [SerializeReference] private List<IEffectorStrategy> _strategies;
 
         public void Start()
         {
@@ -19,12 +17,15 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
                 strategy.Initialize(this);
             }
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Player.Player player))
             {
-                ApplyEffect(player);
+                if (player.photonView.IsMine)
+                {
+                    ApplyEffect(player);
+                }
             }
         }
 
@@ -35,7 +36,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
                 strategy.Apply(player);
             }
         }
-        
+
         public void RPCPlaySoud()
         {
             photonView.RPC(nameof(PlaySoud), RpcTarget.AllBuffered);

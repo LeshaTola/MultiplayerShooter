@@ -9,7 +9,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 {
     public class ShopMarketElement : MonoBehaviour
     {
-        public event Action<int> OnElementClicked;
+        public event Action<string> OnElementClicked;
         
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private Image _weaponImage;
@@ -19,7 +19,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         
         [SerializeField] private RaritiesDatabase _raritiesDatabase;
         
-        private int _id;
+        private string _id;
         private Quaternion _startRotation;
 
         public void Initialize()
@@ -33,9 +33,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             _buyButton.onClick.RemoveAllListeners();
         }
         
-        public void Setup(ShopItemData shopItemData, int id)
+        public void Setup(ShopItemData shopItemData)
         {
-            _id = id;
+            _id = shopItemData.Item.Id;
             var item = shopItemData.Item;
             _backgroundImage.color = _raritiesDatabase.Rarities[item.Rarity].Color;
             _weaponImage.sprite = item.Sprite;

@@ -6,6 +6,7 @@ using App.Scripts.Scenes.Gameplay.Weapons;
 using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
+using YG;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
@@ -63,6 +64,16 @@ namespace App.Scripts.Scenes.Gameplay.Player
         {
             photonView.RPC(nameof(InitializePlayer), RpcTarget.AllBuffered, name);
             _localArmRotation = _arm.transform.localRotation.eulerAngles;
+            
+            YG2.onFocusWindowGame += OnGamePaused;
+        }
+        
+        private void OnGamePaused(bool isPaused)
+        {
+            if (photonView.IsMine)
+            {
+                RPCSetActive(isPaused);
+            }
         }
 
         [PunRPC]
@@ -105,6 +116,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         private void OnDestroy()
         {
+            YG2.onFocusWindowGame -= OnGamePaused;
             Health.OnDamage -= OnDamage;
             WeaponProvider.OnWeaponChanged -= OnWeaponChanged;
         }

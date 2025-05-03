@@ -70,6 +70,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             {
                 return;
             }
+
+            if (roomList.Count == 0)
+            {
+                _cachedRoomList.Clear();
+            }
+            
             foreach (var room in roomList)
             {
                 if (room.RemovedFromList)

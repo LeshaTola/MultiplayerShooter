@@ -14,9 +14,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
     public class MarketSectionView : MonoBehaviour
     {
         public event Action OnUpdateButtonClicked;
-        public event Action<int> OnItemClicked;
+        public event Action<string> OnItemClicked;
 
-        [SerializeField] private List<ShopMarketElement> _shopMarketElements;
+        [SerializeField] private List<ShopMarketElement> _weaponMarketElements;
+        [SerializeField] private List<ShopMarketElement> _skinsMarketElements;
 
         [Header("Timer")]
         [SerializeField] private string _preTimerText;
@@ -37,7 +38,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
             _localizationSystem = localizationSystem;
             _updateButton.onClick.AddListener(() => OnUpdateButtonClicked?.Invoke());
 
-            foreach (var shopMarketElement in _shopMarketElements)
+            foreach (var shopMarketElement in _weaponMarketElements)
+            {
+                shopMarketElement.Initialize();
+            }
+            foreach (var shopMarketElement in _skinsMarketElements)
             {
                 shopMarketElement.Initialize();
             }
@@ -47,7 +52,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         {
             _updateButton.onClick.RemoveAllListeners();
             
-            foreach (var shopMarketElement in _shopMarketElements)
+            foreach (var shopMarketElement in _weaponMarketElements)
+            {
+                shopMarketElement.Cleanup();
+            }
+            foreach (var shopMarketElement in _skinsMarketElements)
             {
                 shopMarketElement.Cleanup();
             }
@@ -64,23 +73,36 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
             _timerImage.fillAmount = currentTime / maxTime;
         }
 
-        public void UpdateSections(List<ShopItemData> shopItemConfigs)
+        public void UpdateSections(List<ShopItemData> weaponItemConfigs,List<ShopItemData> skinsItemConfigs)
         {
-            foreach (var shopMarketElement in _shopMarketElements)
+            foreach (var shopMarketElement in _weaponMarketElements)
             {
                 shopMarketElement.OnElementClicked -= OnElementClicked;
                 shopMarketElement.gameObject.SetActive(false);
             }
 
-            for (int i = 0; i < shopItemConfigs.Count; i++)
+            for (int i = 0; i < weaponItemConfigs.Count; i++)
             {
-                _shopMarketElements[i].gameObject.SetActive(true);
-                _shopMarketElements[i].Setup(shopItemConfigs[i], i);
-                _shopMarketElements[i].OnElementClicked += OnElementClicked;
+                _weaponMarketElements[i].gameObject.SetActive(true);
+                _weaponMarketElements[i].Setup(weaponItemConfigs[i]);
+                _weaponMarketElements[i].OnElementClicked += OnElementClicked;
+            }
+            
+            foreach (var shopMarketElement in _skinsMarketElements)
+            {
+                shopMarketElement.OnElementClicked -= OnElementClicked;
+                shopMarketElement.gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < skinsItemConfigs.Count; i++)
+            {
+                _skinsMarketElements[i].gameObject.SetActive(true);
+                _skinsMarketElements[i].Setup(skinsItemConfigs[i]);
+                _skinsMarketElements[i].OnElementClicked += OnElementClicked;
             }
         }
 
-        private void OnElementClicked(int id)
+        private void OnElementClicked(string id)
         {
             OnItemClicked?.Invoke(id);
         }

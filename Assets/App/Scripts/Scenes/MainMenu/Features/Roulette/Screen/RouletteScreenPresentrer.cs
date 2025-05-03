@@ -25,6 +25,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         private readonly RewardService _rewardService;
         private readonly InfoPopupRouter _infoPopupRouter;
         private readonly ISoundProvider _soundProvider;
+        private readonly TopView _topView;
+
 
         private Dictionary<SectorConfig, List<RewardConfig>> _winItems;
         
@@ -34,7 +36,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             UserStatsProvider userStatsProvider,
             RewardService rewardService,
             InfoPopupRouter infoPopupRouter, 
-            ISoundProvider soundProvider)
+            ISoundProvider soundProvider, TopView topView)
         {
             _rouletteConfig = rouletteConfig;
             _rouletteScreen = rouletteScreen;
@@ -43,6 +45,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             _rewardService = rewardService;
             _infoPopupRouter = infoPopupRouter;
             _soundProvider = soundProvider;
+            _topView = topView;
         }
 
         public override void Initialize()
@@ -109,6 +112,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
             _soundProvider.PlaySound(_rouletteScreen.ButtonSound);
             if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
+                await Hide();
+                _topView.SetTab(5);
                 await _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS);
                 return;
             }

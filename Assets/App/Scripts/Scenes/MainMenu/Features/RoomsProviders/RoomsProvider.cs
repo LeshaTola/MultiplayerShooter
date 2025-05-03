@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.MainMenu.Features.RoomsProviders
 {
@@ -15,6 +16,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.RoomsProviders
         {
             Rooms = roomList;
             OnRoomListUpdated?.Invoke(Rooms);
+            
+            Debug.Log($"UpdateRoomList {PhotonNetwork.CloudRegion}");
         }
     }
 }

@@ -15,5 +15,5 @@ MonoBehaviour:
   <TicketsCount>k__BackingField:
     Min: 1
     Max: 10
-  <Cost>k__BackingField: 200
+  <Cost>k__BackingField: 100
   <TicketReward>k__BackingField: {fileID: 11400000, guid: 461c77ca138fd68459f528ed2e60d487, type: 2}

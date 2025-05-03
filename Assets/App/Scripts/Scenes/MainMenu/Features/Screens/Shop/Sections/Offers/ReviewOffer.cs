@@ -35,7 +35,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
         {
             if (!success)
             {
-                ShowReviewError();
+                InfoPopupRouter.ShowPopup(ConstStrings.ERROR, ConstStrings.REVIEW_IS_NOT_AVAILABLE).Forget();
                 return;
             }
 
@@ -44,7 +44,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
 
         private void ShowReviewError()
         {
-            if (YG2.player.auth)
+            if (!YG2.player.auth)
             {
                 InfoPopupRouter.ShowPopup(ConstStrings.ERROR, ConstStrings.REVIEW_IS_NOT_AVAILABLE).Forget();
             }

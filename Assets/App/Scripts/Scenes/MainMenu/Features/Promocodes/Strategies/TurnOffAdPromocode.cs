@@ -24,6 +24,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies
             _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.AD_IS_OFF).Forget();
             YG2.saves.IsCanShowAd = false;
             YG2.StickyAdActivity(YG2.saves.IsCanShowAd);
+            YG2.SaveProgress();
         }
     }
 }

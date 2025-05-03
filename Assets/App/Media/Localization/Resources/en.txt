@@ -217,3 +217,4 @@ Enter -- Чат,Enter -- Chat
 Загрузка...,Loading...
 Время жизни (секунды),Life time (seconds)
 LavaLamp,Lava Lamp
+Невозможно подключиться к комнате,Unable to connect to the room

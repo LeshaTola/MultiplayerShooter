@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5099056684500095587, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
+      propertyPath: isMobile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 760299990358582387, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
       propertyPath: m_PreferredWidth
       value: 130
@@ -19,6 +23,22 @@ PrefabInstance:
     - target: {fileID: 4251276236899867236, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429999858588679578, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355767235743031166, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729774822358551731, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164614031678635067, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8616594968708528046, guid: 6b5cad3119fcb7f4bb5a06fc7da4a612, type: 3}
       propertyPath: m_Name

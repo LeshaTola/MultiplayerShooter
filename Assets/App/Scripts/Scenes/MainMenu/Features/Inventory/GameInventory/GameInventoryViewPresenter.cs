@@ -103,6 +103,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory
                     ItemType.Weapon,
                     _inventoryProvider,
                     _itemFactory, _view);
+            var mobileSlotStrategy = new NoneInventorySlotStrategy();
+            
             slotStrategy.OnInventoryChanged += OnInventoryChanged;
             _subscriptionsSlots.Add(slotStrategy);
 

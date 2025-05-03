@@ -3,6 +3,7 @@ using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Localization.Localizers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
@@ -14,6 +15,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         public event Action BattlePassButtonAction;
         public event Action RegionChangedAction;
 
+        [SerializeField] private RegionDropdownHandler _regionDropdownHandler;
         [SerializeField] private Button _playButton;
 
         [Header("Roulette")]
@@ -33,6 +35,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _playButton.onClick.AddListener(() => PlayButtonAction?.Invoke());
             _rouletteButton.onClick.AddListener(() => RouletteButtonAction?.Invoke());
             _battlePassButton.onClick.AddListener(() => BattlePassButtonAction?.Invoke());
+            
+            _regionDropdownHandler.Initialize();
         }
 
         public override void Cleanup()
