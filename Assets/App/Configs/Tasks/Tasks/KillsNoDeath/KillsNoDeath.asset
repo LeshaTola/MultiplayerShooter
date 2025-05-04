@@ -16,8 +16,8 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 440994d5fd111e74c85ca3201470c281, type: 2}
-    - {fileID: 11400000, guid: d857ada168f4c934eb9c87a4fb0167a6, type: 2}
+    - {fileID: 11400000, guid: f8d0bba187b64804d94d2460d5de331a, type: 2}
+    - {fileID: 11400000, guid: 5f231ac114061e24cb7082c372a9ba88, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -87,7 +87,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  <Id>k__BackingField: 5KillsNoDeath
+  <Id>k__BackingField: KillsNoDeath
   <Name>k__BackingField: "\u0421\u043E\u0432\u0435\u0440\u0448\u0438\u0442\u0435
     5 \u0443\u0431\u0438\u0439\u0441\u0442\u0432 \u043D\u0435 \u0443\u043C\u0438\u0440\u0430\u044F:"
   <Description>k__BackingField: 

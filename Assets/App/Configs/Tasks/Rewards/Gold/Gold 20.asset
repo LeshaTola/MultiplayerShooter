@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
-  m_Name: Gold 120
+  m_Name: Gold 20
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Gold 120
-  <Reward>k__BackingField: {fileID: 11400000, guid: fdd42532bc34c7b4caa9775a30d86207, type: 2}
+  <Id>k__BackingField: Gold 20
+  <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
   <IsFixedCount>k__BackingField: 1
   <Color>k__BackingField: {r: 0.98039216, g: 0.91764706, b: 0, a: 1}
-  <Count>k__BackingField: 120
+  <Count>k__BackingField: 20
   <CountRange>k__BackingField:
     Min: 0
     Max: 0

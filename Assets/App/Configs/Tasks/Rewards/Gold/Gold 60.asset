@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold 60
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Gold 60
-  <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
+  <Reward>k__BackingField: {fileID: 11400000, guid: fdd42532bc34c7b4caa9775a30d86207, type: 2}
   <IsFixedCount>k__BackingField: 1
   <Color>k__BackingField: {r: 0.98039216, g: 0.91764706, b: 0, a: 1}
   <Count>k__BackingField: 60
