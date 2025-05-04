@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 8824545611606139306}
   _maxColisionCount: -1
-  _lifeTime: 60
+  _lifeTime: -1
   _rb: {fileID: 3713381470204557260}
 --- !u!65 &6297375175463191398
 BoxCollider:
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f748f8fdc5479448afec930e1a48b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 100
+  _startHealth: 500
   <IsPlayer>k__BackingField: 0
 --- !u!1001 &615419498371981150
 PrefabInstance:

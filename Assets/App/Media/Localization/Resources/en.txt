@@ -218,3 +218,7 @@ Enter -- Чат,Enter -- Chat
 Время жизни (секунды),Life time (seconds)
 LavaLamp,Lava Lamp
 Невозможно подключиться к комнате,Unable to connect to the room
+Итоги матча:,Match results:
+Как вас зовут?,What is your name?
+Ник игрока,Player's nickname
+Введите ваше имя,Enter your name

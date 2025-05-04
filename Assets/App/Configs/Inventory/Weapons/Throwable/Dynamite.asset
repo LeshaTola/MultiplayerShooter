@@ -65,7 +65,7 @@ MonoBehaviour:
       Data: "\u0423\u0440\u043E\u043D"
     - Name: Item2
       Entry: 1
-      Data: 100
+      Data: 99
     - Name: 
       Entry: 8
       Data: 
@@ -153,10 +153,10 @@ MonoBehaviour:
       Data: App.Scripts.Modules.MinMaxValue.MinMaxInt, Assembly-CSharp
     - Name: Min
       Entry: 3
-      Data: 60
+      Data: 99
     - Name: Max
       Entry: 3
-      Data: 60
+      Data: 99
     - Name: 
       Entry: 8
       Data: 
@@ -257,10 +257,10 @@ MonoBehaviour:
       Data: App.Scripts.Modules.MinMaxValue.MinMaxInt, Assembly-CSharp
     - Name: Min
       Entry: 3
-      Data: 60
+      Data: 99
     - Name: Max
       Entry: 3
-      Data: 60
+      Data: 99
     - Name: 
       Entry: 8
       Data: 

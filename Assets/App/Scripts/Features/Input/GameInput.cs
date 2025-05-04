@@ -285,6 +285,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""56644cc1-e6b6-43b1-8a9b-db7c839d91f8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""478211a8-f710-46e1-b3bf-935de05178b9"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
