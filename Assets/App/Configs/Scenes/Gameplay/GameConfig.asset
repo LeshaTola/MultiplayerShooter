@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MatchDurationTime>k__BackingField: 600
   <RespawnTime>k__BackingField: 2
-  <EndGameTime>k__BackingField: 9
+  <EndGameTime>k__BackingField: 5

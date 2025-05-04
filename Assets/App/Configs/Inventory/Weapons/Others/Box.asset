@@ -277,4 +277,4 @@ MonoBehaviour:
   <ShotSound>k__BackingField: {fileID: 8300000, guid: 891ffb6986568e34fbc89791c5c02c6f, type: 3}
   <ReloadSound>k__BackingField: {fileID: 0}
   <MaxAmmoCount>k__BackingField: 5
-  <ReloadCooldown>k__BackingField: 6
+  <ReloadCooldown>k__BackingField: 4

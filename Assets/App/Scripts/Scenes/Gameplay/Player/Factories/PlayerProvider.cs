@@ -85,7 +85,13 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
 
         public void RespawnPlayer()
         {
-            _player.Teleport(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
+            Vector3 position = Vector3.one;
+            if (_spawnPoints != null && _spawnPoints.Count > 0)
+            {
+                position = _spawnPoints[Random.Range(0, _spawnPoints.Count)].position;
+            }
+            
+            _player.Teleport(position);
             _player.RPCSetActive(true);
             
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);

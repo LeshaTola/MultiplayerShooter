@@ -31,7 +31,7 @@ namespace App.Scripts.Scenes.Gameplay
             if (PhotonNetwork.IsMasterClient)
             {
                 var mapObject = PhotonNetwork.InstantiateRoomObject(_mapsProvider.Map.name, Vector3.zero, Quaternion.identity, 0);
-                photonView.RPC(nameof(SetMapId), RpcTarget.AllBuffered, mapObject.GetComponent<PhotonView>().ViewID);
+                photonView.RPC(nameof(SetMapId), RpcTarget.AllBufferedViaServer, mapObject.GetComponent<PhotonView>().ViewID);
             }
         }
 
@@ -53,6 +53,10 @@ namespace App.Scripts.Scenes.Gameplay
             if (map == null)
             {
                 map = FindObjectOfType<Map>();
+            }
+            if (map == null)
+            {
+                return;
             }
             
             _mapsProvider.CurrentMap = map;

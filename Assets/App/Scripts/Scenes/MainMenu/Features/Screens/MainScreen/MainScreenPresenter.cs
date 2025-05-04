@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features;
+using App.Scripts.Features.Commands;
 using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Features.UserStats.Rank;
@@ -14,12 +15,14 @@ using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using RedefineYG;
+using UnityEngine;
 using YG;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 {
     public class MainScreenPresenter : GameScreenPresenter, IInitializable, ICleanupable, ITopViewElementPrezenter
     {
+        public const string NAME_DATA = "playerName";
         private const int MIN_NAME_LENGTH = 3;
         private const int MAX_NAME_LENGTH = 20;
 
@@ -32,6 +35,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private readonly TopView _topView;
         private readonly InfoPopupRouter _infoPopupRouter;
         private readonly AdvertisementProvider _advertisementProvider;
+        private readonly InputFieldPopupRouter _inputFieldPopupRouter;
 
         public MainScreenPresenter(MainScreen screen,
             ConnectionProvider connectionProvider,
@@ -40,7 +44,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             TicketsProvider ticketsProvider,
             UserStatsView userStatsView,
             InfoPopupRouter infoPopupRouter, 
-            TopView topView, AdvertisementProvider advertisementProvider)
+            TopView topView,
+            AdvertisementProvider advertisementProvider,
+            InputFieldPopupRouter inputFieldPopupRouter)
         {
             _screen = screen;
             _connectionProvider = connectionProvider;
@@ -51,6 +57,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _infoPopupRouter = infoPopupRouter;
             _topView = topView;
             _advertisementProvider = advertisementProvider;
+            _inputFieldPopupRouter = inputFieldPopupRouter;
         }
 
         public override void Initialize()
@@ -69,6 +76,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 
         public void Setup()
         {
+            LoadPlayrName();
             _userStatsView.SetupName(PhotonNetwork.NickName);
             SetupRank();
             _userStatsView.SetupMoney(_coinsProvider.Coins);
@@ -121,7 +129,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             await Hide();
             _topView.SetTab(4);
         }
-        
+
         private async void OnBattlePassButtonAction()
         {
             await Hide();
@@ -130,7 +138,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 
         private void OnPlayerNameChanged(string name)
         {
-            if (name.Length < MIN_NAME_LENGTH || name.Length > MAX_NAME_LENGTH)
+            if (!IsValidLength(name))
             {
                 _infoPopupRouter.ShowPopup(
                     ConstStrings.ERROR,
@@ -150,6 +158,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             PlayerPrefs.SetString(ConnectionProvider.NAME_DATA, name);
 #endif
             PhotonNetwork.NickName = name;
+        }
+
+        private static bool IsValidLength(string name)
+        {
+            return name.Length >= MIN_NAME_LENGTH && name.Length <= MAX_NAME_LENGTH;
         }
 
         private void OnExperienceChanded()
@@ -178,6 +191,57 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         {
             _screen.SetTicketsCount(tickets);
             _userStatsView.SetupTickets(tickets);
+        }
+
+        private async void LoadPlayrName()
+        {
+#if YANDEX
+            var name = YG2.player.auth ? YG2.player.name : $"Player {Random.Range(0, 1000)}";
+            var playerName = !string.IsNullOrEmpty(YG2.saves.PlayerName) ? YG2.saves.PlayerName : name;
+            
+            if (string.IsNullOrEmpty(YG2.saves.PlayerName))
+            {
+                bool isValid;
+                do
+                {
+                    playerName = await ShowInputFieldPopup(playerName);
+                    isValid = IsValidLength(playerName);
+                    if (!isValid)
+                    {
+                        _infoPopupRouter.ShowPopup(
+                            ConstStrings.ERROR,
+                            $"Длина имени должна быть между {MIN_NAME_LENGTH} и {MAX_NAME_LENGTH} символами.").Forget();
+                        continue;
+                    }
+
+                    _inputFieldPopupRouter.HidePopup().Forget();
+                    _userStatsView.SetupName(playerName);
+                    YG2.saves.PlayerName = playerName;
+                    YG2.SaveProgress();
+                }
+                while(!isValid);
+            }
+#else
+            var playerName =
+ PlayerPrefs.HasKey(NAME_DATA)? PlayerPrefs.GetString(NAME_DATA): $"Player {Random.Range(0, 1000)}";
+            PlayerPrefs.SetString(playerName, NAME_DATA);
+#endif
+            PhotonNetwork.NickName = playerName;
+        }
+
+        private UniTask<string> ShowInputFieldPopup(string playerName)
+        {
+            return _inputFieldPopupRouter.ShowPopup(new()
+            {
+                Placeholder = "Введите ваше имя",
+                StartValue = playerName,
+                Header = "Ник игрока",
+                Mesage = "Как вас зовут?",
+                OnEndEdit = OnPlayerNameChanged,
+                Command = new CustomCommand(ConstStrings.CONFIRM, () =>
+                {
+                })
+            });
         }
     }
 }

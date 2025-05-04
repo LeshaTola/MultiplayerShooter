@@ -28,6 +28,7 @@ namespace App.Scripts.Features.Bootstrap
             Container.Bind<RewardsPopupRouter>().AsSingle();
             Container.Bind<InfoPopupRouter>().AsSingle();
             Container.Bind<ImagePopupRouter>().AsSingle();
+            Container.Bind<InputFieldPopupRouter>().AsSingle();
         }
 
         private void BindPopupController()

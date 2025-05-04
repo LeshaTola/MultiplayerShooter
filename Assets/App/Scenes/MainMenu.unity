@@ -2746,7 +2746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0.0.2
+  m_text: 0.0.3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5664,12 +5664,32 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 941264861500731443, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 941264861500731443, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1012529308523565638, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1012529308523565638, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077061418706553622, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077061418706553622, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077061418706553622, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1246648694058671347, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
@@ -5736,6 +5756,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4519994956350075902, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519994956350075902, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 32.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4686726053101892468, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5775,6 +5803,14 @@ PrefabInstance:
     - target: {fileID: 4948324744475501441, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124727470193629296, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124727470193629296, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5343042748236669506, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5867,6 +5903,14 @@ PrefabInstance:
     - target: {fileID: 5926702281625422730, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010076080607076234, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_text
+      value: Russia
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010076080607076234, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6310052816691593975, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6026,6 +6070,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7959156511699938813, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615385675271279802, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615385675271279802, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Russia
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793545618966520452, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9015807915520651226, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}

@@ -18,7 +18,6 @@ namespace App.Scripts.Features
 {
     public class ConnectionProvider : MonoBehaviourPunCallbacks
     {
-        public const string NAME_DATA = "playerName";
         public event Action OnConnectionFinished;
         public event Action OnJoinedRoomEvent;
 
@@ -29,6 +28,7 @@ namespace App.Scripts.Features
         [Inject]
         public void Constructor(MapsProvider mapsProvider,
             InfoPopupRouter infoPopupRouter,
+            InputFieldPopupRouter inputFieldPopupRouter,
             RoomsProvider roomsProvider)
         {
             _mapsProvider = mapsProvider;
@@ -42,21 +42,7 @@ namespace App.Scripts.Features
             {
                 return;
             }
-
-#if YANDEX
-            var name = YG2.player.auth ? YG2.player.name : $"Player {Random.Range(0, 1000)}";
-            var playerName = !string.IsNullOrEmpty(YG2.saves.PlayerName) ? YG2.saves.PlayerName : name;
-            YG2.saves.PlayerName = playerName;
-            YG2.SaveProgress();
-#else
-            var playerName =
- PlayerPrefs.HasKey(NAME_DATA)? PlayerPrefs.GetString(NAME_DATA): $"Player {Random.Range(0, 1000)}";
-            PlayerPrefs.SetString(playerName, NAME_DATA);
-#endif
-            PhotonNetwork.NickName = playerName;
-
             SetupRegion();
-
             PhotonNetwork.ConnectUsingSettings();
         }
 
@@ -167,18 +153,17 @@ namespace App.Scripts.Features
             Debug.Log($"Room {returnCode}: {message}");
             _infoPopupRouter.ShowPopup(ConstStrings.ERROR,ConstStrings.CANNOT_JOIN_ROOM).Forget();
         }
-
+        
         private void TryReconnect()
         {
-            /*if (PhotonNetwork.IsConnectedAndReady)
+            if (PhotonNetwork.IsConnectedAndReady)
             {
                 PhotonNetwork.ReconnectAndRejoin();
             }
             else
             {
                 PhotonNetwork.ConnectUsingSettings();
-            }*/
-            Reload();
+            }
         }
 
 
