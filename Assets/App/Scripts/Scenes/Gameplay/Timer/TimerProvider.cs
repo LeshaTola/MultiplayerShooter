@@ -57,9 +57,16 @@ namespace App.Scripts.Scenes.Gameplay.Timer
 
         public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
         {
-            if (_timerRunning && newMasterClient.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
-                photonView.RPC(nameof(StartTimer), RpcTarget.AllBuffered, _startTime);
+                if (_timerRunning )
+                {
+                    photonView.RPC(nameof(StartTimer), RpcTarget.AllBuffered, _startTime);
+                }
+                else
+                {
+                    Initialize();
+                }
             }
         }
     }

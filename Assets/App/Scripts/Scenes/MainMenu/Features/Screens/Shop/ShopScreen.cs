@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Sounds;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -18,6 +19,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
 
         [SerializeField] private  List<Button> _tabButtons;
         [SerializeField] private AudioDatabase _audioDatabase;
+        [SerializeField] private CurrencySection _currencySection;
+
         [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ClickSound { get; private set; }
         
         [field:SerializeField] public ScrollRect ScrollRect { get;  private set; }
@@ -31,6 +34,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
                 int index = i;
                 _tabButtons[i].onClick.AddListener(() => OnTabButtonClicked(index));
             }
+            _currencySection.Initialize();
         }
 
         private void OnTabButtonClicked(int index)

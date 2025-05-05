@@ -14,7 +14,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
 
         public void Initialize()
         {
-            
             foreach (var currency in _currencies)
             {
                 currency.Initialize();
@@ -29,6 +28,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
             else
             {
                 saleValue = int.Parse(sale);
+                Debug.Log($"{SALE_FLAG} IS {saleValue}");
             }
             
             if (saleValue > 0)
@@ -45,11 +45,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
                     currency.RemoveSale();
                 }
             }
-        }
-        
-        public void Start()
-        {
-            
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.UserStats.Rank.Configs;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,7 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         [SerializeField] private List<LeaderBoardElement> _elements;
         [SerializeField] private TextMeshProUGUI _playersCountText;
         [SerializeField] private RanksDatabase _ranksDatabase;
+        [SerializeField] private TextMeshProUGUI _roomNameText;
         
         public void Show()
         {
@@ -30,6 +32,8 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 
         private void UpdateView()
         {
+            _roomNameText.text = PhotonNetwork.CurrentRoom.Name;
+            
             foreach (var element in _elements)
             {
                 element.Hide();

@@ -1,6 +1,9 @@
+using System.Threading;
+using System.Threading.Tasks;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Scenes.Gameplay.Chat;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,25 +29,55 @@ namespace App.Scripts.Scenes.Gameplay
             _playerProvider = playerProvider;
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                var mapObject = PhotonNetwork.InstantiateRoomObject(_mapsProvider.Map.name, Vector3.zero, Quaternion.identity, 0);
-                photonView.RPC(nameof(SetMapId), RpcTarget.AllBufferedViaServer, mapObject.GetComponent<PhotonView>().ViewID);
+                PhotonNetwork.InstantiateRoomObject(_mapsProvider.Map.name, Vector3.zero, Quaternion.identity, 0);
             }
+            else
+            {
+                await FindMap();
+            }
+        }
+
+        private async UniTask FindMap()
+        {
+            Map map = null;
+            int attempts = 0;
+            while (map == null && attempts < 10)
+            {
+                map = FindObjectOfType<Map>();
+                if (map == null) await UniTask.Delay(200);
+                attempts++;
+            }
+            if (map == null) return;
+    
+            _mapsProvider.CurrentMap = map;
+            _playerProvider.SetSpawnPoints(_mapsProvider.CurrentMap.SpawnPoints);
         }
 
         public void KillRoom()
         {
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            foreach (var player in PhotonNetwork.PlayerListOthers)
-            {
-                PhotonNetwork.CloseConnection(player);
-            }
+            KickAllPlayers();
+        }
+        
+        [PunRPC]
+        private void RPC_KickPlayer()
+        {
+            PhotonNetwork.LeaveRoom();
         }
 
-        [PunRPC]
+        private void KickAllPlayers()
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+    
+            photonView.RPC(nameof(RPC_KickPlayer), RpcTarget.Others);
+            PhotonNetwork.LeaveRoom();
+        }
+
+        /*[PunRPC]
         public void SetMapId(int mapId)
         {
             _mapId = mapId;
@@ -60,7 +93,6 @@ namespace App.Scripts.Scenes.Gameplay
             }
             
             _mapsProvider.CurrentMap = map;
-            
             _playerProvider.SetSpawnPoints(_mapsProvider.CurrentMap.SpawnPoints);
         }
 
@@ -70,7 +102,7 @@ namespace App.Scripts.Scenes.Gameplay
             {
                 photonView.RPC(nameof(SetMapId), RpcTarget.AllBuffered, _mapId);
             }
-        }
+        }*/
 
         public override void OnLeftRoom()
         {

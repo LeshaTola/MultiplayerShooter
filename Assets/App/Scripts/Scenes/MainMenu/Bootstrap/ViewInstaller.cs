@@ -20,6 +20,7 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks;
 using App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.PromoCodes;
@@ -200,7 +201,6 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             
             Container.BindInstance(_marketSectionView).AsSingle();
             Container.Bind<MarketSectionPrezenter>().AsSingle();
-
 
             Container.BindInterfacesAndSelfTo<MarketService>().AsSingle().WithArguments(_globalInventory).NonLazy();
 #if YANDEX

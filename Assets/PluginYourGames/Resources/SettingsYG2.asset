@@ -139,7 +139,7 @@ MonoBehaviour:
   Flags:
     flags:
     - name: SALE
-      value: 50
+      value: 0
   InterstitialAdv:
     showFirstAdv: 1
     interAdvInterval: 60

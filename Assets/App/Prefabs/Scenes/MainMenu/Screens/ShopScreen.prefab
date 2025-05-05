@@ -11830,6 +11830,7 @@ MonoBehaviour:
   - {fileID: 4198440307092889490}
   - {fileID: 7784876783662053676}
   _audioDatabase: {fileID: 11400000, guid: 29a0492805081964eb71f674cc6b7cff, type: 2}
+  _currencySection: {fileID: 5145137236376064873}
   <ClickSound>k__BackingField: Second_UI
   <ScrollRect>k__BackingField: {fileID: 1261461144495794133}
   <LayoutGroup>k__BackingField: {fileID: 937942426331060924}
