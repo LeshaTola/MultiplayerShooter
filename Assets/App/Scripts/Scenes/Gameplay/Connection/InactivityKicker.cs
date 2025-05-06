@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 
-public class InactivityKicker : MonoBehaviourPunCallbacks
+public class InactivityKicker : MonoBehaviour
 {
     [SerializeField] private float _inactivityTimeout = 60f;
     
@@ -10,14 +10,11 @@ public class InactivityKicker : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        if (!photonView.IsMine) return;
         ResetTimer();
     }
 
     private void Update()
     {
-        if (!photonView.IsMine) return;
-
         if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {
             ResetTimer();
