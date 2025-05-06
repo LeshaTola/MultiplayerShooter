@@ -35,10 +35,7 @@ namespace App.Scripts.Scenes.Gameplay
             {
                 PhotonNetwork.InstantiateRoomObject(_mapsProvider.Map.name, Vector3.zero, Quaternion.identity, 0);
             }
-            else
-            {
-                await FindMap();
-            }
+            await FindMap();
         }
 
         private async UniTask FindMap()
