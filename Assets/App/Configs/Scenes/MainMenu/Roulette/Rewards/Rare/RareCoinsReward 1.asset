@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
   m_Name: RareCoinsReward 1
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: RareCoinsReward
+  <Id>k__BackingField: RareCoinsReward 1
   <Reward>k__BackingField: {fileID: 11400000, guid: 7405449697d72f148b120f0d64c12735, type: 2}
   <IsFixedCount>k__BackingField: 0
-  <Count>k__BackingField: 98
+  <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <Count>k__BackingField: 54
   <CountRange>k__BackingField:
-    Min: 80
-    Max: 120
+    Min: 40
+    Max: 60
