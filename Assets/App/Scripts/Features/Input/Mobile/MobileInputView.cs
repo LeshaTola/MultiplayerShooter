@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Modules.CustomToggles;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.GameInventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,6 +20,7 @@ namespace App.Scripts.Features.Input
         [SerializeField] private Button _spaceButton;
         [SerializeField] private Joystick _joystick;
         [SerializeField] private RectTransform _swipeZone;
+        [SerializeField] private ToggleCustom _autoAttackToggle;
 
         public event Action OnPause;
         public event Action OnR;
@@ -30,6 +32,7 @@ namespace App.Scripts.Features.Input
         public event Action OnRightMouseStarted;
         public event Action OnRightMouseCanceled;
         public event Action OnSpace;
+        public event Action<bool> OnAutoClicked;
 
 
         private GameInventoryViewPresenter _gameInventoryViewPresenter;
@@ -53,11 +56,17 @@ namespace App.Scripts.Features.Input
 
             AddButtonListener(_tabButton, () => OnTabPerformed?.Invoke(), () => OnTabCanceled?.Invoke());
             AddButtonListener(_spaceButton, () => OnSpace?.Invoke());
+            _autoAttackToggle.OnValueChanged.AddListener((value,_)=> OnAutoClicked?.Invoke(value));  
         }
 
         private void Update()
         {
             HandleSwipe();
+        }
+
+        public void SetAuto(bool isAuto)
+        {
+            _autoAttackToggle.SetIsOnWithoutNotify(isAuto);
         }
     
         public Vector2 GetJoystickInput() => _joystick ? _joystick.Direction : Vector2.zero;

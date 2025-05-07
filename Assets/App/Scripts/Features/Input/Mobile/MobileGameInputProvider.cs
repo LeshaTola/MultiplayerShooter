@@ -19,7 +19,8 @@ namespace App.Scripts.Features.Input
         public event Action OnRightMouseCanceled;
         public event Action OnSpace;
         public event Action<float> OnScrollWheel;
-    
+        public event Action<bool> OnAutoChanged;
+
         private readonly MobileInputView _inputView;
     
         public MobileGameInputProvider(MobileInputView inputView, SelectionProvider selectionProvider)
@@ -38,6 +39,7 @@ namespace App.Scripts.Features.Input
             _inputView.OnRightMouseStarted += () => OnRightMouseStarted?.Invoke();
             _inputView.OnRightMouseCanceled += () => OnRightMouseCanceled?.Invoke();
             _inputView.OnSpace += () => OnSpace?.Invoke();
+            _inputView.OnAutoClicked += (value) => OnAutoChanged?.Invoke(value);
         }
 
         private void OnWeaponSelected(int index)
@@ -48,5 +50,10 @@ namespace App.Scripts.Features.Input
         public Vector2 GetMovementNormalized() => _inputView.GetJoystickInput();
     
         public Vector2 GetMouseLook() => _inputView.GetSwipeDelta();
+        
+        public void SetAuto(bool isAuto)
+        {
+            _inputView.SetAuto(isAuto);
+        }
     }
 }

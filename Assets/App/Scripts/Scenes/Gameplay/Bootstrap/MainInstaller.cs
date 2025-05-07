@@ -18,6 +18,7 @@ using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Timer;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
+using App.Scripts.Scenes.Gameplay.Weapons.TargetDetector;
 using App.Scripts.Scenes.MainMenu.Features.Inventory;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using UnityEngine;
@@ -54,6 +55,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         
         [Header("Other")]
         [SerializeField] private AccrualConfig _accrualConfig;
+        [SerializeField] private TargetDetectionConfig _detectionConfig;
         [SerializeField] private SceneNetworkController _sceneNetworkController;
 
         public override void InstallBindings()
@@ -66,17 +68,15 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
             Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle();
 
-            if (YG2.envir.isDesktop)
-                Container.Bind<IGameInputProvider>().To<GameInputProvider>().AsSingle();
-            else
-                Container.Bind<IGameInputProvider>().To<MobileGameInputProvider>().AsSingle();
+            BindInput();
             
+            Container.Bind<PlayerProvider>().AsSingle().WithArguments(_playerPrefab);
             Container.Bind<ShootingModeFactory>().AsSingle();
             Container.Bind<ProjectilesFactory>().AsSingle();
-            Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<LeaderBoardProvider>().AsSingle().NonLazy();
-            Container.Bind<PlayerProvider>().AsSingle().WithArguments(_playerPrefab);
+            Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<PostProcessingProvider>().AsSingle().WithArguments(_postProcessingConfig, _volume);
+            Container.Bind<TargetDetector>().AsSingle().WithArguments(_detectionConfig);
 
             BindDamageTextPool();
             Container.BindInterfacesAndSelfTo<HitService>().AsSingle().WithArguments(_hitConfig);
@@ -95,6 +95,14 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
                 To<NetworkPool<Explosion>>().
                 AsSingle().
                 WithArguments(_explosionTemplate, 10, _explosionContainer);*/
+        }
+
+        private void BindInput()
+        {
+            if (YG2.envir.isDesktop)
+                Container.Bind<IGameInputProvider>().To<GameInputProvider>().AsSingle();
+            else
+                Container.Bind<IGameInputProvider>().To<MobileGameInputProvider>().AsSingle();
         }
 
         private void BindTask()

@@ -180,7 +180,7 @@ MonoBehaviour:
       Data: 0
     - Name: _projectileSpeed
       Entry: 4
-      Data: 40
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -302,5 +302,6 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 3, y: 3, z: 3}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: f4d7a772f28e50b47842822ff0ee01d1, type: 3}
   <ReloadSound>k__BackingField: {fileID: 0}
+  <IsAutoShoot>k__BackingField: 1
   <MaxAmmoCount>k__BackingField: 3
   <ReloadCooldown>k__BackingField: 0.3

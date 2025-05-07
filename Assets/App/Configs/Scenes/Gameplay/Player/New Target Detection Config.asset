@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 790d008f851a4f5bb80402034488b391, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: 64460645be9d4348a144663524b0e766, type: 3}
+  m_Name: New Target Detection Config
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  <Speed>k__BackingField: 10
-  <JumpHeight>k__BackingField: 2
-  <JumpFallSpeed>k__BackingField: 3.5
-  <ImmortalTime>k__BackingField: 3
+  _detectionRange: 80
+  _detectionRadius: 0.1
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 1024

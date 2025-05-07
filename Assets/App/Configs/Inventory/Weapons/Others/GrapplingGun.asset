@@ -121,10 +121,10 @@ MonoBehaviour:
       Data: App.Scripts.Modules.MinMaxValue.MinMaxFloat, Assembly-CSharp
     - Name: Min
       Entry: 4
-      Data: 5
+      Data: 3
     - Name: Max
       Entry: 4
-      Data: 20
+      Data: 15
     - Name: 
       Entry: 8
       Data: 

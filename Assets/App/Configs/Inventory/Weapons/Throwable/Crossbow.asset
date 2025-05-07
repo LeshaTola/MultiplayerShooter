@@ -194,7 +194,7 @@ MonoBehaviour:
       Data: 1
     - Name: _projectileSpeed
       Entry: 4
-      Data: 60
+      Data: 45
     - Name: 
       Entry: 8
       Data: 

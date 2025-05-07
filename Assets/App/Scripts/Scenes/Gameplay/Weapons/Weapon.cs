@@ -2,13 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
-using App.Scripts.Features.Inventory.Weapons;
 using App.Scripts.Features.Inventory.Weapons.ShootPointStrategies;
-using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using DG.Tweening;
 using Photon.Pun;
 using UnityEngine;
+using YG;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons
 {
@@ -32,19 +31,23 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         [field: Space]
         [field: SerializeField]
         public List<Transform> ShootPoints { get; private set; }
-        [SerializeField, SerializeReference] private ShootPointStrategy _shootPointProvider;
+
+        [SerializeField] [SerializeReference] private ShootPointStrategy _shootPointProvider;
 
         [Space]
         [SerializeField] private float _trailFadeTime = 0.1f;
 
+        private TargetDetector.TargetDetector _detector;
         private Color _trialStartColor;
         private bool _isReloading;
         private bool _isLocal;
+        private bool _isAutoShootActive;
 
         public WeaponConfig Config { get; private set; }
         public int CurrentAmmoCount { get; private set; }
         public Player.Player Owner { get; private set; }
         public bool IsReady { get; private set; } = true;
+        public bool IsAutoShoot { get; set; }
 
         public ShootPointStrategy ShootPointProvider => _shootPointProvider;
 
@@ -54,23 +57,17 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             ShootPointProvider.Initialize(ShootPoints);
         }
 
-        public void Initialize(WeaponConfig weaponConfig)
+        public void Initialize(WeaponConfig weaponConfig, TargetDetector.TargetDetector detector)
         {
             Config = weaponConfig;
+            IsAutoShoot = Config.IsAutoShoot;
+            _detector = detector;
             _isLocal = true;
-            
-            Animator.Initialize(this);
-            NetworkFadeOutLine();
 
-            Config.ShootingMode.Initialize(this);
-            Config.ShootingModeAlternative.Initialize(this);
-            
-            CurrentAmmoCount = Config.MaxAmmoCount;
+            InitializeVisual();
+            InitializeShootingStrategies();
 
-            Config.ShootingMode.ShootStrategy.OnPlayerHit 
-                += (value, damage, killed) => OnPlayerHit?.Invoke(value,damage, killed);
-            Config.ShootingModeAlternative.ShootStrategy.OnPlayerHit 
-                += (value, damage, killed) => OnPlayerHit?.Invoke(value,damage, killed);
+            Subscribe();
         }
 
         private void OnDisable()
@@ -81,6 +78,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 OnReloadFinised?.Invoke();
                 _isReloading = false;
             }
+
             IsReady = true;
         }
 
@@ -89,7 +87,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             PerformAttack();
             if (!_isLocal)
             {
-                return;    
+                return;
             }
 
             foreach (var effect in Config.ShootingMode.ShootEffects)
@@ -101,7 +99,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 effect.Update();
             }
-            
+
             Config.ShootingMode.ShootStrategy.Recoil.Update();
             Config.ShootingModeAlternative.ShootStrategy.Recoil.Update();
         }
@@ -113,6 +111,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 Config.ShootingMode.StartAttack();
                 return;
             }
+
             Config.ShootingModeAlternative.StartAttack();
         }
 
@@ -123,9 +122,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 Config.ShootingMode.CancelAttack();
                 return;
             }
+
             Config.ShootingModeAlternative.CancelAttack();
         }
-        
+
         public void GuaranteedCancelAttack(bool isAlternative)
         {
             if (!isAlternative)
@@ -135,8 +135,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 {
                     effect.Default();
                 }
+
                 return;
             }
+
             Config.ShootingModeAlternative.GuaranteedCancelAttack();
             foreach (var effect in Config.ShootingModeAlternative.ShootEffects)
             {
@@ -150,23 +152,15 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 return;
             }
-            
+
             if (CurrentAmmoCount <= 0)
             {
                 Reload();
                 return;
             }
-            
-            if (Config.ShootingMode.IsShooting)
-            {
-                Config.ShootingMode.PerformAttack();
-                return;
-            }
 
-            if (Config.ShootingModeAlternative.IsShooting)
-            {
-                Config.ShootingModeAlternative.PerformAttack();
-            }
+            ProcessAutoShooting();
+            ProcessShooting();
         }
 
         public void ReloadImmidiate()
@@ -175,7 +169,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 ShootPointProvider.Reset();
             }
-            
+
             CurrentAmmoCount = Config.MaxAmmoCount;
             OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
         }
@@ -186,7 +180,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 return;
             }
-            
+
             GuaranteedCancelAttack(true);
             GuaranteedCancelAttack(false);
             Owner.PlayerAudioProvider.RPCPlayReloadWeaponSound();
@@ -247,7 +241,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         {
             photonView.RPC(nameof(SetLine), RpcTarget.All, endPoint);
         }
-        
+
         [PunRPC]
         public void SetLine(Vector3 endPoint)
         {
@@ -255,22 +249,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             {
                 NextShootPoint();
             }
-            
+
             _tracerEffect.SetPosition(0, _shootPointProvider.ShotPoint);
             _tracerEffect.SetPosition(1, endPoint);
-            
+
             _tracerEffect.enabled = true;
             _tracerEffect.startColor = _trialStartColor;
             _tracerEffect.endColor = _trialStartColor;
-        }
-        
-        
-        public void NetworkSetLine(Vector3 shootPoint,Vector3 endPoint)
-        {
-            photonView.RPC(nameof(SetLine),
-                RpcTarget.All,
-                shootPoint,
-                endPoint);
         }
 
         [PunRPC]
@@ -278,7 +263,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         {
             _tracerEffect.SetPosition(0, startPos);
             _tracerEffect.SetPosition(1, endPos);
-            
+
             _tracerEffect.enabled = true;
             _tracerEffect.startColor = _trialStartColor;
             _tracerEffect.endColor = _trialStartColor;
@@ -322,12 +307,78 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             _muzzleFlash.transform.position = position;
             _muzzleFlash.Play();
         }
-        
+
         public void ChangeAmmoCount(int ammo)
         {
             CurrentAmmoCount += ammo;
             CurrentAmmoCount = Mathf.Clamp(CurrentAmmoCount, 0, Config.MaxAmmoCount);
-            OnAmmoChanged?.Invoke(CurrentAmmoCount,Config.MaxAmmoCount);
+            OnAmmoChanged?.Invoke(CurrentAmmoCount, Config.MaxAmmoCount);
+        }
+
+        private void Subscribe()
+        {
+            CurrentAmmoCount = Config.MaxAmmoCount;
+
+            Config.ShootingMode.ShootStrategy.OnPlayerHit
+                += (value, damage, killed) => OnPlayerHit?.Invoke(value, damage, killed);
+            Config.ShootingModeAlternative.ShootStrategy.OnPlayerHit
+                += (value, damage, killed) => OnPlayerHit?.Invoke(value, damage, killed);
+        }
+
+        private void InitializeShootingStrategies()
+        {
+            Config.ShootingMode.Initialize(this);
+            Config.ShootingModeAlternative.Initialize(this);
+        }
+
+        private void InitializeVisual()
+        {
+            Animator.Initialize(this);
+            NetworkFadeOutLine();
+        }
+
+        private void ProcessShooting()
+        {
+            if (Config.ShootingMode.IsShooting)
+            {
+                Config.ShootingMode.PerformAttack();
+                return;
+            }
+
+            if (Config.ShootingModeAlternative.IsShooting)
+            {
+                Config.ShootingModeAlternative.PerformAttack();
+            }
+        }
+
+        private void ProcessAutoShooting()
+        {
+            if (YG2.envir.isDesktop)
+            {
+                return;   
+            }
+            
+            if (IsAutoShoot && _detector.IsTargetInSight())
+            {
+                if (!Config.ShootingMode.IsShooting)
+                {
+                    _isAutoShootActive = true;
+                    Config.ShootingMode.StartAttack();
+                }
+            }
+            else
+            {
+                if (_isAutoShootActive)
+                {
+                    Config.ShootingMode.CancelAttack();
+                    _isAutoShootActive = false;
+                }
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            _detector.DrawGizmos();
         }
     }
 }

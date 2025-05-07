@@ -20,6 +20,7 @@ namespace App.Scripts.Features.Input
         public event Action OnRightMouseCanceled;
         public event Action OnSpace;
         public event Action<float> OnScrollWheel;
+        public event Action<bool> OnAutoChanged;
 
         private readonly GameInput _input;
 
@@ -62,6 +63,11 @@ namespace App.Scripts.Features.Input
             //var mouseLook = new Vector2(UnityEngine.Input.GetAxisRaw("Mouse X"), UnityEngine.Input.GetAxisRaw("Mouse Y"));
              var mouseLook = _input.Character.MouseLook.ReadValue<Vector2>()* 0.1f;
             return mouseLook;
+        }
+
+        public void SetAuto(bool isAuto)
+        {
+            
         }
     }
 }

@@ -307,5 +307,6 @@ MonoBehaviour:
   <ViewScaleMultiplier>k__BackingField: {x: 2, y: 2, z: 2}
   <ShotSound>k__BackingField: {fileID: 8300000, guid: c58fec334801d0547b6f521823827312, type: 3}
   <ReloadSound>k__BackingField: {fileID: 8300000, guid: 5f1da6c167824d241b268ee410d26223, type: 3}
+  <IsAutoShoot>k__BackingField: 1
   <MaxAmmoCount>k__BackingField: 2
   <ReloadCooldown>k__BackingField: 1.2

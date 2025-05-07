@@ -18,7 +18,10 @@ namespace App.Scripts.Features.Input
         event Action OnRightMouseCanceled;
         event Action OnSpace;
         event Action<float> OnScrollWheel;
+        event Action<bool> OnAutoChanged;
+        
         Vector2 GetMovementNormalized();
         Vector2 GetMouseLook();
+        void SetAuto(bool isAuto);
     }
 }

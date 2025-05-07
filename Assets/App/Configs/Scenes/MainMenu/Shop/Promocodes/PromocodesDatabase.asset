@@ -65,6 +65,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c0243025ea1121246be9545110aa590b, type: 2}
     - {fileID: 11400000, guid: 7660d4604a483c948b11f91be03ce0da, type: 2}
     - {fileID: 11400000, guid: e9bbc66c1648d4e4ebaf993d2c99584a, type: 2}
+    - {fileID: 11400000, guid: 02e08a7be4d54404c96da3eda7f3c992, type: 2}
+    - {fileID: 11400000, guid: 9990dd945d3b6744dba2bacd70e427c8, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -83,7 +85,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 15
+      Data: 16
     - Name: 
       Entry: 7
       Data: 
@@ -880,6 +882,57 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 5
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: HAPPYSTART
+    - Name: $v
+      Entry: 7
+      Data: 45|System.Collections.Generic.List`1[[App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.PromocodeAction,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 46|App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies.RewardPromocode,
+        Assembly-CSharp
+    - Name: <ExecuteCount>k__BackingField
+      Entry: 3
+      Data: 1
+    - Name: _rewardConfigs
+      Entry: 7
+      Data: 47|System.Collections.Generic.List`1[[App.Scripts.Features.Rewards.Configs.RewardConfig,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 50
     - Name: 
       Entry: 13
       Data: 

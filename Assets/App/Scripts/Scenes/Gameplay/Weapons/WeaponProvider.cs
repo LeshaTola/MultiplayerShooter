@@ -25,6 +25,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         private InventoryProvider _inventoryProvider;
         private ShootingModeFactory _shootingModeFactory;
         private PlayerController _playerController;
+        private TargetDetector.TargetDetector _detector;
 
         private int _weaponIndex;
         public Weapon CurrentWeapon { get; private set; }
@@ -38,11 +39,13 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             PlayerController playerController,
             InventoryProvider inventoryProvider, 
             ShootingModeFactory shootingModeFactory,
+            TargetDetector.TargetDetector detector,
             Player.Player owner)
         {
             _gameInputProvider = gameInputProvider;
             _inventoryProvider = inventoryProvider;
             _shootingModeFactory = shootingModeFactory;
+            _detector = detector;
             _playerController = playerController;
             
             foreach (var weaponId in _inventoryProvider.GameInventory.Weapons)
@@ -59,7 +62,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                         .GetComponent<Weapon>();
                 
                 var newConfig = GetNewConfig(weaponConfig);
-                weaponObject.Initialize(newConfig);
+                weaponObject.Initialize(newConfig, _detector);
                 
                 weaponObject.OnPlayerHit += (value, damage, killed) =>
                 {
@@ -82,8 +85,14 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             
             _gameInputProvider.OnNumber += RPCSetWeaponByIndex;
             _gameInputProvider.OnScrollWheel += OnScrollWheel;
+            _gameInputProvider.OnAutoChanged += SetAutoOnWeapon;
             var index = Weapons.FindIndex(x=>x);
             RPCSetWeaponByIndex(index + 1);
+        }
+
+        private void SetAutoOnWeapon(bool isAuto)
+        {
+            CurrentWeapon.IsAutoShoot = isAuto;
         }
 
         private void OnScrollWheel(float scroll)
@@ -131,6 +140,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             }
             
             OnWeaponChanged?.Invoke(weapon);
+            _gameInputProvider.SetAuto(weapon.IsAutoShoot);
             OnWeaponIndexChanged?.Invoke(index);
             if (CurrentWeapon != null)
             {

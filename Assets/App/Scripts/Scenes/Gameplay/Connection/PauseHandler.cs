@@ -14,7 +14,7 @@ public class PauseHandler : MonoBehaviourPunCallbacks
 
     private void Awake()
     { 
-         YG2.onFocusWindowGame += OnGamePaused;
+         //YG2.onFocusWindowGame += OnGamePaused;
     }
 
     private void OnGamePaused(bool isPaused)

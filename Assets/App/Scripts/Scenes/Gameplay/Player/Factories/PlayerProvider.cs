@@ -4,11 +4,9 @@ using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
-using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
-using Cinemachine;
-using Cysharp.Threading.Tasks;
+using App.Scripts.Scenes.Gameplay.Weapons.TargetDetector;
 using GameAnalyticsSDK;
 using Photon.Pun;
 using UnityEngine;
@@ -19,12 +17,13 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
     public class PlayerProvider
     {
         public event Action<Player> OnPlayerCreated;
-        
+
         private readonly IGameInputProvider _gameInputProvider;
         private readonly PlayerController _playerController;
         private readonly InventoryProvider _inventoryProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
         private readonly CameraProvider _cameraProvider;
+        private readonly TargetDetector _targetDetector;
         private readonly Player _playerPrefab;
 
         private List<Transform> _spawnPoints;
@@ -49,7 +48,8 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             Player playerPrefab,
             InventoryProvider inventoryProvider,
             ShootingModeFactory shootingModeFactory,
-            CameraProvider cameraProvider)
+            CameraProvider cameraProvider,
+            TargetDetector targetDetector)
         {
             _gameInputProvider = gameInputProvider;
             _playerController = playerController;
@@ -57,28 +57,15 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _inventoryProvider = inventoryProvider;
             _shootingModeFactory = shootingModeFactory;
             _cameraProvider = cameraProvider;
+            _targetDetector = targetDetector;
         }
 
         private Player Create()
         {
-            var player = PhotonNetwork.Instantiate(
-                _playerPrefab.gameObject.name,
-                Vector3.zero,
-                Quaternion.identity).GetComponent<Player>();
-            player.Initialize(PhotonNetwork.NickName);
-            var skin = _inventoryProvider.GameInventory.Skin;
-            player.PlayerVisual.RPCSetSkin(skin);
-            
-            GameAnalytics.NewDesignEvent($"inventory:skin:{skin}",1 );
-            GameAnalytics.NewDesignEvent($"inventory:weapons:{string.Join(",", _inventoryProvider.GameInventory.Weapons)}",1);
-            foreach (var weapon in _inventoryProvider.GameInventory.Weapons)
-            {
-                GameAnalytics.NewDesignEvent($"inventory:weapon:{weapon}", 1);
-            }
-            
+            var player = InitializePlayer(out var skin);
+            SendAnaliticsIvents(skin);
             _cameraProvider.RegisterCamera(player.VirtualCamera);
-            
-            player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,_shootingModeFactory, player);
+            InitializeWeapon(player);
             OnPlayerCreated?.Invoke(player);
             return player;
         }
@@ -90,10 +77,10 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             {
                 position = _spawnPoints[Random.Range(0, _spawnPoints.Count)].position;
             }
-            
+
             _player.Teleport(position);
             _player.RPCSetActive(true);
-            
+
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);
             _player.Health.RPCSetLasHit(_player.photonView.ViewID, null);
 
@@ -103,7 +90,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 {
                     return;
                 }
-                
+
                 weapon.ReloadImmidiate();
             }
         }
@@ -116,6 +103,35 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         public void SetSpawnPoints(List<Transform> spawnPoints)
         {
             _spawnPoints = spawnPoints;
+        }
+
+        private Player InitializePlayer(out string skin)
+        {
+            var player = PhotonNetwork.Instantiate(
+                _playerPrefab.gameObject.name,
+                Vector3.zero,
+                Quaternion.identity).GetComponent<Player>();
+            player.Initialize(PhotonNetwork.NickName);
+            skin = _inventoryProvider.GameInventory.Skin;
+            player.PlayerVisual.RPCSetSkin(skin);
+            return player;
+        }
+
+        private void InitializeWeapon(Player player)
+        {
+            player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,
+                _shootingModeFactory, _targetDetector, player);
+        }
+
+        private void SendAnaliticsIvents(string skin)
+        {
+            GameAnalytics.NewDesignEvent($"inventory:skin:{skin}", 1);
+            GameAnalytics.NewDesignEvent(
+                $"inventory:weapons:{string.Join(",", _inventoryProvider.GameInventory.Weapons)}", 1);
+            foreach (var weapon in _inventoryProvider.GameInventory.Weapons)
+            {
+                GameAnalytics.NewDesignEvent($"inventory:weapon:{weapon}", 1);
+            }
         }
     }
 }

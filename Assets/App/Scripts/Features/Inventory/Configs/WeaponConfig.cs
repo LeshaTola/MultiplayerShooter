@@ -21,6 +21,7 @@ namespace App.Scripts.Features.Inventory.Configs
         [field: SerializeField] public AudioClip ReloadSound { get; private set; }
         
         [field: Header("General")]
+        [field: SerializeField] public bool IsAutoShoot { get; private set; }
         [field: SerializeField] public int MaxAmmoCount { get; private set; }
         [field: SerializeField] public float ReloadCooldown { get; private set; }
         
