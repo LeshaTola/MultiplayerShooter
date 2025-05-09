@@ -1079,9 +1079,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 664171916855881504}
-  - {fileID: 8304375930441019586}
   - {fileID: 2909683974849052430}
+  - {fileID: 8304375930441019586}
+  - {fileID: 664171916855881504}
   m_Father: {fileID: 8524404150944804120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -1155,6 +1155,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 2123360548280782954, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Name
       value: BattlePass
@@ -1167,6 +1171,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1340,6 +1348,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 2123360548280782954, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Name
       value: Roulette
@@ -1352,6 +1364,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1747,6 +1763,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 664171916855881504}
     m_Modifications:
+    - target: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 2123360548280782954, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Name
       value: ServersToggle
@@ -1759,6 +1779,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2034,6 +2058,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 664171916855881504}
     m_Modifications:
+    - target: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 2123360548280782954, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Name
       value: ShopToggle
@@ -2042,6 +2070,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2195,6 +2227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 664171916855881504}
     m_Modifications:
+    - target: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1524687534360697114, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 2123360548280782954, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Name
       value: inventoryToggle
@@ -2207,6 +2243,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4444690680678076747, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
     - target: {fileID: 5127928736292023564, guid: 7d8655a4d1b6aaf4c8ab8b87de4763b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

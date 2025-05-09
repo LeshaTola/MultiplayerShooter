@@ -1030,7 +1030,7 @@ MonoBehaviour:
   _weaponHolder: {fileID: 3467909382071288526}
   _weaponHolderPosition: {fileID: 8067882858614385861}
   _sway: {fileID: 2019935159307943406}
-  _selectedLayer: Player
+  _selectedLayer: LocalPlayer
 --- !u!114 &2618612351175116522
 MonoBehaviour:
   m_ObjectHideFlags: 0

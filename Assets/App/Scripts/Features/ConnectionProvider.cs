@@ -42,6 +42,7 @@ namespace App.Scripts.Features
             {
                 return;
             }
+            
             SetupRegion();
             PhotonNetwork.ConnectUsingSettings();
         }
@@ -51,7 +52,6 @@ namespace App.Scripts.Features
             Debug.Log($"Connected To Server. Region: {PhotonNetwork.CloudRegion}");
             PhotonNetwork.JoinLobby();
         }
-
 
         /*public override void OnRegionListReceived(RegionHandler regionHandler)
         {
@@ -93,6 +93,7 @@ namespace App.Scripts.Features
 
         public override void OnDisconnected(DisconnectCause cause)
         {
+            OnConnectionFinished?.Invoke();
             _infoPopupRouter.ShowPopup(new InfoPopupData()
             {
                 Header = ConstStrings.ERROR,
@@ -154,18 +155,20 @@ namespace App.Scripts.Features
             _infoPopupRouter.ShowPopup(ConstStrings.ERROR,ConstStrings.CANNOT_JOIN_ROOM).Forget();
         }
         
-        private void TryReconnect()
+        private async void TryReconnect()
         {
-            if (PhotonNetwork.IsConnectedAndReady)
+            if (PhotonNetwork.NetworkClientState == ClientState.Joined)
             {
-                PhotonNetwork.ReconnectAndRejoin();
+                if (!PhotonNetwork.ReconnectAndRejoin())
+                {
+                    PhotonNetwork.ConnectUsingSettings();
+                }
             }
             else
             {
                 PhotonNetwork.ConnectUsingSettings();
             }
         }
-
 
         [DllImport("__Internal")]
         private static extern void ReloadPage();
