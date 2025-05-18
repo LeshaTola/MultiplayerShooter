@@ -1,3 +1,4 @@
+using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Features.SceneTransitions;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.States.General;
@@ -10,24 +11,24 @@ namespace App.Scripts.Features.StateMachines.States
 {
         public class LoadSceneState : State
         {
-            private readonly string _sceneName;
             private readonly ISceneTransition _sceneTransition;
             private readonly ICleanupService _cleanupService;
+            private readonly GameModProvider _gameModProvider;
 
             public LoadSceneState(
                 ISceneTransition sceneTransition,
                 ICleanupService cleanupService,
-                string sceneName)
+                string sceneName, GameModProvider gameModProvider)
             {
                 _sceneTransition = sceneTransition;
                 _cleanupService = cleanupService;
-                _sceneName = sceneName;
+                _gameModProvider = gameModProvider;
             }
 
             public override UniTask Enter()
             {
                 _cleanupService.Cleanup();
-                PhotonNetwork.LoadLevel(_sceneName);
+                PhotonNetwork.LoadLevel(_gameModProvider.CurrentGameMod.SceneName);
                 
                 /*if (_sceneTransition != null)
                 {

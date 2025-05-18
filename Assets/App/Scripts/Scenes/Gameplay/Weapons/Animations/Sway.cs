@@ -99,10 +99,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons.Animations
 
         private void BobOffset()
         {
-            speedCurve += Time.deltaTime * (mover.IsGrounded
+            speedCurve += Time.deltaTime * (mover.PlayerMovement.IsGrounded
                 ? (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical")) * bobExaggeration : 1f) + 0.01f;
 
-            bobPosition.x = (curveCos * bobLimit.x * (mover.IsGrounded ? 1 : 0)) - (walkInput.x * travelLimit.x);
+            bobPosition.x = (curveCos * bobLimit.x * (mover.PlayerMovement.IsGrounded ? 1 : 0)) - (walkInput.x * travelLimit.x);
             bobPosition.y = (curveSin * bobLimit.y) - (Input.GetAxis("Vertical") * travelLimit.y);
             bobPosition.z = -(walkInput.y * travelLimit.z);
         }

@@ -1,4 +1,7 @@
-﻿using App.Scripts.Features.Commands;
+﻿using System.Collections.Generic;
+using App.Scripts.Features.Commands;
+using App.Scripts.Features.GameMods.Configs;
+using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Match.Configs;
@@ -52,7 +55,7 @@ namespace App.Scripts.Features.Bootstrap
         [SerializeField] private ConnectionProvider _connectionProvider;
 
         [Header("Game")]
-        [SerializeField] private MapsConfig _mapsConfig;
+        [SerializeField] private List<GameModConfig> _gameModsConfig;
         [SerializeField] private RoomsProvider _roomsProvider;
         [SerializeField] private PromocodesDatabase _promocodesDatabase;
 
@@ -102,7 +105,8 @@ namespace App.Scripts.Features.Bootstrap
             BindPromoCodesServices();
             BindUserStatsServices();
 
-            Container.Bind<MapsProvider>().AsSingle().WithArguments(_mapsConfig);
+            Container.Bind<MapsProvider>().AsSingle();
+            Container.Bind<GameModProvider>().AsSingle().WithArguments(_gameModsConfig);
 
             BindTasks();
         }

@@ -11,7 +11,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootEffects
         {
             var dir = -Weapon.transform.forward;
             var force = new Vector3(dir.x*_horizontalPushForce,dir.y*_verticalPushForce,dir.z*_horizontalPushForce);
-            Weapon.Owner.AddForce(force);
+            Weapon.Owner.PlayerMovement.AddForce(force);
         }
 
         public override void Update()

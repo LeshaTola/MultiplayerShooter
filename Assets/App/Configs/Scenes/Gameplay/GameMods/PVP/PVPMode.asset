@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11efa596a7414643b4a72e737c896caa, type: 3}
+  m_Name: PVPMode
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: PVP
+  <Maps>k__BackingField: {fileID: 11400000, guid: 24e6f5796d1c2b945a70d7bffb7600da, type: 2}
+  <Players>k__BackingField:
+    Min: 1
+    Max: 10
+  <GameConfig>k__BackingField: {fileID: 11400000, guid: e6f00b97c443af44aad8ce29da854b52, type: 2}
+  <SceneName>k__BackingField: GamePlay

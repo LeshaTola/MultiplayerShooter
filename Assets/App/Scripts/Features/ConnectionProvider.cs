@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 using App.Scripts.Features.Commands;
+using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Scenes.MainMenu.Features.RoomsProviders;
@@ -24,14 +25,17 @@ namespace App.Scripts.Features
         private MapsProvider _mapsProvider;
         private InfoPopupRouter _infoPopupRouter;
         private RoomsProvider _roomsProvider;
+        private GameModProvider _gameModProvider;
 
         [Inject]
         public void Constructor(MapsProvider mapsProvider,
+            GameModProvider gameModProvider,
             InfoPopupRouter infoPopupRouter,
             InputFieldPopupRouter inputFieldPopupRouter,
             RoomsProvider roomsProvider)
         {
             _mapsProvider = mapsProvider;
+            _gameModProvider = gameModProvider;
             _roomsProvider = roomsProvider;
             _infoPopupRouter = infoPopupRouter;
         }
@@ -131,17 +135,18 @@ namespace App.Scripts.Features
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
             string roomName = $"Room_{Random.Range(0, 1000)}";
+            _gameModProvider.SetRandomGameMod();
             _mapsProvider.SetRandomMap();
             var options = new RoomOptions
             {
-                MaxPlayers = (byte) 10,
+                MaxPlayers = (byte) _gameModProvider.CurrentGameMod.Players.Max,
                 IsOpen = true,
                 IsVisible = true,
                 EmptyRoomTtl = 0 ,
-                CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
+                CustomRoomProperties = new Hashtable
                 {
                     {"Map", _mapsProvider.MapConfig.Name},
-                    {"GameMode", "PVP"}
+                    {"GameMode", _gameModProvider.CurrentGameMod.Name}
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };

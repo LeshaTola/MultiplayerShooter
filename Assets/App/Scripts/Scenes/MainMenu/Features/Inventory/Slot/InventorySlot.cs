@@ -8,7 +8,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
 {
     public class InventorySlot : MonoBehaviour, IDropHandler
     {
-        [SerializeField] private Image _image;
         [SerializeField] private Image _selectionImage;
         [SerializeField] private Image _rarityImage;
         [SerializeField] private TextMeshProUGUI _keyText;

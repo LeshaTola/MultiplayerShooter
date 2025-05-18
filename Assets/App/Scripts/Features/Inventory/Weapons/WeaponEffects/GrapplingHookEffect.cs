@@ -7,8 +7,6 @@ using App.Scripts.Scenes.Gameplay.Player;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
 namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
@@ -16,13 +14,13 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
     public class GrapplingHookEffect : WeaponEffect
     {
         private const float DISTANCE = 0.5f;
-        
+
         public override event Action<Vector3, float, bool> OnPlayerHit;
-        
+
         [SerializeField] private float _overshootYAxis;
         [SerializeField] private MinMaxFloat _minMaxSpeed;
         [SerializeField] private float _speedMultiplier;
-        [SerializeField, Range(0.4f,2f)] private float _targetFovMultiplier;
+        [SerializeField] [Range(0.4f, 2f)] private float _targetFovMultiplier;
         [SerializeField] private float _fovChangeDuration = 0.3f;
         [SerializeField] private float _offMultiplier;
 
@@ -57,6 +55,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     return;
                 }
             }
+
             _isActive = true;
 
             if (hitValues.Count < 1)
@@ -77,8 +76,8 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     var distance = Vector3.Distance(Weapon.Owner.transform.position, _hitPoint);
                     _direction = (_hitPoint - Weapon.Owner.transform.position).normalized;
                     _speed = _minMaxSpeed.Clamp(distance) * _speedMultiplier;
-                    Weapon.Owner.Controller.Move( _direction * _speed * Time.deltaTime);
-                    
+                    Weapon.Owner.PlayerMovement.Controller.Move(_direction * _speed * Time.deltaTime);
+
                     if (distance <= DISTANCE)
                     {
                         _cts.Cancel();
@@ -103,8 +102,8 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
         private void StartGrappling(List<(Vector3, GameObject)> hitValues)
         {
-            Weapon.Owner.PlayerState = PlayerState.Grappling;
-            Weapon.Owner.Freese();
+            Weapon.Owner.PlayerMovement.PlayerState = PlayerState.Grappling;
+            Weapon.Owner.PlayerMovement.Freese();
             _hitPoint = hitValues[0].Item1;
 
             _fovTween?.Kill();
@@ -131,8 +130,8 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
             _cts.Cancel();
             _hitPoint = default;
-            Weapon.Owner.PlayerState = PlayerState.Normal;
-            Weapon.Owner.AddForce(_direction * _speed * _offMultiplier);
+            Weapon.Owner.PlayerMovement.PlayerState = PlayerState.Normal;
+            Weapon.Owner.PlayerMovement.AddForce(_direction * _speed * _offMultiplier);
         }
     }
 }

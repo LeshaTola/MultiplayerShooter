@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
@@ -11,9 +10,9 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 {
     public class GameplayState : State
     {
-        private PlayerProvider _playerProvider;
-        private PostProcessingProvider _postProcessingProvider;
-        private IUpdateService _updateService;
+        private readonly PlayerProvider _playerProvider;
+        private readonly PostProcessingProvider _postProcessingProvider;
+        private readonly IUpdateService _updateService;
         private CancellationTokenSource _cts;
 
         public GameplayState(PlayerProvider playerProvider, PostProcessingProvider postProcessingProvider,
@@ -24,13 +23,13 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _updateService = updateService;
         }
 
-        public  override async UniTask Enter()
+        public override async UniTask Enter()
         {
             Debug.Log("Gameplay");
             _playerProvider.Player.Health.OnDied += OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage += ApplyDamageEffect;
             _playerProvider.Player.Health.OnHealing += ApplyHealingEffect;
-            
+
             await SetImmortal();
         }
 
@@ -54,12 +53,12 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
                 _cts.Dispose();
                 _cts = null;
             }
-            
-            
+
+
             _playerProvider.Player.Health.RPCSetImmortal(false);
             _playerProvider.Player.PlayerVisual.RPCSetImortal(false);
             _postProcessingProvider.RemoveImmortalEffect();
-            
+
             _playerProvider.Player.Health.SetImmortal(true);
         }
 
@@ -69,12 +68,12 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             return UniTask.CompletedTask;
         }
 
-        public override  UniTask Exit()
+        public override UniTask Exit()
         {
             _playerProvider.Player.Health.OnDied -= OnPlayerDeath;
             _playerProvider.Player.Health.OnDamage -= ApplyDamageEffect;
             _playerProvider.Player.Health.OnHealing -= ApplyHealingEffect;
-            
+
             _cts?.Cancel();
             return UniTask.CompletedTask;
         }

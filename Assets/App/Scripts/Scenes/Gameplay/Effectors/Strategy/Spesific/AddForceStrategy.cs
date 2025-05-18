@@ -14,7 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
         {
             foreach (var forceData in _forceData)
             {
-                player.AddForce(forceData.ForceVector);
+                player.PlayerMovement.AddForce(forceData.ForceVector);
                 await UniTask.Delay(TimeSpan.FromSeconds(forceData.Delay));
             }
         }

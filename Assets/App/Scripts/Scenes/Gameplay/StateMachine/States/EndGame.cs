@@ -1,4 +1,4 @@
-﻿using App.Scripts.Features.Match.Configs;
+﻿using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Features.Rewards;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.EndGame;
@@ -13,25 +13,25 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
     {
         private readonly EndGameViewPresenter _endGameViewPresenter;
         private readonly RewardsProvider _rewardsProvider;
-        private readonly GameConfig _gameConfig;
+        private readonly GameModProvider _gameModProvider;
         private readonly TimerProvider _timerProvider;
         private readonly LeaderBoardProvider _leaderBoardProvider;
         private readonly Modules.Timer _timer;
 
         private bool _exit;
-        
+
         public EndGame(EndGameViewPresenter endGameViewPresenter,
             RewardsProvider rewardsProvider,
-            GameConfig gameConfig,
+            GameModProvider gameModProvider,
             TimerProvider timerProvider,
             LeaderBoardProvider leaderBoardProvider)
         {
             _endGameViewPresenter = endGameViewPresenter;
             _rewardsProvider = rewardsProvider;
-            _gameConfig = gameConfig;
+            _gameModProvider = gameModProvider;
             _timerProvider = timerProvider;
             _leaderBoardProvider = leaderBoardProvider;
-            _timer = new();
+            _timer = new Modules.Timer();
         }
 
         public override async UniTask Enter()
@@ -39,13 +39,18 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Debug.Log("End");
             _exit = false;
             _rewardsProvider.ApplyEndMatchRewards();
-            
+
             await _endGameViewPresenter.Show();
-            await _timer.StartTimer(_gameConfig.EndGameTime, _endGameViewPresenter.UpdateTimer);
+            await _timer
+                .StartTimer(
+                    _gameModProvider.CurrentGameMod.GameConfig.EndGameTime,
+                    _endGameViewPresenter.UpdateTimer);
+            
             if (_exit)
             {
                 return;
             }
+
             await _endGameViewPresenter.Hide();
             _timerProvider.Initialize();
             await StateMachine.ChangeState<RespawnState>();

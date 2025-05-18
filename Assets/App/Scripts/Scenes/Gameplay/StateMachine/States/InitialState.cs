@@ -3,11 +3,8 @@ using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.States.General;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.Provider;
-using App.Scripts.Scenes.Gameplay.HUD.PlayerUI.View;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
-using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Timer;
-using App.Scripts.Scenes.Gameplay.Weapons;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using UnityEngine;
@@ -28,7 +25,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             IInitializeService initializeService,
             PlayerController playerController,
             PlayerUIProvider playerUIProvider,
-            ISceneTransition sceneTransition) 
+            ISceneTransition sceneTransition)
         {
             _playerProvider = playerProvider;
             _timerProvider = timerProvider;
@@ -42,20 +39,20 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            
+
             Debug.Log("Initial");
             _initializeService.Initialize();
-            
+
             await UniTask.WaitUntil(() => PhotonNetwork.Time != 0);
             _timerProvider.Initialize();
             _timerProvider.OnTimerExpired += OnTimerExpired;
-            
+
             _playerController.Setup(_playerProvider.Player);
 
             var playerView = _playerUIProvider.PlayerView;
             playerView.HealthBar.Initialize(_playerProvider.Player.Health);
             playerView.WeaponView.Initialize(_playerProvider.Player.WeaponProvider);
-            
+
             await StateMachine.ChangeState<RespawnState>();
         }
 

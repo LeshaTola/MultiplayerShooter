@@ -862,6 +862,7 @@ GameObject:
   - component: {fileID: 6642920475438124354}
   - component: {fileID: 2618612351175116522}
   - component: {fileID: 4677047985132999472}
+  - component: {fileID: 1122139294017996100}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -982,14 +983,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
-  <Controller>k__BackingField: {fileID: 7171066335943419589}
-  _checkGroundPivot: {fileID: 1760302324315034158}
-  _checkGroundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  <VirtualCamera>k__BackingField: {fileID: 7447736516197791254}
   _nickNameUI: {fileID: 7534447508111904430}
-  _arm: {fileID: 3816344883529328817}
+  <PlayerMovement>k__BackingField: {fileID: 1122139294017996100}
   <PlayerAudioProvider>k__BackingField: {fileID: 2618612351175116522}
   <WeaponProvider>k__BackingField: {fileID: 5977931046957955413}
   <Health>k__BackingField: {fileID: 4972400745006171294}
@@ -1103,6 +1098,27 @@ MonoBehaviour:
   _eyeMeshRenderer: {fileID: 3595045022570382613}
   _globalInventory: {fileID: 11400000, guid: cf681335c983eb945b78f539a40ea8eb, type: 2}
   _animator: {fileID: 4442932507286072080}
+--- !u!114 &1122139294017996100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058743405672477868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24851d4c462a44e08a1224264458242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
+  _checkGroundPivot: {fileID: 1760302324315034158}
+  _checkGroundMask:
+    serializedVersion: 2
+    m_Bits: 1088
+  <Controller>k__BackingField: {fileID: 7171066335943419589}
+  <VirtualCamera>k__BackingField: {fileID: 7447736516197791254}
+  <PlayerAudioProvider>k__BackingField: {fileID: 2618612351175116522}
+  <PlayerVisual>k__BackingField: {fileID: 4677047985132999472}
 --- !u!1 &8772563939488847323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,11 +2051,6 @@ MeshRenderer:
 --- !u!4 &3703984660794699660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7422078115528838261, guid: 6d0e61b1243ae964cbc87578f627b53c, type: 3}
-  m_PrefabInstance: {fileID: 6082030844701434873}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3816344883529328817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2264792021434578104, guid: 6d0e61b1243ae964cbc87578f627b53c, type: 3}
   m_PrefabInstance: {fileID: 6082030844701434873}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &3857879841932740140 stripped

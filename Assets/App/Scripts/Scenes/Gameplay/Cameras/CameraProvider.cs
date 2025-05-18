@@ -7,15 +7,7 @@ namespace App.Scripts.Scenes.Gameplay.Cameras
     public class CameraProvider
     {
         List<CinemachineVirtualCamera> _cameras = new List<CinemachineVirtualCamera>();
-
-        /*public CameraProvider(PlayerProvider playerProvider)
-        {
-            /*if(playerProvider.Player != null)
-            playerProvider.OnPlayerCreated += OnPlayerCreated;#1#
-            RegisterCamera(playerProvider.Player.VirtualCamera);
-        }
-        */
-
+        
         public CinemachineVirtualCamera GetPlayerCamera()
         {
             return _cameras[0];
@@ -28,7 +20,7 @@ namespace App.Scripts.Scenes.Gameplay.Cameras
 
         private void OnPlayerCreated(Player.Player player)
         {
-            RegisterCamera(player.VirtualCamera);
+            RegisterCamera(player.PlayerMovement.VirtualCamera);
         }
     }
 }

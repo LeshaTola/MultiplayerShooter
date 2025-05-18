@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features;
+using App.Scripts.Features.GameMods.Configs;
+using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Match.Maps;
 using App.Scripts.Modules.Localization.Localizers;
@@ -25,7 +27,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         public const int MAX_SERVER_NAME_LENGTH = 16;
         public const int MIN_PASSWORD_LENGTH = 4;
         public const int MAX_PASSWORD_LENGTH = 6;
-        public const int MAX_PLAYERS = 10;
 
         [SerializeField] private TMP_InputField _serverNameInputField;
         [SerializeField] private TMP_InputField _playersInputField;
@@ -34,8 +35,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         [SerializeField] private TMP_Dropdown _modeDropdown;
 
         [Header("Map")]
-        [SerializeField] private MapsConfig _mapsConfig;
-
         [SerializeField] private Image _mapImage;
         [SerializeField] private TMPLocalizer _mapNameText;
 
@@ -43,6 +42,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         [SerializeField] private Button _prevButton;
 
         private int _mapIndex = 0;
+        private GameModConfig _currentGameModConfig;
 
         [Header("Buttons")]
         [SerializeField] private Button _createButton;
@@ -54,15 +54,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         [field: SerializeField,ValueDropdown(@"GetAudioKeys")] public string ButtonSoundKey { get; private set; }
         
         private InfoPopupRouter _infoPopupRouter;
+        private GameModProvider _gameModProvider;
         private MapsProvider _mapsProvider;
         private ISoundProvider _soundProvider;
+        private int _playersMax;
+        private int _playersMin;
 
         [Inject]
         public void Construct(InfoPopupRouter infoPopupRouter,
-            MapsProvider mapsProvider, ISoundProvider soundProvider)
+            MapsProvider mapsProvider,
+            GameModProvider gameModProvider,
+            ISoundProvider soundProvider)
         {
             _infoPopupRouter = infoPopupRouter;
             _mapsProvider = mapsProvider;
+            _gameModProvider = gameModProvider;
             _soundProvider = soundProvider;
         }
 
@@ -77,18 +83,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
             _nextButton.onClick.AddListener(NextMap);
             _prevButton.onClick.AddListener(PrevMap);
+            
+            SetupGameMods();
 
             _mapIndex = 0;
             UpdateMapUI();
             _serverNameInputField.text = $"Room_{Random.Range(0, 1000)}";
             _passwordInputField.text = "";
-            _playersInputField.text = MAX_PLAYERS.ToString();
-        }
-
-        private async void HideYourself()
-        {
-            _soundProvider.PlaySound(ButtonSoundKey);
-            await Hide();
+            _playersInputField.text = _playersMax.ToString();
         }
 
         private void OnDisable()
@@ -99,6 +101,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             _nextButton.onClick.RemoveAllListeners();
             _prevButton.onClick.RemoveAllListeners();
 
+            _modeDropdown.onValueChanged.RemoveAllListeners();
+            
             _serverNameInputField.onValueChanged.RemoveListener(ValidateServerName);
             _passwordInputField.onValueChanged.RemoveListener(ValidatePassword);
             _playersInputField.onValueChanged.RemoveListener(ValidatePlayers);
@@ -124,9 +128,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         {
             if (int.TryParse(input, out int players))
             {
-                if (players > MAX_PLAYERS)
+                if (players > _playersMax)
                 {
-                    _playersInputField.text = MAX_PLAYERS.ToString();
+                    _playersInputField.text = _playersMax.ToString();
+                }
+
+                if (players < _playersMin)
+                {
+                    _playersInputField.text = _playersMin.ToString();
                 }
             }
             else
@@ -140,7 +149,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             string serverName = _serverNameInputField.text;
             string password = _passwordInputField.text;
             string playersInput = _playersInputField.text;
-            //string gameMode = _gameModeDropdown.value.ToString();
 
             _soundProvider.PlaySound(ButtonSoundKey);
             if (!await ValidateServerSettings(serverName, password, playersInput))
@@ -151,8 +159,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             TryParsePlayerCount(playersInput, out int maxPlayers);
             var options = SetupOptions(maxPlayers);
             AddPassword(password, options);
-
-            _mapsProvider.Map = _mapsConfig.Maps[_mapIndex].Prefab;
+            
+            _mapsProvider.Map = _mapsProvider.Config.Maps[_mapIndex].Prefab;
             PhotonNetwork.CreateRoom(serverName, options);
         }
 
@@ -165,8 +173,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
                 IsVisible = true,
                 CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
                 {
-                    {"Map", _mapsConfig.Maps[_mapIndex].Name},
-                    {"GameMode", /*gameMode*/"PVP"}
+                    {"Map", _mapsProvider.Config.Maps[_mapIndex].Name},
+                    {"GameMode", _gameModProvider.CurrentGameMod.Name}
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
@@ -217,20 +225,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private bool TryParsePlayerCount(string playersInput, out int maxPlayers)
         {
-            return int.TryParse(playersInput, out maxPlayers) && maxPlayers > 0 && maxPlayers <= MAX_PLAYERS;
-        }
-
-        private async UniTask<bool> IsPlayerCountValid(string playersInput)
-        {
-            if (!TryParsePlayerCount(playersInput, out _))
-            {
-                await _infoPopupRouter.ShowPopup(
-                    ConstStrings.ERROR,
-                    $"Количество игроков должно быть между 1 и {MAX_PLAYERS}.");
-                return false;
-            }
-
-            return true;
+            return int.TryParse(playersInput, out maxPlayers) && maxPlayers >= _playersMin && maxPlayers <= _playersMax;
         }
 
         private async UniTask<bool> ValidateServerSettings(string serverName, string password, string playersInput)
@@ -238,15 +233,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             if (!await IsServerNameValid(serverName)) return false;
             if (!await IsPasswordValid(password)) return false;
 
-            var isPlayerCountValid = await IsPlayerCountValid(playersInput);
-            if (!isPlayerCountValid) return false;
-
             return true;
         }
 
         private void NextMap()
         {
-            if (_mapIndex < _mapsConfig.Maps.Count - 1)
+            if (_mapIndex < _mapsProvider.Config.Maps.Count - 1)
             {
                 _soundProvider.PlaySound(ButtonSoundKey);
                 _mapIndex++;
@@ -266,23 +258,47 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private void UpdateMapUI()
         {
-            var map = _mapsConfig.Maps[_mapIndex];
+            var map = _mapsProvider.Config.Maps[_mapIndex];
 
             _mapNameText.Key = map.Name;
             _mapNameText.Translate();
             _mapImage.sprite = map.Sprite;
 
             _prevButton.interactable = _mapIndex > 0;
-            _nextButton.interactable = _mapIndex < _mapsConfig.Maps.Count - 1;
+            _nextButton.interactable = _mapIndex < _mapsProvider.Config.Maps.Count - 1;
         }
         
-        public List<string> GetAudioKeys()
+        private List<string> GetAudioKeys()
         {
             if (_audioDatabase == null)
             {
                 return null;
             }
             return _audioDatabase.Audios.Keys.ToList();
+        }
+        
+        private void SetupGameMods()
+        {
+            _modeDropdown.ClearOptions();
+            _modeDropdown.AddOptions(_gameModProvider.GameMods.Select(x => x.Name).ToList());
+            _modeDropdown.onValueChanged.AddListener(ChangeGameMode);
+            ChangeGameMode(0);
+        }
+
+        private void ChangeGameMode(int id)
+        {
+            _gameModProvider.SetGameMod(_gameModProvider.GameMods[id]);
+            _mapIndex = 0;
+            _playersMax = _gameModProvider.CurrentGameMod.Players.Max;
+            _playersMin = _gameModProvider.CurrentGameMod.Players.Min;
+
+            UpdateMapUI();
+        }
+
+        private async void HideYourself()
+        {
+            _soundProvider.PlaySound(ButtonSoundKey);
+            await Hide();
         }
     }
 }

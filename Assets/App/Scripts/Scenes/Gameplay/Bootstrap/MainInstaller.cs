@@ -31,7 +31,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
     public class MainInstaller : MonoInstaller
     {
         [SerializeField] private TimerProvider _timerProvider;
-        [SerializeField] private GameConfig _gameConfig;
 
         [Header("HitMark")]
         [SerializeField] private HitConfig _hitConfig;
@@ -66,7 +65,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
             Container.BindInterfacesAndSelfTo<TimerProvider>().FromInstance(_timerProvider).AsSingle();
             Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
-            Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle();
 
             BindInput();
             

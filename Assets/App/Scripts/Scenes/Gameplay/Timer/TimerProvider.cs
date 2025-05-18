@@ -1,9 +1,8 @@
 ﻿using System;
-using App.Scripts.Features.Match.Configs;
-using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using Photon.Pun;
-using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.Timer
 {
@@ -12,12 +11,17 @@ namespace App.Scripts.Scenes.Gameplay.Timer
         public event Action<double> OnTimerTick;
         public event Action OnTimerExpired;
 
-        [SerializeField] private GameConfig _gameConfig;
-        
         private double _startTime;
         private bool _timerRunning;
+        private GameModProvider _gameModProvider;
 
-        public double LocalStartTime {get; private set;}
+        public double LocalStartTime { get; private set; }
+
+        [Inject]
+        public void Construct(GameModProvider gameModProvider)
+        {
+            _gameModProvider = gameModProvider;
+        }
 
         public void Initialize()
         {
@@ -37,7 +41,7 @@ namespace App.Scripts.Scenes.Gameplay.Timer
                 return;
             }
 
-            var remainingTime = _gameConfig.MatchDurationTime - (PhotonNetwork.Time - _startTime);
+            var remainingTime = GetRemainingTime();
             if (remainingTime >= 0)
             {
                 OnTimerTick?.Invoke(remainingTime);
@@ -59,7 +63,7 @@ namespace App.Scripts.Scenes.Gameplay.Timer
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                if (_timerRunning )
+                if (_timerRunning)
                 {
                     photonView.RPC(nameof(StartTimer), RpcTarget.AllBuffered, _startTime);
                 }
@@ -68,6 +72,11 @@ namespace App.Scripts.Scenes.Gameplay.Timer
                     Initialize();
                 }
             }
+        }
+
+        private double GetRemainingTime()
+        {
+            return _gameModProvider.CurrentGameMod.GameConfig.MatchDurationTime - (PhotonNetwork.Time - _startTime);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         {
             var player = InitializePlayer(out var skin);
             SendAnaliticsIvents(skin);
-            _cameraProvider.RegisterCamera(player.VirtualCamera);
+            _cameraProvider.RegisterCamera(player.PlayerMovement.VirtualCamera);
             InitializeWeapon(player);
             OnPlayerCreated?.Invoke(player);
             return player;
@@ -78,7 +78,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 position = _spawnPoints[Random.Range(0, _spawnPoints.Count)].position;
             }
 
-            _player.Teleport(position);
+            _player.PlayerMovement.Teleport(position);
             _player.RPCSetActive(true);
 
             _player.Health.RPCTakeHeal(_player.Health.MaxValue);

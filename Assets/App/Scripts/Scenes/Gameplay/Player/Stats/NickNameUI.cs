@@ -8,10 +8,10 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
     {
         [SerializeField] private TextMeshProUGUI _nickName;
 
-        [PunRPC]
-        public void Setup(string nickName)
+        public void Setup(string nickName, Color color)
         {
             _nickName.text = nickName;
+            _nickName.color = color;
         }
     }
 }
