@@ -5,9 +5,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes
 {
     public class YandexAddInvoker : PromocodeInvoker
     {
-        protected override void OnEnable()
+        protected override void Invoke()
         {
-            _button.onClick.AddListener(() => YG2.RewardedAdvShow(_promocode));
+            YG2.RewardedAdvShow(_promocode);
+            RaiseOnInvoked();
         }
     }
 }

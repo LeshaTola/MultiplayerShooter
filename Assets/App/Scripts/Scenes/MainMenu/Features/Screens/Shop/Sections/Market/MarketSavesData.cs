@@ -9,5 +9,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         public List<string> Weapons =new List<string>();
         public List<string> Skins =new List<string>();
         public long LastUpdate;
+        public int CurrentCurrencyElementsCount;
     }
 }

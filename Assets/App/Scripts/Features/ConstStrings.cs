@@ -15,6 +15,7 @@
         public const string PROMO_CODE_IS_NOT_EXIST = "Такого промокода не существует";
         public const string AD_IS_OFF = "Реклама успешно отключена!";
         public const string MARKET_IS_UPDATED = "Магазин успешно обнавлен!";
+        public const string ROULETTE_IS_UPDATED = "Рулетка успешно обновлена!";
         public const string REVIEW_IS_NOT_AVAILABLE = "Не возможно оставить отзыв";
         public const string CANNOT_JOIN_ROOM = "Невозможно подключиться к комнате";
     }

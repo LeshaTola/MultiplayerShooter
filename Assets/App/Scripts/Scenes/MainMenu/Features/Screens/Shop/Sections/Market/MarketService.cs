@@ -19,6 +19,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
     {
         public event Action<float, float> OnTimerUpdated;
         public event Action<List<ShopItemData>,List<ShopItemData>> OnItemsUpdated;
+        public event Action<int> OnCurrencyCountUpdated;
 
         private readonly GlobalInventory _globalInventory;
         private readonly RaritiesDatabase _raritiesDatabase;
@@ -27,10 +28,22 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
         private readonly IDataProvider<MarketSavesData> _dataProvider;
 
         private DateTime _lastUpdate;
+        private int _currentCurrencyElementsCount;
 
         public float RemainingTime { get; private set; }
         public List<ShopItemData> CurrentWeapons { get; private set; } = new();
         public List<ShopItemData> CurrentSkins { get; private set; } = new();
+
+        public int CurrentCurrencyElementsCount
+        {
+            get => _currentCurrencyElementsCount;
+            set
+            {
+                _currentCurrencyElementsCount = value;
+                OnCurrencyCountUpdated?.Invoke(_currentCurrencyElementsCount);
+                SaveState();
+            }
+        }
 
         public MarketService(
             GlobalInventory globalInventory,
@@ -76,6 +89,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                 LastUpdate = _lastUpdate.Ticks,
                 Weapons = CurrentWeapons.Select(x => x.Item.Id).ToList(),
                 Skins = CurrentSkins.Select(x => x.Item.Id).ToList(),
+                CurrentCurrencyElementsCount = CurrentCurrencyElementsCount,
             });
         }
 
@@ -88,6 +102,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                     LastUpdate = default,
                     Weapons = new List<string>(),
                     Skins = new List<string>(),
+                    CurrentCurrencyElementsCount = 2
                 });
             }
 
@@ -117,11 +132,15 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             }
 
             OnItemsUpdated?.Invoke(CurrentWeapons,CurrentSkins);
+
+            CurrentCurrencyElementsCount = marketData.CurrentCurrencyElementsCount;
+            OnCurrencyCountUpdated?.Invoke(CurrentCurrencyElementsCount);
             UpdateRemainingTime();
         }
 
         public void UpdateItems()
         {
+            CurrentCurrencyElementsCount = 2;
             var inventory = _userStatsProvider.InventoryProvider.Inventory;
 
             var newWeapons = new List<ShopItemData>();

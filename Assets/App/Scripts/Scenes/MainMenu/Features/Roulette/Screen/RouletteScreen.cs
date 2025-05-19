@@ -17,9 +17,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
     public class RouletteScreen : GameScreen
     {
         public event Action SpinButtonPressed;
+        public event Action RefreshButtonPressed;
 
         [SerializeField] private Image _screenBlocker;
         [SerializeField] private Button _spinButton;
+        [SerializeField] private Button _refreshButton;
         [SerializeField] private TextMeshProUGUI _ticketsText;
 
         [SerializeField] private AudioDatabase _audioDatabase;
@@ -46,11 +48,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         public override void Initialize()
         {
             _spinButton.onClick.AddListener(()=>SpinButtonPressed?.Invoke());
+            _refreshButton.onClick.AddListener(()=>RefreshButtonPressed?.Invoke());
         }
 
         public override void Cleanup()
         {
             _spinButton.onClick.RemoveAllListeners();
+            _refreshButton.onClick.RemoveAllListeners();
             DefaultSectors();
             DefaultWinItems();
         }

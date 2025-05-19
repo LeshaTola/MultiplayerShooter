@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Sounds;
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Invokers;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -15,7 +16,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
     {
         public event Action OnUpdateButtonClicked;
         public event Action<string> OnItemClicked;
+        public event Action OnCurrencyInvoked;
+        
 
+        [SerializeField] private List<PromocodeInvoker> _currencyMarketElements;
         [SerializeField] private List<ShopMarketElement> _weaponMarketElements;
         [SerializeField] private List<ShopMarketElement> _skinsMarketElements;
 
@@ -46,6 +50,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
             {
                 shopMarketElement.Initialize();
             }
+
+            foreach (var currencyMarketElement in _currencyMarketElements)
+            {
+                currencyMarketElement.OnInvoked += OnCurrencyMarketElementInvoked;
+            }
         }
 
         public void Cleanup()
@@ -59,6 +68,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
             foreach (var shopMarketElement in _skinsMarketElements)
             {
                 shopMarketElement.Cleanup();
+            }
+            
+            foreach (var currencyMarketElement in _currencyMarketElements)
+            {
+                currencyMarketElement.OnInvoked -= OnCurrencyMarketElementInvoked;
             }
         }
 
@@ -111,7 +125,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
         {
             _timerText.text = _preTimerText;
         }
-        
+
         public List<string> GetAudioKeys()
         {
             if (_audioDatabase == null)
@@ -119,6 +133,24 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections
                 return null;
             }
             return _audioDatabase.Audios.Keys.ToList();
+        }
+
+        public void UpdateCurrencyCount(int obj)
+        {
+            foreach (var currencyMarketElement in _currencyMarketElements)
+            {
+                currencyMarketElement.gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < obj; i++)
+            {
+                _currencyMarketElements[i].gameObject.SetActive(true);
+            }
+        }
+
+        private void OnCurrencyMarketElementInvoked()
+        {
+            OnCurrencyInvoked?.Invoke();
         }
     }
 }

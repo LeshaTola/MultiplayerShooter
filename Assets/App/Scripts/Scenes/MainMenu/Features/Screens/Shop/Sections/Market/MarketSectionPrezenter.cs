@@ -43,9 +43,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
             _view.Initialzie(_localizationSystem);
 
             _marketService.OnItemsUpdated += _view.UpdateSections;
+            _marketService.OnCurrencyCountUpdated += _view.UpdateCurrencyCount;
             _marketService.OnTimerUpdated += _view.UpdateTimer;
             _view.OnItemClicked += OnItemClicked;
             _view.OnUpdateButtonClicked += OnUpdateButtonClicked;
+            _view.OnCurrencyInvoked += ChangeCurrencyCount;
         }
 
         public void Cleanup()
@@ -84,6 +86,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
                 = _marketService.CurrentWeapons.FirstOrDefault(x => x.Item.Id.Equals(id))
                   ?? _marketService.CurrentSkins.FirstOrDefault(x => x.Item.Id.Equals(id));
             _marketPopupRouter.ShowPopup(config).Forget();
+        }
+
+        private void ChangeCurrencyCount()
+        {
+            _marketService.CurrentCurrencyElementsCount--;
         }
     }
 }

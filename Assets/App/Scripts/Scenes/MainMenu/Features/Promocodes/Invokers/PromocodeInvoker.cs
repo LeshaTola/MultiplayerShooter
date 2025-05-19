@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
@@ -11,6 +12,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Invokers
 {
     public class PromocodeInvoker : MonoBehaviour
     {
+        public event Action OnInvoked;
+        
         [SerializeField] protected PromocodesDatabase _promocodesDatabase;
 
         [ValueDropdown(nameof(GetPromocodes))]
@@ -30,12 +33,23 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Invokers
 
         protected virtual void OnEnable()
         {
-            _button.onClick.AddListener(() => PromoCodesProvider.ApplyPromoCode(_promocode));
+            _button.onClick.AddListener(Invoke);
         }
 
         protected virtual void OnDisable()
         {
             _button.onClick.RemoveAllListeners();
+        }
+
+        protected virtual void Invoke()
+        {
+            PromoCodesProvider.ApplyPromoCode(_promocode);
+            RaiseOnInvoked();
+        }
+
+        protected void RaiseOnInvoked()
+        {
+            OnInvoked?.Invoke();
         }
 
         private List<string> GetPromocodes()

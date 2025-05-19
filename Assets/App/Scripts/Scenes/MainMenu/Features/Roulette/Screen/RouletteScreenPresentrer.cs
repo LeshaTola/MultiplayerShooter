@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features;
 using App.Scripts.Features.Rewards;
@@ -13,6 +14,8 @@ using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using YG;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
 {
@@ -51,6 +54,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         public override void Initialize()
         {
             _rouletteScreen.SpinButtonPressed += OnSpinButtonPressed;
+            _rouletteScreen.RefreshButtonPressed += OnRefreshButtonPressed;
             _userStatsProvider.TicketsProvider.OnTicketsChanged += _rouletteScreen.SetupTicketsCount;
             _rouletteScreen.SetupSectors(_rouletteConfig);
             
@@ -62,6 +66,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         public override void Cleanup()
         {
             _rouletteScreen.SpinButtonPressed -= OnSpinButtonPressed;
+            _rouletteScreen.RefreshButtonPressed -= OnRefreshButtonPressed;
             _userStatsProvider.TicketsProvider.OnTicketsChanged -= _rouletteScreen.SetupTicketsCount;
             _rouletteScreen.Cleanup();
         }
@@ -139,6 +144,17 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
         private void PlayPassedDegreeSound()
         {
             _soundProvider.PlaySound(_rouletteScreen.RouletteStepSond);
+        }
+
+        private void OnRefreshButtonPressed()
+        {
+            _soundProvider.PlaySound(_rouletteScreen.ButtonSound);
+
+            YG2.RewardedAdvShow(String.Empty, () =>
+            {
+                _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.ROULETTE_IS_UPDATED).Forget();
+                UpdateWinItems();
+            });
         }
     }
 }
