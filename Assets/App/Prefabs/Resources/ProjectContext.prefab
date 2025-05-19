@@ -98,7 +98,6 @@ MonoBehaviour:
   _connectionProvider: {fileID: 738047473016714087}
   _gameModsConfig:
   - {fileID: 11400000, guid: d652a364b3fc9284da21af897c7273f6, type: 2}
-  - {fileID: 11400000, guid: 3fcee10f5439d2c43876d3c96e74be65, type: 2}
   _roomsProvider: {fileID: 4301044871448533789}
   _promocodesDatabase: {fileID: 11400000, guid: 510bb46e0207628498aa7ae4078ca657, type: 2}
   _inventoryConfig: {fileID: 11400000, guid: 070f1c3decac8844cae828fe1204d155, type: 2}

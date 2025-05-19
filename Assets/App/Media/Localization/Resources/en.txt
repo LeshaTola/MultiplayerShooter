@@ -223,3 +223,9 @@ LavaLamp,Lava Lamp
 Ник игрока,Player's nickname
 Введите ваше имя,Enter your name
 Матч продолжится через:,The match will continue in:
+Рулетка успешно обновлена!,Roulette has been successfully updated!
+Экипировать,Equip
+ExpRare,Experience points
+ExpEpic,Experience points
+ExpUncommon,Experience points
+ExpLegendary,Experience points

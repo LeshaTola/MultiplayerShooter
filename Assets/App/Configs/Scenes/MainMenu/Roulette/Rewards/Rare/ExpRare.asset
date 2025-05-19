@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6635df9a3a245a7bfb563c741995615, type: 3}
-  m_Name: LegendaryCoinsReward
+  m_Name: ExpRare
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: LegendaryCoinsReward
-  <Reward>k__BackingField: {fileID: 11400000, guid: 961d7a85e97b2b5498c7ebc5af3bf25c, type: 2}
+  <Id>k__BackingField: ExpRare
+  <Reward>k__BackingField: {fileID: 11400000, guid: ac50362d1920c1947900d8864102740a, type: 2}
   <IsFixedCount>k__BackingField: 0
   <Color>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
-  <Count>k__BackingField: 284
+  <Count>k__BackingField: 240
   <CountRange>k__BackingField:
     Min: 200
     Max: 300
