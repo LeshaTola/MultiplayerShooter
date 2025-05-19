@@ -4,11 +4,14 @@ using App.Scripts.Features;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Commands;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
+using Cysharp.Threading.Tasks;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
 {
@@ -25,6 +28,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
         private readonly MarketService _marketService;
         private readonly SelectionProvider _selectionProvider;
         private Action _marketViewAction;
+        private readonly InfoPopupRouter _infoPopupRouter;
+        private readonly ISoundProvider _soundProvider;
 
         public MarketViewPresenter(ILocalizationSystem localizationSystem,
             WeaponModelsUIProvider weaponModelsUIProvider,
@@ -32,9 +37,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             InventoryProvider inventoryProvider,
             MarketService marketService,
             MarketView marketViewView,
-            BuyItemCommand buyItemCommand,
             SelectionProvider selectionProvider,
-            EquipItemCommand equipItemCommand)
+            EquipItemCommand equipItemCommand, 
+            InfoPopupRouter infoPopupRouter, ISoundProvider soundProvider)
         {
             _localizationSystem = localizationSystem;
             _weaponModelsUIProvider = weaponModelsUIProvider;
@@ -42,9 +47,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             _inventoryProvider = inventoryProvider;
             _marketService = marketService;
             _marketViewView = marketViewView;
-            _buyItemCommand = buyItemCommand;
             _selectionProvider = selectionProvider;
             _equipItemCommand = equipItemCommand;
+            _infoPopupRouter = infoPopupRouter;
+            _soundProvider = soundProvider;
         }
 
         public void Initialize()
@@ -130,12 +136,22 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
 
         private void SetupAction(ShopItemData shopItemData)
         {
-            _buyItemCommand.ItemData = shopItemData;
             _marketViewAction = () =>
             {
-                _buyItemCommand.Execute();
+                if (!_marketService.TryBuyItem(shopItemData))
+                {
+                    ShowNotEnoughMoneyMessage();
+                    return;
+                }
+            
+                _soundProvider.PlaySound("Buy_sound");
                 _marketViewView.SetButtonActive(false);
             };
+        }
+        
+        private void ShowNotEnoughMoneyMessage()
+        {
+            _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_MONEY).Forget();
         }
 
         private void OnButtonClicked()

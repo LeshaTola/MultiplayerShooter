@@ -90,7 +90,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 
         private void Buy()
         {
-
+            if (!_vm.MarketService.TryBuyItem(_vm.ShopItemData))
+            {
+                ShowNotEnoughMoneyMessage();
+                return;
+            }
+            
+            _vm.SoundProvider.PlaySound(_buySound);
             Close();
         }
 
