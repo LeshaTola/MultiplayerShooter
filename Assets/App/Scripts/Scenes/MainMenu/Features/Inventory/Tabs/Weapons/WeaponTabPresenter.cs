@@ -3,8 +3,6 @@ using System.Linq;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Factories;
-using App.Scripts.Modules.Localization;
-using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Screen;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
@@ -28,7 +26,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
             IFactory<InventorySlot> slotFactory,
             InventoryProvider inventoryProvider,
             RectTransform overlayTransform,
-            RaritiesDatabase raritiesDatabase,MarketViewPresenter marketViewPresenter)
+            RaritiesDatabase raritiesDatabase, MarketViewPresenter marketViewPresenter)
             : base(view, itemFactory, slotFactory,
                 inventoryProvider, overlayTransform)
         {
@@ -39,7 +37,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
         public override void Initialize()
         {
-            _inventorySlots = new ();
+            _inventorySlots = new Dictionary<string, InventorySlot>();
             InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
             UpdateInventory();
         }
@@ -59,25 +57,65 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
         private void UpdateInventory()
         {
-            var weaponConfigs 
-                = InventoryProvider.Inventory.Weapons.Select(weaponId => InventoryProvider.WeaponById(weaponId)).ToList();
-            var sortedItems = _raritiesDatabase.SortByRarity(weaponConfigs.Cast<ItemConfig>().ToList());
+            var weaponConfigs = GetAvailableWeapons();
+            UpdateOpenedWeapons(weaponConfigs);
+            UpdateBlockedItmes(weaponConfigs);
+        }
+
+        private void UpdateOpenedWeapons(List<WeaponConfig> weaponConfigs)
+        {
+            var sortedItems = GetSortedWeapons(weaponConfigs);
 
             foreach (var weapon in sortedItems)
             {
-                if (_inventorySlots.ContainsKey(weapon.Id))
+                if (_inventorySlots.TryGetValue(weapon.Id, out InventorySlot slot))
                 {
+                    slot.Item.SetBlocked(false);
                     continue;
                 }
-                var slot = SlotFactory.GetItem();
-                var item = ItemFactory.GetItem();
-                slot.Initialize(new NoneInventorySlotStrategy(), -1,_raritiesDatabase.Rarities[weapon.Rarity].Color);
-                item.Initialize(_selectionProvider, OverlayTransform, weapon.Sprite, weapon.Id);
-                item.CurentSlot = slot;
-                item.MoveToParent();
-                View.AddSlot(slot);
-                _inventorySlots.Add(weapon.Id, slot);
+
+                AddItem(weapon, false);
             }
+        }
+
+        private void UpdateBlockedItmes(List<WeaponConfig> weaponConfigs)
+        {
+            var blockedWeapons = InventoryProvider.GlobalInventory.Weapons.Except(weaponConfigs).ToList();
+            var sortedBlockedWeapons = GetSortedWeapons(blockedWeapons);
+            foreach (var weapon in sortedBlockedWeapons)
+            {
+                if (_inventorySlots.TryGetValue(weapon.Id, out InventorySlot slot))
+                {
+                    slot.Item.SetBlocked(true);
+                    continue;
+                }
+
+                AddItem(weapon, true);
+            }
+        }
+
+        private List<ItemConfig> GetSortedWeapons(List<WeaponConfig> weaponConfigs)
+        {
+            return _raritiesDatabase.SortByRarity(weaponConfigs.Cast<ItemConfig>().ToList());
+        }
+
+        private List<WeaponConfig> GetAvailableWeapons()
+        {
+            return InventoryProvider.Inventory.Weapons
+                .Select(weaponId => InventoryProvider.WeaponById(weaponId)).ToList();
+        }
+
+        private void AddItem(ItemConfig weapon, bool blocked)
+        {
+            var slot = SlotFactory.GetItem();
+            var item = ItemFactory.GetItem();
+            slot.Initialize(new NoneInventorySlotStrategy(), -1, _raritiesDatabase.Rarities[weapon.Rarity].Color);
+            item.Initialize(_selectionProvider, OverlayTransform, weapon.Sprite, weapon.Id);
+            item.CurentSlot = slot;
+            slot.Item.SetBlocked(blocked);
+            item.MoveToParent();
+            View.AddSlot(slot);
+            _inventorySlots.Add(weapon.Id, slot);
         }
     }
 }

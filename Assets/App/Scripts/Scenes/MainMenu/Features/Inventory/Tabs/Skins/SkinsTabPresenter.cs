@@ -18,12 +18,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
     public class SkinsTabPresenter : InventoryTabPresenter
     {
         private readonly SelectionProvider _selectionProvider;
-        private readonly InventorySlot _skinSlot;
         private readonly UserStatsProvider _userStatsProvider;
         private readonly GameInventoryView _gameInventoryView;
         private readonly RaritiesDatabase _raritiesDatabase;
         
         private CorrectTypeInventorySlotStrategy _slotStrategy;
+        
+        public InventorySlot SkinSlot { get; }
 
         public SkinsTabPresenter(InventoryTab view,
             SelectionProvider selectionProvider,
@@ -38,7 +39,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             : base(view, itemFactory, slotFactory, inventoryProvider, overlayTransform)
         {
             _selectionProvider = selectionProvider;
-            _skinSlot = skinSlot;
+            SkinSlot = skinSlot;
             _userStatsProvider = userStatsProvider;
             _gameInventoryView = gameInventoryView;
             _raritiesDatabase = raritiesDatabase;
@@ -51,12 +52,18 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         public override void Initialize()
         {
             _inventorySlots = new();
-            
+
+            InventoryProvider.GameInventory.OnInventoryUpdated += UpdateGameInventory;
             InventoryProvider.Inventory.OnInventoryUpdated += UpdateInventory;
             UpdateInventory();
             SetupSkinSlot();
-            SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin), _skinSlot);
-            
+            UpdateGameInventory();
+
+        }
+
+        private void UpdateGameInventory()
+        {
+            SpawnItem(InventoryProvider.SkinById(InventoryProvider.GameInventory.Skin) ,SkinSlot);
         }
 
         private void SetupSkinSlot()
@@ -70,7 +77,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
             
             var color = Color.white;
             color.a = 0f;
-            _skinSlot.Initialize(_slotStrategy, -1, color,$"", ItemType.Skin);
+            SkinSlot.Initialize(_slotStrategy, -1, color,$"", ItemType.Skin);
         }
 
         public override void Cleanup()
@@ -83,34 +90,59 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         {
             await base.Show();
             await View.Show();
-            _selectionProvider.SelectWithoutNotification(_skinSlot);
-            _marketViewPresenter.OnSkinSelected(_skinSlot.Item.ConfigId);
+            _selectionProvider.SelectWithoutNotification(SkinSlot);
+            _marketViewPresenter.OnSkinSelected(SkinSlot.Item.ConfigId);
         }
+
 
         private void UpdateInventory()
         {
-            var skinConfigs = InventoryProvider.Inventory.Skins
-                .Select(id => InventoryProvider.SkinById(id))
-                .Where(skin => skin != null)
-                .ToList();
-            var sortedItems = _raritiesDatabase.SortByRarity(skinConfigs.Cast<ItemConfig>().ToList());
-            
-            foreach (var skin in sortedItems)
+            var configs = GetAvailableWeapons();
+            UpdateOpenedSkins(configs);
+            UpdateBlockedSkins(configs);
+        }
+
+        private void UpdateOpenedSkins(List<SkinConfig> skinConfigs)
+        {
+            var sortedItems = GetSortedWeapons(skinConfigs);
+
+            foreach (var weapon in sortedItems)
             {
-                if (_inventorySlots.ContainsKey(skin.Id))
+                if (_inventorySlots.TryGetValue(weapon.Id, out InventorySlot slot))
                 {
+                    slot.Item.SetBlocked(false);
                     continue;
                 }
-                
-                var slot = SlotFactory.GetItem();
-                var item = ItemFactory.GetItem();
-                slot.Initialize(new NoneInventorySlotStrategy(), -1, _raritiesDatabase.Rarities[skin.Rarity].Color,"", ItemType.Skin);
-                item.Initialize(_selectionProvider, OverlayTransform, skin.Sprite, skin.Id, ItemType.Skin);
-                item.CurentSlot = slot;
-                item.MoveToParent();
-                View.AddSlot(slot);
-                _inventorySlots.Add(skin.Id, slot);
+
+                AddItem(weapon, false);
             }
+        }
+
+        private void UpdateBlockedSkins(List<SkinConfig>  skinsConfigs)
+        {
+            var blockedWeapons = InventoryProvider.GlobalInventory.SkinConfigs.Except(skinsConfigs).ToList();
+            var sortedBlockedWeapons = GetSortedWeapons(blockedWeapons);
+            foreach (var weapon in sortedBlockedWeapons)
+            {
+                if (_inventorySlots.TryGetValue(weapon.Id, out InventorySlot slot))
+                {
+                    slot.Item.SetBlocked(true);
+                    continue;
+                }
+
+                AddItem(weapon, true);
+            }
+        }
+
+        private List<ItemConfig> GetSortedWeapons(List<SkinConfig>  skinsConfigs)
+        {
+            return _raritiesDatabase.SortByRarity(skinsConfigs.Cast<ItemConfig>().ToList());
+        }
+
+        private List<SkinConfig>GetAvailableWeapons()
+        {
+            return InventoryProvider.Inventory.Skins
+                .Select(id => InventoryProvider.SkinById(id)).ToList();
         }
 
         private void SpawnItem(ItemConfig itemConfig, InventorySlot slot)
@@ -129,6 +161,19 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Skins
         private void OnInventoryChanged()
         {
             _userStatsProvider.SaveState();
+        }
+
+        private void AddItem(ItemConfig skin, bool blocked)
+        {
+            var slot = SlotFactory.GetItem();
+            var item = ItemFactory.GetItem();
+            slot.Initialize(new NoneInventorySlotStrategy(), -1, _raritiesDatabase.Rarities[skin.Rarity].Color,"", ItemType.Skin);
+            item.Initialize(_selectionProvider, OverlayTransform, skin.Sprite, skin.Id, ItemType.Skin);
+            item.CurentSlot = slot;
+            slot.Item.SetBlocked(blocked);
+            item.MoveToParent();
+            View.AddSlot(slot);
+            _inventorySlots.Add(skin.Id, slot);
         }
     }
 }

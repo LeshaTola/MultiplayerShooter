@@ -11,26 +11,27 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 {
     public class MarketPopupVm
     {
+        public MarketService MarketService { get; }
         public PlayerModelsUIProvider PlayerModelsUIProvider { get; }
         public WeaponModelsUIProvider WeaponsModelsUIProvider { get; }
         public InfoPopupRouter InfoPopupRouter { get; }
         public ILocalizationSystem LocalizationSystem { get; }
         public ShopItemData ShopItemData { get; }
-        public UserStatsProvider UserStatsProvider { get; }
         public ISoundProvider SoundProvider { get; }
 
 
         public MarketPopupVm(ShopItemData shopItemData,
             ILocalizationSystem localizationSystem,
             InfoPopupRouter infoPopupRouter,
-            UserStatsProvider userStatsProvider, 
+            MarketService marketService,
             WeaponModelsUIProvider weaponWeaponsModelsUIProvider,
-            PlayerModelsUIProvider playerModelsUIProvider, ISoundProvider soundProvider)
+            PlayerModelsUIProvider playerModelsUIProvider, 
+            ISoundProvider soundProvider)
         {
+            MarketService = marketService;
             PlayerModelsUIProvider = playerModelsUIProvider;
             SoundProvider = soundProvider;
             WeaponsModelsUIProvider = weaponWeaponsModelsUIProvider;
-            UserStatsProvider = userStatsProvider;
             InfoPopupRouter = infoPopupRouter;
             LocalizationSystem = localizationSystem;
             ShopItemData = shopItemData;

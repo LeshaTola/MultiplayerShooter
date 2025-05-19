@@ -18,5 +18,6 @@
         public const string ROULETTE_IS_UPDATED = "Рулетка успешно обновлена!";
         public const string REVIEW_IS_NOT_AVAILABLE = "Не возможно оставить отзыв";
         public const string CANNOT_JOIN_ROOM = "Невозможно подключиться к комнате";
+        public const string EQUIP = "Экипировать";
     }
 }

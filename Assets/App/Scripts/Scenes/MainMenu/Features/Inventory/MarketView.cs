@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.Localization.Elements.Buttons;
 using App.Scripts.Modules.Localization.Localizers;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
 using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popups;
@@ -11,6 +13,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 {
     public class MarketView : MonoBehaviour
     {
+        public event Action OnButtonClicked;
+        
         [SerializeField] private List<TMPLocalizer> _names;
         [SerializeField] private List<Image> _rarityImages;
         [SerializeField] private TMPLocalizer _rarityName;
@@ -18,6 +22,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
         [SerializeField] private RectTransform _statsContainer;
         [SerializeField] private WeaponStat _weaponStatPrefab;
+        [SerializeField] private TMPLocalizedButton _actionButton;
 
         [SerializeField] private RenderTexture _skinTexture;
         [SerializeField] private RenderTexture _weaponTexture;
@@ -43,6 +48,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
             _rarityName.Initialize(localizationSystem);
             InitializeNames();
+            
+            _actionButton.Initialize(localizationSystem);
+            _actionButton.UpdateAction(()=>OnButtonClicked?.Invoke());
         }
 
         public void Cleanup()
@@ -51,8 +59,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons
 
             _rarityName.Cleanup();
             CleanupNames();
+            
+            _actionButton.Cleanup();
         }
 
+        public void SetButtonActive(bool active)
+        {
+            _actionButton.gameObject.SetActive(active);
+        }
+        
+        public void SetupButtonText(string text)
+        {
+            _actionButton.UpdateText(text);
+            _actionButton.Translate();
+        }
+        
         public void SetupSkin(SkinConfig config)
         {
             Default();

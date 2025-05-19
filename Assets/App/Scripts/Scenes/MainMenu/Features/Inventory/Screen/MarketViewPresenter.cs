@@ -1,10 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using App.Scripts.Features;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Scenes.MainMenu.Features._3dModelsUI;
+using App.Scripts.Scenes.MainMenu.Features.Commands;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Slot.SelectionProviders;
 using App.Scripts.Scenes.MainMenu.Features.Inventory.Tabs.Weapons;
+using App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
 {
@@ -15,28 +19,40 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
         private readonly PlayerModelsUIProvider _playerModelsUIProvider;
 
         private readonly MarketView _marketViewView;
+        private readonly BuyItemCommand _buyItemCommand;
+        private readonly EquipItemCommand _equipItemCommand;
         private readonly InventoryProvider _inventoryProvider;
+        private readonly MarketService _marketService;
         private readonly SelectionProvider _selectionProvider;
+        private Action _marketViewAction;
 
         public MarketViewPresenter(ILocalizationSystem localizationSystem,
             WeaponModelsUIProvider weaponModelsUIProvider,
             PlayerModelsUIProvider playerModelsUIProvider,
             InventoryProvider inventoryProvider,
-            MarketView marketViewView, 
-            SelectionProvider selectionProvider)
+            MarketService marketService,
+            MarketView marketViewView,
+            BuyItemCommand buyItemCommand,
+            SelectionProvider selectionProvider,
+            EquipItemCommand equipItemCommand)
         {
             _localizationSystem = localizationSystem;
             _weaponModelsUIProvider = weaponModelsUIProvider;
             _playerModelsUIProvider = playerModelsUIProvider;
             _inventoryProvider = inventoryProvider;
+            _marketService = marketService;
             _marketViewView = marketViewView;
+            _buyItemCommand = buyItemCommand;
             _selectionProvider = selectionProvider;
+            _equipItemCommand = equipItemCommand;
         }
 
         public void Initialize()
         {
             _marketViewView.Initialize(_localizationSystem, _weaponModelsUIProvider, _playerModelsUIProvider);
-            
+
+            _marketViewView.OnButtonClicked += OnButtonClicked;
+
             _selectionProvider.OnWeaponSelected += OnWeaponSelected;
             _selectionProvider.OnSkinSelected += OnSkinSelected;
         }
@@ -60,6 +76,27 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             if (config)
             {
                 _marketViewView.SetupSkin(config);
+                var isInInventory = _inventoryProvider.Inventory.Skins.Contains(config.Id);
+
+                _marketViewView.SetButtonActive(true);
+                if (!isInInventory)
+                {
+                    SetupBuyAction(config);
+                }
+                else
+                {
+
+                    var isSameItem = !_inventoryProvider.GameInventory.Skin.Equals(config.Id);
+                    _marketViewView.SetButtonActive(isSameItem);
+                    
+                    _marketViewView.SetupButtonText(ConstStrings.EQUIP);
+                    _marketViewAction = () =>
+                    {
+                        _equipItemCommand.Skin = config;
+                        _equipItemCommand.Execute();
+                        _marketViewView.SetButtonActive(false);
+                    };
+                }
             }
         }
 
@@ -68,13 +105,42 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
             var config = _inventoryProvider.GlobalInventory.Weapons.FirstOrDefault(x => x.Id.Equals(id));
             OnWeaponSelected(config);
         }
-        
+
         public void OnWeaponSelected(WeaponConfig config)
         {
             if (config)
             {
                 _marketViewView.SetupWeapon(config);
+                var isInInventory = _inventoryProvider.Inventory.Weapons.Contains(config.Id);
+                _marketViewView.SetButtonActive(!isInInventory);
+                if (!isInInventory)
+                {
+                    SetupBuyAction(config);
+                }
             }
+        }
+
+        private void SetupBuyAction(ItemConfig config)
+        {
+            var shopItemData = _marketService.GetShopItemDataByMarket(config);
+            _marketViewView.SetupButtonText(shopItemData.Price.ToString() + ConstStrings.R);
+
+            SetupAction(shopItemData);
+        }
+
+        private void SetupAction(ShopItemData shopItemData)
+        {
+            _buyItemCommand.ItemData = shopItemData;
+            _marketViewAction = () =>
+            {
+                _buyItemCommand.Execute();
+                _marketViewView.SetButtonActive(false);
+            };
+        }
+
+        private void OnButtonClicked()
+        {
+            _marketViewAction?.Invoke();
         }
     }
 }

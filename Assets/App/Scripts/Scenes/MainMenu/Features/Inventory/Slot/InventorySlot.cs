@@ -46,7 +46,16 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Slot
             }
             
             var item = eventData.pointerDrag.GetComponent<Item>();
-            _inventorySlotStrategy.Drop(this,item);
+            Drop(item);
+        }
+
+        public void Drop(Item item)
+        {
+            if (item == null || item.IsBlocked)
+            {
+                return;
+            }
+            _inventorySlotStrategy.Drop(this, item);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory
     {
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private Image _image;
+        [SerializeField] private Image _blockedImage;
 
         private Transform _overlayParent;
 
@@ -34,6 +35,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory
         }
 
         public string ConfigId { get; private set; }
+        public bool IsBlocked { get; private set; }
         public ItemType Type { get; private set; }
         
         public void Initialize(SelectionProvider selectionProvider,
@@ -51,24 +53,40 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory
 
             if (type == ItemType.Skin)
             {
-                transform.rotation = Quaternion.identity;
+                _image.transform.rotation = Quaternion.identity;
+                _blockedImage.transform.rotation = Quaternion.identity;
             }
         }
         
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (IsBlocked)
+            {
+                return;
+            }
+            
             transform.SetParent(_overlayParent,false);
             _image.raycastTarget = false;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (IsBlocked)
+            {
+                return;
+            }
+            
             MoveToParent();
             _image.raycastTarget = true;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (IsBlocked)
+            {
+                return;
+            }
+            
             RectTransformUtility.ScreenPointToWorldPointInRectangle(
                 _rectTransform,
                 eventData.position,
@@ -87,6 +105,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory
         {
             transform.SetParent(CurentSlot.transform, false);
             _rectTransform.anchoredPosition = Vector2.zero;
+        }
+
+        public void SetBlocked(bool isBlocked)
+        {
+            IsBlocked = isBlocked;
+            _blockedImage.gameObject.SetActive(isBlocked);
         }
     }
 }
