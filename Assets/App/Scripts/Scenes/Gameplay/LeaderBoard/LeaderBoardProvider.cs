@@ -59,23 +59,27 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             var sortedPlayers = PhotonNetwork.PlayerList
                 .OrderByDescending(player =>
                 {
-                    if (player.CustomProperties.TryGetValue("Kills", out var killValue))
+                    if (player?.CustomProperties != null && player.CustomProperties.TryGetValue("Kills", out var killValue))
                     {
-                        return (int) killValue;
+                        return killValue is int kills ? kills : 0;
                     }
 
                     return 0;
-                }).ToList();
+                })
+                .ToList();
 
             foreach (var player in sortedPlayers)
             {
-                result.Add(new ValueTuple<int, string, int, int, int, bool>(
-                    (int) player.CustomProperties["Rank"],
-                    player.NickName,
-                    (int) player.CustomProperties["Kills"],
-                    (int) player.CustomProperties["Death"],
-                    (int) player.CustomProperties["Ping"],
-                    PhotonNetwork.LocalPlayer.Equals(player)));
+                var properties = player?.CustomProperties;
+                string nickname = player?.NickName ?? "Unknown";
+                bool isLocal = PhotonNetwork.LocalPlayer.Equals(player);
+
+                int rank = (properties != null && properties.TryGetValue("Rank", out var rankVal) && rankVal is int r) ? r : 0;
+                int kills = (properties != null && properties.TryGetValue("Kills", out var killsVal) && killsVal is int k) ? k : 0;
+                int deaths = (properties != null && properties.TryGetValue("Death", out var deathsVal) && deathsVal is int d) ? d : 0;
+                int ping = (properties != null && properties.TryGetValue("Ping", out var pingVal) && pingVal is int p) ? p : 0;
+
+                result.Add((rank, nickname, kills, deaths, ping, isLocal));
             }
 
             return result;

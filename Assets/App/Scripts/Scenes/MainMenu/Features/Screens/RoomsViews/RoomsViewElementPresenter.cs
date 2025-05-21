@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.Features;
+using App.Scripts.Features.GameMods.Providers;
 using App.Scripts.Features.Screens;
 using App.Scripts.Modules.Localization;
 using App.Scripts.Modules.Sounds.Providers;
@@ -23,19 +24,21 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         private readonly ILocalizationSystem _localizationSystem;
         private readonly ISoundProvider _soundProvider;
 
-        private Dictionary<string, RoomInfo> _cachedRoomList = new();
+        private readonly Dictionary<string, RoomInfo> _cachedRoomList = new();
+        private readonly GameModProvider _gameModProvider;
 
         public RoomsViewElementPresenter(RoomsView view, 
             ConnectionProvider connectionProvider,
             RoomsProvider roomsProvider,
             ILocalizationSystem localizationSystem, 
-            ISoundProvider soundProvider)
+            ISoundProvider soundProvider, GameModProvider gameModProvider)
         {
             _view = view;
             _connectionProvider = connectionProvider;
             _roomsProvider = roomsProvider;
             _localizationSystem = localizationSystem;
             _soundProvider = soundProvider;
+            _gameModProvider = gameModProvider;
         }
 
         public override void Initialize()
@@ -94,6 +97,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         private void JoinRoom(RoomInfo room, string myPassword)
         {
             _soundProvider.PlaySound(_view.ButtonSoundKey);
+            if (room.CustomProperties.TryGetValue("GameMode", out var gameMode))
+            {
+                _gameModProvider.SetGameMod(gameMode.ToString());
+            }
+            
             if (room.CustomProperties.TryGetValue("Password", out object password) && password != null)
             {
                 if (password.ToString() == myPassword)
