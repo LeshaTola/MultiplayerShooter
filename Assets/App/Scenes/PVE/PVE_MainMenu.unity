@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &10438785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 795083815996524479, guid: f5dd39d966d14154c906fabd55a3dcc0, type: 3}
+  m_PrefabInstance: {fileID: 1440329499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &31952710 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5276191691617081230, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
@@ -2458,6 +2469,17 @@ MonoBehaviour:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6047322928572827686, guid: b61ba7997a6e4a94e84a169e7a640ed6, type: 3}
   m_PrefabInstance: {fileID: 3500448212905769653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3e204a36ccf274cbeb9c05bd9d02ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &832039405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4527222309923294136, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
+  m_PrefabInstance: {fileID: 8684345209241296524}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -6126,16 +6148,15 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _tmProLocalizers:
-  - {fileID: 794921154}
-  - {fileID: 1522904311}
-  - {fileID: 1801015713}
-  - {fileID: 357986507}
+  - {fileID: 10438785}
+  - {fileID: 832039405}
   - {fileID: 31952710}
   - {fileID: 127666029}
   - {fileID: 155424574}
   - {fileID: 249009508}
   - {fileID: 271555356}
   - {fileID: 315275786}
+  - {fileID: 357986507}
   - {fileID: 385218451}
   - {fileID: 435360197}
   - {fileID: 438065787}
@@ -6152,6 +6173,7 @@ MonoBehaviour:
   - {fileID: 724108593}
   - {fileID: 758319505}
   - {fileID: 765852904}
+  - {fileID: 794921154}
   - {fileID: 803802483}
   - {fileID: 822341045}
   - {fileID: 834199568}
@@ -6179,12 +6201,14 @@ MonoBehaviour:
   - {fileID: 1440329502}
   - {fileID: 1461827553}
   - {fileID: 1479399379}
+  - {fileID: 1522904311}
   - {fileID: 1631686002}
   - {fileID: 1653823464}
   - {fileID: 1666021796}
   - {fileID: 1682449512}
   - {fileID: 1730933792}
   - {fileID: 1751927910}
+  - {fileID: 1801015713}
   - {fileID: 1830838333}
   - {fileID: 1839654193}
   - {fileID: 1844329599}
