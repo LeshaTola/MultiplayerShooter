@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Threading;
+using App.Scripts.Modules.StateMachine;
+using App.Scripts.Scenes.Gameplay.StateMachine.States;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.Serialization;
 using YG;
+using Zenject;
 
 public class PauseHandler : MonoBehaviourPunCallbacks
 {
     [SerializeField] private int _lobbyExitTime = 60;
     private CancellationTokenSource _exitTimerCts;
+    private StateMachine _stateMachine;
 
-    private void Awake()
-    { 
-         //YG2.onFocusWindowGame += OnGamePaused;
+    [Inject]
+    public void Construct(StateMachine stateMachine)
+    {
+        _stateMachine = stateMachine;
     }
 
     private void OnGamePaused(bool isPaused)
@@ -51,7 +56,7 @@ public class PauseHandler : MonoBehaviourPunCallbacks
             
             if (PhotonNetwork.InRoom)
             {
-                PhotonNetwork.LeaveRoom();
+                _stateMachine.ChangeState<LeaveMatch>().Forget();
             }
         }
         catch (System.OperationCanceledException)

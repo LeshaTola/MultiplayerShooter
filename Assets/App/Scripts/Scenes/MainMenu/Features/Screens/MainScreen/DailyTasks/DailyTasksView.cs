@@ -56,6 +56,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
 
         public void SetActiveTimer(bool active)
         {
+            if (_timerPanel == null)
+            {
+                return;
+            }
             _timerPanel.SetActive(active);
         }
         

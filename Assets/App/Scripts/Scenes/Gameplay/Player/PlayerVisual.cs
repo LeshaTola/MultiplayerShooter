@@ -82,6 +82,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void MoveAnimation(Vector3 direction)
         {
+            if (_animator == null)
+            {
+                return;
+            }
+            
             _animationDirection = Vector3.Lerp(_animationDirection, direction, Time.deltaTime * 5);
             _animator.SetFloat(WALK_X, Mathf.Clamp(_animationDirection.x, -1, 1));
             _animator.SetFloat(WALK_Y, Mathf.Clamp(_animationDirection.z, -1, 1));
@@ -89,22 +94,38 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void JumpAnimation()
         {
+            if (_animator == null)
+            {
+                return;
+            }
             _animator.SetTrigger(JUMP_TRIGGER);
         }
 
         public void LandAnimation()
         {
+            if (_animator == null)
+            {
+                return;
+            }
             _animator.SetTrigger(LAND_TRIGGER);
         }
 
         public void ShootAnimation(bool isShooting, float fireRate = 1)
         {
+            if (_animator == null)
+            {
+                return;
+            }
             _animator.SetFloat(FIRE_SPEED, 1 / fireRate);
             _animator.SetBool(SHOOT_BOOL, isShooting);
         }
 
         public void ShootAnimation(float fireRate = 1)
         {
+            if (_animator == null)
+            {
+                return;
+            }
             _animator.SetFloat(FIRE_SPEED, 1 / fireRate);
             _animator.SetTrigger(SHOOT_TRIGGER);
         }

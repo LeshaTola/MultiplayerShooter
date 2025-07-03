@@ -94,6 +94,11 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
         public void Update()
         {
+            if (_controllable == null)
+            {
+                return;
+            }
+            
             if (IsBusy)
             {
                 _controllable.Move(Vector2.zero);

@@ -41,13 +41,13 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             Cursor.lockState = CursorLockMode.Locked;
 
             Debug.Log("Initial");
+            _playerController.Setup(_playerProvider.Player);
             _initializeService.Initialize();
 
             await UniTask.WaitUntil(() => PhotonNetwork.Time != 0);
             _timerProvider.Initialize();
             _timerProvider.OnTimerExpired += OnTimerExpired;
 
-            _playerController.Setup(_playerProvider.Player);
 
             var playerView = _playerUIProvider.PlayerView;
             playerView.HealthBar.Initialize(_playerProvider.Player.Health);

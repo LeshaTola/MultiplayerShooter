@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using App.Scripts.Modules.StateMachine;
+using App.Scripts.Scenes.Gameplay.StateMachine.States;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Photon.Pun;
+using Zenject;
 
 public class InactivityKicker : MonoBehaviour
 {
@@ -7,7 +11,14 @@ public class InactivityKicker : MonoBehaviour
     
     private float _currentTimer;
     private bool _isPlayerActive = true;
+    private StateMachine _stateMachine;
 
+    [Inject]
+    public void Construct(StateMachine stateMachine)
+    {
+        _stateMachine = stateMachine;
+    }
+    
     private void Start()
     {
         ResetTimer();
@@ -37,6 +48,6 @@ public class InactivityKicker : MonoBehaviour
     private void KickForInactivity()
     {
         _isPlayerActive = false;
-        PhotonNetwork.LeaveRoom();
+        _stateMachine.ChangeState<LeaveMatch>().Forget();
     }
 }
