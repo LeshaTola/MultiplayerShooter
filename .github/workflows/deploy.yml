@@ -40,9 +40,11 @@ jobs:
       # ─── загрузка Butler ─────────────────────────────────────────
       - name: Download Butler
         run: |
-          curl -L https://broth.itch.ovh/butler/linux-amd64-headless/latest/archive/default | tar -xJ
+          curl -L https://github.com/itchio/butler/releases/latest/download/butler-linux-amd64 -o butler
+          chmod +x butler
 
       # ─── деплой (только при push) ───────────────────────────────
+
       - name: Deploy to itch.io
         if: github.event_name == 'push'
         env:
