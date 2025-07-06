@@ -1,28 +1,50 @@
+name: Build & Deploy WebGL
+
 on:
   push:
-    branches: [ master ]         # триггер остаётся тем же
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
-    # ✅ запустится ТОЛЬКО если последний коммит содержит “[build]”
-    if: contains(github.event.head_commit.message, '[build]')
+    # ───────────────────────────────────────────────────────────────
+    # 1) Условие запуска:
+    #    • push  → ищем [build] в github.event.head_commit.message
+    #    • PR    → ищем [build] в title ИЛИ body pull‑request’а
+    # ───────────────────────────────────────────────────────────────
+    if: |
+      (github.event_name == 'push' &&
+       contains(github.event.head_commit.message, '[build]')) ||
+      (github.event_name == 'pull_request' &&
+       (contains(github.event.pull_request.title, '[build]') ||
+        contains(github.event.pull_request.body,  '[build]')))
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      # ─── код ─────────────────────────────────────────────────────
+      - uses: actions/checkout@v4
 
+      # ─── сборка Unity ────────────────────────────────────────────
       - name: Build with Unity
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v4
         with:
-          unityVersion: 2022.3.53f1
+          unityVersion: 2022.3.53f1      # <‑‑ твоя версия
           targetPlatform: WebGL
+        env:
+          UNITY_LICENSE:  ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL:    ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
+      # ─── загрузка Butler ─────────────────────────────────────────
       - name: Download Butler
         run: |
           curl -L https://broth.itch.ovh/butler/linux-amd64-headless/latest/archive/default | tar -xJ
 
+      # ─── деплой (только при push) ───────────────────────────────
       - name: Deploy to itch.io
+        if: github.event_name == 'push'
         env:
           BUTLER_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
         run: |
