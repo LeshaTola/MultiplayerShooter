@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function resizeCanvas() {
+            const canvas = document.getElementById("unity-canvas");
+            if (canvas) {
+                canvas.style.width = window.innerWidth + "px";
+                canvas.style.height = window.innerHeight + "px";
+            }
+        }
+        window.addEventListener("resize", resizeCanvas);
+        window.addEventListener("load", resizeCanvas);
+    </script>
+</head>
+<body class="{{{ BACKGROUND_STYLE }}}">
+<div id="unity-container">
+    <canvas id="unity-canvas" tabindex="1"></canvas>
+    <div id="loading-cover">
+        <div id="unity-loading-bar">
+            <div id="unity-logo"><img src="unity-logo-dark.png"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+            <div class="spinner">Loading...</div>
+        </div>
+    </div>
+</div>
+<script src="Build/{{{ LOADER_FILENAME }}}"></script>
+<script>
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "{{{ COMPANY_NAME }}}",
+        productName: "{{{ PRODUCT_NAME }}}",
+        productVersion: "{{{ PRODUCT_VERSION }}}"
+    }).then((unityInstance) => {
+        document.querySelector("#loading-cover").style.display = "none";
+    }).catch((message) => {
+        alert(message);
+    });
+</script>
+</body>
+</html>

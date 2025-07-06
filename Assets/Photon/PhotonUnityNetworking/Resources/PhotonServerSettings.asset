@@ -17,9 +17,9 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 0.1.0
+    AppVersion: 0.1.1
     UseNameServer: 1
-    FixedRegion: ru
+    FixedRegion: eu
     Server: 
     Port: 0
     ProxyServer: 

@@ -10,7 +10,7 @@ public class RegionDropdownHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown _regionDropdown;
 
-    private readonly string[] _regionCodes = new string[] { "ru", "eu", "us", "asia" };
+    private readonly string[] _regionCodes = new string[] { /*"ru",*/ "eu", "us", "asia" };
     private ILocalizationSystem _localizationSystem;
 
     [Inject]

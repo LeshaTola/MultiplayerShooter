@@ -15,6 +15,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private PhotonView _photonView;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private Player _player;
+        [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private HealthBarUI _healthBarUI;
         [SerializeField] private WeaponProvider _weaponProvider;
 
@@ -51,6 +52,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
             _virtualCamera.enabled = false;
             _player.enabled = false;
+            _playerMovement.enabled = false;
             _sway.enabled = false;
         }
         

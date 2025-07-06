@@ -89,6 +89,10 @@ namespace App.Scripts.Scenes.Gameplay.Controller
 
         private void AttackCanceled()
         {
+            if (_controllable == null)
+            {
+                return;
+            }
             _controllable.CancelAttack();
         }
 
