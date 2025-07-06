@@ -18,7 +18,8 @@ namespace App.Scripts.Features.StateMachines.States
             public LoadSceneState(
                 ISceneTransition sceneTransition,
                 ICleanupService cleanupService,
-                string sceneName, GameModProvider gameModProvider)
+                string sceneName,
+                GameModProvider gameModProvider)
             {
                 _sceneTransition = sceneTransition;
                 _cleanupService = cleanupService;

@@ -1020,6 +1020,7 @@ MonoBehaviour:
   _photonView: {fileID: 5359873118143933522}
   _virtualCamera: {fileID: 7447736516197791254}
   _player: {fileID: 1923097396185842887}
+  _playerMovement: {fileID: 1122139294017996100}
   _healthBarUI: {fileID: 4301051563916588564}
   _weaponProvider: {fileID: 5977931046957955413}
   _weaponHolder: {fileID: 3467909382071288526}

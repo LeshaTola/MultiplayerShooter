@@ -28,6 +28,10 @@ namespace App.Scripts.Scenes.Gameplay.Player.Stats
 
 		private void OnDisable()
 		{
+			if (_health == null)
+			{
+				return;
+			}
 			_health.OnValueChanged -= OnHealthChanged;
 		}
 

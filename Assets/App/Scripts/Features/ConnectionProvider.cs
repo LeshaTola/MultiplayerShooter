@@ -46,7 +46,7 @@ namespace App.Scripts.Features
             {
                 return;
             }
-            
+
             SetupRegion();
             PhotonNetwork.ConnectUsingSettings();
         }
@@ -77,7 +77,7 @@ namespace App.Scripts.Features
             // Можно запустить пинг для определения лучшего региона
             if (!regionHandler.IsPinging)
             {
-                regionHandler.PingMinimumOfRegions((handler) => 
+                regionHandler.PingMinimumOfRegions((handler) =>
                 {
                     Debug.Log($"Best region: {handler.BestRegion.Code} (Ping: {handler.BestRegion.Ping}ms)");
                 }, "BestRegionPref");
@@ -125,10 +125,21 @@ namespace App.Scripts.Features
                         && !x.CustomProperties.TryGetValue("Password", out _));
             if (availableRoom == null)
             {
-                OnJoinRandomFailed(300,"Ne smog sdelat komaty");
+                OnJoinRandomFailed(300, "Ne smog sdelat komaty");
                 return;
             }
-        
+
+            if (availableRoom.CustomProperties.TryGetValue("GameMode", out var gameMode))
+            {
+                _gameModProvider.SetGameMod(gameMode.ToString());
+            }
+
+            if (!PhotonNetwork.IsConnectedAndReady)
+            {
+                _infoPopupRouter.ShowPopup(ConstStrings.ERROR, ConstStrings.CANNOT_JOIN_ROOM).Forget();
+                return;
+            }
+
             PhotonNetwork.JoinRoom(availableRoom.Name);
         }
 
@@ -142,7 +153,7 @@ namespace App.Scripts.Features
                 MaxPlayers = (byte) _gameModProvider.CurrentGameMod.Players.Max,
                 IsOpen = true,
                 IsVisible = true,
-                EmptyRoomTtl = 0 ,
+                EmptyRoomTtl = 0,
                 CustomRoomProperties = new Hashtable
                 {
                     {"Map", _mapsProvider.MapConfig.Name},
@@ -150,22 +161,31 @@ namespace App.Scripts.Features
                 },
                 CustomRoomPropertiesForLobby = new[] {"Map", "GameMode"}
             };
-        
+
             PhotonNetwork.CreateRoom(roomName, options);
         }
 
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.Log($"Room {returnCode}: {message}");
-            _infoPopupRouter.ShowPopup(ConstStrings.ERROR,ConstStrings.CANNOT_JOIN_ROOM).Forget();
+            _infoPopupRouter.ShowPopup(ConstStrings.ERROR, ConstStrings.CANNOT_JOIN_ROOM).Forget();
         }
-        
+
+        private bool _wasInRoom;
+
         private async void TryReconnect()
         {
-            if (PhotonNetwork.NetworkClientState == ClientState.Joined)
+            _wasInRoom = PhotonNetwork.InRoom;
+
+            if (PhotonNetwork.IsConnected && PhotonNetwork.NetworkClientState == ClientState.Joined)
             {
+                Debug.Log("Попытка ReconnectAndRejoin");
+
                 if (!PhotonNetwork.ReconnectAndRejoin())
                 {
+                    Debug.LogWarning("ReconnectAndRejoin не сработал, пробуем полное переподключение");
+                    PhotonNetwork.Disconnect();
+                    await WaitForDisconnect();
                     PhotonNetwork.ConnectUsingSettings();
                 }
             }
@@ -174,6 +194,15 @@ namespace App.Scripts.Features
                 PhotonNetwork.ConnectUsingSettings();
             }
         }
+
+        private async UniTask WaitForDisconnect()
+        {
+            while (PhotonNetwork.IsConnected)
+            {
+                await UniTask.Delay(100);
+            }
+        }
+
 
         [DllImport("__Internal")]
         private static extern void ReloadPage();

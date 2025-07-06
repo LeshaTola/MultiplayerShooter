@@ -10,7 +10,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.RoomsProviders
     {
         public event Action<List<RoomInfo>> OnRoomListUpdated;
 
-        public List<RoomInfo> Rooms { get; private set; }
+        public List<RoomInfo> Rooms { get; private set; } = new();
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
