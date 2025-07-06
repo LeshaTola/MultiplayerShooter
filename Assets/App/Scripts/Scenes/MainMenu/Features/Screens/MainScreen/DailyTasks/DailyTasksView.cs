@@ -60,7 +60,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen.DailyTasks
             {
                 return;
             }
-            
             _timerPanel.SetActive(active);
         }
         
