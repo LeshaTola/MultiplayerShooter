@@ -24,7 +24,6 @@ namespace App.Scripts.Scenes.MainMenu.Features
         private void OnEnable()
         {
             _connectionProvider.OnJoinedRoomEvent += OnJoinedRoom;
-
         }
 
         private void OnDisable()
