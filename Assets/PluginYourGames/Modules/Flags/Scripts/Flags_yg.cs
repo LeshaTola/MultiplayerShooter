@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UnityEngine;
 
 namespace YG
 {
@@ -34,11 +33,6 @@ namespace YG
         {
 #if !UNITY_EDITOR
             iPlatform.InitFlags();
-            Debug.Log("Init flags");
-            foreach (Flag flag in flags)
-            {
-                Debug.Log(flag.name);
-            }
 #else
             flags = infoYG.Flags.flags;
 #endif

@@ -28,7 +28,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
             var weapon = GetWeapon(botConfig, bot);
             var actionResolver = GetActionResolver(botConfig);
 
-            bot.Initialize(actionResolver, weapon);
+            // bot.Initialize(actionResolver, weapon);
             return bot;
         }
 

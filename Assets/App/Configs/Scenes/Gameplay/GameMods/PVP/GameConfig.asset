@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   <MatchDurationTime>k__BackingField: 300
-  <RespawnTime>k__BackingField: 2
+  <RespawnTime>k__BackingField: 0
   <EndGameTime>k__BackingField: 5

@@ -59,13 +59,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
 
         public void Move(Vector2 direction)
         {
-            _moveDirection = new Vector3(direction.x, 0, direction.y);
-            PlayerVisual.MoveAnimation(_moveDirection);
+            Vector3 move = transform.forward * direction.y + transform.right * direction.x;
+            move.y = 0;
 
-            _moveDirection
-                = transform.forward * _moveDirection.z
-                  + transform.right * _moveDirection.x;
-            _moveDirection.y = 0f;
+            _moveDirection = move;
+
+            PlayerVisual.MoveAnimation(move);
         }
 
         public void MoveCamera(Vector2 offset)
@@ -187,23 +186,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
             }
 
             return isGroundedNow;
-        }
-
-        private Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
-        {
-            float gravity = Gravity * _playerConfig.JumpFallSpeed;
-            float displacementY = endPoint.y - startPoint.y;
-            Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
-
-            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
-
-            float timeUp = Mathf.Sqrt(-2 * trajectoryHeight / gravity);
-            float timeDown = Mathf.Sqrt(2 * Mathf.Max(0, displacementY - trajectoryHeight) / -gravity);
-            float totalTime = timeUp + timeDown;
-
-            Vector3 velocityXZ = displacementXZ / totalTime;
-
-            return velocityXZ + velocityY;
         }
 
         private void PlayWalkingSound()
