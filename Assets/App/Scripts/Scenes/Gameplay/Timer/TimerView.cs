@@ -11,6 +11,7 @@ namespace App.Scripts.Scenes.Gameplay.Timer
 
         private void OnEnable()
         {
+            Debug.Log("Timer OnEnable");
             _timerProvider.OnTimerTick += OnTimerTick;
         }
 

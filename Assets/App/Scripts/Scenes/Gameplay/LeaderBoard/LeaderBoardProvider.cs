@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Features.PlayerStats;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Features.UserStats.Rank;
+using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using Photon.Pun;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.LeaderBoard
 {
-    public class LeaderBoardProvider 
+    public class LeaderBoardProvider
     {
-        private UserRankProvider _userRankProvider;
+        private readonly UserRankProvider _userRankProvider;
+        private readonly InventoryProvider _inventoryProvider;
 
         public int Kills { get; private set; } = 0;
         public int Death { get; private set; } = 0;
@@ -20,15 +21,16 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             get
             {
                 var table = GetTable();
-                return table.FindIndex(x => x.Item2.Equals(PhotonNetwork.NickName)) + 1;
+                return table.FindIndex(x => x.NickName.Equals(PhotonNetwork.NickName)) + 1;
             }
         }
 
-        public static LeaderBoardProvider Instance {get; private set;}
+        public static LeaderBoardProvider Instance { get; private set; }
 
-        public LeaderBoardProvider(UserRankProvider userRankProvider)
+        public LeaderBoardProvider(UserRankProvider userRankProvider, InventoryProvider inventoryProvider)
         {
             _userRankProvider = userRankProvider;
+            _inventoryProvider = inventoryProvider;
             Instance = this;
             UpdateTable();
         }
@@ -52,49 +54,76 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             UpdateTable();
         }
 
-        public List<(int, string, int, int, int, bool)> GetTable()
+        public List<LeaderBoardData> GetTable()
         {
-            List<(int, string, int, int, int, bool)> result = new();
-
-            var sortedPlayers = PhotonNetwork.PlayerList
+            return PhotonNetwork.PlayerList
                 .OrderByDescending(player =>
                 {
-                    if (player?.CustomProperties != null && player.CustomProperties.TryGetValue("Kills", out var killValue))
+                    if (player.CustomProperties != null &&
+                        player.CustomProperties.TryGetValue("Kills", out var killsValue) &&
+                        killsValue is int kills)
                     {
-                        return killValue is int kills ? kills : 0;
+                        return kills;
                     }
 
                     return 0;
                 })
+                .Select(player =>
+                {
+                    var properties = player.CustomProperties;
+
+                    T GetValue<T>(string key, T defaultValue = default)
+                    {
+                        return properties != null &&
+                               properties.TryGetValue(key, out var value) &&
+                               value is T typedValue
+                            ? typedValue
+                            : defaultValue;
+                    }
+
+                    return new LeaderBoardData
+                    {
+                        NickName = player.NickName ?? "Unknown",
+                        RankId = GetValue("Rank", 0),
+                        Kills = GetValue("Kills", 0),
+                        Death = GetValue("Death", 0),
+                        Ping = GetValue("Ping", 0),
+                        SkinId = GetValue("Skin", string.Empty),
+                        IsMobile = GetValue("IsMobile", false),
+                        IsMine = PhotonNetwork.LocalPlayer.Equals(player)
+                    };
+                })
                 .ToList();
-
-            foreach (var player in sortedPlayers)
-            {
-                var properties = player?.CustomProperties;
-                string nickname = player?.NickName ?? "Unknown";
-                bool isLocal = PhotonNetwork.LocalPlayer.Equals(player);
-
-                int rank = (properties != null && properties.TryGetValue("Rank", out var rankVal) && rankVal is int r) ? r : 0;
-                int kills = (properties != null && properties.TryGetValue("Kills", out var killsVal) && killsVal is int k) ? k : 0;
-                int deaths = (properties != null && properties.TryGetValue("Death", out var deathsVal) && deathsVal is int d) ? d : 0;
-                int ping = (properties != null && properties.TryGetValue("Ping", out var pingVal) && pingVal is int p) ? p : 0;
-
-                result.Add((rank, nickname, kills, deaths, ping, isLocal));
-            }
-
-            return result;
         }
 
-        private void UpdateTable()
+        public void UpdateTable()
         {
-            var pingProp = new ExitGames.Client.Photon.Hashtable
+            var playerProperty = new ExitGames.Client.Photon.Hashtable
             {
+                ["IsMobile"] = _userRankProvider.CurrentRankId,
+                ["Skin"] = _inventoryProvider.GameInventory.Skin,
                 ["Rank"] = _userRankProvider.CurrentRankId,
                 ["Ping"] = PhotonNetwork.GetPing(),
                 ["Kills"] = Kills,
                 ["Death"] = Death
             };
-            PhotonNetwork.LocalPlayer.SetCustomProperties(pingProp);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperty);
         }
+    }
+
+    public class LeaderBoardData
+    {
+        public string SkinId;
+        public int RankId;
+        public bool IsMobile;
+        public string NickName;
+        public int Kills;
+        public int Death;
+        public int Ping;
+        public bool IsMine;
+
+        public Sprite SkinSprite;
+        public Color SkinColor = Color.white;
+        public Sprite RankSprite;
     }
 }

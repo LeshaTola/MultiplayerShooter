@@ -4,6 +4,7 @@ using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.LeaderBoard;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using App.Scripts.Scenes.Gameplay.Weapons.TargetDetector;

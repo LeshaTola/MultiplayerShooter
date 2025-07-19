@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using App.Scripts.Features.Inventory;
 using App.Scripts.Features.PlayerStats.Rank.Configs;
 using App.Scripts.Features.UserStats.Rank.Configs;
 using Photon.Pun;
@@ -14,11 +16,13 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         [Inject]
         private LeaderBoardProvider _leaderBoardProvider;
         
+        // [SerializeField] private 
         [SerializeField] private List<LeaderBoardElement> _elements;
         [SerializeField] private TextMeshProUGUI _playersCountText;
         [SerializeField] private RanksDatabase _ranksDatabase;
         [SerializeField] private TextMeshProUGUI _roomNameText;
-        
+        [SerializeField] private GlobalInventory _globalInventory;
+
         public void Show()
         {
             gameObject.SetActive(true);
@@ -40,11 +44,19 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
             }
 
             int i = 0;
-            foreach (var tuple in _leaderBoardProvider.GetTable())
+            foreach (var data in _leaderBoardProvider.GetTable())
             {
-                var rank = _ranksDatabase.Ranks[tuple.Item1];
-                _elements[i].Setup(rank.Sprite,tuple.Item2,tuple.Item3,tuple.Item4, tuple.Item5);
-                _elements[i].SetupColor(tuple.Item6);
+                var rank = _ranksDatabase.Ranks[data.RankId];
+                data.RankSprite = rank.Sprite;
+                var skinConfig = _globalInventory.SkinConfigs.FirstOrDefault(x => x.Id.Equals(data.SkinId));
+                if (skinConfig != null)
+                {
+                    data.SkinSprite =skinConfig.Sprite; 
+                    data.SkinColor = skinConfig.Material.color;
+                }
+                
+                _elements[i].Setup(data);
+                _elements[i].SetupColor(data.IsMine);
                 _elements[i].Show();
                 i++;
             }

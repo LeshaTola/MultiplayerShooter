@@ -51,7 +51,7 @@ namespace App.Scripts.Features.Rewards
             if (PhotonNetwork.IsMasterClient)
             {
                 GameAnalytics.NewDesignEvent($"game:map:{_mapsProvider.CurrentMap.name.ToLower()}", 1);
-                var kills = _leaderboard.GetTable().Sum(x => x.Item3);
+                var kills = _leaderboard.GetTable().Sum(x => x.Kills);
                 GameAnalytics.NewDesignEvent("game:kills:", kills);
                 GameAnalytics.NewDesignEvent("game:players:", _leaderboard.GetTable().Count);
             }

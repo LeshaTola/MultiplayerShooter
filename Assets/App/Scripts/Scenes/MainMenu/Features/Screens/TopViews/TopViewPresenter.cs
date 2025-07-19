@@ -86,13 +86,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         private void OnCloseSettingsButtonClicked()
         {
             _soundProvider.PlaySound(_view.ButtonSound);
-            _settingsView.Hide();
+            _settingsView.Hide().Forget();
         }
 
         private void SettingsClicked()
         {
             _soundProvider.PlaySound(_view.ButtonSound);
-            _settingsView.Show();
+            _settingsView.Show().Forget();
         }
 
         private async void OnTutorClicked()
