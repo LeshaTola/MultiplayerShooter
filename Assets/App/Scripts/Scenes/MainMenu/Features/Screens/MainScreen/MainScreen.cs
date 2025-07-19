@@ -28,7 +28,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         [SerializeField] private TMPLocalizer _rankName;
 
         [SerializeField] private TextMeshProUGUI _ticketsCountText;
-        [SerializeField] private TMP_Dropdown _regionDropdown;
 
         public override void Initialize()
         {
