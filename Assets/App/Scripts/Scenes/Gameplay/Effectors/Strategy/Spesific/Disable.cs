@@ -7,7 +7,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
     {
         [SerializeField] private EffectorSpawnPoint _effectSpawnPoint;
         
-        public override UniTask Apply(Player.Player player)
+        public override UniTask Apply(IEntity iEntity)
         {
             _effectSpawnPoint.Respawn();
             return UniTask.CompletedTask;

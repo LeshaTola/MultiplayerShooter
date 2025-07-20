@@ -1,10 +1,8 @@
-﻿using System;
-using App.Scripts.Modules.AI.Factories;
+﻿using App.Scripts.Modules.AI.Factories;
 using App.Scripts.Modules.AI.Resolver;
+using App.Scripts.Scenes.Gameplay.Effectors;
 using App.Scripts.Scenes.Gameplay.Player;
-using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
-using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,19 +10,23 @@ using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.AI
 {
-    public class BotAI : MonoBehaviourPun
+    public class BotAI : MonoBehaviourPun, IEntity, IEntityMovement
     {
         [field: SerializeField] public Health Health { get; private set; }
+
         [field: SerializeField] public Transform WeaponHolder { get; private set; }
         [field: SerializeField] public PlayerMovement PlayerMovement { get; private set; }
         [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+
+        public PhotonView PhotonView => photonView;
+        public IEntityMovement Movement => this;
 
         // private Weapon _weapon;
         private IActionResolver _actionResolver;
 
         // private NavMeshPath _path;
-        
-        private int _currentCornerIndex;/*
+
+        private int _currentCornerIndex; /*
         private Vector3 _targetPos;
         private Vector3 _finalTargetPos;*/
 
@@ -48,7 +50,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
                 context.Container.Inject(this);*/
         }
 
-        public void Initialize(/*Weapon weapon*/)
+        public void Initialize( /*Weapon weapon*/)
         {
             // _weapon = weapon;
             // _path = new NavMeshPath();
@@ -61,10 +63,10 @@ namespace App.Scripts.Scenes.Gameplay.AI
             {
                 return;
             }
-            
+
             var action = _actionResolver.GetBestAction();
             action?.Execute();
-            
+
             /*HandlePathProviding();
             HandleMovement();*/
         }
@@ -75,9 +77,9 @@ namespace App.Scripts.Scenes.Gameplay.AI
             // {
             //     return;
             // }
-            
+
             Agent.SetDestination(targetPos);
-            
+
             /*_finalTargetPos = targetPos;
             Debug.Log($"FinalPos {_finalTargetPos}");*/
             //RecalculatePath();
@@ -98,16 +100,16 @@ namespace App.Scripts.Scenes.Gameplay.AI
             var targetDir = _finalTargetPos - transform.position;
             targetDir.y = 0;
             RotateToTargetPosition(targetDir);
-            
+
             if (_path == null || _path.corners.Length == 0)
                 return;
-            
+
             if (_currentCornerIndex >= _path.corners.Length)
             {
                 PlayerMovement.Move(Vector3.zero);
                 return;
             }
-            
+
             _targetPos = _path.corners[_currentCornerIndex];
             MoveToTargetPosition(direction.normalized);
         }
@@ -147,6 +149,11 @@ namespace App.Scripts.Scenes.Gameplay.AI
         {
             PhotonNetwork.Destroy(gameObject);
             Health.OnDied -= OnDied;
+        }
+
+        public void AddForce(Vector3 force)
+        {
+            Debug.Log("Пока не работет");
         }
     }
 }

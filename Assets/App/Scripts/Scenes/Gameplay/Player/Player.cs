@@ -1,5 +1,6 @@
 using System;
 using App.Scripts.Scenes.Gameplay.Controller;
+using App.Scripts.Scenes.Gameplay.Effectors;
 using App.Scripts.Scenes.Gameplay.Player.Configs;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Player.Teams.Configs;
@@ -18,7 +19,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
     }
     
     [RequireComponent(typeof(CharacterController))]
-    public class Player : MonoBehaviourPun, IControllable
+    public class Player : MonoBehaviourPun, IControllable, IEntity
     {
         [SerializeField] private PlayerConfig _playerConfig;
 
@@ -30,13 +31,16 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [field: SerializeField] public PlayerAudioProvider PlayerAudioProvider { get; private set; }
         [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
         [field: SerializeField] public Health Health { get; private set; }
-        [field: SerializeField] public PlayerVisual PlayerVisual { get; private set; }
         
+        [field: SerializeField] public PlayerVisual PlayerVisual { get; private set; }
 
         public string NickName { get; private set; }
         public TeamConfig Team { get; private set; }
 
         public PlayerConfig PlayerConfig => _playerConfig;
+        public PhotonView PhotonView => photonView;
+        public IEntityMovement Movement => PlayerMovement;
+        
 
         public void Initialize(string name)
         {

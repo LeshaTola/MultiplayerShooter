@@ -22,25 +22,21 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Player.Player player))
+            Debug.Log(other.gameObject.name);
+            if (other.TryGetComponent(out IEntity effetable))
             {
-                if (player.photonView.IsMine)
+                if (PhotonNetwork.IsMasterClient)
                 {
-                    ApplyEffect(player);
+                    ApplyEffect(effetable);
                 }
-            }
-
-            if (other.TryGetComponent(out Player.Player player))
-            {
-                
             }
         }
 
-        public void ApplyEffect(Player.Player player)
+        public void ApplyEffect(IEntity iEntity)
         {
             foreach (IEffectorStrategy strategy in Strategies)
             {
-                strategy.Apply(player);
+                strategy.Apply(iEntity);
             }
         }
 

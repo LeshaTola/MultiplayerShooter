@@ -10,10 +10,10 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
         [SerializeField] private float _changeValue;
         [SerializeField] private Health _healingObject;
         
-        public override UniTask Apply(Player.Player player)
+        public override UniTask Apply(IEntity iEntity)
         {
             Health health;
-            if (player == null)
+            if (iEntity == null)
             {
                 if (_healingObject == null)
                 {
@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
             }
             else
             {
-                health = player.Health;
+                health = iEntity.Health;
             }
             
             if (_changeValue > 0)
@@ -34,7 +34,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy.Spesific
             }
 
             var damage = -_changeValue;
-            health.RPCSetLasHit(player.photonView.ViewID, null);
+            health.RPCSetLasHit(iEntity.PhotonView.ViewID, null);
             health.RPCTakeDamage(damage);
             return UniTask.CompletedTask;
         }

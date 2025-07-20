@@ -5,7 +5,12 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Player
 {
-    public class PlayerMovement : MonoBehaviourPun
+    public interface IEntityMovement
+    {
+        void AddForce(Vector3 force);
+    }
+
+    public class PlayerMovement : MonoBehaviourPun, IEntityMovement
     {
         private const float Gravity = -9.81f;
 
@@ -108,6 +113,13 @@ namespace App.Scripts.Scenes.Gameplay.Player
             _velocity = 0f;
         }
 
+        public void Teleport(Vector3 position)
+        {
+            Controller.enabled = false;
+            transform.position = position;
+            Controller.enabled = true;
+        }
+
         private void JumpInternal(float height)
         {
             _velocity = Mathf.Sqrt(height * _playerConfig.JumpFallSpeed * -2 * Gravity);
@@ -129,13 +141,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
         private float CalculateGravity()
         {
             return Gravity * _playerConfig.JumpFallSpeed * Time.deltaTime;
-        }
-
-        public void Teleport(Vector3 position)
-        {
-            Controller.enabled = false;
-            transform.position = position;
-            Controller.enabled = true;
         }
 
         private void MoveInternal(Vector3 direction)

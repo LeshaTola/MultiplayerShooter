@@ -6,7 +6,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy
     public interface IEffectorStrategy
     {
         public void Initialize(Effector effector);
-        public UniTask Apply(Player.Player player);
+        public UniTask Apply(IEntity iEntity);
     }
 
     public abstract class EffectorStrategy: IEffectorStrategy
@@ -18,6 +18,6 @@ namespace App.Scripts.Scenes.Gameplay.Effectors.Strategy
             Effector = effector;
         }
 
-        public abstract UniTask Apply(Player.Player player);
+        public abstract UniTask Apply(IEntity iEntity);
     }
 }

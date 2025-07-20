@@ -21,7 +21,6 @@ namespace App.Scripts.Scenes.Gameplay.AI.Providers
 
             foreach (var strategy in effector.Strategies)
             {
-                Debug.Log($"Effectors: {_effectors.Count}");
                 if (!_effectors.TryGetValue(strategy.GetType(), out var list))
                 {
                     list = new List<Effector>();
