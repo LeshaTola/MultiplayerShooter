@@ -22,65 +22,89 @@ namespace App.Scripts.Scenes.Gameplay.AI
         private PlayerProvider _playerProvider;
         private NavMeshPath _path;
         private int _currentCornerIndex;
+        private Vector3 _targetPos;
 
+        private float _timer;
+        
         [Inject]
         public void Constructor(PlayerProvider playerProvider)
         {
-            Debug.Log("Injected");
             _playerProvider = playerProvider;
         }
 
         private void Start()
         {
-            Debug.Log("Bot Activated");
             _path = new NavMeshPath();
         }
 
-        /*public void Initialize(IActionResolver actionResolver, Weapon weapon)
+        public void Initialize(IActionResolver actionResolver, Weapon weapon)
         {
             _actionResolver = actionResolver;
             _weapon = weapon;
             Health.OnDied += OnDied;
-        }*/
+        }
 
         private void Update()
         {
-            /*var action = _actionResolver.GetBestAction();
-            action?.Execute();*/
-            if (Input.GetKeyDown(KeyCode.G))
+            var action = _actionResolver.GetBestAction();
+            action?.Execute();
+            _timer += Time.deltaTime;
+            
+            if (_timer >= 0.5f)
             {
                 NavMesh.CalculatePath(transform.position,
                     _playerProvider.Player.transform.position,
                     NavMesh.AllAreas, _path);
-                Debug.Log(_path.corners.Length);
-                _currentCornerIndex = 0;
+                _currentCornerIndex = 1;
+                _timer = 0;
+            }
+
+            var direction = (_targetPos - transform.position);
+            var targetDir = _playerProvider.Player.transform.position - transform.position;
+            targetDir.y = 0;
+            RotateToTargetPosition(targetDir);
+            
+            if (_path == null || _path.corners.Length == 0)
+                return;
+            
+            if (_currentCornerIndex >= _path.corners.Length)
+            {
+                PlayerMovement.Move(Vector3.zero);
+                return;
             }
             
-            if (_path == null || _path.corners.Length == 0 || _currentCornerIndex >= _path.corners.Length)
-                return;
+            _targetPos = _path.corners[_currentCornerIndex];
+            MoveToTargetPosition(direction.normalized);
+        }
 
-            var targetPos = _path.corners[_currentCornerIndex];
-            var direction = (targetPos - transform.position).normalized;
-            
-            if (Vector3.Distance(transform.position, targetPos) < 0.2f)
+        private void MoveToTargetPosition(Vector3 direction)
+        {
+            if (Vector3.Distance(transform.position, _targetPos) < 5f)
             {
+                // Debug.Log($"Corner Index UP: {_currentCornerIndex}");
                 _currentCornerIndex++;
                 return;
             }
-            
-            float angle = Vector3.SignedAngle(
-                transform.forward,                            // текущее направление
-                direction,         // направление к цели
-                Vector3.up                                    // ось поворота (обычно вверх)
+            var local = transform.InverseTransformDirection(direction);
+            PlayerMovement.Move(new(local.x, local.z));
+        }
+
+        private void RotateToTargetPosition(Vector3 direction)
+        {
+            /*float angle = Vector3.SignedAngle(
+                direction,
+                transform.forward,
+                Vector3.up
             );
+
             Debug.Log(angle);
-            if(angle > 5)
-                PlayerMovement.MoveCamera(new Vector2(angle*Time.deltaTime,0));
-            else
-            {
-                PlayerMovement.MoveCamera(Vector2.zero);
-                PlayerMovement.Move(Vector3.forward);
-            }
+            PlayerMovement.MoveCamera(angle >= 5 ? new Vector2(angle* 5 * Time.deltaTime, 0) : Vector2.zero);*/
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                40 * Time.deltaTime
+            );
         }
 
         private void OnDied()
@@ -88,7 +112,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
             PhotonNetwork.Destroy(gameObject);
             Health.OnDied -= OnDied;
         }
-        
+
         private void OnDrawGizmos()
         {
             if (_path == null || _path.corners.Length < 2)

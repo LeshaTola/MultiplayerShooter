@@ -5120,6 +5120,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 5342158176756827023, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
+      propertyPath: m_text
+      value: 0.1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 9015807915520651226, guid: 8633ef43650b26343a6b3b3651a655c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5700,6 +5704,10 @@ PrefabInstance:
     - target: {fileID: 4689503033720953167, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_Name
       value: TopCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689503033720953167, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4864952036832489789, guid: 7e6cc645df5374441ac11eb9c7b03961, type: 3}
       propertyPath: m_AnchorMax.y
