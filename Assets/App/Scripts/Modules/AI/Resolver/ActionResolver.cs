@@ -1,20 +1,20 @@
-﻿using Module.AI.Actions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using App.Scripts.Modules.AI.Actions;
 
-namespace Module.AI.Resolver
+namespace App.Scripts.Modules.AI.Resolver
 {
 	public class ActionResolver : IActionResolver
 	{
-		private List<IAction> actions = new();
+		private List<IAction> _actions = new();
 
 		public void Init(List<IAction> actions)
 		{
-			this.actions = actions;
+			_actions = actions;
 		}
 
 		public IAction GetBestAction()
 		{
-			if (actions == null || actions.Count <= 0)
+			if (_actions == null || _actions.Count <= 0)
 			{
 				return null;
 			}
@@ -22,7 +22,7 @@ namespace Module.AI.Resolver
 			IAction bestAction = null;
 			float bestScore = float.MinValue;
 
-			foreach (IAction action in actions)
+			foreach (IAction action in _actions)
 			{
 				float score = action.GetScore();
 				if (score > bestScore)

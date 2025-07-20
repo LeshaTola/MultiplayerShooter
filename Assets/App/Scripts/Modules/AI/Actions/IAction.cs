@@ -1,7 +1,7 @@
-﻿using Module.AI.Considerations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using App.Scripts.Modules.AI.Considerations;
 
-namespace Module.AI.Actions
+namespace App.Scripts.Modules.AI.Actions
 {
 	public interface IAction
 	{

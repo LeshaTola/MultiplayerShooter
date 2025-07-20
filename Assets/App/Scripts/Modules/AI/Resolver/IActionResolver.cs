@@ -1,7 +1,7 @@
-﻿using Module.AI.Actions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using App.Scripts.Modules.AI.Actions;
 
-namespace Module.AI.Resolver
+namespace App.Scripts.Modules.AI.Resolver
 {
 	public interface IActionResolver
 	{

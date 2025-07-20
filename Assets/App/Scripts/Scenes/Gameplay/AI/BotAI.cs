@@ -1,8 +1,10 @@
-﻿using App.Scripts.Scenes.Gameplay.Player;
+﻿using System;
+using App.Scripts.Modules.AI.Factories;
+using App.Scripts.Modules.AI.Resolver;
+using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.Gameplay.Player.Factories;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
 using App.Scripts.Scenes.Gameplay.Weapons;
-using Module.AI.Resolver;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,52 +17,85 @@ namespace App.Scripts.Scenes.Gameplay.AI
         [field: SerializeField] public Health Health { get; private set; }
         [field: SerializeField] public Transform WeaponHolder { get; private set; }
         [field: SerializeField] public PlayerMovement PlayerMovement { get; private set; }
+        [field: SerializeField] public NavMeshAgent Agent { get; private set; }
 
-        private Weapon _weapon;
+        // private Weapon _weapon;
         private IActionResolver _actionResolver;
 
-        private PlayerProvider _playerProvider;
-        private NavMeshPath _path;
-        private int _currentCornerIndex;
+        // private NavMeshPath _path;
+        
+        private int _currentCornerIndex;/*
         private Vector3 _targetPos;
+        private Vector3 _finalTargetPos;*/
 
         private float _timer;
-        
+
         [Inject]
-        public void Constructor(PlayerProvider playerProvider)
+        public void Constructor(IActionResolver actionResolver, IActionsFactory actionsFactory)
         {
-            _playerProvider = playerProvider;
+            _actionResolver = actionResolver;
+            _actionResolver.Init(actionsFactory.GetAllActions());
         }
 
         private void Start()
         {
-            _path = new NavMeshPath();
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                enabled = false;
+            }
+            /*var context = GetComponent<GameObjectContext>();
+            if(context.Container!=null)
+                context.Container.Inject(this);*/
         }
 
-        public void Initialize(IActionResolver actionResolver, Weapon weapon)
+        public void Initialize(/*Weapon weapon*/)
         {
-            _actionResolver = actionResolver;
-            _weapon = weapon;
+            // _weapon = weapon;
+            // _path = new NavMeshPath();
             Health.OnDied += OnDied;
         }
 
         private void Update()
         {
+            if (_actionResolver == null)
+            {
+                return;
+            }
+            
             var action = _actionResolver.GetBestAction();
             action?.Execute();
-            _timer += Time.deltaTime;
             
+            /*HandlePathProviding();
+            HandleMovement();*/
+        }
+
+        public void SetTarget(Vector3 targetPos)
+        {
+            // if (Vector3.Distance(_finalTargetPos, targetPos) <= 5f)
+            // {
+            //     return;
+            // }
+            
+            Agent.SetDestination(targetPos);
+            
+            /*_finalTargetPos = targetPos;
+            Debug.Log($"FinalPos {_finalTargetPos}");*/
+            //RecalculatePath();
+        }
+
+        /*private void HandlePathProviding()
+        {
+            _timer += Time.deltaTime;
             if (_timer >= 0.5f)
             {
-                NavMesh.CalculatePath(transform.position,
-                    _playerProvider.Player.transform.position,
-                    NavMesh.AllAreas, _path);
-                _currentCornerIndex = 1;
-                _timer = 0;
+                RecalculatePath();
             }
+        }*/
 
+        /*private void HandleMovement()
+        {
             var direction = (_targetPos - transform.position);
-            var targetDir = _playerProvider.Player.transform.position - transform.position;
+            var targetDir = _finalTargetPos - transform.position;
             targetDir.y = 0;
             RotateToTargetPosition(targetDir);
             
@@ -77,11 +112,20 @@ namespace App.Scripts.Scenes.Gameplay.AI
             MoveToTargetPosition(direction.normalized);
         }
 
-        private void MoveToTargetPosition(Vector3 direction)
+        private void RecalculatePath()
         {
-            if (Vector3.Distance(transform.position, _targetPos) < 5f)
+            Debug.Log("RecalculatePath");
+            NavMesh.CalculatePath(transform.position,
+                _finalTargetPos,
+                NavMesh.AllAreas, _path);
+            _currentCornerIndex = 1;
+            _timer = 0;
+        }*/
+
+        /*private void MoveToTargetPosition(Vector3 direction)
+        {
+            if (Vector3.Distance(transform.position, _targetPos) < StopDistance)
             {
-                // Debug.Log($"Corner Index UP: {_currentCornerIndex}");
                 _currentCornerIndex++;
                 return;
             }
@@ -91,43 +135,18 @@ namespace App.Scripts.Scenes.Gameplay.AI
 
         private void RotateToTargetPosition(Vector3 direction)
         {
-            /*float angle = Vector3.SignedAngle(
-                direction,
-                transform.forward,
-                Vector3.up
-            );
-
-            Debug.Log(angle);
-            PlayerMovement.MoveCamera(angle >= 5 ? new Vector2(angle* 5 * Time.deltaTime, 0) : Vector2.zero);*/
             Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 targetRotation,
                 40 * Time.deltaTime
             );
-        }
+        }*/
 
         private void OnDied()
         {
             PhotonNetwork.Destroy(gameObject);
             Health.OnDied -= OnDied;
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_path == null || _path.corners.Length < 2)
-                return;
-
-            Gizmos.color = Color.green;
-            for (int i = 0; i < _path.corners.Length - 1; i++)
-            {
-                Gizmos.DrawLine(_path.corners[i], _path.corners[i + 1]);
-                Gizmos.DrawSphere(_path.corners[i], 0.1f);
-            }
-
-            // Последняя точка
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(_path.corners[^1], 0.15f);
         }
     }
 }

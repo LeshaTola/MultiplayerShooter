@@ -1,42 +1,41 @@
 ﻿using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Match.Maps;
+using App.Scripts.Modules.AI.Resolver;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
-using Module.AI.Resolver;
+using GameAnalyticsSDK.Setup;
 using Photon.Pun;
 using UnityEngine;
+using Zenject;
 
 namespace App.Scripts.Scenes.Gameplay.AI
 {
     public class BotFactory
     {
+        private readonly DiContainer _diContainer;
         private readonly BotAI _botPrefab;
         private readonly MapsProvider _mapsProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
 
-        public BotFactory(BotAI botPrefab, MapsProvider mapsProvider, ShootingModeFactory shootingModeFactory)
+        public BotFactory(BotAI botPrefab, MapsProvider mapsProvider, ShootingModeFactory shootingModeFactory, DiContainer diContainer)
         {
             _botPrefab = botPrefab;
             _mapsProvider = mapsProvider;
             _shootingModeFactory = shootingModeFactory;
+            _diContainer = diContainer;
         }
 
-        public BotAI GetBot(BotConfig botConfig)
+        public BotAI GetBot()
         {
             var point = GetSpawnPoint();
             var bot = SpawnBot(point);
-            var weapon = GetWeapon(botConfig, bot);
-            var actionResolver = GetActionResolver(botConfig);
+            ProjectContext.Instance.Container.InjectGameObject(bot.gameObject);
+            // _diContainer.Inject(bot);
+            // var weapon = GetWeapon(botConfig, bot);
+            // var actionResolver = GetActionResolver(botConfig);
 
-            // bot.Initialize(actionResolver, weapon);
+            bot.Initialize();
             return bot;
-        }
-
-        private static IActionResolver GetActionResolver(BotConfig botConfig)
-        {
-            IActionResolver actionResolver = new ActionResolver();
-            actionResolver.Init(botConfig.Actions);
-            return actionResolver;
         }
 
         private Weapon GetWeapon(BotConfig botConfig, BotAI bot)

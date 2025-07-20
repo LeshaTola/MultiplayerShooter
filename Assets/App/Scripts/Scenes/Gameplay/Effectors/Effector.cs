@@ -10,9 +10,11 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] [SerializeReference] private List<IEffectorStrategy> _strategies;
 
+        public IReadOnlyCollection<IEffectorStrategy> Strategies => _strategies;
+
         public void Start()
         {
-            foreach (var strategy in _strategies)
+            foreach (var strategy in Strategies)
             {
                 strategy.Initialize(this);
             }
@@ -27,11 +29,16 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
                     ApplyEffect(player);
                 }
             }
+
+            if (other.TryGetComponent(out Player.Player player))
+            {
+                
+            }
         }
 
         public void ApplyEffect(Player.Player player)
         {
-            foreach (IEffectorStrategy strategy in _strategies)
+            foreach (IEffectorStrategy strategy in Strategies)
             {
                 strategy.Apply(player);
             }

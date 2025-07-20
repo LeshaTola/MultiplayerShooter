@@ -1,6 +1,5 @@
 ﻿using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory;
-using App.Scripts.Features.Match.Configs;
 using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Modules.Factories.MonoFactories;
@@ -11,6 +10,7 @@ using App.Scripts.Modules.StateMachine.Services.InitializeService;
 using App.Scripts.Modules.StateMachine.Services.UpdateService;
 using App.Scripts.Modules.TasksSystem.Factories;
 using App.Scripts.Modules.TasksSystem.Services;
+using App.Scripts.Scenes.Gameplay.AI;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.HitVisualProvider;
@@ -56,6 +56,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private AccrualConfig _accrualConfig;
         [SerializeField] private TargetDetectionConfig _detectionConfig;
         [SerializeField] private SceneNetworkController _sceneNetworkController;
+        [SerializeField] private BotController _botController;
+        [SerializeField] private BotAI _botAI;
 
         public override void InstallBindings()
         {
@@ -82,7 +84,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<SceneNetworkController>().FromInstance(_sceneNetworkController).AsSingle();
             Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
-            // Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
+            Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
+            Container.BindInterfacesAndSelfTo<BotController>().FromInstance(_botController).AsSingle();
             BindTask();
 
 

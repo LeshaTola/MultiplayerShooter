@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using Photon.Pun;
 using UnityEngine;
 using Zenject;
+using IInitializable = App.Scripts.Modules.StateMachine.Services.InitializeService.IInitializable;
 
 namespace App.Scripts.Scenes.Gameplay.AI
 {
-    public class BotController : MonoBehaviourPunCallbacks
+    public class BotController : MonoBehaviourPunCallbacks, IInitializable, ICleanupable
     {
-        [SerializeField] private BotConfig _botConfig;
+        // [SerializeField] private BotConfig _botConfig;
         [SerializeField] private int _maxBots = 5;
         
         private BotFactory _botFactory;
@@ -21,7 +23,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
             _botFactory = botFactory;
         }
 
-        private void Start()
+        public void Initialize()
         {
             Setup();
         }
@@ -30,10 +32,18 @@ namespace App.Scripts.Scenes.Gameplay.AI
         {
             Setup();
         }
-
+        
+        public void Cleanup()
+        {
+            foreach (var bot in _bots)
+            {
+                bot.Health.OnDied -= UpdateBots;
+                PhotonNetwork.Destroy(bot.gameObject);
+            }
+        }
+        
         private void Setup()
         {
-            
             if (!PhotonNetwork.IsMasterClient)
             {
                 return;
@@ -62,12 +72,11 @@ namespace App.Scripts.Scenes.Gameplay.AI
         {
             while (_bots.Count < _maxBots)
             {
-                var bot = _botFactory.GetBot(_botConfig);
+                var bot = _botFactory.GetBot();
                 RegisterBot(bot.photonView.ViewID);
             }
         }
-
-            
+        
         [PunRPC]
         public void RegisterBot(int botId)
         {

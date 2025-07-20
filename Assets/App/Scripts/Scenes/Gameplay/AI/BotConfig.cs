@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
-using Module.AI.Actions;
+using App.Scripts.Modules.AI.Actions;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.AI

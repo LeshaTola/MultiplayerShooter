@@ -1,8 +1,8 @@
-﻿using Module.AI.Considerations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using App.Scripts.Modules.AI.Considerations;
 using UnityEngine;
 
-namespace Module.AI.Actions
+namespace App.Scripts.Modules.AI.Actions
 {
 	public abstract class Action : IAction
 	{

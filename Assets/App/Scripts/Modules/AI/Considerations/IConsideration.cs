@@ -1,4 +1,4 @@
-﻿namespace Module.AI.Considerations
+﻿namespace App.Scripts.Modules.AI.Considerations
 {
 	public interface IConsideration
 	{
