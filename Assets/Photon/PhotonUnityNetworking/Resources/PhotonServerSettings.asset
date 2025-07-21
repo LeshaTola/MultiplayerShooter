@@ -84,6 +84,7 @@ MonoBehaviour:
   - RegisterBot
   - RPC_KickPlayer
   - SetTeam
+  - ConnectWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

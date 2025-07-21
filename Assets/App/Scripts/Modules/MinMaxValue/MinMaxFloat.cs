@@ -35,5 +35,18 @@ namespace App.Scripts.Modules.MinMaxValue
             value = Mathf.Clamp(value, Min, Max);
             return (value - Min) / (Max - Min);
         }
+
+        public float EvaluateNormalized(float value)
+        {
+            if (Mathf.Approximately(Max, Min))
+                return 0f;
+
+            return Mathf.Clamp01((value - Min) / (Max - Min));
+        }
+
+        public float EvaluateInverseNormalized(float value)
+        {
+            return 1f - EvaluateNormalized(value);
+        }
     }
 }

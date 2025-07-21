@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b6e5f4ccb34969a0d2b8fd29ea5924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _botConfig: {fileID: 11400000, guid: eab3fd93f39c2f44fa6c6bd287a5ea63, type: 2}
   _maxBots: 1
 --- !u!114 &47232794 stripped
 MonoBehaviour:

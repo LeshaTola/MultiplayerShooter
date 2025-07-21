@@ -1,8 +1,10 @@
-﻿using App.Scripts.Modules.AI.Factories;
+﻿using App.Scripts.Modules.AI.Actions;
+using App.Scripts.Modules.AI.Factories;
 using App.Scripts.Modules.AI.Resolver;
 using App.Scripts.Scenes.Gameplay.Effectors;
 using App.Scripts.Scenes.Gameplay.Player;
 using App.Scripts.Scenes.Gameplay.Player.Stats;
+using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,16 +23,15 @@ namespace App.Scripts.Scenes.Gameplay.AI
         public PhotonView PhotonView => photonView;
         public IEntityMovement Movement => this;
 
-        // private Weapon _weapon;
         private IActionResolver _actionResolver;
 
-        // private NavMeshPath _path;
-
-        private int _currentCornerIndex; /*
-        private Vector3 _targetPos;
+        public Transform Target { get; private set; }
+        /*private NavMeshPath _path;
+        private float _timer;
+        private int _currentCornerIndex;
         private Vector3 _finalTargetPos;*/
 
-        private float _timer;
+        public Weapon Weapon { get; private set; }
 
         [Inject]
         public void Constructor(IActionResolver actionResolver, IActionsFactory actionsFactory)
@@ -50,9 +51,10 @@ namespace App.Scripts.Scenes.Gameplay.AI
                 context.Container.Inject(this);*/
         }
 
-        public void Initialize( /*Weapon weapon*/)
+        public void Initialize(Weapon weapon)
         {
-            // _weapon = weapon;
+            Weapon = weapon;
+            RPCConnectWeapon(weapon);
             // _path = new NavMeshPath();
             Health.OnDied += OnDied;
         }
@@ -66,24 +68,26 @@ namespace App.Scripts.Scenes.Gameplay.AI
 
             var action = _actionResolver.GetBestAction();
             action?.Execute();
-
+            Debug.Log(action);
             /*HandlePathProviding();
             HandleMovement();*/
         }
 
-        public void SetTarget(Vector3 targetPos)
+        public void SetTarget(Transform target)
         {
             // if (Vector3.Distance(_finalTargetPos, targetPos) <= 5f)
             // {
             //     return;
             // }
-
-            Agent.SetDestination(targetPos);
+            
+            Target = target;
+            Agent.SetDestination(Target.position);
 
             /*_finalTargetPos = targetPos;
             Debug.Log($"FinalPos {_finalTargetPos}");*/
             //RecalculatePath();
         }
+
 
         /*private void HandlePathProviding()
         {
@@ -147,7 +151,6 @@ namespace App.Scripts.Scenes.Gameplay.AI
 
         private void OnDied()
         {
-            PhotonNetwork.Destroy(gameObject);
             Health.OnDied -= OnDied;
         }
 
@@ -155,5 +158,33 @@ namespace App.Scripts.Scenes.Gameplay.AI
         {
             Debug.Log("Пока не работет");
         }
+
+        private void RPCConnectWeapon(Weapon weapon)
+        {
+            photonView.RPC(nameof(ConnectWeapon), 
+                RpcTarget.AllBuffered,
+                photonView.ViewID,
+                weapon.photonView.ViewID);
+        }
+
+        [PunRPC]
+        public void ConnectWeapon(int botId, int weaponId)
+        {
+            var weaponObject = PhotonView.Find(weaponId).gameObject;
+            var botAI = PhotonView.Find(botId).GetComponent<BotAI>();
+            var weaponTransform = weaponObject.transform;
+            weaponTransform.SetParent(botAI.WeaponHolder);
+        }
+        
+        /*public void RPCSetActive(bool active)
+        {
+            photonView.RPC(nameof(SetActiveBot), RpcTarget.All, active);
+        }
+
+        [PunRPC]
+        public void SetActiveBot(bool active)
+        {
+            gameObject.SetActive(active);
+        }*/
     }
 }

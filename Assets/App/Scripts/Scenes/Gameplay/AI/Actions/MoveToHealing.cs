@@ -25,7 +25,7 @@ namespace App.Scripts.Scenes.Gameplay.AI.Actions
             }
 
             _botAI.Agent.stoppingDistance = 1.2f;
-            _botAI.SetTarget(nearestEffector.transform.position);
+            _botAI.SetTarget(nearestEffector.transform);
         }
     }
 }

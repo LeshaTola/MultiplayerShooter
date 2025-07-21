@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Modules.AI.Considerations;
+using App.Scripts.Modules.MinMaxValue;
 using App.Scripts.Scenes.Gameplay.AI.Providers;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace App.Scripts.Scenes.Gameplay.AI.Considerations
 {
     public class EnemyDistanceConsiderationConfig : ConsiderationConfig
     {
-        [field : SerializeField] public float Distance { get; private set; }
+        [field : SerializeField] public MinMaxFloat Distance { get; private set; }
     }
     
     public class EnemyDistanceConsideration : Consideration
@@ -32,7 +33,7 @@ namespace App.Scripts.Scenes.Gameplay.AI.Considerations
             }
             
             var distance = Vector3.Distance(_botEnemyProvider.transform.position, nearestEnemy.transform.position);
-            return 1 -distance/_config.Distance;
+            return _config.Distance.EvaluateNormalized(distance);
         }
     }
 }

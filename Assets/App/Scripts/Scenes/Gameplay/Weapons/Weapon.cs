@@ -353,7 +353,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void ProcessAutoShooting()
         {
-            if (YG2.envir.isDesktop)
+            if (YG2.envir.isDesktop || _detector == null)
             {
                 return;   
             }
@@ -378,7 +378,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void OnDrawGizmos()
         {
-            _detector.DrawGizmos();
+            if (_detector != null)
+            {
+                _detector.DrawGizmos();
+            }
         }
     }
 }

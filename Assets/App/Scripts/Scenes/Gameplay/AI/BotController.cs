@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using App.Scripts.Modules.Extensions;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using Photon.Pun;
 using UnityEngine;
@@ -10,7 +12,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
 {
     public class BotController : MonoBehaviourPunCallbacks, IInitializable, ICleanupable
     {
-        // [SerializeField] private BotConfig _botConfig;
+        [SerializeField] private BotConfig _botConfig;
         [SerializeField] private int _maxBots = 5;
         
         private BotFactory _botFactory;
@@ -59,25 +61,28 @@ namespace App.Scripts.Scenes.Gameplay.AI
 
         private void UpdateBots()
         {
-            RemoveDeadBots();
+            RespawnDeadBots();
             SpawnMissingBots();
         }
 
-        private void RemoveDeadBots()
+        private void RespawnDeadBots()
         {
-            _bots.RemoveAll(bot => bot == null);
+            foreach (var bot in _bots.Where(bot => bot.Health.Value <= 0))
+            {
+                bot.Health.RPCTakeHeal(bot.Health.MaxValue);
+                bot.transform.position = _botFactory.GetSpawnPoint().position;
+            }
         }
     
         private void SpawnMissingBots()
         {
             while (_bots.Count < _maxBots)
             {
-                var bot = _botFactory.GetBot();
+                var bot = _botFactory.GetBot(_botConfig.Weapons.GetRandom());
                 RegisterBot(bot.photonView.ViewID);
             }
         }
         
-        [PunRPC]
         public void RegisterBot(int botId)
         {
             var bot = PhotonView.Find(botId).GetComponent<BotAI>();

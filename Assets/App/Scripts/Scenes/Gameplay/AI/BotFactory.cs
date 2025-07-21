@@ -25,33 +25,31 @@ namespace App.Scripts.Scenes.Gameplay.AI
             _diContainer = diContainer;
         }
 
-        public BotAI GetBot()
+        public BotAI GetBot(WeaponConfig weaponConfig)
         {
             var point = GetSpawnPoint();
             var bot = SpawnBot(point);
             ProjectContext.Instance.Container.InjectGameObject(bot.gameObject);
-            // _diContainer.Inject(bot);
-            // var weapon = GetWeapon(botConfig, bot);
-            // var actionResolver = GetActionResolver(botConfig);
-
-            bot.Initialize();
+            var weapon = GetWeapon(weaponConfig, bot);
+            
+            bot.Initialize(weapon);
             return bot;
         }
 
-        private Weapon GetWeapon(BotConfig botConfig, BotAI bot)
+        private Weapon GetWeapon(WeaponConfig weaponConfig, BotAI bot)
         {
-            var weaponConfig = botConfig.Weapons[Random.Range(0, botConfig.Weapons.Count)];
+            // var weaponConfig = botConfig.Weapons[Random.Range(0, botConfig.Weapons.Count)];
             var weaponObject = SpawnWeapon(bot, weaponConfig);
                 
             var newConfig = GetNewWeaponConfig(weaponConfig);
-            // weaponObject.Initialize(newConfig);
+            weaponObject.Initialize(newConfig, null);
             return weaponObject;
         }
 
-        private static Weapon SpawnWeapon(BotAI bot, WeaponConfig weaponConfig)
+        private Weapon SpawnWeapon(BotAI bot, WeaponConfig weaponConfig)
         {
             var weaponObject
-                = PhotonNetwork.Instantiate(weaponConfig.Prefab.name, bot.WeaponHolder.position, bot.WeaponHolder.rotation)
+                = PhotonNetwork.Instantiate(weaponConfig.Prefab.name, bot.WeaponHolder.position, Quaternion.identity)
                     .GetComponent<Weapon>();
             return weaponObject;
         }
@@ -72,7 +70,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
             return bot;
         }
 
-        private Transform GetSpawnPoint()
+        public Transform GetSpawnPoint()
         {
             var spawnPoints = _mapsProvider.CurrentMap.SpawnPoints;
             var point = spawnPoints[Random.Range(0, spawnPoints.Count)];

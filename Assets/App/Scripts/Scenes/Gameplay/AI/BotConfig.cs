@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.AI
 {
+    [CreateAssetMenu(menuName = "Configs/AI/BotConfig", fileName = "BotConfig")]
     public class BotConfig : ScriptableObject
     {
-        public List<IAction> Actions { get; private set; }
-        public List<WeaponConfig> Weapons { get; private set; }
+       [field: SerializeField] public List<WeaponConfig> Weapons { get; private set; }
     }
 }

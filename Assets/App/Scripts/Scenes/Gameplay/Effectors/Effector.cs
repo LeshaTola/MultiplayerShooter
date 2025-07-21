@@ -22,7 +22,6 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.name);
             if (other.TryGetComponent(out IEntity effetable))
             {
                 if (PhotonNetwork.IsMasterClient)
