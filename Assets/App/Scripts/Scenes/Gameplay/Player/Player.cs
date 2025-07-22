@@ -31,7 +31,6 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [field: SerializeField] public PlayerAudioProvider PlayerAudioProvider { get; private set; }
         [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
         [field: SerializeField] public Health Health { get; private set; }
-        
         [field: SerializeField] public PlayerVisual PlayerVisual { get; private set; }
 
         public string NickName { get; private set; }

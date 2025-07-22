@@ -40,7 +40,8 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             InventoryProvider inventoryProvider, 
             ShootingModeFactory shootingModeFactory,
             TargetDetector.TargetDetector detector,
-            Player.Player owner)
+            Player.Player owner,
+            Camera cameraMain)
         {
             _gameInputProvider = gameInputProvider;
             _inventoryProvider = inventoryProvider;
@@ -63,6 +64,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 
                 var newConfig = GetNewConfig(weaponConfig);
                 weaponObject.Initialize(newConfig, _detector);
+                weaponObject.CustomOrigin = cameraMain.transform.position;
                 
                 weaponObject.OnPlayerHit += (value, damage, killed) =>
                 {

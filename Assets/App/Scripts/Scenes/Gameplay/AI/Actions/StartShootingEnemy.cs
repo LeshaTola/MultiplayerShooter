@@ -4,20 +4,18 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.AI.Actions
 {
-    public class ShootEnemy : Action
+    public class StartShootingEnemy : Action
     {
-        private readonly BotEnemyProvider _botEnemyProvider;
         private readonly BotAI _botAI;
 
-        public ShootEnemy(BotEnemyProvider botEnemyProvider, BotAI botAI)
+        public StartShootingEnemy( BotAI botAI)
         {
-            _botEnemyProvider = botEnemyProvider;
             _botAI = botAI;
         }
 
         public override void Execute()
         {
-            Debug.Log("Shoot");
+            _botAI.Weapon.StartAttack(false);
         }
     }
 }

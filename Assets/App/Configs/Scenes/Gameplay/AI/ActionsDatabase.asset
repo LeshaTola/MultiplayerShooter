@@ -27,7 +27,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 1|App.Scripts.Scenes.Gameplay.AI.Actions.MoveToEnemy, Assembly-CSharp
@@ -172,34 +172,24 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 15|App.Scripts.Scenes.Gameplay.AI.Actions.ShootEnemy, Assembly-CSharp
+      Data: 15|App.Scripts.Scenes.Gameplay.AI.Actions.StartShootingEnemy, Assembly-CSharp
     - Name: considerations
       Entry: 7
       Data: 16|System.Collections.Generic.List`1[[App.Scripts.Modules.AI.Considerations.IConsideration,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 17|App.Scripts.Scenes.Gameplay.AI.Considerations.EnemyDistanceConsideration,
-        Assembly-CSharp
+      Data: 17|App.Scripts.Scenes.Gameplay.AI.Considerations.IsWeaponValid, Assembly-CSharp
     - Name: _config
       Entry: 7
-      Data: 18|App.Scripts.Scenes.Gameplay.AI.Considerations.EnemyDistanceConsiderationConfig,
+      Data: 18|App.Scripts.Scenes.Gameplay.AI.Considerations.InverceConsiderationConfig,
         Assembly-CSharp
-    - Name: <Distance>k__BackingField
-      Entry: 7
-      Data: App.Scripts.Modules.MinMaxValue.MinMaxFloat, Assembly-CSharp
-    - Name: Min
-      Entry: 4
-      Data: 1
-    - Name: Max
-      Entry: 4
-      Data: 5
-    - Name: 
-      Entry: 8
-      Data: 
+    - Name: <IsInverce>k__BackingField
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -220,6 +210,67 @@ MonoBehaviour:
     - Name: IsGreaterThan
       Entry: 5
       Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 21|App.Scripts.Scenes.Gameplay.AI.Considerations.EnemyDistanceConsideration,
+        Assembly-CSharp
+    - Name: _config
+      Entry: 7
+      Data: 22|App.Scripts.Scenes.Gameplay.AI.Considerations.EnemyDistanceConsiderationConfig,
+        Assembly-CSharp
+    - Name: <Distance>k__BackingField
+      Entry: 7
+      Data: App.Scripts.Modules.MinMaxValue.MinMaxFloat, Assembly-CSharp
+    - Name: Min
+      Entry: 4
+      Data: 5
+    - Name: Max
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 23|App.Scripts.Scenes.Gameplay.AI.Actions.StopShootingEnemy, Assembly-CSharp
+    - Name: considerations
+      Entry: 7
+      Data: 24|System.Collections.Generic.List`1[[App.Scripts.Modules.AI.Considerations.IConsideration,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 25|App.Scripts.Scenes.Gameplay.AI.Considerations.IsWeaponValid, Assembly-CSharp
+    - Name: _config
+      Entry: 7
+      Data: 26|App.Scripts.Scenes.Gameplay.AI.Considerations.InverceConsiderationConfig,
+        Assembly-CSharp
+    - Name: <IsInverce>k__BackingField
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 

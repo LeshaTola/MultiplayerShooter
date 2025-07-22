@@ -55,7 +55,11 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void StartAttack()
         {
-            Weapon.Owner.PlayerVisual.ShootAnimation(true,AttackCooldown);
+            if (Weapon.Owner != null)
+            {
+                Weapon.Owner.PlayerVisual.ShootAnimation(true,AttackCooldown);
+            }
+            
             IsShooting = true;
             ShootStrategy.Recoil.IsShooting = true;
         }

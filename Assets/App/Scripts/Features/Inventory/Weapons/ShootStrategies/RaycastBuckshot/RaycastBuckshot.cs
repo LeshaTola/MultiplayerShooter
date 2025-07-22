@@ -20,10 +20,13 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies.RaycastBuckshot
             List<(Vector3, GameObject)> data = new();
             for (int i = 0; i < _buckshotCount; i++)
             {
-                var recoilRotation = Recoil.GetRecoilRotation(Camera.transform);
-                var direction = recoilRotation * Camera.transform.forward;
+                var origin = Weapon.CustomOrigin != null ? Weapon.CustomOrigin: Weapon.ShootPointProvider.ShotPoint;
+                var target = Weapon.CustomTarget != null ? Weapon.CustomTarget.position:Camera.transform.forward;
+             
+                var direction = target - origin;
+                var recoiledDirection = direction + Recoil.GetRecoil();
 
-                if (!Physics.Raycast(Camera.transform.position, direction, out RaycastHit hit, 
+                if (!Physics.Raycast(origin, recoiledDirection, out RaycastHit hit, 
                         Mathf.Infinity, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
                 {
                     continue;

@@ -81,6 +81,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
             // }
             
             Target = target;
+            Weapon.CustomTarget = target;
             Agent.SetDestination(Target.position);
 
             /*_finalTargetPos = targetPos;

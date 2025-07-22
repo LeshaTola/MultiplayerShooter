@@ -121,7 +121,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         private void InitializeWeapon(Player player)
         {
             player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,
-                _shootingModeFactory, _targetDetector, player);
+                _shootingModeFactory, _targetDetector, player,_cameraProvider.Camera);
         }
 
         private void SendAnaliticsIvents(string skin)

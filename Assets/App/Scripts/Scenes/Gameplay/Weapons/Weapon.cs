@@ -48,6 +48,10 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public Player.Player Owner { get; private set; }
         public bool IsReady { get; private set; } = true;
         public bool IsAutoShoot { get; set; }
+        
+        
+        public Vector3 CustomOrigin { get; set; }
+        public Transform CustomTarget { get; set; }
 
         public ShootPointStrategy ShootPointProvider => _shootPointProvider;
 
@@ -226,7 +230,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             IsReady = false;
             _isReloading = true;
             yield return new WaitForSeconds(Config.ReloadCooldown);
-            IsReady = false;
+            _isReloading = false;
             IsReady = true;
             ReloadImmidiate();
             OnReloadFinised?.Invoke();

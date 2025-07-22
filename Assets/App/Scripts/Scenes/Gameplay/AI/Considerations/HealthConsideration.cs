@@ -3,9 +3,15 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.AI.Considerations
 {
+    public class InverceConsiderationConfig : ConsiderationConfig
+    {
+        [field: SerializeField] public bool IsInverce { get; private set; }
+    }
+    
     public class HealthConsideration : Consideration
     {
        [SerializeField] private ConsiderationConfig _config = new();
+       
         private readonly BotAI _botAI;
         public override ConsiderationConfig Config => _config;
 
