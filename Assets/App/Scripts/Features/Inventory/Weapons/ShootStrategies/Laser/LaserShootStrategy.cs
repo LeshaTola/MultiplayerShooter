@@ -94,7 +94,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootStrategies
         private void ShootInternal()
         {
             Weapon.Animator.AttackAnimation(_cooldown);
-            Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
+            Weapon.Owner.AudioProvider.RPCPlayWeaponSound();
             Weapon.ChangeAmmoCount(-1);
             
             Recoil.Add();

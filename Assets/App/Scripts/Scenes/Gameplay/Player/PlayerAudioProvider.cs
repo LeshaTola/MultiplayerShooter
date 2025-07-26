@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Modules.Extensions;
 using App.Scripts.Scenes.Gameplay.Player.Configs;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using Photon.Pun;
@@ -13,7 +14,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
     {
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private PlayerAudioConfig _audioConfig;
-        [SerializeField] private WeaponProvider _weaponProvider;
+        [SerializeField] private WeaponProviderBase _weaponProvider;
 
         [Header("Walking")]
         [SerializeField] private float _stepInterval = 0.5f;
@@ -51,7 +52,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
             {
                 return;   
             }
-            RPCPlaySound(_walkingCategory, Random.Range(0,_audioConfig.AudioClips[_walkingCategory].Count));
+            RPCPlaySound(_walkingCategory, _audioConfig.AudioClips[_walkingCategory].GetRandomIndex());
             _stepTimer = _stepInterval;
         }
         
@@ -61,18 +62,18 @@ namespace App.Scripts.Scenes.Gameplay.Player
             {
                 return;
             }
-            RPCPlaySound(_switchWeaponCategory, Random.Range(0,_audioConfig.AudioClips[_switchWeaponCategory].Count));
+            RPCPlaySound(_switchWeaponCategory, _audioConfig.AudioClips[_switchWeaponCategory].GetRandomIndex());
             _switchTimer = _switchInterval;
         }
         
         public void PlayJumpingSound()
         {
-            RPCPlaySound(_jumpingCategory, Random.Range(0,_audioConfig.AudioClips[_jumpingCategory].Count));
+            RPCPlaySound(_jumpingCategory, _audioConfig.AudioClips[_jumpingCategory].GetRandomIndex());
         }
         
         public void PlayLandingSound()
         {
-            RPCPlaySound(_landingCategory, Random.Range(0,_audioConfig.AudioClips[_landingCategory].Count));
+            RPCPlaySound(_landingCategory, _audioConfig.AudioClips[_landingCategory].GetRandomIndex());
         }
         
         public void PlayDestroySound()
@@ -89,18 +90,18 @@ namespace App.Scripts.Scenes.Gameplay.Player
         {
             if (photonView.IsMine)
             {
-                PlaySound(_damageCategory, Random.Range(0,_audioConfig.AudioClips[_damageCategory].Count));
+                PlaySound(_damageCategory, _audioConfig.AudioClips[_damageCategory].GetRandomIndex());
             }
         }
 
         public void PlayHitSound()
         {
-            PlaySound(_hitCategory, Random.Range(0,_audioConfig.AudioClips[_hitCategory].Count));
+            PlaySound(_hitCategory, _audioConfig.AudioClips[_hitCategory].GetRandomIndex());
         }
         
         public void PlayKillSound()
         {
-            PlaySound(_killCategory, Random.Range(0,_audioConfig.AudioClips[_killCategory].Count));
+            PlaySound(_killCategory, _audioConfig.AudioClips[_killCategory].GetRandomIndex());
         }
         
         public void RPCPlayReloadWeaponSound()

@@ -50,7 +50,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                         isKilled = true;
                     }
                     
-                    player.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
+                    player.RPCSetLasHit(Weapon.Owner.PhotonView.ViewID, Weapon.Config.Id);
                     player.RPCTakeDamage(damage);
                     OnPlayerHit?.Invoke(player.transform.position, _damage, isKilled);
                 });

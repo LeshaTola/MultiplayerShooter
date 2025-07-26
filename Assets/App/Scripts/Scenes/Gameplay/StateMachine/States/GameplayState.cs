@@ -37,7 +37,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
         {
             _playerProvider.Player.Health.RPCSetImmortal(true);
             _postProcessingProvider.ApplyImmortalEffect();
-            _playerProvider.Player.PlayerVisual.RPCSetImortal(true);
+            _playerProvider.Player.Visual.RPCSetImortal(true);
             _cts = new CancellationTokenSource();
             try
             {
@@ -56,7 +56,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
 
 
             _playerProvider.Player.Health.RPCSetImmortal(false);
-            _playerProvider.Player.PlayerVisual.RPCSetImortal(false);
+            _playerProvider.Player.Visual.RPCSetImortal(false);
             _postProcessingProvider.RemoveImmortalEffect();
 
             _playerProvider.Player.Health.SetImmortal(true);

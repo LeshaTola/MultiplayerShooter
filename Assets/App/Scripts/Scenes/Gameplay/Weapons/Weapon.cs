@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons.ShootPointStrategies;
+using App.Scripts.Scenes.Gameplay.Effectors;
 using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using DG.Tweening;
 using Photon.Pun;
@@ -45,7 +46,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         public WeaponConfig Config { get; private set; }
         public int CurrentAmmoCount { get; private set; }
-        public Player.Player Owner { get; private set; }
+        public IEntity Owner { get; private set; }
         public bool IsReady { get; private set; } = true;
         public bool IsAutoShoot { get; set; }
         
@@ -187,7 +188,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
             GuaranteedCancelAttack(true);
             GuaranteedCancelAttack(false);
-            Owner.PlayerAudioProvider.RPCPlayReloadWeaponSound();
+            Owner.AudioProvider.RPCPlayReloadWeaponSound();
             Animator.ReloadAnimation();
             StartReloadCooldown();
         }
@@ -197,9 +198,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             return ShootPointProvider.NextShootPoint();
         }
 
-        public void SetupPlayer(Player.Player player)
+        public void SetupOwner(IEntity owner)
         {
-            Owner = player;
+            Owner = owner;
         }
 
         public void SetupLocalConfig(WeaponConfig config)

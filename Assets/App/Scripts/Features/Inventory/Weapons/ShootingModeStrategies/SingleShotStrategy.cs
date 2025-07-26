@@ -12,10 +12,10 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             {
                 return;
             }
-            Weapon.Owner.PlayerVisual.ShootAnimation(AttackCooldown);
+            Weapon.Owner.Visual.ShootAnimation(AttackCooldown);
             ShootStrategy.Shoot();
             Weapon.Animator.AttackAnimation(AttackCooldown);
-            Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
+            Weapon.Owner.AudioProvider.RPCPlayWeaponSound();
             Weapon.ChangeAmmoCount(-1);
             Weapon.StartAttackCooldown(AttackCooldown);
             CancelAttack();

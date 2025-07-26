@@ -73,10 +73,10 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                 while (!token.IsCancellationRequested)
                 {
                     await UniTask.Yield();
-                    var distance = Vector3.Distance(Weapon.Owner.transform.position, _hitPoint);
-                    _direction = (_hitPoint - Weapon.Owner.transform.position).normalized;
+                    var distance = Vector3.Distance(Weapon.Owner.PhotonView.transform.position, _hitPoint);
+                    _direction = (_hitPoint - Weapon.Owner.PhotonView.transform.position).normalized;
                     _speed = _minMaxSpeed.Clamp(distance) * _speedMultiplier;
-                    Weapon.Owner.PlayerMovement.Controller.Move(_direction * _speed * Time.deltaTime);
+                    Weapon.Owner.Movement.GaranteedMove(_direction * _speed* Time.deltaTime);
 
                     if (distance <= DISTANCE)
                     {
@@ -102,8 +102,8 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
         private void StartGrappling(List<(Vector3, GameObject)> hitValues)
         {
-            Weapon.Owner.PlayerMovement.PlayerState = PlayerState.Grappling;
-            Weapon.Owner.PlayerMovement.Freese();
+            Weapon.Owner.Movement.PlayerState = PlayerState.Grappling;
+            Weapon.Owner.Movement.Freese();
             _hitPoint = hitValues[0].Item1;
 
             _fovTween?.Kill();
@@ -130,8 +130,8 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
 
             _cts.Cancel();
             _hitPoint = default;
-            Weapon.Owner.PlayerMovement.PlayerState = PlayerState.Normal;
-            Weapon.Owner.PlayerMovement.AddForce(_direction * _speed * _offMultiplier);
+            Weapon.Owner.Movement.PlayerState = PlayerState.Normal;
+            Weapon.Owner.Movement.AddForce(_direction * _speed * _offMultiplier);
         }
     }
 }

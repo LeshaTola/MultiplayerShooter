@@ -114,7 +114,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
                 Quaternion.identity).GetComponent<Player>();
             player.Initialize(PhotonNetwork.NickName);
             skin = _inventoryProvider.GameInventory.Skin;
-            player.PlayerVisual.RPCSetSkin(skin);
+            player.Visual.RPCSetSkin(skin);
             return player;
         }
 

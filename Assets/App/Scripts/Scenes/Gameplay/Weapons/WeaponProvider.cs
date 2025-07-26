@@ -11,24 +11,20 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons
 {
-    public class WeaponProvider : MonoBehaviourPun
+    public class WeaponProvider : WeaponProviderBase
     {
-        public event Action<Weapon> OnWeaponChanged;
-        public event Action<int> OnWeaponIndexChanged;
+        public override event Action<Weapon> OnWeaponChanged;
+        public override event Action<int> OnWeaponIndexChanged;
         public event Action<Vector3, float, bool> OnPlayerHit;
         
         [SerializeField] private Transform _weaponHolder;
         [SerializeField] private GlobalInventory _globalInventory;
-        
-        public List<Weapon> Weapons { get; } = new();
+
         private IGameInputProvider _gameInputProvider;
         private InventoryProvider _inventoryProvider;
         private ShootingModeFactory _shootingModeFactory;
         private PlayerController _playerController;
         private TargetDetector.TargetDetector _detector;
-
-        private int _weaponIndex;
-        public Weapon CurrentWeapon { get; private set; }
 
         public void OnDestroy()
         {
@@ -71,11 +67,11 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                     OnPlayerHit?.Invoke(value, damage, killed);
                     if (killed)
                     {
-                        owner.PlayerAudioProvider.PlayKillSound();
+                        owner.AudioProvider.PlayKillSound();
                     }
                     else
                     {
-                        owner.PlayerAudioProvider.PlayHitSound();
+                        owner.AudioProvider.PlayHitSound();
                     }
                 };
                 photonView.RPC(nameof(SetupWeapon),
@@ -99,18 +95,18 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
 
         private void OnScrollWheel(float scroll)
         {
-            _weaponIndex = scroll > 0 ? _weaponIndex - 1 : _weaponIndex + 1;
-            if (_weaponIndex == -1)
+            WeaponIndex = scroll > 0 ? WeaponIndex - 1 : WeaponIndex + 1;
+            if (WeaponIndex == -1)
             {
-                _weaponIndex = Weapons.Count - 1;
+                WeaponIndex = Weapons.Count - 1;
             }
 
-            if (_weaponIndex == Weapons.Count)
+            if (WeaponIndex == Weapons.Count)
             {
-                _weaponIndex = 0;
+                WeaponIndex = 0;
             }
             
-            RPCSetWeaponByIndex(_weaponIndex + 1);
+            RPCSetWeaponByIndex(WeaponIndex + 1);
         }
 
         public void Cleanup()
@@ -133,7 +129,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             
             index--;
             index = Math.Clamp(index, 0, Weapons.Count - 1);
-            _weaponIndex = index;
+            WeaponIndex = index;
             
             var weapon = Weapons[index];
             if (!weapon || weapon == CurrentWeapon)
@@ -166,7 +162,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             var weapon = weaponObject.GetComponent<Weapon>();
             Weapons.Add(weapon);
             
-            weapon.SetupPlayer(player);
+            weapon.SetupOwner(player);
             if(!photonView.IsMine)
                 weapon.SetupLocalConfig(_globalInventory.Weapons.FirstOrDefault(x => x.Id == id));
 

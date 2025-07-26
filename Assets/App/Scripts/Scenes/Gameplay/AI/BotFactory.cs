@@ -31,8 +31,11 @@ namespace App.Scripts.Scenes.Gameplay.AI
             var bot = SpawnBot(point);
             ProjectContext.Instance.Container.InjectGameObject(bot.gameObject);
             var weapon = GetWeapon(weaponConfig, bot);
-            
-            bot.Initialize(weapon);
+            weapon.SetupOwner(bot);
+            bot.Initialize(new()
+            {
+                weapon
+            });
             return bot;
         }
 

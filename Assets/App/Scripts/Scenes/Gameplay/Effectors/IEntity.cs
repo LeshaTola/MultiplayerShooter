@@ -9,5 +9,7 @@ namespace App.Scripts.Scenes.Gameplay.Effectors
         Health Health { get; }
         PhotonView PhotonView { get; }
         IEntityMovement Movement { get; }
+        PlayerAudioProvider AudioProvider { get; }
+        PlayerVisual Visual { get; }
     }
 }

@@ -31,7 +31,7 @@ namespace App.Scripts.Scenes.Gameplay.StateMachine.States
             _leaderBoardProvider.AddDeath();
             UpdateKillChat();
 
-            _playerProvider.Player.PlayerAudioProvider.PlayDestroySound();
+            _playerProvider.Player.AudioProvider.PlayDestroySound();
             _playerProvider.Player.PlayerMovement.Freese();
             _playerProvider.HidePlayer();
             RespawnPlayer();

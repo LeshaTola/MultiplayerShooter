@@ -985,10 +985,10 @@ MonoBehaviour:
   _playerConfig: {fileID: 11400000, guid: 0b77f7c461165e542902de5817389eee, type: 2}
   _nickNameUI: {fileID: 7534447508111904430}
   <PlayerMovement>k__BackingField: {fileID: 1122139294017996100}
-  <PlayerAudioProvider>k__BackingField: {fileID: 2618612351175116522}
+  <AudioProvider>k__BackingField: {fileID: 2618612351175116522}
   <WeaponProvider>k__BackingField: {fileID: 5977931046957955413}
   <Health>k__BackingField: {fileID: 4972400745006171294}
-  <PlayerVisual>k__BackingField: {fileID: 4677047985132999472}
+  <Visual>k__BackingField: {fileID: 4677047985132999472}
 --- !u!114 &5110892625877943717
 MonoBehaviour:
   m_ObjectHideFlags: 0

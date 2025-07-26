@@ -15,7 +15,7 @@ namespace App.Scripts.Scenes.Gameplay.AI.Actions
 
         public override void Execute()
         {
-            _botAI.Weapon.StartAttack(false);
+            _botAI.WeaponProvider.CurrentWeapon.StartAttack(false);
         }
     }
 }

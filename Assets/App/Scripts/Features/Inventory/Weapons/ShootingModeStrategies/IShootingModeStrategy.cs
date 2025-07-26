@@ -57,7 +57,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
         {
             if (Weapon.Owner != null)
             {
-                Weapon.Owner.PlayerVisual.ShootAnimation(true,AttackCooldown);
+                Weapon.Owner.Visual.ShootAnimation(true,AttackCooldown);
             }
             
             IsShooting = true;
@@ -80,7 +80,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
 
         public virtual void CancelAttack()
         {
-            Weapon.Owner.PlayerVisual.ShootAnimation(false, AttackCooldown);
+            Weapon.Owner.Visual.ShootAnimation(false, AttackCooldown);
             IsShooting = false;
             ShootStrategy.Recoil.IsShooting = false;
         }

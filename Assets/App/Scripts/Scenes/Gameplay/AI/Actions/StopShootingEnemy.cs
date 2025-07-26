@@ -13,7 +13,7 @@ namespace App.Scripts.Scenes.Gameplay.AI.Actions
 
         public override void Execute()
         {
-            _botAI.Weapon.CancelAttack(false);
+            _botAI.WeaponProvider.CurrentWeapon.CancelAttack(false);
         }
     }
 }

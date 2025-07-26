@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 9052388205500467197}
   - component: {fileID: 7120366677094837217}
   - component: {fileID: 4183205684399612176}
+  - component: {fileID: 1231140406789375904}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -885,8 +886,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField: {fileID: 3738059963097028580}
   <WeaponHolder>k__BackingField: {fileID: 8697158533188211549}
-  <PlayerMovement>k__BackingField: {fileID: 0}
+  <AudioProvider>k__BackingField: {fileID: 576434295767330753}
   <Agent>k__BackingField: {fileID: 7120366677094837217}
+  <Visual>k__BackingField: {fileID: 651190271156827579}
+  <WeaponProvider>k__BackingField: {fileID: 1231140406789375904}
 --- !u!114 &5879859823670288753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,7 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 3089810387732913572}
   _audioConfig: {fileID: 11400000, guid: 2f0cba755f270424e89b3540ef3d860c, type: 2}
-  _weaponProvider: {fileID: 0}
+  _weaponProvider: {fileID: 1231140406789375904}
   _stepInterval: 0.5
   _walkingCategory: Walking
   _jumpingCategory: Jump
@@ -1038,6 +1041,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1231140406789375904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058743405672477868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6d8c1554004485988518e4403abdf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8659821808828277536
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ namespace App.Scripts.Scenes.Gameplay.Player
                 }
 
                 _healthBarUI.gameObject.SetActive(false);
-                _player.PlayerVisual.Hide();
+                _player.Visual.Hide();
                 _player.gameObject.layer = LayerMask.NameToLayer(_selectedLayer);
                 _weaponHolder.transform.SetParent(_weaponHolderPosition);
                 _weaponHolder.transform.localScale = Vector3.one;

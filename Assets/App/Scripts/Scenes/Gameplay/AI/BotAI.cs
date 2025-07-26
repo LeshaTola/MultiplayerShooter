@@ -1,4 +1,5 @@
-﻿using App.Scripts.Modules.AI.Actions;
+﻿using System.Collections.Generic;
+using App.Scripts.Modules.AI.Actions;
 using App.Scripts.Modules.AI.Factories;
 using App.Scripts.Modules.AI.Resolver;
 using App.Scripts.Scenes.Gameplay.Effectors;
@@ -17,9 +18,13 @@ namespace App.Scripts.Scenes.Gameplay.AI
         [field: SerializeField] public Health Health { get; private set; }
 
         [field: SerializeField] public Transform WeaponHolder { get; private set; }
-        [field: SerializeField] public PlayerMovement PlayerMovement { get; private set; }
+        // [field: SerializeField] public PlayerMovement PlayerMovement { get; private set; }
+        [field: SerializeField] public PlayerAudioProvider AudioProvider { get; private set; }
         [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+        [field: SerializeField] public PlayerVisual Visual { get; private set; }
+        [field: SerializeField] public BotWeaponProvider WeaponProvider { get; private set; }
 
+        
         public PhotonView PhotonView => photonView;
         public IEntityMovement Movement => this;
 
@@ -30,8 +35,6 @@ namespace App.Scripts.Scenes.Gameplay.AI
         private float _timer;
         private int _currentCornerIndex;
         private Vector3 _finalTargetPos;*/
-
-        public Weapon Weapon { get; private set; }
 
         [Inject]
         public void Constructor(IActionResolver actionResolver, IActionsFactory actionsFactory)
@@ -51,10 +54,9 @@ namespace App.Scripts.Scenes.Gameplay.AI
                 context.Container.Inject(this);*/
         }
 
-        public void Initialize(Weapon weapon)
+        public void Initialize(List<Weapon> weapons)
         {
-            Weapon = weapon;
-            RPCConnectWeapon(weapon);
+            WeaponProvider.Initialize(weapons);
             // _path = new NavMeshPath();
             Health.OnDied += OnDied;
         }
@@ -81,7 +83,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
             // }
             
             Target = target;
-            Weapon.CustomTarget = target;
+            WeaponProvider.CurrentWeapon.CustomTarget = target;
             Agent.SetDestination(Target.position);
 
             /*_finalTargetPos = targetPos;
@@ -160,21 +162,15 @@ namespace App.Scripts.Scenes.Gameplay.AI
             Debug.Log("Пока не работет");
         }
 
-        private void RPCConnectWeapon(Weapon weapon)
+        public PlayerState PlayerState { get; set; }
+        public void Freese()
         {
-            photonView.RPC(nameof(ConnectWeapon), 
-                RpcTarget.AllBuffered,
-                photonView.ViewID,
-                weapon.photonView.ViewID);
+            Debug.Log("Пока не работет");
         }
 
-        [PunRPC]
-        public void ConnectWeapon(int botId, int weaponId)
+        public void GaranteedMove(Vector3 delta)
         {
-            var weaponObject = PhotonView.Find(weaponId).gameObject;
-            var botAI = PhotonView.Find(botId).GetComponent<BotAI>();
-            var weaponTransform = weaponObject.transform;
-            weaponTransform.SetParent(botAI.WeaponHolder);
+            Debug.Log("Пока не работет");
         }
         
         /*public void RPCSetActive(bool active)

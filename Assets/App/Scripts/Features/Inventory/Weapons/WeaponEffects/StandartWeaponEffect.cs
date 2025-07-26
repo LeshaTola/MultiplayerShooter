@@ -73,7 +73,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
                     _damageables.Clear();
                     return;
                 }
-                damageable.Key.RPCSetLasHit(Weapon.Owner.photonView.ViewID, Weapon.Config.Id);
+                damageable.Key.RPCSetLasHit(Weapon.Owner.PhotonView.ViewID, Weapon.Config.Id);
 
                 var damage = damageable.Value.Item1;
                 var isKilled = false;

@@ -18,7 +18,8 @@ namespace App.Scripts.Scenes.Gameplay.AI.Considerations
         
         public override float GetScore()
         {
-            float score = _botAI.Weapon && _botAI.Weapon.IsReady ? 1f : 0f;
+            var weapon = _botAI.WeaponProvider.CurrentWeapon;
+            float score = weapon && weapon.IsReady ? 1f : 0f;
 
             if (_config.IsInverce)
                 score = 1f - score;

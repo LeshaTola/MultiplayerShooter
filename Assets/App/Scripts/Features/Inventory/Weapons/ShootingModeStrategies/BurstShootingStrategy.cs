@@ -36,7 +36,7 @@ namespace App.Scripts.Features.Inventory.Weapons.ShootingModeStrategies
             }
 
             ShootStrategy.Shoot();
-            Weapon.Owner.PlayerAudioProvider.RPCPlayWeaponSound();
+            Weapon.Owner.AudioProvider.RPCPlayWeaponSound();
             
             Weapon.ChangeAmmoCount(-1);
             Weapon.Animator.AttackAnimation(AttackCooldown);

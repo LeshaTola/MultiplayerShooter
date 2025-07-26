@@ -28,10 +28,10 @@ namespace App.Scripts.Scenes.Gameplay.Player
         [SerializeField] private NickNameUI _nickNameUI;
 
         [field: SerializeField] public PlayerMovement PlayerMovement { get; private set; }
-        [field: SerializeField] public PlayerAudioProvider PlayerAudioProvider { get; private set; }
+        [field: SerializeField] public PlayerAudioProvider AudioProvider { get; private set; }
         [field: SerializeField] public WeaponProvider WeaponProvider { get; private set; }
         [field: SerializeField] public Health Health { get; private set; }
-        [field: SerializeField] public PlayerVisual PlayerVisual { get; private set; }
+        [field: SerializeField] public PlayerVisual Visual { get; private set; }
 
         public string NickName { get; private set; }
         public TeamConfig Team { get; private set; }
@@ -131,12 +131,12 @@ namespace App.Scripts.Scenes.Gameplay.Player
         
         private void OnWeaponChanged(Weapon obj)
         {
-            PlayerAudioProvider.PlaySwitchWeaponSound();
+            AudioProvider.PlaySwitchWeaponSound();
         }
 
         private void OnDamage(float obj)
         {
-            PlayerAudioProvider.PlayDamageSound();
+            AudioProvider.PlayDamageSound();
         }
     }
 }

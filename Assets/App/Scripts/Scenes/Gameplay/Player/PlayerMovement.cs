@@ -8,6 +8,9 @@ namespace App.Scripts.Scenes.Gameplay.Player
     public interface IEntityMovement
     {
         void AddForce(Vector3 force);
+        PlayerState PlayerState { get; set; }
+        void Freese();
+        void GaranteedMove(Vector3 delta);
     }
 
     public class PlayerMovement : MonoBehaviourPun, IEntityMovement
@@ -111,6 +114,11 @@ namespace App.Scripts.Scenes.Gameplay.Player
             _moveDirection = Vector3.zero;
             _moveVelocity = Vector3.zero;
             _velocity = 0f;
+        }
+
+        public void GaranteedMove(Vector3 delta)
+        {
+            Controller.Move(delta);
         }
 
         public void Teleport(Vector3 position)
