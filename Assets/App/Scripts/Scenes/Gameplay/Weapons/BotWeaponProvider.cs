@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Scenes.Gameplay.AI;
 using Photon.Pun;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.Gameplay.Weapons
 {
     public class BotWeaponProvider : WeaponProviderBase
     {
+        [field: SerializeField] public Transform WeaponHolder { get; private set; }
+
         public void Initialize(List<Weapon> weapons)
         {
             Weapons = weapons;
@@ -14,7 +17,6 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             foreach (var weapon in Weapons)
             {
                 RPCConnectWeapon(weapon);
-
             }
         }
 
@@ -30,9 +32,9 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public void ConnectWeapon(int botId, int weaponId)
         {
             var weaponObject = PhotonView.Find(weaponId).gameObject;
-            var botAI = PhotonView.Find(botId).GetComponent<BotAI>();
+            var weaponProvider = PhotonView.Find(botId).GetComponent<BotWeaponProvider>();
             var weaponTransform = weaponObject.transform;
-            weaponTransform.SetParent(botAI.WeaponHolder);
+            weaponTransform.SetParent(weaponProvider.WeaponHolder);
         }
     }
 }

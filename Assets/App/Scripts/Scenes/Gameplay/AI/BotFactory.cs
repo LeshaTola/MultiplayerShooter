@@ -52,7 +52,7 @@ namespace App.Scripts.Scenes.Gameplay.AI
         private Weapon SpawnWeapon(BotAI bot, WeaponConfig weaponConfig)
         {
             var weaponObject
-                = PhotonNetwork.Instantiate(weaponConfig.Prefab.name, bot.WeaponHolder.position, Quaternion.identity)
+                = PhotonNetwork.Instantiate(weaponConfig.Prefab.name, bot.WeaponProvider.WeaponHolder.position, Quaternion.identity)
                     .GetComponent<Weapon>();
             return weaponObject;
         }

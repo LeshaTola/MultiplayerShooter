@@ -17,7 +17,6 @@ namespace App.Scripts.Scenes.Gameplay.AI
     {
         [field: SerializeField] public Health Health { get; private set; }
 
-        [field: SerializeField] public Transform WeaponHolder { get; private set; }
         // [field: SerializeField] public PlayerMovement PlayerMovement { get; private set; }
         [field: SerializeField] public PlayerAudioProvider AudioProvider { get; private set; }
         [field: SerializeField] public NavMeshAgent Agent { get; private set; }
