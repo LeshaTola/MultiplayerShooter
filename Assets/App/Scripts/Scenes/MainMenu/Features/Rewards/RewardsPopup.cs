@@ -98,7 +98,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
         {
             foreach (var reward in _vm.Rewards)
             {
-                _vm.SoundProvider.PlaySound(_awardSound);
+                _vm.SoundProvider.PlayOneShotSound(_awardSound);
                 var element = Instantiate(_rewardElementPrefab, _rewardsContainer);
                 element.Initialize(_vm.LocalizationSystem);
                 element.Setup(reward);
@@ -132,7 +132,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards
         
         private void Close()
         {
-            _vm.SoundProvider.PlaySound(_closeSound);
+            _vm.SoundProvider.PlayOneShotSound(_closeSound);
             Hide().Forget();
         }
     }

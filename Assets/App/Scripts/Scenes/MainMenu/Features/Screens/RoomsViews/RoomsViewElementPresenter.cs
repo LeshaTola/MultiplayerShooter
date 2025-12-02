@@ -96,7 +96,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private void JoinRoom(RoomInfo room, string myPassword)
         {
-            _soundProvider.PlaySound(_view.ButtonSoundKey);
+            _soundProvider.PlayOneShotSound(_view.ButtonSoundKey);
             if (room.CustomProperties.TryGetValue("GameMode", out var gameMode))
             {
                 _gameModProvider.SetGameMod(gameMode.ToString());
@@ -120,12 +120,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private void OnCreateRoomButtonClicked()
         {
-            _soundProvider.PlaySound(_view.ButtonSoundKey);
+            _soundProvider.PlayOneShotSound(_view.ButtonSoundKey);
         }
 
         private void OnQuickGameButtonClicked()
         {
-            _soundProvider.PlaySound(_view.ButtonSoundKey);
+            _soundProvider.PlayOneShotSound(_view.ButtonSoundKey);
             _connectionProvider.QuickGame();
         }
     }

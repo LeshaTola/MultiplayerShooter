@@ -85,19 +85,19 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
 
         private void OnCloseSettingsButtonClicked()
         {
-            _soundProvider.PlaySound(_view.ButtonSound);
+            _soundProvider.PlayOneShotSound(_view.ButtonSound);
             _settingsView.Hide().Forget();
         }
 
         private void SettingsClicked()
         {
-            _soundProvider.PlaySound(_view.ButtonSound);
+            _soundProvider.PlayOneShotSound(_view.ButtonSound);
             _settingsView.Show().Forget();
         }
 
         private async void OnTutorClicked()
         {
-            _soundProvider.PlaySound(_view.ButtonSound);
+            _soundProvider.PlayOneShotSound(_view.ButtonSound);
             Sprite tutorSprite;
             if (YG2.envir.isDesktop)
             {
@@ -120,7 +120,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _activeScreenPresenter?.Hide().Forget();
             _activeScreenPresenter = _presenters[index];
             _activeScreenPresenter.Show().Forget();
-            _soundProvider.PlaySound(_view.ToggleSound);
+            _soundProvider.PlayOneShotSound(_view.ToggleSound);
         }
     }
 }

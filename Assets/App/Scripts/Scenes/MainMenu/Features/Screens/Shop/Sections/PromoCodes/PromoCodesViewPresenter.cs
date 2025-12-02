@@ -32,7 +32,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.PromoCodes
 
         private void OnPromoCodeApplied(string promoCode)
         {
-            _soundProvider.PlaySound(_view.BuySound);
+            _soundProvider.PlayOneShotSound(_view.BuySound);
             _promoCodesProvider.ApplyPromoCode(promoCode);
         }
     }

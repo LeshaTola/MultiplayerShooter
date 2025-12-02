@@ -53,14 +53,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
 
         private void Plus()
         {
-            _soundProvider.PlaySound(_view.ClickSound);
+            _soundProvider.PlayOneShotSound(_view.ClickSound);
             _ticketsCount++;
             UpdateCount();
         }
 
         private void Minus()
         {
-            _soundProvider.PlaySound(_view.ClickSound);
+            _soundProvider.PlayOneShotSound(_view.ClickSound);
             _ticketsCount--;
             UpdateCount();
         }
@@ -69,11 +69,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Tickets
         {
             if (!_userStatsProvider.CoinsProvider.IsEnough(_totalCost))
             {
-                _soundProvider.PlaySound(_view.ClickSound);
+                _soundProvider.PlayOneShotSound(_view.ClickSound);
                 _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_MONEY).Forget();
                 return;
             }
-            _soundProvider.PlaySound(_view.BuySound);
+            _soundProvider.PlayOneShotSound(_view.BuySound);
             _userStatsProvider.CoinsProvider.ChangeCoins(-_totalCost);
             _config.TicketReward.Count = _ticketsCount;
             _rewardService.AddReward(_config.TicketReward);

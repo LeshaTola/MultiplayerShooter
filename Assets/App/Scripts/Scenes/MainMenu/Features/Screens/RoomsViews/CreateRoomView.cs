@@ -150,7 +150,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
             string password = _passwordInputField.text;
             string playersInput = _playersInputField.text;
 
-            _soundProvider.PlaySound(ButtonSoundKey);
+            _soundProvider.PlayOneShotSound(ButtonSoundKey);
             if (!await ValidateServerSettings(serverName, password, playersInput))
             {
                 return;
@@ -240,7 +240,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         {
             if (_mapIndex < _mapsProvider.Config.Maps.Count - 1)
             {
-                _soundProvider.PlaySound(ButtonSoundKey);
+                _soundProvider.PlayOneShotSound(ButtonSoundKey);
                 _mapIndex++;
                 UpdateMapUI();
             }
@@ -250,7 +250,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
         {
             if (_mapIndex > 0)
             {
-                _soundProvider.PlaySound(ButtonSoundKey);
+                _soundProvider.PlayOneShotSound(ButtonSoundKey);
                 _mapIndex--;
                 UpdateMapUI();
             }
@@ -297,7 +297,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.RoomsViews
 
         private async void HideYourself()
         {
-            _soundProvider.PlaySound(ButtonSoundKey);
+            _soundProvider.PlayOneShotSound(ButtonSoundKey);
             await Hide();
         }
     }

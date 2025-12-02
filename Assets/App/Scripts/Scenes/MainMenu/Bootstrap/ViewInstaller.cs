@@ -203,7 +203,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
             Container.Bind<MarketSectionPrezenter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<MarketService>().AsSingle().WithArguments(_globalInventory).NonLazy();
-#if YANDEX
+#if YandexGamesPlatform_yg
             Container.Bind<IDataProvider<MarketSavesData>>().To<YandexMarketSavesDataProvider>().AsSingle();
 #else
             Container.Bind<IDataProvider<MarketSavesData>>().

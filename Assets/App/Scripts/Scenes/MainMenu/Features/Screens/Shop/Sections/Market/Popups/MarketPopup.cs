@@ -84,7 +84,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
 
         private void Close()
         {
-            _vm.SoundProvider.PlaySound(_closeSound);
+            _vm.SoundProvider.PlayOneShotSound(_closeSound);
             Hide().Forget();
         }
 
@@ -96,7 +96,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market.Popu
                 return;
             }
             
-            _vm.SoundProvider.PlaySound(_buySound);
+            _vm.SoundProvider.PlayOneShotSound(_buySound);
             Close();
         }
 

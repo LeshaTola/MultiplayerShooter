@@ -100,12 +100,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
 
         private void OnTabSwitched()
         {
-            _soundProvider.PlaySound(_inventoryScreen.ToggleSond);
+            _soundProvider.PlayOneShotSound(_inventoryScreen.ToggleSond);
         }
 
         private void OnSkinSelected(string obj)
         {
-            _soundProvider.PlaySound(_inventoryScreen.SelectWeaponSound);
+            _soundProvider.PlayOneShotSound(_inventoryScreen.SelectWeaponSound);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass
         private void SelectReward(int id)
         {
             _screen.SetupRewardInfo(_userRankProvider.RanksDatabase.Ranks[id].Rewards.FirstOrDefault());
-            _soundProvider.PlaySound(_screen.ClickSond);
+            _soundProvider.PlayOneShotSound(_screen.ClickSond);
         }
     }
 }

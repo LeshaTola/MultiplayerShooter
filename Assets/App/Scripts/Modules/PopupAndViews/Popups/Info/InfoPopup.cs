@@ -46,7 +46,7 @@ namespace App.Scripts.Modules.PopupAndViews.Popups.Info
             _okButton.UpdateText(_vm.Data.Command.Label);
             _okButton.UpdateAction(() =>
             {
-                _vm.SoundProvider.PlaySound(_closeSound);
+                _vm.SoundProvider.PlayOneShotSound(_closeSound);
                 _vm.Data.Command.Execute();
             });
         }

@@ -87,21 +87,21 @@ namespace App.Scripts.Scenes.Gameplay.Esc
 
         private void OpenSettings()
         {
-            _soundProvider.PlaySound(_escMenuView.ButtonSound);
+            _soundProvider.PlayOneShotSound(_escMenuView.ButtonSound);
             _escMenuView.Hide().Forget();
             _settingsView.Show().Forget();
         }
 
         private void OpenMenu()
         {
-            _soundProvider.PlaySound(_escMenuView.ButtonSound);
+            _soundProvider.PlayOneShotSound(_escMenuView.ButtonSound);
             _escMenuView.Show().Forget();
             _settingsView.Hide().Forget();
         }
 
         private void Continue()
         {
-            _soundProvider.PlaySound(_escMenuView.ButtonSound);
+            _soundProvider.PlayOneShotSound(_escMenuView.ButtonSound);
             Hide();
             _playerController.IsBusy = false;
             _isActive = false;
@@ -109,13 +109,13 @@ namespace App.Scripts.Scenes.Gameplay.Esc
 
         private async void LeaveRoom()
         {
-            _soundProvider.PlaySound(_escMenuView.ButtonSound);
+            _soundProvider.PlayOneShotSound(_escMenuView.ButtonSound);
             await _stateMachine.ChangeState<LeaveMatch>();
         }
         
         private void OnPausePreformed()
         {
-            _soundProvider.PlaySound(_escMenuView.ButtonSound);
+            _soundProvider.PlayOneShotSound(_escMenuView.ButtonSound);
             if (!_isActive)
             {
                 if (_playerController.IsBusy)

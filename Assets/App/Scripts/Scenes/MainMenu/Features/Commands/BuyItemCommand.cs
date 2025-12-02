@@ -40,7 +40,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Commands
                 return;
             }
             
-            _soundProvider.PlaySound(_buySound);
+            _soundProvider.PlayOneShotSound(_buySound);
         }
 
         private void ShowNotEnoughMoneyMessage()

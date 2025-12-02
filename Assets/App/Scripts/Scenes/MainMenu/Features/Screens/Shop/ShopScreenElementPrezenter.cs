@@ -64,7 +64,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop
 
         private void ScrollToSection(int index)
         {
-            _soundProvider.PlaySound(_view.ClickSound);
+            _soundProvider.PlayOneShotSound(_view.ClickSound);
             _view.SetScrollPosition(_startNormalizedPositions[index]);
             _view.HighlightTab(index);
         }

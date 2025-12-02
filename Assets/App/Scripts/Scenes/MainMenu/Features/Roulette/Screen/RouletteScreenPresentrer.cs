@@ -114,7 +114,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
 
         private async void OnSpinButtonPressed()
         {
-            _soundProvider.PlaySound(_rouletteScreen.ButtonSound);
+            _soundProvider.PlayOneShotSound(_rouletteScreen.ButtonSound);
             if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
                 await Hide();
@@ -143,12 +143,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Roulette.Screen
 
         private void PlayPassedDegreeSound()
         {
-            _soundProvider.PlaySound(_rouletteScreen.RouletteStepSond);
+            _soundProvider.PlayOneShotSound(_rouletteScreen.RouletteStepSond);
         }
 
         private void OnRefreshButtonPressed()
         {
-            _soundProvider.PlaySound(_rouletteScreen.ButtonSound);
+            _soundProvider.PlayOneShotSound(_rouletteScreen.ButtonSound);
 
             YG2.RewardedAdvShow(String.Empty, () =>
             {

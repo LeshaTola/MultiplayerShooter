@@ -1,22 +1,19 @@
 ﻿using System.Collections.Generic;
 using App.Scripts.Features;
 using App.Scripts.Features.Commands;
-using App.Scripts.Features.PlayerStats;
 using App.Scripts.Features.Screens;
 using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Features.Yandex.Advertisement;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
-using App.Scripts.Scenes.MainMenu.Features.Roulette.Screen;
-using App.Scripts.Scenes.MainMenu.Features.Screens.BattlePass;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
-using RedefineYG;
 using UnityEngine;
 using YG;
+using PlayerPrefs = UnityEngine.PlayerPrefs;
 
 namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 {
@@ -151,11 +148,11 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
                 _userStatsView.SetupName(name);
             }
 
-#if YANDEX
+#if YandexGamesPlatform_yg
             YG2.saves.PlayerName = name;
             YG2.SaveProgress();
 #else
-            PlayerPrefs.SetString(ConnectionProvider.NAME_DATA, name);
+            PlayerPrefs.SetString(NAME_DATA, name);
 #endif
             PhotonNetwork.NickName = name;
         }
@@ -195,7 +192,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
 
         private async void LoadPlayrName()
         {
-#if YANDEX
+#if YandexGamesPlatform_yg
             var name = YG2.player.auth ? YG2.player.name : $"Player {Random.Range(0, 1000)}";
             var playerName = !string.IsNullOrEmpty(YG2.saves.PlayerName) ? YG2.saves.PlayerName : name;
             

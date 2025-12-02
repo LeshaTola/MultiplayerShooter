@@ -144,7 +144,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Inventory.Screen
                     return;
                 }
             
-                _soundProvider.PlaySound("Buy_sound");
+                _soundProvider.PlayOneShotSound("Buy_sound");
                 _marketViewView.SetButtonActive(false);
             };
         }

@@ -62,7 +62,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 
         private void OnUpdateButtonClicked()
         {
-            _soundProvider.PlaySound(_view.ClickSound);
+            _soundProvider.PlayOneShotSound(_view.ClickSound);
             /*if (!_userStatsProvider.TicketsProvider.IsEnough(1))
             {
                 _infoPopupRouter.ShowPopup(ConstStrings.ATTENTION, ConstStrings.NOT_ENOUGH_TICKETS).Forget();
@@ -81,7 +81,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Market
 
         private void OnItemClicked(string id)
         {
-            _soundProvider.PlaySound(_view.ClickSound);
+            _soundProvider.PlayOneShotSound(_view.ClickSound);
             var config
                 = _marketService.CurrentWeapons.FirstOrDefault(x => x.Item.Id.Equals(id))
                   ?? _marketService.CurrentSkins.FirstOrDefault(x => x.Item.Id.Equals(id));

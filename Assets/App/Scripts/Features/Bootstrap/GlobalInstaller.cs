@@ -119,7 +119,7 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindTasksDataProvider()
         {
-#if YANDEX
+#if YandexGamesPlatform_yg
             Container.Bind<IDataProvider<TasksData>>()
                 .To<YandexTasksDataProvider>()
                 .AsSingle();
@@ -144,8 +144,12 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindPromoCodesServices()
         {
-#if YANDEX
+#if YandexGamesPlatform_yg
             Container.Bind<IDataProvider<PromocodesSavesData>>().To<YandexPromocodesDataProvider>().AsSingle();
+#else
+            Container.Bind<IDataProvider<PromocodesSavesData>>()
+                .To<DataProvider<PromocodesSavesData>>()
+                .AsSingle().WithArguments("PromoCodesSavesKey");
 #endif
             Container.Bind<PromocodesFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PromoCodesProvider>().AsSingle().WithArguments(_promocodesDatabase)
@@ -165,7 +169,7 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindSettingsDataProvider()
         {
-#if YANDEX
+#if YandexGamesPlatform_yg
             Container
                 .Bind<IDataProvider<SettingsData>>()
                 .To<YandexSettingsDataProvider>()
@@ -181,7 +185,7 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindUserStatsDataProvider()
         {
-#if YANDEX
+#if YandexGamesPlatform_yg
             Container
                 .Bind<IDataProvider<UserStatsData>>()
                 .To<YandexUserStatsDataProvider>()
@@ -197,7 +201,7 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindLocalizationSystem()
         {
-#if YANDEX
+#if YandexGamesPlatform_yg
                 var lang = YG2.lang.Equals("ru") ? "ru" : "en";
 #else
                 var lang = _language;
