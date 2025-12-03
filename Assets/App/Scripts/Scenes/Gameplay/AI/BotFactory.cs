@@ -1,9 +1,7 @@
 ﻿using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Match.Maps;
-using App.Scripts.Modules.AI.Resolver;
 using App.Scripts.Scenes.Gameplay.Weapons;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
-using GameAnalyticsSDK.Setup;
 using Photon.Pun;
 using UnityEngine;
 using Zenject;

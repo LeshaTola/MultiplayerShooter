@@ -8,6 +8,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
 {
     public class ReviewOffer : PromocodeInvoker
     {
+#if YandexGamesPlatform_yg
         protected override void OnEnable()
         {
             _button.onClick.AddListener(ShowReview);
@@ -53,5 +54,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Offers
                 OnReviewSent(true);
             }
         }
+#endif
     }
 }

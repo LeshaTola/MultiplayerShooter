@@ -122,52 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &12628877
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 12628878}
-  - component: {fileID: 12628879}
-  m_Layer: 0
-  m_Name: BotController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &12628878
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12628877}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 242262360}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &12628879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12628877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b6e5f4ccb34969a0d2b8fd29ea5924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _botConfig: {fileID: 11400000, guid: eab3fd93f39c2f44fa6c6bd287a5ea63, type: 2}
-  _maxBots: 1
 --- !u!114 &47232794 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4133203987373394240, guid: 8e359b3e8420c5c4ead17ad8738deaca, type: 3}
@@ -228,7 +182,6 @@ Transform:
   - {fileID: 1739617020}
   - {fileID: 1913070196}
   - {fileID: 1993348522}
-  - {fileID: 12628878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306666463
@@ -1456,8 +1409,6 @@ MonoBehaviour:
   _accrualConfig: {fileID: 11400000, guid: 605800f0878126044bd0442cca2f37b1, type: 2}
   _detectionConfig: {fileID: 11400000, guid: 5184a91f7b3867741a9be0744dfa9f3f, type: 2}
   _sceneNetworkController: {fileID: 1500808224}
-  _botController: {fileID: 12628879}
-  _botAI: {fileID: 7348646114095592297, guid: 9e763bb1135ea564c8745f39f40ba0e9, type: 3}
 --- !u!1 &1495458396
 GameObject:
   m_ObjectHideFlags: 0

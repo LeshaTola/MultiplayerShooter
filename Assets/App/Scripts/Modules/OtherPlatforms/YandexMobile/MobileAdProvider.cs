@@ -12,17 +12,17 @@ namespace App.Scripts.Modules.OtherPlatforms.YandexMobile
 #if RUSTORE || HUAWEI
 #if RUSTORE || UNITY_EDITOR || UNITY_WEBGL
         private const string BANNER_BLOCK_ID = "demo-banner-yandex";
-        private const string INTERSTITIAL_BLOCK_ID = "R-M-17064978-2";
-        private const string REWARDED_BLOCK_ID = "R-M-17064978-1";
+        private const string INTERSTITIAL_BLOCK_ID = "demo-interstitial-yandex";
+        private const string REWARDED_BLOCK_ID = "demo-rewarded-yandex";
 
 #elif HUAWEI
         private const string BANNER_BLOCK_ID = "demo-banner-yandex";
-        private const string INTERSTITIAL_BLOCK_ID = "R-M-17757555-1";
-        private const string REWARDED_BLOCK_ID = "R-M-17757555-2";
+        private const string INTERSTITIAL_BLOCK_ID = "demo-interstitial-yandex";
+        private const string REWARDED_BLOCK_ID = "demo-rewarded-yandex";
 #elif GOOGLE
      private const string BANNER_BLOCK_ID = "demo-banner-yandex";
-    private const string INTERSTITIAL_BLOCK_ID = "R-M-17165939-2";
-     private const string REWARDED_BLOCK_ID = "R-M-17165939-1";
+    private const string INTERSTITIAL_BLOCK_ID = "demo-interstitial-yandex";
+     private const string REWARDED_BLOCK_ID = "demo-rewarded-yandex";
 #endif
 
         public event Action<string> OnRewardedSuccess;

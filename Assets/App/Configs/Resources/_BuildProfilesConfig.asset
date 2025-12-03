@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95a4a3e34cf439f910a8957bd979a54, type: 3}
+  m_Name: _BuildProfilesConfig
+  m_EditorClassIdentifier: 
+  _currentProfile: {fileID: 11400000, guid: 1732cced380f56d4296c55f10df10ce2, type: 2}
+  _profiles:
+  - {fileID: 11400000, guid: 1732cced380f56d4296c55f10df10ce2, type: 2}
+  - {fileID: 11400000, guid: 4d267777f4e6c8f4fb4fdf4d4ae74a23, type: 2}
+  - {fileID: 11400000, guid: 163a64825387fbd40876e6411b96915b, type: 2}
+  - {fileID: 11400000, guid: a1cc88d1fa1302343a10bde74c34144b, type: 2}
+  - {fileID: 11400000, guid: cdb606c20c764fc4a94b3b211c5c7da7, type: 2}
+  InfoYg: {fileID: 0}
+  _bundleVersion: 0.1.2
+  _androidVersionCode: 12

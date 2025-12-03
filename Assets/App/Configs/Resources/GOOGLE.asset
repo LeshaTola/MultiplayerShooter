@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827e48b5cab14a0389a67df79e0b89c3, type: 3}
+  m_Name: GOOGLE
+  m_EditorClassIdentifier: 
+  _profileName: GOOGLE
+  _platformType: 1
+  _outputPath: C:/Users/Defestronik/Desktop/Work/RobotWars/Google/app.aab
+  _addDefineSymbols:
+  - GOOGLE
+  _webGLTemplate: D:/UnityProjects/LavaLamp.keystore
+  _webGLCompression: 2
+  _isYandex: 0
+  _androidBuildFormat: 1
+  _keystorePath: D:/Work/LavaLamp.keystore
+  _keystorePassword: qwe123
+  _keyAliasName: base
+  _keyAliasPassword: qwe123

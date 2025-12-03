@@ -27,20 +27,26 @@ MonoBehaviour:
   CustomArea: 
   gameKey:
   - 01506b53ed8621c24bd99358087059ea
+  - 288a6a1a30257b5b3e82d7193d56f198
   secretKey:
   - 18c957d45c397a51444334106c8d6460cba8a414
+  - 623ce9e6b72618fd46004c5ee4c52233aeeb031c
   Build:
   - 0.1
+  - 0.1.2
   SelectedPlatformOrganization:
+  - LavaLampStudio
   - LavaLampStudio
   SelectedPlatformStudio:
   - LavaLampStudio
+  - LavaLampStudio
   SelectedPlatformGame:
   - Robot Wars
-  SelectedPlatformGameID: 55cf0400
-  SelectedOrganization: 01000000
-  SelectedStudio: 01000000
-  SelectedGame: 01000000
+  - Robot Wars Android
+  SelectedPlatformGameID: 55cf0400c9110500
+  SelectedOrganization: 0100000001000000
+  SelectedStudio: 0100000001000000
+  SelectedGame: 0100000001000000
   NewVersion: 
   Changes: 
   SignUpOpen: 0
@@ -56,13 +62,14 @@ MonoBehaviour:
   UseManualSessionHandling: 0
   SendExampleGameDataToMyGame: 0
   InternetConnectivity: 0
-  CustomDimensions01: []
+  CustomDimensions01:
+  - Empty
   CustomDimensions02: []
   CustomDimensions03: []
   ResourceItemTypes: []
   ResourceCurrencies: []
   LastCreatedGamePlatform: -1
-  Platforms: 11000000
+  Platforms: 110000000b000000
   CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
@@ -81,7 +88,7 @@ MonoBehaviour:
   iosIcon: {fileID: 0}
   macIcon: {fileID: 0}
   windowsPhoneIcon: {fileID: 0}
-  UsePlayerSettingsBuildNumber: 0
+  UsePlayerSettingsBuildNumber: 1
   SubmitErrors: 1
   NativeErrorReporting: 0
   MaxErrorCount: 10
@@ -90,7 +97,7 @@ MonoBehaviour:
   IncludeGooglePlay: 1
   FpsCriticalThreshold: 20
   FpsCirticalSubmitInterval: 1
-  PlatformFoldOut: 01
+  PlatformFoldOut: 0101
   CustomDimensions01FoldOut: 0
   CustomDimensions02FoldOut: 0
   CustomDimensions03FoldOut: 0

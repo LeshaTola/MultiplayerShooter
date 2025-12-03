@@ -1,12 +1,20 @@
 <dependencies>
   <packages>
+    <package>androidx.lifecycle:lifecycle-process:2.4.1</package>
+    <package>androidx.lifecycle:lifecycle-viewmodel:2.5.1</package>
+    <package>androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1</package>
     <package>com.google.android.gms:play-services-appset:16.0.2</package>
     <package>com.google.android.instantapps:instantapps:1.1.0</package>
+    <package>com.yandex.android:mobileads:7.17.0</package>
+    <package>ru.rustore.sdk:appupdate:10.0.0</package>
+    <package>ru.rustore.sdk:core:10.0.0</package>
+    <package>ru.rustore.sdk:pay:10.0.0</package>
+    <package>ru.rustore.sdk:review:10.0.0</package>
   </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
-    <setting name="bundleId" value="com.LavaLamp.MultiplayerShooter" />
+    <setting name="bundleId" value="com.LavaLamp.RobotWarsOnline" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="True" />

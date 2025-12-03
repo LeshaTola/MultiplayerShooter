@@ -3,6 +3,7 @@ using App.Scripts.Modules.PopupAndViews.General.Controllers;
 using App.Scripts.Modules.PopupAndViews.General.Providers;
 using App.Scripts.Modules.PopupAndViews.Popups.Image;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.PopupAndViews.Popups.YesNo;
 using App.Scripts.Scenes.MainMenu.Features.UserStats.Rewards;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,10 +26,12 @@ namespace App.Scripts.Features.Bootstrap
 
         private void BindRouters()
         {
+            Container.Bind<PopupRoutersProvider>().AsSingle();
             Container.Bind<RewardsPopupRouter>().AsSingle();
             Container.Bind<InfoPopupRouter>().AsSingle();
             Container.Bind<ImagePopupRouter>().AsSingle();
             Container.Bind<InputFieldPopupRouter>().AsSingle();
+            Container.Bind<YesNoPopupRouter>().AsSingle();
         }
 
         private void BindPopupController()

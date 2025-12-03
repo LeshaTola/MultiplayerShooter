@@ -176,9 +176,10 @@ namespace App.Scripts.Features
             }
         }
 
-
+#if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void ReloadPage();
+#endif
 
         public void Reload()
         {

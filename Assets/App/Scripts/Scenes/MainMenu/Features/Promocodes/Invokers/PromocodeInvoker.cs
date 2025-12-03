@@ -25,7 +25,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Invokers
         protected InfoPopupRouter InfoPopupRouter;
 
         [Inject]
-        public void Construct(PromoCodesProvider promoCodesProvider, InfoPopupRouter infoPopupRouter)
+        private void Construct(PromoCodesProvider promoCodesProvider, InfoPopupRouter infoPopupRouter)
         {
             PromoCodesProvider = promoCodesProvider;
             InfoPopupRouter = infoPopupRouter;

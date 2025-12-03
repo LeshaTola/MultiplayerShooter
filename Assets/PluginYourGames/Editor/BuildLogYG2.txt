@@ -1,0 +1,3 @@
+﻿Build path: C:/Users/Defestronik/Desktop/Work/RobotWars/app.apk
+Build number: 5
+PluginYG version: 2.007

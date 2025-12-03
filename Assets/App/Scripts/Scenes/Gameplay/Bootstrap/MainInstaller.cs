@@ -56,8 +56,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private AccrualConfig _accrualConfig;
         [SerializeField] private TargetDetectionConfig _detectionConfig;
         [SerializeField] private SceneNetworkController _sceneNetworkController;
-        [SerializeField] private BotController _botController;
-        [SerializeField] private BotAI _botAI;
+        /*[SerializeField] private BotController _botController;
+        [SerializeField] private BotAI _botAI;*/
 
         public override void InstallBindings()
         {
@@ -84,8 +84,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<SceneNetworkController>().FromInstance(_sceneNetworkController).AsSingle();
             Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
 
-            Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
-            Container.BindInterfacesAndSelfTo<BotController>().FromInstance(_botController).AsSingle();
+            /*Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
+            Container.BindInterfacesAndSelfTo<BotController>().FromInstance(_botController).AsSingle();*/
             BindTask();
 
 

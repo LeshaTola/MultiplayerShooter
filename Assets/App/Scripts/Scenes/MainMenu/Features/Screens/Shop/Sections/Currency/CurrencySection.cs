@@ -9,6 +9,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
 {
     public class CurrencySection: MonoBehaviour , IInitializable
     {
+#if YandexGamesPlatform_yg 
         private const string SALE_FLAG = "SALE";
         [SerializeField] private List<CurrencyWithSale> _currencies;
 
@@ -46,5 +47,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.Shop.Sections.Currency
                 }
             }
         }
+#else
+        public void Initialize()
+        {
+        }
+#endif
     }
 }

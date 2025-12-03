@@ -1,13 +1,13 @@
 #if RUSTORE
 using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Features.Promos.Providers;
 using RuStore.PayClient;
 using TMPro;
 using UnityEngine.UI;
 using YG;
 using Zenject;
 #endif
+using App.Scripts.Scenes.MainMenu.Features.PromoCodes.Providers;
 using UnityEngine;
 
 namespace App.Scripts.Modules.OtherPlatforms.RuStore
@@ -15,7 +15,6 @@ namespace App.Scripts.Modules.OtherPlatforms.RuStore
     public class RuStorePurchase: MonoBehaviour
     {
 #if RUSTORE
-
         [SerializeField] private string _tag;
         [SerializeField] private TextMeshProUGUI _titleText;
         [SerializeField] private TextMeshProUGUI _costText;

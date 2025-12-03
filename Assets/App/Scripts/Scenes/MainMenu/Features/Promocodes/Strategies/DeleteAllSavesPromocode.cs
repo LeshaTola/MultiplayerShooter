@@ -20,8 +20,10 @@ namespace App.Scripts.Scenes.MainMenu.Features.PromoCodes.Strategies
             Reload();
         }
         
+#if UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern void ReloadPage();
+#endif
 
         public void Reload()
         {

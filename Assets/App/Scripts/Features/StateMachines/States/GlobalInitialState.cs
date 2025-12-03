@@ -5,6 +5,7 @@ using App.Scripts.Modules.TasksSystem.Providers;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
 using GameAnalyticsSDK;
+using RuStore.AppUpdate;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
@@ -46,7 +47,7 @@ namespace App.Scripts.Features.StateMachines.States
             ConnectAnalytics();
             LoadSaves();
             YG2.StickyAdActivity(YG2.saves.IsCanShowAd);
-
+            await CheckForUpdate();
             _isValid = false;
             
             _connectionProvider.OnConnectionFinished += OnConnectedToServer;
@@ -88,6 +89,34 @@ namespace App.Scripts.Features.StateMachines.States
         {
              await StateMachine.ChangeState(NextState);
              YG2.GameReadyAPI();
+        }
+        private async UniTask CheckForUpdate()
+        {
+#if RUSTORE && !UNITY_EDITOR
+            RuStoreAppUpdateManager.Instance.Init();
+            bool isReady = false;
+            AppUpdateInfo updateInfo = null;
+            RuStoreAppUpdateManager.Instance.GetAppUpdateInfo(
+                onFailure: (error) =>
+                {
+                    isReady = true;
+                },
+                onSuccess: (info) =>
+                {
+                    isReady = true;
+                    updateInfo = info;
+                }
+            );
+            await UniTask.WaitUntil(() => isReady);
+            if (updateInfo == null || updateInfo.updateAvailability != AppUpdateInfo.UpdateAvailability.UPDATE_AVAILABLE)
+            {
+                return;
+            }
+            RuStoreAppUpdateManager.Instance.StartUpdateFlow(UpdateType.IMMEDIATE, _ => { },
+                (result) => {
+                    Debug.LogFormat("Update flow result -> {0}", result);
+                });
+#endif
         }
     }
 }
