@@ -18,34 +18,20 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
     public class TopViewPresenter : GameScreenPresenter, IInitializable, ICleanupable
     {
         private readonly TopView _view;
-        private readonly SettingsView _settingsView;
-        private readonly SettingsProvider _settingsProvider;
         private readonly List<ITopViewElementPrezenter> _presenters;
-        private readonly TutorialConfig _tutorialConfig;
-        private readonly ImagePopupRouter _imagePopupRouter;
-        private readonly ILocalizationSystem _localizationSystem;
+
         private readonly ISoundProvider _soundProvider;
 
         private ITopViewElementPrezenter _activeScreenPresenter;
         private readonly AdvertisementProvider _advertisementProvider;
 
         public TopViewPresenter(TopView view,
-            SettingsView settingsView,
-            SettingsProvider settingsProvider,
             List<ITopViewElementPrezenter> presenters,
-            TutorialConfig tutorialConfig,
-            ImagePopupRouter imagePopupRouter,
-            ILocalizationSystem localizationSystem,
             ISoundProvider soundProvider, 
             AdvertisementProvider advertisementProvider)
         {
             _view = view;
-            _settingsView = settingsView;
-            _settingsProvider = settingsProvider;
             _presenters = presenters;
-            _tutorialConfig = tutorialConfig;
-            _imagePopupRouter = imagePopupRouter;
-            _localizationSystem = localizationSystem;
             _soundProvider = soundProvider;
             _advertisementProvider = advertisementProvider;
 
@@ -55,22 +41,14 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
         public override void Initialize()
         {
             _view.Initialize();
-            _settingsView.Initialize(_settingsProvider);
 
-            _view.OnSettingsClicked += SettingsClicked;
-            _view.OnTutorClicked += OnTutorClicked;
             _view.OnToggleClicked += OnToggleClicked;
-            _settingsView.OnCloseButtonClicked += OnCloseSettingsButtonClicked;
         }
 
         public override void Cleanup()
         {
             _view.Cleanup();
-
-            _view.OnSettingsClicked -= SettingsClicked;
-            _view.OnTutorClicked -= OnTutorClicked;
             _view.OnToggleClicked -= OnToggleClicked;
-            _settingsView.OnCloseButtonClicked -= OnCloseSettingsButtonClicked;
         }
 
         public override async UniTask Show()
@@ -83,36 +61,6 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             await _view.Hide();
         }
 
-        private void OnCloseSettingsButtonClicked()
-        {
-            _soundProvider.PlayOneShotSound(_view.ButtonSound);
-            _settingsView.Hide().Forget();
-        }
-
-        private void SettingsClicked()
-        {
-            _soundProvider.PlayOneShotSound(_view.ButtonSound);
-            _settingsView.Show().Forget();
-        }
-
-        private async void OnTutorClicked()
-        {
-            _soundProvider.PlayOneShotSound(_view.ButtonSound);
-            Sprite tutorSprite;
-            if (YG2.envir.isDesktop)
-            {
-                tutorSprite = _localizationSystem.Language == "ru" ? _tutorialConfig.RuTutor : _tutorialConfig.EnTutor;
-            }
-            else
-            {
-                tutorSprite = _localizationSystem.Language == "ru"
-                    ? _tutorialConfig.RuMobileTutor
-                    : _tutorialConfig.EnMobileTutor;
-            }
-
-            await _imagePopupRouter.ShowPopup(ConstStrings.INPUT, tutorSprite);
-        }
-
         private void OnToggleClicked(int index)
         {
             _advertisementProvider.ShowInterstitialAd();
@@ -120,7 +68,7 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.TopViews
             _activeScreenPresenter?.Hide().Forget();
             _activeScreenPresenter = _presenters[index];
             _activeScreenPresenter.Show().Forget();
-            _soundProvider.PlayOneShotSound(_view.ToggleSound);
+            _soundProvider.PlayOneShotSound(AudioKeys.Second_UI);
         }
     }
 }

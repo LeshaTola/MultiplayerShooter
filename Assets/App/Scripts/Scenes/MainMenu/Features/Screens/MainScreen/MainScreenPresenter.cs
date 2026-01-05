@@ -2,11 +2,16 @@
 using App.Scripts.Features;
 using App.Scripts.Features.Commands;
 using App.Scripts.Features.Screens;
+using App.Scripts.Features.Settings;
 using App.Scripts.Features.UserStats.Rank;
 using App.Scripts.Features.Yandex.Advertisement;
+using App.Scripts.Modules.Localization;
+using App.Scripts.Modules.PopupAndViews.Popups.Image;
 using App.Scripts.Modules.PopupAndViews.Popups.Info;
+using App.Scripts.Modules.Sounds.Providers;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
+using App.Scripts.Scenes.Gameplay.Esc.Settings;
 using App.Scripts.Scenes.MainMenu.Features.Screens.TopViews;
 using App.Scripts.Scenes.MainMenu.Features.UserStats;
 using Cysharp.Threading.Tasks;
@@ -33,7 +38,13 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
         private readonly InfoPopupRouter _infoPopupRouter;
         private readonly AdvertisementProvider _advertisementProvider;
         private readonly InputFieldPopupRouter _inputFieldPopupRouter;
-
+        private readonly SettingsView _settingsView;
+        private readonly SettingsProvider _settingsProvider;
+        private readonly TutorialConfig _tutorialConfig;
+        private readonly ImagePopupRouter _imagePopupRouter;
+        private readonly ILocalizationSystem _localizationSystem;
+        private readonly ISoundProvider _soundProvider;
+        
         public MainScreenPresenter(MainScreen screen,
             ConnectionProvider connectionProvider,
             UserRankProvider userRankProvider,
@@ -43,7 +54,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             InfoPopupRouter infoPopupRouter, 
             TopView topView,
             AdvertisementProvider advertisementProvider,
-            InputFieldPopupRouter inputFieldPopupRouter)
+            InputFieldPopupRouter inputFieldPopupRouter,
+            SettingsView settingsView,
+            SettingsProvider settingsProvider,
+            ImagePopupRouter imagePopupRouter,
+            ILocalizationSystem localizationSystem, 
+            ISoundProvider soundProvider, TutorialConfig tutorialConfig)
         {
             _screen = screen;
             _connectionProvider = connectionProvider;
@@ -55,6 +71,12 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _topView = topView;
             _advertisementProvider = advertisementProvider;
             _inputFieldPopupRouter = inputFieldPopupRouter;
+            _settingsView = settingsView;
+            _settingsProvider = settingsProvider;
+            _imagePopupRouter = imagePopupRouter;
+            _localizationSystem = localizationSystem;
+            _soundProvider = soundProvider;
+            _tutorialConfig = tutorialConfig;
         }
 
         public override void Initialize()
@@ -62,6 +84,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _screen.RouletteButtonAction += OnRouletteButtonAction;
             _screen.PlayButtonAction += OnPlayButtonAction;
             _screen.BattlePassButtonAction += OnBattlePassButtonAction;
+            _screen.OnSettingsClicked += SettingsClicked;
+            _screen.OnTutorClicked += OnTutorClicked;
             _screen.Initialize();
 
             _userStatsView.Initialize();
@@ -69,6 +93,9 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _coinsProvider.OnCoinsChanged += OnCoinsChanged;
             _ticketsProvider.OnTicketsChanged += OnTicketsChanged;
             _userStatsView.OnPlayerNameChanged += OnPlayerNameChanged;
+            
+            _settingsView.Initialize(_settingsProvider);
+            _settingsView.OnCloseButtonClicked += OnCloseSettingsButtonClicked;
         }
 
         public void Setup()
@@ -86,6 +113,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _screen.RouletteButtonAction -= OnRouletteButtonAction;
             _screen.PlayButtonAction -= OnPlayButtonAction;
             _screen.BattlePassButtonAction -= OnBattlePassButtonAction;
+            _screen.OnSettingsClicked -= SettingsClicked;
+            _screen.OnTutorClicked -= OnTutorClicked;
             _screen.Cleanup();
 
             _userStatsView.Cleanup();
@@ -93,6 +122,8 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
             _userStatsView.OnPlayerNameChanged -= OnPlayerNameChanged;
             _coinsProvider.OnCoinsChanged -= OnCoinsChanged;
             _ticketsProvider.OnTicketsChanged -= OnTicketsChanged;
+            
+            _settingsView.OnCloseButtonClicked -= OnCloseSettingsButtonClicked;
         }
 
         public override async UniTask Show()
@@ -239,6 +270,37 @@ namespace App.Scripts.Scenes.MainMenu.Features.Screens.MainScreen
                 {
                 })
             });
+        }
+        
+        private void SettingsClicked()
+        {
+            _soundProvider.PlayOneShotSound(AudioKeys.Main_UI);
+            _settingsView.Show().Forget();
+        }
+
+        private async void OnTutorClicked()
+        {
+            _soundProvider.PlayOneShotSound(AudioKeys.Main_UI);
+            Sprite tutorSprite;
+            if (YG2.envir.isDesktop)
+            {
+                tutorSprite = _localizationSystem.Language == "ru" ? _tutorialConfig.RuTutor : _tutorialConfig.EnTutor;
+            }
+            else
+            {
+                tutorSprite = _localizationSystem.Language == "ru"
+                    ? _tutorialConfig.RuMobileTutor
+                    : _tutorialConfig.EnMobileTutor;
+            }
+
+            await _imagePopupRouter.ShowPopup(ConstStrings.INPUT, tutorSprite);
+        }
+        
+
+        private void OnCloseSettingsButtonClicked()
+        {
+            _soundProvider.PlayOneShotSound(AudioKeys.Main_UI);
+            _settingsView.Hide().Forget();
         }
     }
 }

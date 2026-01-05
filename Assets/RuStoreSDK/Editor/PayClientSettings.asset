@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc589a277f2d5aa4c926edd0c8cd1f3b, type: 3}
   m_Name: PayClientSettings
   m_EditorClassIdentifier: 
-  consoleApplicationId: 2063651779
+  consoleApplicationId: 2063683431
   deeplinkScheme: robot_wars

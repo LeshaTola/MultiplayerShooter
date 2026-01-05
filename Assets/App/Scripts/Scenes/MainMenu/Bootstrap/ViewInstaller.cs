@@ -166,7 +166,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         private void BindMainScreen()
         {
             Container.BindInstance(_mainScreen).AsSingle();
-            Container.BindInterfacesAndSelfTo<MainScreenPresenter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MainScreenPresenter>().AsSingle().WithArguments(_tutorialConfig);
         }
 
         private void BindRoomsScreen()
@@ -178,7 +178,7 @@ namespace App.Scripts.Scenes.MainMenu.Bootstrap
         private void BindTopView()
         {
             Container.Bind<TopView>().FromInstance(_topView).AsSingle();
-            Container.BindInterfacesAndSelfTo<TopViewPresenter>().AsSingle().WithArguments(_tutorialConfig);
+            Container.BindInterfacesAndSelfTo<TopViewPresenter>().AsSingle();
         }
 
         private void BindBattlePassScreen()

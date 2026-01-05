@@ -100,7 +100,7 @@ namespace App.Scripts.Scenes.Gameplay.LeaderBoard
         {
             var playerProperty = new ExitGames.Client.Photon.Hashtable
             {
-                ["IsMobile"] = _userRankProvider.CurrentRankId,
+                ["IsMobile"] = Application.isMobilePlatform,
                 ["Skin"] = _inventoryProvider.GameInventory.Skin,
                 ["Rank"] = _userRankProvider.CurrentRankId,
                 ["Ping"] = PhotonNetwork.GetPing(),
