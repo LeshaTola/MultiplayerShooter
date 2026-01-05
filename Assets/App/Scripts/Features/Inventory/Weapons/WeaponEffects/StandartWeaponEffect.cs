@@ -26,11 +26,11 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             var shootPoint = Weapon.ShootPointProvider.ShotPoint;
             if (hitValues.Count == 0)
             {
-                Weapon.NetworkSetLine(/*shootPoint,*/shootPoint + _camera.transform.forward * 100);
+                Weapon.NetworkSetLine(shootPoint + _camera.transform.forward * 100);
             }
             else
             {
-                Weapon.NetworkSetLine(/*shootPoint,*/hitValues[0].Item1);
+                Weapon.NetworkSetLine(hitValues[0].Item1);
             }
             Weapon.NetworkFadeOutLine();
             
@@ -38,7 +38,7 @@ namespace App.Scripts.Features.Inventory.Weapons.WeaponEffects
             {
                 var point = hitValue.Item1;
                 var hitObject = hitValue.Item2;
-                Weapon.SpawnImpact(point);
+                Weapon.RPCSpawnImpact(point);
 
                 if (!hitObject.TryGetComponent(out Health health) || health.IsImortal)
                 {

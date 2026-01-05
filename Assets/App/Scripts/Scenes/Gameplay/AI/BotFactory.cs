@@ -42,8 +42,8 @@ namespace App.Scripts.Scenes.Gameplay.AI
             // var weaponConfig = botConfig.Weapons[Random.Range(0, botConfig.Weapons.Count)];
             var weaponObject = SpawnWeapon(bot, weaponConfig);
                 
-            var newConfig = GetNewWeaponConfig(weaponConfig);
-            weaponObject.Initialize(newConfig, null);
+            var newConfig = GetNewWeaponConfig(weaponConfig);//TODO: Fix Initializing
+            // weaponObject.Initialize(newConfig, null);
             return weaponObject;
         }
 

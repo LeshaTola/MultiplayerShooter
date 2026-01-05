@@ -4,6 +4,8 @@ using System.Linq;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
 using App.Scripts.Features.Inventory.Configs;
+using App.Scripts.Modules.ObjectPool.KeyPools;
+using App.Scripts.Modules.ObjectPool.PooledObjects;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.Weapons.Factories;
 using Photon.Pun;
@@ -36,6 +38,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
             InventoryProvider inventoryProvider, 
             ShootingModeFactory shootingModeFactory,
             TargetDetector.TargetDetector detector,
+            KeyPool<PoolableParticle> particlesPool,
             Player.Player owner,
             Camera cameraMain)
         {
@@ -59,7 +62,7 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                         .GetComponent<Weapon>();
                 
                 var newConfig = GetNewConfig(weaponConfig);
-                weaponObject.Initialize(newConfig, _detector);
+                weaponObject.Initialize(newConfig, _detector,particlesPool);
                 weaponObject.CustomOrigin = cameraMain.transform.position;
                 
                 weaponObject.OnPlayerHit += (value, damage, killed) =>

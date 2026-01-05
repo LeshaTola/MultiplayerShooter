@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.Features.Inventory.Configs;
 using App.Scripts.Features.Inventory.Weapons.ShootPointStrategies;
+using App.Scripts.Modules.ObjectPool.KeyPools;
+using App.Scripts.Modules.ObjectPool.PooledObjects;
 using App.Scripts.Scenes.Gameplay.Effectors;
 using App.Scripts.Scenes.Gameplay.Weapons.Animations;
 using DG.Tweening;
@@ -20,19 +22,15 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public event Action OnReloadFinised;
 
         [field: Header("Animation")]
-        [field: SerializeField]
-        public WeaponAnimator Animator { get; private set; }
+        [field: SerializeField] public WeaponAnimator Animator { get; private set; }
 
-        [Header("Visual")]
+        [Header("Visual")] 
         [SerializeField] protected ParticleSystem _muzzleFlash;
-
         [SerializeField] protected ParticleSystem _impactEffect;
         [SerializeField] protected LineRenderer _tracerEffect;
 
         [field: Space]
-        [field: SerializeField]
-        public List<Transform> ShootPoints { get; private set; }
-
+        [field: SerializeField] public List<Transform> ShootPoints { get; private set; }
         [SerializeField] [SerializeReference] private ShootPointStrategy _shootPointProvider;
 
         [Space]
@@ -50,23 +48,26 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
         public bool IsReady { get; private set; } = true;
         public bool IsAutoShoot { get; set; }
         
-        
         public Vector3 CustomOrigin { get; set; }
         public Transform CustomTarget { get; set; }
 
         public ShootPointStrategy ShootPointProvider => _shootPointProvider;
 
+        private KeyPool<PoolableParticle> _particlesPool;
+        
         private void Awake()
         {
             _trialStartColor = _tracerEffect.startColor;
             ShootPointProvider.Initialize(ShootPoints);
         }
 
-        public void Initialize(WeaponConfig weaponConfig, TargetDetector.TargetDetector detector)
+        public void Initialize(WeaponConfig weaponConfig, TargetDetector.TargetDetector detector,KeyPool<PoolableParticle> particlesPool)
         {
             Config = weaponConfig;
-            IsAutoShoot = Config.IsAutoShoot;
             _detector = detector;
+            _particlesPool = particlesPool;
+            
+            IsAutoShoot = Config.IsAutoShoot;
             _isLocal = true;
 
             InitializeVisual();
@@ -291,11 +292,21 @@ namespace App.Scripts.Scenes.Gameplay.Weapons
                 });
         }
 
-        public void SpawnImpact(Vector3 position)
+        public void RPCSpawnImpact(Vector3 position)
         {
-            PhotonNetwork.Instantiate(_impactEffect.name, position, Quaternion.identity);
+            //PhotonNetwork.Instantiate(_impactEffect.name, position, Quaternion.identity);
+            photonView.RPC(nameof(SpawnImpact), RpcTarget.All, position);
+
         }
 
+        [PunRPC]
+        private void SpawnImpact(Vector3 position)
+        {
+            var particle = _particlesPool.Get("Hit");
+            particle.transform.position = position;
+            particle.Particle.Play();
+        }
+        
         public void RPCPlayMuzzleFlash(Vector3 position)
         {
             if (_muzzleFlash == null)

@@ -1409,6 +1409,7 @@ MonoBehaviour:
   _accrualConfig: {fileID: 11400000, guid: 605800f0878126044bd0442cca2f37b1, type: 2}
   _detectionConfig: {fileID: 11400000, guid: 5184a91f7b3867741a9be0744dfa9f3f, type: 2}
   _sceneNetworkController: {fileID: 1500808224}
+  _keyPool: {fileID: 11400000, guid: 274417c69dfb83e4383cc3e6d044b652, type: 2}
 --- !u!1 &1495458396
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using App.Scripts.Features.Input;
 using App.Scripts.Features.Inventory;
+using App.Scripts.Modules.ObjectPool.KeyPools;
+using App.Scripts.Modules.ObjectPool.PooledObjects;
 using App.Scripts.Scenes.Gameplay.Cameras;
 using App.Scripts.Scenes.Gameplay.Controller;
 using App.Scripts.Scenes.Gameplay.LeaderBoard;
@@ -23,6 +25,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
         private readonly PlayerController _playerController;
         private readonly InventoryProvider _inventoryProvider;
         private readonly ShootingModeFactory _shootingModeFactory;
+        private readonly KeyPool<PoolableParticle> _particlesPool;
         private readonly CameraProvider _cameraProvider;
         private readonly TargetDetector _targetDetector;
         private readonly Player _playerPrefab;
@@ -49,6 +52,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             Player playerPrefab,
             InventoryProvider inventoryProvider,
             ShootingModeFactory shootingModeFactory,
+            KeyPool<PoolableParticle> particlesPool,
             CameraProvider cameraProvider,
             TargetDetector targetDetector)
         {
@@ -57,6 +61,7 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
             _playerPrefab = playerPrefab;
             _inventoryProvider = inventoryProvider;
             _shootingModeFactory = shootingModeFactory;
+            _particlesPool = particlesPool;
             _cameraProvider = cameraProvider;
             _targetDetector = targetDetector;
         }
@@ -120,8 +125,14 @@ namespace App.Scripts.Scenes.Gameplay.Player.Factories
 
         private void InitializeWeapon(Player player)
         {
-            player.WeaponProvider.Initialize(_gameInputProvider, _playerController, _inventoryProvider,
-                _shootingModeFactory, _targetDetector, player,_cameraProvider.Camera);
+            player.WeaponProvider.Initialize(_gameInputProvider, 
+                _playerController, 
+                _inventoryProvider,
+                _shootingModeFactory,
+                _targetDetector,
+                _particlesPool,
+                player,
+                _cameraProvider.Camera);
         }
 
         private void SendAnaliticsIvents(string skin)

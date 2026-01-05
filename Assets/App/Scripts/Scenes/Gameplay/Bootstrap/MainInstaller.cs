@@ -3,7 +3,10 @@ using App.Scripts.Features.Inventory.Weapons.ShootStrategies.Projectiles.Factory
 using App.Scripts.Features.Rewards;
 using App.Scripts.Features.Rewards.Configs;
 using App.Scripts.Modules.Factories.MonoFactories;
+using App.Scripts.Modules.ObjectPool.KeyPools;
+using App.Scripts.Modules.ObjectPool.KeyPools.Configs;
 using App.Scripts.Modules.ObjectPool.MonoObjectPools;
+using App.Scripts.Modules.ObjectPool.PooledObjects;
 using App.Scripts.Modules.ObjectPool.Pools;
 using App.Scripts.Modules.StateMachine.Services.CleanupService;
 using App.Scripts.Modules.StateMachine.Services.InitializeService;
@@ -34,7 +37,6 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
 
         [Header("HitMark")]
         [SerializeField] private HitConfig _hitConfig;
-        
         [Space]
         [SerializeField] private Transform _container;
 
@@ -56,6 +58,8 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
         [SerializeField] private AccrualConfig _accrualConfig;
         [SerializeField] private TargetDetectionConfig _detectionConfig;
         [SerializeField] private SceneNetworkController _sceneNetworkController;
+        [SerializeField] private ParticlesDatabase _keyPool;
+
         /*[SerializeField] private BotController _botController;
         [SerializeField] private BotAI _botAI;*/
 
@@ -83,6 +87,7 @@ namespace App.Scripts.Scenes.Gameplay.Bootstrap
             Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneNetworkController>().FromInstance(_sceneNetworkController).AsSingle();
             Container.Bind<RewardsProvider>().AsSingle().WithArguments(_accrualConfig).NonLazy();
+            Container.Bind<KeyPool<PoolableParticle>>().AsSingle().WithArguments(_keyPool.Particles,_container);
 
             /*Container.Bind<BotFactory>().AsSingle().WithArguments(_botAI);
             Container.BindInterfacesAndSelfTo<BotController>().FromInstance(_botController).AsSingle();*/
