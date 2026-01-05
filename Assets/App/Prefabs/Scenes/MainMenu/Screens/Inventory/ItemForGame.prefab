@@ -90,3 +90,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 1887264229579893095}
   _image: {fileID: 5467153653483089002}
+  _blockedImage: {fileID: 0}

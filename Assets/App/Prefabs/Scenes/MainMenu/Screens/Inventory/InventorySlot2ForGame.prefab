@@ -414,10 +414,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4cdea5e3a874b8eaba441970d8b77b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 7164614031678635067}
   _selectionImage: {fileID: 5729774822358551731}
   _rarityImage: {fileID: 4429999858588679578}
   _keyText: {fileID: 5355767235743031166}
+  isMobile: 0
 --- !u!114 &1003996670353047564
 MonoBehaviour:
   m_ObjectHideFlags: 0
